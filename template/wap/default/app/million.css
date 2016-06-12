@@ -1,0 +1,217 @@
+/* CSS Document */
+@charset "UTF-8";
+* {
+	-webkit-tap-highlight-color: transparent;
+	outline: 0
+}
+body {
+    margin: 0 auto;
+    min-width: 320px;
+    max-width: 640px;
+    background: #fff;
+    font-size: 14px;
+    font-family: Helvetica, STHeiti STXihei, Microsoft JhengHei, Microsoft YaHei, Arial;
+    line-height: 1.5;
+    color: #666;
+    -webkit-text-size-adjust: 100% !important;
+    -webkit-user-select: none;
+    user-select: none;
+}
+.body-gray_1 { background: #e1462e; }
+/*百万大奖—首页*/
+.row_12 {
+	padding-top: 240px;
+}
+.large-12 {
+	padding: 0 60px;
+}
+.large-12 label {
+	font-size: 0.875rem;
+	color: #fff;
+	cursor: pointer;
+	display: block;
+	font-weight: normal;
+	line-height: 1.5;
+	margin-bottom: 0;
+	padding-bottom: 10px;
+	font-weight: bold;
+}
+.large-12 input {
+	-webkit-appearance: none;
+	background-color: white;
+	border: 2px solid #cccccc;
+	padding: 0.5rem;
+	min-height: 30px;
+	line-height: 20px;
+	text-align:center;
+    /*width:200px;*/
+	display: -webkit-inline-box;
+	color: #c00000;
+}
+.gg_dj {
+	margin: 45px 0 0 0;
+	background: url(../index_style/css/img/hd-1.png) no-repeat center top;
+	text-align: center;
+	height: 300px;
+}
+.gg_dj-a1 {
+	background: url(../index_style/css/img/hd-2.png) no-repeat center top;
+	display: block;
+	height: 26px;
+}
+.gg_dj-a a {
+	width: 118px;
+    height: 16px;
+    padding: 0 60px;
+    line-height: 30px;
+}
+.gg_dj-a h2 {
+	color: #FFE88C;
+	font-size: 15px;
+	font-weight: bold;
+	text-align: left;
+	margin-left: 10px;
+	margin-top: 10px;
+}
+.gg_dj-a p {
+	padding: inherit;
+	margin: 0 25px;
+	line-height: 1.8;
+	font-size: 14px;
+	color: #FFE88C;
+	width: inherit;
+	text-align: left;
+}
+/*百万大奖—详情页*/
+.bro-box {
+	margin-top: 70px;
+	width: 100%;
+	overflow: hidden;
+}
+.bro-awards {
+	margin: 40px 0 0 0;
+	padding: 20px; /*background: #c00000; border: 0; border-bottom: 1px solid #c00000; box-shadow: 2px 2px 2px rgb(220,220,220); */
+	overflow: hidden;
+	text-align: center;
+}
+.bro-awards p {
+	font-size: 14px;
+	color: #fff;
+	line-height: 25px;
+	padding-top: 40px;
+}
+.bro-awards p .icon-money {
+	margin-right: 5px;
+}
+.bro-awards p .balance-detail {
+	float: right;
+}
+.bro-awards p .icon-help {
+	font-size: 40px;
+	color: #ffff00;
+}
+.bro-awards span {
+	display: block; /*margin-bottom:50px;*/
+	font-size: 50px;
+	line-height: 90px;
+	color: #fff;
+	text-shadow: 3px 3px 3px #5C0000;
+}
+.bro-awards-btn {
+	margin-top: 20px;
+	padding: 0 15px;
+}
+.awards-biaoti-left {
+	width: 45%;
+	height: 35px;
+	line-height: 30px;
+	border-radius: 3px;
+	font-size: 15px;
+	font-family: "微软雅黑", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+	background: #f37872;
+	border: 1px solid #e86660;
+	float: left;
+}
+.awards-biaoti-left a {
+	color: #fff;
+}
+.awards-biaoti-right {
+	width: 45%;
+	height: 35px;
+	line-height: 30px;
+	border-radius: 3px;
+	font-size: 15px;
+	font-family: "微软雅黑", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+	background: #f37872;
+	border: 1px solid #e86660;
+	float: right;
+}
+.awards-biaoti-right a {
+	color: #fff;
+}
+.right-xq.right-btn-brokerage {
+  width: 80px;
+  float: right;
+}
+.a-xq-detail {
+	padding: 7px 20px;
+	text-align: center;
+	border-radius: 3px;
+	border: 1px solid #bfbfbf;
+	box-shadow: inset 0 0 3px #bfbfbf;
+	box-shadow: 0 0 1px #bfbfbf;
+	color: #252525;
+}
+.a-xq-detail:hover {
+	color: #fff;
+}
+.a-xq-detail:active {
+	color: #000;
+	/*background: #fff;*/
+}
+
+/*百万大奖—积分提取*/
+.tx-12 { 
+    padding: 0 15px;
+    text-align: center;
+     }
+
+.tx-12 label { 
+	font-size: 0.875rem;
+    color: #e1462e;
+    cursor: pointer;
+    display: block;
+    font-weight: normal;
+    line-height: 1.5;
+    margin-bottom: 0;
+    padding-bottom: 10px;
+    font-weight: bold;
+     }
+.tx-12 input { 
+	-webkit-appearance: none;
+    background-color: white;
+    border: 2px solid #cccccc;
+    padding: 0.5rem;
+    min-height: 30px;
+    line-height: 20px;
+    text-align:center;
+    width:200px;
+    display: -webkit-inline-box;
+    color: #c00000;
+     }
+     
+.bro-tx { margin: 40px 0 0 0; padding: 25px 15px 0 15px; background: #e1462e; border: 0; border-bottom: 1px solid #c00000; box-shadow: 2px 2px 2px rgb(220,220,220); overflow: hidden; }
+.bro-tx p { font-size: 16px; color: #fff; line-height: 25px; }
+.bro-tx p .icon-money { margin-right: 5px; }
+.bro-tx p .balance-detail { float: right; }
+.bro-tx p .icon-help { font-size: 40px; color: #ffff00; }
+.bro-tx span { display: block; margin: 15px 0; font-size: 40px; color: #fff; text-shadow: 1px 2px 0 #5C0000; }
+.bro-tx-btn { margin-top: 20px; padding: 0 15px; }
+
+.left-small {
+    position: absolute;
+}
+.tab-bar-section.middle {
+	width: 52%;
+	text-align: end;
+}
