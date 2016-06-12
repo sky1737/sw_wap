@@ -1,6 +1,18 @@
 <?php include display('public:activity_win'); ?>
 
 <div class="footer1 ">
+	<div><?php
+	if(empty($pc_footer)) {
+			echo '<li>请添加标识为 pc_footer 的广告</li>';
+	} else {
+		foreach ($pc_footer as $adk => $adv) {
+			echo '<a href="' . $adv['url'] . '"><img src="' . $adv['pic'] . '"></a>';
+		}
+	} ?>
+	<?php
+//	pc_footer
+
+	?></div>
 	<div class="Cfooter">
 		<div class="Cfooter-info">
 			<dl class="w1000"style="auto;text-align:">
