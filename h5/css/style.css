@@ -1,0 +1,376 @@
+﻿/* 全局CSS定义 */
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+body,
+html {
+    width: 100%;
+    height: 100%;
+}
+
+div,
+form,
+ul,
+ol,
+li,
+span,
+p {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+img,
+a img {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+    padding: 0;
+}
+
+ul,
+ol,
+li {
+    list-style: none
+}
+
+table,
+td,
+input {
+    padding: 0
+}
+
+a {
+    text-decoration: none;
+}
+
+.hide {
+    display: none;
+    visibility: hidden;
+}
+
+.show {
+    display: block;
+}
+
+.swiper-container,
+.swiper-wrapper {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    position: relative;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.swiper-slide img {
+    max-width: 640px;
+    height: 100%;
+}
+
+.entrance {
+    position: absolute;
+    z-index: 9;
+    color: #2A2A2A;
+    font-size: 12px;
+    text-align: center;
+    font-family: "微软雅黑";
+    bottom: 4%;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    width: 100px;
+    height: 30px;
+    line-height: 35px;
+    /*border: 1px solid #fff;
+    background-color: rgba(255, 255, 255, 0.17);*/
+    border-bottom: 1px solid #2A2A2A;
+}
+
+.APP {
+    position: absolute;
+    z-index: 9;
+    font-size: 13px;
+    color: #fff;
+    display: block;
+    width: 120px;
+    bottom: 10%;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+    padding: 6px 0;
+    /*padding-left: 25px;*/
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    -webkit-box-shadow: 1px 1px 1px #777474;
+    -moz-box-shadow: 1px 1px 1px #777474;
+    box-shadow: 1px 1px 1px #777474;
+    cursor: pointer;
+}
+
+.page1 {
+    background: #5198f2;
+}
+
+.page2 {
+    background: #fc7e72;
+}
+
+.page3 {
+    background: #9ad8ef;
+}
+
+.page4 {
+    background: #fcc173;
+}
+
+.page5 {
+    background: #c1e385;
+}
+
+.page6 {
+    background: #c2caf9;
+}
+
+.page7 {
+    background: #f8e49b;
+}
+
+.page8 {
+    background: #fec63b;
+}
+
+.page9 {
+    background: #56b9fc;
+}
+
+.page10 {
+    background: #fe0034;
+}
+
+.page11 {
+    background: #f96670;
+}
+
+.page12 {
+    background: #712fd7;
+}
+
+.page1 .APP {
+   /* background: #72def9 url(http://dvd-oss.oss-cn-beijing.aliyuncs.com/free%2Fappload1.png) no-repeat 10px center;
+    background-size: 15px 25px;*/
+    background-color: rgba(255, 255, 255, 0.17)
+}
+
+.page2 .APP {
+    /*background: #f5da74 url(http://dvd-oss.oss-cn-beijing.aliyuncs.com/free%2Fappload2.png) no-repeat 10px center;
+    background-size: 15px 25px;*/
+    background-color: rgba(255, 255, 255, 0.17)
+}
+
+.page3 .APP {
+    /*background: #fb9fdd url(http://dvd-oss.oss-cn-beijing.aliyuncs.com/free%2Fappload3.png) no-repeat 10px center;
+    background-size: 15px 25px;*/
+    background-color: rgba(255, 255, 255, 0.17)
+}
+
+.page4 .APP {
+    /*background: #7ce2bb url(http://dvd-oss.oss-cn-beijing.aliyuncs.com/free%2Fappload4.png) no-repeat 10px center;
+    background-size: 15px 25px;*/
+    background-color: rgba(255, 255, 255, 0.17)
+}
+
+.page5 .APP {
+    /*background: #c99afa url(http://dvd-oss.oss-cn-beijing.aliyuncs.com/free%2Fappload5.png) no-repeat 10px center;
+    background-size: 15px 25px;*/
+    background-color: rgba(255, 255, 255, 0.17)
+}
+
+.page6 .APP {
+    /*background: #72def9 url(http://dvd-oss.oss-cn-beijing.aliyuncs.com/free%2Fappload1.png) no-repeat 10px center;
+    background-size: 15px 25px;*/
+    background-color: rgba(255, 255, 255, 0.17)
+}
+
+.page7 .APP {
+    /*background: #7ce2bb url(http://dvd-oss.oss-cn-beijing.aliyuncs.com/free%2Fappload4.png) no-repeat 10px center;
+    background-size: 15px 25px;*/
+    background-color: rgba(255, 255, 255, 0.17)
+}
+
+.page8 .APP {
+    /*background: #7ce2bb url(http://dvd-oss.oss-cn-beijing.aliyuncs.com/free%2Fappload4.png) no-repeat 10px center;
+    background-size: 15px 25px;*/
+    background-color: rgba(255, 255, 255, 0.17)
+}
+
+.page9 .APP {
+    /*background: #7ce2bb url(http://dvd-oss.oss-cn-beijing.aliyuncs.com/free%2Fappload4.png) no-repeat 10px center;
+    background-size: 15px 25px;*/
+    background-color: rgba(255, 255, 255, 0.17)
+}
+
+.page10 .APP {
+    /*background: #7ce2bb url(http://dvd-oss.oss-cn-beijing.aliyuncs.com/free%2Fappload4.png) no-repeat 10px center;
+    background-size: 15px 25px;*/
+    background-color: rgba(255, 255, 255, 0.17)
+}
+
+.page11 .APP {
+    /*background: #7ce2bb url(http://dvd-oss.oss-cn-beijing.aliyuncs.com/free%2Fappload4.png) no-repeat 10px center;
+    background-size: 15px 25px;*/
+    background-color: rgba(255, 255, 255, 0.17)
+}
+
+.page12 .APP {
+    /*background: #72def9 url(http://dvd-oss.oss-cn-beijing.aliyuncs.com/free%2Fappload1.png) no-repeat 10px center;
+    background-size: 15px 25px;*/
+    background-color: rgba(255, 255, 255, 0.17)
+}
+
+
+/*遮罩框*/
+
+.shade {
+    position: absolute;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    top: 0;
+    left: 0;
+    overflow: hidden;
+}
+
+
+/*提示弹框*/
+
+.frame {
+    height: 100px;
+    width: 250px;
+    background: #ffffff url(http://dvd-oss.oss-cn-beijing.aliyuncs.com/free%2Fdavdian.png) no-repeat 30px 30px;
+    background-size: 50px 50px;
+    position: absolute;
+    z-index: 1001;
+    margin: auto auto;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    border-radius: 5px;
+    display: -webkit-box;
+    -webkit-box-orient: horizontal;
+    -webkit-box-align: center;
+}
+.intxt {
+    margin-left: 90px;
+    
+}
+.topTip {
+    height: 8%;
+    width: 100%;
+    position: absolute;
+    top:-100px;
+    left: 0;
+    z-index: 999;
+    background: rgba(0, 0, 0, 0.6);
+    line-height: inherit;
+    color: #FEFEFE;
+    overflow: hidden;
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    font-size: 20px;
+    display: -webkit-box;
+    -webkit-box-orient: horizontal;
+    -webkit-box-align: center;
+    -webkit-box-pack: center;
+}
+.topTip img {
+    height: 80%;
+    vertical-align: middle;
+    margin:0 5px;
+}
+.topTipDel {
+    position: absolute;
+    z-index: 1000;
+    left: 3%;
+    top: 50%;
+    -webkit-transform:translateY(-50%) ;
+    -moz-transform: translateY(-50%);
+    -ms-transform:translateY(-50%) ;
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+.topTipArrow {
+    z-index: 999;
+    position: absolute;
+    right: 3%;
+    top: 50%;
+    -webkit-transform:translateY(-50%) ;
+    -moz-transform: translateY(-50%);
+    -ms-transform:translateY(-50%) ;
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+.middles{
+    vertical-align: middle;
+}
+
+.frameDel{
+    position: absolute;
+    right:8px;
+    top:8px;
+}
+.swiper-slide .arrows {
+    position: absolute;
+    width: 20px;
+    height: 10px;
+    bottom: 8px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    opacity: 0.5;
+    -webkit-animation: arrow 1s infinite;
+    -moz-animation: arrow 1s infinite;
+    -o-animation: arrow 1s infinite;
+    animation: arrow 1s infinite;
+}
+@-webkit-keyframes arrow {
+    from{bottom:2px}
+    to{bottom:10px}
+}
+@-moz-keyframes arrow {
+    from{bottom:2px}
+    to{bottom:10px}
+}
+@-ms-keyframes arrow {
+    from{bottom:2px}
+    to{bottom:10px}
+}
+@keyframes arrow {
+    from{bottom:2px}
+    to{bottom:10px}
+}
