@@ -1,0 +1,3 @@
+// ВњЩњЬсаб
+import('source.class.Notify');
+Notify::createNoitfy($_POST['storeId'], option('config.orderid_prefix') . $order_no);
