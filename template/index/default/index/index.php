@@ -362,9 +362,9 @@
 					var src = $(this).attr('src');
 					var qrcode = $(this).data('url');
 					$(this).hover(function(){
-						$('.brands_big img').attr('src',qrcode);
-					},function(){
 						$('.brands_big img').attr('src', src);
+					},function(){
+						//$('.brands_big img').attr('src',qrcode);
 					});
 				});
 			});

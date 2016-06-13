@@ -39,8 +39,8 @@ class index_controller extends base_controller
         $this->assign('adList_right', array_values($adList_right));    // 幻灯片右侧广告位
 
         // 幻灯片右侧广告位
-        $ad_footer = $adver->get_adver_by_key('pc_footer', 1);
-        $this->assign('ad_footer', $ad_footer);
+        $ad_footer = $adver->get_adver_by_key('pc_footer', 0);
+        $this->assign('pc_footer', $ad_footer);
 
         // 获取您周边店铺数量
         $WebUserInfo = show_distance();
