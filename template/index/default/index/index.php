@@ -237,9 +237,7 @@
 										echo '<li>请添加标识为 pc_slide 的广告</li>';
 									} else {
 										foreach ($adList as $adk => $adv) {
-											echo '<li class="mt-slider-trigger ' .
-												($adk == '0' ? 'mt-slider-current-trigger' : '') . '">' . $adv['name'] .
-												'</li>';
+											echo '<li class="mt-slider-trigger ' . ($adk == '0' ? 'mt-slider-current-trigger' : '') . '">'.($adk+1).'<!--' . $adv['name'] .	'--></li>';
 										}
 									} ?>
 									<div style="clear:both"></div>
@@ -251,9 +249,7 @@
 										echo '<li>请添加标识为 pc_slide 的广告</li>';
 								} else {
 									foreach ($adList as $adk => $adv) {
-										echo '<li class="cf" style="opacity: 1; ' .
-											($adk == '0' ? 'display: block;' : 'display:none;') . '"><a href="' .
-											$adv['url'] . '"><img src="' . $adv['pic'] . '"></a></li>';
+										echo '<li class="cf" style="opacity: 1; ' .	($adk == '0' ? 'display: block;' : 'display:none;') . '"><a href="' . $adv['url'] . '"><img src="' . $adv['pic'] . '"></a></li>';
 									}
 								} ?>
 							</ul>

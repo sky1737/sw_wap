@@ -86,19 +86,21 @@
 /*background: url(../images/o2o11_1_122.png);*/
 }
 .ui-slider .ui-slider__triggers .trigger-item, .ui-slider .ui-slider__triggers li {
-	margin-left: 1px;
-	display: inline-block;
-	width: 117px;
-	/* height: 14px; */
-	cursor: pointer;
-	float: left;
-	color: #000;
-	background-color: #fff;
-	opacity: 0.7;
-	overflow:hidden;
-	line-height: 30px;
-	white-space: nowrap;
-	text-overflow:ellipsis;
+    margin-left: 5px;
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+    float: left;
+    color: #fff;
+    background-color: #333;
+    opacity: 0.7;
+    overflow: hidden;
+    line-height: 22px;
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    border-radius: 10px;
 }
 .ui-slider .ui-slider__triggers .trigger-item--current, .ui-slider .ui-slider__triggers li--current {
 	background: #37b7a9
@@ -108,8 +110,8 @@
 }
 .ui-slider .ui-slider__triggers .trigger-item, .ui-slider .ui-slider__triggers li:hover, .ui-slider .ui-slider__triggers .mt-slider-current-trigger {
 	color: #fff;
-	background-color: #888888;
-	opacity: 0.7;
+	background-color: #F00;
+	/*opacity: 0.7;*/
 }
 .ui-slider .ui-slider__triggers--small {
 	height: 7px
@@ -290,7 +292,7 @@
 	color: #666
 }
 .index-slider .head .trigger-container {
-	width: 97%;
+	/*width: 97%;*/
 	margin: 0 auto;
 }
 .index-slider .slide__split--line {
