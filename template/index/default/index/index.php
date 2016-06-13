@@ -341,19 +341,20 @@
 			<?php
 			if($hot_brands) {
 			?>
-			<div class="brands_big"><img src="<?php echo $hot_brands[0]['qrcode']; ?>" width="100%" height="100%" /></div>
+			<div class="brands_big"><img src="<?php echo $hot_brands[0]['pic']; ?>" width="100%" height="100%" /></div>
 			<div class="brands_list">
 				<ul>
 					<?php
 					foreach ($hot_brands as $key => $val) {
-						$key++;
+						//$key++;
+						if($key==0) continue;
 						echo '<li><a href="' . $val['url'] . '""><img src="' . $val['pic'] . '" alt="' . $val['name'] . '" data-url="'.$val['qrcode'].'" /></a></li>';
 					}
 					?>
 				</ul>
 			</div>
 			<script type="text/javascript">
-			$(function() {
+			/*$(function() {
 				$('.brands_list ul li img').each(function(){
 					var src = $(this).attr('src');
 					var qrcode = $(this).data('url');
@@ -363,8 +364,8 @@
 						//$('.brands_big img').attr('src',qrcode);
 					});
 				});
-			});
-		</script>
+			});*/
+			</script>
 			<?php } else {
 				echo '请添加标识为 pc_hot_brand 的广告！';
 			}?>
