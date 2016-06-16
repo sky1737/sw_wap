@@ -17,8 +17,8 @@ elseif ($_GET['ps'] >= 540) { ?>responsive-540<?php } ?> <?php if ($_GET['ps'] >
 	<link rel="stylesheet" href="<?php echo TPL_URL; ?>css/base.css"/>
 	<link rel="stylesheet" href="<?php echo TPL_URL; ?>css/customer.css"/>
 	<link rel="stylesheet" href="<?php echo TPL_URL; ?>css/coupon.css"/>
-	<script src="<?php echo $config['site_url']; ?>/static/js/fastclick.js"></script>
-	<script src="<?php echo $config['site_url']; ?>/static/js/jquery.min.js"></script>
+	<script src="<?php echo $config['oss_url']; ?>/static/js/fastclick.js"></script>
+	<script src="<?php echo $config['oss_url']; ?>/static/js/jquery.min.js"></script>
 	<script src="<?php echo TPL_URL; ?>js/base.js"></script>
 	<script src="<?php echo TPL_URL; ?>js/coupon.js"></script>
 	<style>

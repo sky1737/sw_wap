@@ -16,7 +16,7 @@ elseif ($_GET['ps'] >= 540) { ?>responsive-540<?php } ?> <?php if ($_GET['ps'] >
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 	<link rel="stylesheet" href="<?php echo TPL_URL; ?>css/base.css"/>
 	<link rel="stylesheet" href="<?php echo TPL_URL; ?>css/customer.css"/>
-	<script src="<?php echo $config['site_url']; ?>/static/js/jquery.min.js"></script>
+	<script src="<?php echo $config['oss_url']; ?>/static/js/jquery.min.js"></script>
 	<script src="<?php echo TPL_URL; ?>js/base.js"></script>
 	<style>
 		.promote-card-list .curr_li {

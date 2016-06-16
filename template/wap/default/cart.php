@@ -22,7 +22,7 @@
 			orderPrefix = "<?php echo $config['orderid_prefix']; ?>",
 			mergePrefix = "<?php echo $config['mergeid_prefix']; ?>";
 	</script>
-	<script src="<?php echo $config['site_url']; ?>/static/js/jquery.min.js"></script>
+	<script src="<?php echo $config['oss_url']; ?>/static/js/jquery.min.js"></script>
 	<script src="<?php echo TPL_URL; ?>js/base.js"></script>
 	<script src="<?php echo TPL_URL; ?>js/cart.js"></script>
 </head>

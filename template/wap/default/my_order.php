@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="<?php echo TPL_URL; ?>css/base.css"/>
 <link rel="stylesheet" href="<?php echo TPL_URL; ?>css/order_list.css"/>
 <link rel="stylesheet" href="<?php echo $config['site_url']; ?>/template/wap/default/css/gonggong.css"/>
-<script src="<?php echo $config['site_url']; ?>/static/js/jquery.min.js"></script>
+<script src="<?php echo $config['oss_url']; ?>/static/js/jquery.min.js"></script>
 <script src="<?php echo TPL_URL; ?>js/base.js"></script>
 <script src="<?php echo TPL_URL; ?>js/order.js"></script>
 <script>

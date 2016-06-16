@@ -14,7 +14,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 <link rel="stylesheet" href="<?php echo TPL_URL; ?>css/base.css"/>
 <link rel="stylesheet" href="<?php echo TPL_URL; ?>css/trade.css"/>
-<script src="<?php echo $config['site_url']; ?>/static/js/jquery.min.js"></script>
+<script src="<?php echo $config['oss_url']; ?>/static/js/jquery.min.js"></script>
 <script src="<?php echo TPL_URL; ?>js/base.js"></script>
 <script type="text/javascript">
 	var orderNo = '<?php echo $nowOrder['order_no_txt'];?>';

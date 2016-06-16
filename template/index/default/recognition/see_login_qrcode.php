@@ -37,7 +37,7 @@
 	<!--<p style="<?php if (empty($_GET['mt'])) { echo 'margin-top:50px;'; } ?>margin-bottom:0px;text-align:center;">
 		请使用微信扫描二维码登录</p>-->
 	<p style="text-align:center;"><img src="<?php echo $qrcode; ?>"
-	                                   style="width:200px;height:200px;background:url('<?php echo $config['site_url']; ?>/static/images/lightbox-ico-loading.gif') no-repeat center"/>
+	                                   style="width:200px;height:200px;background:url('<?php echo $config['oss_url']; ?>/static/images/lightbox-ico-loading.gif') no-repeat center"/>
 	</p>
 	<p id="login_status" style="margin-top:20px;display:none;text-align:center;font-size:14px;"></p>
 	<?php

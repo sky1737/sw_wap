@@ -14,7 +14,7 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
 	<link rel="stylesheet" href="<?php echo TPL_URL; ?>css/base.css"/>
 	<link rel="stylesheet" href="<?php echo TPL_URL; ?>css/buyer.css"/>
-	<script src="<?php echo $config['site_url']; ?>/static/js/jquery.min.js"></script>
+	<script src="<?php echo $config['oss_url']; ?>/static/js/jquery.min.js"></script>
 	<script>var redirect_uri = "<?php echo $redirect_uri;?>";</script>
 	<script src="<?php echo TPL_URL; ?>js/base.js"></script>
 	<script src="<?php echo TPL_URL; ?>js/login.js"></script>

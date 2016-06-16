@@ -17,8 +17,8 @@ if(!defined('TWIKER_PATH'))
 		<link rel="stylesheet" href="<?php echo TPL_URL; ?>css/base.css" />
 		<link rel="stylesheet" href="<?php echo TPL_URL; ?>css/trade.css" />
 		<link rel="stylesheet" href="<?php echo TPL_URL; ?>/css/offline_shop.css">
-		<script src="<?php echo $config['site_url']; ?>/static/js/jquery.min.js"></script>
-		<script src="<?php echo $config['site_url']; ?>/static/js/area/area.min.js"></script>
+		<script src="<?php echo $config['oss_url']; ?>/static/js/jquery.min.js"></script>
+		<script src="<?php echo $config['oss_url']; ?>/static/js/area/area.min.js"></script>
 		<script src="<?php echo TPL_URL; ?>js/base.js"></script>
 		<script type="text/javascript">
 			var noCart = true,

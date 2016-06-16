@@ -22,9 +22,9 @@ elseif ($_GET['ps'] >= 540) { ?>responsive-540<?php } ?> <?php if ($_GET['ps'] >
 	else { ?>
 <link rel="stylesheet" href="<?php echo TPL_URL; ?>css/showcase_admin.css"/>
 <?php } ?>
-<script src="<?php echo $config['site_url']; ?>/static/js/jquery.min.js"></script>
-<script src="<?php echo $config['site_url']; ?>/static/js/jquery.waterfall.js"></script>
-<script src="<?php echo $config['site_url']; ?>/static/js/idangerous.swiper.min.js"></script>
+<script src="<?php echo $config['oss_url']; ?>/static/js/jquery.min.js"></script>
+<script src="<?php echo $config['oss_url']; ?>/static/js/jquery.waterfall.js"></script>
+<script src="<?php echo $config['oss_url']; ?>/static/js/idangerous.swiper.min.js"></script>
 <script src="<?php echo TPL_URL; ?>js/base.js"></script>
 </head>
 <body <?php if (!empty($storeNav)){ ?>style="padding-bottom:45px;"<?php } ?>>

@@ -38,9 +38,9 @@ echo ' responsive-800';
 <link rel="stylesheet" href="<?php echo TPL_URL ?>css/comment.css"/>
 <link rel="stylesheet" type="text/css" href="<?php echo TPL_URL; ?>css/font/icon.css"/>
 <script> var storeId =<?php echo $now_store['store_id'];?>, product_id =<?php echo $nowProduct['product_id'];?>, showBuy = !!<?php echo intval($_GET['buy'])?>, hasActivity = !!<?php echo intval($nowActivity);?>, activityId =<?php echo intval($nowActivity['id']);?>, activityType =<?php echo intval($nowActivity['type']);?>, activityDiscount =<?php echo floatval($nowActivity['discount']);?>, activityPrice =<?php echo floatval($nowActivity['price']);?>;</script>
-<script src="<?php echo $config['site_url']; ?>/static/js/jquery.min.js"></script>
-<script src="<?php echo $config['site_url']; ?>/static/js/jquery.waterfall.js"></script>
-<script src="<?php echo $config['site_url']; ?>/static/js/idangerous.swiper.min.js"></script>
+<script src="<?php echo $config['oss_url']; ?>/static/js/jquery.min.js"></script>
+<script src="<?php echo $config['oss_url']; ?>/static/js/jquery.waterfall.js"></script>
+<script src="<?php echo $config['oss_url']; ?>/static/js/idangerous.swiper.min.js"></script>
 <script src="<?php echo TPL_URL; ?>js/base.js?time=<?php echo time(); ?>"></script>
 <script src="<?php echo TPL_URL; ?>js/sku.js"></script>
 <script src="<?php echo TPL_URL; ?>js/good.js"></script>

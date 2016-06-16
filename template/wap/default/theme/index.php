@@ -25,7 +25,7 @@
 <link rel="stylesheet" href="<?php echo TPL_URL; ?>css/showcase_admin.css"/>
 <script>var is_mobile = false;</script>
 <?php } ?>
-<script src="<?php echo $config['site_url']; ?>/static/js/jquery.min.js"></script>
+<script src="<?php echo $config['oss_url']; ?>/static/js/jquery.min.js"></script>
 <script src="<?php echo TPL_URL; ?>theme/js/swiper.min.js"></script>
 <!--<script async="" src="<?php echo TPL_URL; ?>theme/js/mobile-common.js"></script>
 <script async="" src="<?php echo TPL_URL; ?>theme/js/app-m-main-common.js"></script>

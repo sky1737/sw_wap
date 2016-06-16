@@ -16,9 +16,9 @@
 <link rel="stylesheet" href="<?php echo TPL_URL; ?>css/prop.css"/>
 <link rel="stylesheet" href="<?php echo TPL_URL; ?>index_style/css/category_detail.css"/>
 <link rel="stylesheet" href="<?php echo TPL_URL; ?>css/gonggong.css"/>
-<script src="<?php echo $config['site_url']; ?>/static/js/fastclick.js"></script>
-<script src="<?php echo $config['site_url']; ?>/static/js/jquery.min.js"></script>
-<script src="<?php echo $config['site_url']; ?>/static/js/idangerous.swiper.min.js"></script>
+<script src="<?php echo $config['oss_url']; ?>/static/js/fastclick.js"></script>
+<script src="<?php echo $config['oss_url']; ?>/static/js/jquery.min.js"></script>
+<script src="<?php echo $config['oss_url']; ?>/static/js/idangerous.swiper.min.js"></script>
 <script src="<?php echo TPL_URL; ?>js/base.js"></script>
 <script>var keyword = '<?php echo $keyword;?>', key_id = '<?php echo $key_id;?>';</script>
 <script src="<?php echo TPL_URL; ?>index_style/js/category_detail.js"></script>

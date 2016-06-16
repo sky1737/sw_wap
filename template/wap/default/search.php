@@ -28,7 +28,7 @@
 		<link rel="stylesheet" href="<?php echo TPL_URL; ?>css/showcase_admin.css"/>
 			<script>var is_mobile = false;</script>
 		<?php } ?>
-		<script src="<?php echo $config['site_url']; ?>/static/js/jquery.min.js"></script>
+		<script src="<?php echo $config['oss_url']; ?>/static/js/jquery.min.js"></script>
 		<script>var storeId = <?php echo $now_store['store_id']?>;</script>
 		<script src="<?php echo TPL_URL; ?>js/base.js"></script>
 		<script src="<?php echo TPL_URL; ?>js/sku.js"></script>

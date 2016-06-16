@@ -16,7 +16,7 @@
 	<link rel="stylesheet" href="<?php echo TPL_URL; ?>css/trade.css"/>
 	<link rel="stylesheet" href="<?php echo TPL_URL; ?>css/cart.css"/>
 	<script>var noCart = true, storeId = '<?php echo $now_store_cart['store_id']?>';</script>
-	<script src="<?php echo $config['site_url']; ?>/static/js/jquery.min.js"></script>
+	<script src="<?php echo $config['oss_url']; ?>/static/js/jquery.min.js"></script>
 	<script src="<?php echo TPL_URL; ?>js/base.js"></script>
 	<script src="<?php echo TPL_URL; ?>js/cart.js"></script>
 </head>

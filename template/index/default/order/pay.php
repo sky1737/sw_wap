@@ -13,7 +13,7 @@
 	<link type="text/css" rel="stylesheet" href="<?php echo TPL_URL; ?>css/cart.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo $config['site_url'] ?>/static/css/jquery.ui.css" />
 	<!--<link href=" " type="text/css" rel="stylesheet" id="sc">-->
-	<script type="text/javascript" src="<?php echo $config['site_url']; ?>/static/js/jquery.min.js"></script>
+	<script type="text/javascript" src="<?php echo $config['oss_url']; ?>/static/js/jquery.min.js"></script>
 	<script src="<?php echo TPL_URL; ?>js/common.js"></script>
 	<script src="<?php echo TPL_URL; ?>js/index2.js"></script>
 	<!--[if lt IE 9]>
@@ -107,7 +107,7 @@
 				<h1>扫码支付</h1>
 				<ul class="pay-code-list">
 					<li class="code">
-						<img src="<?php echo $config['site_url']; ?>/static/images/blank.gif" class="qrcode_img">
+						<img src="<?php echo $config['oss_url']; ?>/static/images/blank.gif" class="qrcode_img">
 						<div class="txt">
 							微信扫一扫<br>
 							轻松完成支付

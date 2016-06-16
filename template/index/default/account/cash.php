@@ -1,5 +1,5 @@
 <?php include display('public:person_header'); ?>
-<script src="<?php echo $config['site_url']; ?>/static/js/area/area.min.js"></script>
+<script src="<?php echo $config['oss_url']; ?>/static/js/area/area.min.js"></script>
 <script src="<?php echo TPL_URL; ?>js/address.js"></script>
 <script>
 	$(document).ready(function () {

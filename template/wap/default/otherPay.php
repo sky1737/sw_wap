@@ -12,7 +12,7 @@
 	<link rel="icon" href="<?php echo $config['site_url']; ?>/favicon.ico"/>
 	<title>支付订单</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-	<script src="<?php echo $config['site_url']; ?>/static/js/jquery.min.js"></script>
+	<script src="<?php echo $config['oss_url']; ?>/static/js/jquery.min.js"></script>
 	<script>
 		$(function () {
 			var orderData = <?php echo json_encode($orderData);?>;
