@@ -40,6 +40,7 @@
 				<dd> <strong>售后服务</strong>
 					<a target="_blank" href="/help/115/128.html">售后政策</a>
 					<a target="_blank" href="/help/115/129.html">退换货流程</a>
+					<a target="_blank" href="/help/115/130.html">退款方式</a>
 				</dd>
 				<dd class="f-sao1"> <strong>官方微商城</strong> <b><strong><img  style="width:77px;" src="<?php echo option('config.wechat_qrcode'); ?>"/></strong></b> </dd>
 			</dl>
