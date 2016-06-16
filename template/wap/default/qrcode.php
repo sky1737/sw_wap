@@ -11,7 +11,7 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo TPL_URL; ?>css/foundation.css"/>
 	<link rel="stylesheet" type="text/css" href="<?php echo TPL_URL; ?>css/normalize.css"/>
 	<link rel="stylesheet" type="text/css" href="<?php echo TPL_URL; ?>css/common.css"/>
-	<script src="<?php echo $config['site_url']; ?>/static/js/jquery.min.js"></script>
+	<script src="<?php echo $config['oss_url']; ?>/static/js/jquery.min.js"></script>
 </head>
 
 <body class="body-gray">

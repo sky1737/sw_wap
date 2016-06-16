@@ -13,8 +13,8 @@
 	<meta name="apple-mobile-web-app-status-bar-style" content="default"/>
 	<meta name="applicable-device" content="mobile"/>
 	<link rel="stylesheet" href="<?php echo TPL_URL; ?>index_style/css/weidian.css"/>
-	<script src="<?php echo $config['site_url']; ?>/static/js/fastclick.js"></script>
-	<script src="<?php echo $config['site_url']; ?>/static/js/jquery.min.js"></script>
+	<script src="<?php echo $config['oss_url']; ?>/static/js/fastclick.js"></script>
+	<script src="<?php echo $config['oss_url']; ?>/static/js/jquery.min.js"></script>
 	<script src="<?php echo TPL_URL; ?>index_style/js/base.js"></script>
 	<script>
 		var domain = '<?php echo $domain;?>';

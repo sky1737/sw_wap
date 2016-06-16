@@ -14,9 +14,9 @@
 <meta name="applicable-device" content="mobile"/>
 <link rel="stylesheet" href="<?php echo TPL_URL; ?>index_style/css/address.css"/>
 <link rel="stylesheet" href="<?php echo $config['site_url']; ?>/template/wap/default/css/gonggong.css"/>
-<script src="<?php echo $config['site_url']; ?>/static/js/fastclick.js"></script>
-<script src="<?php echo $config['site_url']; ?>/static/js/jquery.min.js"></script>
-<script src="<?php echo $config['site_url']; ?>/static/js/area/area.min.js"></script>
+<script src="<?php echo $config['oss_url']; ?>/static/js/fastclick.js"></script>
+<script src="<?php echo $config['oss_url']; ?>/static/js/jquery.min.js"></script>
+<script src="<?php echo $config['oss_url']; ?>/static/js/area/area.min.js"></script>
 <script src="<?php echo TPL_URL; ?>index_style/js/base.js"></script>
 <style>.address_list ul:before {
 		display: none;

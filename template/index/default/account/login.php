@@ -6,10 +6,10 @@
 	<title>登录/注册-<?php echo $config['site_name']; ?></title>
 	<meta name="Keywords" content="<?php echo $config['seo_keywords']; ?>">
 	<meta name="description" content="<?php echo $config['seo_description']; ?>">
-	<script type="text/javascript" src="<?php echo $config['site_url']; ?>/static/js/jquery.min.js"></script>
-	<script type="text/javascript" src="<?php echo $config['site_url']; ?>/static/js/jquery.form.min.js"></script>
+	<script type="text/javascript" src="<?php echo $config['oss_url']; ?>/static/js/jquery.min.js"></script>
+	<script type="text/javascript" src="<?php echo $config['oss_url']; ?>/static/js/jquery.form.min.js"></script>
 	<script type="text/javascript" src="<?php echo TPL_URL; ?>js/common.js" type="text/css" rel="stylesheet"></script>
-	<script type="text/javascript" src="<?php echo $config['site_url']; ?>/static/js/layer/layer.min.js"></script>
+	<script type="text/javascript" src="<?php echo $config['oss_url']; ?>/static/js/layer/layer.min.js"></script>
 	<link href="<?php echo TPL_URL; ?>css/style.css" type="text/css" rel="stylesheet">
 	<link href="<?php echo TPL_URL; ?>css/index.css" type="text/css" rel="stylesheet">
 	<link href="<?php echo TPL_URL; ?>css/login.css" type="text/css" rel="stylesheet">

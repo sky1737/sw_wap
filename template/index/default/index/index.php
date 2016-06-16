@@ -12,8 +12,8 @@
 <link href="<?php echo TPL_URL; ?>css/index.css" type="text/css" rel="stylesheet">
 <link href="<?php echo TPL_URL; ?>css/public.css" type="text/css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="<?php echo TPL_URL; ?>css/index-slider.v7062a8fb.css">
-<script type="text/javascript" src="<?php echo $config['site_url']; ?>/static/js/jquery.min.js"></script>
-<script type="text/javascript" src="<?php echo $config['site_url']; ?>/static/js/jquery.lazyload.js"></script>
+<script type="text/javascript" src="<?php echo $config['oss_url']; ?>/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="<?php echo $config['oss_url']; ?>/static/js/jquery.lazyload.js"></script>
 <link rel="stylesheet" type="text/css" href="<?php echo TPL_URL; ?>css/animate.css">
 <script src="<?php echo TPL_URL; ?>js/jquery.nav.js"></script>
 <script src="<?php echo TPL_URL; ?>js/distance.js"></script>

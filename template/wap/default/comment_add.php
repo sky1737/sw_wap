@@ -9,8 +9,8 @@
 	<meta content="black" name="apple-mobile-web-app-status-bar-style"/>
 	<meta content="telephone=no" name="format-detection"/>
 	<link href="<?php echo TPL_URL; ?>css/comment_add.css" type="text/css" rel="stylesheet"/>
-	<script src="<?php echo $config['site_url']; ?>/static/js/jquery.min.js"></script>
-	<script src="<?php echo $config['site_url']; ?>/static/js/jquery.form.js"></script>
+	<script src="<?php echo $config['oss_url']; ?>/static/js/jquery.min.js"></script>
+	<script src="<?php echo $config['oss_url']; ?>/static/js/jquery.form.js"></script>
 	<script type="text/javascript" src="<?php echo TPL_URL; ?>js/base.js"></script>
 	<script type="text/javascript" src="<?php echo TPL_URL; ?>js/comment_add.js"></script>
 	<style>

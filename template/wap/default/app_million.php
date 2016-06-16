@@ -17,8 +17,8 @@
 <link rel="stylesheet" type="text/css" href="<?php echo TPL_URL; ?>app/million.css"/>
 <link rel="stylesheet" type="text/css" href="<?php echo TPL_URL; ?>css/drp_dis.css"/>
 	
-<!--<script src="<?php echo $config['site_url']; ?>/static/js/fastclick.js"></script>
-<script src="<?php echo $config['site_url']; ?>/static/js/jquery.min.js"></script>
+<!--<script src="<?php echo $config['oss_url']; ?>/static/js/fastclick.js"></script>
+<script src="<?php echo $config['oss_url']; ?>/static/js/jquery.min.js"></script>
 <script src="<?php echo TPL_URL; ?>index_style/js/base.js"></script>-->
 </head>
 <body class="body-gray_1">

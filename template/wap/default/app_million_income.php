@@ -15,8 +15,8 @@
 <link rel="stylesheet" type="text/css" href="<?php echo TPL_URL; ?>css/foundation.css"/>
 <link rel="stylesheet" type="text/css" href="<?php echo TPL_URL; ?>css/common.css"/>
 
-<!--<script src="<?php echo $config['site_url']; ?>/static/js/fastclick.js"></script>
-<script src="<?php echo $config['site_url']; ?>/static/js/jquery.min.js"></script>
+<!--<script src="<?php echo $config['oss_url']; ?>/static/js/fastclick.js"></script>
+<script src="<?php echo $config['oss_url']; ?>/static/js/jquery.min.js"></script>
 <script src="<?php echo TPL_URL; ?>index_style/js/base.js"></script>-->
 </head>
 <body class="body-gray">

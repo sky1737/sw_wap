@@ -99,7 +99,7 @@
 		</div>
 	</form>
 </div>
-<script src="<?php echo $config['site_url']; ?>/static/js/area/area.min.js" type="text/javascript"></script>
+<script src="<?php echo $config['oss_url']; ?>/static/js/area/area.min.js" type="text/javascript"></script>
 <script type="text/javascript">
 
 	function showRequest() {

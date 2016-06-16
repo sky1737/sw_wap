@@ -15,8 +15,8 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo TPL_URL; ?>css/animate.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo TPL_URL; ?>css/index-slider.v7062a8fb.css" />
 	<link href=" " type="text/css" rel="stylesheet" id="sc">
-	<script type="text/javascript" src="<?php echo $config['site_url']; ?>/static/js/jquery.min.js"></script>
-	<script type="text/javascript" src="<?php echo $config['site_url']; ?>/static/js/jquery.form.min.js"></script>
+	<script type="text/javascript" src="<?php echo $config['oss_url']; ?>/static/js/jquery.min.js"></script>
+	<script type="text/javascript" src="<?php echo $config['oss_url']; ?>/static/js/jquery.form.min.js"></script>
 	<script type="text/javascript" src="<?php echo TPL_URL; ?>js/common.js"></script>
 	<script type="text/javascript" src="<?php echo TPL_URL; ?>js/goods.js"></script>
 	<script src="<?php echo TPL_URL; ?>js/jquery.fly.min.js"></script>
