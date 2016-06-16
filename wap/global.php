@@ -102,6 +102,8 @@ if ($isLoged && empty($_SESSION['user'])) {
 						$reward_point = $config['promote_reward'] * 1;
 						if ($reward_point > 0) {
 							$db_user->where(array('uid' => $user['uid']))->setInc('point', $reward_point);
+							// 专属积分
+							$db_user->where(array('uid' => $user['uid']))->setInc('excl_point', $reward_point);
 							D('User_income')->data(array(
 								'uid' => $twid,
 								'order_no' => '',

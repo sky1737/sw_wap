@@ -10,16 +10,18 @@ switch ($action) {
 	case 'add':
 		$db_order = D('Order');
 		$nowProduct = D('Product')
-			->field('`product_id`, `store_id`, `name`, `price`, `cost_price`, `has_property`, `status`, `supplier_id`,
-			`buyer_quota`, `weight`, `postage`')
+			->field('`product_id`, `store_id`, `name`, `price`, `cost_price`, `has_property`, `status`,
+			`supplier_id`, `buyer_quota`, `weight`, `postage`,`quantity`')
 			->where(array('product_id' => $_POST['proId'], 'status' => 1))
 			->find();
-		if(empty($nowProduct)) {
+		if(empty($nowProduct) || !$nowProduct['status']) {
 			json_return(1000, '商品不存在');
 		}
-
+		
+		$quantity = intval($_POST['quantity']);
+		$skuId = intval($_POST['skuId']);
+		
 		//限购
-
 //		$profit = 0;
 //		$buy_quantity = 0;
 //		if(!empty($nowProduct['buyer_quota'])) {
@@ -49,12 +51,14 @@ switch ($action) {
 			$skuId = 0;
 			$propertiesStr = '';
 			$product_price = $nowProduct['price'];
+			if($nowProduct['quantity'] < $quantity) json_return(1001, '商品库存不足');
 		}
 		else {
-			$skuId = !empty($_POST['skuId']) ? intval($_POST['skuId']) : json_return(1001, '请选择商品属性');
+			 if(!$skuId) json_return(1001, '请选择商品属性');
 			//判断库存是否存在
-			$nowSku = D('Product_sku')->field('`sku_id`,`product_id`,`properties`,`price`,`cost_price`')
+			$nowSku = D('Product_sku')->field('`sku_id`,`product_id`,`properties`,`price`,`cost_price`,`quantity`')
 				->where(array('sku_id' => $skuId))->find();
+			if($nowSku['quantity'] < $quantity) json_return(1001, '商品库存不足');
 
 			$tmpPropertiesArr = explode(';', $nowSku['properties']);
 			$properties = $propertiesValue = $productProperties = array();
@@ -75,12 +79,7 @@ switch ($action) {
 					D('Product_property')->field('`pid`,`name`')->where(array('pid' => array('in', $properties)))
 						->select();
 				$findPropertiesValueArr =
-					D('Product_property_value')->field('`vid`,`value`')->where(array(
-						'vid' => array(
-							'in',
-							$propertiesValue
-						)
-					))->select();
+					D('Product_property_value')->field('`vid`,`value`')->where(array('vid' => array('in', $propertiesValue)))->select();
 			}
 			foreach ($findPropertiesArr as $value) {
 				$propertiesArr[$value['pid']] = $value['name'];
@@ -90,10 +89,8 @@ switch ($action) {
 			}
 			foreach ($properties as $key => $value) {
 				$productProperties[] =
-					array(
-						'pid'   => $value, 'name' => $propertiesArr[$value], 'vid' => $propertiesValue[$key],
-						'value' => $propertiesValueArr[$propertiesValue[$key]]
-					);
+					array('pid'   => $value, 'name' => $propertiesArr[$value], 'vid' => $propertiesValue[$key],
+						'value' => $propertiesValueArr[$propertiesValue[$key]]);
 			}
 			$propertiesStr = serialize($productProperties);
 			if($nowProduct['product_id'] != $nowSku['product_id']) json_return(1002, '商品属性选择错误');
@@ -114,7 +111,7 @@ switch ($action) {
 //			}
 //		}
 
-		$quantity = intval($_POST['quantity']) > 0 ? intval($_POST['quantity']) : json_return(1003, '请输入购买数量');
+		if(!$quantity) json_return(1003, '请输入购买数量');
 		$store_id = $now_store ? $now_store['store_id'] : $nowProduct['store_id'];
 		if(empty($_POST['isAddCart'])) {    // 立即购买
 			$order_no = date('YmdHis', $_SERVER['REQUEST_TIME']) . mt_rand(100000, 999999);
@@ -130,7 +127,7 @@ switch ($action) {
 			$data_order['pro_num'] = $quantity;
 			$data_order['profit'] = $profit * $quantity;
 			$data_order['pro_count'] = '1';
-			$data_order['postage'] = $nowProduct['postage'];
+			$data_order['postage'] = $postage;
 			$data_order['type'] = $_POST['type'] ? (int)$_POST['type'] : 0;
 			$data_order['bak'] = $_POST['bak'] ? serialize($_POST['bak']) : '';
 			$data_order['add_time'] = $_SERVER['REQUEST_TIME'];
@@ -139,6 +136,7 @@ switch ($action) {
 			if(empty($order_id)) {
 				json_return(1004, '订单产生失败，请重试');
 			}
+			
 			$data_order_product['order_id'] = $order_id;
 			$data_order_product['product_id'] = $nowProduct['product_id'];
 			$data_order_product['sku_id'] = $skuId;
@@ -460,6 +458,12 @@ switch ($action) {
 				json_return(1009, '使用余额数量和积分抵现金总额超出订单总额啦！');
 			}
 			$data['point'] = $point;
+
+			// 专属积分优先使用。
+			$excl_point = $wap_user['excl_point'] * 1;
+			$excl_point = $excl_point - $point;
+			if($excl_point < 0) $excl_point = 0;
+
 			$data['balance'] = $balance;
 			//$data['total'] = $total;
 			$data['pay_money'] = $nowOrder['pay_money'] = $total;
@@ -485,6 +489,13 @@ switch ($action) {
 				json_return(1010, '保存订单金额失败！');
 			}
 			if($point > 0 || $balance > 0) {
+				if($point > 0) {
+					// 减少专属积分的数量
+					D('User')->where(array('uid' => $wap_user['uid'], 'status' => 1))
+						->data(array('excl_point' => $excl_point))
+						->save();
+				}
+
 				$nowOrder['point'] = $point;
 				$nowOrder['balance'] = $balance;
 				// 余额支付和积分抵现

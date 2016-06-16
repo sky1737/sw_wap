@@ -49,7 +49,7 @@
 </script>
 </head>
 
-<body>
+<body style="max-width:640px;margin:0 auto;">
 <header class="index-head" style="position:absolute;">
 	<?php
 	echo '<a class="logo" href="./index.php">';
@@ -244,10 +244,134 @@ if ($pageContent){
 }
 else {
 ?>
+<style type="text/css">
+.toutiao {background:#fff;}
+.toutiao dt {width:135px;height:56px;float:left; background:url(/template/wap/default/theme/images/toutiao.jpg) no-repeat center left;}
+.toutiao dd {padding:6px 0 6px 145px;height:44px;line-height:22px;}
+.toutiao dd a { display:block;font-size:12px;background:url(/template/wap/default/theme/images/toutiao_dot.jpg) no-repeat 5px 10px;height:22px; padding: 0 5px 0 15px;float:left;overflow:hidden; }
+</style>
+<div class="content" style="padding:1px 0;height:56px;overflow:hidden;">
+	<div class="content-body">
+		<dl class="toutiao">
+			<dt></dt>
+			<dd>
+				<div id="toutiao" style="width:100%;height:100%;">
+					<?php
+					if(empty($toutiao)) {
+						echo '请添加标签为 wap_toutiao 的广告。';
+					} else {
+						foreach ($toutiao as $key => $value) {
+							echo '<a href="'.$value['url'].'">'.$value['name'].'</a>';
+						}
+					}
+					?>
+				</div>
+			</dd>
+		</dl>
+		<script type="text/javascript">
+		$(function(){
+			var width = $('#toutiao').width();
+			$('#toutiao a').width(width/2-20);
+			console.log(width);
+		});
+		</script>
+	</div>
+</div>
+<style type="text/css">
+.banner4 { display:block; border-bottom:1px solid #eee;}
+.banner4 li:nth-child(1) {float:left;}
+.banner4 li:nth-child(2) {float:left;}
+.banner4 li:nth-child(3) {float:left;}
+.banner4 li:nth-child(4) {clear:both;}
+.banner4 li img {width:100%;height:100%;}
+</style>
+<div class="content">
+	<div class="content-body" style="padding:10px;background:#fff;">
+		<ul class="banner4">
+			<?php
+			if(empty($banner4)) {
+				echo '请添加标签为 wap_banner 的广告。';
+			} else {
+				foreach ($banner4 as $key => $value) {
+					echo '<li><a href="'.$value['url'].'"> <img src="'.$value['pic'].'" alt="'.$value['name'].'"/></a></li>';
+				}
+			}
+			?>
+		</ul>
+		<script type="text/javascript">
+		$(function(){
+			var width = $(document).width()-20;
+			$('.banner4').css({'width':width+'px','height':width+'px'});
+			$('.banner4 li:eq(0)').css({'width':(width * 0.5)+'px', 'height':(width * 0.5 * 4 / 3)+'px'});
+			$('.banner4 li:eq(1)').css({'width':(width * 0.5)+'px', 'height':(width * 0.5 * 4 / 3 / 2)+'px'});
+			$('.banner4 li:eq(2)').css({'width':(width * 0.5)+'px', 'height':(width * 0.5 * 4 / 3 / 2)+'px'});
+			$('.banner4 li:eq(3)').css({'width':width+'px', 'height':(width * 0.5 * 4 / 3 / 2)+'px'});
+		});
+		</script>
+	</div>
+</div>
+<style type="text/css">
+.banner8 {}
+.banner8 li {float:left;}
+.banner8 li img {width:100%;height:100%;
+</style>
+<div class="content">
+	<div class="content-body" style="padding:10px;background:#fff;">
+		<div style="text-align:center;padding: 30px 0 25px;"><img src="/template/wap/default/theme/images/youxuan.jpg" alt="为您优选" /></div>
+		<ul class="banner8">
+			<?php
+			if(empty($youxuan)) {
+				echo '请添加标签为 wap_youxuan 的广告。';
+			} else {
+				foreach ($youxuan as $key => $value) {
+					echo '<li><a href="'.$value['url'].'"> <img src="'.$value['pic'].'" alt="'.$value['name'].'"/></a></li>';
+				}
+			}
+			?>
+		</ul>
+		<script type="text/javascript">
+		$(function(){
+			var width = $(document).width()-20;
+			$('.banner8').css({'width':width+'px','height':(width/1.66)+'px'});
+			
+			$('.banner8 li').css({'width':(width / 5)+'px', 'height':(width / 1.66 / 2)+'px'});
+			$('.banner8 li:eq(0)').css({'width':(width / 5 * 2)+'px'});
+			$('.banner8 li:eq(4)').css({'width':(width / 5 * 2)+'px'});
+		});
+		</script>
+	</div>
+</div>
+<style type="text/css">
+.xinpin {}
+.xinpin li {float:left;}
+.xinpin li img {width:100%;height:100%;
+</style>
+<div class="content">
+	<div class="content-body" style="padding:10px;background:#fff;">
+		<div style="text-align:center;padding: 24px 0 24px;"><img src="/template/wap/default/theme/images/xinpin.jpg" alt="热卖" /></div>
+		<ul class="xinpin">
+			<?php
+			if(empty($xinpin)) {
+				echo '请添加标签为 wap_xinpin 的广告。';
+			} else {
+				foreach ($xinpin as $key => $value) {
+					echo '<li><a href="'.$value['url'].'"> <img src="'.$value['pic'].'" alt="'.$value['name'].'"/></a></li>';
+				}
+			}
+			?>
+		</ul>
+		<script type="text/javascript">
+		$(function(){
+			var width = $(document).width()-20;
+			$('.xinpin').css({'width':width+'px','height':(width/1.53)+'px'});
+			$('.xinpin li').css({'width':(width / 4)+'px', 'height':(width/1.53/2)+'px'});
+		});
+		</script>
+	</div>
+</div>
 <div class="content">
 	<div class="content-body">
 		<div class="index-event">
-			<div class="bord"></div>
 			<div class="cnt">
 				<?php
 				foreach ($banners as $key => $value) {
@@ -257,7 +381,11 @@ else {
 		</div>
 	</div>
 </div>
-<div class="bord"></div>
+<div class="content">
+	<div class="content-body" style="padding:10px;background:#fff;">
+		<div style="text-align:center;padding: 24px 0 24px;"><img src="/template/wap/default/theme/images/fenlei.jpg" alt="分类楼层" /></div>
+	</div>
+</div>
 <?php
 foreach($categories as $key=>$val) {
 	$category = $categories[$key];
@@ -293,6 +421,19 @@ foreach($categories as $key=>$val) {
 		</ul>
 	</div>
 </div>
+<div class="content">
+	<div class="content-body" style="padding:10px;background:#fff;">
+		<?php
+		if(empty($category_banners[$val['cat_id']])) {
+			echo '请在广告分类 wap_category_banner 下添加名称为 '.$val['cat_id'] .' 的广告！';
+		} else {
+			$value = $category_banners[$val['cat_id']];
+			echo '<a href="'.$value['url'].'"><img src="'.$value['pic'].'" alt="" /></a>';
+		}
+		?>
+	</div>
+</div>
+
 <?php	
 }
 }
