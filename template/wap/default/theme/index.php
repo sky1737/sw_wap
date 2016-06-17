@@ -342,6 +342,35 @@ else {
 	</div>
 </div>
 <style type="text/css">
+.remai {}
+.remai li {float:left;}
+.remai li img {width:100%;height:100%;
+</style>
+<div class="content">
+	<div class="content-body" style="padding:10px;background:#fff;">
+		<div style="text-align:center;padding: 24px 0 24px;"><img src="/template/wap/default/theme/images/remai.jpg" alt="热卖" /></div>
+		<ul class="remai">
+			<?php
+			if(empty($remai)) {
+				echo '请添加标签为 wap_remai 的广告。';
+			} else {
+				foreach ($remai as $key => $value) {
+					echo '<li><a href="'.$value['url'].'"> <img src="'.$value['pic'].'" alt="'.$value['name'].'"/></a></li>';
+				}
+			}
+			?>
+		</ul>
+		<script type="text/javascript">
+		$(function(){
+			var width = $(document).width()-20;
+			$('.remai').css({'width':width+'px','height':(width / 4 / 0.6)+'px'});
+			$('.remai li').css({'width':(width / 4)+'px', 'height':(width / 4 / 0.6)+'px'});
+		});
+		</script>
+	</div>
+</div>
+
+<style type="text/css">
 .xinpin {}
 .xinpin li {float:left;}
 .xinpin li img {width:100%;height:100%;
