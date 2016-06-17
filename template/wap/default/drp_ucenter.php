@@ -62,7 +62,7 @@
 			 <ul>
         			<li>
                 			<a  href="./drp_store.php?a=edit">
-        						<img src="<?php echo TPL_URL; ?>images/tb//dpgl.png" alt="">
+        						<img src="<?php echo TPL_URL; ?>images/tb/dpgl.png" alt="">
                 				<p>店铺信息</p>
                 			</a>
                 		</li>
@@ -80,7 +80,7 @@
                 		</li>
         			<li>
                 			<a  href="./qrcode.php">
-        						<img src="<?php echo TPL_URL; ?>images/tb//ewm.png" alt="">
+        						<img src="<?php echo TPL_URL; ?>images/tb/ewm.png" alt="">
                 				<p>店铺二维码</p>
                 			</a>
                 		</li>

@@ -24,18 +24,18 @@
 				</dd>
 				<dd> <strong>购物指南</strong>
 					<a target="_blank" href="/help/112/122.html">购物流程</a>
-					<a target="_blank" href="/help/111/123.html">交易条款</a>
+					<a target="_blank" href="/help/112/123.html">交易条款</a>
 					<a target="_blank" href="/help/112/124.html">常见问题</a>
 				</dd>
 				<dd> <strong>配送方式</strong>
-					<a target="_blank" href="/help/114/125.html">商品配送</a>
-					<a target="_blank" href="/help/114/126.html">验货与签收</a>
-					<a target="_blank" href="/help/114/127.html">长时间未收到商品</a>
+					<a target="_blank" href="/help/113/125.html">商品配送</a>
+					<a target="_blank" href="/help/113/126.html">验货与签收</a>
+					<a target="_blank" href="/help/113/127.html">长时间未收到商品</a>
 				</dd>
 				<dd> <strong>支付方式</strong>
-					<a target="_blank" href="/help/113/131.html">在线支付</a>
-					<a target="_blank" href="/help/113/132.html">货到付款</a>
-					<a target="_blank" href="/help/113/133.html">优惠券使用</a>
+					<a target="_blank" href="/help/114/131.html">在线支付</a>
+					<a target="_blank" href="/help/114/132.html">货到付款</a>
+					<a target="_blank" href="/help/114/133.html">优惠券使用</a>
 				</dd>
 				<dd> <strong>售后服务</strong>
 					<a target="_blank" href="/help/115/128.html">售后政策</a>
@@ -74,7 +74,12 @@
 		</div>--> 
 	</div>
 </div>
-
+<div style="display:none;">
+<script type="text/javascript">
+var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cspan id='cnzz_stat_icon_1259591443'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/stat.php%3Fid%3D1259591443%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));
+</script>
+</div>
 <!--二维码弹出层-->
 <style type="text/css">
 .right-red-radius {background-color: #fff;border-radius: 10px;}

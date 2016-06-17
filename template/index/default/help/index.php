@@ -54,13 +54,13 @@ var is_selffetch = <?php echo $order_store['buyer_selffetch'] ? 'true' : 'false'
 
 <!-- 主体部分开始 -->
 <div class="help_wrap">
-	<div class="help_top clearfix"> <span class="f18 fwr fl help_tit"><a  href="#">帮助中心</a></span> <span class="deep_red f13 fwr fl">Hi~，欢迎您来到帮助中心。</span>
-		<div class="fr u_search">
+	<div class="help_top clearfix"> <span class="f18 fwr fl help_tit"><a  href="/help.html">帮助中心</a></span> <span class="deep_red f13 fwr fl">Hi~，欢迎您来到帮助中心。</span>
+		<!--<div class="fr u_search">
 			<form action="<?php url('help:index'); ?>" method="GET">
 				<input type="text" class="J_sch_in u_sch_in fl" value="请输入关键字" name="keyword">
 				<input type="submit" class="btns btn_gray_5128 fl u_sch_btn" value="搜索">
 			</form>
-		</div>
+		</div>-->
 	</div>
 	<div class="help_main clearfix">
 		<div class="help_leftside fl">
@@ -93,7 +93,7 @@ var is_selffetch = <?php echo $order_store['buyer_selffetch'] ? 'true' : 'false'
 			?>
 		</div>
 		<div class="help_rightside fr">
-			<div class="u_crumb"> <a  href="./help.html">帮助中心</a> &gt; <a  href="./help.html"><?php echo ($help_categories[$cat_fid]['cat_name']); ?></a> &gt; <a href="./help.html"><?php echo ($help_categories[$cat_fid]['children'][$cat_id]['cat_name']); ?></a><!--&gt; <strong>唯品币</strong>--> </div>
+			<div class="u_crumb"> <a  href="/help.html">帮助中心</a> &gt; <a  href="/help.html"><?php echo ($help_categories[$cat_fid]['cat_name']); ?></a> &gt; <a href="/help.html"><?php echo ($help_categories[$cat_fid]['children'][$cat_id]['cat_name']); ?></a><!--&gt; <strong>唯品币</strong>--> </div>
 			<div class="u_tab_con">
 				<div class="u_tab_con_item">
 					<ul class="h_comm_faq J_comm_faq">

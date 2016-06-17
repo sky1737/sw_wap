@@ -234,6 +234,12 @@ class HelpAction extends BaseAction
 
 		if (IS_POST) {
 			$cat_id = $this->_post('cat_id', 'trim,intval');
+//            $now_cat = $category->find($cat_id);
+
+			if ($this->_post('property', 'trim') == '') {
+				$this->frame_submit_tips(0, '分类属性不能为空！');
+			}
+
 			$data = array();
 			$data['cat_fid'] = $this->_post('parent_id', 'trim,intval');
 			$data['cat_name'] = $this->_post('name', 'trim');

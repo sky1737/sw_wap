@@ -4,8 +4,8 @@
     <table cellpadding="0" cellspacing="0" class="frame_form" width="100%">
         <tr>
             <th width="80">分类名称</th>
-            <td><input type="text" class="input fl" name="cat_name" value="{pigcms{$now_category.cat_name}" size="20"
-                       placeholder="请输入名称" validate="required:true"/></td>
+            <td><input type="text" class="input fl" name="cat_name" value="{pigcms{$now_category.cat_name}" size="10"
+                       placeholder="请输入名称" validate="maxlength:20,required:true"/></td>
         </tr>
         <tr>
             <th width="80">分类标识</th>
