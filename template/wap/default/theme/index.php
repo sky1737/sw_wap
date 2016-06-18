@@ -317,7 +317,7 @@ else {
 </style>
 <div class="content">
 	<div class="content-body" style="padding:10px;background:#fff;">
-		<div style="text-align:center;padding: 10px 0;">
+		<div style="text-align:center;">
 			<?php
 			if(empty($titles[0])) {
 				echo '请添加标签为 wap_title 的第 1 张广告。';
@@ -356,7 +356,7 @@ else {
 </style>
 <div class="content">
 	<div class="content-body" style="padding:10px;background:#fff;">
-		<div style="text-align:center;padding: 10px 0;">
+		<div style="text-align:center;">
 			<?php
 			if(empty($titles[1])) {
 				echo '请添加标签为 wap_title 的第 2 张广告。';
@@ -393,7 +393,7 @@ else {
 </style>
 <div class="content">
 	<div class="content-body" style="padding:10px;background:#fff;">
-		<div style="text-align:center;padding: 10px 0;">
+		<div style="text-align:center;">
 			<?php
 			if(empty($titles[2])) {
 				echo '请添加标签为 wap_title 的第 3 张广告。';
@@ -436,7 +436,7 @@ else {
 </div>
 <div class="content">
 	<div class="content-body" style="padding:10px;background:#fff;">
-		<div style="text-align:center;padding: 10px 0;">
+		<div style="text-align:center;">
 			<?php
 			if(empty($titles[3])) {
 				echo '请添加标签为 wap_title 的第 4 张广告。';
