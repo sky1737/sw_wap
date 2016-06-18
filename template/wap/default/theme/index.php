@@ -317,7 +317,15 @@ else {
 </style>
 <div class="content">
 	<div class="content-body" style="padding:10px;background:#fff;">
-		<div style="text-align:center;padding: 30px 0 25px;"><img src="/template/wap/default/theme/images/youxuan.jpg" alt="为您优选" /></div>
+		<div style="text-align:center;padding: 10px 0;">
+			<?php
+			if(empty($titles[0])) {
+				echo '请添加标签为 wap_title 的第 1 张广告。';
+			} else {
+				$value = $tites[0];
+				echo '<img src="'.$value['pic'].'" alt="'.$value['name'].'" />';
+			} ?>
+		</div>
 		<ul class="banner8">
 			<?php
 			if(empty($youxuan)) {
@@ -348,7 +356,15 @@ else {
 </style>
 <div class="content">
 	<div class="content-body" style="padding:10px;background:#fff;">
-		<div style="text-align:center;padding: 24px 0 24px;"><img src="/template/wap/default/theme/images/remai.jpg" alt="热卖" /></div>
+		<div style="text-align:center;padding: 10px 0;">
+			<?php
+			if(empty($titles[1])) {
+				echo '请添加标签为 wap_title 的第 2 张广告。';
+			} else {
+				$value = $tites[1];
+				echo '<img src="'.$value['pic'].'" alt="'.$value['name'].'" />';
+			} ?>
+		</div>
 		<ul class="remai">
 			<?php
 			if(empty($remai)) {
@@ -377,7 +393,15 @@ else {
 </style>
 <div class="content">
 	<div class="content-body" style="padding:10px;background:#fff;">
-		<div style="text-align:center;padding: 24px 0 24px;"><img src="/template/wap/default/theme/images/xinpin.jpg" alt="热卖" /></div>
+		<div style="text-align:center;padding: 10px 0;">
+			<?php
+			if(empty($titles[2])) {
+				echo '请添加标签为 wap_title 的第 3 张广告。';
+			} else {
+				$value = $tites[2];
+				echo '<img src="'.$value['pic'].'" alt="'.$value['name'].'" />';
+			} ?>
+		</div>
 		<ul class="xinpin">
 			<?php
 			if(empty($xinpin)) {
@@ -412,7 +436,15 @@ else {
 </div>
 <div class="content">
 	<div class="content-body" style="padding:10px;background:#fff;">
-		<div style="text-align:center;padding: 24px 0 24px;"><img src="/template/wap/default/theme/images/fenlei.jpg" alt="分类楼层" /></div>
+		<div style="text-align:center;padding: 10px 0;">
+			<?php
+			if(empty($titles[3])) {
+				echo '请添加标签为 wap_title 的第 4 张广告。';
+			} else {
+				$value = $tites[3];
+				echo '<img src="'.$value['pic'].'" alt="'.$value['name'].'" />';
+			} ?>
+		</div>
 	</div>
 </div>
 <?php
