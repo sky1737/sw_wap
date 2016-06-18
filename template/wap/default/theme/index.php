@@ -457,7 +457,7 @@ foreach($categories as $key=>$val) {
 			echo '请在广告分类 wap_category_banner 下添加名称为 '.$val['cat_id'] .' 的广告！';
 		} else {
 			$value = $category_banners[$val['cat_id']];
-			echo '<a href="'.$value['url'].'"><img src="'.$value['pic'].'" alt="" /></a>';
+			echo '<a href="'.$value['url'].'"><img src="'.$value['pic'].'" alt="" width="100%" /></a>';
 		}
 		?>
 	</div>
