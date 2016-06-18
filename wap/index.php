@@ -63,7 +63,7 @@ $category_banners = $category_banners2;
 $toutiao = $db_banner->get_adver_by_key('wap_toutiao',0);
 $banner4 = $db_banner->get_adver_by_key('wap_banner',0);
 $youxuan = $db_banner->get_adver_by_key('wap_youxuan',0);
-$remai = $db_banner->get_adver_by_key('wap_remain',0);
+$remai = $db_banner->get_adver_by_key('wap_remai',0);
 $xinpin = $db_banner->get_adver_by_key('wap_xinpin',0);
 $titles = $db_banner->get_adver_by_key('wap_title',0);
 //	// 首页自定义导航

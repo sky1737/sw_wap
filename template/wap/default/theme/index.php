@@ -322,7 +322,7 @@ else {
 			if(empty($titles[0])) {
 				echo '请添加标签为 wap_title 的第 1 张广告。';
 			} else {
-				$value = $tites[0];
+				$value = $titles[0];
 				echo '<img src="'.$value['pic'].'" alt="'.$value['name'].'" />';
 			} ?>
 		</div>
@@ -361,7 +361,7 @@ else {
 			if(empty($titles[1])) {
 				echo '请添加标签为 wap_title 的第 2 张广告。';
 			} else {
-				$value = $tites[1];
+				$value = $titles[1];
 				echo '<img src="'.$value['pic'].'" alt="'.$value['name'].'" />';
 			} ?>
 		</div>
@@ -398,7 +398,7 @@ else {
 			if(empty($titles[2])) {
 				echo '请添加标签为 wap_title 的第 3 张广告。';
 			} else {
-				$value = $tites[2];
+				$value = $titles[2];
 				echo '<img src="'.$value['pic'].'" alt="'.$value['name'].'" />';
 			} ?>
 		</div>
@@ -441,7 +441,7 @@ else {
 			if(empty($titles[3])) {
 				echo '请添加标签为 wap_title 的第 4 张广告。';
 			} else {
-				$value = $tites[3];
+				$value = $titles[3];
 				echo '<img src="'.$value['pic'].'" alt="'.$value['name'].'" />';
 			} ?>
 		</div>
