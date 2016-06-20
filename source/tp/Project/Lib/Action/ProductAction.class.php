@@ -17,41 +17,80 @@ class ProductAction extends BaseAction
 		$category = M('ProductCategory');
 
 		$where = array();
-		if($this->_get('type', 'trim') && $this->_get('keyword', 'trim')) {
-			if($this->_get('type', 'trim') == 'product_id') {
+		if ($this->_get('type', 'trim') && $this->_get('keyword', 'trim')) {
+			if ($this->_get('type', 'trim') == 'product_id') {
 				$where['Product.product_id'] = $this->_get('keyword', 'trim,intval');
 			}
-			else if($this->_get('type', 'trim') == 'name') {
+			else if ($this->_get('type', 'trim') == 'name') {
 				$where['Product.name'] = array('like', '%' . $this->_get('keyword', 'trim') . '%');
 			}
-			else if($this->_get('type', 'trim') == 'store') {
+			else if ($this->_get('type', 'trim') == 'store') {
 				$where['Store.name'] = array('like', '%' . $this->_get('keyword', 'trim') . '%');
 			}
 		}
 
 		$isfx = 0;
-		if($this->_get('isfx', 'trim')) {
-			if($this->_get('isfx') == '1') {
-				//$where['source_product_id'] = array("gt", 0);
-				$where['is_fx'] = 1;
-				$isfx = 1;
-			}
-			else if($this->_get('isfx') == '2') {
+		if ($this->_get('isfx', 'trim')) {
+			if ($this->_get('isfx') == '2') {
 				//$where['source_product_id'] = array("eq", 0);
 				$where['is_fx'] = 0;
 				$isfx = 2;
 			}
+			else {
+				$isfx = $this->_get('isfx');
+				$where['is_fx'] = $isfx;
+			}
 		}
-		if($this->_get('category', 'trim,intval')) {
+
+		$ischk = 0;
+		if ($this->_get('ischk', 'trim')) {
+			if ($this->_get('ischk') == '2') {
+				//$where['source_product_id'] = array("eq", 0);
+				$where['status'] = 0;
+				$ischk = 2;
+			}
+			else {
+				$ischk = $this->_get('ischk');
+				$where['status'] = $ischk;
+			}
+		}
+
+		$ishot = 0;
+		if ($this->_get('ishot', 'trim')) {
+			if ($this->_get('ishot') == '2') {
+				//$where['source_product_id'] = array("eq", 0);
+				$where['is_hot'] = 0;
+				$ishot = 2;
+			}
+			else {
+				$ishot = $this->_get('ishot');
+				$where['is_hot'] = $ishot;
+			}
+		}
+
+		$isred = 0;
+		if ($this->_get('isred', 'trim')) {
+			if ($this->_get('isred') == '2') {
+				//$where['source_product_id'] = array("eq", 0);
+				$where['is_recommend'] = 0;
+				$isred = 2;
+			}
+			else {
+				$isred = $this->_get('isred');
+				$where['is_recommend'] = $isred;
+			}
+		}
+
+		if ($this->_get('category', 'trim,intval')) {
 			$where['Product.category_id'] = $this->_get('category', 'trim,intval');
 		}
-		if(isset($_GET['allow_discount']) && is_numeric($_GET['allow_discount'])) {
+		if (isset($_GET['allow_discount']) && is_numeric($_GET['allow_discount'])) {
 			$where['Product.allow_discount'] = $this->_get('allow_discount', 'trim,intval');
 		}
-		if(isset($_GET['invoice']) && is_numeric($_GET['invoice'])) {
+		if (isset($_GET['invoice']) && is_numeric($_GET['invoice'])) {
 			$where['Product.invoice'] = $this->_get('invoice', 'trim,intval');
 		}
-		if($this->_get('group', 'trim,intval')) {
+		if ($this->_get('group', 'trim,intval')) {
 			$where['_string'] = "Product.product_id IN (SELECT product_id FROM " . C('DB_PREFIX') .
 				"product_to_group WHERE group_id = '" . $this->_get('group', 'trim,intval') . "')";
 		}
@@ -88,24 +127,24 @@ class ProductAction extends BaseAction
 //                $group_name = '';
 //            }
 			$products[] = array(
-				'product_id'     => $tmp_product['product_id'],
-				'image'          => getAttachmentUrl($tmp_product['image']),
-				'name'           => $tmp_product['name'],
-				'category'       => $tmp_product['category'],
+				'product_id' => $tmp_product['product_id'],
+				'image' => getAttachmentUrl($tmp_product['image']),
+				'name' => $tmp_product['name'],
+				'category' => $tmp_product['category'],
 				//'group' => $group_name,
-				'store'          => $tmp_product['store'],
-				'price'          => $tmp_product['price'],
-				'cost_price'     => $tmp_product['cost_price'],
-				'quantity'       => $tmp_product['quantity'],
-				'sales'          => $tmp_product['sales'],
-				'buyer_quota'    => $tmp_product['buyer_quota'],
+				'store' => $tmp_product['store'],
+				'price' => $tmp_product['price'],
+				'cost_price' => $tmp_product['cost_price'],
+				'quantity' => $tmp_product['quantity'],
+				'sales' => $tmp_product['sales'],
+				'buyer_quota' => $tmp_product['buyer_quota'],
 				'allow_discount' => $tmp_product['allow_discount'],
-				'invoice'        => $tmp_product['invoice'],
-				'date_added'     => $tmp_product['date_added'],
-				'is_hot'         => $tmp_product['is_hot'],
-				'is_recommend'   => $tmp_product['is_recommend'],
-				'is_fx'          => $tmp_product['is_fx'],
-				'status'         => $tmp_product['status'],
+				'invoice' => $tmp_product['invoice'],
+				'date_added' => $tmp_product['date_added'],
+				'is_hot' => $tmp_product['is_hot'],
+				'is_recommend' => $tmp_product['is_recommend'],
+				'is_fx' => $tmp_product['is_fx'],
+				'status' => $tmp_product['status'],
 				//'source_product_id' => $tmp_product['source_product_id']
 			);
 		}
@@ -118,6 +157,9 @@ class ProductAction extends BaseAction
 		$this->assign('categories', $categories);
 
 		$this->assign("isfx", $isfx);
+		$this->assign("ishot", $ishot);
+		$this->assign("isred", $isred);
+		$this->assign("ischk", $ischk);
 
 		$this->display();
 	}
@@ -128,7 +170,7 @@ class ProductAction extends BaseAction
 
 		$where = array();
 		$where = array();
-		if($this->_get('cat_id', 'trim,intval')) {
+		if ($this->_get('cat_id', 'trim,intval')) {
 			$where['_string'] = "cat_id = '" . $this->_get('cat_id', 'trim,intval') . "' OR cat_fid = '" .
 				$this->_get('cat_id', 'trim,intval') . "'";
 		}
@@ -166,18 +208,48 @@ class ProductAction extends BaseAction
 	{
 		$key = $this->_post('key', 'trim');
 		$val = $this->_post('val', 'trim,intval');
-		if(!$key || !$val) {
+		if (!$key || !$val) {
 			$this->error('参数错误！');
 		}
 		$db = M('Product');
 		$status = $db->where(array('product_id' => $val))->getField($key);
-		if($status) {
+		if ($status) {
 			$db->where(array('product_id' => $val))->save(array($key => 0));
 			$this->success('0');
 		}
 		else {
 			$db->where(array('product_id' => $val))->save(array($key => 1));
 			$this->success('1');
+		}
+	}
+
+	public function sets()
+	{
+		$ids = I('post.ids', '', 'trim');
+		$type = I('post.type', '', 'trim');
+		$val = I('post.val', 0, 'trim,intval');
+		if (!$ids || !$type) $this->error('参数错误！');
+
+		$where = array('product_id' => array('in', explode(',', $ids)));
+		if (M('Product')->where($where)->save(array($type => $val))) {
+			$this->success('操作成功！');
+		}
+		else {
+			$this->error('操作失败！');
+		}
+	}
+
+	function dels()
+	{
+		$ids = I('post.ids', '', 'trim');
+		if (!$ids) $this->error('参数错误！');
+
+		$where = array('product_id' => array('in', explode(',', $ids)));
+		if (M('Product')->where($where)->delete()) {
+			$this->success('操作成功！');
+		}
+		else {
+			$this->error('操作失败！');
 		}
 	}
 
@@ -200,7 +272,7 @@ class ProductAction extends BaseAction
 	{
 		$category = M('ProductCategory');
 
-		if(IS_POST) {
+		if (IS_POST) {
 			//pc端小图标ico
 			/* 			if ($_FILES['pic']['error'] != 4) {
 							//上传图片
@@ -232,11 +304,11 @@ class ProductAction extends BaseAction
 							}
 						}	 */
 
-			if($_FILES['pic']['error'] != 4 && $_FILES['pic_pic']['error'] != 4) {
+			if ($_FILES['pic']['error'] != 4 && $_FILES['pic_pic']['error'] != 4) {
 				//上传图片
 				$rand_num = date('Y/m', $_SERVER['REQUEST_TIME']);
 				$upload_dir = './upload/category/' . $rand_num . '/';
-				if(!is_dir($upload_dir)) {
+				if (!is_dir($upload_dir)) {
 					mkdir($upload_dir, 0777, true);
 				}
 
@@ -248,7 +320,7 @@ class ProductAction extends BaseAction
 				$upload->savePath = $upload_dir;
 				$upload->saveRule = 'uniqid';
 
-				if($upload->upload()) {
+				if ($upload->upload()) {
 					$uploadList = $upload->getUploadFileInfo();
 					//var_dump($uploadList);
 					// 上传到又拍云服务器
@@ -274,10 +346,10 @@ class ProductAction extends BaseAction
 			$data['cat_sort'] = $this->_post('order_by', 'trim,intval');
 			$data['cat_status'] = $this->_post('status', 'trim,intval');
 			$data['cat_desc'] = $this->_post('desc', 'trim');
-			if($_POST['cat_pic']) {
+			if ($_POST['cat_pic']) {
 				$data['cat_pic'] = $_POST['cat_pic'];
 			}
-			if($_POST['cat_pc_pic']) {
+			if ($_POST['cat_pc_pic']) {
 				$data['cat_pc_pic'] = $_POST['cat_pc_pic'];
 			}
 			//商品属性类别
@@ -290,7 +362,7 @@ class ProductAction extends BaseAction
 					$data['filter_attr'] = $property_arr;
 			}*/
 			$data['filter_attr'] = $property_str;
-			if(!empty($data['cat_fid'])) {
+			if (!empty($data['cat_fid'])) {
 				$data['cat_level'] = 2;
 				$path = $category->where(array('cat_id' => $data['cat_fid']))->getField('cat_path');
 				$data['cat_path'] = $path;
@@ -301,12 +373,12 @@ class ProductAction extends BaseAction
 			}
 
 			$data['tag_str'] = join(',', $this->_post('tag', 'trim'));
-			if(empty($data['tag_str'])) {
+			if (empty($data['tag_str'])) {
 				$data['tag_str'] = '';
 			}
 
-			if($cat_id = $category->add($data)) {
-				if($cat_id <= 9) {
+			if ($cat_id = $category->add($data)) {
+				if ($cat_id <= 9) {
 					$str_cat_id = '0' . $cat_id;
 				}
 				else {
@@ -339,7 +411,7 @@ class ProductAction extends BaseAction
 		foreach ($system_tag_list_group as $key => $system_tag) {
 			$tag_str .= $key . ':{';
 			foreach ($system_tag as $i => $tmp) {
-				if($i != 0) {
+				if ($i != 0) {
 					$tag_str .= ',';
 				}
 
@@ -359,26 +431,26 @@ class ProductAction extends BaseAction
 	{
 		$category = M('ProductCategory');
 
-		if(IS_POST) {
+		if (IS_POST) {
 			$cat_id = $this->_post('cat_id', 'trim,intval');
 			$now_cat = $category->find($cat_id);
 
-			if($this->_post('property', 'trim') == '') {
+			if ($this->_post('property', 'trim') == '') {
 				$this->frame_submit_tips(0, '分类属性不能为空！');
 			}
 
-			if(empty($now_cat['cat_pic']) && $_FILES['pic']['error'] == 4) {
+			if (empty($now_cat['cat_pic']) && $_FILES['pic']['error'] == 4) {
 				$this->frame_submit_tips(0, '请上传分类WAP图片！');
 			}
-			if(empty($now_cat['cat_pc_pic']) && $_FILES['pic_pic']['error'] == 4) {
+			if (empty($now_cat['cat_pc_pic']) && $_FILES['pic_pic']['error'] == 4) {
 				$this->frame_submit_tips(0, '请上传分类PC图片！');
 			}
 
-			if($_FILES['pic']['error'] != 4 || $_FILES['pc_pic']['error'] != 4) {
+			if ($_FILES['pic']['error'] != 4 || $_FILES['pc_pic']['error'] != 4) {
 				//上传图片
 				$rand_num = date('Y/m', $_SERVER['REQUEST_TIME']);
 				$upload_dir = './upload/category/' . $rand_num . '/';
-				if(!is_dir($upload_dir)) {
+				if (!is_dir($upload_dir)) {
 					mkdir($upload_dir, 0777, true);
 				}
 				import('ORG.Net.UploadFile');
@@ -388,7 +460,7 @@ class ProductAction extends BaseAction
 				$upload->allowTypes = array('image/png', 'image/jpg', 'image/jpeg', 'image/gif');
 				$upload->savePath = $upload_dir;
 				$upload->saveRule = 'uniqid';
-				if($upload->upload()) {
+				if ($upload->upload()) {
 					$uploadList = $upload->getUploadFileInfo();
 					// 上传到又拍云服务器
 //                    $attachment_upload_type = C('config.attachment_upload_type');
@@ -398,15 +470,15 @@ class ProductAction extends BaseAction
 //                    }
 
 					$j = 0;
-					if($_FILES['pic']['error'] != 4) {
-						if($now_cat['cat_pic'] && file_exists('./upload/' . $now_cat['cat_pic'])) {
+					if ($_FILES['pic']['error'] != 4) {
+						if ($now_cat['cat_pic'] && file_exists('./upload/' . $now_cat['cat_pic'])) {
 							@unlink('./upload/' . $now_cat['cat_pic']);
 						}
 						$_POST['cat_pic'] = 'category/' . $rand_num . '/' . $uploadList[$j]['savename'];
 						$j = 1;
 					}
-					if($_FILES['pc_pic']['error'] != 4) {
-						if($now_cat['cat_pc_pic'] && file_exists('./upload/' . $now_cat['cat_pc_pic'])) {
+					if ($_FILES['pc_pic']['error'] != 4) {
+						if ($now_cat['cat_pc_pic'] && file_exists('./upload/' . $now_cat['cat_pc_pic'])) {
 							@unlink('./upload/' . $now_cat['cat_pc_pic']);
 						}
 						$_POST['cat_pc_pic'] = 'category/' . $rand_num . '/' . $uploadList[$j]['savename'];
@@ -436,18 +508,18 @@ class ProductAction extends BaseAction
 			$data['filter_attr'] = $this->_post('property', 'trim');
 
 			$data['tag_str'] = join(',', $this->_post('tag', 'trim'));
-			if(empty($data['tag_str'])) {
+			if (empty($data['tag_str'])) {
 				$data['tag_str'] = '';
 			}
 
-			if($_POST['cat_pic']) {
+			if ($_POST['cat_pic']) {
 				$data['cat_pic'] = $_POST['cat_pic'];
 			}
-			if($_POST['cat_pc_pic']) {
+			if ($_POST['cat_pc_pic']) {
 				$data['cat_pc_pic'] = $_POST['cat_pc_pic'];
 			}
 
-			if(!empty($data['cat_fid'])) {
+			if (!empty($data['cat_fid'])) {
 				$data['cat_level'] = 2;
 				$path = $category->where(array('cat_id' => $data['cat_fid']))->getField('cat_path');
 				$data['cat_path'] = $path;
@@ -457,8 +529,8 @@ class ProductAction extends BaseAction
 				$data['cat_path'] = 0;
 			}
 
-			if($category->where(array('cat_id' => $cat_id))->save($data)) {
-				if($cat_id <= 9) {
+			if ($category->where(array('cat_id' => $cat_id))->save($data)) {
+				if ($cat_id <= 9) {
 					$str_cat_id = '0' . $cat_id;
 				}
 				else {
@@ -508,10 +580,10 @@ class ProductAction extends BaseAction
 		//获取属性类别的 所有属性
 		$attr_list = D('SystemProductProperty')->get_property_list();
 		$property_type = array();
-		if($category['filter_attr']) {
+		if ($category['filter_attr']) {
 			$filter_attr = explode(",", $category['filter_attr']);  //把多个筛选属性放到数组中
 			foreach ($filter_attr as $k => $v) {
-				if($k != 0) {
+				if ($k != 0) {
 					break;
 				}
 
@@ -548,7 +620,7 @@ class ProductAction extends BaseAction
 		foreach ($system_tag_list as $tmp) {
 			$system_tag_list_group[$tmp['tid']][] = $tmp;
 
-			if(in_array($tmp['id'], $tag_arr)) {
+			if (in_array($tmp['id'], $tag_arr)) {
 				$tag_list[] = $tmp;
 			}
 		}
@@ -557,7 +629,7 @@ class ProductAction extends BaseAction
 		foreach ($system_tag_list_group as $key => $system_tag) {
 			$tag_str .= $key . ':{';
 			foreach ($system_tag as $i => $tmp) {
-				if($i != 0) {
+				if ($i != 0) {
 					$tag_str .= ',';
 				}
 
@@ -584,7 +656,7 @@ class ProductAction extends BaseAction
 		$category = M('ProductCategory');
 
 		$cat_id = $this->_get('id', 'trim,intval');
-		if($category->delete($cat_id)) {
+		if ($category->delete($cat_id)) {
 			$category->where(array('cat_fid' => $cat_id))->delete(); //删除子分类
 			$this->success('删除成功！');
 		}
@@ -601,8 +673,10 @@ class ProductAction extends BaseAction
 		$cat_id = $this->_post('cat_id', 'trim,intval');
 		$status = $this->_post('status', 'trim,intval');
 		$category->where(array('cat_id' => $cat_id))->save(array('cat_status' => $status));
-		$category->where(array('cat_fid' => $cat_id))->save(array('cat_status'        => $status,
-		                                                          'cat_parent_status' => $status));
+		$category->where(array('cat_fid' => $cat_id))->save(array(
+			'cat_status' => $status,
+			'cat_parent_status' => $status
+		));
 	}
 
 	public function group()
@@ -610,11 +684,11 @@ class ProductAction extends BaseAction
 		$group = D('ProductGroupView');
 
 		$where = array();
-		if($this->_get('type', 'trim') && $this->_get('keyword', 'trim')) {
-			if($this->_get('type') == 'group') {
+		if ($this->_get('type', 'trim') && $this->_get('keyword', 'trim')) {
+			if ($this->_get('type') == 'group') {
 				$where['ProductGroup.group_name'] = array('like', '%' . $this->_get('keyword', 'trim') . '%');
 			}
-			if($this->_get('type') == 'store') {
+			if ($this->_get('type') == 'store') {
 				$where['Store.name'] = array('like', array('like', '%' . $this->_get('keyword', 'trim') . '%'));
 			}
 		}
@@ -646,41 +720,41 @@ class ProductAction extends BaseAction
 		//$where['is_hot']=array("eq",1);
 
 		$where = array(
-			'is_fx'             => 1,
+			'is_fx' => 1,
 			'source_product_id' => array("eq", 0)
 		);
 
 
-		if($this->_get('type', 'trim') && $this->_get('keyword', 'trim')) {
-			if($this->_get('type', 'trim') == 'product_id') {
+		if ($this->_get('type', 'trim') && $this->_get('keyword', 'trim')) {
+			if ($this->_get('type', 'trim') == 'product_id') {
 				$where['Product.product_id'] = $this->_get('keyword', 'trim,intval');
 			}
-			else if($this->_get('type', 'trim') == 'name') {
+			else if ($this->_get('type', 'trim') == 'name') {
 				$where['Product.name'] = array('like', '%' . $this->_get('keyword', 'trim') . '%');
 			}
-			else if($this->_get('type', 'trim') == 'store') {
+			else if ($this->_get('type', 'trim') == 'store') {
 				$where['Store.name'] = array('like', '%' . $this->_get('keyword', 'trim') . '%');
 			}
 		}
 		//是否热门  0：否 1：是
-		if(in_array($this->_get('is_hot', 'trim'), array('0', '1'))) {
+		if (in_array($this->_get('is_hot', 'trim'), array('0', '1'))) {
 			$where['Product.is_hot'] = $this->_get('is_hot', 'trim,intval');
 		}
 		//仓库中 //上架中
-		if(in_array($this->_get('status', 'trim'), array('0', '1'))) {
+		if (in_array($this->_get('status', 'trim'), array('0', '1'))) {
 			$where['Product.status'] = $this->_get('status', 'trim,intval');
 		}
 
-		if($this->_get('category', 'trim,intval')) {
+		if ($this->_get('category', 'trim,intval')) {
 			$where['Product.category_id'] = $this->_get('category', 'trim,intval');
 		}
-		if(isset($_GET['allow_discount']) && is_numeric($_GET['allow_discount'])) {
+		if (isset($_GET['allow_discount']) && is_numeric($_GET['allow_discount'])) {
 			$where['Product.allow_discount'] = $this->_get('allow_discount', 'trim,intval');
 		}
-		if(isset($_GET['invoice']) && is_numeric($_GET['invoice'])) {
+		if (isset($_GET['invoice']) && is_numeric($_GET['invoice'])) {
 			$where['Product.invoice'] = $this->_get('invoice', 'trim,intval');
 		}
-		if($this->_get('group', 'trim,intval')) {
+		if ($this->_get('group', 'trim,intval')) {
 			$where['_string'] = "Product.product_id IN (SELECT product_id FROM " . C('DB_PREFIX') .
 				"product_to_group WHERE group_id = '" . $this->_get('group', 'trim,intval') . "')";
 		}
@@ -696,23 +770,23 @@ class ProductAction extends BaseAction
 		foreach ($tmp_products as $tmp_product) {
 			$to_groups =
 				$to_group->field('group_id')->where(array('product_id' => $tmp_product['product_id']))->select();
-			if($to_groups) {
+			if ($to_groups) {
 				$group_ids = array();
 				foreach ($to_groups as $value) {
 					$group_ids[] = $value['group_id'];
 				}
-				if($group_ids) {
+				if ($group_ids) {
 					$group_ids = implode(',', $group_ids);
 					$group_names =
 						$group->field('group_name')->where(array('group_id' => array('in', $group_ids)))->select();
 					$tmp_group_names = array();
-					if($group_names) {
+					if ($group_names) {
 						foreach ($group_names as $group_name) {
 							$tmp_group_names[] = $group_name['group_name'];
 						}
 					}
 				}
-				if($tmp_group_names) {
+				if ($tmp_group_names) {
 					$group_name = implode(',', $tmp_group_names);
 				}
 			}
@@ -720,22 +794,22 @@ class ProductAction extends BaseAction
 				$group_name = '';
 			}
 			$products[] = array(
-				'product_id'        => $tmp_product['product_id'],
-				'image'             => getAttachmentUrl($tmp_product['image']),
-				'name'              => $tmp_product['name'],
-				'category'          => $tmp_product['category'],
-				'group'             => $group_name,
-				'store'             => $tmp_product['store'],
-				'price'             => $tmp_product['price'],
-				'market_price'      => $tmp_product['market_price'],
-				'quantity'          => $tmp_product['quantity'],
-				'sales'             => $tmp_product['sales'],
-				'buyer_quota'       => $tmp_product['buyer_quota'],
-				'allow_discount'    => $tmp_product['allow_discount'],
-				'invoice'           => $tmp_product['invoice'],
-				'date_added'        => $tmp_product['date_added'],
-				'status'            => $tmp_product['status'],
-				'is_hot'            => $tmp_product['is_hot'],
+				'product_id' => $tmp_product['product_id'],
+				'image' => getAttachmentUrl($tmp_product['image']),
+				'name' => $tmp_product['name'],
+				'category' => $tmp_product['category'],
+				'group' => $group_name,
+				'store' => $tmp_product['store'],
+				'price' => $tmp_product['price'],
+				'market_price' => $tmp_product['market_price'],
+				'quantity' => $tmp_product['quantity'],
+				'sales' => $tmp_product['sales'],
+				'buyer_quota' => $tmp_product['buyer_quota'],
+				'allow_discount' => $tmp_product['allow_discount'],
+				'invoice' => $tmp_product['invoice'],
+				'date_added' => $tmp_product['date_added'],
+				'status' => $tmp_product['status'],
+				'is_hot' => $tmp_product['is_hot'],
 				'source_product_id' => $tmp_product['source_product_id']
 			);
 		}
@@ -760,7 +834,7 @@ class ProductAction extends BaseAction
 		$delete_flg = $this->_get('delete', 'trim,intval');
 		$comment_id = $this->_get('comment_id', 'trim,intval');
 
-		if($comment->where(array('id' => $comment_id))->save(array('delete_flg' => $delete_flg))) {
+		if ($comment->where(array('id' => $comment_id))->save(array('delete_flg' => $delete_flg))) {
 			$this->success('操作成功');
 			exit;
 		}
@@ -778,7 +852,7 @@ class ProductAction extends BaseAction
 
 		$comment_id = $this->_post('id', 'trim,intval');
 		$status = $this->_post('status', 'trim,intval');
-		if($comment->where(array('id' => $comment_id))->save(array('status' => $status))) {
+		if ($comment->where(array('id' => $comment_id))->save(array('status' => $status))) {
 			$this->success('操作成功');
 			exit;
 		}
@@ -797,13 +871,13 @@ class ProductAction extends BaseAction
 		$where['type'] = 'PRODUCT';
 		$comment_model = D('Comment');
 		$isdelete = $this->_get("isdelete");
-		if(in_array($isdelete, array('0', '1'))) {
+		if (in_array($isdelete, array('0', '1'))) {
 			$where['delete_flg'] = $isdelete;
 		}
 
 
 		$count = $comment_model->getCount($where);
-		if($count > 0) {
+		if ($count > 0) {
 			$limit = 15;
 			import('@.ORG.system_page');
 			$page = new Page($count, $limit);
@@ -818,7 +892,7 @@ class ProductAction extends BaseAction
 			$in_array = $product_new_arr;
 
 			$produdcts = D('Product')->where(array('product_id' => array('in', $in_array)))->select();
-			if(is_array($produdcts)) {
+			if (is_array($produdcts)) {
 				foreach ($produdcts as $k => $v) {
 					$product_arr[$v['product_id']] = $v;
 				}
