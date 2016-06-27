@@ -19,10 +19,10 @@
 							<div>
 								<div class="widget-goods-klass">
 									<?php foreach ($cat_list as $value) { ?>
-									<div class="widget-goods-klass-item<?php if (!empty($value['cat_list'])) echo ' has-children'; ?>" data-id="<?php echo $value['cat_id']; ?>" data-name="<?php echo $value['cat_name']; ?>"> <span class="widget-goods-klass-name"><?php echo $value['cat_name']; ?></span>
-										<?php if (!empty($value['cat_list'])) { ?>
+									<div class="widget-goods-klass-item<?php if (!empty($value['larray'])) echo ' has-children'; ?>" data-id="<?php echo $value['cat_id']; ?>" data-name="<?php echo $value['cat_name']; ?>"> <span class="widget-goods-klass-name"><?php echo $value['cat_name']; ?></span>
+										<?php if (!empty($value['larray'])) { ?>
 										<ul class="widget-goods-klass-children">
-											<?php foreach ($value['cat_list'] as $v) { ?>
+											<?php foreach ($value['larray'] as $v) { ?>
 											<li data-id="<?php echo $value['cat_id']; ?>-<?php echo $v['cat_id']; ?>">
 												<label class="radio">
 													<input type="radio" name="goods-class-2" />

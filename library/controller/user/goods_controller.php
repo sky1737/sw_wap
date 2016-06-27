@@ -574,7 +574,7 @@ class goods_controller extends base_controller
 			pigcms_tips('非法访问！', 'none');
 
 		if($_POST['page'] == 'create_content') {
-			$cat_list = M('Product_category')->getAllCategory();
+			$cat_list = M('Product_category')->getAllCategory(0,true);
 			$this->assign('cat_list', $cat_list);
 		}
 		if($_POST['page'] == 'edit_content') {
@@ -1091,7 +1091,7 @@ class goods_controller extends base_controller
 	 */
 	private function _edit_content($id)
 	{
-		$cat_list = M('Product_category')->getAllCategory();
+		$cat_list = M('Product_category')->getAllCategory(0,true);
 		$this->assign('cat_list', $cat_list);
 
 		$product = M('Product');

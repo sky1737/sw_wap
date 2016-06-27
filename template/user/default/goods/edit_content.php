@@ -35,16 +35,16 @@
 														class="widget-goods-klass-name"><?php echo $category['cat_name']; ?></span>
 													<?php } else { ?>
 													<div
-														class="widget-goods-klass-item<?php if(!empty($value['cat_list'])) echo ' has-children'; ?> <?php if($category_id ==
+														class="widget-goods-klass-item<?php if(!empty($value['larray'])) echo ' has-children'; ?> <?php if($category_id ==
 															$value['cat_id']
 														) { ?>current<?php } ?>"
 														data-id="<?php echo $value['cat_id']; ?>"
 														data-name="<?php echo $value['cat_name']; ?>"> <span
 															class="widget-goods-klass-name"><?php echo $value['cat_name']; ?></span>
 														<?php } ?>
-														<?php if(!empty($value['cat_list'])) { ?>
+														<?php if(!empty($value['larray'])) { ?>
 															<ul class="widget-goods-klass-children">
-																<?php foreach ($value['cat_list'] as $v) { ?>
+																<?php foreach ($value['larray'] as $v) { ?>
 																	<li data-id="<?php echo $value['cat_id']; ?>-<?php echo $v['cat_id']; ?>">
 																		<label class="radio">
 																			<input type="radio"
