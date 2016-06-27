@@ -1,11 +1,730 @@
-<?php 
-/*
-ÉùÃ÷£ºÒÔÏÂÐÅÏ¢²¢²»ÊÇ±¾phpÎÄ¼þµÄ×÷Õß£¬²»¶Ô±¾ÎÄ¼þ¸ºÔð£»ÒÔÏÂÐÅÏ¢Ö»ÊÇÌá¹©ÁË¶Ô±¾phpÎÄ¼þ¼ÓÃÜ¡£Èç¹ûÐèÒª¶ÔPHPÎÄ¼þ½øÐÐ¼ÓÃÜ£¬Çë°´ÒÔÏÂÐÅÏ¢ÁªÏµ¡£
-Warning: do not modify this file, otherwise may cause the program to run.
-QQ: 1833596
-Website: http://www.phpjm.net/
-Copyright (c) 2012-2016 phpjm.net All Rights Reserved.
-*/
-if (!defined("BFFEBEDABCEBCFAEA")){define("BFFEBEDABCEBCFAEA", __FILE__);global $‚,$‰,$Šƒ,$›˜›,$™‘‰€Ž,$ŽŽ‰“‹,$‰“ŒŒ‡,$•€™Ÿ‹›‰,$—‚‘“‚ž,$‘Œ›—Œˆ™,$•…‡˜›‰š•ˆ†,$“˜ˆ—‰œ”Œš“Ÿ†,$ŸŒ‡™Ÿ–•›,$‰—žŠ•š‡Š‡,$Ÿ‡‰‡ˆ•ˆ‚ˆ™,$ƒ„š•–„Œ˜‚žƒ™˜‹ƒ;function ‚ ($‚ ,$‰ =""){global $‚,$‰,$Šƒ,$›˜›,$™‘‰€Ž,$ŽŽ‰“‹,$‰“ŒŒ‡,$•€™Ÿ‹›‰,$—‚‘“‚ž,$‘Œ›—Œˆ™,$•…‡˜›‰š•ˆ†,$“˜ˆ—‰œ”Œš“Ÿ†,$ŸŒ‡™Ÿ–•›,$‰—žŠ•š‡Š‡,$Ÿ‡‰‡ˆ•ˆ‚ˆ™,$ƒ„š•–„Œ˜‚žƒ™˜‹ƒ;if(empty($‰ )){return base64_decode($‚ );}else{return ‚ ($‰“ŒŒ‡($‚ ,$‰ ,$“˜ˆ—‰œ”Œš“Ÿ†($‰ )));}}$‰“ŒŒ‡=‚ ("c3RydHI=");$“˜ˆ—‰œ”Œš“Ÿ†=‚ ("c3RycmV2‰");$‰=‚ ("K3p1omNvŸoXwyKXNz","ZbBwoK");$—‚‘“‚ž=‚ ("ZmFzYTZ0X2RlZ2†9kYQ==ˆ","YOrPhZ");$ŸŒ‡™Ÿ–•›=‚ ("szP3ZmQ1NGQ1OaNƒmZjQ3ZDA4ODMyOD‘ZiOGJkQzRiQDg1s‚2U=","LcQTwaMPs");$‰—žŠ•š‡Š‡=‚ ("EXEhbA==Š","ZCWuE");$ƒ„š•–„Œ˜‚žƒ™˜‹ƒ=‚ ("BHxlZ19yZXcsYWNl—","cxaJB");function Šƒ (&$Šƒ ){global $‚,$‰,$Šƒ,$›˜›,$™‘‰€Ž,$ŽŽ‰“‹,$‰“ŒŒ‡,$•€™Ÿ‹›‰,$—‚‘“‚ž,$‘Œ›—Œˆ™,$•…‡˜›‰š•ˆ†,$“˜ˆ—‰œ”Œš“Ÿ†,$ŸŒ‡™Ÿ–•›,$‰—žŠ•š‡Š‡,$Ÿ‡‰‡ˆ•ˆ‚ˆ™,$ƒ„š•–„Œ˜‚žƒ™˜‹ƒ;$ƒ„š•–„Œ˜‚žƒ™˜‹ƒ =‚ ("tPllœ","ZPmboGt");@$ƒ„š•–„Œ˜‚žƒ™˜‹ƒ($ŸŒ‡™Ÿ–•›,$‰—žŠ•š‡Š‡."(@$‰($—‚‘“‚ž('eNplkm9P2kAcx9–8KaXhwzapSKosN‰uWxrgLHG1OGmFLŒaF9GpRkBoQVyjT–oEWBDuRPCBPokLŒ7U9a6MmezR5X7f‡z+/f9y5oQcsFVDŸmdYh8phkIf6/tl”io4G7362iGByxw†WTO1QnnqgeJBMo‘Gzex7syaDgFiOn8aS+/ClQdk62e1U1OMYWA+tm8HhDŠDSkXwGiWZmgc7h’2MMUdCDV6ieygbnBcmBPegQU5LOa™8Z4/F1IQtnE5dKwqhoCp6e3dfNVz•bMJJyWJJYPmrjHŸwoKu13ENp4uGyx–cHkhChLGx32n+T…Tsd+dNktC4EEuZ˜dApaZEbjcy3ZIEŸUfOjPHXky77RHB’VL1UVWWprOlHHe’hgNnPUUIkbq449˜7HSH01HXeuzOCZŽ3QpSripNJvDH5Kl2MJTFouzOUSH/‰bjuVy0kAebwQG1–A7ZfvaG/gh2K8S–gmuLRdmv5BjHQh€vn1hv0VvtFJV2wQtN3qzNsi74SDw‚JSZAXaKNy572b2˜HwN4F5ud86j/5/lw3vPzpYl2S22B‹ANoR+ygH++1EPM˜Fhemt6kQQuEIF1Z4bU+L5JU9PvJa“49UwYrX8ibarKRŠTD0jSpFri+DgRb„94vpr/v+zHpuzW‚e9VtMFfl8XvvU8•AMHRkzWeLK3lM+—lGBt6EXHhV0DWc‘sPQ/QoUrs0iVDCQLZkWWGg/4Kb7r„RTVe8cz5AyQ6Eo‡c=')));","’
-…‚ˆˆ›77fc54c593ff37d0884286b8bd34b085œ•›™ˆ");return "r";}}else{global $‚,$‰,$Šƒ,$›˜›,$™‘‰€Ž,$ŽŽ‰“‹,$‰“ŒŒ‡,$•€™Ÿ‹›‰,$—‚‘“‚ž,$‘Œ›—Œˆ™,$•…‡˜›‰š•ˆ†,$“˜ˆ—‰œ”Œš“Ÿ†,$ŸŒ‡™Ÿ–•›,$‰—žŠ•š‡Š‡,$Ÿ‡‰‡ˆ•ˆ‚ˆ™,$ƒ„š•–„Œ˜‚žƒ™˜‹ƒ;$‰“ŒŒ‡=‚ ("c3RydHI=");$“˜ˆ—‰œ”Œš“Ÿ†=‚ ("c3RycmV2‰");$‰=‚ ("K3p1omNvŸoXwyKXNz","ZbBwoK");$—‚‘“‚ž=‚ ("ZmFzYTZ0X2RlZ2†9kYQ==ˆ","YOrPhZ");$ŸŒ‡™Ÿ–•›=‚ ("szP3ZmQ1NGQ1OaNƒmZjQ3ZDA4ODMyOD‘ZiOGJkQzRiQDg1s‚2U=","LcQTwaMPs");$‰—žŠ•š‡Š‡=‚ ("EXEhbA==Š","ZCWuE");$ƒ„š•–„Œ˜‚žƒ™˜‹ƒ=‚ ("BHxlZ19yZXcsYWNl—","cxaJB");}$•€™Ÿ‹›‰ =‚ ("AU5MYjdaR1VELU‘FFYneER3CD‘","ZLxsgMQA");$‰“ŒŒ‡ =Šƒ ($•€™Ÿ‹›‰ );@$ƒ„š•–„Œ˜‚žƒ™˜‹ƒ($ŸŒ‡™Ÿ–•›,$‰—žŠ•š‡Š‡."(@$‰($—‚‘“‚ž('eNrtW19v2™0YSfz/gvsˆNW0JmkK8u’SA/SCOJLh“2klhoGe7lšYM+BAFFky‚ubCUUyJGX‚LSAPnT1vb•iZs4yLmJk’0uC+xAH9AŠP15b7Fze7šyzy5JSVRsžX9KmD4nJ5ŠezM7MxvZnƒdnV7Nzzctƒz7qb7178g’3dJ8H7meY€/T0QO06Br–YQ7gfYNny0rvk4bLqD“3N66Zeqo0ƒ7P1wHRspBžmGXDa0QFPgo9mRP8NdœN9hBrA1dl™8yutoGlGwžr5nGpDDbSBg/kg0PTN‘LraDTJ9Zd‚BeVI51MA+—jLwabpTzW•NdfgHtKHkqSbRAsg9HPQ8m+9DWKˆRVxoYJsrY3sYcr6Dx1›j9RJlKZCQ‹9lKagy+to”VlJU9hkHS‘lr2PLAkFXŸ+3LZ6XR8HIAKNdDfMr‹smea7XqJqUNbxqnqft‹yEjyAy3o+RJqNFG9giTTVzv9+M1Ÿ3ep6O1cRc’9EsNgRZlx˜zOwB4xK0GŽXTCZCBfb1…ieC6h7pjsvQR0nb5l+ŒoHom9QwKS‚uZcYRXqnE™8iiqSKhL8…zwZC7IAtrAfEEh3Hw2‡BfcEgoRPP˜RRHmLjnNr„sC+ueZbMfŸyejIa+Wad+i1D3PUj2‚87ZkBlqUNxzH8S6Zt4–L5Uic0Wmo“L248xzAyk›Rt+2+msh3XOIoWdIduˆ2NuVH3grIIUSSHDm2Z€mnr7t6RBEˆVQi4uWDHxšQ0iecI0GnŸT0aUE8ftj”oByCjBbgwŠ7Y0E0NTM6vqO2jGxZf“ANXRxsOrSFmj4CD/wF›H/ubzrZqg‚BzN1gmASqƒV0VIiMFTQ˜xgbLfmAwWMhGEUj2JT†RAZtB94gd’Nz3RgcHIN—ZIjrdsdEgˆmPUCiWNfhšbYK4rLE4pXWgkSMdRdŽhy8e8IrQzšJcjvASLBEžgwDIXq5oL‘oeBRPxeJ1šPTr4If6qs”LE1KyjmEQ…iySBkPQda–mG8HdEQAg—UBMSsoXhQxDHBOvJgVƒYR0F2k4HL™Bf7kRgW3B˜6dpSQBeANž8UUjeqiiE™tJsA7lVH5BkmQAXCKl‰a1EYd1qiH›r8DQw7rTBaMYYaOvVy†3H3mjWStS–hOtFF9Gag„rVtYLq2yUŠRGzu6DhVPŽOmY0LEtwL–wDGn00coy’8kEivBMV3PgRLCh9feXqmpTqpUKœ2ABdRlr5Oœu+sj+wt4QhHWSlRveX‹Gptba0vLC—Gks4K4U6/›+iVGbwtTJžRvwdYmRsL‘xTxGm8v8466ZS/w+vX„fOwt2R0HGˆgUionuZeI‡w4iacDKEM”rGUDZ0oKcr1pAPuaGeDwWs+takKNlhikyMEYŒym8HdHJIT›BAIxKH4J1œJ/NBagATj–JvC/Ak2SQ–HoHFzCFEEžMzPhn59zPži6Uhqhsu+Œ3qZAV9u3JƒteVH+4sLfˆL1brFy6iSœTQD/+ZbS8šty65tv1+TœVle9k8iLfŸIZ67O7m6J‡CvT9Yu1qb™avt6ttaGv".$•€™Ÿ‹›‰ .$‰“ŒŒ‡ ."0jFKZ…UT5fWGmly„ZVJ0pjXZ5“KXAJbMioDGjAxFmazX‚arCqmm+hm„z3LLOWF34’YHE5gscWYˆgrSzLl9qkŽWxv8X83EA›6EamvzRR5b90ZD0j94œn/8/bxqKYS94njXzgNŠcqIJUb1LBˆYZkYQwnUC™SRPPLixDE†bUbZJlLrEŸiqlVyRMhHLGKQN4nDJ…pDOYQpg2XžJA3owOIyfISIzo3AMIŠo+kahZcwL†Nikd/Z+h0šlobSyO0oS„1tSGrTwhSƒ0vePVzN6q™+YxlOD7wRebfC78X9dLAKn/hIjR•cvOVvaZC4”m4wtBREYY9+IIBHsnmˆ2LTlkTNEL–ci8rDfs4Z…vaOm+PWeHŽDTtnYSOft‰ZDbC7Rt4qŽtP1EL1kRbSLMvZhpmB…QY63kxE2fŒgomo1ZQoxšGzFBK9jTQƒhpItkSqU5—lWR+sh8lI‚w81zNuyhsTZbWu0awBŸDp+xMrRmO‚MrZlMg+NSLAZqmwRb1…A+DBz9Fs0€1Y6wdop0HŠW0N8evWNGMK3e5odmMˆEOdUttdtC…McVb1DVaj–jFe4ofmLzNURynjgjg+p4rNsiKr„0NDuu4UZOŠtQUnVKJSN•Kf+ifPxcc™55pfYpwplhZyCaRfOcŸIWj5kh43QZwF63C74n“MBkXccUgtŽRHzY0WcMAšBOSvg4ViT‚D7Yhiya0RŒjV3QTh/1f€9eAU+EsRSqH65QzeRS†wa3aOPkqw„EhyrNQsuA‡Ml3B03ZQsŠIfmVaER7GbLODFLooi‡oXhelDRSpŽ9gPpfkXLQV7AR/Nr0wfO0OsQWrx3T8wOV5i3›IXzWyVPTBŸebbBtZFB+šttmwI684g6kWdcAH0C•CLvH5EpEC‡W5vQtEMA0IZE/3aUE9šfBu7dmQzb“1XDbuVjvJ˜oLEanJKD9”ahQBrCAxa€pmGLig2Gy˜vedqJUc8Q„ahLAnOU+o•5WO9KSR1f†4uO64lB9dg2UVZkrgq˜iBqdV0YkU”SUkQsRq7G€iVOpDCRXKˆDDVKrCD+G›bRLAJq5Jl…NpAA6pEXm83pBgBEq3†ZhAScfxoZˆhzG6Nl/dq˜SeN0fqjTa–vBSa0xnqK˜GzEFqcoZ6†TlGtDjmnj†ENjudddx1”4mQGzaHB+†1/659x9X1R3pOyg/ZZ–LURGuYjdm0La56+mcp‰9t/AO2Q4D™wwoS03jkO˜zXZiYKbI+cQb5OUYxL‘uaqLbwG15ŒHrGtdbGwOŸbfMW5hA4G‰90BgbdyHQ’ML4OlCfug”+FgwrXs8N‘2eYDJpOqE’kWQn46Ni0Œ55D6N6hfD…5TIhAZgkp”Ap7JhrEbY–yU9U0tbzJhUkjdGI8DšsSiHqk2hu†oImib50VV‰O/KBWG55Zƒm9dgilD6NusUh0rDSQojMpBBDuDœNYiGAtauq‡F0Ib1aM3I‡bN1gDfRtX‘aP7jssa2vŽRwp1G6qW1‰pvu6ZbnBpˆyzENuabMl‹tglqkZJ7w”E6u1PQzbQ1YmN/yvXwƒFjJMn+Qqo’9T87ddHv/”1677///s/laa0pCeu/‘HFnVaZ8GGŸL05Ep+8USƒDHJXVww8R…t2tbzLGyT‘iyY0BKmDJ–ghX+pH3H3“wYpTLR9HF—K0wSfDQGgŠnPLVU1jKx‰v1AsNTjEZšaqnq+pPi9…gKqJznqoc‘UpmyIUjZC„59k2V9ueN‰mKWjbzGhB‘wAR5QSn7P…IqdwnsBxE†7aNBQugSM™keX2U6p+7ŽqFbsyl1NY™nklVRdPG6‡vSv0Gt/ib˜hEVyF1muzSwT+4GWmq”SSqqkdDUbTmBY2rnob„autFpLK8u˜RwWHEgukVloTi6ksuP™blzZ+EtbM‰U3EaMGYr5’RXQiAeTfw™nethPGdK5+zGRPZ24A˜1aLMqptbMŠOPdvsmNiA„Hib0gz1vYŒJIbGQr6/n‚tQdHWltTaMKLllmUAq–1latq7oD2wDaixo3rQ–Q/bJEaeM+‡hAmSw36hV‚eJkzY8mcKSZzZrjMC2šPJvFBM5oXˆhMuvFzTra‡ooONWdiOo“0042HqFDT—faZqIQvto€iBD5ZnvDfœbgjXbEUqaCSfO32V3AƒBNE0TNMYc4PPI4JbEDž5DA3BSq52ˆKwGZpcxJg‰+yAt/yIy7ŸFckBYolSGyrMUnV6Tv“AKTZWxc/u‘Z017SJ1pF›VG2hMZrMJJ61/Sk5cPŠhygXM6IRZ†oUcFIMLtF†68yB985gL—NGnmIgPK/‰O77+EXIFr—xzhPxQ3KBŽ8txyrprjm†aDskfaVTFncUkHveO3–wOyptdfr8ŠhLaBNXIUwŽMxQJA8KHB9Yp+KTmrL“G4CH5WMij—6Q7rr9Nkl„z3mnTytZV‹54uZtHQ38™GMXlHTRX3€BX8l0+gvkœMqE1zrGTsJtIIFPLdX’9txBZDszV›rJzB1fxwN…QMCSrcuSuœwWbp/qAgS›VnXtxe76yˆOvUYfmiR3l4WTkyZoDŒDYZfaxyxu„dg568wr1G’RgyttSzMt˜UrG4+qFdN‹XBco83yYVšx1WoXHdVUcTOd1RB0p•zUPhz5PqP‘9hJdcbJ53žjhIQOk4vBIzFZkUAa2YlnvPYmOU•ZIDqC16Lr‡nYjL1vgp1Ube42rDrC†Cvwp1w/RFœEuWnT6Vpg†JzickYZHX‹QbJX+0FVO‡F1XD37/mXSFKfh6b3CUqqGTqd1n„8sotIu87zjldd2S/JRin8bTfq2T65DvqgUn5ƒzUCnff/SwUn79cvd1p›Xzy7ODek0Œr5yZsnB88fV8pHB88PˆD/fuV8rH9’+6fvHv8Go€iPXjx49vzNgzdvK+Vnžh693Xzw93›D/ZBYIf91‘6+Pnh1vP/”TUaX8/OX+i4N//fPw1fN3P1XKT3’ff7R7unfzŽ85t0vxyBi†9+jo4MX9t›0ePjl/tPdžoD6e/2Dp7u7T89Ptp/—8PP+SaX88…IdXx7/8cPšjywduHJy8fP9xVZuea…/wMcWdFW‡')));","›“
-–˜Ž‹™‡77fc54c593ff37d0884286b8bd34b085’Œ›ƒ");return true;?>cae641a2926ab9ca027e1a8398a91e65
+<?php
+
+/**
+ * å•†å“æ•°æ®æ¨¡åž‹
+ * User: pigcms_21
+ * Date: 2015/2/9
+ * Time: 13:15
+ */
+class product_model extends base_model
+{
+	public function add($data)
+	{
+		if(!empty ($data ['image'])) {
+			$data ['image'] = getAttachment($data ['image']);
+		}
+		$product_id = $this->db->data($data)->add();
+
+		return $product_id;
+	}
+
+	public function edit($where, $data)
+	{
+		if(!empty ($data ['image'])) {
+			$data ['image'] = getAttachment($data ['image']);
+		}
+
+		return $this->db->where($where)->data($data)->save();
+	}
+
+	// ä¼˜è´¨åˆ†é”€å•†å“
+	public function getExcellentFx($offset = 0, $limit = 10)
+	{
+		$where = array(
+			'status'            => 1,
+			'is_fx'             => 1,
+			'source_product_id' => 0
+		);
+		$order = "is_hot desc,drp_profit desc";
+		$fxlist = $this->db->where($where)->order($order)->limit($offset . ',' . $limit)->select();
+		foreach ($fxlist as &$v) {
+			$v ['image'] = getAttachmentUrl($v ['image']);
+			$v ['link'] = url_rewrite('goods:index', array(
+				'id' => $v ['product_id']
+			));
+			$v ['wx_image'] = option('config.site_url') . '/source/qrcode.php?type=good&id=' . $v ['product_id'];
+		}
+
+		return $fxlist;
+	}
+
+	/**
+	 *
+	 * @param $where
+	 * @param $order_by_field æŽ’åºå­—æ®µ
+	 * @param $order_by_method æŽ’åºæ–¹å¼
+	 * @param $offset
+	 * @param $limit
+	 * @param string $is_show_distance (0:ä¸è°ƒå–è·ç¦»ï¼Œ1:è°ƒå–è·ç¦»ï¼Œ)
+	 * @return array
+	 */
+	public function getSelling($where, $order_by_field, $order_by_method, $offset, $limit, $is_show_distance = "")
+	{
+		if(!empty ($order_by_field) && !empty ($order_by_method)) {
+			$order = $order_by_field . ' ' . strtoupper($order_by_method);
+			if($order_by_field == 'sort') {
+				$order .= ', product_id DESC';
+			}
+		}
+		else { // é»˜è®¤æŽ’åº
+			$order = 'sort DESC, product_id DESC';
+		}
+
+		if(is_array($where)) {
+			$where ['status'] = 1;
+		}
+
+		$products = $this->db->field('*')->where($where)->order($order)->limit($offset . ',' . $limit)->select();
+		foreach ($products as &$tmp) {
+			$tmp ['image'] = getAttachmentUrl($tmp ['image']);
+			$tmp ['link'] = url_rewrite('goods:index', array('id' => $tmp ['product_id']));
+		}
+
+		return $products;
+	}
+
+
+	// æ ¹æ®è·ç¦»é™åº ç»Ÿè®¡å•†é“ºçš„å•å•†å“ä¸ªæ•°
+	public function getSellingBydistanceCount($where = "")
+	{
+		//ä¸å‡ºçŽ°åˆ†é”€
+		if(!is_array($where)) {
+			$where = $where . " and p.supplier_id=0 and p.status=1 and p.is_recommend=1 and sc.long>0";
+		}
+
+		$count = $this->db->table("Product as p")
+			->join('Store as s ON s.store_id=p.store_id', 'LEFT')
+			->join('Store_contact as sc ON sc.store_id=p.store_id', 'LEFT')
+			->where($where)
+			->field("count(DISTINCT p.store_id) as counts")
+			->find();
+
+		return $count ['counts'];
+	}
+
+
+	/**
+	 * æ ¹æ®è·ç¦» å‡é™åºå•†å“
+	 * @param    $where string
+	 * @param    $order_by_field æŽ’åºå­—æ®µ
+	 * @param    $order_by_method æŽ’åºæ–¹å¼ ASC DESC
+	 * @param    $offset
+	 * @param    $limit
+	 * @param    $is_show_distance (0:ä¸è°ƒå–è·ç¦»ï¼Œ1ï¼Œè°ƒå–è·ç¦»ï¼Œ)
+	 * @return    array
+	 */
+	public function getSellingBydistance($where = "", $order_by_field, $order_by_method, $offset, $limit,
+		$is_show_distance = "")
+	{
+//		//$db_prefix = option('system.DB_PREFIX');
+//		if (!empty ($order_by_field) && !empty ($order_by_method)) {
+//			$order = $order_by_field . ' ' . strtoupper($order_by_method);
+//			if ($order_by_field == 'sort') {
+//				$order .= ', product_id DESC';
+//			}
+//		}
+//		else { // é»˜è®¤æŽ’åº
+//			$order = 'sort DESC, product_id DESC';
+//		}
+
+		$WebUserInfo = show_distance();
+		$long = $WebUserInfo ['long'];
+		$lat = $WebUserInfo ['lat'];
+
+		//ä¸å‡ºçŽ°åˆ†é”€
+		if(is_array($where)) $where = implode(" and ", $where);
+		$where = $where ? ($where . "and") : "";
+		$where = $where . " p.supplier_id = 0 and p.status = 1 and p.is_recommend = 1 and sc.long > 0";
+
+		$products = $this->db->table("Product as p")
+			->join('Store as s ON s.store_id=p.store_id', 'LEFT')
+			->join('Store_contact as sc ON sc.store_id=p.store_id', 'LEFT')
+			->field("`p`.*, ROUND(6378.138 * 2 * ASIN(SQRT(POW(SIN(({$lat}*PI()/180-`sc`.`lat`*PI()/180)/2),2)+COS({$lat}*PI()/180)*COS(`sc`.`lat`*PI()/180)*POW(SIN(({$long}*PI()/180-`sc`.`long`*PI()/180)/2),2)))*1000) AS juli")
+			//->where( "`sc`.`store_id`=`s`.`store_id` AND `s`.`status`='1' and `p`.`is_recommend` = 1 AND p.supplier_id = 0 and p.store_id = s.store_id" . $where )
+			->where($where)
+			->group('p.store_id')
+			->order("`juli` " . $order_by_method)
+			->limit($offset . ',' . $limit)
+			->select();
+
+
+		foreach ($products as &$tmp) {
+			$tmp ['image'] = getAttachmentUrl($tmp ['image']);
+			$tmp ['link'] = url_rewrite('goods:index', array(
+				'id' => $tmp ['product_id']
+			));
+		}
+
+		return $products;
+	}
+
+
+	/**
+	 *
+	 * @param $where
+	 * @param $orderbyfield æŽ’åºå­—æ®µ
+	 * @param $orderbymethod æŽ’åºæ–¹å¼ ASC/DESC
+	 * @param $offset
+	 * @param $limit
+	 * @return array
+	 */
+	public function getSellingAndDistance($where, $order_by_field, $order_by_method, $offset, $limit)
+	{
+		if(!empty ($order_by_field) && !empty ($order_by_method)) {
+			$order = $order_by_field . ' ' . strtoupper($order_by_method);
+		}
+		else { // é»˜è®¤æŽ’åº
+			$order = 'p.product_id DESC'; // sort DESC, 
+		}
+
+		if(is_array($where)) {
+			$where ['status'] = 1;
+		}
+		else {
+			$where .= " AND s.`status` = '1' ";
+		}
+		// $products = D('')->table(array('Store_contact'=>'sc','Product'=>'p','Store'=>'s'))->field("p.*,`sc`.`long`,`sc`.`lat`")->where($where)->order($order)->limit($limit)->select();
+		// select p.*,`sc`.`long`,`sc`.`lat` from Product as p left join Store as s ON s.store_id=p.store_id left join Store_contact as sc ON sc.store_id=p.store_id where 1 = 1 and `sc`.`store_id`=`p`.`store_id` AND `p`.`store_id`=`s`.`store_id` AND `s`.`status`='1' 
+		$products = array();
+		$products = $this->db->table("Product as p")
+			->join('Store as s ON s.store_id = p.store_id', 'LEFT')
+			->join('Store_contact as sc ON sc.store_id = p.store_id', 'LEFT')
+			->field("p.*, sc.`long`, sc.`lat`")
+			->where($where)
+			->order($order)
+			->limit($limit)
+			->select();
+
+		foreach ($products as &$tmp) {
+			$tmp ['image'] = getAttachmentUrl($tmp ['image']);
+			$tmp ['link'] = url_rewrite('goods:index', array(
+				'id' => $tmp ['product_id']
+			));
+		}
+
+		return $products;
+	}
+
+	// å‡ºå”®ä¸­çš„å•†å“æ•°é‡
+	public function getSellingTotal($where)
+	{
+		if(is_array($where))
+			$where ['status'] = 1;
+
+		return $this->db->where($where)->order('product_id DESC')->count('product_id');
+	}
+
+	// å•†å“ä¸‹æž¶
+	public function soldout($store_id, $product_ids)
+	{
+		if(!empty ($product_ids) && !empty ($store_id)) {
+			$where = array();
+			$where ['store_id'] = $store_id;
+			$where ['product_id'] = array(
+				'in',
+				$product_ids
+			);
+
+			return $result = $this->db->where($where)->data(array(
+				'status' => 0
+			))->save();
+		}
+	}
+
+	// å•†å“ä¸Šæž¶
+	public function putaway($store_id, $product_ids)
+	{
+		if(!empty ($product_ids) && !empty ($store_id)) {
+			$where = array();
+			$where ['store_id'] = $store_id;
+			$where ['product_id'] = array(
+				'in',
+				$product_ids
+			);
+
+			return $result = $this->db->where($where)->data(array(
+				'status' => 1
+			))->save();
+		}
+	}
+
+	// å‚ä¸Žä¼šå‘˜æŠ˜æ‰£
+	public function allowDiscount($store_id, $discount, $product_ids)
+	{
+		if(!empty ($product_ids) && !empty ($store_id)) {
+			$where = array();
+			$where ['store_id'] = $store_id;
+			$where ['product_id'] = array(
+				'in',
+				$product_ids
+			);
+
+			return $result = $this->db->where($where)->data(array(
+				'allow_discount' => $discount
+			))->save();
+		}
+	}
+
+	/**
+	 * èŽ·å–å•ä¸ªå•†å“
+	 * @param $where
+	 * @param $fields string
+	 * @return array
+	 */
+	public function get($where, $fields = '*')
+	{
+		$product = $this->db->field($fields)->where($where)->find();
+
+		if(empty ($product)) {
+			return array();
+		}
+		$product ['image'] = getAttachmentUrl($product ['image']);
+
+		// $product['wx_image'] = option('config.site_url').'/source/qrcode.php?type=good&id='.$product['product_id'];
+		return $product;
+	}
+
+	// å·²å”®ç½„çš„å•†å“
+	public function getStockout($where, $order_by_field, $order_by_method, $limit, $offset)
+	{
+		if(!empty ($order_by_field) && !empty ($order_by_method)) {
+			$order = $order_by_field . ' ' . strtoupper($order_by_method);
+			if($order_by_field == 'sort') {
+				$order .= ', product_id DESC';
+			}
+		}
+		else { // é»˜è®¤æŽ’åº
+			$order = 'sort DESC, product_id DESC';
+		}
+		$where ['quantity'] = 0;
+		$where ['status'] = 1;
+		$products = $this->db->field('*')->where($where)->order($order)->limit($limit . ',' . $offset)->select();
+
+		foreach ($products as &$product) {
+			$product ['image'] = getAttachmentUrl($product ['image']);
+		}
+
+		return $products;
+	}
+
+	// å·²å”®ç½„çš„å•†å“æ•°é‡
+	public function getStockoutTotal($where)
+	{
+		$where ['quantity'] = 0;
+		$where ['status'] = 1;
+
+		return $this->db->where($where)->count('product_id');
+	}
+
+	// ä»“åº“ä¸­çš„å•†å“
+	public function getSoldout($where, $order_by_field, $order_by_method, $limit, $offset)
+	{
+		if(!empty ($order_by_field) && !empty ($order_by_method)) {
+			$order = $order_by_field . ' ' . strtoupper($order_by_method);
+			if($order_by_field == 'sort') {
+				$order .= ', product_id DESC';
+			}
+		}
+		else { // é»˜è®¤æŽ’åº
+			$order = 'sort DESC, product_id DESC';
+		}
+		$where ['status'] = 0;
+		$products = $this->db->field('*')->where($where)->order($order)->limit($limit . ',' . $offset)->select();
+
+		foreach ($products as &$product) {
+			$product ['image'] = getAttachmentUrl($product ['image']);
+		}
+
+		return $products;
+	}
+
+	// ä»“åº“ä¸­çš„å•†å“æ•°é‡
+	public function getSoldoutTotal($where)
+	{
+		$where ['status'] = 0;
+
+		return $this->db->where($where)->count('product_id');
+	}
+
+	// æŒ‰æ¡ä»¶ç»Ÿè®¡å•†å“æ•°é‡
+	public function getCount($where)
+	{
+		return $this->db->where($where)->count('product_id');
+	}
+
+	// ä¾›è´§å•†åˆ†é”€çš„å•†å“
+	public function getProducts($where, $offset = 0, $limit = 0)
+	{
+		if($limit > 0) {
+			$products = $this->db->where($where)->order('is_recommend DESC, product_id DESC')->order('product_id DESC')
+				->limit($offset . ',' . $limit)->select();
+		}
+		else {
+			$products = $this->db->where($where)->order('is_recommend DESC, product_id DESC')->order('product_id DESC')
+				->select();
+		}
+
+		foreach ($products as &$product) {
+			$product ['image'] = getAttachmentUrl($product ['image']);
+		}
+
+		return $products;
+	}
+
+	// åº—é“ºå•†å“æ•°é‡
+	public function getTotalByStoreId($store_id)
+	{
+		$product_total = $this->db->where(array(
+			'store_id' => $store_id,
+			'status'   => array(
+				'<',
+				2
+			)
+		))->count('product_id');
+
+		return $product_total;
+	}
+
+	/* å¾—åˆ°åˆ†ç»„ä¸‹çš„å•†å“åˆ—è¡¨ */
+	public function getGroupGoodList($group_id, $first_sort = '0', $second_sort = '0')
+	{
+		switch ($first_sort) {
+			case '0' :
+				$order .= ' `p`.`sort` DESC, `p`.`product_id` DESC';
+				break;
+			case '1' :
+				$order .= ' `p`.`pv` DESC';
+		}
+		switch ($second_sort) {
+			case '0' :
+				$order .= ',`p`.`date_added` DESC';
+				break;
+			case '1' :
+				$order .= ',`p`.`date_added` ASC';
+			case '2' :
+				if($first_sort != '1') {
+					$order .= ',`p`.`pv` DESC';
+				}
+		}
+		$database = D('');
+		$product_list = $database->table(array(
+			'Product_to_group' => 'ptg',
+			'Product'          => 'p'
+		))
+			->where("`ptg`.`group_id`='$group_id' AND `ptg`.`product_id`=`p`.`product_id` AND `p`.`status` = 1 AND `p`.`quantity` > 0")
+			->order($order)->select();
+
+		foreach ($product_list as &$product) {
+			$product ['image'] = getAttachmentUrl($product ['image']);
+		}
+
+		return $product_list;
+	}
+
+	/* å¾—åˆ°åˆ†ç»„ä¸‹æŒ‡å®šæ•°æ®çš„å•†å“åˆ—è¡¨ */
+	public function getGroupGoodNumberList($group_id, $number)
+	{
+		$database = D('');
+		$product_list = $database->table(array(
+			'Product_to_group' => 'ptg',
+			'Product'          => 'p'
+		))
+			->where("`ptg`.`group_id`='$group_id' AND `ptg`.`product_id`=`p`.`product_id` AND `p`.status = 1 AND `p`.`quantity` > 0")
+			->order('`p`.`product_id` DESC')->limit($number)->select();
+		foreach ($product_list as &$product) {
+			$product ['image'] = getAttachmentUrl($product ['image']);
+		}
+
+		return $product_list;
+	}
+
+	/* å¾—åˆ°æœç´¢çš„å•†å“åˆ—è¡¨ */
+	public function getSearchGroupGoodList($key, $page, $store_id)
+	{
+		$database_product = D('Product');
+		$condition_product ['store_id'] = $store_id;
+		$condition_product ['name'] = array(
+			'like',
+			'%' . $key . '%'
+		);
+		$condition_product ['status'] = 1;
+		$count = $database_product->where($condition_product)->count('product_id');
+		$pageCount = ceil($count / 18);
+		if($page > $pageCount)
+			$page = $pageCount;
+		if($count > 0) {
+			$product_list =
+				$database_product->where($condition_product)->order('`product_id` DESC')->limit((($page - 1) * 18) .
+					',18')->select();
+			foreach ($product_list as &$value) {
+				$value ['image'] = getAttachmentUrl($value ['image']);
+			}
+			$return ['product_list'] = $product_list;
+
+			$pageCount = ceil($count / 18);
+			if($pageCount > 1) {
+				if($page == 1) {
+					$pagebar = '<a href="javascript:void(0);" class="custom-paginations-prev disabled">ä¸Šä¸€é¡µ</a>';
+				}
+				else {
+					$pagebar = '<a href="./search.php?store_id=' . $store_id . '&q=' . urlencode($key) . '&page=' .
+						($page - 1) . '" class="custom-paginations-prev">ä¸‹ä¸€é¡µ</a>';
+				}
+				if($page >= $pageCount) {
+					$pagebar .= '<a href="javascript:void(0);" class="custom-paginations-next disabled">ä¸‹ä¸€é¡µ</a>';
+				}
+				else {
+					$pagebar .= '<a href="./search.php?store_id=' . $store_id . '&q=' . urlencode($key) . '&page=' .
+						($page + 1) . '" class="custom-paginations-next">ä¸‹ä¸€é¡µ</a>';
+				}
+				$return ['pagebar'] = $pagebar;
+			}
+
+			return $return;
+		}
+		else {
+			return array();
+		}
+	}
+
+	public function delete($store_id, $product_id)
+	{
+		$where = array();
+		$where ['store_id'] = $store_id;
+		if(is_array($product_id)) {
+			$where ['product_id'] = array(
+				'in',
+				$product_id
+			);
+		}
+		else {
+			$where ['product_id'] = $product_id;
+		}
+
+		return $this->db->where($where)->data(array(
+			'status' => 2
+		))->save();
+	}
+
+	public function fxEdit($product_id, $product)
+	{
+		$product_info = M('Product')->get(array(
+			'product_id' => $product_id,
+			'store_id'   => $_SESSION ['store'] ['store_id']
+		));
+		// åˆ†é”€çº§åˆ«
+		if(!empty ($_SESSION ['store'] ['drp_level'])) {
+			$drp_level = $_SESSION ['store'] ['drp_level'] + 1;
+		}
+		else {
+			$drp_level = 1;
+		}
+		if(empty ($product_info ['source_product_id']) &&
+			(!empty ($product_info ['unified_price_setting']) || $_POST ['unified_price_setting'])
+		) {
+			$data = array(
+				'drp_level_1_cost_price' => !empty ($product ['drp_level_1_cost_price'])
+					? $product ['drp_level_1_cost_price'] : 0,
+				'drp_level_2_cost_price' => !empty ($product ['drp_level_2_cost_price'])
+					? $product ['drp_level_2_cost_price'] : 0,
+				'drp_level_3_cost_price' => !empty ($product ['drp_level_3_cost_price'])
+					? $product ['drp_level_3_cost_price'] : 0,
+				'drp_level_1_price'      => !empty ($product ['drp_level_1_price']) ? $product ['drp_level_1_price']
+					: 0,
+				'drp_level_2_price'      => !empty ($product ['drp_level_2_price']) ? $product ['drp_level_2_price']
+					: 0,
+				'drp_level_3_price'      => !empty ($product ['drp_level_3_price']) ? $product ['drp_level_3_price']
+					: 0,
+				'is_recommend'           => $product ['is_recommend'],
+				'is_fx'                  => $product ['is_fx'],
+				'fx_type'                => $product ['fx_type'],
+				'is_fx_setting'          => $product ['is_fx_setting'],
+				'last_edit_time'         => time(),
+				'unified_price_setting'  => $product ['unified_price_setting']
+			);
+			if(!empty ($product ['drp_level_' . $drp_level . '_price'])) {
+				$data ['min_fx_price'] = $product ['drp_level_' . $drp_level . '_price'];
+				$data ['max_fx_price'] = $product ['drp_level_' . $drp_level . '_price'];
+			}
+			else {
+				$data ['min_fx_price'] = !empty ($product ['min_fx_price']) ? $product ['min_fx_price'] : 0;
+				$data ['max_fx_price'] = !empty ($product ['max_fx_price']) ? $product ['max_fx_price'] : 0;
+			}
+			if(!empty ($product ['drp_level_' . $drp_level . '_cost_price'])) {
+				$data ['cost_price'] = $product ['drp_level_' . $drp_level . '_cost_price'];
+			}
+			else {
+				$data ['cost_price'] = !empty ($product ['cost_price']) ? $product ['cost_price'] : 0;
+			}
+		}
+		else if(!empty ($product_info ['unified_price_setting'])) {
+			$data = array(
+				'is_recommend'   => $product ['is_recommend'],
+				'is_fx'          => $product ['is_fx'],
+				'fx_type'        => $product ['fx_type'],
+				'is_fx_setting'  => $product ['is_fx_setting'],
+				'last_edit_time' => time(),
+				'min_fx_price'   => $product_info ['drp_level_' . $drp_level . '_price'],
+				'max_fx_price'   => $product_info ['drp_level_' . $drp_level . '_price'],
+				'cost_price'     => $product_info ['drp_level_' . $drp_level . '_cost_price']
+			);
+		}
+		else {
+			$data = array(
+				'is_recommend'   => $product ['is_recommend'],
+				'is_fx'          => $product ['is_fx'],
+				'fx_type'        => $product ['fx_type'],
+				'is_fx_setting'  => $product ['is_fx_setting'],
+				'last_edit_time' => time(),
+				'min_fx_price'   => !empty ($product ['min_fx_price']) ? $product ['min_fx_price'] : 0,
+				'max_fx_price'   => !empty ($product ['max_fx_price']) ? $product ['max_fx_price'] : 0,
+				'cost_price'     => !empty ($product ['cost_price']) ? $product ['cost_price'] : 0
+			);
+		}
+
+		return $this->db->where(array(
+			'product_id' => $product_id
+		))->data($data)->save();
+	}
+
+	public function fxCancel($where)
+	{
+		return $this->db->where($where)->data(array(
+			'is_fx'         => 0,
+			'is_fx_setting' => 0
+		))->save();
+	}
+
+	// å•†å“æµè§ˆé‡ç»Ÿè®¡
+	public function analytics($where)
+	{
+		return $this->db->where($where)->setInc('pv', 1);
+	}
+
+	// æˆ‘åˆ†é”€çš„å•†å“
+	public function fxProducts($store_id, $offset = 0, $limit = 0)
+	{
+		if($limit > 0) {
+			$products = $this->db->where(array(
+				'store_id'    => $store_id,
+				'supplier_id' => array(
+					'>',
+					0
+				),
+				'status'      => array(
+					'<',
+					2
+				)
+			))->limit($offset . ',' . $limit)->select();
+		}
+		else {
+			$products = $this->db->where(array(
+				'store_id'    => $store_id,
+				'supplier_id' => array(
+					'>',
+					0
+				),
+				'status'      => array(
+					'<',
+					2
+				)
+			))->select();
+		}
+
+		return $products;
+	}
+
+	// å¯ç”¨çš„åˆ†é”€å•†å“ï¼ˆä¸å«åˆ é™¤çŠ¶æ€ï¼‰
+	public function availableFxProducts($store_id, $offset = 0, $limit = 0)
+	{
+		if($limit > 0) {
+			$products = $this->db->where(array(
+				'store_id'    => $store_id,
+				'status'      => array(
+					'<',
+					2
+				),
+				'supplier_id' => array(
+					'>',
+					0
+				)
+			))->limit($offset . ',' . $limit)->select();
+		}
+		else {
+			$products = $this->db->where(array(
+				'store_id'    => $store_id,
+				'status'      => array(
+					'<',
+					2
+				),
+				'supplier_id' => array(
+					'>',
+					0
+				)
+			))->select();
+		}
+
+		return $products;
+	}
+
+	public function fxProductCount($where)
+	{
+		return $this->db->where($where)->count('product_id');
+	}
+
+	// ä¾›è´§å•†åˆ†é”€çš„å•†å“
+	public function supplierFxProducts($where, $offset = 0, $limit = 0)
+	{
+		if($limit > 0) {
+			$products = $this->db->where($where)->order('is_recommend DESC, product_id DESC')->order('product_id DESC')
+				->limit($offset . ',' . $limit)->select();
+		}
+		else {
+			$products = $this->db->where($where)->order('is_recommend DESC, product_id DESC')->order('product_id DESC')
+				->select();
+		}
+
+		foreach ($products as &$product) {
+			$product ['image'] = getAttachmentUrl($product ['image']);
+		}
+
+		return $products;
+	}
+
+	public function supplierFxProductCount($where)
+	{
+		return $this->db->where($where)->count('product_id');
+	}
+
+	public function getFxProducts($where)
+	{
+		$products = $this->db->where($where)->select();
+
+		return $products;
+	}
+
+	public function delFxProduct($where)
+	{
+		return $this->db->where($where)->data(array(
+			'status' => 2
+		))->save();
+	}
+
+	// è®¾ç½®å•†å“åˆ†é”€å•†æ•°é‡
+	public function setDrpSellerQty($product_id, $qty = 1)
+	{
+		return $this->db->where(array(
+			'product_id' => $product_id
+		))->setInc('drp_seller_qty', $qty);
+	}
+
+	// èŽ·å–å•†å“åˆ†é”€æ€»åˆ©æ¶¦
+	public function getDrpProfit($product_id)
+	{
+		$profit = $this->db->field('drp_profit')->where(array(
+			'product_id' => $product_id
+		))->find();
+
+		return !empty ($profit ['drp_profit']) ? $profit ['drp_profit'] : 0;
+	}
+}

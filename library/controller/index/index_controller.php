@@ -185,10 +185,10 @@ class index_controller extends base_controller
         if (is_array($catid_arr)) {
             foreach ($catid_arr as $k1 => $v1) {
                 // p.quantity > 0 and 'p.supplier_id'=0 and
-                $where1 = "p.status = 1 and p.is_fx = 1 and  (p.category_id ='" . $v1 .
+                $where1 = "p.status = 1 and p.is_fx = 1 and p.is_recommend = 1 and  (p.category_id ='" . $v1 .
                     "' or p.category_fid ='" . $v1 . "') ";
-                $order_by_field1 = "sales";
-                $order_by_method1 = "desc";
+                $order_by_field1 = "";
+                $order_by_method1 = "";
 
                 $pro['product'] =
                     M('Product')->getSellingAndDistance($where1, $order_by_field1, $order_by_method1, 0, 10);

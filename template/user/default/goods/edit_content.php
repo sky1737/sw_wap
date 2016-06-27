@@ -250,12 +250,12 @@
 													       <?php if($product['has_property']) { ?>readonly="true"<?php } ?>
 													       <?php if(!empty($product['supplier_id'])) { ?>data-min-price="<?php echo $product['min_fx_price']; ?>" data-max-price="<?php echo $product['max_fx_price']; ?>"<?php } ?> />
 												</div>
-												<input type="text" class="input-small" placeholder="成本：" name="cost"
-												       <?php if($product['cost_price'] >
-												       0) { ?>value="<?php echo $product['cost_price']; ?>"<?php } ?> />
 												<input type="text" class="input-small" placeholder="市场：" name="market"
 												       <?php if($product['market_price'] >
 												       0) { ?>value="<?php echo $product['market_price']; ?>"<?php } ?> />
+												<input type="text" class="input-small" placeholder="成本：" name="cost"
+												       <?php if($product['cost_price'] >
+												       0) { ?>value="<?php echo $product['cost_price']; ?>"<?php } ?> />
 											</div>
 										</div>
 									<?php }

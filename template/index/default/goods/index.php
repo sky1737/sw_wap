@@ -74,6 +74,8 @@ if($is_preview) {
 							</li>
 							<?php
 							foreach ($product_image_list as $product_image) {
+								if($product_image['image'] == $product['image'])
+									continue;
 								?>
 								<li>
 									<a href="javascript:;"><img src="<?php echo $product_image['image'] ?>" alt="<?php echo htmlspecialchars($product['name']) ?>" /></a>

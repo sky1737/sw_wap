@@ -188,9 +188,9 @@
                                             <span class="add-on">￥</span><input type="text" maxlength="10" name="price"
                                                                                 value="0.00" class="input-small"/>
                                         </div>
-                                        <input type="text" class="input-small" placeholder="成本：" name="cost"
-                                               value=""/>
                                         <input type="text" class="input-small" placeholder="市场：" name="market"
+                                               value=""/>
+                                        <input type="text" class="input-small" placeholder="成本：" name="cost"
                                                value=""/>
                                     </div>
                                 </div>

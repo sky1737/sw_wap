@@ -526,7 +526,7 @@ $(function () {
 	$('.js-batch-save').live('click', function () {
 		var batch_txt = $('.js-batch-txt');
 		switch (js_batch_type) {
-			//case 'cost':
+			case 'cost':
 			case 'price':
 			case 'market':
 				var float_val = parseFloat(batch_txt.val());

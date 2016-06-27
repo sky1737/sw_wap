@@ -30,7 +30,7 @@ class ProductAction extends BaseAction
 		}
 
 		$isfx = 0;
-		if ($this->_get('isfx', 'trim')) {
+		if ($this->_get('isfx', 'trim') && is_numeric($this->_get('isfx', 'trim'))) {
 			if ($this->_get('isfx') == '2') {
 				//$where['source_product_id'] = array("eq", 0);
 				$where['is_fx'] = 0;
@@ -43,7 +43,7 @@ class ProductAction extends BaseAction
 		}
 
 		$ischk = 0;
-		if ($this->_get('ischk', 'trim')) {
+		if ($this->_get('ischk', 'trim') && is_numeric($this->_get('ischk', 'trim'))) {
 			if ($this->_get('ischk') == '2') {
 				//$where['source_product_id'] = array("eq", 0);
 				$where['status'] = 0;
@@ -56,7 +56,7 @@ class ProductAction extends BaseAction
 		}
 
 		$ishot = 0;
-		if ($this->_get('ishot', 'trim')) {
+		if ($this->_get('ishot', 'trim') && is_numeric($this->_get('ishot', 'trim'))) {
 			if ($this->_get('ishot') == '2') {
 				//$where['source_product_id'] = array("eq", 0);
 				$where['is_hot'] = 0;
@@ -69,7 +69,7 @@ class ProductAction extends BaseAction
 		}
 
 		$isred = 0;
-		if ($this->_get('isred', 'trim')) {
+		if ($this->_get('isred', 'trim') && is_numeric($this->_get('isred', 'trim'))) {
 			if ($this->_get('isred') == '2') {
 				//$where['source_product_id'] = array("eq", 0);
 				$where['is_recommend'] = 0;
@@ -101,6 +101,7 @@ class ProductAction extends BaseAction
 		$tmp_products =
 			$product->where($where)->order('Product.product_id DESC')->limit($page->firstRow, $page->listRows)
 				->select();
+		//print_r($product->getLastSql());
 
 		$products = array();
 		foreach ($tmp_products as $tmp_product) {

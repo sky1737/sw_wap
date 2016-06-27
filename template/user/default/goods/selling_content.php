@@ -53,7 +53,7 @@
 				<tr>
 					<td class="checkbox"><input type="checkbox" class="js-check-toggle" value="<?php echo $product['product_id']; ?>" /></td>
 					<td class="goods-image-td"><div class="goods-image js-goods-image "> <img src="<?php echo $product['image']; ?>" /> </div></td>
-					<td class="goods-meta"><p class="goods-title"> <a href="<?php echo $config['wap_site_url']; ?>/good.php?id=<?php echo $product['product_id']; ?>" target="_blank" class="new-window" title="<?php echo $product['name']; ?>">
+					<td class="goods-meta"><p class="goods-title"> <a href="<?php echo $config['site_url']; ?>/goods/<?php echo $product['product_id']; ?>.html" target="_blank" class="new-window" title="<?php echo $product['name']; ?>">
 							<?php if (!empty($_POST['keyword'])) { ?>
 							<?php echo str_replace($_POST['keyword'], '<span class="red">' . $_POST['keyword'] . '</span>', $product['name']); ?>
 							<?php } else { ?>

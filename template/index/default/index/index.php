@@ -341,14 +341,14 @@
 			<?php
 			if($hot_brands) {
 			?>
-			<div class="brands_big"><img src="<?php echo $hot_brands[0]['pic']; ?>" width="100%" height="100%" /></div>
+			<div class="brands_big"><a href="<?php echo $val['url']; ?>"><img src="<?php echo $hot_brands[0]['pic']; ?>" width="100%" height="100%" /></a></div>
 			<div class="brands_list">
 				<ul>
 					<?php
 					foreach ($hot_brands as $key => $val) {
 						//$key++;
 						if($key==0) continue;
-						echo '<li><a href="' . $val['url'] . '""><img src="' . $val['pic'] . '" alt="' . $val['name'] . '" data-url="'.$val['qrcode'].'" /></a></li>';
+						echo '<li><a href="' . $val['url'] . '"><img src="' . $val['pic'] . '" alt="' . $val['name'] . '" data-url="'.$val['qrcode'].'" /></a></li>';
 					}
 					?>
 				</ul>
