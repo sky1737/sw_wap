@@ -8,12 +8,14 @@ $action = $_GET['action'];
 
 switch ($action) {
 	case 'get_category':
-		$cat_list = M('Product_category')->getAllCategory();
-		foreach ($cat_list as $key => $value) {
-			if(empty($value['cat_list'])) {
+		$cat_list = M('Product_category')->getAllCategory('',true);
+		//print_r($cat_list);
+		/*foreach ($cat_list as $key => $value) {
+			if(empty($value['larray'])) {
+				$cat_list[$key]['cat_list'] = $value['larray'];
 				unset($cat_list[$key]);
 			}
-		}
+		}*/
 		json_return(0, $cat_list);
 		break;
 	case 'get_product_list':

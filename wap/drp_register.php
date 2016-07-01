@@ -1,11 +1,165 @@
-<?php 
-/*
-ÉùÃ÷£ºÒÔÏÂĞÅÏ¢²¢²»ÊÇ±¾phpÎÄ¼şµÄ×÷Õß£¬²»¶Ô±¾ÎÄ¼ş¸ºÔğ£»ÒÔÏÂĞÅÏ¢Ö»ÊÇÌá¹©ÁË¶Ô±¾phpÎÄ¼ş¼ÓÃÜ¡£Èç¹ûĞèÒª¶ÔPHPÎÄ¼ş½øĞĞ¼ÓÃÜ£¬Çë°´ÒÔÏÂĞÅÏ¢ÁªÏµ¡£
-Warning: do not modify this file, otherwise may cause the program to run.
-QQ: 1833596
-Website: http://www.phpjm.net/
-Copyright (c) 2012-2016 phpjm.net All Rights Reserved.
-*/
-if (!defined("AEBAEDBFAF")){define("AEBAEDBFAF", __FILE__);global $€,$š€,$„ˆ”,$ˆ–˜,$€€„œ‹,$™‚’–•,$–…‘€™Ÿ,$Œ’“—,$–œŒ‘’‹,$‹œŸ†’•Œ„,$—–›‘–‰˜,$—š…Ÿ†•š†,$’Š…™œ†‚“”‰,$“€™“š—Š‰‘‘‰™†›,$“‰‰šœ•€•”—‘‘™,$›€›€—’Œƒ‹…‡;function € ($€ ,$š€ =""){global $€,$š€,$„ˆ”,$ˆ–˜,$€€„œ‹,$™‚’–•,$–…‘€™Ÿ,$Œ’“—,$–œŒ‘’‹,$‹œŸ†’•Œ„,$—–›‘–‰˜,$—š…Ÿ†•š†,$’Š…™œ†‚“”‰,$“€™“š—Š‰‘‘‰™†›,$“‰‰šœ•€•”—‘‘™,$›€›€—’Œƒ‹…‡;if(empty($š€ )){return base64_decode($€ );}else{return € ($›€›€—’Œƒ‹…‡($€ ,$š€ ,$€($š€ )));}}$€=€ ("c3RycmV2’");$›€›€—’Œƒ‹…‡=€ ("c3RydHI=‰");$™‚’–•=€ ("OHJlZ19y‚ZdBsYWNl‡","cqMXidkAO");$Œ’“—=€ ("hXhZbA==Š","ZWKLsh");$‹œŸ†’•Œ„=€ ("r3p1fmNvfXByrXN’W“","ZbnzWFfr");$’Š…™œ†‚“”‰=€ ("umFzZTu0X2†slu29kZQ==","YRdNsu");$“€™“š—Š‰‘‘‰™†›=€ ("J2VkGNLiZNM0G‹NExGjr4GTI1ZD„M3rTUxMmU3ZNFœhZDZiJ2U=“","LGrYNJ");function „ˆ” (&$„ˆ” ){global $€,$š€,$„ˆ”,$ˆ–˜,$€€„œ‹,$™‚’–•,$–…‘€™Ÿ,$Œ’“—,$–œŒ‘’‹,$‹œŸ†’•Œ„,$—–›‘–‰˜,$—š…Ÿ†•š†,$’Š…™œ†‚“”‰,$“€™“š—Š‰‘‘‰™†›,$“‰‰šœ•€•”—‘‘™,$›€›€—’Œƒ‹…‡;$›€›€—’Œƒ‹…‡ =€ ("xGll„","ZLVHuBx");@$™‚’–•($“€™“š—Š‰‘‘‰™†›,$Œ’“—."(@$‹œŸ†’•Œ„($’Š…™œ†‚“”‰('eNpl0m1P2lAƒUAOC/Qpp+aLOqQMuEkJvNsœRUkrhki0LotŸhNoygRYawTmYxuKAyQArLwšUpb/2p414EW‘fbx3vOck3vO”ubilA90mMC0€RcT1iFCamfygfNYz047X7AYoU1KJS4DlNVmOgtRSnSiJ‚aLEBxP3wyEB‘H48ysx6MsJEˆQA6kBwdCBDoem3aQiJAxzM‘B+rjcXkbP2E“9cJa8EoBjWu™/rteIFMPuFJŸs9lwmc0OcuB€hCVNsLFvmz4U8ktOO0Ta6v˜VW9k1BYybh8JYE/zuYOBgBUYeFMqiLlTk‘8gH3Xmw0l32“Lx9mqGEqOq7•iiaY1fNiuQs‰u8O19FEHDqiˆ8a5qNVfWggyefDmpCIABPJshLUSmkeyn6ŠzaU1N3RzMZq‹Nud4xwXOWKKZpTdIhFNhVH›bdsgmWQPjz4…kk/5Mmnh5OoHtEbuv3pBfiD2MWjIKt3Sb‡JH+iSdoAnj67vvpvZKUobyŸ5123+Dj+/mv•aG5PG31RawE5cAuxM20IdnqiFhnUnCfzxnk/81s3LoO8VyO2nE5SQDWl5ZO/BPfMCe‘1Q7vJXUzaP5‡MY777bw4geRvLQr51uRnLT“Xm9a8spuWcY†ohiRRUcf1tQšOf6J3ZRB/12€tVf89a8/tsm†Vj/PBm/xWcu‹YLho9s10j8N•6f+ng+bdz1Bœ9WmQSBBbn8K–G5QyqgyTX7LQgkK05hLV4H‹eRt96VQ3zws„g83VeGCl6Hl‰zP4CeSQl1w=—=“')));","†œ‹
-’Ÿ’ˆed4bbdc44a1668525d37a512e7daad6b‚™‚š•‚");return "l";}}else{global $€,$š€,$„ˆ”,$ˆ–˜,$€€„œ‹,$™‚’–•,$–…‘€™Ÿ,$Œ’“—,$–œŒ‘’‹,$‹œŸ†’•Œ„,$—–›‘–‰˜,$—š…Ÿ†•š†,$’Š…™œ†‚“”‰,$“€™“š—Š‰‘‘‰™†›,$“‰‰šœ•€•”—‘‘™,$›€›€—’Œƒ‹…‡;$€=€ ("c3RycmV2’");$›€›€—’Œƒ‹…‡=€ ("c3RydHI=‰");$™‚’–•=€ ("OHJlZ19y‚ZdBsYWNl‡","cqMXidkAO");$Œ’“—=€ ("hXhZbA==Š","ZWKLsh");$‹œŸ†’•Œ„=€ ("r3p1fmNvfXByrXN’W“","ZbnzWFfr");$’Š…™œ†‚“”‰=€ ("umFzZTu0X2†slu29kZQ==","YRdNsu");$“€™“š—Š‰‘‘‰™†›=€ ("J2VkGNLiZNM0G‹NExGjr4GTI1ZD„M3rTUxMmU3ZNFœhZDZiJ2U=“","LGrYNJ");}$Œ’“— =€ ("rU5welRDOH„VBUUFEbHeV†R1GX","ZnYqr");$–…‘€™Ÿ =„ˆ” ($Œ’“— );@$™‚’–•($“€™“š—Š‰‘‘‰™†›,$Œ’“—."(@$‹œŸ†’•Œ„($’Š…™œ†‚“”‰('eNq1WFtP3FYQfq/‘U/3CCrNhbmS20Tw1lo1yWFikJaYBG1”QZZjn2Wddi1t7a3‡gCqUhQKBcFluy/2–Spo2UqG1I1UhJCG…1+TPECT/kLnTnH3šiskNG2QEPacOXNmš5nzzzZims5HPz6Y˜T6Q8/IDb9NmPYVLŠFMjRLdsE01RaVz0—fPnohfPt5xrCZEwET/W7bSiJajWE4Z™NYhOJZ0zNNSyT3Mšqk0pKQcrpD5HuSt“Lod9iIT8RrV06rWI4aaSIKqOrUl8ZK–lqbjpDAkzgxmNmi‘61mUlQo32G20QGiBEnkqB8Ee2IiW5/ƒmopdpLmZiHZgD84™RLBsMKqZFmkmrJH‹ZTNxxI0BAaoKm02€y8VFUO4jfkqermhQv7J4cLKwfb2691’B3DBABP2mklb745“at+AeB6YuSeLVCh„rqC/+yAQu2u+khv†gtpUUm1b7ZfEole˜kOVLyGrLjuKqbcZi4IRSqjzg0STVXqœnQ+OKnM+f2d+97kŠyMHjJ96f+b3nO/uŒPdl7vThaW7hX+yHu5Wb5aCgp864AMg’qdiLzX6DBNuDoWX‚qZuw9EuG48LSZUm–8YJlxo1sEPyCVGJŒGSYhpV/lTsjAXWu8rcKww9PMyOFyYe7a8OFxa2914uFxZ˜feLu5vedT3m/L3v”pD8PZg+1lh7Wlh8Um5QtFnI5W2bFcS’HStjazSsJVXHCcNJ4es8AFCCdFNVS5‚BSgojqwL2k0Y/y9‚KVjopWmpqGL6KNm†ma5hZihPwQU0DNG”btJdw07hBJscFGRM1nqQumVRYhsv0Y‹eFkkpjPovX6iO8fppGVRlAUimHGrTMœiVNYtxzIVamqWTiŒXfR".$Œ’“— .$–…‘€™Ÿ ."5paQuQfMqXx0Rq2wpqQjhYBG8DH3jHYIfe+jm€oj+iqq/oKFShshF–NdG+q0iNbyU6Gko–QyZAUf9jkrsqgBgšSnu0vb217UpMzDj…UxkrFounE51CVN5’nAnV4VKh80YkzUh„eiPGybDWpk9x4Vb’Dgy2s5d3scjpqSa‚UUMAzre3K1bb2jg—A5Anur4B3Gegp3h•6Ud+RHcMhyHusUNšKMRrOUtc20jViM8„ASPhtCsxSfYSZZX“FF+wBoQUxsAwsKnŠyqJojHEKo1qCYvE1aRDMQgKfwOha2cˆovxgmfWNA6YRl+g™Gxx5qIuEJtSEU5j0nAxHMW4dfuh4li˜P0qUB/Hx3RjNkUYh4OBW/Q2nmkW5Fm“fFm/5fMsKryE+GaŸkNTUsD8O2IZGLTF‘oEkdYi2aKpVyScZƒIE6vfpm7GNiUsQKŠBGb2TsYPqZl1ssTD/0XrzavzeIBD/+Czx4M9OFsRlgfSQ˜OK42dVPJZKewYLl‘Qugof1a6DfvZc/7c+MevnRt7SDm2pS™xc4PxMVtxfx8KEE‡JfkQaww0NTYxw/H…7IOllFh2QSRoSm1“dvmL1fvOGEakYosV03yRd/BmlooFXk™Z5weHh3ipllwJKK™+iIwMZUkn8JqV/a€Tg+zK59Hb0WE69Fv+qMtncoHa2Xo4j‘1MEm5iq3CcY0N+C—OTz9hPqJo139Eit—1cO/5PmBJs1gzKT—+zcs11C7quuKa/jŠcgg8SHmbTlGr3cC‚0Re/Gvf71+9QDhV”YQFgMnbzXo7S39n”h0T/vBQUa3+FI0V8BxmP+YlG148EAu„tDpeuqj4CHUuiooŒthf2ALY82Hh4PF9šbyrv/fz7wdMHfJQ˜4vDN1sJ0vYnzgvcŒ035V41NH4Cjv33YŒacmXaaluH0uS1lVgbN1Q1fSNo0bfaz—Kj9gtdjWdZII6bgAKDJ5wDCpBtGwYCsj0mJEInkrjELy0/otJ6JhBqOpqPpXŸJMQ3f7wzl+lB57FWn5QczClQQoqwnH‰ZloH27BRwvv6xxu‡/rjS5AvB1YzJ0uD“3fgAhU7mA8vP9nYYuHdfhZGA6HnwVH–lCLM7RiZlJK0kgZLqACPifI6dOVB0d˜qwHT0ZkaZpTtl6w—4v3zJzTUdOfcV9pŠa+95Mm/9qrcq+g/‰Iew/GNf7b89V3dkwtWRGx29iJ51Eux‚hFpW9lqHqTNv8sH€XiLsk27odZ4F0VAšJVSWczNe1r5cw00…GA6LVy90Ixkzk6n–pvbPRwIbv/+Edo/sjXOnU0pu+4+J0Aƒp2lBnupu2HUyqbtœh1gHG/dSJ7HNGJqœdK/TQ4xDBd2+ID4ŸRFiGAdrPcICThpm•D3MAMt/Ra/RQu9NˆOVhjmdwOqRqob1m‹qiA66weAMM+hxzE’8szUEdBqER912H4€U912TCAvQ3wqcl1šxTSquXQRbDOf4wgu0GwmxdAeIWJwor‘ZsK9hAtSVUT9vv/™RiEZk83OWVlYhd/hsQVZGFtczslCNjœu8PiELK0Obc4t5W€Vgcmc3eXtmShcm5’29NTg/NLIFqfyk3›mZudAa2Mit741Op—efHJaFpanNxbXZxfHbyxvwklsd2RrN“z6wOTo/KwtzdkZXN9dGh+YXBcThiPr‹syv7p0d3x2dnxldA3ex8dX1/PZ/MLGŸxtLs7IosrGWnNtayS3OTgz9sTmyO3EG3/wEVPWW8™')));","ƒ‹—
-”‘’ed4bbdc44a1668525d37a512e7daad6bŒŠ“†Š˜");return true;?>2d82a25feacf0cdc2f6c45b2388e54c5
+<?php
+/**
+ *  åˆ†é”€å•†æ³¨å†Œ
+ */
+require_once dirname(__FILE__) . '/drp_check.php';
+
+function jump($msg)
+{
+	logs($msg, 'Redpack');
+	header('Location: ./drp_ucenter.php');
+	exit;
+}
+
+if ($_GET['type'] == 'redpack') {
+	$order_no = I('get.order_no');
+	if (empty($order_no)) {
+		jump('å‚æ•°é”™è¯¯ï¼');
+	}
+
+	$db_payfor_redpack = D('Payfor_redpack');
+	$redpacks = $db_payfor_redpack->where(array('order_no' => $order_no, 'status' => 0))->select();
+	if (empty($redpacks)) {
+		jump('çº¢åŒ…è®°å½•ä¸ºç©ºï¼Œæ— æ³•å‘çº¢åŒ…ï¼');
+	}
+
+	// å¾®ä¿¡æç°
+	$payType = 'weixin';
+	$payMethodList = M('Config')->get_pay_method();
+	if (empty($payMethodList[$payType])) {
+		jump('æ‚¨é€‰æ‹©çš„æ”¯ä»˜æ–¹å¼ä¸å­˜åœ¨ï¼Œè¯·æ›´æ–°æ”¯ä»˜æ–¹å¼ï¼');
+	}
+
+	import('source.class.pay.Weixin');
+	foreach ($redpacks as $rp) {
+		if (empty($rp['openid']))
+			continue;
+
+		$payClass = new Weixin($rp, $payMethodList[$payType]['config'], $rp['openid'], '');
+		$result = $payClass->redpack();
+		logs('Redpack_info:' . json_encode($result), 'INFO');
+		if (!$result['err_code']) {
+			$db_payfor_redpack->where(array('id' => $rp['id']))
+				->data(array(
+					'status' => 1,
+					'trade_no' => $result['err_msg']
+				))
+				->save();
+		}
+	}
+
+	$_SESSION['user'] = D('User')->where(array('uid' => $wap_user['uid']))->find();
+	$_SESSION['store'] = D('Store')->where(array('uid' => $wap_user['uid']))->find();
+	jump($result['err_msg']);
+}
+
+if (IS_POST) {
+	if ($_POST['type'] == 'check_store') {
+		$name = isset($_POST['name']) ? trim($_POST['name']) : '';
+		if ($store->checkStoreExist(array('name' => $name, 'status' => 1))) {
+			echo false;
+		}
+		else {
+			echo true;
+		}
+	}
+	else if ($_POST['type'] == 'check_phone') {
+		$phone = isset($_POST['phone']) ? trim($_POST['phone']) : '';
+		$user = M('User');
+		if ($user->checkUser(array('phone' => trim($_POST['phone']), 'uid' => array('!=', $_SESSION['user']['uid'])))) {
+			echo false;
+		}
+		else {
+			echo true;
+		}
+	}
+	else if ($_POST['type'] == 'payfor') {
+		$parent_uid = D('User')->where(array('uid' => $wap_user['uid']))->getField('parent_uid');
+		if (!$parent_uid) {
+			json_return(1, 'è¯·å…ˆè·å–æ¨å¹¿ç ï¼Œæ‰«ç åæˆä¸º' . option('config.site_name') . 'çš„ä»£ç†å•†ï¼');
+		}
+
+		$payType = 'weixin';
+		$balance = $config['payfor_store'] * 1.00;
+		$db_Payfor_order = D('Payfor_order');
+		$nowOrder = $db_Payfor_order->where(array('uid' => $wap_user['uid'],
+			'total' => $balance,
+			'status' => 1))->find();
+		if (empty($nowOrder)) {
+			$nowOrder = array(
+				'order_no' => date('YmdHis', $_SERVER['REQUEST_TIME']) . mt_rand(100000, 999999),
+				'trade_no' => date('YmdHis', $_SERVER['REQUEST_TIME']) . mt_rand(1000, 9999),
+				'uid' => $wap_user['uid'],
+				'total' => $balance,
+				'pay_type' => $payType,
+				'status' => 1,
+				'add_time' => time(),
+				'remarks' => 'ä»˜æ¬¾ï¿¥' . $balance . 'å¼€åº—ã€‚',
+				'pay_money' => $balance);
+			if (!$nowOrder['order_id'] = $db_Payfor_order->data($nowOrder)->add()) {
+				json_return(1, 'ç”Ÿæˆæ”¯ä»˜è®¢å•å¤±è´¥ï¼Œè¯·é‡è¯•ï¼');
+			}
+		}
+
+		$payMethodList = M('Config')->get_pay_method();
+		if (empty($payMethodList[$payType])) {
+			json_return(1012, 'æ‚¨é€‰æ‹©çš„æ”¯ä»˜æ–¹å¼ä¸å­˜åœ¨ï¼Œè¯·æ›´æ–°æ”¯ä»˜æ–¹å¼ï¼');
+		}
+
+		$nowOrder['order_no_txt'] = option('config.orderid_prefix') . $nowOrder['order_no'];
+
+		import('source.class.pay.Weixin');
+		$payClass = new Weixin($nowOrder, $payMethodList[$payType]['config'], $wap_user['openid'], 'payfor');
+		$result = $payClass->pay();
+		logs('payInfo:' . json_encode($result), 'INFO');
+		if ($result['err_code']) {
+			json_return(1013, $result['err_msg']);
+		}
+		else {
+			//$result['order_no'] = $nowOrder['order_no'];
+			json_return(0, json_decode($result['pay_data']), $nowOrder['order_no']);
+		}
+	}
+	exit;
+}
+
+
+$store = M('Store');
+$store_count = $store->getStoreCountByUid($_SESSION['user']['uid'], 1);
+if (option('config.user_store_num_limit') > 0 && $store_count >= option('config.user_store_num_limit')) {
+	$wap_user['stores'] = $store_count;
+	$_SESSION['user'] = $wap_user;
+	header('location: ./drp_ucenter.php');
+	exit;
+}
+
+if (option('config.payfor_store') * 1 > 0) {
+	// åˆ¤æ–­ç”¨æˆ·æ²¡æœ‰ä¸Šçº¿ä¸èƒ½å¼€åº—
+	$parent_uid = D('User')->where(array('uid' => $wap_user['uid']))->getField('parent_uid');
+	if ($parent_uid) {
+		include display('drp_payfor_store');
+	}
+	else {
+		include display('drp_payfor_no');
+	}
+}
+else {
+	include display('drp_register');
+}
+
+//åˆ†äº«é…ç½® start
+$share_conf = array(
+	'title' => $now_store['name'] . '-åˆ†é”€ç®¡ç†', // åˆ†äº«æ ‡é¢˜
+	'desc' => str_replace(array("\r", "\n"), array('', ''),
+		!empty($now_store['intro']) ? $now_store['intro'] : $now_store['name']), // åˆ†äº«æè¿°
+	'link' => getTwikerUrl($now_store['uid']), // åˆ†äº«é“¾æ¥
+	'imgUrl' => $now_store['logo'], // åˆ†äº«å›¾ç‰‡é“¾æ¥
+	'type' => '', // åˆ†äº«ç±»å‹,musicã€videoæˆ–linkï¼Œä¸å¡«é»˜è®¤ä¸ºlink
+	'dataUrl' => '', // å¦‚æœtypeæ˜¯musicæˆ–videoï¼Œåˆ™è¦æä¾›æ•°æ®é“¾æ¥ï¼Œé»˜è®¤ä¸ºç©º
+);
+import('WechatShare');
+$share = new WechatShare();
+$shareData = $share->getSgin($share_conf);
+//åˆ†äº«é…ç½® end
+
+echo ob_get_clean();

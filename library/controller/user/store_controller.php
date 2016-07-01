@@ -735,7 +735,6 @@ class store_controller extends base_controller
 //        $avatar = $user->getAvatarById($this->user_session['uid']);
 		$create_store_status = true;
 		$user = M('User')->getUserById($this->user_session['uid']);
-
 		if(!$user) {
 			header('location:' . url('index:account:logout'));
 			exit;
@@ -748,114 +747,6 @@ class store_controller extends base_controller
 				$create_store_status = false;
 			}
 		}
-
-		// 进行自动创建
-//		$store_num = D('Store')->where(array('uid' => $user['uid']))->find();
-
-//		$db_prefix = option('system.DB_PREFIX');
-//		$table_store = $db_prefix . 'store';
-//		$table_product = $db_prefix . 'product';
-//		$table_wei_page_category = $db_prefix . 'wei_page_category';
-//		$table_wei_page = $db_prefix . 'wei_page';
-//		$table_custom_field = $db_prefix . 'custom_field';
-//		$table_product_group = $db_prefix . 'product_group';
-
-//        if (!$user['stores'] && !$store_num && $_SESSION['system']) {
-//	        // 创建官方店铺
-//            $sql = "INSERT INTO `" . $table_store . "` (`uid`, `name`, `edit_name_count`, `logo`, `sale_category_fid`, `sale_category_id`, `linkman`, `tel`, `intro`, `approve`, `status`, `date_added`, `service_tel`, `service_qq`, `service_weixin`, `bind_weixin`, `weixin_name`, `weixin_original_id`, `weixin_id`, `qq`, `open_weixin`, `buyer_selffetch`, `buyer_selffetch_name`, `pay_agent`, `offline_payment`, `open_logistics`, `open_friend`, `open_nav`, `nav_style_id`, `use_nav_pages`, `open_ad`, `has_ad`, `ad_position`, `use_ad_pages`, `date_edited`, `income`, `balance`, `unbalance`, `withdrawal_amount`, `withdrawal_type`, `bank_id`, `bank_card`, `bank_card_user`, `opening_bank`, `last_edit_time`, `physical_count`, `drp_supplier_id`, `drp_level`, `collect`, `attention_num`, `wxpay`, `open_drp_approve`, `drp_approve`, `drp_profit`, `drp_profit_withdrawal`, `open_service`, `source_site_url`, `payment_url`, `notify_url`, `oauth_url`, `token`, `open_drp_guidance`, `open_drp_limit`, `drp_limit_buy`, `drp_limit_share`, `drp_limit_condition`, `pigcmsToken`, `template_cat_id`, `template_id`) VALUES ( '" . $_SESSION['user']['uid'] . "', '官方店铺', '0', '', '1', '0', '李标', '13761415048', '', '0', '1', '1438825585', '', '', '', '0', '', '', '', '123456', '0', '0', '', '0', '0', '1', '0', '0', '1', '1', '0', '0', '0', '', '', '0.00', '0.00', '0.00', '0.00', '0', '0', '', '', '', '', '0', '0', '0', '0', '0', '0', '0', '1', '0.00', '0.00', '0', '', '', '', '', '', '1', '0', '0.00', '0', '0', '', '0', '0');";
-//            D('Store')->execute($sql);
-//            $store_id = D('Store')->lastInsID;
-//
-////            $group_sql = "INSERT INTO `" . $table_product_group . "` (`store_id`, `group_name`, `is_show_name`, `first_sort`, `second_sort`, `list_style_size`, `list_style_type`, `is_show_price`, `is_show_product_name`, `is_show_buy_button`, `buy_button_style`, `group_label`, `product_count`, `has_custom`, `add_time`) VALUES ('567', '餐饮外卖', '1', '0', '0', '0', '0', '1', '0', '1', '1', '', '3', '0', '1439003225');";
-////            D('Product_group')->execute($group_sql);
-////            $group_id = D('Product_group')->lastInsID;
-//
-////            $food_arr = array(
-////                "INSERT INTO  `" . $table_product . "`  ( `uid`, `store_id`, `category_fid`, `category_id`, `group_id`, `name`, `sale_way`, `buy_way`, `type`, `quantity`, `price`, `market_price`, `weight`, `code`, `image`, `image_size`, `postage_type`, `postage`, `postage_template_id`, `buyer_quota`, `allow_discount`, `invoice`, `warranty`, `sold_time`, `sales`, `show_sku`, `status`, `date_added`, `soldout`, `pv`, `uv`, `buy_url`, `intro`, `info`, `has_custom`, `has_category`, `properties`, `has_property`, `is_fx`, `fx_type`, `cost_price`, `min_fx_price`, `max_fx_price`, `is_recommend`, `source_product_id`, `supplier_id`, `delivery_address_id`, `last_edit_time`, `original_product_id`, `sort`, `is_fx_setting`, `collect`, `attention_num`, `drp_profit`, `drp_seller_qty`, `drp_sale_qty`, `unified_price_setting`, `drp_level_1_price`, `drp_level_2_price`, `drp_level_3_price`, `drp_level_1_cost_price`, `drp_level_2_cost_price`, `drp_level_3_cost_price`, `is_hot`) VALUES ( '" . $_SESSION['user']['uid'] . "', '" . $store_id . "', '3', '" . $group_id . "', '0', '餐饮外卖1', '0', '1', '0', '100', '10.00', '0.00', '0.00', '', 'images/eg1.jpg', '', '0', '0.00', '0', '0', '0', '0', '0', '0', '0', '1', '1', '1439003015', '0', '0', '0', '', '', '', '0', '1', '', '0', '0', '0', '0.00', '0.00', '0.00', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0');",
-////                "INSERT INTO  `" . $table_product . "`  ( `uid`, `store_id`, `category_fid`, `category_id`, `group_id`, `name`, `sale_way`, `buy_way`, `type`, `quantity`, `price`, `market_price`, `weight`, `code`, `image`, `image_size`, `postage_type`, `postage`, `postage_template_id`, `buyer_quota`, `allow_discount`, `invoice`, `warranty`, `sold_time`, `sales`, `show_sku`, `status`, `date_added`, `soldout`, `pv`, `uv`, `buy_url`, `intro`, `info`, `has_custom`, `has_category`, `properties`, `has_property`, `is_fx`, `fx_type`, `cost_price`, `min_fx_price`, `max_fx_price`, `is_recommend`, `source_product_id`, `supplier_id`, `delivery_address_id`, `last_edit_time`, `original_product_id`, `sort`, `is_fx_setting`, `collect`, `attention_num`, `drp_profit`, `drp_seller_qty`, `drp_sale_qty`, `unified_price_setting`, `drp_level_1_price`, `drp_level_2_price`, `drp_level_3_price`, `drp_level_1_cost_price`, `drp_level_2_cost_price`, `drp_level_3_cost_price`, `is_hot`) VALUES ('" . $_SESSION['user']['uid'] . "', '" . $store_id . "', '3', '" . $group_id . "', '0', '餐饮外卖2', '0', '1', '0', '10', '10.00', '0.00', '0.00', '', 'images/eg2.jpg', '', '0', '0.00', '0', '0', '0', '0', '0', '0', '0', '1', '1', '1439003109', '0', '0', '0', '', '', '', '0', '1', '', '0', '0', '0', '0.00', '0.00', '0.00', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0');",
-////                "INSERT INTO  `" . $table_product . "`  (`uid`, `store_id`, `category_fid`, `category_id`, `group_id`, `name`, `sale_way`, `buy_way`, `type`, `quantity`, `price`, `market_price`, `weight`, `code`, `image`, `image_size`, `postage_type`, `postage`, `postage_template_id`, `buyer_quota`, `allow_discount`, `invoice`, `warranty`, `sold_time`, `sales`, `show_sku`, `status`, `date_added`, `soldout`, `pv`, `uv`, `buy_url`, `intro`, `info`, `has_custom`, `has_category`, `properties`, `has_property`, `is_fx`, `fx_type`, `cost_price`, `min_fx_price`, `max_fx_price`, `is_recommend`, `source_product_id`, `supplier_id`, `delivery_address_id`, `last_edit_time`, `original_product_id`, `sort`, `is_fx_setting`, `collect`, `attention_num`, `drp_profit`, `drp_seller_qty`, `drp_sale_qty`, `unified_price_setting`, `drp_level_1_price`, `drp_level_2_price`, `drp_level_3_price`, `drp_level_1_cost_price`, `drp_level_2_cost_price`, `drp_level_3_cost_price`, `is_hot`) VALUES ('" . $_SESSION['user']['uid'] . " ', '" . $store_id . "', '3', '" . $group_id . "', '0', '餐饮外卖3', '0', '1', '0', '10', '10.00', '0.00', '0.00', '', 'images/eg3.jpg', '', '0', '0.00', '0', '0', '0', '0', '0', '0', '0', '1', '1', '1439003188', '0', '0', '0', '', '', '', '0', '1', '', '0', '0', '0', '0.00', '0.00', '0.00', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0');"
-////            );
-//
-////            $goods_id_arr = array();
-////            for ($i = 0; $i < count($food_arr); $i++) {
-////                D('Product')->execute($food_arr[$i]);
-////                D('Product_to_group')->data(array('product_id' => D('Product')->lastInsID, 'group_id' => $group_id))->add();
-////                $goods_id_arr[] = D('Product')->lastInsID;
-////            }
-//
-////            $wei_page_category_arr = array(
-////                "INSERT INTO  `" . $table_wei_page_category . "`  ( `store_id`, `cat_name`, `first_sort`, `second_sort`, `show_style`, `cat_desc`, `page_count`, `has_custom`, `add_time`, `cover_img`, `uid`) VALUES ( '" . $store_id . "', '通用模板', '0', '0', '0', '<p>通用模板描述。</p>', '1', '0', '1438998819', '/upload/images/icon_03.png', '" . $_SESSION['user']['uid'] . "');",
-//////                "INSERT INTO  `" . $table_wei_page_category . "`  ( `store_id`, `cat_name`, `first_sort`, `second_sort`, `show_style`, `cat_desc`, `page_count`, `has_custom`, `add_time`, `cover_img`, `uid`) VALUES ( '" . $store_id . "', '餐饮外卖', '0', '0', '0', '<p>餐饮外卖描述。</p>', '1', '0', '1438998801', '/upload/images/icon_05.png', '" . $_SESSION['user']['uid'] . "');",
-//////                "INSERT INTO  `" . $table_wei_page_category . "`  ( `store_id`, `cat_name`, `first_sort`, `second_sort`, `show_style`, `cat_desc`, `page_count`, `has_custom`, `add_time`, `cover_img`, `uid`) VALUES ('" . $store_id . "', '食品电商', '0', '0', '0', '<p>食品电商描述</p>', '1', '0', '1438998781', '/upload/images/icon_07.png', '" . $_SESSION['user']['uid'] . "');",
-//////                "INSERT INTO  `" . $table_wei_page_category . "`  ( `store_id`, `cat_name`, `first_sort`, `second_sort`, `show_style`, `cat_desc`, `page_count`, `has_custom`, `add_time`, `cover_img`, `uid`) VALUES ( '" . $store_id . "', '美妆电商', '1', '0', '0', '<p>美妆电商描述。</p>', '1', '0', '1438998760', '/upload/images/icon_12.png', '" . $_SESSION['user']['uid'] . "');",
-//////                "INSERT INTO  `" . $table_wei_page_category . "`  ( `store_id`, `cat_name`, `first_sort`, `second_sort`, `show_style`, `cat_desc`, `page_count`, `has_custom`, `add_time`, `cover_img`, `uid`) VALUES ( '" . $store_id . "', '线下门店', '0', '0', '0', '<p>线下门店描述</p>', '1', '0', '1438998738', '/upload/images/icon_13.png', '" . $_SESSION['user']['uid'] . "');",
-//////                "INSERT INTO  `" . $table_wei_page_category . "`  ( `store_id`, `cat_name`, `first_sort`, `second_sort`, `show_style`, `cat_desc`, `page_count`, `has_custom`, `add_time`, `cover_img`, `uid`) VALUES ( '" . $store_id . "', '鲜花速递', '0', '0', '0', '<p>鲜花速递描述。</p>', '1', '0', '1438998718', '/upload/images/icon_14.png', '" . $_SESSION['user']['uid'] . "');",
-////            );
-//
-//            $wei_page_arr = array(
-//	            // 91,使用通用模版页面,1,1450855172,0,0,0,0,1
-//
-//                "INSERT INTO  `" . $table_wei_page . "`  (`store_id`, `page_name`, `page_desc`, `bgcolor`, `is_home`, `add_time`, `product_count`, `hits`, `page_sort`, `has_category`, `has_custom`) VALUES ( '" . $store_id . "', '通用模板', '', '', '1', '".time()."', '0', '0', '0', '0', '1');",
-////                "INSERT INTO  `" . $table_wei_page . "`  (`store_id`, `page_name`, `page_desc`, `bgcolor`, `is_home`, `add_time`, `product_count`, `hits`, `page_sort`, `has_category`, `has_custom`) VALUES ( '" . $store_id . "', '餐饮外卖模板', '餐饮外卖模板', '', '0', '1438999668', '0', '0', '0', '1', '1');",
-////                "INSERT INTO  `" . $table_wei_page . "`  (`store_id`, `page_name`, `page_desc`, `bgcolor`, `is_home`, `add_time`, `product_count`, `hits`, `page_sort`, `has_category`, `has_custom`) VALUES ('" . $store_id . "', '食品电商模板', '食品电商模板', '', '0', '1438999652', '0', '0', '0', '1', '1');",
-////                "INSERT INTO  `" . $table_wei_page . "`  (`store_id`, `page_name`, `page_desc`, `bgcolor`, `is_home`, `add_time`, `product_count`, `hits`, `page_sort`, `has_category`, `has_custom`) VALUES ('" . $store_id . "', '美妆电商模板', '美妆电商模板', '', '0', '1438999625', '0', '0', '0', '1', '1');",
-////                "INSERT INTO  `" . $table_wei_page . "`  (`store_id`, `page_name`, `page_desc`, `bgcolor`, `is_home`, `add_time`, `product_count`, `hits`, `page_sort`, `has_category`, `has_custom`) VALUES ('" . $store_id . "', '线下门店模板', '线下门店模板', '', '0', '1438999588', '0', '0', '0', '1', '1');",
-////                "INSERT INTO  `" . $table_wei_page . "`  (`store_id`, `page_name`, `page_desc`, `bgcolor`, `is_home`, `add_time`, `product_count`, `hits`, `page_sort`, `has_category`, `has_custom`) VALUES ('" . $store_id . "', '鲜花速递模板', '鲜花速递模板', '', '1', '1438999567', '0', '0', '0', '1', '1');",
-//            );
-//
-//            $custom_field_arr = array(
-//	            "INSERT INTO  `" . $table_custom_field . "`  (`store_id`, `module_name`, `field_type`, `content`) VALUES ('" . $store_id . "', 'page', 'component', 'a:3:{s:4:\"name\";s:12:\"通用模板\";s:2:\"id\";s:1:\"5\";s:3:\"url\";s:46:\"http://zy.budingtao.com/wap/component.php?id=5\";}');",
-////                array(
-////                    "INSERT INTO  `" . $table_custom_field . "`  ( `store_id`, `module_name`, `field_type`, `content`) VALUES ( '" . $store_id . "', 'page', 'image_ad', 'a:4:{s:10:\"image_type\";s:1:\"1\";s:10:\"max_height\";s:3:\"200\";s:9:\"max_width\";s:3:\"640\";s:8:\"nav_list\";a:1:{i:10;a:5:{s:5:\"title\";s:12:\"通用模板\";s:4:\"name\";s:0:\"\";s:6:\"prefix\";s:0:\"\";s:3:\"url\";s:0:\"\";s:5:\"image\";s:14:\"images/eg6.png\";}}}');",
-////                    "INSERT INTO  `" . $table_custom_field . "`  ( `store_id`, `module_name`, `field_type`, `content`) VALUES ('" . $store_id . "', 'page', 'search', 'a:0:{}');",
-////                    "INSERT INTO  `" . $table_custom_field . "`  ( `store_id`, `module_name`, `field_type`, `content`) VALUES ( '" . $store_id . "', 'page', 'goods', 'a:4:{s:7:\"buy_btn\";s:1:\"1\";s:12:\"buy_btn_type\";s:1:\"1\";s:5:\"price\";s:1:\"1\";s:5:\"goods\";a:3:{i:0;a:5:{s:2:\"id\";s:" . strlen($goods_id_arr[0]) . ":\"" . $goods_id_arr[0] . "\";s:5:\"title\";s:7:\"零食3\";s:5:\"price\";s:5:\"10.00\";s:3:\"url\";" . $this->url_formark('/wap/good.php?id=', $goods_id_arr) . "s:5:\"image\";s:14:\"images/eg1.jpg\";}i:1;a:5:{s:2:\"id\";s:" . strlen($goods_id_arr[1]) . ":\"" . $goods_id_arr[1] . "\";s:5:\"title\";s:7:\"零食2\";s:5:\"price\";s:5:\"10.00\";s:3:\"url\";" . $this->url_formark('/wap/good.php?id=', $goods_id_arr) . "s:5:\"image\";s:14:\"images/eg2.jpg\";}i:2;a:5:{s:2:\"id\";s:" . strlen($goods_id_arr[2]) . ":\"" . $goods_id_arr[2] . "\";s:5:\"title\";s:7:\"零食1\";s:5:\"price\";s:5:\"10.00\";s:3:\"url\";" . $this->url_formark('/wap/good.php?id=', $goods_id_arr) . "s:5:\"image\";s:14:\"images/eg3.jpg\";}}}');",
-////                ),
-////                array("INSERT INTO  `" . $table_custom_field . "`  (`store_id`, `module_name`, `field_type`, `content`) VALUES ( '" . $store_id . "', 'page', 'image_ad', 'a:4:{s:10:\"image_type\";s:1:\"1\";s:10:\"max_height\";s:3:\"200\";s:9:\"max_width\";s:3:\"640\";s:8:\"nav_list\";a:1:{i:10;a:5:{s:5:\"title\";s:12:\"餐饮外卖\";s:4:\"name\";s:0:\"\";s:6:\"prefix\";s:0:\"\";s:3:\"url\";s:0:\"\";s:5:\"image\";s:14:\"images/eg5.png\";}}}');",
-////                    "INSERT INTO  `" . $table_custom_field . "`  (`store_id`, `module_name`, `field_type`, `content`) VALUES ('" . $store_id . "', 'page', 'search', 'a:0:{}');",
-////                    "INSERT INTO  `" . $table_custom_field . "`  (`store_id`, `module_name`, `field_type`, `content`) VALUES ( '" . $store_id . "', 'page', 'goods_group1', 'a:1:{s:12:\"goods_group1\";a:1:{i:0;a:2:{s:2:\"id\";s:" . strlen($group_id) . ":\"" . $group_id . "\";s:5:\"title\";s:12:\"餐饮外卖\";}}}');
-////"),
-////                array(
-////                    "INSERT INTO  `" . $table_custom_field . "`  (`store_id`, `module_name`, `field_type`, `content`) VALUES ('" . $store_id . "', 'page', 'tpl_shop', 'a:3:{s:16:\"shop_head_bg_img\";s:27:\"/upload/images/head_bg1.png\";s:18:\"shop_head_logo_img\";s:31:\"/upload/images/default_shop.png\";s:5:\"title\";s:12:\"食品电商\";}');",
-////                    "INSERT INTO  `" . $table_custom_field . "`  (`store_id`, `module_name`, `field_type`, `content`) VALUES ( '" . $store_id . "', 'page',  'search', 'a:0:{}');",
-////                    "INSERT INTO  `" . $table_custom_field . "`  (`store_id`, `module_name`, `field_type`, `content`) VALUES ( '" . $store_id . "', 'page',  'notice', 'a:1:{s:7:\"content\";s:108:\"食品电商模板食品电商模板食品电商模板食品电商模板食品电商模板食品电商模板\";}');",
-////                    "INSERT INTO  `" . $table_custom_field . "`  (`store_id`, `module_name`, `field_type`, `content`) VALUES ('" . $store_id . "', 'page',  'goods', 'a:5:{s:4:\"size\";s:1:\"2\";s:7:\"buy_btn\";s:1:\"1\";s:12:\"buy_btn_type\";s:1:\"1\";s:5:\"price\";s:1:\"1\";s:5:\"goods\";a:3:{i:0;a:5:{s:2:\"id\";s:" . strlen($goods_id_arr[0]) . ":\"" . $goods_id_arr[0] . "\";s:5:\"title\";s:7:\"零食3\";s:5:\"price\";s:5:\"10.00\";s:3:\"url\";" . $this->url_formark('/wap/good.php?id=', $goods_id_arr) . "s:5:\"image\";s:14:\"images/eg1.jpg\";}i:1;a:5:{s:2:\"id\";s:" . strlen($goods_id_arr[1]) . ":\"" . $goods_id_arr[1] . "\";s:5:\"title\";s:7:\"零食2\";s:5:\"price\";s:5:\"10.00\";s:3:\"url\";" . $this->url_formark('/wap/good.php?id=', $goods_id_arr) . "s:5:\"image\";s:14:\"images/eg2.jpg\";}i:2;a:5:{s:2:\"id\";s:" . strlen($goods_id_arr[2]) . ":\"" . $goods_id_arr[2] . "\";s:5:\"title\";s:7:\"零食1\";s:5:\"price\";s:5:\"10.00\";s:3:\"url\";" . $this->url_formark('/wap/good.php?id=', $goods_id_arr) . "s:5:\"image\";s:14:\"images/eg3.jpg\";}}}');",
-////                    "INSERT INTO  `" . $table_custom_field . "`  (`store_id`, `module_name`, `field_type`, `content`) VALUES ('" . $store_id . "', 'page', '548', 'store', 'a:0:{}');)"
-////                ),
-////                array(
-////                    "INSERT INTO  `" . $table_custom_field . "`  (`store_id`, `module_name`, `field_type`, `content`) VALUES ('" . $store_id . "', 'page', 'tpl_shop', 'a:3:{s:16:\"shop_head_bg_img\";s:27:\"/upload/images/head_bg1.png\";s:18:\"shop_head_logo_img\";s:31:\"/upload/images/default_shop.png\";s:5:\"title\";s:12:\"美妆电商\";}');",
-////                    "INSERT INTO  `" . $table_custom_field . "`  (`store_id`, `module_name`, `field_type`, `content`) VALUES ('" . $store_id . "', 'page', 'search', 'a:0:{}');",
-////                    "INSERT INTO  `" . $table_custom_field . "`  (`store_id`, `module_name`, `field_type`, `content`) VALUES ( '" . $store_id . "', 'page',  'goods', 'a:5:{s:4:\"size\";s:1:\"1\";s:7:\"buy_btn\";s:1:\"1\";s:12:\"buy_btn_type\";s:1:\"1\";s:5:\"price\";s:1:\"1\";s:5:\"goods\";a:3:{i:0;a:5:{s:2:\"id\";s:" . strlen($goods_id_arr[0]) . ":\"" . $goods_id_arr[0] . "\";s:5:\"title\";s:10:\"化妆品3\";s:5:\"price\";s:5:\"10.00\";s:3:\"url\";" . $this->url_formark('/wap/good.php?id=', $goods_id_arr) . "s:5:\"image\";s:14:\"images/eg1.jpg\";}i:1;a:5:{s:2:\"id\";s:" . strlen($goods_id_arr[1]) . ":\"" . $goods_id_arr[1] . "\";s:5:\"title\";s:10:\"化妆品2\";s:5:\"price\";s:5:\"10.00\";s:3:\"url\";" . $this->url_formark('/wap/good.php?id=', $goods_id_arr) . "s:5:\"image\";s:14:\"images/eg2.jpg\";}i:2;a:5:{s:2:\"id\";s:" . strlen($goods_id_arr[2]) . ":\"" . $goods_id_arr[2] . "\";s:5:\"title\";s:10:\"化妆品1\";s:5:\"price\";s:5:\"10.00\";s:3:\"url\";" . $this->url_formark('/wap/good.php?id=', $goods_id_arr) . "s:5:\"image\";s:14:\"images/eg3.jpg\";}}}');",
-////                ),
-////                array(
-////                    "INSERT INTO  `" . $table_custom_field . "`  (`store_id`, `module_name`, `field_type`, `content`) VALUES ('" . $store_id . "', 'page', 'tpl_shop1', 'a:3:{s:16:\"shop_head_bg_img\";s:29:\"/upload/images/tpl_wxd_bg.png\";s:18:\"shop_head_logo_img\";s:31:\"/upload/images/default_shop.png\";s:5:\"title\";s:12:\"线下门店\";}');",
-////                    "INSERT INTO  `" . $table_custom_field . "`  (`store_id`, `module_name`, `field_type`, `content`) VALUES ( '" . $store_id . "', 'page',  'search', 'a:0:{}');",
-////                    "INSERT INTO  `" . $table_custom_field . "`  (`store_id`, `module_name`, `field_type`, `content`) VALUES ('" . $store_id . "', 'page', 'text_nav', 'a:1:{i:10;a:4:{s:5:\"title\";s:12:\"最新商品\";s:4:\"name\";s:0:\"\";s:6:\"prefix\";s:0:\"\";s:3:\"url\";s:0:\"\";}}');",
-////                    "INSERT INTO  `" . $table_custom_field . "`  (`store_id`, `module_name`, `field_type`, `content`) VALUES ('" . $store_id . "', 'page',  'goods', 'a:4:{s:7:\"buy_btn\";s:1:\"1\";s:12:\"buy_btn_type\";s:1:\"1\";s:5:\"price\";s:1:\"1\";s:5:\"goods\";a:3:{i:0;a:5:{s:2:\"id\";s:" . strlen($goods_id_arr[0]) . ":\"" . $goods_id_arr[0] . "\";s:5:\"title\";s:13:\"餐饮外卖2\";s:5:\"price\";s:5:\"10.00\";s:3:\"url\";" . $this->url_formark('/wap/good.php?id=', $goods_id_arr) . "s:5:\"image\";s:14:\"images/eg1.jpg\";}i:1;a:5:{s:2:\"id\";s:" . strlen($goods_id_arr[1]) . ":\"" . $goods_id_arr[1] . "\";s:5:\"title\";s:13:\"餐饮外卖2\";s:5:\"price\";s:5:\"10.00\";s:3:\"url\";" . $this->url_formark('/wap/good.php?id=', $goods_id_arr) . "s:5:\"image\";s:14:\"images/eg2.jpg\";}i:2;a:5:{s:2:\"id\";s:" . strlen($goods_id_arr[2]) . ":\"" . $goods_id_arr[2] . "\";s:5:\"title\";s:13:\"餐饮外卖1\";s:5:\"price\";s:5:\"10.00\";s:3:\"url\";" . $this->url_formark('/wap/good.php?id=', $goods_id_arr) . "s:5:\"image\";s:14:\"images/eg3.jpg\";}}}');",
-////                ),
-////                array(
-////                    "INSERT INTO  `" . $table_custom_field . "`  (`store_id`, `module_name`, `field_type`, `content`) VALUES ('" . $store_id . "', 'page',  'image_ad', 'a:4:{s:10:\"image_type\";s:1:\"1\";s:10:\"max_height\";s:3:\"300\";s:9:\"max_width\";s:3:\"640\";s:8:\"nav_list\";a:1:{i:10;a:5:{s:5:\"title\";s:18:\"鲜花速递模板\";s:4:\"name\";s:0:\"\";s:6:\"prefix\";s:0:\"\";s:3:\"url\";s:0:\"\";s:5:\"image\";s:14:\"images/eg4.png\";}}}');",
-////                    "INSERT INTO  `" . $table_custom_field . "`  (`store_id`, `module_name`, `field_type`, `content`) VALUES ( '" . $store_id . "', 'page',  'search', 'a:0:{}');",
-////                    "INSERT INTO  `" . $table_custom_field . "`  (`store_id`, `module_name`, `field_type`, `content`) VALUES ( '" . $store_id . "', 'page',  'text_nav', 'a:1:{i:10;a:4:{s:5:\"title\";s:12:\"最新商品\";s:4:\"name\";s:0:\"\";s:6:\"prefix\";s:0:\"\";s:3:\"url\";s:0:\"\";}}');",
-////                    "INSERT INTO  `" . $table_custom_field . "`  (`store_id`, `module_name`, `field_type`, `content`) VALUES ('" . $store_id . "', 'page',  'goods', 'a:5:{s:4:\"size\";s:1:\"2\";s:7:\"buy_btn\";s:1:\"1\";s:12:\"buy_btn_type\";s:1:\"1\";s:5:\"price\";s:1:\"1\";s:5:\"goods\";a:3:{i:0;a:5:{s:2:\"id\";s:" . strlen($goods_id_arr[0]) . ":\"" . $goods_id_arr[0] . "\";s:5:\"title\";s:13:\"鲜花速递3\";s:5:\"price\";s:5:\"10.00\";s:3:\"url\";" . $this->url_formark('/wap/good.php?id=', $goods_id_arr) . "s:5:\"image\";s:14:\"images/eg1.jpg\";}i:1;a:5:{s:2:\"id\";s:" . strlen($goods_id_arr[1]) . ":\"" . $goods_id_arr[1] . "\";s:5:\"title\";s:13:\"鲜花速递2\";s:5:\"price\";s:5:\"10.00\";s:3:\"url\";" . $this->url_formark('/wap/good.php?id=', $goods_id_arr) . "s:5:\"image\";s:14:\"images/eg2.jpg\";}i:2;a:5:{s:2:\"id\";s:" . strlen($goods_id_arr[2]) . ":\"" . $goods_id_arr[2] . "\";s:5:\"title\";s:13:\"鲜花速递1\";s:5:\"price\";s:5:\"10.00\";s:3:\"url\";" . $this->url_formark('/wap/good.php?id=', $goods_id_arr) . "s:5:\"image\";s:14:\"images/eg3.jpg\";}}}');",
-////                    "INSERT INTO  `" . $table_custom_field . "`  (`store_id`, `module_name`, `field_type`, `content`) VALUES ('" . $store_id . "', '567', 'page', 'store', 'a:0:{}');",
-////                ),
-//            );
-//
-//            for ($i = 0; $i < count($wei_page_category_arr); $i++) {
-//                D('Wei_page_category')->execute($wei_page_category_arr[$i]);
-//                D('Wei_page')->execute($wei_page_arr[$i]);
-//                $page_id = D('Wei_page')->lastInsID;
-//                D('Wei_page_category')->where(array('cat_id' => D('Wei_page_category')->lastInsID))->data(array('page_id' => $page_id))->save();
-//
-//                $arr = array();
-//                foreach ($custom_field_arr[$i] as $v) {
-//                    D('Custom_field')->execute($v);
-//                    array_push($arr, D('Custom_field')->lastInsID);
-//                }
-//                $wheres["field_id"] = array("in", $arr);
-//                D('Custom_field')->where($wheres)->data(array('module_id' => $page_id))->save();
-//            }
-//        }
 
 		$this->assign('avatar', $avatar);
 		$this->assign('create_store_status', $create_store_status);

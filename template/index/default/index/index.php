@@ -310,7 +310,7 @@
 						<li class="gd_nameplate"><a class="f4" onclick="scrollToId('#f4');"><span>热门活动</span></a></li>
 						<?php
 						foreach ($hot_products['category'] as $k => $v) {
-							echo '<li class="gd_hot"><a style="background:url(' . $v['cat_pic'] .
+							echo '<li class="gd_hot"><a style="background:url(' . $v['cat_pc_pic'] .
 								') no-repeat center center;" class="f0' . $v['cat_id'] . '" onclick="scrollToId(\'#f0' .
 								$v['cat_id'] . '\');"><span>' . $v['cat_name'] . '</span></a></li>';
 						}

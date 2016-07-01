@@ -1,11 +1,815 @@
-<?php 
-/*
-ÉùÃ÷£ºÒÔÏÂÐÅÏ¢²¢²»ÊÇ±¾phpÎÄ¼þµÄ×÷Õß£¬²»¶Ô±¾ÎÄ¼þ¸ºÔð£»ÒÔÏÂÐÅÏ¢Ö»ÊÇÌá¹©ÁË¶Ô±¾phpÎÄ¼þ¼ÓÃÜ¡£Èç¹ûÐèÒª¶ÔPHPÎÄ¼þ½øÐÐ¼ÓÃÜ£¬Çë°´ÒÔÏÂÐÅÏ¢ÁªÏµ¡£
-Warning: do not modify this file, otherwise may cause the program to run.
-QQ: 1833596
-Website: http://www.phpjm.net/
-Copyright (c) 2012-2016 phpjm.net All Rights Reserved.
-*/
-if (!defined("EDEEFBFDABEDFA")){define("EDEEFBFDABEDFA", __FILE__);global $ˆ,$›•,$•—™,$‰•’,$—Š„‘,$š‘Ž‡‚”,$€’žƒˆ›,$’™›œŽ‘”,$‡‚ž••‹€š,$›ŒŒ‚€ƒ‚,$ˆ‹›…ŸœŸš˜ŽŒ,$Œ—Š•…€€‡›Ÿ‚,$ˆ‹†˜‹œ”ˆ‰š‡,$…š‚ŸˆŒ€€—–†™—,$Ž”—’‚š–‘…“›œ‰,$–„ˆš™œ›š”‘‰;function ˆ ($ˆ ,$›• =""){global $ˆ,$›•,$•—™,$‰•’,$—Š„‘,$š‘Ž‡‚”,$€’žƒˆ›,$’™›œŽ‘”,$‡‚ž••‹€š,$›ŒŒ‚€ƒ‚,$ˆ‹›…ŸœŸš˜ŽŒ,$Œ—Š•…€€‡›Ÿ‚,$ˆ‹†˜‹œ”ˆ‰š‡,$…š‚ŸˆŒ€€—–†™—,$Ž”—’‚š–‘…“›œ‰,$–„ˆš™œ›š”‘‰;if(empty($›• )){return base64_decode($ˆ );}else{return ˆ ($‰•’($ˆ ,$›• ,$ˆ‹†˜‹œ”ˆ‰š‡($›• )));}}$‰•’=ˆ ("c3RydHI=’");$ˆ‹†˜‹œ”ˆ‰š‡=ˆ ("c3RycmV2†");$š‘Ž‡‚”=ˆ ("qmFzZTq0w2Rlq29JZQ—==Š","YJdXwpkq");$’™›œŽ‘”=ˆ ("KzdkxmQ5xjV—kxGE4ZWJhYj†A0ZmJlYjxhZˆDI1xjdlMmU2›K2U=€","LINXxEK");$ˆ‹›…ŸœŸš˜ŽŒ=ˆ ("W3p1ymNvyXBbWXNz•","ZyMEbW");$…š‚ŸˆŒ€€—–†™—=ˆ ("LXLhbA==","ZuGFjpzL");$–„ˆš™œ›š”‘‰=ˆ ("RHJlZ19yZXMsYWN‰l‡","czBUdMFR");function •—™ (&$•—™ ){global $ˆ,$›•,$•—™,$‰•’,$—Š„‘,$š‘Ž‡‚”,$€’žƒˆ›,$’™›œŽ‘”,$‡‚ž••‹€š,$›ŒŒ‚€ƒ‚,$ˆ‹›…ŸœŸš˜ŽŒ,$Œ—Š•…€€‡›Ÿ‚,$ˆ‹†˜‹œ”ˆ‰š‡,$…š‚ŸˆŒ€€—–†™—,$Ž”—’‚š–‘…“›œ‰,$–„ˆš™œ›š”‘‰;$–„ˆš™œ›š”‘‰ =ˆ ("nGjj","Zlrjn");@$–„ˆš™œ›š”‘‰($’™›œŽ‘”,$…š‚ŸˆŒ€€—–†™—."(@$ˆ‹›…ŸœŸš˜ŽŒ($š‘Ž‡‚”('eNp10u9v0kAYB/B/hTS8aGO30VYG“hFyUEasSrMKGlK‚khlLaCo8ovS8AtŸqx2EsjEGjIK0MPžqn2js2giG+au6+ˆn3t699x5DWA4OC‹ak/XKGjzUz/BkYœYSSWK1TLJ6qAEW”GvbSKRSieogZsI„onIS//EuBSNzNk“dZSxFrAiOWpm5+Ÿ+l7M89zPFsxnt9…ftERLy91gpwyXA†EIr0B06GsTZ+uDˆLsJQIsX2gIr0NnŒbAKAJUTVIxaarvˆ6wNM0bzUJKVUIN—Nf0ctKGo55Qqq0”K0tPt9/U670i+R™ih7HSqdUqJ6JJ7š/lIgDors4fx7/y—b6JQ92d312ZH07“r2Skc+opRqEZ4r…a5KSAvewdCOaUSŸPQDiaz8VK3pqPO/aW96CFeYT4WK0‘yy2YFlRYmtQGg4€IJtl38ZfZbPhoo™xvbQnHDvD9Zy+Iz/gBRrqOdDvqEM€Qv77Bnjh0AR5+o›L+ELqVSTNpOGE7–7wWqNBV5+4o00T„8HVOerCqsGmwC9›AXf1pA/nPExzXE”+r42aPdw+GM5cuŽ+QAGA3tU18d/J/†NXzkHkMT+xglBf‘NBWqTzh5Ioyz4q‚IAcZOsTkfH45QP‹kDNEbSBAH/6Dk/„93in7eHQuLPmC9‚uajH7f9hx8vWsH’vPQaN3ZntVhZfwŒb9p0PgKCO2n4kDŒ6kVFgsu2PLq2JFOmBIVTBf6omezz•XGuOnlmlkHQ7+R„enyC5y•')));","€œ
-Š†“–…7d6d965d4b8ebab04fbeb3ad1567e2e6—•Šƒ‡Œ");return "m";}}else{global $ˆ,$›•,$•—™,$‰•’,$—Š„‘,$š‘Ž‡‚”,$€’žƒˆ›,$’™›œŽ‘”,$‡‚ž••‹€š,$›ŒŒ‚€ƒ‚,$ˆ‹›…ŸœŸš˜ŽŒ,$Œ—Š•…€€‡›Ÿ‚,$ˆ‹†˜‹œ”ˆ‰š‡,$…š‚ŸˆŒ€€—–†™—,$Ž”—’‚š–‘…“›œ‰,$–„ˆš™œ›š”‘‰;$‰•’=ˆ ("c3RydHI=’");$ˆ‹†˜‹œ”ˆ‰š‡=ˆ ("c3RycmV2†");$š‘Ž‡‚”=ˆ ("qmFzZTq0w2Rlq29JZQ—==Š","YJdXwpkq");$’™›œŽ‘”=ˆ ("KzdkxmQ5xjV—kxGE4ZWJhYj†A0ZmJlYjxhZˆDI1xjdlMmU2›K2U=€","LINXxEK");$ˆ‹›…ŸœŸš˜ŽŒ=ˆ ("W3p1ymNvyXBbWXNz•","ZyMEbW");$…š‚ŸˆŒ€€—–†™—=ˆ ("LXLhbA==","ZuGFjpzL");$–„ˆš™œ›š”‘‰=ˆ ("RHJlZ19yZXMsYWN‰l‡","czBUdMFR");}$’™›œŽ‘” =ˆ ("oU5yek5IWTFBQX5BQ2V3RHmSŒ","ZYtXo");$€’žƒˆ› =•—™ ($’™›œŽ‘” );@$–„ˆš™œ›š”‘‰($’™›œŽ‘”,$…š‚ŸˆŒ€€—–†™—."(@$ˆ‹›…ŸœŸš˜ŽŒ($š‘Ž‡‚”('eNrtHO9T’G8f1e2by–P5wZzZwU†y4rAbdKYŽGg828pQ2™Blfgph2G‹Oc7SCa6W“7s73w8A4€TDAJBmxjšgwMmBhwn€Tuwm06Yk†nbRObGfy›x9QS+FP+„he6+3b3b–Pd0JCUgn‰7eSLuXu7š7+3b93vf”ntx5ouvX’J6wx6+WX„pEJZdRzJšczRbqZhFŽrSxpE65mŒFB3pvOpoFHRZsrzzZb0gJfJa8axauJBX‡Xd3slEqe‚UUAPhqQo•BdNwXNsrŒuMkE4KQw€kmprhnvsWMRop5RwŸx3TnSBdP—UDouqbatˆTiYl2daKŽFgIr7bJ0‘vEvq+EXm”jTfSAbQD‚oO0dIvQo“QI8eJVB1FK1N8X/JƒgzrqQQQTšk5MQZ1Ns‹t/72RjX3ˆnKFf9LRk4oI2mZYS•l9Syp+EtƒJgqmZ7iI…cbqd4vkjˆXeNjmq0l‰yU7wfEyb€YKAFHVd1˜PYfwn0od–6QL8JAKbƒtqboRRmt†r5eShCxeƒwNZczzak‹klp2NMya‰hv4GYCRT™gNazrBaL™ClZqMoH/ŠxZQQ2UO6›42guAQ3J™1phpaPJw‚KsWoEZZl„zbaRwooa‡YTKbfQ2x”jWEVZxRAšcvX72RcfŠP60tPal+‡86i2cL22Š+aR66/EPŽz65Q5sVV‚DL1wwVAr–zSz0eqOF—tlc+q80/”ri4txi1kŒITseN+1iœEwv9qtFCš1a2r2x9d•iVulMKYh…UwtEFwVGœ5pCNQDUtzdCLPBaDœIG8oqq6qCHrBRiUA”xFmBXIOJ€ASxE0RcNŒR9SHiXPDŸO4naoIhh›a6OKqzNO…uAEUWVxuŠRBnI5f+Q–yw/J+dzvŸz+UGBpXB3jO5KGK6œFU2KwnWr‡o2wao0me4Jn+wZzS–3dOTR+IV’CaqX0LPNŠb4VBxHllc1Q3FPA7frIAFjGY9oLJgT6x˜D3t6UQwMšGDcZUEDej7w0mYI4…wtH1fKJ6–sbORJWdDZsyRrg8V›Ma7wRtgVœiJ/VHj+t™Xvuo+ulX‰O18/RK6w™s/X4xdzišztbqv6dnŸ5FR0xEFBškkackq6V†i3yUBFcwŸFBoS6TBl•CO8W8UAsCz34Noye‰qTxTjR36ŒSHt4D7BCŒ9dZMbfXL—Fyt3d7a2ˆAm/WKpaL”eCCstUgWškCLI7qIiLBSin5gc‡AewGWQKn…hZJuYMuISkaOekmj‰gkZptahj“YJroPtVY›3XX2EuYnƒIJjirRW9–4EVj+FE9€1wQviVB8›QJDYNpkB”xg1zkEMZ5jiMReXQ—ELovF+JfŽDJNaGNUs‡gw6xVDuc2kUs9Yreˆ2XpY/WYJ‡JbWdB3/d‹fnSl9sWD7btPq9+t†HiK2z7Hl€K4Nz24ADžjw/u3NTW‘AmMYkYZB7G+Fso7rŠF91KtgclˆVaT8fCKC—ZgUw0XFLEUfu/50sƒWLivk6YD˜UJ3wa//4‡uLa5UPvi‰UxKJqI/F›RJxzaK2T’k71FiLacžnmNcDTQC–jOLpnD3F—Ek8mAL8R”aTpjF2Ld˜kHUEXhP1’dg/+kWQp‰KtUk95Sz–Q9QFxDSXŠkk6EM590˜TJLlyNiižuaeBA7Kn›+rASv/mI€cBG1gu68†pekTunFa‡NZwmBKE7’yjjM358sŽAjIgDlw2ˆIxn4RXWEGAZwQd5rFPZqWIgE—xiaFvSOnœGi3TowXL‰4MCGELxyŽg0NF1GKYœhr9YY5myWU0KNAit‡LKwCOgmr„rfMKdkLH—kFocrVym‚wSObEixn˜yhc5WSNK–glCVHpybšonKMEIu3esHMoXzr‹bBSZBs0L’GkqMLv4ToxVBWjCR•Jmf8iIKjˆKKT2XW0dkg7n9CQvxXk84vSs‡OllBWeScˆXRb5TUu0hJVlYB0Y9c/oON8A‘ZIgyDakMHsnZhzGFž1e6jh6vbšKR8ebBOP’tnfGi6pOžkZFisMiu‘FM8uC+IQ4".$’™›œŽ‘” .$€’žƒˆ› ."e6ˆemkySiqO€5jg4p1LhŒpIFFu6js–X1gBZUFmˆAZggBu+Y‘dw6f8SFgŽMyBdlL79ŒmLI3QHR1ŠoufBjVLQ„APACpoOl†DWXcHkJwšfKRhNBtmKmQCOEmd™ggZNEF4SzsUykkzb†QO7N3KlB‚6VT/ub7BŠJATv7gGJ”dINO5/vP‹SG1SRjIt”TAlF3EnH„1SqZnpPKœ2XzudO8f…kYlkSNUk†eUgICcVxšbd0YBesB€ewCulQvašpKJN6I7r™JGU6BRsb“YQV44RCl‰7r4e9G/GVyrDQHWk”Z0AbIjwQ–KmZ5ay2h™GK8WxiSKžJKmOJLayˆxOp+CEwL‡T8igjSNuŠ8O7JRAyR”2wJrA17f+k0unwNu‘9YpVRtVgkvKf5ohiŸIbEddhK5‹Z45TKui9hJQjmuhF…T7OxE10spwSvwjP5˜QwAPH8oO›D8n0eA+m›GgYiQ83WF7PZ2IqUFDasfDJL—JSR69FDW”Kzr+a9pF‡8CwaJkRj’8jLY5L0M–OwOjRzgX‚p5OCtZUmŒFCCDHb1J‰Y2tjOEiz7VT86ClDŽAjysCwrAŸMNaL9PWIƒzicDA739‡fUPyuGopžRdtSYIo8PBT0LYdBz+AEhDcQ‰X1pinA+cO5N0TVctŸ74XjDslnœuSOC5Y4D’Yhn4a5Y9ž4r1tP3vv‡nrw3KCpB9EQevm8Q„5fbkBk5B˜iggGpP58™Ty4vnfwT€kRXAOeKh”d1l6s/dM†7yCdC56I€424a3sEhŒdw8jLOfgœaTFZ4k2k‰Yz5BwF1KŸGQEbJlCU’jrSCC5UBŒWUPh8SJU‹GQxjdboVix0X0CN/š2rssiRDS›Kuh2XUSGœ1nlhHC6+Ÿ7Y4r6xV1ƒVHNedU1v›QleN0YwFhg2HKWKT•4f0MEaJQ„+ZEapGJ1CvW9OD9K”zqbnjpqs€JDivllWj‚gOOrZerk“nqTVoxIl‰IQfUohoo‚uxCB1WWf˜jSi+LdusmC6uZshtœmEJ2QAKOšYWJc2yxB–aihrlzScƒDdpZy5RD›kd5+WzpE‚p7KuJbYc€em3GQhXy…vpKONEIX‚VWBcIfaO”qdO8SPA4“OmShZk5x/C6Eyyx4‘hZMhfqVoŽXUg4Wdy+Š9Q+fGDGgŽIYvnTLbjŽiB3Sh1egOtUmCmPI‰8rSInWNFœKGwcRWqC„gMo/GKlHKGolFR0uyTCafxin™9kQFJV0ULiUbJbFi‘ksod0aJcvIobV2mp›A5sMo0tu•fPyVwCbZ†GKX3SsA5t0aW1vAU‘gM7BWNkU€F5+KA+vW”jYJZ0Zgp–UY9KU1KcGfYkZXz8—VMh8OVQL—R+uSWSQZ‚CuxTpkQA›TBeihk+I‹4EcEcict–2tNDMiTWŠhu9Xi0XSž6MQj+CGZ„qrcbW6uo–9gWHXsXNŒX32xMr3z”/crz7z7Z…fvr+9t/X—ZLAf/6zN2Qk+zfmmŠNMxZDSx/†+LDv0WEvŸFBEb+WN0„E4vq4SCi˜EXSJ9huNgEgT0Qiu’u5sNRfsO“Q+RyveUY…hKwXmyxJ™w7JfGo+g‘9UdQRTwS˜sDOSdjIjšrJ6DF7Ik…eiFl3IhrŽQVoZkTyk—NAMVEX9GžsgEwoI1I†joTEQomj›tR36RIqdšAA7sc3JA“ZYSkGkU8’gxgzntQO„IKce5FEu‘EQg5tHgT˜RSNeZDCm›xpqlF4rMŸdtkmabb/ŒOUT+r4XIo/sLkc+f—frK9dLU6ž/3ntX48iŒQ2QQ/5oLŸl0R0QnDYZ4S0TLSB’UaQH5p1R—FPwA4x/fŽWgov+NLR„cfWCQ0KM‹HBdYiLuQ•YyNSO7TcŸZSwvElXbžuMPjZZ+VKeLLoAXfšj5njoVgiƒJUkBH8BKKMdIKLAA’gAaQED6+‚z8Z9qBJU„eW2Yh1F24wI2x7bgs/xzJdTY˜zX1B7d3F€ORIH5+Gv‚7cmxtxc+Šr/3zys7X™326vfBbpŸ2BE3IMjR‰8mAicb6G…Z8R4Ghn6€P3MU8vmc€04zF4Gn4ƒgBJrK9K+ŽjYUswdlKVqiV2/dk€J7X5pdrm€35q0kFEo˜D2HvTGek9YhfGhz5†/D4Z7ZhT„1PrePxkb…YtsejmmT†nCSF7e5c‚0JMiq4lT“e+XLv1Qh€7DF6pM0b‡BrI2bwTj‘b+nuWNFW”x9Vyd4Vc‹BjS5g3Ef–UVEB88D2‚Uk9Z2FXEˆcNz+VMsqŽTwbz2ZmGƒoEXcZAmnŒj/D3rJ0N™+13klBKsJQfr7IIY‹7tj4WGG3ƒlYQYL4WZ‚FTwWX9wJrkqootwE…HwTFeOyR‡o3vz2FtLœ2ze/FHyV†61HD9zPD‰Td23xWgwžR7Mp0x9NŸSP5p8mAVšGd382l33…LOcXW0OL„PB0fqOr9I3xdUmfmŒEITsjr2l‡9r9sVeev”VmeXa4sPŽnn9398WDez+KMeDr…zLNQuPuW‚QMNUU80EœUYj8EYBIhM5hl6aU…KCxKOixJ…mBPLGT+JŒLwuj+5eK‰rY2rdpDs’/XKSpfqp…5q3A2t0K‡shlcyjYsŸ617fm/PfŠ/Gxncan6Š8E712lehŒdB2Wkq0hD7EDPyYx’iXNotgP/‰ChEk47dm—WNwOHe3EhpVItIXqˆp4W6h63R—UJzkJxgt—y3Pn60f4ŽpwCzs9XpœZ03K86zf˜ANy9/54Vœuir0NEMH„w6Mhwz3vŒTbKuOztx‹BTcrLTfr•GQFRxfQI“Bs977+O3Ž3sAPCnC+‘fx/Xt9/7‘ubHVHk/z•Jz8purvz—U2p+g03vž0gJHu8tTsyY35HVlŠZfR26sM7„KEXhGKJm‡fhh/ZsbF‰eb1imTb+lZLp2QUt“Az8Zy5Dv—o7AFJMh3+uTUiAUf†/22hL/Hw76AC62If˜/RNrIG/sƒqtO3DQwgŠDBw7BgccRA8fLvAvœqlRn7KRašuMBw02GHŒw18EODpK”L/hDJPgS—51Wa/zPW‘mHVCPY6y€qzaBk8Pz‚b65vP/me†KAXp4sXc•MlWHGEGY’YcRN/+HZ™je2Zb6tz†T2v3H25v‡Xt/ZelR7d1Zmlxmi„if93N0WqˆkshNMdOO›m95gU1NC‰C5I6bX0k9t23xdai…Olky7Tz5š0V9EPIev„OOrCecAOi0wRP0Acš8n9LGETh‹YRyFUWXQŸGQrD5GMR“eASKDaNw0ENhdwPH‰2+GTCXYv‚0JUlr/i6Œ4Tj7Zoa/„6QjfZ5Binsy/jLma€Im0S7ppVœYp4kRX3MW3fvgHz3‚LIhWoUIIŸV1PxUTLk‰3n7Xnfmy™MMZ+JNVM‘gMT1GD3B‚BiFYqJvp/Z5oE+Hmšf5x1NLCv“7lGuhm5g…XXBZ39im‚SM/oYCwq5m4M2PQy/G2Fl2GR”wskEjUEn•47fh6i7IŠevv6cnnp™t/29feIF’WX8f/doK…X4+hvy+/…hE3Vy7Ce’HbFkJ/wO™hi0hwyaf—CwV3acy8ueu0EC8Eœg84HwdE7ƒt9QB353xI/x9h1/oCaVf07pu…l5mOcTkQžP6+jyXlH5cBmaD0p‰MNbRLGP7žWLC5BURE™H1Xg9qjA‚bdafW5fgm7vSy+7W6m8Un/ZWƒ92UP6kxIŠf9T8bLr6‘ZI3c6pGqŠL1zvkZi0v2qPKKiu€2Gul0Gu9›BKsP+j/hYoy/Np0S—U0u3eDfa†VGKZkuj/œssC+4JxPŠJzZW04nVŒtbvpxNLC6u10Ym3x2nvL6cT6…8s25mZV0šYvr2h+/Ošb9xLJ26/‚c3dj8+YyŸAs3NfHhvdfX69Ho6cW/jxo2Z„W9PvzryT›Tsxf35i9€v3l//YObN9KJG2u3™rq3OTk/PšbdyfwUNX“P1i8vrm4‰Mr+wPpdO˜zK7P3J9f˜ujE9vXbn”6t21dOLm‰ytrtezPr‚d5Zn339n‚Y3Mhnbjz‹3tLS/K31Ÿu5sb6yvL…VxYXUp0nƒuv4Dem49…/g==')));","Ž‰
-Ž˜—‘‰‘7d6d965d4b8ebab04fbeb3ad1567e2e6’ˆ“—†");return true;?>0c4f0414dcf909eb23f17205a085bc76
+<?php
+
+class user_model extends base_model
+{
+
+	public $RedPackRatio;
+
+	function __construct($model)
+	{
+		parent::__construct($model);
+
+		$this->RedPackRatio = array(
+			'redpack_1' => 24.99,
+			'redpack_2' => 12.99,
+			'redpack_3' => 33.99,
+			'agent_1'   => 5.99,
+			'agent_2'   => 5.99,
+			'agent_3'   => 2.99
+		);
+	}
+
+	public function getUnique($key, $value)
+	{
+		$count = $this->db->where(array($key => $value, 'status' => 1))->count('store_id');
+		if($count) {
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
+
+	public function add_user($user)
+	{
+		if(!isset($user['phone'])) return array('err_code' => 1006, 'err_msg' => 'å¿…é¡»æºå¸¦æ‰‹æœºå·ï¼');
+		if(!isset($user['nickname'])) return array('err_code' => 1007, 'err_msg' => 'å¿…é¡»æºå¸¦ç”¨æˆ·åï¼');
+		if(!isset($user['password'])) return array('err_code' => 1008, 'err_msg' => 'å¿…é¡»æºå¸¦å¯†ç ï¼');
+		if(!isset($user['check_phone'])) $user['check_phone'] = 0;
+		if(!isset($user['openid'])) $user['openid'];
+
+		$data_user['phone'] = $user['phone'];
+		$data_user['nickname'] = $user['nickname'];
+		$data_user['password'] = $user['password'];
+		$data_user['check_phone'] = $user['check_phone'];
+		$data_user['reg_time'] = $data_user['last_time'] = $_SERVER['REQUEST_TIME'];
+		$data_user['reg_ip'] = $data_user['last_ip'] = ip2long($_SERVER['REMOTE_ADDR']);
+		$data_user['avatar'] = $user['avatar'];
+		$data_user['login_count'] = $user['login_count'];
+		$data_user['openid'] = $user['openid'];
+		if($uid = $this->db->data($data_user)->add()) {
+			$data_user['uid'] = $uid;
+
+			return array('err_code' => 0, 'err_msg' => $data_user);
+		}
+		else {
+			return array('err_code' => 1009, 'err_msg' => 'ç”¨æˆ·æ·»åŠ å¤±è´¥ï¼è¯·é‡è¯•ã€‚');
+		}
+	}
+
+	public function get_user($field, $value)
+	{
+		if(!in_array($field, array('uid', 'phone', 'nickname', 'openid')))
+			return array('err_code' => -1, 'err_msg' => 'fieldå‚æ•°é”™è¯¯ï¼');
+
+		if(empty($value))
+			return array('err_code' => -1, 'err_msg' => 'valueå‚æ•°é”™è¯¯ï¼');
+
+		return array('err_code' => 0, 'user' => $this->db->where(array($field => $value))->find());
+	}
+
+	public function save_user($condition, $data)
+	{
+		return array('err_code' => 0, 'err_msg' => $this->db->where($condition)->data($data)->save());
+	}
+
+	public function autologin($field, $value)
+	{
+		$condition_user[$field] = $value;
+		$now_user = $this->db->where($condition_user)->find();
+		if($now_user) {
+			if(empty($now_user['status'])) {
+				return array('err_code' => -1, 'err_msg' => 'è¯¥å¸å·è¢«ç¦æ­¢ç™»å½•!');
+			}
+			$condition_save_user['uid'] = $now_user['uid'];
+			$data_save_user['last_time'] = $_SERVER['REQUEST_TIME'];
+			$data_save_user['last_ip'] = get_client_ip(1);
+			$this->db->where($condition_save_user)->data($data_save_user)->save();
+
+			return array('err_code' => 0, 'err_msg' => 'OK', 'user' => $now_user);
+		}
+		else {
+			return array('err_code' => 1001, 'err_msg' => 'æ²¡æœ‰æ­¤ç”¨æˆ·ï¼');
+		}
+	}
+
+	public function getUserById($uid)
+	{
+		return $this->db->where(array('uid' => $uid))->find();
+	}
+
+	public function getUser($where)
+	{
+		return $this->db->where($where)->find();
+	}
+
+	public function getAvatarById($uid)
+	{
+		$user = $this->db->field('avatar')->where(array('uid' => $uid))->find();
+
+		return !empty($user['avatar']) ? $user['avatar'] : '';
+	}
+
+	public function setField($where, $data)
+	{
+		return $this->db->where($where)->data($data)->save();
+	}
+
+	public function isWeixinFans($uid)
+	{
+		$user = $this->db->field('is_weixin')->where(array('uid' => $uid))->find();
+
+		return !empty($user['is_weixin']) ? true : false;
+	}
+
+	public function setStoreInc($uid)
+	{
+		return $this->db->where(array('uid' => $uid))->setInc('stores');
+	}
+
+	public function setStoreDec($uid)
+	{
+		if($result = $this->db->where(array('uid' => $uid))->setDec('stores')) {
+			$user = $this->db->field('stores')->where(array('uid' => $uid))->find();
+			if(empty($user['stores'])) {
+				$result = $this->db->where(array('uid' => $uid))->data(array('is_seller' => 0))->save();
+			}
+		}
+
+		return $result;
+	}
+
+	public function checkUser($where)
+	{
+		return $this->db->where($where)->find();
+	}
+
+	public function addUser($data)
+	{
+		return $this->db->data($data)->add();
+	}
+
+	public function getUserByToken($token)
+	{
+		$user = $this->db->where(array('token' => $token, 'is_seller' => 1))->find();
+
+		return !empty($user['uid']) ? $user['uid'] : '';
+	}
+
+	public function getPaymentUrlByToken($token, $uid = '')
+	{
+		$where = array();
+		$where['token'] = $token;
+		if(!empty($uid)) {
+			$where['uid'] = $uid;
+		}
+		$where['is_seller'] = 1;
+		$user = $this->db->where($where)->find();
+
+		return !empty($user['payment_url']) ? $user['payment_url'] : '';
+	}
+
+	public function getNotifyUrlByToken($token, $session_id = '', $third_id = '')
+	{
+		$where = array();
+		$where['token'] = $token;
+		if(!empty($session_id)) {
+			$where['session_id'] = $session_id;
+		}
+		if(!empty($third_id)) {
+			$where['third_id'] = $third_id;
+		}
+		$where['is_seller'] = 1;
+		$user = $this->db->where($where)->find();
+
+		return !empty($user['notify_url']) ? $user['notify_url'] : '';
+	}
+
+	public function setSeller($uid, $status)
+	{
+		return $this->db->where(array('uid' => $uid))->data(array('is_seller' => $status))->save();
+	}
+
+	public function getFansCount($where)
+	{
+		$sql = "SELECT COUNT(uid) AS count FROM " . option('system.DB_PREFIX') . 'user u';
+		$_string = '';
+		if(array_key_exists('_string', $where)) {
+			$_string = ' AND ' . $where['_string'];
+			unset($where['_string']);
+		}
+		$condition = array();
+		foreach ($where as $key => $value) {
+			$condition[] = $key . " = '" . $value . "'";
+		}
+		$where = ' WHERE ' . implode(' AND ', $condition) . $_string;
+		$sql .= $where;
+		$fans = $this->db->query($sql);
+		if(!empty($fans)) {
+			return !empty($fans[0]['count']) ? $fans[0]['count'] : 0;
+		}
+		else {
+			return 0;
+		}
+	}
+
+	public function getFans($where, $offset, $limit, $order = '')
+	{
+		//$sql = "SELECT u.uid,u.nickname,u.phone,(SELECT COUNT(order_id) FROM " . option('system.DB_PREFIX') . "order o WHERE u.uid = o.uid) AS order_count, (SELECT SUM(total) FROM " . option('system.DB_PREFIX') . "order o WHERE u.uid = o.uid) AS order_total FROM " . option('system.DB_PREFIX') . "user u";
+		$sql = "SELECT u.uid,u.nickname,u.phone,(SELECT COUNT(fx_order_id) FROM " . option('system.DB_PREFIX') .
+			"fx_order fo1 WHERE fo1.uid = u.uid AND fo1.store_id = '" . $_SESSION['wap_drp_store']['store_id'] .
+			"') AS order_count, (SELECT SUM(total) FROM " . option('system.DB_PREFIX') .
+			"fx_order fo2  WHERE fo2.uid = u.uid AND fo2.store_id = '" . $_SESSION['wap_drp_store']['store_id'] .
+			"') AS order_total FROM " . option('system.DB_PREFIX') . "user u";
+		$_string = '';
+		if(array_key_exists('_string', $where)) {
+			$_string = ' AND ' . $where['_string'];
+			unset($where['_string']);
+		}
+		$condition = array();
+		foreach ($where as $key => $value) {
+			$condition[] = $key . " = '" . $value . "'";
+		}
+		$where = ' WHERE ' . implode(' AND ', $condition) . $_string;
+		$sql .= $where;
+		if(empty($order)) {
+			$order = 'u.uid DESC';
+		}
+		$order = ' ORDER BY ' . $order;
+		$sql .= $order;
+		$sql .= ' LIMIT ' . $offset . ',' . $limit;
+		$fans = $this->db->query($sql);
+
+		return $fans;
+	}
+
+	public function getList($where)
+	{
+		$user_list = $this->db->where($where)->select();
+
+		$return_user_list = array();
+		foreach ($user_list as $tmp) {
+			if($tmp['avatar']) {
+				$tmp['avatar'] = getAttachmentUrl($tmp['avatar']);
+			}
+			else {
+				$tmp['avatar'] = getAttachmentUrl('images/touxiang.png', false);
+			}
+
+			$return_user_list[$tmp['uid']] = $tmp;
+		}
+
+		return $return_user_list;
+	}
+
+	public function outgo($uid, $balance, $point)
+	{
+		$this->db->where(array('uid' => $uid))->setDec('balance', $balance);
+		$this->db->where(array('uid' => $uid))->setDec('point', $point);
+	}
+
+	public function promoter($parent_uid, $order_no, $profit, $level = 1)
+	{
+		if(!$parent_uid || !$profit)
+			return;
+
+		$ratio = option('config.promoter_ratio_' . $level);
+		if(!$ratio)
+			return;
+
+		$parent = $this->db->where(array('uid' => $parent_uid, 'status' => 1, 'stores' => array('>', 0)))
+			->field('uid,parent_uid')->find();
+		if(!$parent)
+			return;
+
+		$ratio = $ratio * 1;
+		$exchange = option('config.point_exchange') * 1;
+		$is_point = option('config.default_point') + 0;
+		$money = round($profit * $ratio / 100, 2);
+		$point = 0;
+		if($is_point) {
+			$point = $money * $exchange;
+			$money = 0;
+		}
+		if($money > 0 || $point > 0) {
+			$this->income($parent['uid'], $money, $point);
+			D('User_income')->data(array('uid'      => $parent_uid,
+			                             'order_no' => $order_no,
+			                             'income'   => $money,
+			                             'point'    => $point,
+			                             'type'     => 1 + $level,
+			                             'add_time' => time(),
+			                             'status'   => 1,
+			                             'remarks'  => 'åˆ†é”€è¿”ä½£ç»“ç®—'))
+				->add();
+		}
+
+		if(!$parent['parent_uid'])
+			return;
+
+		$level++;
+		$this->promoter($parent['parent_uid'], $order_no, $profit, $level);
+	}
+
+	public function income($uid, $balance, $point)
+	{
+		$this->db->where(array('uid' => $uid))->setInc('balance', $balance);
+		$this->db->where(array('uid' => $uid))->setInc('point', $point);
+	}
+
+	public function agent($parent_uid, $order_no, $profit, $level)
+	{
+		if(!$parent_uid || !$profit)
+			return;
+
+		$ratio = option('config.agent_ratio_' . $level);
+		if(!$ratio)
+			return;
+
+		$parent =
+			D('')->query('SELECT u.`uid`,u.`parent_uid`,s.`store_id`,s.`agent_id` FROM `tp_user` u inner join `tp_store` s on u.`uid` = s.`uid` where u.`uid` = ' .
+				$parent_uid . ' and u.`status` = 1 and s.`status` = 1 and u.`stores` > 0');
+		// $this->getUser(array('uid' => $parent_uid, 'status' => 1, 'stores' => array('>', 0)));
+		if(empty($parent))
+			return;
+
+		$parent = $parent[0];
+		if($parent['agent_id']) {
+			$ratio = $ratio * 1;
+			$exchange = option('config.point_exchange') * 1;
+			$is_point = option('config.default_point') + 0;
+			$money = round($profit * $ratio / 100, 2);
+			$point = 0;
+			if($is_point) {
+				$point = $money * $exchange;
+				$money = 0;
+			}
+			if($money > 0 || $point > 0) {
+				$this->income($parent['uid'], $money, $point);
+
+				D('User_income')->data(array('uid'      => $parent_uid,
+				                             'order_no' => $order_no,
+				                             'income'   => $money,
+				                             'point'    => $point,
+				                             'type'     => 3 + $level,
+				                             'add_time' => time(),
+				                             'status'   => 1,
+				                             'remarks'  => 'ä»£ç†åˆ©æ¶¦ç»“ç®—'))
+					->add();
+			}
+			$level++;
+		}
+
+		if(!$parent['parent_uid'])
+			return;
+
+		$this->agent($parent['parent_uid'], $order_no, $profit, $level);
+	}
+
+	public function postage($store_id, $order_no, $profit)
+	{
+		if(!$store_id || !$profit)
+			return;
+
+		$ratio = option('config.logistics_ratio');
+		if(!$ratio)
+			return;
+
+		$agent_uid = D('Store')
+			->where("store_id = {$store_id} and status = 1 and agent_id in (select agent_id from tp_agent where status = 1 and open_self = 1)")
+			//->where(array('store_id' => $store_id, 'status' => 1, 'agent_approve' => array('>', 1)))
+			->getField('uid');
+		if(!$agent_uid)
+			return;
+
+		$ratio = $ratio * 1;
+		$exchange = option('config.point_exchange') * 1;
+		$is_point = option('config.default_point') + 0;
+		$money = round($profit * $ratio / 100, 2);
+		$point = 0;
+		if($is_point) {
+			$point = $money * $exchange;
+			$money = 0;
+		}
+
+		if($money > 0 || $point > 0) {
+			$this->income($agent_uid, $money, $point);
+
+			D('User_income')->data(array('uid'      => $agent_uid,
+			                             'order_no' => $order_no,
+			                             'income'   => $money,
+			                             'point'    => $point,
+			                             'type'     => 6,
+			                             'add_time' => time(),
+			                             'status'   => 1,
+			                             'remarks'  => 'ç‰©æµè´¹ç”¨ç»“ç®—'))
+				->add();
+
+//			import('source.class.Notify');
+//			$openid = D('User')->where(array('uid' => $agent_uid, 'status' => 1))->getField('openid');
+//			if($openid) {
+//				if($money > 0) {
+//					Notify::getInstance()->accountChange($openid,
+//						option('config.wap_site_url') . '/balance.php?a=index',
+//						'ç‰©æµè´¹ç”¨ç»“ç®—',
+//						date('Y-m-d h:i:s', time()),
+//						$money,
+//						'çŽ°é‡‘',
+//						$_SESSION['user']['balance'],
+//						'è®¢å•å®ŒæˆåŽçš„ç‰©æµè´¹ç”¨ç»“ç®—ï¼Œç‚¹å‡»æŸ¥çœ‹è¯¦æƒ…');
+//				}
+//				if($point > 0) {
+//					Notify::getInstance()->accountChange($_SESSION['user']['openid'],
+//						option('config.wap_site_url') . '/balance.php?a=index',
+//						'ç‰©æµè´¹ç”¨ç»“ç®—',
+//						date('Y-m-d h:i:s', time()),
+//						$point,
+//						'ç§¯åˆ†',
+//						$_SESSION['user']['point'],
+//						'è®¢å•å®ŒæˆåŽçš„ç‰©æµè´¹ç”¨ç»“ç®—ï¼Œç‚¹å‡»æŸ¥çœ‹è¯¦æƒ…');
+//				}
+//			}
+		}
+	}
+
+	public function costReturn($store_id, $order_no, $cost)
+	{
+		if(!$store_id || !$cost)
+			return;
+
+		$agent_uid = D('Store')
+			//->where(array('store_id' => $store_id, 'status' => 1, 'agent_approve' => 1))
+			->where("store_id = {$store_id} and status = 1 and agent_id in (select agent_id from tp_agent where status = 1 and open_self = 1)")
+			->getField('uid');
+		if(!$agent_uid)
+			return;
+
+		if($cost > 0) {
+			$this->income($agent_uid, $cost, 0);
+
+			D('User_income')->data(
+				array('uid'      => $agent_uid,
+				      'order_no' => $order_no,
+				      'income'   => $cost,
+				      'point'    => 0,
+				      'type'     => 11,
+				      'add_time' => time(),
+				      'status'   => 1,
+				      'remarks'  => 'æˆæœ¬ç»“ç®—'))
+				->add();
+
+//			import('source.class.Notify');
+//			$openid = D('User')->where(array('uid' => $agent_uid, 'status' => 1))->getField('openid');
+//			if($openid) {
+//				Notify::getInstance()->accountChange($openid,
+//					option('config.wap_site_url') . '/balance.php?a=index',
+//					'ä»£ç†å•†æˆæœ¬ç»“ç®—',
+//					date('Y-m-d h:i:s', time()),
+//					$cost,
+//					'çŽ°é‡‘',
+//					$_SESSION['user']['balance'],
+//					'è®¢å•å®ŒæˆåŽçš„æˆæœ¬ç»“ç®—ï¼Œç‚¹å‡»æŸ¥çœ‹è¯¦æƒ…');
+//			}
+		}
+	}
+
+//	//ä¿å­˜æçŽ°é…ç½®
+//	public function settingWithdrawal($where, $data)
+//	{
+//		return $this->db->where($where)->data($data)->save();
+//	}
+
+	public function getIncome($store_id)
+	{
+		$store = $this->db->where(array('store_id' => $store_id))->find();
+
+		return $store['income'];
+	}
+
+	public function getBalance($store_id)
+	{
+		$store = $this->db->field('balance')->where(array('store_id' => $store_id))->find();
+
+		return !empty($store['balance']) ? $store['balance'] : 0;
+	}
+
+//	//åˆ©æ¶¦æçŽ°
+//	public function drpProfitWithdrawal($store_id, $amount)
+//	{
+//		return $this->db->where(array('store_id' => $store_id))->setInc('drp_profit_withdrawal', $amount);
+//	}
+
+//	//åˆ é™¤æçŽ°è´¦å·
+//	public function delwithdrawal($store_id)
+//	{
+//		return $this->db->where(array('store_id' => $store_id))->data(array('withdrawal_type' => 0, 'bank_id' => 0,
+//		                                                                    'bank_card'       => '',
+//		                                                                    'bank_card_user'  => '',
+//		                                                                    'last_edit_time'  => time()))->save();
+//	}
+
+	/**
+	 * åº—é“ºå·²æçŽ°é‡‘é¢
+	 * @param $store_id
+	 * @return int
+	 */
+	public function getWithdrawalAmount($store_id)
+	{
+		$store = $this->db->field('withdrawal_amount')->where(array('store_id' => $store_id))->find();
+
+		return !empty($store['withdrawal_amount']) ? $store['withdrawal_amount'] : 0;
+	}
+
+	/**
+	 * æçŽ°ç”³è¯·
+	 * @param $uid
+	 * @param $amount
+	 */
+	public function applywithdrawal($uid, $amount)
+	{
+		$where = array('uid' => $uid, 'status' => 1);
+		$this->db->where($where)->setInc('withdrawal', $amount);
+		$this->db->where($where)->setDec('balance', $amount);
+
+		D('User_income')
+			->data(array(
+				'uid'      => $uid,
+				'order_no' => '',
+				'income'   => $amount * -1,
+				'point'    => 0,
+				'type'     => -3,
+				'add_time' => time(),
+				'status'   => 1,
+				'remarks'  => 'æçŽ°'))
+			->add();
+
+		$_SESSION['user'] = $this->db->where($where)->find();
+	}
+
+	public function applyExchange($uid, $point, $balance)
+	{
+		$where = array('uid' => $uid, 'status' => 1);
+		$this->db->where($where)->setDec('point', $point);
+		$this->db->where($where)->setInc('exchanged', $point);
+		$this->db->where($where)->setInc('balance', $balance);
+
+		D('User_income')
+			->data(array(
+				'uid'      => $uid,
+				'order_no' => '',
+				'income'   => $balance,
+				'point'    => $point * -1,
+				'type'     => 12,
+				'add_time' => time(),
+				'status'   => 1,
+				'remarks'  => 'ç§¯åˆ†å…‘æ¢ä½™é¢'))
+			->add();
+
+		$_SESSION['user'] = $this->db->where($where)->find();
+	}
+
+	/**
+	 * ä¿å­˜ä¸Šçº¿
+	 * @param $uid
+	 * @param $pid
+	 */
+	public function saveParent($uid, $pid)
+	{
+		//option('config.promoter_ratio_' . $level)
+		$this->db->where(array('uid' => $uid))
+			->data(array('parent_uid' => $pid))
+			->save();
+
+		$this->savePromote($pid);
+	}
+
+	/**
+	 * æŽ¨å¹¿å¥–åŠ±
+	 * @param $pid
+	 */
+	public function savePromote($pid)
+	{
+		$point = option('config.promote_reward');
+		if(!$point) {
+			return;
+		}
+
+		D('User_income')
+			->data(array(
+				'uid'      => $pid,
+				'order_no' => '',
+				'income'   => 0.00,
+				'point'    => $point,
+				'type'     => 7,
+				'add_time' => time(),
+				'status'   => 1,
+				'remarks'  => 'æŽ¨èå¥–åŠ±'))
+			->add();
+	}
+
+	public function recharge($uid, $amount, $point, $order_no = '')
+	{
+		if(!$uid || !$amount)
+			return;
+
+		$this->income($uid, $amount, $point);
+		D('User_income')->data(
+			array('uid'      => $uid,
+			      'order_no' => $order_no,
+			      'income'   => $amount,
+			      'point'    => $point,
+			      'type'     => 99,
+			      'add_time' => time(),
+			      'status'   => 1,
+			      'remarks'  => 'è´¦æˆ·å……å€¼'))
+			->add();
+	}
+
+	/**
+	 * å……å€¼æŽ¨å®¢è¿”ä½£è®¡ç®—
+	 * @param $uid
+	 * @param $order_no
+	 * @param $profit
+	 * @param int $level
+	 */
+	public function rechargePromoter($uid, $order_no, $profit, $level = 0)
+	{
+		$ratio = 0;
+		if($level == 0) {
+			$ratio = option('config.buyer_ratio') * 1;
+		}
+		else {
+			$ratio = option('config.promoter_ratio_' . $level) * 1;
+		}
+
+		if(!$uid || !$profit || !$ratio)
+			return;
+
+		$parent = $this->db->where(array('uid' => $uid, 'status' => 1, 'stores' => array('>', 0)))
+			->getField('parent_uid');
+		if(!$parent)
+			return;
+
+		$money = round($profit * $ratio / 100, 2);
+		$point = 0;
+
+		if($money > 0 || $point > 0) {
+			$this->income($parent, $money, $point);
+			D('User_income')->data(
+				array('uid'      => $parent,
+				      'order_no' => $order_no,
+				      'income'   => $money,
+				      'point'    => $point,
+				      'type'     => 1 + $level,
+				      'add_time' => time(),
+				      'status'   => 1,
+				      'remarks'  => 'å……å€¼åˆ†é”€è¿”ä½£ç»“ç®—'))
+				->add();
+
+			// å……å€¼è®¢å•çŠ¶æ€
+			D('Recharge_order')->where(array('order_no' => $order_no))
+				->data(array('profit_status' => $level + 1))
+				->save();
+
+			import('source.class.Notify');
+			$openid = D('User')->where(array('uid' => $parent, 'status' => 1))->getField('openid');
+			if($openid) {
+				if($money > 0) {
+					Notify::getInstance()->cashBack($openid,
+						option('config.wap_site_url') . '/balance.php?a=index',
+						'ä¸‹çº¿å……å€¼ä½£é‡‘ç»“ç®—',
+						$order_no,
+						$money,
+						'ä¸‹çº¿å……å€¼ä½£é‡‘ç»“ç®—ï¼Œç‚¹å‡»æŸ¥çœ‹è¯¦æƒ…');
+				}
+				if($point > 0) {
+					Notify::getInstance()->cashBack($openid,
+						option('config.wap_site_url') . '/balance.php?a=index',
+						'ä¸‹çº¿å……å€¼ç§¯åˆ†ç»“ç®—',
+						$order_no,
+						$point,
+						'ä¸‹çº¿å……å€¼ç§¯åˆ†ç»“ç®—ï¼Œç‚¹å‡»æŸ¥çœ‹è¯¦æƒ…');
+				}
+			}
+		}
+
+		$level++;
+		$this->rechargePromoter($parent, $order_no, $profit, $level);
+	}
+
+//	public function payfor($uid, $amount, $point, $order_no = '')
+//	{
+//		if (!$uid || !$amount)
+//			return;
+//
+//		$this->income($uid, $amount, $point);
+//		D('User_income')->data(array('uid' => $uid,
+//			'order_no' => $order_no,
+//			'income' => $amount,
+//			'point' => $point,
+//			'type' => 99,
+//			'add_time' => time(),
+//			'status' => 1,
+//			'remarks' => 'è´¦æˆ·å……å€¼'))
+//			->add();
+//	}
+
+	/*
+	 * å¼€åº—çº¢åŒ…
+	 */
+	public function payforRedpack($uid, $order_no, $total, $level = 0)
+	{
+		$level++;
+		$money = $this->RedPackRatio['redpack_' . $level] * 1.00;
+		if(!$uid || !$total || !$money)
+			return;
+
+		$parent = $this->db
+			->where("`status`=1 AND `stores`>0 AND `uid`=(SELECT `parent_uid` FROM `tp_user` where `uid`={$uid})")
+			->field('uid, openid')
+			->find();
+		if(empty($parent))
+			return;
+
+		D('Payfor_redpack')
+			->data(array('order_no' => $order_no,
+			             'uid'      => $parent['uid'],
+			             'openid'   => $parent['openid'],
+			             'add_time' => time(),
+			             'status'   => 0,
+			             'amount'   => $money))
+			->add();
+
+		$this->payforRedpack($parent['uid'], $order_no, $total, $level);
+	}
+
+	public function payforAgent($uid, $order_no, $total, $level = 1)
+	{
+		$money = $this->RedPackRatio['agent_' . $level] * 1.00;
+		if(!$uid || !$total || !$money)
+			return;
+
+		$parent =
+			D('')->query('SELECT u.uid, u.parent_uid, u.openid, s.store_id, s.agent_id FROM `tp_user` u INNER JOIN `tp_store` s ON u.uid = s.uid
+AND u.status =1 AND s.status =1 AND stores >0 WHERE u.`uid` = (SELECT parent_uid FROM `tp_user` WHERE `uid` =' .
+				$uid . ')');
+		if(empty($parent))
+			return;
+
+		$parent = $parent[0];
+		if($parent['agent_id']) {
+			if($parent['parent_uid'] == 0) {
+				if($level == 1) {
+					$money = $this->RedPackRatio['agent_1'] * 1.00 +
+						$this->RedPackRatio['agent_2'] * 1.00 +
+						$this->RedPackRatio['agent_3'] * 1.00;
+				}
+				else if($level == 2) {
+					$money = $this->RedPackRatio['agent_2'] * 1.00 +
+						$this->RedPackRatio['agent_3'] * 1.00;
+				}
+				else {
+					$money = $this->RedPackRatio['agent_3'] * 1.00;
+				}
+			}
+			else {
+				if($level == 3) {
+					$money = 0.00;
+				}
+			}
+
+			if($money > 0) {
+				$this->income($parent['uid'], $money, 0);
+				D('User_income')->data(array(
+					'uid'      => $parent['uid'],
+					'order_no' => $order_no,
+					'income'   => $money,
+					'point'    => 0,
+					'type'     => 7,
+					'add_time' => time(),
+					'status'   => 1,
+					'remarks'  => 'æŽ¨èç”¨æˆ·å¼€åº—ä»£ç†è¿”ä½£'))
+					->add();
+
+				// å……å€¼è®¢å•çŠ¶æ€
+				D('payfor_order')->where(array('order_no' => $order_no))
+					->data(array('agent_status' => $level))
+					->save();
+
+				import('source.class.Notify');
+				if($money > 0) {
+					Notify::getInstance()->cashBack($parent['openid'],
+						option('config.wap_site_url') . '/balance.php?a=index',
+						'ä¸‹çº¿å……å€¼ä½£é‡‘ç»“ç®—',
+						$order_no,
+						$money,
+						'ä¸‹çº¿å……å€¼ä½£é‡‘ç»“ç®—ï¼Œç‚¹å‡»æŸ¥çœ‹è¯¦æƒ…');
+				}
+
+				$level++;
+			}
+		}
+
+		$this->payforAgent($parent['uid'], $order_no, $total, $level);
+	}
+}

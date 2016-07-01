@@ -94,7 +94,7 @@ $(function(){
 
 function show_son_category(id){
 	var tmp_category = category_list[id];
-	var tmp_son_category = tmp_category.cat_list
+	var tmp_son_category = tmp_category.larray; // cat_list
 	// var yScroll2Html = '<dt>'+tmp_category.cat_name+'</dt><dd class="swiper-slide">';
 	var yScroll2Html = '<dd class="swiper-slide">';
 	for(var i in tmp_son_category){
