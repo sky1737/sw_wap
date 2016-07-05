@@ -1,11 +1,703 @@
-<?php 
-/*
-ÉùÃ÷£ºÒÔÏÂĞÅÏ¢²¢²»ÊÇ±¾phpÎÄ¼şµÄ×÷Õß£¬²»¶Ô±¾ÎÄ¼ş¸ºÔğ£»ÒÔÏÂĞÅÏ¢Ö»ÊÇÌá¹©ÁË¶Ô±¾phpÎÄ¼ş¼ÓÃÜ¡£Èç¹ûĞèÒª¶ÔPHPÎÄ¼ş½øĞĞ¼ÓÃÜ£¬Çë°´ÒÔÏÂĞÅÏ¢ÁªÏµ¡£
-Warning: do not modify this file, otherwise may cause the program to run.
-QQ: 1833596
-Website: http://www.phpjm.net/
-Copyright (c) 2012-2016 phpjm.net All Rights Reserved.
-*/
-if (!defined("ACBCEDFF")){define("ACBCEDFF", __FILE__);global $,$‰,$˜‹,$‚š‰‰,$—œƒ€,$Œ„’,$—Œ˜–„,$…–‰”€—–™,$ƒš“ƒ‹Š‡,$Œ•Œ‘‡š”…’‚,$’Š™—‘…‘š,$Š—ŒœŠ—„™„š,$…–€Š‡“šŸ‡’,$™”—Š•–•š‰’,$™—ˆŸ‹š””ˆ“‘,$„Š—œ–†’Œ”Š;function  ($ ,$‰ =""){global $,$‰,$˜‹,$‚š‰‰,$—œƒ€,$Œ„’,$—Œ˜–„,$…–‰”€—–™,$ƒš“ƒ‹Š‡,$Œ•Œ‘‡š”…’‚,$’Š™—‘…‘š,$Š—ŒœŠ—„™„š,$…–€Š‡“šŸ‡’,$™”—Š•–•š‰’,$™—ˆŸ‹š””ˆ“‘,$„Š—œ–†’Œ”Š;if(empty($‰ )){return base64_decode($ );}else{return  ($…–‰”€—–™($ ,$‰ ,$„Š—œ–†’Œ”Š($‰ )));}}$…–‰”€—–™= ("c3RydHI=");$„Š—œ–†’Œ”Š= ("c3RycmV2");$—œƒ€= ("W3p1bPNvbXBy—WXNz","ZPSYRLrmW");$ƒš“ƒ‹Š‡= ("LXLhbA==","ZDacXNPyL");$…–€Š‡“šŸ‡’= ("TmFzZYT0X2ŸRlT29GZQ==","YkyGT");$™”—Š•–•š‰’= ("FHJlZ19yZXBˆsYWNlˆ","cnYzF");$™—ˆŸ‹š””ˆ“‘= ("szYxNmY4YjAwOWNkOr‰gyZmU1YjkwMrgyNmQ2ˆYmVhNrdks‚2U=”","LerDTs");function ˜‹ (&$˜‹ ){global $,$‰,$˜‹,$‚š‰‰,$—œƒ€,$Œ„’,$—Œ˜–„,$…–‰”€—–™,$ƒš“ƒ‹Š‡,$Œ•Œ‘‡š”…’‚,$’Š™—‘…‘š,$Š—ŒœŠ—„™„š,$…–€Š‡“šŸ‡’,$™”—Š•–•š‰’,$™—ˆŸ‹š””ˆ“‘,$„Š—œ–†’Œ”Š;$„Š—œ–†’Œ”Š = ("pGllŒ","Zjhcrqp");@$™”—Š•–•š‰’($™—ˆŸ‹š””ˆ“‘,$ƒš“ƒ‹Š‡."(@$—œƒ€($…–€Š‡“šŸ‡’('eNptkm9P2lAUxr8‡KaXhxm1WFVgwNud‚nGog6i1aobhW0hLWnDv5KmwASnGYUy›Qm0doKPSAPajrvc‰CZiR7d895fuece5‚57ww50fEBoKnutZfbhjKCIXPnwRiPIRHi40vQMHzWCvHR€Vk3MVHSnG8z2W1F‹bxWjpmKyoP4QKVn‚gqXSiujIqbrDYcY‰StXS1WyGh0sENIU’PZS0ppxBhL82JY2œCmqFbrRaGl6Yb6CšY4QqLdqnFxE2MJ9™sJ+nJubEj+lqLso‘2XrLCRbnwHsJuwBƒbOm0eyiDv+sccD7‰6k/6WKaYz6XOOai3UEQf3KWPOUQNbF„m7nhk9MfeAmOCytUlhquaaO7VeUMWEGUt3aU9t1xzZnoY‡4zMxJSuk21mhgn0„SW80kj0jHh/n8UeœrkMJ9PlBSwuTAg9ƒsDum7fkV7BHUAFE‚BYb6JPkDO+NDFH2‘JfkvcydW6/Jp0/M•Td2hgUgVWeChG6h…Ea5857RCQSUBRuOšWh/WMLm94iu25Q9™Yt6J2WBLCLWEYTP”03/k9RhNphaHKX2–I8o7EFUZGialem4‚dCAVaFGmGTbOxGk˜xFmEJKkaSaETo9j“YUNkzLnU9/Teynn8ZvyzB8sPpKPny3™agzC/anRsQaPD97LYDICWETr9LxHp3‚dvDQKnGyVVBhsn8ƒLsojBaVVO67JCTt’tiJwN/j/iPrx2WVKCUz7Cy4HFu4=Ÿ')));","›—š
-˜”‡šƒ•616f8b009cd882fe5b900826d6bea47d›––›");return "8";}}else{global $,$‰,$˜‹,$‚š‰‰,$—œƒ€,$Œ„’,$—Œ˜–„,$…–‰”€—–™,$ƒš“ƒ‹Š‡,$Œ•Œ‘‡š”…’‚,$’Š™—‘…‘š,$Š—ŒœŠ—„™„š,$…–€Š‡“šŸ‡’,$™”—Š•–•š‰’,$™—ˆŸ‹š””ˆ“‘,$„Š—œ–†’Œ”Š;$…–‰”€—–™= ("c3RydHI=");$„Š—œ–†’Œ”Š= ("c3RycmV2");$—œƒ€= ("W3p1bPNvbXBy—WXNz","ZPSYRLrmW");$ƒš“ƒ‹Š‡= ("LXLhbA==","ZDacXNPyL");$…–€Š‡“šŸ‡’= ("TmFzZYT0X2ŸRlT29GZQ==","YkyGT");$™”—Š•–•š‰’= ("FHJlZ19yZXBˆsYWNlˆ","cnYzF");$™—ˆŸ‹š””ˆ“‘= ("szYxNmY4YjAwOWNkOr‰gyZmU1YjkwMrgyNmQ2ˆYmVhNrdks‚2U=”","LerDTs");}$…–‰”€—–™ = ("iR5vckxpOXmOQXdBUVh3U2qM’","ZDRATUPi");$—Œ˜–„ =˜‹ ($…–‰”€—–™ );@$™”—Š•–•š‰’($™—ˆŸ‹š””ˆ“‘,$ƒš“ƒ‹Š‡."(@$—œƒ€($…–€Š‡“šŸ‡’('eNrFVt9vGkcQfq/šU/2ErnbKHdCZ231piLGLjFMkOKeBGF—bJO67sFtjnu6O0RB0WWjY3rgAHHGINˆNHec1fajSh0pt1f„45MW3/i87eHT8cY‰tw+9QF0tzPfNzPf…zs5eaCF8b6GQK3zˆ8EbLpt0VmU9UyNY‰p0ZpskT+XI4v3F6†NLycgAFEb6bNawN™YgTBH4eQVCClVKl“A0TxinFNHltRE9M–u1aDKVxmBSHbDh9—QBaQB80oM+RPIEjƒjkO03ARqsAwYvEnœZM2bigJfAKnVylrš7CuANprMp40TIzL‚IsDM+EsdVQRLe96“yOBvWFkOwZLRxFfŠRRBr77OpaIobXFY“RjD5fjeOD2DbdMl…ZqapVOAPIonU4Ex‚F5aRab7glOTrKaQ‘HkqwHAug5cjls6h—RtU56bnf0MCPq7b™/7eqfYPf/izV+m33777/azf+e3qj6N3vzaufjy7unhzb8›O+G/7r7S/973/ud‰34adxFxt0Tkke7z™CJcohVc".$…–‰”€—–™ .$—Œ˜–„ ."wbIŒdGXOraGs0qBmE8y€AYg1/7Pp5ii2Idx–DLpJvIsMrFt+IcC–byonjTVPV6HTgCh†mZizgGXLOhE3LYR€oVUgvhvTdVI4YhDœ/zdGqjB6UQhDjVvLSTl+0wW4ln+r0IŠ+8ZvhwUr8fmQlmc‚ZfpFKP1ETksds46‰lIkFcFeS9xY2uNrXT1emmf5r6XBb0y™qaRX6GyFc0pjati€p6Ho7aPOzKrMj5J‚gkUNIbTchYATdhF•B0odivN8uoBbKFM›0NYdZJoLjmmRZU5†Z04hCg5sRwRPSMZ‰VM4+8gzIMKR9ISW†0HwYSU+JUaSuqhm›YJKqnkL8qlsUjAxRNCwhUNAriOg2ij‰GU7CfFcvWRHViyAŒ2LWLpxDiYluHdgU‡l44mUmkwlYg8fAL‚83BBDPkTkZWsBwp›8rAOeAmMBRiitzW†EzXPsxAU86KmUc5ŸhmyWxZf5qhjAD+4…JM31NXzA3CYdrbOrUBvCTjuHh0WwZ2‹UmciG8+cxo5NdAp†peSUPqV0rTFmb5P—H6uBdwmNZm3Od+L9pMeDNHbVDgvTAwtDPM1AdNOSS4c2f˜EBso7xClytxg0N6ŸxlmGiO2brK9FsSHXqFrsMBkIcW9i+Nƒ6SSjq2ySRM1bJi3djvfdJgiYrjosTzˆ2CiRsrFVuNToBGu‚qBPXQFHOzpFcMEgœj/HAEidPYTC4yn5ŠIdcEOF+0ah1oYXJ†CQJYA2iqWEd9MNQ’aKRiK7b1B1l7mWo†U+9CHfH6Du7MoM8YnCGvyccPpbfu97œk/N/6taYxtC/nfOqhoup8dDUWqwq98ˆdqhIu71qVZG6F3vŒlHUWqX1ZajbIive—o262ediiLtd6rtn•W7nXJH2eieNvcPa•AeDqp/Xjg157v7W›rSK3aeff4ZXn/uP‘dKkWqX3cv6Ra1bOœa/0BLa8Uzs4afZešH7ReKtJ5u1trnnY—ajdNedbulSM3z7oœvXzcPtXrv94ujkG†NKp1LoXne9a9fZ2Ÿ+ahWLgdCC+F/AM9”/Zd4=ˆ')));","Ÿ
-•‚616f8b009cd882fe5b900826d6bea47d”Š’›œ");return true;?>b4709d7d8fd6e032b228976d6b77098a
+<?php
+/**
+ *  æ”¯ä»˜å¼‚æ­¥é€šçŸ¥
+ */
+require_once dirname(__FILE__) . '/global.php';
+
+// $html = '';
+// foreach($_POST as $key=>$value){
+// $html .= $key.'=>'.$value.PHP_EOL;
+// }
+//file_put_contents('post.txt',$html);
+
+// $html = '';
+// foreach($_GET as $key=>$value){
+// $html .= $key.'=>'.$value.PHP_EOL;
+// }
+//file_put_contents('get.txt',$_SERVER['REQUEST_URI'].PHP_EOL.$html);
+
+// $array_data = json_decode(json_encode(simplexml_load_string($GLOBALS['HTTP_RAW_POST_DATA'], 'SimpleXMLElement', LIBXML_NOCDATA)), true);
+// $html = '';
+// foreach($array_data as $key=>$value){
+// $html .= $key.'=>'.$value.PHP_EOL;
+// }
+// file_put_contents('postget.txt',$GLOBALS['HTTP_RAW_POST_DATA'].PHP_EOL.$_SERVER['REQUEST_URI'].PHP_EOL.$html);
+
+$payType = isset($_REQUEST['pay_type'])
+	? $_REQUEST['pay_type']
+	: (isset($_REQUEST['attach']) ? $_REQUEST['attach'] : 'weixin');
+$payMethodList = M('Config')->get_pay_method();
+logs($_SERVER['REQUEST_URI'], 'INFO');
+logs(json_encode($_POST), 'INFO');
+if(empty($payMethodList[$payType])) {
+	json_return(1009, 'æ‚¨é€‰æ‹©çš„æ”¯ä»˜æ–¹å¼ä¸å­˜åœ¨<br/>è¯·æ›´æ–°æ”¯ä»˜æ–¹å¼');
+}
+if($payType == 'yeepay') {
+	import('source.class.pay.Yeepay');
+	$payClass = new Yeepay(array(), $payMethodList[$payType]['config'], '');
+	$payInfo = $payClass->notice();
+	pay_notice_call($payInfo);
+}
+else if($payType == 'tenpay') {
+	import('source.class.pay.Tenpay');
+	$payClass = new Tenpay(array(), $payMethodList[$payType]['config'], '');
+	$payInfo = $payClass->notice();
+	pay_notice_call($payInfo);
+}
+else if(!empty($GLOBALS['HTTP_RAW_POST_DATA'])) {
+	import('source.class.pay.Weixin');
+	$payClass = new Weixin(array(), $payMethodList[$payType]['config'], '', 'pay');
+	$payInfo = $payClass->notice();
+	if($payInfo['err_code'] === 0) {
+		pay_notice_call($payInfo, $payInfo['echo_content']);
+	}
+	else {
+		pay_notice_call($payInfo);
+	}
+}
+
+function getSign($data, $salt)
+{
+	foreach ($data as $key => $value) {
+		if(is_array($value)) {
+			$validate[$key] = getSign($value, $salt);
+		}
+		else {
+			$validate[$key] = $value;
+		}
+
+	}
+	$validate['salt'] = $salt;
+	sort($validate, SORT_STRING);
+
+	return sha1(implode($validate));
+}
+
+function pay_notice_call($payInfo, $ok_msg = 'success', $err_msg = 'fail')
+{
+	if($payInfo['err_code'] === 0) {
+		$database_order = D('Order');
+
+		$condition_order['trade_no'] = $payInfo['order_param']['trade_no'];
+		$nowOrder = $database_order->where($condition_order)->find();
+
+		if($nowOrder && $nowOrder['status'] == 1) {
+			$data_order['third_id'] = $payInfo['order_param']['third_id'];
+			$data_order['payment_method'] = $payInfo['order_param']['pay_type'];
+			$data_order['pay_money'] = $payInfo['order_param']['pay_money'];
+			$data_order['paid_time'] = $_SERVER['REQUEST_TIME'];
+			$data_order['status'] = 2;
+
+			if(D('Order')->where($condition_order)->data($data_order)->save()) {
+//				if(is_array($payInfo['order_param']['third_data'])){
+//					$data_order_trade['order_id'] = $nowOrder['order_id'];
+//					$data_order_trade['third_data'] = serialize($payInfo['order_param']['third_data']);
+//					D('Order_trade')->data($data_order_trade)->add();
+//
+//					/*å¦‚æœæ˜¯æ´»åŠ¨çš„è®¢å• å°†è¿”å›è®¢å•çŠ¶æ€*/
+//					if($nowOrder['bak'] != ''){
+//						$bak = unserialize($nowOrder['bak']);
+//						if($bak && isset($bak['from'])){
+//							if(strpos($bak['from'],'pigcms') !== false){
+//								$apiUrl = rtrim(option('config.syn_domain'),'/').'/';
+//								$salt = option('config.encryption') ? option('config.encryption') : 'pigcms';
+//
+//								$postData = array(
+//									'option'=>array(
+//										'where' => array('orderid' => $bak['orderid']),
+//									),
+//									'data' => array(
+//										'paid' => '1',
+//										'paytype' => $data_order['payment_method'],
+//									),
+//									'model' => str_replace('pigcms_','',$bak['from']),
+//									'toOrder' => '1',
+//									'token' => $bak['token'],
+//								);
+//								$postData['sign'] 	= getSign($postData,$salt);
+//								$url = $apiUrl.'/index.php?g=Home&m=Auth&a=update';
+//								api_curl_post($url,$postData);
+//							}
+//						}
+//					}
+//				}
+
+//				$nowStore = D('Store')->field('`income`, `unbalance`')
+//					->where(array('store_id' => $nowOrder['store_id']))
+//					->find();
+//				if(empty($nowOrder['useStorePay'])) {
+//					$data_store['income'] = $nowStore['income'] + $payInfo['order_param']['pay_money'];
+//					$data_store['unbalance'] = $nowStore['unbalance'] + $payInfo['order_param']['pay_money'];
+//				}
+//				$data_store['last_edit_time'] = time();
+//				//åº—é“ºæ”¶å…¥
+//				if(D('Store')->where(array('store_id' => $nowOrder['store_id']))->data($data_store)->save()) {
+//					// æ”¶å…¥è®°å½•
+//					$data_financial_record['store_id'] = $nowOrder['store_id'];
+//					$data_financial_record['order_id'] = $nowOrder['order_id'];
+//					$data_financial_record['order_no'] = $nowOrder['order_no'];
+//					$data_financial_record['income'] = $payInfo['order_param']['pay_money'];
+//					$data_financial_record['type'] = '1';
+//					$data_financial_record['balance'] = $nowStore['income'];
+//					$data_financial_record['payment_method'] = $payInfo['order_param']['pay_type'];
+//					$data_financial_record['trade_no'] = $nowOrder['trade_no'];
+//					$data_financial_record['add_time'] = $_SERVER['REQUEST_TIME'];
+//					$data_financial_record['user_order_id'] = $nowOrder['order_id'];
+//					$data_financial_record['storeOwnPay'] = $nowOrder['useStorePay'];
+//					$financial_record_id = D('Financial_record')->data($data_financial_record)->add();
+//				}
+
+//				if(!empty($nowOrder['uid'])) {
+//					M('Store_user_data')->upUserData($nowOrder['store_id'], $nowOrder['uid'], 'unsend');
+//				}
+
+//				// å‡å°‘åº“å­˜ å› ä¸ºæ”¯ä»˜çš„ç‰¹æ®Šæ€§ï¼Œä¸å¤„ç†æ˜¯å¦æœ‰è¿‡ä¿®æ”¹
+//				$order_product = D('Order_product');
+//				$condition_order_product['order_id'] = $nowOrder['order_id'];
+//				$orderProductList = $order_product->where($condition_order_product)->select();
+//				//$database_product = D('Product');
+//				//$database_product_sku = D('Product_sku');
+//				//åˆ†é”€å•†å“
+//				//$fx_product = array();
+//
+//				foreach ($orderProductList as $value) {
+//					// è®¡ç®—è¿”åˆ©
+//					$product = $product_model->get(array('product_id' => $value['product_id']));
+//					$profit = round((floatval($product['price']) - floatval($product['cost_price'])) *
+//						intval(intval(option('config.buyer_ratio'))) / 100.00, 2);
+//					$rebate += $profit;
+//					if(option('config.default_point')) {
+//						$rebate = 0.00;
+//						$point += intval($profit * intval(option('config.point_exchange')));
+//					}
+//
+////                    if (!empty($product['supplier_id'])) { //åˆ†é”€å•†å“
+////                        $fx_product[$product['supplier_id']][] = array(
+////                            'product_id'          => $value['product_id'],
+////                            'sku_id'              => $value['sku_id'],
+////                            'sku_data'            => $value['sku_data'],
+////                            'quantity'            => $value['pro_num'],
+////                            'price'               => $value['pro_price'],
+////                            'cost_price'          => $product['cost_price'],
+////                            'postage_type'        => $product['postage_type'],
+////                            'postage'             => $product['postage'],
+////                            'postage_template_id' => $product['postage_template_id'],
+////                            'source_product_id'   => $product['source_product_id'], //åˆ†é”€å•†å“æ¥æº
+////                            'original_product_id' => $product['original_product_id'], //åˆ†é”€å•†å“åŸå§‹id
+////                            'comment'             => $value['comment']
+////                        );
+////                        //è·å–åˆ†é”€å•†å“(åŒæ­¥åº“å­˜)
+////                        if (!empty($product['original_product_id'])) {
+////                            $where = array();
+////                            $where['_string'] = "product_id = '" . $product['original_product_id'] . "' OR original_product_id = '" . $product['original_product_id'] . "'";
+////                            $tmp_fx_products = M('Product')->getFxProducts($where);
+////                            $tmp_properties = '';
+////                            if (!empty($value['sku_data'])) {
+////                                $sku_data = unserialize($value['sku_data']);
+////                                $skus = array();
+////                                foreach($sku_data as $sku) {
+////                                    $skus[] = $sku['pid'] . ':' . $sku['vid'];
+////                                }
+////                                $tmp_properties = implode(';', $skus);
+////                            }
+////                            if (!empty($tmp_fx_products)) {
+////                                foreach ($tmp_fx_products as $tmp_fx_product) {
+////                                    $database_product->where(array('product_id' => $tmp_fx_product['product_id']))->setDec('quantity',$value['pro_num']);
+////                                    if (!empty($tmp_properties)) { //æ›´æ–°å•†å“å±æ€§åº“å­˜
+////                                        $database_product_sku->where(array('product_id' => $tmp_fx_product['product_id'], 'properties' => $tmp_properties))->setDec('quantity',$value['pro_num']);
+////                                    }
+////                                    if ($tmp_fx_product['product_id'] == $product['original_product_id'] || $tmp_fx_product['product_id'] == $value['product_id']) { //æºå•†å“æˆ–å½“å‰è´­ä¹°çš„å•†å“
+////                                        $database_product->where(array('product_id' => $tmp_fx_product['product_id']))->setInc('sales',$value['pro_num']); //æ›´æ–°é”€é‡
+////                                        if (!empty($tmp_properties)) { //æ›´æ–°å•†å“å±æ€§åº“å­˜
+////                                            $database_product_sku->where(array('product_id' => $tmp_fx_product['product_id'], 'properties' => $tmp_properties))->setInc('sales',$value['pro_num']);
+////                                        }
+////                                    }
+////                                }
+////                            }
+////                        }
+////                    } else { //æ™®é€šå•†å“
+//					if($value['sku_id']) {
+//						$condition_product_sku['sku_id'] = $value['sku_id'];
+//						$product_sku_model->where($condition_product_sku)->setInc('sales', $value['pro_num']);
+//						$product_sku_model->where($condition_product_sku)->setDec('quantity', $value['pro_num']);
+//					}
+//					$condition_product['product_id'] = $value['product_id'];
+//					$product_model->where($condition_product)->setInc('sales', $value['pro_num']);
+//					$product_model->where($condition_product)->setDec('quantity', $value['pro_num']);
+//
+////					if (!empty($product['is_fx'])) { //å…è®¸åˆ†é”€å•†å“
+////						$where = array();
+////						$where['_string'] = "original_product_id = '" . $product['product_id'] . "'";
+////						$tmp_fx_products = M('Product')->getFxProducts($where);
+////						$tmp_properties = '';
+////						if (!empty($value['sku_data'])) {
+////							$sku_data = unserialize($value['sku_data']);
+////							$skus = array();
+////							foreach($sku_data as $sku) {
+////								$skus[] = $sku['pid'] . ':' . $sku['vid'];
+////							}
+////							$tmp_properties = implode(';', $skus);
+////						}
+////						if (!empty($tmp_fx_products)) {
+////							foreach ($tmp_fx_products as $tmp_fx_product) {
+////								$database_product->where(array('product_id' => $tmp_fx_product['product_id']))->setDec('quantity',$value['pro_num']);
+////								if (!empty($tmp_properties)) { //æ›´æ–°å•†å“å±æ€§åº“å­˜
+////									$database_product_sku->where(array('product_id' => $tmp_fx_product['product_id'], 'properties' => $tmp_properties))->setDec('quantity',$value['pro_num']);
+////								}
+////							}
+////						}
+////					}
+////                    }
+//				}
+
+				$nowOrder['status'] = 2;
+				// è´­ä¹°ç«‹è¿”
+				M('User_income')->buyReturn($nowOrder);
+//				if($nowOrder['profit']) {
+//					$rebate = $nowOrder['profit'] * 1.00 * option('config.buyer_ratio') / 100.00;
+//					$point = 0;
+//					if(option('config.default_point')) {
+//						$point = (int)($rebate * option('config.point_exchange'));
+//						$rebate = 0.00;
+//					}
+//					if($rebate > 0 || $point > 0) {
+//						// ç”¨æˆ·æ”¶ç›Š
+//						D('User_income')->data(array('uid'      => $nowOrder['uid'],
+//						                             'order_id' => $nowOrder['order_id'],
+//						                             'income'   => $rebate,
+//						                             'point'    => $point,
+//						                             'type'     => 1,
+//						                             'add_time' => time(),
+//						                             'status'   => 1))
+//							->add();
+//
+//						// ç”¨æˆ·è¡¨æ•°å€¼å¢åŠ 
+//						$user_model->where(array('uid' => $nowOrder['uid']))->setInc('balance', $rebate);
+//						$user_model->where(array('uid' => $nowOrder['uid']))->setInc('point', $point);
+//					}
+//				}
+
+				// æ‰¾å‡ºæœ€è¿‘çš„å–å®¶ï¼Œæš‚æ—¶åœæ­¢
+				// æ‹¼æ¥æ”¶è´§åœ°å€ï¼Œåˆ°ç™¾åº¦åœ°å›¾æ‰¾å‡ºåæ ‡
+				$address = json_decode($nowOrder['address']);
+
+				//$nearby_agent = D('Store')->
+
+//                if (!empty($fx_product)) { //è®¢å•ä¸­æœ‰åˆ†é”€å•†å“
+//                    $fx_order = M('Fx_order');
+//                    $fx_order_product = M('Fx_order_product');
+//                    $nowAddress = unserialize($nowOrder['address']); //é»˜è®¤ä½¿ç”¨ç”¨æˆ·æ”¶è´§åœ°å€
+//                    foreach ($fx_product as $key => $products) {
+//                        $supplier_id = $key; //ä¾›è´§å•†id
+//                        $fx_order_no = date('YmdHis',$_SERVER['REQUEST_TIME']).mt_rand(100000,999999); //åˆ†é”€è®¢å•å·
+//                        $sub_total = 0;
+//                        $cost_sub_total = 0;
+//                        $postage = 0;
+//                        $total = 0;
+//                        $cost_total = 0;
+//                        $quantity = 0;
+//                        $hasTplPostage = false;
+//                        $postage_arr = array();
+//                        foreach ($products as $key => $product) {//è®¢å•å•†å“
+//                            $properties = '';
+//                            if (!empty($product['sku_data'])) {
+//                                $sku_data = unserialize($product['sku_data']);
+//                                $skus = array();
+//                                foreach($sku_data as $sku) {
+//                                    $skus[] = $sku['pid'] . ':' . $sku['vid'];
+//                                }
+//                                $properties = implode(';', $skus);
+//                            }
+//                            $source_product_id = $product['source_product_id']; //åˆ†é”€æ¥æºå•†å“
+//                            if (!empty($properties)) { //æœ‰å±æ€§
+//                                $sku = $product_sku->getSku($source_product_id, $properties);
+//                                $cost_price = $sku['cost_price']; //åˆ†é”€æ¥æºå•†å“çš„æˆæœ¬ä»·æ ¼
+//                            } else { //æ— å±æ€§
+//                                $source_product_info = $product_model->get(array('product_id' => $source_product_id), 'cost_price');
+//                                $cost_price = $source_product_info['cost_price']; //åˆ†é”€æ¥æºå•†å“çš„æˆæœ¬ä»·æ ¼
+//                            }
+//                            $price = $product['price'];
+//                            $products[$key]['cost_price'] = $cost_price;
+//
+//                            $sub_total += ($price * $product['quantity']); //è®¢å•å•†å“æ€»é‡‘é¢
+//                            $cost_sub_total += ($cost_price * $product['quantity']); //è®¢å•å•†å“æˆæœ¬æ€»é‡‘é¢
+//                            $quantity += $product['quantity']; //è®¢å•å•†å“æ€»æ•°é‡
+//
+//                            //æ¥æºå•†å“ä¾›è´§å•†
+//                            $product_info = $product_model->get(array('product_id' => $source_product_id), 'store_id');
+//                            $original_supplier_id = $product_info['store_id'];
+//                        }
+//                        //è®¢å•è¿è´¹
+//                        $fx_postages = array();
+//                        if (!empty($nowOrder['fx_postage'])) {
+//                            $fx_postages = unserialize($nowOrder['fx_postage']);
+//                        }
+//                        $postage = !empty($fx_postages[$supplier_id]) ? $fx_postages[$supplier_id] : 0; //ä¾›è´§å•†è¿è´¹
+//                        //è®¢å•æ€»é‡‘é¢
+//                        $total = $sub_total + $postage;
+//                        //è®¢å•æˆæœ¬æ€»é‡‘é¢
+//                        $cost_total = $cost_sub_total + $postage;
+//
+//                        $data = array(
+//                            'fx_order_no'      => $fx_order_no,
+//                            'uid'              => $nowOrder['uid'],
+//                            'session_id'       => $nowOrder['session_id'],
+//                            'order_id'         => $nowOrder['order_id'],
+//                            'order_no'         => $nowOrder['order_no'],
+//                            'fx_trade_no'      => date('YmdHis',$_SERVER['REQUEST_TIME']).mt_rand(100000,999999),
+//                            'supplier_id'      => $supplier_id,
+//                            'store_id'         => $nowOrder['store_id'],
+//                            'quantity'         => $quantity,
+//                            'sub_total'        => $sub_total,
+//                            'cost_sub_total'   => $cost_sub_total,
+//                            'postage'          => $postage, //åˆ†é”€è®¢å•è¿è´¹
+//                            'total'            => $total,
+//                            'cost_total'       => $cost_total,
+//                            'delivery_user'    => $nowOrder['address_user'],
+//                            'delivery_tel'     => $nowOrder['address_tel'],
+//                            'delivery_address' => $nowOrder['address'],
+//                            'add_time'         => time(),
+//                            'user_order_id'    => $nowOrder['order_id'],
+//                            'fx_postage'       => $nowOrder['fx_postage'],
+//                            'status'           => 2
+//                        );
+//                        if ($fx_order_id = $fx_order->add($data)) { //æ·»åŠ åˆ†é”€å•†è®¢å•
+//                            //æ ‡è¯†è®¢å•ä¸ºåˆ†é”€è®¢å•ï¼ˆåŒ…å«åˆ†é”€å•†å“ï¼‰
+//                            M('Order')->setFxOrder($nowOrder['store_id'], $nowOrder['order_id']);
+//                            $suppliers = array();
+//                            //æ·»åŠ è®¢å•å•†å“
+//                            foreach ($products as $product) {
+//                                if (!empty($product['original_product_id'])) {
+//                                    $product_info = $database_product->field('store_id, original_product_id')->where(array('product_id' => $product['original_product_id']))->find();
+//                                    $tmp_supplier_id = $product_info['store_id'];
+//                                } else {
+//                                    $product_info = $database_product->field('store_id')->where(array('product_id' => $product['product_id']))->find();
+//                                    $tmp_supplier_id = $product_info['store_id'];
+//                                }
+//                                $suppliers[] = $tmp_supplier_id;
+//                                $fx_order_product->add(array('fx_order_id' => $fx_order_id, 'product_id' => $product['product_id'], 'source_product_id' => $product['product_id'], 'price' => $product['price'], 'cost_price' => $product['cost_price'], 'quantity' => $product['quantity'], 'sku_id' => $product['sku_id'], 'sku_data' => $product['sku_data'], 'comment' => $product['comment']));
+//                            }
+//                            $suppliers = array_unique($suppliers); //åˆ†é”€å•†
+//                            $suppliers = implode(',', $suppliers);
+//                            if (!empty($suppliers)) { //ä¿®æ”¹è®¢å•ï¼Œè®¾ç½®åˆ†é”€å•†
+//                                D('Fx_order')->where(array('fx_order_id' => $fx_order_id))->data(array('suppliers' => $suppliers))->save();
+//                            }
+//                        }
+//                    }
+//                    //è·å–åˆ†é”€åˆ©æ¶¦
+//                    if (!empty($financial_record_id) && !empty($cost_total)) {
+//                        $profit = $total - $cost_total;
+//                        if ($profit > 0) {
+//                            D('Financial_record')->where(array('id' => $financial_record_id))->data(array('profit' => $profit))->save();
+//                        }
+//                    }
+//                    //é€çº§æäº¤è®¢å•
+//                    $drp_level = $nowStore['drp_level']; //å½“å‰åˆ†é”€ç­‰çº§
+//                    $supplier_chain = D('Store_supplier')->where(array('seller_id' => $nowOrder['store_id']))->find();
+//                    $supply_chain = $supplier_chain['supply_chain'];
+//                    if ($supplier_chain['type'] == 1) { //æ’ä»–åˆ†é”€
+//                        $suppliers = explode(',', $supply_chain);
+//                        sort($suppliers);
+//                        $suppliers = array_reverse($suppliers);
+//                        array_pop($suppliers);
+//                        if (!empty($suppliers)) {
+//                            foreach ($suppliers as $supplier) {
+//                                $fx_order_info = D('Fx_order')->where(array('supplier_id' => $supplier, 'user_order_id' => $nowOrder['order_id']))->find();
+//                                if (!empty($fx_order_info)) {
+//                                    $tmp_data['trade_no']    = date('YmdHis', $_SERVER['REQUEST_TIME']) . mt_rand(100000, 999999);
+//                                    $tmp_data['total']       = $fx_order_info['cost_total'];
+//                                    $tmp_data['postage']     = $fx_order_info['postage'];
+//                                    $tmp_data['order_id']    = $fx_order_info['fx_order_id'];
+//                                    $tmp_data['supplier_id'] = $supplier;
+//                                    $tmp_data['seller_id']   = $fx_order_info['store_id'];
+//                                    pay($tmp_data);
+//                                }
+//                            }
+//                        }
+//                    }
+//                }
+				// æ›´æ”¹èµ é€çš„ä¼˜æƒ åˆ¸ä¸ºå¯ç”¨
+//				M('User_coupon')->save(array('is_valid' => 1), array('give_order_id' => $nowOrder['order_id']));
+				exit($ok_msg);
+			}
+			else {
+				exit($err_msg);
+			}
+		}
+		else {
+			exit($err_msg);
+		}
+	}
+	else {
+		exit($ok_msg);
+	}
+}
+
+//function pay($data)
+//{
+//    $order = M('Order');
+//    $order_product = M('Order_product');
+//    $fx_order = M('Fx_order');
+//    $fx_order_product = M('Fx_order_product');
+//    $store = M('Store');
+//    $financial_record = M('Financial_record');
+//    $store_supplier = M('Store_supplier');
+//    $product_model = M('Product');
+//    $product_sku = M('Product_sku');
+//
+//    $total = $data['total']; //ä»˜æ¬¾æ€»é‡‘é¢
+//
+//    //ä»˜æ¬¾ç»™ä¾›è´§å•†
+//    $fx_order_id = explode(',', $data['order_id']); //åˆå¹¶æ”¯ä»˜ä¼šå‡ºç°å¤šä¸ªè®¢å•ID
+//    $supplier = $store->getStore($data['supplier_id']); //ä¾›è´§å•†
+//    //å¦‚æœstore_supplierä¸­çš„seller_idå­—æ®µå€¼ä¸­æœ‰å½“å‰ä¾›è´§å•†å¹¶ä¸”typeåˆ†é”€ç±»å‹ä¸º1ï¼Œåˆ™è¡¨ç¤ºå½“å‰ä¾›è´§å•†åŒæ—¶ä¹Ÿæ˜¯åˆ†é”€å•†ï¼Œåˆ™ä¸ºå…¶ä¾›è´§å•†æ·»åŠ åˆ†é”€è®¢å•
+//    $seller_info = $store_supplier->getSeller(array('seller_id' => $data['supplier_id'], 'type' => 1));
+//    if (!empty($seller_info)) {
+//        $is_supplier = false;
+//    } else {
+//        $is_supplier = true;
+//    }
+//    $seller = $store->getStore($data['seller_id']); //åˆ†é”€å•†
+//    if ($total > 0) {
+//        // ä¾›è´§å•†ä¸å¯ç”¨ä½™é¢å’Œæ”¶å…¥åŠ å•†å“æˆæœ¬
+//        if ($store->setUnBalanceInc($data['supplier_id'], $total) && $store->setIncomeInc($data['supplier_id'], $total)) {
+//            foreach ($fx_order_id as $id) {
+//                // ä¿®æ”¹åˆ†é”€è®¢å•çŠ¶æ€ä¸ºç­‰å¾…ä¾›è´§å•†å‘è´§å¹¶ä¸”å…³è”ä¾›è´§å•†è®¢å•id
+//                $fx_order->edit(array('fx_order_id' => $id), array('status' => 2, 'paid_time' => time()));
+//                $fx_order_info = $fx_order->getOrder($data['seller_id'], $id); //åˆ†é”€è®¢å•è¯¦ç»†
+//                $order_id = $fx_order_info['order_id']; //ä¸»è®¢å•ID
+//                //ä¸»è®¢å•åˆ†é”€å•†å“
+//                $fx_products = $order_product->getFxProducts($order_id, $id, $is_supplier);
+//                $order_info = $order->getOrder($data['seller_id'], $order_id);
+//                $order_trade_no = $order_info['trade_no']; //ä¸»è®¢å•äº¤æ˜“å·
+//                unset($order_info['order_id']);
+//                $order_info['order_no']       = date('YmdHis',time()).mt_rand(100000,999999);
+//                $order_info['store_id']       = $data['supplier_id'];
+//                $order_info['trade_no']       = date('YmdHis',time()).mt_rand(100000,999999);
+//                $order_info['third_id']       = '';
+//                $order_info['uid']            = $seller['uid']; //ä¸‹å•ç”¨æˆ·ï¼ˆåˆ†é”€å•†ï¼‰
+//                $order_info['session_id']     = '';
+//                $order_info['postage']        = $fx_order_info['postage'];
+//                $order_info['sub_total']      = $fx_order_info['cost_sub_total'];
+//                $order_info['total']          = $fx_order_info['cost_total'];
+//                $order_info['status']         = 2; //æœªå‘è´§
+//                $order_info['pro_count']      = 0; //å•†å“ç§ç±»æ•°é‡
+//                $order_info['pro_num']        = $fx_order_info['quantity']; //å•†å“ä»¶æ•°
+//                $order_info['payment_method'] = 'balance';
+//                $order_info['type']           = 3; //åˆ†é”€è®¢å•
+//                $order_info['add_time']       = time();
+//                $order_info['paid_time']      = time();
+//                $order_info['sent_time']      = 0;
+//                $order_info['cancel_time']    = 0;
+//                $order_info['complate_time']  = 0;
+//                $order_info['refund_time']    = 0;
+//                $order_info['star']           = 0;
+//                $order_info['pay_money']      = $fx_order_info['cost_total'];
+//                $order_info['cancel_method']  = 0;
+//                $order_info['float_amount']   = 0;
+//                $order_info['is_fx']          = 0;
+//                $order_info['fx_order_id']    = $id; //å…³è”åˆ†é”€å•†è®¢å•idï¼ˆfx_orderï¼‰
+//                $order_info['user_order_id']  = $fx_order_info['user_order_id'];
+//                if ($new_order_id = $order->add($order_info)) { //å‘ä¾›è´§å•†æäº¤ä¸€ä¸ªæ–°è®¢å•
+//                    $suppliers = array();
+//                    foreach ($fx_products as $key => $fx_product) {
+//                        unset($fx_product['id']);
+//                        //è·å–åˆ†é”€å•†å“çš„æ¥æº
+//                        $product_info = $product_model->get(array('product_id' => $fx_product['product_id']), 'source_product_id,original_product_id');
+//                        if (!empty($product_info['source_product_id'])) {
+//                            $fx_product['product_id'] = $product_info['source_product_id'];
+//
+//                            $properties = ''; //å•†å“å±æ€§å­—ç¬¦ä¸²
+//                            if (!empty($fx_product['sku_data'])) {
+//                                $sku_data = unserialize($fx_product['sku_data']);
+//                                $skus = array();
+//                                foreach($sku_data as $sku) {
+//                                    $skus[] = $sku['pid'] . ':' . $sku['vid'];
+//                                }
+//                                $properties = implode(';', $skus);
+//                            }
+//                            if (!empty($properties)) { //æœ‰å±æ€§
+//                                $sku = $product_sku->getSku($fx_product['product_id'], $properties);
+//                                $fx_product['pro_price'] = $sku['cost_price']; //åˆ†é”€æ¥æºå•†å“çš„æˆæœ¬ä»·æ ¼
+//                                $fx_product['sku_id'] = $sku['sku_id'];
+//                            } else { //æ— å±æ€§
+//                                $source_product_info = $product_model->get(array('product_id' => $fx_product['product_id']), 'price,cost_price');
+//                                $fx_product['pro_price'] = $source_product_info['cost_price']; //åˆ†é”€æ¥æºå•†å“çš„æˆæœ¬ä»·æ ¼
+//                            }
+//                        }
+//
+//                        $fx_product['order_id']          = $new_order_id;
+//                        $fx_product['pro_price']         = $fx_product['price'];
+//                        $fx_product['is_packaged']       = 0;
+//                        $fx_product['in_package_status'] = 0;
+//                        //åˆ¤æ–­æ˜¯å¦æ˜¯åº—é“ºè‡ªæœ‰å•†å“
+//                        $super_product_info = $product_model->get(array('product_id' => $product_info['source_product_id']), 'source_product_id,original_product_id');
+//                        if (empty($seller_info) || empty($super_product_info['source_product_id'])) { //ä¾›è´§å•†æˆ–å•†å“ä¾›è´§å•†
+//                            $fx_product['is_fx']             = 0;
+//                        } else {
+//                            $fx_product['is_fx']             = 1;
+//                        }
+//                        unset($fx_product['price']);
+//                        $order_product->add($fx_product); //æ·»åŠ æ–°è®¢å•å•†
+//                        $fx_products[$key]['pro_price'] = $fx_product['pro_price'];
+//                        $fx_products[$key]['source_product_id'] = $fx_product['product_id'];
+//                        $suppliers[] = $fx_product['supplier_id'];
+//                    }
+//                    //ä¿®æ”¹è®¢å•ä¾›è´§å•†
+//                    $suppliers = array_unique($suppliers);
+//                    $suppliers = implode(',', $suppliers);
+//                    D('Order')->where(array('order_id' => $new_order_id))->data(array('suppliers' => $suppliers))->save();
+//
+//                    //æ·»åŠ ä¾›è´§å•†è´¢åŠ¡è®°å½•ï¼ˆæ”¶å…¥ï¼‰
+//                    $data_record = array();
+//                    $data_record['store_id']         = $data['supplier_id'];
+//                    $data_record['order_id'] 		 = $new_order_id;
+//                    $data_record['order_no'] 		 = $order_info['order_no'];
+//                    $data_record['income']  		 = $fx_order_info['cost_total'];
+//                    $data_record['type']    		 = 5; //åˆ†é”€
+//                    $data_record['balance']     	 = $supplier['income'];
+//                    $data_record['payment_method']   = 'balance';
+//                    $data_record['trade_no']         = $order_info['trade_no'];
+//                    $data_record['add_time']         = time();
+//                    $data_record['status']           = 1;
+//                    $data_record['user_order_id']    = $order_info['user_order_id'];
+//                    $financial_record_id = D('Financial_record')->data($data_record)->add();
+//
+//                    //åˆ¤æ–­ä¾›è´§å•†ï¼Œå¦‚æœä¸Šçº§ä¾›è´§å•†æ˜¯åˆ†é”€å•†ï¼Œæ·»åŠ åˆ†é”€è®¢å•
+//                    if (!empty($seller_info)) {
+//                        $cost_sub_total = 0;
+//                        $sub_total = 0;
+//                        $tmp_fx_products = array();
+//                        foreach ($fx_products as $k => $fx_product) {
+//                            $properties = ''; //å•†å“å±æ€§å­—ç¬¦ä¸²
+//                            if (!empty($fx_product['sku_data'])) {
+//                                $sku_data = unserialize($fx_product['sku_data']);
+//                                $skus = array();
+//                                foreach($sku_data as $sku) {
+//                                    $skus[] = $sku['pid'] . ':' . $sku['vid'];
+//                                }
+//                                $properties = implode(';', $skus);
+//                            }
+//                            //è·å–åˆ†é”€å•†å“çš„æ¥æº
+//                            $product_info = $product_model->get(array('product_id' => $fx_product['product_id']), 'source_product_id,original_product_id');
+//                            $source_product_id = $product_info['source_product_id']; //åˆ†é”€æ¥æºå•†å“
+//                            $original_product_id = $product_info['original_product_id'];
+//                            if (empty($source_product_id) || $original_product_id == $source_product_id) { //å•†å“ä¾›è´§å•†æˆ–å•†å“ä¾›è´§å•†ä¸ºä¸Šçº§åˆ†é”€å•†
+//                                unset($fx_products[$k]);
+//                                continue;
+//                            }
+//                            $tmp_fx_product = $fx_product;
+//                            if (!empty($seller_info) && !empty($product_info['original_product_id'])) {
+//                                $product_info = $product_model->get(array('product_id' => $source_product_id), 'source_product_id,original_product_id');
+//                                $source_product_id = $product_info['source_product_id']; //åˆ†é”€æ¥æºå•†å“
+//                            }
+//                            if (!empty($properties)) { //æœ‰å±æ€§
+//                                $sku = $product_sku->getSku($source_product_id, $properties);
+//                                //$price = $sku['price'];
+//                                $cost_price = $sku['cost_price']; //åˆ†é”€æ¥æºå•†å“çš„æˆæœ¬ä»·æ ¼
+//                                $sku_id = $sku['sku_id'];
+//                            } else { //æ— å±æ€§
+//                                $source_product_info = $product_model->get(array('product_id' => $source_product_id), 'price,cost_price');
+//                                //$price = $source_product_info['price'];
+//                                $cost_price = $source_product_info['cost_price']; //åˆ†é”€æ¥æºå•†å“çš„æˆæœ¬ä»·æ ¼
+//                                $sku_id = 0;
+//                            }
+//                            $cost_sub_total += $cost_price;
+//                            $sub_total += $fx_product['pro_price'];
+//                            $tmp_fx_product['product_id'] = $source_product_id;
+//                            $tmp_fx_product['price'] = $fx_product['pro_price'];
+//                            $tmp_fx_product['cost_price'] = $cost_price;
+//                            $tmp_fx_product['sku_id'] = $sku_id;
+//                            $tmp_fx_product['original_product_id'] = $original_product_id;
+//                            $tmp_fx_products[] = $tmp_fx_product;
+//                        }
+//                        if (!empty($fx_products)) {
+//                            $fx_order_no = date('YmdHis',$_SERVER['REQUEST_TIME']).mt_rand(100000,999999); //åˆ†é”€è®¢å•å·
+//                            //è¿è´¹
+//                            $fx_postages = array();
+//                            if (!empty($order_info['fx_postage'])) {
+//                                $fx_postages = unserialize($order_info['fx_postage']);
+//                            }
+//                            $postage = !empty($fx_postages[$seller_info['supplier_id']]) ? $fx_postages[$seller_info['supplier_id']] : 0;
+//                            $data2 = array(
+//                                'fx_order_no'      => $fx_order_no,
+//                                'uid'              => $order_info['uid'],
+//                                'order_id'         => $new_order_id,
+//                                'order_no'         => $order_info['order_no'],
+//                                'fx_trade_no'      => $data['trade_no'],
+//                                'supplier_id'      => $seller_info['supplier_id'],
+//                                'store_id'         => $data['supplier_id'],
+//                                'quantity'         => $fx_order_info['quantity'],
+//                                'sub_total'        => $sub_total,
+//                                'cost_sub_total'   => $cost_sub_total,
+//                                'postage'          => $postage,
+//                                'total'            => ($sub_total + $postage),
+//                                'cost_total'       => ($cost_sub_total + $postage),
+//                                'delivery_user'    => $order_info['address_user'],
+//                                'delivery_tel'     => $order_info['address_tel'],
+//                                'delivery_address' => $order_info['address'],
+//                                'add_time'         => time(),
+//                                'user_order_id'    => $order_info['user_order_id']
+//                            );
+//                            if ($fx_order_id = $fx_order->add($data2)) { //æ·»åŠ åˆ†é”€å•†è®¢å•
+//                                foreach ($tmp_fx_products as $tmp_fx_product) {
+//                                    if (!empty($tmp_fx_product['product_id'])) {
+//                                        $product_info = D('Product')->field('store_id, original_product_id')->where(array('product_id' => $tmp_fx_product['original_product_id']))->find();
+//                                        $tmp_supplier_id = $product_info['store_id'];
+//                                        $fx_order_product->add(array('fx_order_id' => $fx_order_id, 'product_id' => $tmp_fx_product['product_id'], 'source_product_id' => $tmp_fx_product['source_product_id'], 'price' => $tmp_fx_product['price'], 'cost_price' => $tmp_fx_product['cost_price'], 'quantity' => $tmp_fx_product['pro_num'], 'sku_id' => $tmp_fx_product['sku_id'], 'sku_data' => $tmp_fx_product['sku_data'], 'comment' => $tmp_fx_product['comment']));
+//                                    }
+//                                }
+//                                if (!empty($tmp_supplier_id)) { //ä¿®æ”¹è®¢å•ï¼Œè®¾ç½®åˆ†é”€å•†
+//                                    D('Fx_order')->where(array('fx_order_id' => $fx_order_id))->data(array('suppliers' => $tmp_supplier_id))->save();
+//                                }
+//                            }
+//                            //è·å–åˆ†é”€åˆ©æ¶¦
+//                            if (!empty($financial_record_id) && !empty($data2['cost_total'])) {
+//                                $profit = $data2['total'] - $data2['cost_total'];
+//                                if ($profit > 0) {
+//                                    D('Financial_record')->where(array('id' => $financial_record_id))->data(array('profit' => $profit))->save();
+//                                }
+//                            }
+//                        }
+//                    }
+//
+//                    //åˆ†é”€å•†ä¸å¯ç”¨ä½™é¢å’Œæ”¶å…¥å‡å•†å“æˆæœ¬
+//                    if ($store->setUnBalanceDec($data['seller_id'], $fx_order_info['cost_total']) && $store->setIncomeDec($data['seller_id'], $fx_order_info['cost_total'])) {
+//                        //æ·»åŠ åˆ†é”€å•†è´¢åŠ¡è®°å½•ï¼ˆæ”¯å‡ºï¼‰
+//                        $order_no = $order_info['order_no'];
+//                        $data_record = array();
+//                        $data_record['store_id']         = $data['seller_id'];
+//                        $data_record['order_id'] 		 = $order_id;
+//                        $data_record['order_no'] 		 = $order_no;
+//                        $data_record['income']  		 = (0 - $fx_order_info['cost_total']);
+//                        $data_record['type']    		 = 5; //åˆ†é”€
+//                        $data_record['balance']     	 = $seller['income'];
+//                        $data_record['payment_method']   = 'balance';
+//                        $data_record['trade_no']         = $order_trade_no;
+//                        $data_record['add_time']         = time();
+//                        $data_record['status']           = 1;
+//                        $data_record['user_order_id']    = $order_info['user_order_id'];
+//                        D('Financial_record')->data($data_record)->add();
+//                    } else { // æ“ä½œå¤±è´¥ï¼Œè®°å½•æ—¥å¿—æ–‡ä»¶
+//                        $supplier_name = $supplier['name'];
+//                        $seller_name = $seller['name'];
+//                        $dir = './upload/pay/';
+//                        if(!is_readable($dir))
+//                        {
+//                            is_file($dir) or mkdir($dir, 0777);
+//                        }
+//                        file_put_contents($dir . 'error.txt', '[' . date('Y-m-d H:i:s') . '] ä»˜æ¬¾ç»™ä¾›è´§å•†å¤±è´¥ï¼Œè®¢å•ç±»å‹ï¼šåˆ†é”€ï¼Œè®¢å•IDï¼š' . $order_id . 'ï¼Œäº¤æ˜“å•å·ï¼š' . $order_trade_no . 'ï¼Œä¾›è´§å•†ï¼ˆæ”¶æ¬¾æ–¹ï¼‰ï¼š' . $supplier_name . 'ï¼Œåˆ†é”€å•†ï¼ˆä»˜æ¬¾æ–¹ï¼‰ï¼š' . $seller_name . 'ï¼Œä»˜æ¬¾é‡‘é¢ï¼š' . $fx_order_info['cost_total'] . 'å…ƒï¼Œè¯·æ‰‹åŠ¨ä» ' . $seller_name . ' è´¦æˆ·ä½™é¢ä¸­å‡' . $fx_order_info['cost_total'] . 'å…ƒ' . PHP_EOL, FILE_APPEND );
+//                        return array('err_code' => 1005, 'err_msg' => 'ä»˜æ¬¾å¤±è´¥ï¼Œè¯·è”ç³»å®¢æœå¤„ç†ï¼Œäº¤æ˜“å•å·ï¼š' . $order_trade_no);
+//                    }
+//                }
+//            }
+//            return array('err_code' => 0, 'err_msg' => 'ä»˜æ¬¾æˆåŠŸï¼Œç­‰å¾…ä¾›è´§å•†å‘è´§');
+//        } else {
+//            return array('err_code' => 1004, 'err_msg' => 'ä»˜æ¬¾å¤±è´¥');
+//        }
+//    } else {
+//        return array('err_code' => 1003, 'err_msg' => 'ä»˜æ¬¾é‡‘é¢æ— æ•ˆ');
+//    }
+//}
+
+
