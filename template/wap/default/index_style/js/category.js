@@ -33,7 +33,7 @@ $(function(){
 	});
 	$.ajax({
 		type:"POST",
-		url:'index_ajax.php?action=get_category',
+		url:'index_ajax.php?action=get_category&'+new Date(),
 		dataType:'json',
 		success:function(result){
 			$('.wx_loading2').hide();
