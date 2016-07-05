@@ -2,8 +2,8 @@
 /**
  * 收入提现
  */
-define('TWIKER_PATH', dirname(__FILE__).'/../');
-require_once TWIKER_PATH.'source/init.php';
+define('TWIKER_PATH', dirname(__FILE__) . '/../');
+require_once TWIKER_PATH . 'source/init.php';
 require_once 'functions.php';
 
 if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
@@ -69,5 +69,10 @@ if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
     $error_code = 1001;
     $error_msg = '请求失败';
 }
-echo json_encode(array('error_code' => $error_code, 'error_msg' => $error_msg, 'withdrawals' => $withdrawals, 'withdrawal_count' => $withdrawal_count, 'withdrawal_status' => $withdrawal_status));
+echo json_encode(array('error_code'        => $error_code,
+                       'error_msg'         => $error_msg,
+                       'withdrawals'       => $withdrawals,
+                       'withdrawal_count'  => $withdrawal_count,
+                       'withdrawal_status' => $withdrawal_status,
+));
 exit;

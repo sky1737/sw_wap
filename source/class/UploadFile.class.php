@@ -2,30 +2,30 @@
 
 class UploadFile
 {
-    public $maxSize = -1;
-    public $supportMulti = true;
-    public $allowExts = array();
-    public $allowTypes = array();
-    public $thumb = false;
-    public $imageClassPath = 'ORG.Util.Image';
-    public $thumbMaxWidth;
-    public $thumbMaxHeight;
-    public $thumbPrefix = 'thumb_';
-    public $thumbSuffix = '';
-    public $thumbPath = '';
-    public $thumbFile = '';
-    public $thumbRemoveOrigin = false;
-    public $zipImages = false;
-    public $autoSub = false;
-    public $subType = 'hash';
-    public $dateFormat = 'Ymd';
-    public $hashLevel = 1;
-    public $savePath = '';
-    public $autoCheck = true;
-    public $uploadReplace = false;
-    public $saveRule = '';
-    public $hashType = 'md5_file';
-    private $error = '';
+    public  $maxSize           = -1;
+    public  $supportMulti      = true;
+    public  $allowExts         = array();
+    public  $allowTypes        = array();
+    public  $thumb             = false;
+    public  $imageClassPath    = 'ORG.Util.Image';
+    public  $thumbMaxWidth;
+    public  $thumbMaxHeight;
+    public  $thumbPrefix       = 'thumb_';
+    public  $thumbSuffix       = '';
+    public  $thumbPath         = '';
+    public  $thumbFile         = '';
+    public  $thumbRemoveOrigin = false;
+    public  $zipImages         = false;
+    public  $autoSub           = false;
+    public  $subType           = 'hash';
+    public  $dateFormat        = 'Ymd';
+    public  $hashLevel         = 1;
+    public  $savePath          = '';
+    public  $autoCheck         = true;
+    public  $uploadReplace     = false;
+    public  $saveRule          = '';
+    public  $hashType          = 'md5_file';
+    private $error             = '';
     private $uploadFileInfo;
 
     public function __construct($maxSize = '', $allowExts = '', $allowTypes = '', $savePath = '', $saveRule = '')
@@ -64,16 +64,19 @@ class UploadFile
         $filename = $file['savepath'] . $file['savename'];
         if (!$this->uploadReplace && is_file($filename)) {
             $this->error = '文件已经存在！' . $filename;
+
             return false;
         }
 
         if (in_array(strtolower($file['extension']), array('gif', 'jpg', 'jpeg', 'bmp', 'png', 'swf')) && (false === getimagesize($file['tmp_name']))) {
             $this->error = '非法图像文件';
+
             return false;
         }
 
         if (!move_uploaded_file($file['tmp_name'], $this->autoCharset($filename, 'utf-8', 'gbk'))) {
             $this->error = '文件上传保存错误！';
+
             return false;
         }
 
@@ -81,19 +84,19 @@ class UploadFile
             $image = getimagesize($filename);
 
             if (false !== $image) {
-                $thumbWidth = explode(',', $this->thumbMaxWidth);
+                $thumbWidth  = explode(',', $this->thumbMaxWidth);
                 $thumbHeight = explode(',', $this->thumbMaxHeight);
                 $thumbPrefix = explode(',', $this->thumbPrefix);
                 $thumbSuffix = explode(',', $this->thumbSuffix);
-                $thumbFile = explode(',', $this->thumbFile);
-                $thumbPath = ($this->thumbPath ? $this->thumbPath : $file['savepath']);
+                $thumbFile   = explode(',', $this->thumbFile);
+                $thumbPath   = ($this->thumbPath ? $this->thumbPath : $file['savepath']);
                 import($this->imageClassPath);
                 $realFilename = ($this->autoSub ? basename($file['savename']) : $file['savename']);
-                $i = 0;
+                $i            = 0;
 
                 for ($len = count($thumbWidth); $i < $len; $i++) {
-                    $thumbname = $thumbPath . $thumbPrefix[$i] . substr($realFilename, 0, strrpos($realFilename, '.')) . $thumbSuffix[$i] . '.' . $file['extension'];
-                    Image::thumb($filename, $thumbname, '', $thumbWidth[$i], $thumbHeight[$i], true);
+                    $thumbname = $thumbPath . $thumbPrefix[ $i ] . substr($realFilename, 0, strrpos($realFilename, '.')) . $thumbSuffix[ $i ] . '.' . $file['extension'];
+                    Image::thumb($filename, $thumbname, '', $thumbWidth[ $i ], $thumbHeight[ $i ], true);
                 }
 
                 if ($this->thumbRemoveOrigin) {
@@ -117,25 +120,31 @@ class UploadFile
         if (!is_dir($savePath)) {
             if (is_dir(base64_decode($savePath))) {
                 $savePath = base64_decode($savePath);
-            } else if (!mkdir($savePath)) {
-                $this->error = '上传目录' . $savePath . '不存在';
+            } else {
+                if (!mkdir($savePath)) {
+                    $this->error = '上传目录' . $savePath . '不存在';
+
+                    return false;
+                }
+            }
+        } else {
+            if (!is_writeable($savePath)) {
+                $this->error = '上传目录' . $savePath . '不可写';
+
                 return false;
             }
-        } else if (!is_writeable($savePath)) {
-            $this->error = '上传目录' . $savePath . '不可写';
-            return false;
         }
 
         $fileInfo = array();
         $isUpload = false;
-        $files = $this->dealFiles($_FILES);
+        $files    = $this->dealFiles($_FILES);
 
         foreach ($files as $key => $file) {
             if (!empty($file['name'])) {
-                $file['key'] = $key;
+                $file['key']       = $key;
                 $file['extension'] = $this->getExt($file['name']);
-                $file['savepath'] = $savePath;
-                $file['savename'] = $this->getSaveName($file);
+                $file['savepath']  = $savePath;
+                $file['savename']  = $this->getSaveName($file);
 
                 if ($this->autoCheck) {
                     if (!$this->check($file)) {
@@ -148,22 +157,24 @@ class UploadFile
                 }
 
                 if (function_exists($this->hashType)) {
-                    $fun = $this->hashType;
+                    $fun          = $this->hashType;
                     $file['hash'] = $fun($this->autoCharset($file['savepath'] . $file['savename'], 'utf-8', 'gbk'));
                 }
 
                 unset($file['tmp_name']);
                 unset($file['error']);
                 $fileInfo[] = $file;
-                $isUpload = true;
+                $isUpload   = true;
             }
         }
 
         if ($isUpload) {
             $this->uploadFileInfo = $fileInfo;
+
             return true;
         } else {
             $this->error = '没有选择上传文件';
+
             return false;
         }
     }
@@ -175,25 +186,29 @@ class UploadFile
         }
 
         if (!is_dir($savePath)) {
-            if (!mk_dir($savePath)) {
+            if (!mkdir($savePath)) {
                 $this->error = '上传目录' . $savePath . '不存在';
+
                 return false;
             }
-        } else if (!is_writeable($savePath)) {
-            $this->error = '上传目录' . $savePath . '不可写';
-            return false;
+        } else {
+            if (!is_writeable($savePath)) {
+                $this->error = '上传目录' . $savePath . '不可写';
+
+                return false;
+            }
         }
 
         if (!empty($file['name'])) {
             $fileArray = array();
 
             if (is_array($file['name'])) {
-                $keys = array_keys($file);
+                $keys  = array_keys($file);
                 $count = count($file['name']);
 
                 for ($i = 0; $i < $count; $i++) {
                     foreach ($keys as $key) {
-                        $fileArray[$i][$key] = $file[$key][$i];
+                        $fileArray[ $i ][ $key ] = $file[ $key ][ $i ];
                     }
                 }
             } else {
@@ -204,8 +219,8 @@ class UploadFile
 
             foreach ($fileArray as $key => $file) {
                 $file['extension'] = $this->getExt($file['name']);
-                $file['savepath'] = $savePath;
-                $file['savename'] = $this->getSaveName($file);
+                $file['savepath']  = $savePath;
+                $file['savename']  = $this->getSaveName($file);
 
                 if ($this->autoCheck) {
                     if (!$this->check($file)) {
@@ -218,7 +233,7 @@ class UploadFile
                 }
 
                 if (function_exists($this->hashType)) {
-                    $fun = $this->hashType;
+                    $fun          = $this->hashType;
                     $file['hash'] = $fun($this->autoCharset($file['savepath'] . $file['savename'], 'utf-8', 'gbk'));
                 }
 
@@ -230,6 +245,7 @@ class UploadFile
             return $info;
         } else {
             $this->error = '没有选择上传文件';
+
             return false;
         }
     }
@@ -237,22 +253,22 @@ class UploadFile
     private function dealFiles($files)
     {
         $fileArray = array();
-        $n = 0;
+        $n         = 0;
 
         foreach ($files as $file) {
             if (is_array($file['name'])) {
-                $keys = array_keys($file);
+                $keys  = array_keys($file);
                 $count = count($file['name']);
 
                 for ($i = 0; $i < $count; $i++) {
                     foreach ($keys as $key) {
-                        $fileArray[$n][$key] = $file[$key][$i];
+                        $fileArray[ $n ][ $key ] = $file[ $key ][ $i ];
                     }
 
                     $n++;
                 }
             } else {
-                $fileArray[$n] = $file;
+                $fileArray[ $n ] = $file;
                 $n++;
             }
         }
@@ -291,7 +307,7 @@ class UploadFile
                 $this->error = '未知上传错误！';
         }
 
-        return NULL;
+        return null;
     }
 
     private function getSaveName($filename)
@@ -300,15 +316,17 @@ class UploadFile
 
         if (empty($rule)) {
             $saveName = $filename['name'];
-        } else if (function_exists($rule)) {
-            $saveName = $rule() . '.' . $filename['extension'];
         } else {
-            $saveName = $rule . '.' . $filename['extension'];
+            if (function_exists($rule)) {
+                $saveName = $rule() . '.' . $filename['extension'];
+            } else {
+                $saveName = $rule . '.' . $filename['extension'];
+            }
         }
 
         if ($this->autoSub) {
             $filename['savename'] = $saveName;
-            $saveName = $this->getSubName($filename) . '/' . $saveName;
+            $saveName             = $this->getSubName($filename) . '/' . $saveName;
         }
 
         return $saveName;
@@ -324,17 +342,17 @@ class UploadFile
             case 'hash':
             default:
                 $name = md5($file['savename']);
-                $dir = '';
+                $dir  = '';
 
                 for ($i = 0; $i < $this->hashLevel; $i++) {
-                    $dir .= $name[$i] . '/';
+                    $dir .= $name[ $i ] . '/';
                 }
 
                 break;
         }
 
         if (!is_dir($file['savepath'] . $dir)) {
-            mk_dir($file['savepath'] . $dir);
+            mkdir($file['savepath'] . $dir);
         }
 
         return $dir;
@@ -344,26 +362,31 @@ class UploadFile
     {
         if ($file['error'] !== 0) {
             $this->error($file['error']);
+
             return false;
         }
 
         if (!$this->checkSize($file['size'])) {
             $this->error = '上传文件大小不符！';
+
             return false;
         }
 
         if (!$this->checkType($file['type'])) {
             $this->error = '上传文件MIME类型不允许！';
+
             return false;
         }
 
         if (!$this->checkExt($file['extension'])) {
             $this->error = '上传文件类型不允许';
+
             return false;
         }
 
         if (!$this->checkUpload($file['tmp_name'])) {
             $this->error = '非法上传文件！';
+
             return false;
         }
 
@@ -373,17 +396,19 @@ class UploadFile
     private function autoCharset($fContents, $from = 'gbk', $to = 'utf-8')
     {
         $from = (strtoupper($from) == 'UTF8' ? 'utf-8' : $from);
-        $to = (strtoupper($to) == 'UTF8' ? 'utf-8' : $to);
+        $to   = (strtoupper($to) == 'UTF8' ? 'utf-8' : $to);
         if ((strtoupper($from) === strtoupper($to)) || empty($fContents) || (is_scalar($fContents) && !is_string($fContents))) {
             return $fContents;
         }
 
         if (function_exists('mb_convert_encoding')) {
             return mb_convert_encoding($fContents, $to, $from);
-        } else if (function_exists('iconv')) {
-            return iconv($from, $to, $fContents);
         } else {
-            return $fContents;
+            if (function_exists('iconv')) {
+                return iconv($from, $to, $fContents);
+            } else {
+                return $fContents;
+            }
         }
     }
 
@@ -418,6 +443,7 @@ class UploadFile
     private function getExt($filename)
     {
         $pathinfo = pathinfo($filename);
+
         return $pathinfo['extension'];
     }
 

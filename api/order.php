@@ -2,8 +2,8 @@
 /**
  * 订单
  */
-define('TWIKER_PATH', dirname(__FILE__).'/../');
-require_once TWIKER_PATH.'source/init.php';
+define('TWIKER_PATH', dirname(__FILE__) . '/../');
+require_once TWIKER_PATH . 'source/init.php';
 require_once 'functions.php';
 
 if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
@@ -40,7 +40,7 @@ if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
                 $store_id = 0;
                 $store_name = '';
             }
-            $where['status'] = array('in', array(2,3,4));
+            $where['status'] = array('in', array(2, 3, 4));
             $order_count = $order->getOrderTotal($where); //订单数量
             $order_amount = $order->getOrderAmount($where); //订单总额
             import('source.class.user_page');
@@ -54,7 +54,7 @@ if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
                 'store'        => $store_name,
                 'order_count'  => $order_count,
                 'order_amount' => $order_amount,
-                'orders'       => $tmp_orders
+                'orders'       => $tmp_orders,
             );
             $error_code = 0;
             $error_msg = '请求成功';
