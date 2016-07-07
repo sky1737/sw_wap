@@ -1,5 +1,5 @@
-upload/
-cache/
-.idea/
+/upload/
+/cache/
+/.idea/
 ueditor/
-Storage/
+/Storage/
