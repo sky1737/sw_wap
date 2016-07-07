@@ -4,8 +4,8 @@
  */
 header("Content-Type: text/html;charset='UTF-8'");
 
-define('TWIKER_PATH', dirname(__FILE__).'/../');
-require_once TWIKER_PATH.'source/init.php';
+define('TWIKER_PATH', dirname(__FILE__) . '/../');
+require_once TWIKER_PATH . 'source/init.php';
 require_once 'functions.php';
 
 function send($notify_url, $wecha_id, $token, $type, $href, $title, $buyer_tel, $seller_tel, $order_detail, $products, $remark)

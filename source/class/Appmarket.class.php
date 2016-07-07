@@ -16,21 +16,21 @@ class Appmarket
         //print_r($reward_list);exit;
         $return_reward_list = array();
         $product_price_list = array();
-        $is_all = false;
+        $is_all             = false;
         // 记录购买的产品享受的优惠活动
         foreach ($reward_list as $reward) {
             // 如果是全总产品参与
             if ($reward['is_all'] == 1) {
                 foreach ($reward['condition_list'] as $condition) {
                     if ($condition['money'] <= $product_arr['total_price']) {
-                        $data = array();
-                        $data['rid'] = $reward['id'];
-                        $data['name'] = $reward['name'];
+                        $data                 = array();
+                        $data['rid']          = $reward['id'];
+                        $data['name']         = $reward['name'];
                         $data['condition_id'] = $condition['id'];
-                        $data['money'] = $condition['money'];
-                        $data['cash'] = $condition['cash'];
-                        $data['postage'] = $condition['postage'];
-                        $data['score'] = $condition['score'];
+                        $data['money']        = $condition['money'];
+                        $data['cash']         = $condition['cash'];
+                        $data['postage']      = $condition['postage'];
+                        $data['score']        = $condition['score'];
 
                         if (!empty($condition['coupon'])) {
                             $data['coupon'] = M('Coupon')->getValidCoupon($condition['coupon']);
@@ -54,20 +54,20 @@ class Appmarket
                                     $tmp_cash = $cash;
                                     $cash -= $tmp_product_price['price'];
                                     if ($cash < 0) {
-                                        $tmp = array();
-                                        $tmp['product_id'] = $product_id;
+                                        $tmp                      = array();
+                                        $tmp['product_id']        = $product_id;
                                         $tmp['is_original_price'] = 0;
-                                        $tmp['price'] = $tmp_product_price['price'] - $tmp_cash;
-                                        $tmp['pro_num'] = 1;
+                                        $tmp['price']             = $tmp_product_price['price'] - $tmp_cash;
+                                        $tmp['pro_num']           = 1;
 
                                         $product_price_list[] = $tmp;
                                     }
                                 } else {
-                                    $tmp = array();
-                                    $tmp['product_id'] = $product_id;
+                                    $tmp                      = array();
+                                    $tmp['product_id']        = $product_id;
                                     $tmp['is_original_price'] = 1;
-                                    $tmp['price'] = $tmp_product_price['price'];
-                                    $tmp['pro_num'] = $tmp_product_price['pro_num'] - $i + 1;
+                                    $tmp['price']             = $tmp_product_price['price'];
+                                    $tmp['pro_num']           = $tmp_product_price['pro_num'] - $i + 1;
 
                                     $product_price_list[] = $tmp;
                                     break;
@@ -87,19 +87,19 @@ class Appmarket
             } else {
                 $total_price = 0;
                 foreach ($reward['product_list'] as $product_id) {
-                    $total_price += $product_arr['product_price_arr'][$product_id]['price'] * $product_arr['product_price_arr'][$product_id]['pro_num'];
+                    $total_price += $product_arr['product_price_arr'][ $product_id ]['price'] * $product_arr['product_price_arr'][ $product_id ]['pro_num'];
                 }
 
                 foreach ($reward['condition_list'] as $condition) {
                     if ($condition['money'] <= $total_price) {
-                        $data = array();
-                        $data['rid'] = $reward['id'];
-                        $data['name'] = $reward['name'];
+                        $data                 = array();
+                        $data['rid']          = $reward['id'];
+                        $data['name']         = $reward['name'];
                         $data['condition_id'] = $condition['id'];
-                        $data['money'] = $condition['money'];
-                        $data['cash'] = $condition['cash'];
-                        $data['postage'] = $condition['postage'];
-                        $data['score'] = $condition['score'];
+                        $data['money']        = $condition['money'];
+                        $data['cash']         = $condition['cash'];
+                        $data['postage']      = $condition['postage'];
+                        $data['score']        = $condition['score'];
                         if (!empty($condition['coupon'])) {
                             $data['coupon'] = M('Coupon')->getValidCoupon($condition['coupon']);
                         } else {
@@ -113,37 +113,37 @@ class Appmarket
 
                         // 是否全部产品参与
                         $data['is_all'] = $reward['product_list'];
-                        $cash = $condition['cash'];
+                        $cash           = $condition['cash'];
                         // 使用满减送减现金后的产品信息
                         foreach ($reward['product_list'] as $prudoct_id) {
-                            $tmp_product_price = $product_arr['product_price_arr'][$product_id];
+                            $tmp_product_price = $product_arr['product_price_arr'][ $product_id ];
 
                             for ($i = 1; $i <= $tmp_product_price['pro_num']; $i++) {
                                 if ($cash > 0) {
                                     $tmp_cash = $cash;
                                     $cash -= $tmp_product_price['price'];
                                     if ($cash < 0) {
-                                        $tmp = array();
-                                        $tmp['product_id'] = $product_id;
+                                        $tmp                      = array();
+                                        $tmp['product_id']        = $product_id;
                                         $tmp['is_original_price'] = 0;
-                                        $tmp['price'] = $tmp_product_price['price'] - $tmp_cash;
-                                        $tmp['pro_num'] = 1;
+                                        $tmp['price']             = $tmp_product_price['price'] - $tmp_cash;
+                                        $tmp['pro_num']           = 1;
 
                                         $product_price_list[] = $tmp;
                                     }
                                 } else {
-                                    $tmp = array();
-                                    $tmp['product_id'] = $product_id;
+                                    $tmp                      = array();
+                                    $tmp['product_id']        = $product_id;
                                     $tmp['is_original_price'] = 1;
-                                    $tmp['price'] = $tmp_product_price['price'];
-                                    $tmp['pro_num'] = $tmp_product_price['pro_num'] - $i + 1;
+                                    $tmp['price']             = $tmp_product_price['price'];
+                                    $tmp['pro_num']           = $tmp_product_price['pro_num'] - $i + 1;
 
                                     $product_price_list[] = $tmp;
                                     break;
                                 }
                             }
 
-                            unset($product_arr['product_price_arr'][$product_id]);
+                            unset($product_arr['product_price_arr'][ $product_id ]);
                         }
 
                         $return_reward_list[] = $data;
@@ -159,11 +159,11 @@ class Appmarket
         if ($is_all) {
             if (empty($product_price_list)) {
                 foreach ($product_arr['product_price_arr'] as $product_id => $tmp_product_price) {
-                    $tmp = array();
-                    $tmp['product_id'] = $product_id;
+                    $tmp                      = array();
+                    $tmp['product_id']        = $product_id;
                     $tmp['is_original_price'] = 1;
-                    $tmp['price'] = $tmp_product_price['price'];
-                    $tmp['pro_num'] = $tmp_product_price['pro_num'];
+                    $tmp['price']             = $tmp_product_price['price'];
+                    $tmp['pro_num']           = $tmp_product_price['pro_num'];
 
                     $product_price_list[] = $tmp;
                 }
@@ -171,11 +171,11 @@ class Appmarket
         } else {
             if (isset($product_arr['product_price_arr']) && count($product_arr['product_price_arr']) > 0) {
                 foreach ($product_arr['product_price_arr'] as $product_id => $tmp_product_price) {
-                    $tmp = array();
-                    $tmp['product_id'] = $product_id;
+                    $tmp                      = array();
+                    $tmp['product_id']        = $product_id;
                     $tmp['is_original_price'] = 1;
-                    $tmp['price'] = $tmp_product_price['price'];
-                    $tmp['pro_num'] = $tmp_product_price['pro_num'];
+                    $tmp['price']             = $tmp_product_price['price'];
+                    $tmp['pro_num']           = $tmp_product_price['pro_num'];
 
                     $product_price_list[] = $tmp;
                 }
@@ -183,6 +183,7 @@ class Appmarket
         }
 
         $return_reward_list['product_price_list'] = $product_price_list;
+
         return $return_reward_list;
     }
 

@@ -3227,14 +3227,14 @@ class area
             659001 => '石河子市',
             659002 => '阿拉尔市',
             659003 => '图木舒克市',
-            659004 => '五家渠市'
+            659004 => '五家渠市',
         );
     }
 
     public function get_name($area_id)
     {
-        if (isset($this->arrMArea[$area_id])) {
-            return $this->arrMArea[$area_id];
+        if (isset($this->arrMArea[ $area_id ])) {
+            return $this->arrMArea[ $area_id ];
         } else {
             return '';
         }

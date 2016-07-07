@@ -17,13 +17,13 @@ class Page
     public function __construct($totalRows, $listRows, $nowPage = '')
     {
         $this->totalRows = $totalRows;
-        $this->nowPage = !empty($_POST['p']) ? intval($_POST['p']) : 1;
+        $this->nowPage   = !empty($_POST['p']) ? intval($_POST['p']) : 1;
 
         if (!empty($nowPage)) {
             $this->nowPage = $nowPage;
         }
 
-        $this->listRows = $listRows;
+        $this->listRows  = $listRows;
         $this->totalPage = ceil($totalRows / $listRows);
         if ($this->nowPage > $this->totalPage && $this->totalPage > 0) {
             $this->nowPage = $this->totalPage;
@@ -34,7 +34,7 @@ class Page
     public function show()
     {
         if ($this->totalRows == 0) return false;
-        $now = $this->nowPage;
+        $now   = $this->nowPage;
         $total = $this->totalPage;
 
         $str = '<span class="total">共 ' . $this->totalRows . ' 条，每页 ' . $this->listRows . ' 条</span> ';

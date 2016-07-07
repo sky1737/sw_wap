@@ -472,7 +472,7 @@
 			<ul class="content_list_ul" style="height:341px;position:absolute;left:0;">
 				<?php
 				foreach ($nearshops as $k => $v) {
-					echo '<li><a href="' . $v['pcurl'] .
+					echo '<li><a target="_blank" href="' . $v['pcurl'] .
 						'"><div class="content_list_img"><img class="lazys" data-original="' . TPL_URL .
 						'images/ico/grey.gif" src="' . $v['logo'] .
 						'" onloads="AutoResizeImage(217,144,this)" width="217px" height="144px">  <div class="content_list_erweima"><div class="content_list_erweima_img"><img src="' .

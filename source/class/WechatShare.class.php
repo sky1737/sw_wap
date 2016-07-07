@@ -2,143 +2,139 @@
 
 class WechatShare
 {
-	public $appid = '';
-	public $appsecret = '';
-	public $error = array();
+    public $appid = '';
+    public $appsecret = '';
+    public $error = array();
 
-	//构造函数获取access_token
-	function __construct()
-	{
-		$this->appid = option('config.wechat_appid');
-		$this->appsecret = option('config.wechat_appsecret');
-	}
+    //构造函数获取access_token
+    function __construct()
+    {
+        $this->appid = option('config.wechat_appid');
+        $this->appsecret = option('config.wechat_appsecret');
+    }
 
-	public function getSgin($share_conf)
-	{
-		import('WechatApi');
-		$tokenObj = new WechatApi(array('appid' => $this->appid, 'appsecret' => $this->appsecret));
-		$access_token = $tokenObj->get_access_token();
-		//file_put_contents('token.txt', $access_token);
-		$ticket = $this->getTicket($access_token['access_token']);
-		$url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+    public function getSgin($share_conf)
+    {
+        import('WechatApi');
+        $tokenObj = new WechatApi(array('appid' => $this->appid, 'appsecret' => $this->appsecret));
+        $access_token = $tokenObj->get_access_token();
+        //file_put_contents('token.txt', $access_token);
+        $ticket = $this->getTicket($access_token['access_token']);
+        $url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
-		$sign_data = $this->addSign($ticket, $url);
+        $sign_data = $this->addSign($ticket, $url);
 
-		$share_html = $this->createHtml($sign_data, $share_conf);
+        $share_html = $this->createHtml($sign_data, $share_conf);
 
-		return $share_html;
-	}
+        return $share_html;
+    }
 
-	public function getError()
-	{
-		dump($this->error);
-	}
+    public function getError()
+    {
+        dump($this->error);
+    }
 
-	public function addSign($ticket, $url)
-	{
-		$timestamp = time();
-		$nonceStr = rand(100000, 999999);
-		$array = array(
-			"noncestr"     => $nonceStr,
-			"jsapi_ticket" => $ticket,
-			"timestamp"    => $timestamp,
-			"url"          => $url,
-		);
+    public function addSign($ticket, $url)
+    {
+        $timestamp = time();
+        $nonceStr = rand(100000, 999999);
+        $array = array(
+            "noncestr"     => $nonceStr,
+            "jsapi_ticket" => $ticket,
+            "timestamp"    => $timestamp,
+            "url"          => $url,
+        );
 
-		ksort($array);
-		$signPars = '';
+        ksort($array);
+        $signPars = '';
 
-		foreach ($array as $k => $v) {
-			if ("" != $v && "sign" != $k) {
-				if ($signPars == '') {
-					$signPars .= $k . "=" . $v;
-				}
-				else {
-					$signPars .= "&" . $k . "=" . $v;
-				}
-			}
-		}
+        foreach ($array as $k => $v) {
+            if ("" != $v && "sign" != $k) {
+                if ($signPars == '') {
+                    $signPars .= $k . "=" . $v;
+                } else {
+                    $signPars .= "&" . $k . "=" . $v;
+                }
+            }
+        }
 
-		$result = array(
-			'appId'     => $this->appid,
-			'timestamp' => $timestamp,
-			'nonceStr'  => $nonceStr,
-			'url'       => $url,
-			'signature' => SHA1($signPars),
-		);
+        $result = array(
+            'appId'     => $this->appid,
+            'timestamp' => $timestamp,
+            'nonceStr'  => $nonceStr,
+            'url'       => $url,
+            'signature' => sha1($signPars),
+        );
 
-		return $result;
-	}
+        return $result;
+    }
 
 
-	public function getUrl()
-	{
-		$url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+    public function getUrl()
+    {
+        $url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
-		if (isset($_GET['code']) && isset($_GET['state']) && ($_GET['state'] == 'oauth')) {
-			$url = $this->clearUrl($url);
-			if (isset($_GET['wecha_id'])) {
-				$url .= '&wecha_id=' . $this->wecha_id;
-			}
+        if (isset($_GET['code']) && isset($_GET['state']) && ($_GET['state'] == 'oauth')) {
+            $url = $this->clearUrl($url);
+            if (isset($_GET['wecha_id'])) {
+                $url .= '&wecha_id=' . $this->wecha_id;
+            }
 
-			return $url;
-		}
-		else {
-			return $url;
-		}
+            return $url;
+        } else {
+            return $url;
+        }
 
-	}
+    }
 
-	public function clearUrl($url)
-	{
-		$param = explode('&', $url);
-		for ($i = 0, $count = count($param); $i < $count; $i++) {
-			if (preg_match('/^(code=|state=|wecha_id=).*/', $param[$i])) {
-				unset($param[$i]);
-			}
-		}
+    public function clearUrl($url)
+    {
+        $param = explode('&', $url);
+        for ($i = 0, $count = count($param); $i < $count; $i++) {
+            if (preg_match('/^(code=|state=|wecha_id=).*/', $param[$i])) {
+                unset($param[$i]);
+            }
+        }
 
-		return join('&', $param);
-	}
+        return join('&', $param);
+    }
 
-	//获取token
-	public function  getToken()
-	{
-		//$url 	= "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".$this->appId."&secret=".$this->appsecret;
-		//return $this->https_request($url);
-	}
+    //获取token
+    public function getToken()
+    {
+        //$url 	= "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".$this->appId."&secret=".$this->appsecret;
+        //return $this->https_request($url);
+    }
 
-	public function getTicket($token)
-	{
-		$now = time();
-		$ticketData = S($this->appid . '_shareTicket');
+    public function getTicket($token)
+    {
+        $now = time();
+        $ticketData = S($this->appid . '_shareTicket');
 
-		if ($ticketData['ticket'] == '' || $ticketData['expires_in'] < $now) {
-			$url = "https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=" . $token . "&type=jsapi";
-			// 统计
-			M('Api_count')->visit('getticket');
-			$res = $this->https_request($url);
+        if ($ticketData['ticket'] == '' || $ticketData['expires_in'] < $now) {
+            $url = "https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=" . $token . "&type=jsapi";
+            // 统计
+            M('Api_count')->visit('getticket');
+            $res = $this->https_request($url);
 
-			if ($res['errcode'] > 0) {
-				return array('errcode' => $res['errcode'], 'errmsg' => $res['errMsg']);
-			}
-			else {
-				S($this->appid . '_shareTicket',
-					array('ticket' => $res['ticket'], 'expires_in' => $res['expires_in'] + $now));
+            if ($res['errcode'] > 0) {
+                return array('errcode' => $res['errcode'], 'errmsg' => $res['errMsg']);
+            } else {
+                S($this->appid . '_shareTicket',
+                    array('ticket' => $res['ticket'], 'expires_in' => $res['expires_in'] + $now));
 
-				return $res['ticket'];
-			}
-		}
-		else {
-			return $ticketData['ticket'];
+                return $res['ticket'];
+            }
+        } else {
+            return $ticketData['ticket'];
 
-		}
-	}
+        }
+    }
 
-	/*创建分享html*/
-	public function createHtml($sign_data, $share_conf)
-	{
-		$html = <<<EOM
+    /*创建分享html*/
+    public function createHtml($sign_data, $share_conf)
+    {
+        $html = <<<EOM
 	<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 	<script type="text/javascript">
 		wx.config({
@@ -255,77 +251,75 @@ class WechatShare
 </script>
 EOM;
 
-		return $html;
-	}
+        return $html;
+    }
 
-	//https请求（支持GET和POST）
-	protected function https_request($url, $data = null)
-	{
-		$curl = curl_init();
-		$header = array("Accept-Charset: utf-8");
-		curl_setopt($curl, CURLOPT_URL, $url);
-		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-		curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
-		//curl_setopt($curl, CURLOPT_SSLVERSION, 3);
-		curl_setopt($curl, CURLOPT_HTTPHEADER, $header);
-		if (!empty($data)) {
-			curl_setopt($curl, CURLOPT_POST, 1);
-			curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
-		}
-		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-		$output = curl_exec($curl);
-		$errorno = curl_errno($curl);
-		if ($errorno) {
-			return array('curl' => false, 'errorno' => $errorno);
-		}
-		else {
-			$res = json_decode($output, 1);
+    //https请求（支持GET和POST）
+    protected function https_request($url, $data = null)
+    {
+        $curl = curl_init();
+        $header = array("Accept-Charset: utf-8");
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+        //curl_setopt($curl, CURLOPT_SSLVERSION, 3);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $header);
+        if (!empty($data)) {
+            curl_setopt($curl, CURLOPT_POST, 1);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+        }
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        $output = curl_exec($curl);
+        $errorno = curl_errno($curl);
+        if ($errorno) {
+            return array('curl' => false, 'errorno' => $errorno);
+        } else {
+            $res = json_decode($output, 1);
 
-			if ($res['errcode']) {
-				return array('errcode' => $res['errcode'], 'errmsg' => $res['errmsg']);
-			}
-			else {
-				return $res;
-			}
-		}
-		curl_close($curl);
-	}
+            if ($res['errcode']) {
+                return array('errcode' => $res['errcode'], 'errmsg' => $res['errmsg']);
+            } else {
+                return $res;
+            }
+        }
+        curl_close($curl);
+    }
 
-	/**
-	 * 分享
-	 * @param Array $params
-	 * @return string
-	 */
-	public function getShareData($params = array())
-	{
-		$params['moduleName'] = empty($params['moduleName']) ? MODULE_NAME : $params['moduleName'];
-		$params['moduleID'] = empty($params['moduleID']) ? 0 : $params['moduleID'];
-		$params['imgUrl'] = empty($params['imgUrl']) ? '' : $params['imgUrl'];
-		if (empty($params['sendFriendLink'])) {
-			$params['sendFriendLink'] = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-			$parseUrl = parse_url($params['sendFriendLink']);
-			parse_str(htmlspecialchars_decode($parseUrl['query']), $query);
-			$wecha_id = isset($query['wecha_id']) ? $query['wecha_id'] : '';
-			if (1 == count($query)) {
-				$wecha_id = '\?wecha_id=' . $wecha_id;
-			}
-			else {
-				$wecha_id = '&wecha_id=' . $wecha_id . '|' . 'wecha_id=' . $wecha_id . '&';
-			}
-			$params['sendFriendLink'] = preg_replace("/$wecha_id/i", '', $params['sendFriendLink']);
-		}
-		else {
-			$params['sendFriendLink'] = stripslashes($params['sendFriendLink']);
-		}
-		$params['tTitle'] = empty($params['tTitle']) ? '' : shareFilter($params['tTitle']);
-		$params['tContent'] = empty($params['tContent']) ? $params['tTitle'] : shareFilter($params['tContent']);
-		$shareData = str_replace('\\/', '/', json_encode($params));
-		$html = <<<EOM
+    /**
+     * 分享
+     *
+     * @param Array $params
+     *
+     * @return string
+     */
+    public function getShareData($params = array())
+    {
+        $params['moduleName'] = empty($params['moduleName']) ? MODULE_NAME : $params['moduleName'];
+        $params['moduleID'] = empty($params['moduleID']) ? 0 : $params['moduleID'];
+        $params['imgUrl'] = empty($params['imgUrl']) ? '' : $params['imgUrl'];
+        if (empty($params['sendFriendLink'])) {
+            $params['sendFriendLink'] = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+            $parseUrl = parse_url($params['sendFriendLink']);
+            parse_str(htmlspecialchars_decode($parseUrl['query']), $query);
+            $wecha_id = isset($query['wecha_id']) ? $query['wecha_id'] : '';
+            if (1 == count($query)) {
+                $wecha_id = '\?wecha_id=' . $wecha_id;
+            } else {
+                $wecha_id = '&wecha_id=' . $wecha_id . '|' . 'wecha_id=' . $wecha_id . '&';
+            }
+            $params['sendFriendLink'] = preg_replace("/$wecha_id/i", '', $params['sendFriendLink']);
+        } else {
+            $params['sendFriendLink'] = stripslashes($params['sendFriendLink']);
+        }
+        $params['tTitle'] = empty($params['tTitle']) ? '' : shareFilter($params['tTitle']);
+        $params['tContent'] = empty($params['tContent']) ? $params['tTitle'] : shareFilter($params['tContent']);
+        $shareData = str_replace('\\/', '/', json_encode($params));
+        $html = <<<EOM
 		<script type="text/javascript">
 				window.shareData = $shareData;
 		</script>
 EOM;
 
-		return $html;
-	}
+        return $html;
+    }
 }

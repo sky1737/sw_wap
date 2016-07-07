@@ -65,7 +65,7 @@ class SmsMessage implements IMessage
 
     public function setParams($params)
     {
-        $this->_params = MessageFactory::mergeParams($params, $params[self::TYPE], array('token', 'mobile', 'content'));
+        $this->_params = MessageFactory::mergeParams($params, $params[ self::TYPE ], array('token', 'mobile', 'content'));
     }
 }
 
@@ -78,6 +78,7 @@ class TemplateMessage implements IMessage
     {
         if (!empty($this->_params['template_id']) && !empty($this->_params['template_data'])) {
             $template = new templateNews();
+
             //dump($template);
             return $template->sendTempMsg(strtoupper($this->_params['template_id']), $this->_params['template_data']);
         }
@@ -85,7 +86,7 @@ class TemplateMessage implements IMessage
 
     public function setParams($params)
     {
-        $this->_params = MessageFactory::mergeParams($params, $params[self::TYPE], array('template_id', 'template_data'));
+        $this->_params = MessageFactory::mergeParams($params, $params[ self::TYPE ], array('template_id', 'template_data'));
         if (empty($this->_params['template_data']['wecha_id'])) {
             $this->_params['template_data']['wecha_id'] = $params['wecha_id'];
         }
@@ -99,7 +100,7 @@ class MessageFactory extends Factory
 
     /**
      *
-     * @param Array $params
+     * @param Array  $params
      * @param string $class
      * @param string $not
      */
@@ -111,6 +112,7 @@ class MessageFactory extends Factory
         } else {
             $class = empty($class) ? self::$class : $class;
         }
+
         return parent::method($params, $class);
     }
 }

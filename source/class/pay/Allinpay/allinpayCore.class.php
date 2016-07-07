@@ -12,7 +12,7 @@ class allinpayCore
 
     public function setParameter($parameter, $parameterValue)
     {
-        $this->parameters[$parameter] = $parameterValue;
+        $this->parameters[ $parameter ] = $parameterValue;
     }
 
     public function setSignMsg()
@@ -36,8 +36,8 @@ class allinpayCore
     public function sendRequestForm()
     {
         $this->setSignMsg();
-        $param = $this->parameters;
-        $formHtml .= '<div style="display:none;">';
+        $param    = $this->parameters;
+        $formHtml = '<div style="display:none;">';
         $formHtml .= '<form id="allinpaysubmit" name="allinpaysubmit" action="' . $param['payUrl'] . '" method="post">';
         $formHtml .= '<input type="hidden" name="inputCharset" value="1"/>';
         $formHtml .= '<input type="hidden" name="pickupUrl" value="' . $param['pickupUrl'] . '"/>';
@@ -73,6 +73,7 @@ class allinpayCore
         $formHtml .= '<script>document.forms[\'allinpaysubmit\'].submit();</script>';
         $formHtml .= '</form>';
         $formHtml .= '</div>';
+
         return $formHtml;
     }
 
@@ -158,6 +159,3 @@ class allinpayCore
         }
     }
 }
-
-
-?>

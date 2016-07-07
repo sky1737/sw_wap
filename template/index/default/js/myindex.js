@@ -153,7 +153,7 @@ function load_product(arrays) {
 						juli = "";
 						ddsj = "请设置您的位置";
 					}
-					htmls += '<li> <a href="' + obj[i].product[ii].link + '"> <div class="content_list_img"><img width="224" height="159" onload="AutoResizeImage(224,159,this)"  src="' + obj[i].product[ii].image + '"> <div class="content_list_erweima"> <div class="content_list_erweima_img"><img src="' + weidian_code + '"></div> <div class="content_shop_name">' + obj[i].product[ii].name + '</div></div> </div><div class="content_list_txt"> <div class="content_list_pice">￥<span>' + obj[i].product[ii].price + '</span></div><div class="content_list_dec"><span>售' + obj[i].product[ii].sales + '/</span>分销' + obj[i].product[ii].drp_seller_qty + '</div> </div><div class="content_list_txt"> <div class="content_list_day">' + ddsj + ' </div><div class="content_list_add"><span></span>' + juli + '</div></div> </a> </li>';
+					htmls += '<li> <a target="_blank" href="' + obj[i].product[ii].link + '"> <div class="content_list_img"><img width="224" height="159" onload="AutoResizeImage(224,159,this)"  src="' + obj[i].product[ii].image + '"> <div class="content_list_erweima"> <div class="content_list_erweima_img"><img src="' + weidian_code + '"></div> <div class="content_shop_name">' + obj[i].product[ii].name + '</div></div> </div><div class="content_list_txt"> <div class="content_list_pice">￥<span>' + obj[i].product[ii].price + '</span></div><div class="content_list_dec"><span>售' + obj[i].product[ii].sales + '/</span>分销' + obj[i].product[ii].drp_seller_qty + '</div> </div><div class="content_list_txt"> <div class="content_list_day">' + ddsj + ' </div><div class="content_list_add"><span></span>' + juli + '</div></div> </a> </li>';
 				}
 				$(".hot_ul_product_" + i).html(htmls);
 			}
@@ -186,7 +186,7 @@ function load_self_product() {
 					juli = "";
 					ddsj = "请设置您的位置";
 				}
-				htmls += '<li> <a href="' + objs[ii].link + '"> <div class="content_list_img"><img width="224" height="159" onload="AutoResizeImage(224,159,this)"  src="' + objs[ii].image + '"> <div class="content_list_erweima"> <div class="content_list_erweima_img"><img src="' + weidian_code + '"></div> <div class="content_shop_name">' + objs[ii].name + '</div></div> </div><div class="content_list_txt"> <div class="content_list_pice">￥<span>' + objs[ii].price + '</span></div><div class="content_list_dec"><span>售' + objs[ii].sales + '/</span>分销' + objs[ii].drp_seller_qty + '</div> </div><div class="content_list_txt"> <div class="content_list_day">' + ddsj + ' </div><div class="content_list_add"><span></span>' + juli + '</div></div> </a> </li>';
+				htmls += '<li> <a target="_blank" href="' + objs[ii].link + '"> <div class="content_list_img"><img width="224" height="159" onload="AutoResizeImage(224,159,this)"  src="' + objs[ii].image + '"> <div class="content_list_erweima"> <div class="content_list_erweima_img"><img src="' + weidian_code + '"></div> <div class="content_shop_name">' + objs[ii].name + '</div></div> </div><div class="content_list_txt"> <div class="content_list_pice">￥<span>' + objs[ii].price + '</span></div><div class="content_list_dec"><span>售' + objs[ii].sales + '/</span>分销' + objs[ii].drp_seller_qty + '</div> </div><div class="content_list_txt"> <div class="content_list_day">' + ddsj + ' </div><div class="content_list_add"><span></span>' + juli + '</div></div> </a> </li>';
 			}
 			$(".hot_ul_product_self").html(htmls);
 		},

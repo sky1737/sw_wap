@@ -1,8 +1,8 @@
 <?php
-if(option('config.weidian_key')){
-	define('SIGN_SALT', option('config.weidian_key'));
-}else{
-	defined('SIGN_SALT') or define('SIGN_SALT', 'pigcms');
+if (option('config.weidian_key')) {
+    define('SIGN_SALT', option('config.weidian_key'));
+} else {
+    defined('SIGN_SALT') or define('SIGN_SALT', 'pigcms');
 }
 
 //签名校验

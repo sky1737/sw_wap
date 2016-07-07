@@ -7,6 +7,7 @@ class Express
     {
         import('class.Http');
         $content = Http::curlGet($url);
+
         return $content;
     }
 }
