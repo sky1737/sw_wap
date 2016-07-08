@@ -40,7 +40,7 @@
             <tr class="widget-list-item">
                 <td class="goods-image-td">
                     <div class="goods-image">
-                        <a href="<?php echo option('config.wap_site_url'); ?>/home.php?id=<?php echo $seller['store_id']; ?>" target="_blank"><img src="<?php if ($seller['logo'] == '' || $seller['logo'] == './upload/images/') { ?><?php echo TPL_URL; ?>/images/logo.png<?php } else { ?><?php echo $seller['logo']; ?><?php } ?>" /></a>
+                        <a href="<?php echo option('config.wap_site_url'); ?>/home.php?id=<?php echo $seller['store_id']; ?>" target="_blank"><img src="<?php if ($seller['logo'] == '' || $seller['logo'] == './upload/images/') { ?><?php echo TPL_URL; ?>images/logo.png<?php } else { ?><?php echo $seller['logo']; ?><?php } ?>" /></a>
                     </div>
                 </td>
                 <td class="goods-meta">
@@ -57,9 +57,9 @@
                 </td>
                 <td>
                     <?php if (!empty($seller['service_qq'])) { ?>
-                    <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=<?php echo $seller['service_qq']; ?>&amp;site=qq&amp;menu=yes"><img src="<?php echo TPL_URL; ?>/images/qq.png" /></a>
+                    <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=<?php echo $seller['service_qq']; ?>&amp;site=qq&amp;menu=yes"><img src="<?php echo TPL_URL; ?>images/qq.png" /></a>
                     <?php } else { ?>
-                        <img src="<?php echo TPL_URL; ?>/images/unqq.png" />
+                        <img src="<?php echo TPL_URL; ?>images/unqq.png" />
                     <?php } ?>
                 </td>
                 <td>

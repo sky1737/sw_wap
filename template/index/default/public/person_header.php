@@ -118,7 +118,7 @@ padding-left: 20px; float: left; display: block; line-height: 25px; }
 			<div class="hide" id="modifyheader" style="display: none;">
 				<div class="upper fore" id="modUserImgbox"></div>
 				<a class="fore" href="###">修改头像</a> </div>
-			<img alt="用户头像" src="<?php if (!empty($user['avatar'])) { ?><?php echo getAttachmentUrl($user['avatar']) ?><?php } else { ?><?php echo TPL_URL;?>/images/touxiang.png<?php } ?>" id="userImg"> </div>
+			<img alt="用户头像" src="<?php if (!empty($user['avatar'])) { ?><?php echo getAttachmentUrl($user['avatar']) ?><?php } else { ?><?php echo TPL_URL;?>images/touxiang.png<?php } ?>" id="userImg"> </div>
 	</div>
 	<!--user-->
 	<div id="i-userinfo">

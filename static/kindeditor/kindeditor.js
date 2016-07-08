@@ -276,7 +276,7 @@ K.options = {
 		font : ['id', 'class', 'color', 'size', 'face', '.background-color'],
 		span : [
 			'id', 'class', '.color', '.background-color', '.font-size', '.font-family', '.background',
-			'.font-weight', '.font-style', '.text-decoration', '.vertical-align', '.line-height'
+			'.font-weight', '.font-style', '.text-decoration', '.vertical-align', '.line-height', '.padding'
 		],
 		div : [
 			'id', 'class', 'align', '.border', '.margin', '.padding', '.text-align', '.color',

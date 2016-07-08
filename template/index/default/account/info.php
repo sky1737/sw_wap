@@ -44,7 +44,7 @@
 								<td width="72"><label> <span class="red">*</span> 用户头像： </label></td>
 								<td width="500"><img
 						     src="<?php if (!empty($user['avatar'])) { ?><?php echo getAttachmentUrl($user['avatar']) ?><?php }
-						     else { ?><?php echo TPL_URL; ?>/images/avatar.png<?php } ?>" alt="用户头像" width="60" id="userImg">
+						     else { ?><?php echo TPL_URL; ?>images/avatar.png<?php } ?>" alt="用户头像" width="60" id="userImg">
 					
 				</td>
 							</tr>

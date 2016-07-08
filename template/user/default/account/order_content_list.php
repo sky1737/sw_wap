@@ -79,7 +79,8 @@
 			<tr class="content-row">
 				<td class="image-cell"><img src="<?php echo $product['image']; ?>" /></td>
 				<td class="title-cell">
-					<p class="goods-title"> <a href="<?php echo $config['wap_site_url']; ?>/good.php?id=<?php echo $product['product_id']; ?>" target="_blank" class="new-window" title="<?php echo $product['name']; ?>"> <?php echo $product['name']; ?> </a> </p>
+
+					<p class="goods-title"> <a href="/goods/<?php echo $product['product_id']; ?>.html" target="_blank" class="new-window" title="<?php echo $product['name']; ?>"> <?php echo $product['name']; ?> </a> </p>
 					<p>
 						<?php
 								$skus = !empty($product['sku_data']) ? unserialize($product['sku_data']) : '';

@@ -28,7 +28,7 @@
 			<tbody class="js-list-body-region">
 				<?php foreach ($suppliers as $supplier) { ?>
 				<tr class="widget-list-item">
-					<td class="goods-image-td"><div class="goods-image"> <a href="<?php echo option('config.wap_site_url'); ?>/home.php?id=<?php echo $supplier['store_id']; ?>" target="_blank"><img src="<?php if ($supplier['logo'] == './upload/images/' || $supplier['logo'] == '') { ?><?php echo TPL_URL; ?>/images/logo.png<?php } else { ?><?php echo $supplier['logo']; ?><?php } ?>" alt="<?php echo $supplier['name']; ?>" /></a> </div></td>
+					<td class="goods-image-td"><div class="goods-image"> <a href="<?php echo option('config.wap_site_url'); ?>/home.php?id=<?php echo $supplier['store_id']; ?>" target="_blank"><img src="<?php if ($supplier['logo'] == './upload/images/' || $supplier['logo'] == '') { ?><?php echo TPL_URL; ?>images/logo.png<?php } else { ?><?php echo $supplier['logo']; ?><?php } ?>" alt="<?php echo $supplier['name']; ?>" /></a> </div></td>
 					<td class="goods-meta"><a class="new-window" href="<?php echo option('config.wap_site_url'); ?>/home.php?id=<?php echo $supplier['store_id']; ?>" target="_blank">
 						<?php if (!empty($_POST['keyword'])) { ?>
 						<?php echo str_replace($_POST['keyword'], '<span class="red">' . $_POST['keyword'] . '</span>', $supplier['name']); ?>
@@ -38,9 +38,9 @@
 						</a></td>
 					<td><?php echo $supplier['service_tel']; ?></td>
 					<td><?php if (!empty($supplier['service_qq'])) { ?>
-						<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=<?php echo $supplier['service_qq']; ?>&amp;site=qq&amp;menu=yes"><img src="<?php echo TPL_URL; ?>/images/qq.png" /></a>
+						<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=<?php echo $supplier['service_qq']; ?>&amp;site=qq&amp;menu=yes"><img src="<?php echo TPL_URL; ?>images/qq.png" /></a>
 						<?php } else { ?>
-						<img src="<?php echo TPL_URL; ?>/images/unqq.png" />
+						<img src="<?php echo TPL_URL; ?>images/unqq.png" />
 						<?php } ?></td>
 					<td><?php echo $supplier['service_weixin']; ?></td>
 				</tr>
