@@ -77,7 +77,7 @@
                                         <?php if (empty($order['star'])) { ?>
                                         <a class="js-stared-it" href="javascript:;">加星</a>
                                         <?php } else { ?>
-                                        <span class="js-stared-it stared"><img src="<?php echo TPL_URL; ?>/images/star-on.png"> x <?php echo $order['star']; ?></span>
+                                        <span class="js-stared-it stared"><img src="<?php echo TPL_URL; ?>images/star-on.png"> x <?php echo $order['star']; ?></span>
                                         <?php } ?>
                                     </div>
                                     <div id="raty-action-<?php echo $order['order_id']; ?>" class="raty-action" style="display: none; cursor: pointer;">

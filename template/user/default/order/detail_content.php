@@ -165,7 +165,7 @@
 						<?php }
 						else { ?>
 							<span class="js-stared-it stared"><img
-									src="<?php echo TPL_URL; ?>/images/star-on.png"> x <?php echo $order['star']; ?></span>
+									src="<?php echo TPL_URL; ?>images/star-on.png"> x <?php echo $order['star']; ?></span>
 						<?php } ?>
 					</div>
 					<div id="raty-action-<?php echo $order['order_id']; ?>" class="raty-action"

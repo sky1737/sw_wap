@@ -357,7 +357,7 @@ if($is_preview) {
 												<li id="shop_add">
 													<form enctype="multipart/form-data" id="upload_image_form" target="iframe_upload_image" method="post" action="<?php echo url('comment:attachment') ?>">
 														<div class="updat_pic">
-															<a href="javascript:" id="upload_message"><img src="<?php echo TPL_URL; ?>/images/jiahao.png" /></a>
+															<a href="javascript:" id="upload_message"><img src="<?php echo TPL_URL; ?>images/jiahao.png" /></a>
 															<input type="file" name="file" class="ehdel_upload" id="upload_image">
 															<p>0/10</p>
 														</div>

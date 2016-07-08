@@ -28,7 +28,7 @@ if ($_GET['ps'] > 540) {
 	else { ?>
 		<link rel="stylesheet" href="<?php echo TPL_URL; ?>css/showcase_admin.css"/>
 	<?php } ?>
-	<link rel="stylesheet" href="<?php echo TPL_URL; ?>/css/drp_notice.css"/>
+	<link rel="stylesheet" href="<?php echo TPL_URL; ?>css/drp_notice.css"/>
 	<script src="<?php echo $config['oss_url']; ?>/static/js/jquery.min.js"></script>
 	<script src="<?php echo $config['oss_url']; ?>/static/js/jquery.waterfall.js"></script>
 	<script src="<?php echo $config['oss_url']; ?>/static/js/idangerous.swiper.min.js"></script>

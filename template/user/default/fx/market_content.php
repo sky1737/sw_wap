@@ -71,7 +71,7 @@
 							<p><span>分&nbsp; &nbsp;类：<a style=" color: #999;"><?php echo $product['category'][0]['cat_name'] . ' - ' . $product['category'][1]['cat_name'];?></a></span></p>
 							 <p><span>供货商：<a style=" color: #999;"><?php echo $product['store'];?></a></span></p>
 						<?php if ($product['is_recommend']) { ?>
-						<img class="js-help-notes" src="<?php echo TPL_URL; ?>/images/jian.png" alt="推荐" width="19" height="19" />
+						<img class="js-help-notes" src="<?php echo TPL_URL; ?>images/jian.png" alt="推荐" width="19" height="19" />
 						<?php } ?></td>
 							
 					<td class="text-right"><p>￥<?php echo $product['price']; ?></p></td>
