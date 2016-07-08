@@ -30,8 +30,8 @@
 
                 <div class="controls">
                     <div class="file-wrapper">
-                        <div class="display-image" data-url="<?php if (!empty($user['avatar'])) { ?><?php echo $user['avatar']; ?><?php } else { ?><?php echo TPL_URL;?>/images/avatar.png<?php } ?>">
-                            <span class="avatar" style="background-image: url(<?php if (!empty($user['avatar'])) { ?><?php echo $user['avatar']; ?><?php } else { ?><?php echo TPL_URL;?>/images/avatar.png<?php } ?>)"></span>
+                        <div class="display-image" data-url="<?php if (!empty($user['avatar'])) { ?><?php echo $user['avatar']; ?><?php } else { ?><?php echo TPL_URL;?>images/avatar.png<?php } ?>">
+                            <span class="avatar" style="background-image: url(<?php if (!empty($user['avatar'])) { ?><?php echo $user['avatar']; ?><?php } else { ?><?php echo TPL_URL;?>images/avatar.png<?php } ?>)"></span>
                         </div>
                         <a href="javascript:;" class="js-trigger-image" name="avatar">修改</a>
                     </div>

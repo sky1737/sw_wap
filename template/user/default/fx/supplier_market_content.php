@@ -63,7 +63,7 @@ class="chosen-single" tabindex="-1"><span>所有类目</span>
 							<?php echo empty($_POST['keyword']) ? $product['name'] : str_replace($_POST['keyword'], '<span class="red">' . $_POST['keyword'] . '</span>', $product['name']); ?>
 							</a> </p>
 						<?php if ($product['is_recommend']) { ?>
-						<img class="js-help-notes" src="<?php echo TPL_URL; ?>/images/jian.png" alt="推荐" width="19" height="19" />
+						<img class="js-help-notes" src="<?php echo TPL_URL; ?>images/jian.png" alt="推荐" width="19" height="19" />
 						<?php } ?></td>
 					<td class="text-right"><p>￥<?php echo $product['cost_price']; ?></p></td>
 					<td class="text-right"><p>￥<?php echo $product['price']; ?></p></td>

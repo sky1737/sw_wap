@@ -33,7 +33,7 @@ echo ' responsive-800';
 	var is_selffetch = <?php echo $now_store['buyer_selffetch'] ? 'true' : 'false' ?>;
 </script>
 <link rel="stylesheet" href="<?php echo TPL_URL; ?>css/goods.css"/>
-<link rel="stylesheet" href="<?php echo TPL_URL; ?>/css/drp_notice.css"/>
+<link rel="stylesheet" href="<?php echo TPL_URL; ?>css/drp_notice.css"/>
 <link rel="stylesheet" href="<?php echo TPL_URL; ?>css/coupon.css"/>
 <link rel="stylesheet" href="<?php echo TPL_URL ?>css/comment.css"/>
 <link rel="stylesheet" type="text/css" href="<?php echo TPL_URL; ?>css/font/icon.css"/>

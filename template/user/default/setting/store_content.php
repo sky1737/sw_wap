@@ -30,7 +30,7 @@
 		</div>
 		<div class="control-group">
 			<label class="control-label">店铺 Logo：</label>
-			<div class="controls"> <span class="avatar"><img class="avatar-img" <?php if (!empty($store['logo'])) { ?>src="<?php echo $store['logo']; ?>"<?php } else { ?>src="<?php echo TPL_URL;?>/images/logo.png"<?php } ?>/></span> <a href="javascript:;" class="upload-img js-add-picture">修改</a> </div>
+			<div class="controls"> <span class="avatar"><img class="avatar-img" <?php if (!empty($store['logo'])) { ?>src="<?php echo $store['logo']; ?>"<?php } else { ?>src="<?php echo TPL_URL;?>images/logo.png"<?php } ?>/></span> <a href="javascript:;" class="upload-img js-add-picture">修改</a> </div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">店铺简介：</label>
