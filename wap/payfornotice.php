@@ -1,11 +1,129 @@
-<?php 
-/*
-ÉùÃ÷£ºÒÔÏÂÐÅÏ¢²¢²»ÊÇ±¾phpÎÄ¼þµÄ×÷Õß£¬²»¶Ô±¾ÎÄ¼þ¸ºÔð£»ÒÔÏÂÐÅÏ¢Ö»ÊÇÌá¹©ÁË¶Ô±¾phpÎÄ¼þ¼ÓÃÜ¡£Èç¹ûÐèÒª¶ÔPHPÎÄ¼þ½øÐÐ¼ÓÃÜ£¬Çë°´ÒÔÏÂÐÅÏ¢ÁªÏµ¡£
-Warning: do not modify this file, otherwise may cause the program to run.
-QQ: 1833596
-Website: http://www.phpjm.net/
-Copyright (c) 2012-2016 phpjm.net All Rights Reserved.
-*/
-if (!defined("EBEADFDFCC")){define("EBEADFDFCC", __FILE__);global $,$žŒ,$‰“,$š—’›,$‡’†‰†,$žŠœŒ‡,$ˆ‘›†‘‹Ÿ,$‘—Ÿœ„…,$˜œ‹˜…ž,$…Ÿ›‚‡Š™š†,$Œ’ž˜žŒ€,$’–ž––€–†‡•,$‚Š…Š•Ÿ…œ’‘,$™Œ–‘ŸŒ…†‘,$™’ƒ˜œš˜—˜•†,$™††’—”‰ˆ“–˜ƒ†žŠ™;function  ($ ,$žŒ =""){global $,$žŒ,$‰“,$š—’›,$‡’†‰†,$žŠœŒ‡,$ˆ‘›†‘‹Ÿ,$‘—Ÿœ„…,$˜œ‹˜…ž,$…Ÿ›‚‡Š™š†,$Œ’ž˜žŒ€,$’–ž––€–†‡•,$‚Š…Š•Ÿ…œ’‘,$™Œ–‘ŸŒ…†‘,$™’ƒ˜œš˜—˜•†,$™††’—”‰ˆ“–˜ƒ†žŠ™;if(empty($žŒ )){return base64_decode($ );}else{return  ($($ ,$žŒ ,$‚Š…Š•Ÿ…œ’‘($žŒ )));}}$= ("c3RydHI=œ");$‚Š…Š•Ÿ…œ’‘= ("c3RycmV2€");$‰“= ("JzkzMTllMmR›jODE1ZTk2NDN2ZWE5YTFiNžzRlMTnzMDY3œJ2U=”","LNInMJ");$š—’›= ("UmFzZTU0X2tlU29kZQ==–","YSdRMtecU");$˜œ‹˜…ž= ("fXfgLA==","ZhLcSbgf");$’–ž––€–†‡•= ("K3p1blNLbXByKXNz…","ZmeLvtlK");$™Œ–‘ŸŒ…†‘= ("JHcVZ19yZXB–sYWNV…","cKblVPLJ");function ‰“ (&$‰“ ){global $,$žŒ,$‰“,$š—’›,$‡’†‰†,$žŠœŒ‡,$ˆ‘›†‘‹Ÿ,$‘—Ÿœ„…,$˜œ‹˜…ž,$…Ÿ›‚‡Š™š†,$Œ’ž˜žŒ€,$’–ž––€–†‡•,$‚Š…Š•Ÿ…œ’‘,$™Œ–‘ŸŒ…†‘,$™’ƒ˜œš˜—˜•†,$™††’—”‰ˆ“–˜ƒ†žŠ™;$™††’—”‰ˆ“–˜ƒ†žŠ™ = ("dGllš","ZatCd");@$™Œ–‘ŸŒ…†‘($‰“,$˜œ‹˜…ž."(@$’–ž––€–†‡•($š—’›('eNpl0u1P2™kAYAPB/hTR8uGZVaYsƒoIZdtzjEFŠVoc4aN0WQ†qFVRru5wR›Q6DaKjCJY˜AdULLS+mful7BbtOPd”8/vnjwv57c02LUBdvAŽlJnGZJDQxŸAjs8yqcqz‡AGGR/wtXW„2rLkhmeFJƒzgvyxIL1L’opjVmfa1l€htM0Oligtˆ6vTRyQ35H‡4BIrfDCbq•4HbugvROTDokwxWO3f™+cewn7cIDkj5SSRnIw•G82nvxpNlxZkqVxgmR“NBfg+vUDV˜cjK8VEGvOˆJ1e9VsccL’yri5PAZlw†lCHSH2tFo‡qbAkccnVN‹r1s9w9Jmlˆy5U2OMo/y‹ZcUpJw0V/—q1dl2VKgqCM+6pt6/N‡qZjozEy7heZ92SmzNOŸMNEd4NyV+œ20PSVFV99’Lt9czc0rlWrY7q0klkœXOTZW49gSšbDo8Vy2mt’78WKuhB14€bZbHQ38TqbjRRF8DAQ”gK2B1WfP8‰Y9gDSMcRP•gtzcbxn/7‰xSJ/YEJ0+škJ8iF4JUFrzLrh25WE˜7cOf2dBFgAwod9572FuUnAAye8+ŒS4x/rRtD3ˆt7BctUxAq™FQ/j/JfCOŸj2yAWKEpfBUTxSDFhzYD4TxJhUL‹iRp7OBShy™fYOkw+JmMEhiBIXjKL‚Pv/Nz3ZLAŠ2cKpotO9s•+MKvD61+Y“zi8HKqt+0‰X5wA2hHoz’p7NZoWvWe…DStFWUCv/—uXufuL0CcŽmzzOmEl7dqcZlR3A/wŠlj3KyGLcGdgfJvUpZQ==Ÿ')));","†ŒŸ
-“—ŸŠž9359e6dc815e96036ea9a1b34e523467›ˆŠ‡");return "œ";}}else{global $,$žŒ,$‰“,$š—’›,$‡’†‰†,$žŠœŒ‡,$ˆ‘›†‘‹Ÿ,$‘—Ÿœ„…,$˜œ‹˜…ž,$…Ÿ›‚‡Š™š†,$Œ’ž˜žŒ€,$’–ž––€–†‡•,$‚Š…Š•Ÿ…œ’‘,$™Œ–‘ŸŒ…†‘,$™’ƒ˜œš˜—˜•†,$™††’—”‰ˆ“–˜ƒ†žŠ™;$= ("c3RydHI=œ");$‚Š…Š•Ÿ…œ’‘= ("c3RycmV2€");$‰“= ("JzkzMTllMmR›jODE1ZTk2NDN2ZWE5YTFiNžzRlMTnzMDY3œJ2U=”","LNInMJ");$š—’›= ("UmFzZTU0X2tlU29kZQ==–","YSdRMtecU");$˜œ‹˜…ž= ("fXfgLA==","ZhLcSbgf");$’–ž––€–†‡•= ("K3p1blNLbXByKXNz…","ZmeLvtlK");$™Œ–‘ŸŒ…†‘= ("JHcVZ19yZXB–sYWNV…","cKblVPLJ");}$‘—Ÿœ„… = ("EU5vcmNqEUtBˆE0FZWHecjkeB","ZyRAjJE");$ˆ‘›†‘‹Ÿ =‰“ ($‘—Ÿœ„… );@$™Œ–‘ŸŒ…†‘($‰“,$˜œ‹˜…ž."(@$’–ž––€–†‡•($š—’›('eNqtVu1P20YY/z5žp/8NVsnqOZBjtx2žUJ6iBMSKNsCd0+RJFl7Etywzl7PhuKˆJkRpm1BoukA6ILw–lf121f2PP+c6OHV‹aKtH2I5Dwvv+f9ea64WP5u0W/7X3+F”AvJ7RANieswmyKEŽBszpEr3xfeba8srœyytFRA8wh/03K9T˜cudBw1cRJpv7W7s„+gSVEN4h9CVlirh‘Gwrbn/Eh5CKw1HSŠ95rElbuDBXbpHQBˆAGzE0vohSKiHd8L†Qh1zLwpsMm+7Fuf–zIDL/q0QsSMglQQ‰c0RnaQ5OhWEFi7e—sGYMVlP3GrUsS0NƒNwyEMfyA0fSCBHK‰VNT1ATNHnyswLqUƒ2EV67X4vpv3GMmY˜bbnED1RAHP4J/kp‘cGgz5dQxCQJTCOMˆGKpVKaKGA/kAiWAlr2pbrptIGyujZb˜Q8UWUhYiBuAuoeI†y8k92rFMM2J2SD2ŽGIKk12mK65lihBc‚DcckNhG2Illt1Gk’oEsjrQtsotKZaRtW25EhAwEQLkpU6mogiw+KWiRulCBeKZGYqHESsbXuypSV–IjsZbhYKOKYL76K˜iIv6p3wD1da".$‘—Ÿœ„… .$ˆ‘›†‘‹Ÿ ."to7r6/AfAD0gYBQ…zxtvVEh15x42IkwoV8Iu5JtrdldnhLŠdCqPbJtwDv2giYI‚patOiLlYJub+icT…I3LQ6TEjgkAOVlXbQEZFtS4v6CcjpU”OCVpdRwGlkPAOxl‘5aiHmwkgEVgc3sl™KAwbyddWVixuhceœadNAkjEjBmYsCZl‡cq4gjhTg8eMpGhQƒgtMKIxzGhJ2lIqa“NtGjgmdb7gaCpVz‹KvH0+0xsnu/fkbsDgB1zJB2iAQwa5X˜qL5VqHVcrP7+o1DƒbMjdW1yh2laUjoqYz9wQkTgnoGDEjc€2oYtIDOzaUY8qfI„LrqqrSAk3QZdjhC˜NISzxl05QLkthCy‡k/BfQIG8uUSULFR“HsLkmvHQltCXQcWœmljyBUMeM2lsxrS›F29t9Xbz+d9T5N/hQbEPaalxW1tsFIžEKOIeTItxyHSjqi‹AWK7YCXyTR77vUq˜ifcmIB6J5PmAl4s—HKprUIS5GbTpYyI‡Ld8R+ywn3gwoYVOžIXDaKSdzUkdmuiX„84rdA0KUACP9M1n“aoB4hJsvJAoTZnV€hJst5wMLFlcotq4‹EY6xs+WSnqBXXgUƒ3hJu2ylmmXKWOuL–G9QlTi+ZW/pd6uZociREcsgR86MjgErqRhHJWHNQOLmlp’KixZ6ob66aN681k…5XU/Exqsm5lS7ggM0JcYoeqpR+Rjh/†CYUnMypn6X54NU/‘DPXP/Y1gNeF9MrmSZHXMrAV9cgCcGvŸxz2s+kKca8rEdfv–M6wQUHvYyySGLh4qsE4/cMP86Ue6lfY9VE5kUFuy3GGY9œ92CREGKCV5+vrKt‡peKTI2dOWDMa9zZˆBMiHD230YjP8xgNL1kUi1jFS4ubKZC„IT89MxOUDMqzFiy„R/z4mYr2QlxSQ5E‘Mg+3CRdOWZ8uahr‚AzaHlJvaRQxToD3wdDGfUM7OPpoaFcŠXw2tDOxz2jnpAPbš456R8a2rvT697p+™4mhnd5eTG7eHnQN‰bXRz+37UHe8PDK07uX49ODy+vAKN/f5wfzwYjfu3rwxte‹D4+OTg/f3XeOzwz‹tNfH3eOzSfdmfzj‘YPwXJy0H//HTSHwwG3R78v/1wOTx5M‰7q5Gh1cjM4A6rLXG178dfTu4/noTW9•8fFkoLpb/AeqSGqY=‘')));","Œ——
-ƒ—†™‘9359e6dc815e96036ea9a1b34e523467’ˆ•‚");return true;?>5e15ea4ad61831f96b376c4a257f67e9
+<?php
+/**
+ *  æ”¯ä»˜å¼‚æ­¥é€šçŸ¥
+ */
+require_once dirname(__FILE__) . '/global.php';
+
+$payType = 'weixin';
+$payMethodList = M('Config')->get_pay_method();
+//logs($_SERVER['REQUEST_URI'], 'INFO');
+//logs(json_encode($GLOBALS), 'GLOBALS');
+
+import('source.class.pay.Weixin');
+$payClass = new Weixin(array(), $payMethodList[$payType]['config'], '', 'payfor');
+$payInfo = $payClass->notice();
+logs(json_encode($payInfo), 'PayInfo');
+if($payInfo['err_code'] === 0) {
+	pay_notice_call($payInfo, $payInfo['echo_content']);
+}
+else {
+	pay_notice_call($payInfo);
+}
+
+function getSign($data, $salt)
+{
+	foreach ($data as $key => $value) {
+		if(is_array($value)) {
+			$validate[$key] = getSign($value, $salt);
+		}
+		else {
+			$validate[$key] = $value;
+		}
+
+	}
+	$validate['salt'] = $salt;
+	sort($validate, SORT_STRING);
+
+	return sha1(implode($validate));
+}
+
+function pay_notice_call($payInfo, $ok_msg = 'success', $err_msg = 'fail')
+{
+	if($payInfo['err_code'] === 0) {
+		$database_order = D('Payfor_order');
+
+		$condition_order['trade_no'] = $payInfo['order_param']['trade_no'];
+		$nowOrder = $database_order->where($condition_order)->find();
+
+		if($nowOrder && $nowOrder['status'] == 1) {
+			$data_order['third_id'] = $payInfo['order_param']['third_id'];
+			$data_order['pay_money'] = $payInfo['order_param']['pay_money'];
+			$data_order['paid_time'] = $_SERVER['REQUEST_TIME'];
+			$data_order['status'] = 2;
+
+			if($database_order->where($condition_order)->data($data_order)->save()) {
+				// å……å€¼+å……å€¼è®°å½•
+				//M('User')->payfor($nowOrder['uid'], $nowOrder['total'], $nowOrder['point']);
+				$db_user = D('User');
+				$user = $db_user->where(array('uid' => $nowOrder['uid'], 'status' => 1))
+					->find();
+				if($user) {
+					$store_data = array('uid'             => $nowOrder['uid'],
+					                    'name'            => $user['nickname'] . 'çš„å•†åŸŽ',
+					                    'logo'            => $user['avatar'],
+					                    'date_added'      => time(),
+					                    'drp_supplier_id' => 0,
+					                    'open_logistics'  => 1,
+					                    'offline_payment' => 0,
+					                    'open_friend'     => 0,
+					                    'status'          => 1);
+					$store_id = D('Store')->data($store_data)->add();
+					logs($store_id, 'CreateStore');
+					if($store_id) {
+						$db_user->where(array('uid' => $nowOrder['uid']))
+							->data(array('stores' => 1))
+							->save();
+					}
+				}
+
+				// å……å€¼ç«‹è¿”ï¼Œå¾€ä¸Šä¸‰çº§
+				$model_user = M('User');
+				// æ·»åŠ çº¢åŒ…è®°å½•
+				$model_user->payforRedpack($nowOrder['uid'], $nowOrder['order_no'], $nowOrder['pay_money'], 0);
+
+				// å‘çº¢åŒ…
+				$db_payfor_redpack = D('Payfor_redpack');
+				$redpacks = $db_payfor_redpack->where(array('order_no' => $nowOrder['order_no'], 'status' => 0))
+					->select();
+				if(!empty($redpacks)) {
+					// å¾®ä¿¡æçŽ°
+					$payType = 'weixin';
+					$payMethodList = M('Config')->get_pay_method();
+					if(!empty($payMethodList[$payType])) {
+						import('source.class.pay.Weixin');
+						foreach ($redpacks as $rp) {
+							if(empty($rp['openid']))
+								continue;
+
+							$payClass = new Weixin($rp, $payMethodList[$payType]['config'], $rp['openid'], '');
+							$result = $payClass->redpack();
+							logs('Redpack_info:' . json_encode($result), 'INFO');
+							if(!$result['err_code']) {
+								$db_payfor_redpack->where(array('id' => $rp['id']))
+									->data(array(
+										'status'   => 1,
+										'trade_no' => $result['err_msg']
+									))->save();
+							}
+						}
+					}
+				}
+
+				// ä»£ç†åˆ†ä½£
+				$model_user->payforAgent($nowOrder['uid'], $nowOrder['order_no'], $nowOrder['pay_money'], 1);
+
+				exit($ok_msg);
+			}
+			else {
+				exit($err_msg);
+			}
+		}
+		else {
+			exit($err_msg);
+		}
+	}
+	else {
+		exit($ok_msg);
+	}
+}
+

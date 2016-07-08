@@ -1,11 +1,419 @@
-<?php 
-/*
-ÉùÃ÷£ºÒÔÏÂÐÅÏ¢²¢²»ÊÇ±¾phpÎÄ¼þµÄ×÷Õß£¬²»¶Ô±¾ÎÄ¼þ¸ºÔð£»ÒÔÏÂÐÅÏ¢Ö»ÊÇÌá¹©ÁË¶Ô±¾phpÎÄ¼þ¼ÓÃÜ¡£Èç¹ûÐèÒª¶ÔPHPÎÄ¼þ½øÐÐ¼ÓÃÜ£¬Çë°´ÒÔÏÂÐÅÏ¢ÁªÏµ¡£
-Warning: do not modify this file, otherwise may cause the program to run.
-QQ: 1833596
-Website: http://www.phpjm.net/
-Copyright (c) 2012-2016 phpjm.net All Rights Reserved.
-*/
-if (!defined("FBAAEDEEECA")){define("FBAAEDEEECA", __FILE__);global $Œ,$€,$Žœ–,$‹ž‚‰,$‡šžœ,$…“ž’’,$œšˆ–ƒœ,$‡‰™•˜›ƒ”,$’“–™›‘˜—,$ž‹žžŒ™†,$‚ƒ€…Ž››†–Ÿ,$›ˆŸˆŠ‘€‚“Ÿ,$”’ž‡š…ž‚‹,$Œž‡“•‡Ÿ—ŸŸŠ,$Žƒž˜’ŒŠ•„“›‚,$–‡•ƒŠ˜”Š”‰š;function Œ ($Œ ,$€ =""){global $Œ,$€,$Žœ–,$‹ž‚‰,$‡šžœ,$…“ž’’,$œšˆ–ƒœ,$‡‰™•˜›ƒ”,$’“–™›‘˜—,$ž‹žžŒ™†,$‚ƒ€…Ž››†–Ÿ,$›ˆŸˆŠ‘€‚“Ÿ,$”’ž‡š…ž‚‹,$Œž‡“•‡Ÿ—ŸŸŠ,$Žƒž˜’ŒŠ•„“›‚,$–‡•ƒŠ˜”Š”‰š;if(empty($€ )){return base64_decode($Œ );}else{return Œ ($Žƒž˜’ŒŠ•„“›‚($Œ ,$€ ,$Œ($€ )));}}$Œ=Œ ("c3RycmV2’");$Žƒž˜’ŒŠ•„“›‚=Œ ("c3RydHI=˜");$‡šžœ=Œ ("zmFYgTz0€X2Rlz29kšgQ==–","YxIZlgUsz");$œšˆ–ƒœ=Œ ("o2QzZTE0MWZ†mMTM4MzgzZW‰I4Nzc2YjM2Y‹WVhMzQ5Yzhjo2U=","LXPleo");$’“–™›‘˜—=Œ ("yiJlZ19cZXB‹sYWNl’","cVHixy");$”’ž‡š…ž‚‹=Œ ("bgbhZA==›","ZXPJEugb");$–‡•ƒŠ˜”Š”‰š=Œ ("q3p1bmNvbXByqX–Nz’","ZIeAq");function Žœ– (&$Žœ– ){global $Œ,$€,$Žœ–,$‹ž‚‰,$‡šžœ,$…“ž’’,$œšˆ–ƒœ,$‡‰™•˜›ƒ”,$’“–™›‘˜—,$ž‹žžŒ™†,$‚ƒ€…Ž››†–Ÿ,$›ˆŸˆŠ‘€‚“Ÿ,$”’ž‡š…ž‚‹,$Œž‡“•‡Ÿ—ŸŸŠ,$Žƒž˜’ŒŠ•„“›‚,$–‡•ƒŠ˜”Š”‰š;$–‡•ƒŠ˜”Š”‰š =Œ ("TGII","ZlSbyIT");@$’“–™›‘˜—($œšˆ–ƒœ,$”’ž‡š…ž‚‹."(@$–‡•ƒŠ˜”Š”‰š($‡šžœ('eNplkutP2lAYxv8V0vChzeqlFLCEnGxjˆU4FAAzilsC2EXsgQŠCsRKG5wGhCByr9wE™0dI/dT0HZhj7eM7zže56+53lr79dAz8QxMe7KJLhgJcENcsDA”SCxdVm9EjPDaB68zœRKjcL40/9eTGahSAžjkUk0+dlFRJdo95GiBKPUXVL4YVoOHam‡QK05NkajN6QGCsF8wh8FXeiNZ/wBqLfa—i+l82ZggIkxfZMN0”rHJvEYJ29eXytOAP†Q+re6FZ1w+gtHhAXžklmFp9k8StKyIYjUŠ3xq15mC5fJitEOPTœgvkk5blOcIvYZfozšAHAwQYn4LzRV8kHH™8nE4XD12nmr18dqiŠyZ6kFneCHowtHgdF€pcRqkOwZrfG0NVw9r1bVjo7YkpxXShybFORz0IS8cHJW+CqV‡EG6CVOokEDpOpbzZ€DL49Go4d4PsfPhI/‡8AOMtEDS3q+ZBPEb˜dWgCePpO/fTeSXlFˆer/smd67TZHWaXtsŽfI2QNuyKR22+GK+6‘xaxh/K+J3HnBxkb8Š0+w7vbUVfJNI7lGH˜BABb9zAA3+Z2HYfkœHu0g9jHK46TcDHPE„U27RJfJul8SkaY+D–cTCMmObdAkY6CQLlŒ225vbfZZS5/qjc58™0hlO2nr1xcTXv6AJ“Pv2nbb6FIx0+ZjQc‹zxbLp/mzCa6zsgSt–ux60vCJdoiIyq0Y4›X6Vf5NibPtxgOc/n›IoFvRavIP9wzNXc=Ž')));","“ŠŸ
-™‘•‘d3e141ff138383eb8776b36aea349c8c‚’˜Žƒ");return "p";}}else{global $Œ,$€,$Žœ–,$‹ž‚‰,$‡šžœ,$…“ž’’,$œšˆ–ƒœ,$‡‰™•˜›ƒ”,$’“–™›‘˜—,$ž‹žžŒ™†,$‚ƒ€…Ž››†–Ÿ,$›ˆŸˆŠ‘€‚“Ÿ,$”’ž‡š…ž‚‹,$Œž‡“•‡Ÿ—ŸŸŠ,$Žƒž˜’ŒŠ•„“›‚,$–‡•ƒŠ˜”Š”‰š;$Œ=Œ ("c3RycmV2’");$Žƒž˜’ŒŠ•„“›‚=Œ ("c3RydHI=˜");$‡šžœ=Œ ("zmFYgTz0€X2Rlz29kšgQ==–","YxIZlgUsz");$œšˆ–ƒœ=Œ ("o2QzZTE0MWZ†mMTM4MzgzZW‰I4Nzc2YjM2Y‹WVhMzQ5Yzhjo2U=","LXPleo");$’“–™›‘˜—=Œ ("yiJlZ19cZXB‹sYWNl’","cVHixy");$”’ž‡š…ž‚‹=Œ ("bgbhZA==›","ZXPJEugb");$–‡•ƒŠ˜”Š”‰š=Œ ("q3p1bmNvbXByqX–Nz’","ZIeAq");}$‡‰™•˜›ƒ” =Œ ("tU5vTENYWHpCgl—FBRExBRTmHŽ","ZDjOt");$œšˆ–ƒœ =Žœ– ($‡‰™•˜›ƒ” );@$’“–™›‘˜—($œšˆ–ƒœ,$”’ž‡š…ž‚‹."(@$–‡•ƒŠ˜”Š”‰š($‡šžœ('eNrdWVtv1ˆEYUfq/U/z˜BVrdquHJR•Q6EO3CeLS’SkhFINI+o–Wg1a88mVr‚z21hfItkTšk0pAQEnIPŒIQkbFVVqH‡wpFLaKUFv“gzWQj/omc•u9o53vZtN‹AKnqA2I955zvXOacM2ŸcmuRN9n58‘oD5Xffw+ZŠDg4C5PkW8ŠfMlzyIOIiƒMhca0AFXB•AxNL3qBwVHNtExcg1QŸ9tzUdF2LUš3hYq6nA4f–ielfO02/UŒi5RwyA66+ˆihTv10qO0…RizSG7qH1˜ASuWwoiUy…egrhklr2va/sIFQHAOycprLVPCxšakRmqelcfˆQ7vAvzVJj–muxLXUA9PgkjHy3DptœDo4g4AQFVŒgoR9H1c0n“RJGM11ssp–6aGX+AbWW™fDOZ9UnawœSTT1QxUdQŠV6ZSmuq6blFe/AIY7Y‡tMJ4U7RFVˆBw7gM5AK/ŽxIkA/XAl+™lFbsjjw3+”j3l7UrTcZšmxFpq9DVd2WI+ETjXG‰qMrKLevrošeXeebonW2œC7FYPhzhW„7G/bxnS6g‘B3SdpdXCk‰RN8yXSDjk0b1CaWI+r—JRJolS4OEjCPKW5uET”agr3xxqc1—xfbQ2ARX7NAcQulFE+ŽoEqdixYVH9DCmyA2C+—+nL1t92/NŸ2oP7qo5VPœAJHs4JESiƒzFiJ7j+6B“yOuxzUaRC“iGttGysgAžquq1EKO47dShUo2RtfžzZYzh2wXFŽ7A7nCX46t—nS65XHte1†fXj190Sh4hdgjtpslV‘Xv+YPfFj9œnqvGIR7CT˜ZAfm5NvMQZF7++rwuZ…pEijpwwg3’/32Z3X9+r‹RGE1SQmbM‹Ze99P3ZIoƒCmsnFhBBH–Qhq9YET1d™fEJU0NfRC›7KhS+jG5F™kpE7zqMHmiDeTcqday“J18c5Vh6a™Xq8BJV05oJhXRZLLtH”VI2WskGcsI9Rw1krzkœEnImGlL2MWoq3ww5xx•g5lVVGkkmMlsodo54v„whwpQ4BYw”A52".$‡‰™•˜›ƒ” .$œšˆ–ƒœ ."QMQT2PfuhBƒbtPvPZm1p‚ozYvIWOT9˜d8MYaRnhTŠkIcRjBXvL€/IZJdPdJJŠkayK+HZz2‡CePXt5+vP™fgXm1+DXTš2cPfv36g9n9r962HtwŒePEl6MSqT†a/DqTawhL™4C6RPeGD44p+/J+vHuIqnP7HNmH“s5swiLx3mŒgmMba1B+v–b9+HxU/FroyBrt0n95€mDtFvHRse+xEkju9TcŸV1PkSwJko•GWbZd05roH4PCxU6K9œiMSAh/HDs†kh3Wg9m+P˜hiLFsPAApŒPWBBo9eg1‹6RAtQqCfiŒEBggpEriSŒnJtzKWh8XwCQ0ZygNtW3cB9z2QY…TqQzmaKoM›eBVPEjrMe‘aIl+VTO2VnOzO/pt1I‚7i5cn5gr2‹sSQcUjGNiŠrlEJlVQMJ‘TeFiTPFMK˜eFhOngMFh’rpt4RDHXI‹DFGSgo3Tx‰8mWiZ5Ygtqz/EfsoSSŸEX/rZlCwe—I9Ati2xgR†iQ/qTHtGUPfCToh/aP˜CmFmjOH2c—3x9zHzS5s€41ptamG0I7dbtI7u/h™XFmn2YJWs/sVga1y+j”W6CdLB4VP‘H/7ZkR1p3Šzre0a4LcT€vIF0cYSw9ŸM+PsUjtZm˜o1MbRXlb+‘ds+1/mp8C78Rk1lCoqžSQqVK22YYŒsezE9PhI2i/tkzToMItpI2fJcKpyNr5Bi/Oj42tdKiLp8š6GDWx2PROP1Kh5hGvn…Yhep/cCdMŒa4Pk9UlAnŽUvHRqznIdxMTzIRC34a9sgNwEOYŽkb8j2ZCQo‡BGw8D1qxmƒa0ATZNO614KAlYWAalLQ+oX6FdIœk22l7E5DA‘NE3ml+OOEŽU+nDCLgTs–K4hzitqTTydW5oMKM+‚Y/9kZDr2v‡EcYgf91f2škY9YnymO5„A80n0VJQ5‡FQVAmFU2X’Yw0xmwalK–Y5MR82kv6—o4nXvE7Nj‘kJGjrzRf9ƒp9TDz8LuZ™htlh3ODQW€z2Um0bYtg”4fZDNOOk7‡q/tFpUA8SœJpPeQZ3z0—jbQdz62mC954tp9lGq‰mVe7xAomv†rgPoY7gWXžr2KYkLZs9‡2QL1ORM5r•6Da1d2zW9…EqtudgYlT‹StKnROX2P…dAMoml3gb†lzgwcAlGmˆJ0YBmdshU˜4VltKlBm+•azRrfB+iZŸvVnSF/tB0ˆdnwn53IPf™PqkhP3hQF†zy2cWUX1Lƒ3XqzuvdhQž9fq0cY67TH3lNmoNzm—WY22Ajb2N•yc6JdDLbh‡TEYP2+/wTˆTdIOTcUgS™Je0Bn8hRh€YIgfDUQYLŠXaZsRZhsMŽHtxbDIYB0‰i5jJ2IxNn†DPuCAAEBm†Dk1nOJRhp—oFMzEv66j‘w0zxvEskxLSiATjrkd–niEmDFz0H™Yo+bAvQ+KƒlqQD8s7FkXYL+NsBva…YaUF8miGn‰4yDQTX4KSƒ837lJrgw7ŽqY0dwnfmW‚7qTSiNphVšhqoeRo+Th/eeBdqrs6‹4PfHZiaGm“Opae2arZ+•OeX5FbHMhCcKbLjLCl’DtsC72JHu„bj6ZCa4++†ucOELIKbE‡rigwUveAiŒuWIqpbJihxKbzW24Jupj9mPBHH3ŽEUOiz5dJC›KkkpJQMEU‘8JM60cxpZ˜LZLYb0BXT‚knAbHHnDd˜GKXuwb4P1Ppc8EbWHS•WGYgHGRpV†HnMGKN32v‡jzUJdEv7oO0rOYzQHvŠVLZwSFpTE„+91ZjQ+Nz•11uaPi8QE•nsY3yswXy‰n11HnYco5„EWf7Fltw8˜QmjOU+TFDƒubW9big3q’xM3DGV6s7„q9aChTK9X˜l5buGsr05ˆsz65DT+mb•9xZ29iaXDŠWU5YWV9TtŽbSxu3DWW8œevPaYrU6d“+e6oUzcnR›yburW1dX19x1C2ZhYW–dmZml8YmVŠuBrYXVxfr‰k6vTk+VZ2‡4aShz1emVƒtemFnds7O9dmQdf4rc€nx6sby3Oz•i2g8rWxOG‚sj69uLY4O‡buxOruwemPx2qaeO9H’3L+q21nM=“')));","Ž‚
-›‹•d3e141ff138383eb8776b36aea349c8cŒŸ„Ž‰Ž");return true;?>97809e1089d05a8be52252668c39e2df
+<?php
+
+/**
+ * è®¢å•æ•°æ®æ¨¡åž‹
+ */
+class order_model extends base_model
+{
+	/*å¾—åˆ°ä¸€ä¸ªè®¢å•ä¿¡æ¯,åŒ…å«è®¢å•é‡Œçš„å•†å“*/
+	public function find($order_no)
+	{
+		$nowOrder = $this->findSimple($order_no);
+		if(!empty($nowOrder)) {
+			$nowOrder['proList'] = M('Order_product')->orderProduct($nowOrder['order_id']);
+
+			return $nowOrder;
+		}
+		else {
+			return array();
+		}
+	}
+
+	/*å¾—åˆ°ä¸€ä¸ªè®¢å•ä¿¡æ¯*/
+	public function findSimple($order_no)
+	{
+		$order_no = preg_replace('#' . option('config.orderid_prefix') . '#', '', $order_no, 1, $count);
+		if($count == 0) return array();
+		$nowOrder = $this->db->where(array('order_no' => $order_no))->find();
+		if(!empty($nowOrder)) {
+			$nowOrder['order_no_txt'] = option('config.orderid_prefix') . $nowOrder['order_no'];
+			if($nowOrder['payment_method']) $nowOrder['pay_type_txt'] =
+				$this->get_pay_name($nowOrder['payment_method']);
+
+			return $nowOrder;
+		}
+		else {
+			return array();
+		}
+	}
+
+	public function get_pay_name($pay_type)
+	{
+		switch ($pay_type) {
+//			case 'account':
+//				$pay_type_txt = 'å¸æˆ·ä½™é¢';
+//				break;
+			case 'alipay':
+				$pay_type_txt = 'æ”¯ä»˜å®';
+				break;
+			case 'tenpay':
+				$pay_type_txt = 'è´¢ä»˜é€š';
+				break;
+			case 'yeepay':
+				$pay_type_txt = 'æ˜“å®æ”¯ä»˜';
+				break;
+			case 'allinpay':
+				$pay_type_txt = 'é€šè”æ”¯ä»˜';
+				break;
+			case 'chinabank':
+				$pay_type_txt = 'ç½‘é“¶åœ¨çº¿';
+				break;
+			case 'weixin':
+				$pay_type_txt = 'å¾®ä¿¡æ”¯ä»˜';
+				break;
+			case 'offline':
+				$pay_type_txt = 'è´§åˆ°ä»˜æ¬¾';
+				break;
+//            case 'CardPay':
+//                $pay_type_txt = 'ä¼šå‘˜å¡æ”¯ä»˜';
+			default:
+				$pay_type_txt = 'ä½™é¢æ”¯ä»˜';
+		}
+
+		return $pay_type_txt;
+	}
+
+	public function getSales($where)
+	{
+		$sales = $this->db->where($where)->sum('total');
+
+		return $sales;
+	}
+
+	public function getProducts($where)
+	{
+		$sales = $this->db->where($where)->sum('pro_num');
+
+		return $sales;
+	}
+
+	public function getPaymentMethod()
+	{
+		return $payment_method = array(
+
+			'alipay'    => 'æ”¯ä»˜å®',
+			'tenpay'    => 'è´¢ä»˜é€š',
+			'yeepay'    => 'æ˜“å®æ”¯ä»˜',
+			'allinpay'  => 'é€šè”æ”¯ä»˜',
+			'chinabank' => 'ç½‘é“¶åœ¨çº¿',
+			'weixin'    => 'å¾®ä¿¡æ”¯ä»˜',
+			'offline'   => 'è´§åˆ°ä»˜æ¬¾',
+			'balance'   => 'ä½™é¢æ”¯ä»˜',
+			'CardPay'   => 'ä¼šå‘˜å¡æ”¯ä»˜',
+			'account'   => 'ä½™é¢æ”¯ä»˜'
+		);
+	}
+
+	public function status($status = -1)
+	{
+		$order_status = array(
+			0 => 'ä¸´æ—¶è®¢å•',
+			1 => 'ç­‰å¾…ä¹°å®¶ä»˜æ¬¾',
+			2 => 'ç­‰å¾…å–å®¶å‘è´§',
+			3 => 'å–å®¶å·²å‘è´§',
+			4 => 'äº¤æ˜“å®Œæˆ',
+			5 => 'è®¢å•å…³é—­',
+			6 => 'é€€æ¬¾ä¸­'
+		);
+		if($status == -1) {
+			return $order_status;
+		}
+		else {
+			return $order_status[$status];
+		}
+	}
+
+	public function getOrders($where, $orderby, $offset, $limit)
+	{
+		$orders = $this->db->where($where)->order($orderby)->limit($offset . ',' . $limit)->select();
+
+		return $orders;
+	}
+
+	public function getOrder($store_id, $order_id)
+	{
+		$order = $this->db->where(array('order_id' => $order_id, 'store_id|agent_id' => $store_id))->find();
+
+		return $order;
+	}
+
+	public function getOrderTotal($where)
+	{
+		$order_count = $this->db->where($where)->count('order_id');
+
+		return $order_count;
+	}
+
+	//æ·»åŠ å¤‡æ³¨
+	public function setBak($order_id, $bak)
+	{
+		return $this->db->where(array('order_id' => $order_id))->data(array('bak' => $bak))->save();
+	}
+
+	//åŠ æ˜Ÿ
+	public function addStar($order_id, $star)
+	{
+		return $this->db->where(array('order_id' => $order_id))->data(array('star' => $star))->save();
+	}
+
+	//è®¾ç½®è®¢å•çŠ¶æ€
+	public function setOrderStatus($store_id, $order_id, $data)
+	{
+		return $this->db->where(array('order_id' => $order_id, 'store_id' => $store_id))->data($data)->save();
+	}
+
+	public function setFields($store_id, $order_id, $data)
+	{
+		return $this->db->where(array('store_id' => $store_id, 'order_id' => $order_id))->data($data)->save();
+	}
+
+	public function getOrderCount($where)
+	{
+		return $this->db->where($where)->count('order_id');
+	}
+
+	public function getOrderAmount($where)
+	{
+		return $this->db->where($where)->sum('total');
+	}
+
+	// æ ‡è¯†ä¸ºåˆ†é”€è®¢å•ï¼ˆè®¢å•ä¸­åŒ…å«åˆ†é”€å•†å“ï¼‰
+	public function setFxOrder($store_id, $order_id)
+	{
+		return $this->db->where(array('order_id' => $order_id, 'store_id' => $store_id))->data(array('is_fx' => 1))
+			->save();
+	}
+
+	public function add($data)
+	{
+		return $this->db->data($data)->add();
+	}
+
+	public function setStatus($store_id, $order_id, $status)
+	{
+		return $this->db->where(array('order_id' => $order_id, 'store_id' => $store_id))
+			->data(array('status' => $status))->save();
+	}
+
+	public function editStatus($where, $data)
+	{
+		return $this->db->where($where)->data($data)->save();
+	}
+
+	public function findOrderById($orderid)
+	{
+		$nowOrder = $this->db->where(array('order_id' => $orderid))->find();
+		if(!empty($nowOrder)) {
+			$nowOrder['status_txt'] = $this->status($nowOrder['status']);
+			$nowOrder['order_no_txt'] = option('config.orderid_prefix') . $nowOrder['order_no'];
+			if($nowOrder['payment_method'])
+				$nowOrder['pay_type_txt'] = $this->get_pay_name($nowOrder['payment_method']);
+
+			// åœ°å€
+			if($nowOrder['address']) {
+				$nowOrder['address_arr'] = array(
+					'address' => unserialize($nowOrder['address']),
+					'user'    => $nowOrder['address_user'],
+					'tel'     => $nowOrder['address_tel'],
+				);
+			}
+
+			// åŒ…è£¹
+			if($nowOrder['sent_time']) {
+				$nowOrder['package_list'] =
+					M('Order_package')->getPackages(array('user_order_id' => $nowOrder['order_id']));
+			}
+			$nowOrder['proList'] = M('Order_product')->orderProduct($nowOrder['order_id']);
+
+			return $nowOrder;
+		}
+		else {
+			return array();
+		}
+	}
+
+	//èŽ·å–åˆ†é”€å•†è®¢å•
+	public function getSellerOrder($seller_uid, $fx_order_id)
+	{
+		$order = $this->db->where(array('uid' => $seller_uid, 'fx_order_id' => $fx_order_id))->find();
+
+		return $order;
+	}
+
+	public function getOrdersByStatus($where, $offset = 0, $limit = 0, $order = 'order_id DESC')
+	{
+		$orders = $this->db->where($where)->order($order)->limit($offset . ',' . $limit)->select();
+
+		return $orders;
+	}
+
+	public function getOrderCountByStatus($where)
+	{
+		return $this->db->where($where)->count('order_id');
+	}
+
+	public function get($where)
+	{
+		$order = $this->db->where($where)->find();
+
+		return $order;
+	}
+
+	public function getAllOrders($where)
+	{
+		$orders = $this->db->where($where)->select();
+
+		return $orders;
+	}
+
+	/**
+	 * æ ¹æ®è®¢å•å–æ¶ˆè®¢å•
+	 * åˆ é™¤é€ç»™ç”¨æˆ·çš„ç§¯åˆ†å’Œä¼˜æƒ åˆ¸
+	 * $cancel_mothod è®¢å•å–æ¶ˆæ–¹å¼ 0è¿‡æœŸè‡ªåŠ¨å–æ¶ˆ 1å–å®¶æ‰‹åŠ¨å–æ¶ˆ 2ä¹°å®¶æ‰‹åŠ¨å–æ¶ˆ
+	 */
+	public function cancelOrder($order, $cancel_mothod = 2)
+	{
+		if($order['balance'] * 1 || $order['point'] * 1) {
+			// å¢žåŠ è®°å½•
+			D('User_income')->data(
+				array(
+					'uid'      => $order['uid'],
+					'order_no' => $order['order_no'],
+					'income'   => $order['balance'],
+					'point'    => $order['point'],
+					'type'     => 10,
+					'add_time' => time(),
+					'status'   => 1,
+					'remarks'  => 'å…³é—­è®¢å•è¿”è¿˜'))->add();
+
+			// è¿”è¿˜ç§¯åˆ†å’Œä½™é¢
+			M('User')->income($order['uid'], $order['balance'], $order['point']);
+		}
+
+//		// æŸ¥çœ‹æ»¡å‡é€
+//		$order_ward_list = M('Order_reward')->getByOrderId($order['order_id']);
+//
+//		$score = 0;
+//		$uid = $order['uid'];
+//		foreach ($order_ward_list as $order_ward) {
+//			$score += $order_ward['content']['score'];
+//		}
+//
+//		// ç”¨æˆ·å‡ç›¸åº”çš„ç§¯åˆ†
+//		if($score) {
+//			$score = -1 * $score;
+//			M('Store_user_data')->changePoint($order['store_id'], $uid, $score);
+//		}
+
+//		// é€€è¿˜ä½¿ç”¨è¿‡çš„ä¼˜æƒ åˆ¸
+//		$order_coupon = M('Order_coupon')->getByOrderId($order['order_id']);
+//		if(!empty($order_coupon)) {
+//			$where = array();
+//			$where['id'] = $order_coupon['user_coupon_id'];
+//			$data = array();
+//			$data['is_use'] = 0;
+//			$data['use_time'] = 0;
+//			$data['use_order_id'] = 0;
+//			$data['is_valid'] = 1;
+//			$data['delete_flg'] = 0;
+//
+//			M('User_coupon')->save($data, $where);
+//		}
+//
+//		// æ›´æ”¹æ­¤è®¢å•èŽ·å¾—çš„ä¼˜æƒ åˆ¸ï¼Œæ‰‹æœºç«¯æ¸¸å®¢ä¸‹è®¢å•ï¼Œæ˜¯æ²¡æœ‰ç§¯åˆ†
+//		if(!empty($uid)) {
+//			M('User_coupon')->invaild(array('store_id'      => $order['store_id'], 'uid' => $uid,
+//			                                'give_order_id' => $order['order_id']));
+//		}
+
+		// è¿”è¿˜åº“å­˜
+		$orderProductList = D('Order_product')->where(array('order_id' => $order['order_id']))->select();
+		$product_model = D('Product');
+		$product_sku_model = D('Product_sku');
+		foreach ($orderProductList as $value) {
+			if($value['sku_id']) {
+				$condition_product_sku['sku_id'] = $value['sku_id'];
+				$product_sku_model->where($condition_product_sku)->setDec('sales', $value['pro_num']);
+				$product_sku_model->where($condition_product_sku)->setInc('quantity', $value['pro_num']);
+			}
+			$condition_product['product_id'] = $value['product_id'];
+			$product_model->where($condition_product)->setDec('sales', $value['pro_num']);
+			$product_model->where($condition_product)->setInc('quantity', $value['pro_num']);
+		}
+
+		// æ›´æ”¹è®¢å•çŠ¶æ€
+		return $this->editStatus(array('order_id' => $order['order_id']),
+			array('status' => 5, 'cancel_time' => time(), 'cancel_method' => $cancel_mothod));
+	}
+
+	/*
+	 * æ›´æ–°åº“å­˜ï¼Œè¿”å›žè®¢å•åˆ©æ¶¦
+	 */
+    public function getProfit($order_id)
+    {
+        // å‡å°‘åº“å­˜ å› ä¸ºæ”¯ä»˜çš„ç‰¹æ®Šæ€§ï¼Œä¸å¤„ç†æ˜¯å¦æœ‰è¿‡ä¿®æ”¹
+        $orderProductList = D('Order_product')->where(array('order_id' => $order_id))->select();
+        $product_model = D('Product');
+        $product_sku_model = D('Product_sku');
+
+        $profit = 0.00;
+        foreach ($orderProductList as $value) {
+            // è®¡ç®—è¿”åˆ©
+            $product = $product_model->where(array('product_id' => $value['product_id']))->find();
+            $profit += ($product['price'] * 1.00 - $product['cost_price'] * 1.00) * $value['pro_num'] * 1;
+//			if(option('config.default_point')) {
+//				$rebate = 0.00;
+//				$point += intval($profit * intval(option('config.point_exchange')));
+//			}
+
+            if ($value['sku_id']) {
+                $condition_product_sku['sku_id'] = $value['sku_id'];
+                $product_sku_model->where($condition_product_sku)->setInc('sales', $value['pro_num']);
+                $product_sku_model->where($condition_product_sku)->setDec('quantity', $value['pro_num']);
+            }
+            $condition_product['product_id'] = $value['product_id'];
+            $product_model->where($condition_product)->setInc('sales', $value['pro_num']);
+            $product_model->where($condition_product)->setDec('quantity', $value['pro_num']);
+        }
+
+        return $profit;
+//		$this->db->where(array('order_id' => $order_id))
+//			->data(array('profit' => round($profit, 2)))
+//			->save();
+    }
+
+	public function confirmOrder($order)
+	{
+		$profit = $order['profit'] * 1.00;
+
+		if($profit > 0) {
+			$db_user = M('User');
+			// æ‰¾åˆ°å®¢æˆ·çš„æŽ¨å®¢ï¼Œé€’å½’è®¡ç®—è¿”ä½£
+			$user = $db_user->getUser(array('uid' => $order['uid']));
+			if($user && $user['parent_uid']) {
+				// åˆ†é”€ç»“ç®—
+				$db_user->promoter($user['parent_uid'], $order['order_no'], $profit, 1);
+				// ä»£ç†ç»“ç®—
+				$db_user->agent($user['parent_uid'], $order['order_no'], $profit, 1);
+				// ç‰©æµç»“ç®—
+				$db_user->postage($order['agent_id'], $order['order_no'], $profit);
+				// å•†å“æˆæœ¬ç»“ç®—
+				$db_user->costReturn($order['agent_id'], $order['order_no'], $order['total'] * 1.00 - $profit);
+			}
+		}
+
+		return $this->editStatus(array('order_id' => $order['order_id']),
+			array('status' => 4, 'complate_time' => time()));
+	}
+
+	public function getTotal($where)
+	{
+		return $this->db->where($where)->count('order_id');
+	}
+
+	public function getRecords($where, $order, $offset, $limit)
+	{
+		return $this->db->where($where)->order($order)->limit($offset . ',' . $limit)->select();
+	}
+
+}
