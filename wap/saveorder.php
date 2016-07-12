@@ -233,7 +233,7 @@ switch ($action) {
 			$data_order = array();
 			$address = M('User_address')->getAdressById('', $wap_user['uid'], $_POST['address_id']);
 			if(empty($address)) json_return(1009, '该地址不存在');
-			$data_order['shipping_method'] = 'express';
+			$data_order['shipping_method'] = 'express'; //快递发货
 			$data_order['address_user'] = $address['name'];
 			$data_order['address_tel'] = $address['tel'];
 			$data_order['address'] = serialize(array(
@@ -556,8 +556,8 @@ switch ($action) {
 //			json_return(0, '/wap/order.php?orderid=' . $nowOrder['order_id']);
 //		}
 
-		$payMethodList = M('Config')->get_pay_method();
-		if(empty($payMethodList[$payType])) {
+			$payMethodList = M('Config')->get_pay_method();
+			if(empty($payMethodList[$payType])) {
 			json_return(1012, '您选择的支付方式不存在<br/>请更新支付方式');
 		}
 		$nowOrder['order_no_txt'] = option('config.orderid_prefix') . $nowOrder['order_no'];
@@ -798,5 +798,40 @@ switch ($action) {
 			json_return(0, json_decode($payInfo['pay_data']));
 		}
 
+		break;
+	case 'refund' : //退款
+		//1 根据订单状态确认是否可以直接退款
+		//1.1 订单未发货  直接退款
+		//1.2 订单已发货  要用户拒收，我们这边确认后才能给他退款
+		//1.3 订单已收货  需要用户提交货运单，我们收到货之后确认退款
+		//查看是否使用了积分和余额
+		$model_order = M('Order');
+		$model_income = M('User_income');
+		$db_user = D('User');
+		$nowOrder = $model_order->find($_POST['orderNo']);
+		if(!empty($nowOrder['balance']))
+		{
+			//使用了账户余额进行付款 ，把余额退回
+			$db_user->where(array('uid' => $order['uid']))->setInc('balance', $nowOrder['balance']);
+		}
+		if(!empty($nowOrder['point']))
+		{
+			//使用了积分进行付款 ，把积分退回
+			$db_user->where(array('uid' => $order['uid']))->setInc('point', $point);
+		}
+		// 购物立返的积分或者现金要扣除
+		$income = $model_income->getPointAndIncomeByOrderNo(array('order_no' => $_POST['orderNo'],'type' => 1));
+		if(option('config.default_point'))
+		{
+			//默认为反积分
+			$point_money = $income['point']/option('config.point_exchange');
+			$refund_fee = $nowOrder['pay_money'] - $point_money; //实际退回的钱
+		} else
+		{
+			$refund_fee = $nowOrder['pay_money'] - $income['income']; //实际退回的钱
+		}
+		import('source.class.pay.Weixin');
+		$openid = $_SESSION['openid'];
+		//调用微信退款接口
 		break;
 }

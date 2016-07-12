@@ -296,6 +296,17 @@ class user_income_model extends base_model
 	}
 
 
+	/**
+	 * 根据订单号 和 状态 获取返现的积分和余额
+	 * @param $where
+	 * @return mixed
+	 */
+	public function getPointAndIncomeByOrderNo($where)
+	{
+		return $this->db->where($where)->find();
+	}
+
+
 //	public function getIncomeCount($where)
 //	{
 //		$sql = 'SELECT COUNT(c.id) AS count FROM `' . option('system.DB_PREFIX') . 'user_cash` c,  `' .
