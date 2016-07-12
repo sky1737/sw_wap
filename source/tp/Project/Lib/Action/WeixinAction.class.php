@@ -316,10 +316,10 @@ class WeixinAction extends Action
 			}
 
 			$return[] = array(
-				$this->config['seo_title'],
-				$this->config['seo_description'], // 介绍
-				$this->config['site_logo'],
-				$this->config['wap_site_url']
+//				$this->config['seo_title'],
+//				$this->config['seo_description'], // 介绍
+//				$this->config['site_logo'],
+//				$this->config['wap_site_url']
 			);
 
 			switch ($recognition['third_type']) {
