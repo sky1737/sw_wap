@@ -723,6 +723,20 @@ class account_controller extends base_controller
 		exit;
 	}
 
+	function order_refund()
+	{
+		$order_id = $_GET['order_id'];
+		if(empty($order_id)) {
+			echo json_encode(array('status' => false, 'msg' => '参数错误！'));
+			exit;
+		}
+
+
+		echo json_encode(array('status' => true, 'msg' => '确认退款中！', 'data' => array('nexturl' => 'refresh')));
+		exit;
+	}
+
+
 //	//订单详细
 //	public function detail() {
 //		$this->display();

@@ -59,6 +59,16 @@
 			}
 		});
 
+		//退款
+		$(".refund").live('click', function () {
+			if (confirm('确认退款吗？')) {
+				var order_id = $(this).attr('data-id');
+				$.getJSON("<?php echo url('account:order_refund') ?>&order_id=" + order_id, function (data) {
+					showResponse(data);
+				});
+			}
+		});
+
 		// 确认收货
 		$(".confirm").live('click',function () {
 			if (confirm('您确定已经收到货了？')) {

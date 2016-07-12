@@ -141,7 +141,7 @@
 				<td class="time-cell" rowspan="<?php echo count($order['products']); ?>">
 					<div class="m-opts">
 							<?php
-							echo '';
+
 							if($order['status'] < 2) {
 								echo '<p><a target="_blank" href="' .
 									url('index:order:pay&order_id=' . option('config.orderid_prefix') .
@@ -175,7 +175,11 @@
 									$order['order_no']) . '" style="color: #333;">查看详情</a></p>';
 							/*<a href="<?php dourl('detail', array('id' => $order['order_id'])); ?>" class="js-order-detail view" target="_blank">查看详情</a>
 							<span>-</span>
-							<a class="js-memo-it" rel="popover" href="javascript:;" data-bak="<?php echo $order['bak']; ?>" data-id="<?php echo $order['order_id']; ?>">备注</a>*/ ?>
+							<a class="js-memo-it" rel="popover" href="javascript:;" data-bak="<?php echo $order['bak']; ?>" data-id="<?php echo $order['order_id']; ?>">备注</a>*/
+							if(1 < $order['status'] && $order['status'] < 5) {
+								echo '<p><a href="javascript:" data-id="' . option('config.orderid_prefix') . $order['order_no'] . '" class="refund" style="color: #333;">退款并退货</a></p>';
+							}
+							?>
 					</div>
 				</td>
 				<?php } ?>
