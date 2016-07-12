@@ -144,7 +144,7 @@
 							echo '';
 							if($order['status'] < 2) {
 								echo '<p><a target="_blank" href="' .
-									url('order:pay&order_id=' . option('config.orderid_prefix') .
+									url('index:order:pay&order_id=' . option('config.orderid_prefix') .
 										$order['order_no']) . '" class="order-total">立即购买</a></p>' .
 									'<p><a href="javascript:" data-id="' . option('config.orderid_prefix') .
 									$order['order_no'] .
