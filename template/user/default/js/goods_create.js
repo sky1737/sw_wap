@@ -972,6 +972,7 @@ $(function () {
 				 else {
 				 location.href = goods_index_url;
 				 }*/
+				 location.href = goods_index_url;
 			}
 			else {
 				$('.notifications').html('<div class="alert in fade alert-error">' + data.err_msg + '</div>');

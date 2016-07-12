@@ -32,7 +32,7 @@ var wholesale_setting_url = "<?php dourl('fx:goods_wholesale_setting');?>";
 var goods_index_url = "<?php dourl('index');?>";
 var version = "0";
 </script>
-<script type="text/javascript" src="<?php echo TPL_URL;?>js/goods_create.js?20151211"></script>
+<script type="text/javascript" src="<?php echo TPL_URL;?>js/goods_create.js?20160712"></script>
 </head>
 <body class="font14 usercenter">
 <?php include display('public:header');?>
