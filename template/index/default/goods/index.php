@@ -156,7 +156,8 @@ if($is_preview) {
 					}
 					?>
 					<li>
-						<div style="float:left; width:200px; color:#6c6c6c;"> 运费&nbsp;&nbsp;¥<?php echo $nowProduct['postage'];// $nowProduct['postage_tpl']	? $nowProduct['postage_tpl']['min'] . '~' . $nowProduct['postage_tpl']['max'] : $nowProduct['postage'] ?>元
+						<div style="float:left; width:200px; color:#6c6c6c;"> 运费&nbsp;&nbsp;¥<?php echo $product['postage'];
+						// $nowProduct['postage_tpl']	? $nowProduct['postage_tpl']['min'] . '~' . $nowProduct['postage_tpl']['max'] : $nowProduct['postage'] ?>元
 							</dd>
 						</div>
 					</li>
