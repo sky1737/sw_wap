@@ -100,6 +100,10 @@
 							<?php }
 							else { ?>
 							<a class="btn btn-in-order-list" href="<?php echo $order['url']; ?>">详情</a>
+							<?php }
+
+							if(1 < $order['status'] && $order['status'] < 5) {?>
+								<a class="btn btn-in-order-list" href="<?php echo $order['refund_url']; ?>">退款</a>
 							<?php } ?>
 						</div>
 					</div>

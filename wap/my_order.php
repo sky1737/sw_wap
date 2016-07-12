@@ -75,6 +75,10 @@ if($count > 0) {
 			$order_tmp['url'] = './order.php?orderid=' . $order_tmp['order_id'];
 		}
 
+		if(1 < $order_tmp['status'] && $order_tmp['status'] < 5) {
+			$order_tmp['refund_url'] = './saveorder.php?action=refund&orderid=' . $order_tmp['order_id'];
+		}
+
 		// 获取图片地址
 		foreach ($order_product_list as &$order_product) {
 			$order_product['url'] = 'good.php?id=' . $order_product['product_id'];
@@ -124,4 +128,3 @@ if($count > 0) {
 include display('my_order');
 
 echo ob_get_clean();
-?>
