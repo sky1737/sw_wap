@@ -24,7 +24,7 @@ require_once dirname(__FILE__) . '/global.php';
 //}
 
 $db_pre = option('system.DB_PREFIX');
-$result = D('')->query("SELECT COUNT(order_id) AS c1, COUNT(CASE WHEN STATUS = 1 THEN 'un_zf' END) c2, COUNT(CASE WHEN STATUS = 2 THEN 'un_fh' END) c3, COUNT(CASE WHEN STATUS = 3 THEN 'un_sh' END) c4 FROM {$db_pre}order where `uid` = {$wap_user['uid']}");
+$result = D('')->query("SELECT COUNT(CASE WHEN STATUS > 0 THEN 'un_c' END) AS c1, COUNT(CASE WHEN STATUS = 1 THEN 'un_zf' END) c2, COUNT(CASE WHEN STATUS = 2 THEN 'un_fh' END) c3, COUNT(CASE WHEN STATUS = 3 THEN 'un_sh' END) c4 FROM {$db_pre}order where `uid` = {$wap_user['uid']}");
 
 ////分享配置 start  
 //$share_conf = array(
