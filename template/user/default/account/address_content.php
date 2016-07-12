@@ -91,7 +91,7 @@
 		<div class="control-group clearfix">
 			<label class="control-label"><em class="required">*</em>默认地址：</label>
 			<div class="controls">
-				<input id="default" type="checkbox" name="default" value="1" />
+				<input type="checkbox" name="default" value="1" />
 			</div>
 		</div>
 		<div class="form-actions clearfix">
