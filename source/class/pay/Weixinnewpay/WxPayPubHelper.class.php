@@ -849,8 +849,9 @@ class Refund_pub extends Wxpay_client_pub
     public $mchid;
     public $key;
 
-    public function __construct()
+    public function __construct($appid , $mchid , $key)
     {
+        Common_util_pub::__construct($appid, $mchid, $key);
         $this->url          = 'https://api.mch.weixin.qq.com/secapi/pay/refund';
         $this->curl_timeout = 60;
     }

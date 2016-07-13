@@ -10,10 +10,10 @@ class Weixin
 
     public function __construct($order_info, $pay_config, $openid, $type = 'pay')
     {
-        $this->order  = $order_info;
+        $this->order = $order_info;
         $this->config = $pay_config;
         $this->openid = $openid;
-        $this->type   = $type;
+        $this->type = $type;
     }
 
     /**
@@ -58,14 +58,14 @@ class Weixin
         if ($prepay_result['return_code'] == 'FAIL') {
             return array(
                 'err_code' => 1,
-                'err_msg'  => '没有获取微信支付的预支付ID，请重新发起支付！<br/><br/>微信支付错误返回：' . $prepay_result['return_msg'],
+                'err_msg' => '没有获取微信支付的预支付ID，请重新发起支付！<br/><br/>微信支付错误返回：' . $prepay_result['return_msg'],
             );
         }
 
         if ($prepay_result['err_code']) {
             return array(
                 'err_code' => 1,
-                'err_msg'  => '没有获取微信支付的预支付ID，请重新发起支付！<br/><br/>微信支付错误返回：' . $prepay_result['err_code_des'],
+                'err_msg' => '没有获取微信支付的预支付ID，请重新发起支付！<br/><br/>微信支付错误返回：' . $prepay_result['err_code_des'],
             );
         }
 
@@ -89,7 +89,7 @@ class Weixin
         import('source.class.pay.Weixinnewpay.WxPayPubHelper');
         $notify = new Notify_pub($this->config['pay_weixin_appid'], $this->config['pay_weixin_mchid'],
             $this->config['pay_weixin_key']);
-        $xml    = $GLOBALS['HTTP_RAW_POST_DATA'];
+        $xml = $GLOBALS['HTTP_RAW_POST_DATA'];
         //logs($xml, 'INFO');
         $notify->saveData($xml);
         //logs(''.json_encode($notify->data), 'INFO');
@@ -101,18 +101,18 @@ class Weixin
         } else {
             $notify->setReturnParameter('return_code', 'SUCCESS');
             if (($notify->data['return_code'] == 'SUCCESS') && ($notify->data['result_code'] == 'SUCCESS')) {
-                $order_param['trade_no']     = $notify->data['out_trade_no'];
-                $order_param['pay_type']     = 'weixin';
-                $order_param['third_id']     = $notify->data['transaction_id'];
-                $order_param['pay_money']    = $notify->data['total_fee'] / 100;
-                $order_param['third_data']   = $notify->data;
+                $order_param['trade_no'] = $notify->data['out_trade_no'];
+                $order_param['pay_type'] = 'weixin';
+                $order_param['third_id'] = $notify->data['transaction_id'];
+                $order_param['pay_money'] = $notify->data['total_fee'] / 100;
+                $order_param['third_data'] = $notify->data;
                 $order_param['echo_content'] = $notify->returnXml();
 
                 return array('err_code' => 0, 'order_param' => $order_param);
             } else {
                 return array(
                     'err_code' => 1,
-                    'err_msg'  => '支付时发生错误！<br/>错误提示：' . $notify->data['return_code'] . '<br/>错误代码：' .
+                    'err_msg' => '支付时发生错误！<br/>错误提示：' . $notify->data['return_code'] . '<br/>错误代码：' .
                         $notify->data['result_code'],
                 );
             }
@@ -153,7 +153,7 @@ class Weixin
         if (empty($result) || $result['return_code'] == "FAIL" || $result['result_code'] == "FAIL") {
             return array(
                 'err_code' => 1,
-                'err_msg'  => '提现时发生错误！错误提示：' . $result['err_code_des'] . '<br/>错误代码：' .
+                'err_msg' => '提现时发生错误！错误提示：' . $result['err_code_des'] . '<br/>错误代码：' .
                     $result['err_code'],
             );
         }
@@ -195,11 +195,51 @@ class Weixin
         if (empty($result) || $result['return_code'] == "FAIL" || $result['result_code'] == "FAIL") {
             return array(
                 'err_code' => 1,
-                'err_msg'  => '发送红包时发生错误！错误提示：' . $result['err_code_des'] . '<br/>错误代码：' .
+                'err_msg' => '发送红包时发生错误！错误提示：' . $result['err_code_des'] . '<br/>错误代码：' .
                     $result['err_code'],
             );
         }
 
         return array('err_code' => 0, 'err_msg' => $result['mch_billno']);
+    }
+
+    /**
+     * 退款
+     */
+    public function refund()
+    {
+        if (empty($this->config['pay_weixin_appid']) ||
+            empty($this->config['pay_weixin_mchid']) ||
+            empty($this->config['pay_weixin_key'])
+        ) {
+            return array('err_code' => 1, 'err_msg' => '微信支付缺少配置信息！请联系管理员处理或选择其他支付方式。');
+        }
+
+        import('source.class.pay.Weixinnewpay.WxPayPubHelper');
+
+        $refund = new Refund_pub(
+            $this->config['pay_weixin_appid'],
+            $this->config['pay_weixin_mchid'],
+            $this->config['pay_weixin_key']
+        );
+
+        $refund->setParameter('out_trade_no',$this->order['trade_no']);
+        $refund->setParameter('out_refund_no',$this->order['order_no']);
+        $refund->setParameter('op_user_id',$refund->mchid);
+        $refund->setParameter('refund_fee',(int)$this->order['refund_fee']*100);
+        $refund->setParameter('total_fee',(int)$this->order['pay_money']*100);
+
+        $result = $refund->getResult();
+        logs('refund_result:' . json_encode($result), 'INFO');
+        if (empty($result) || $result['return_code'] == "FAIL" || $result['result_code'] == "FAIL")
+        {
+            return array(
+                'err_code' => 1,
+                'err_msg' => '退货时发生错误！错误提示：' . $result['err_code_des'] . '<br/>错误代码：' .
+                    $result['err_code'],
+            );
+        }
+        return array('err_code' => 0,'err_msg' => '退款成功！');
+
     }
 }
