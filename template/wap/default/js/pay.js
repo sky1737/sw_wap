@@ -561,7 +561,7 @@ $(function () {
 		}
 	});
 
-	$('.js-order-address .opt-wrapper .js-edit-address').live('click', function () {
+	$('.js-order-address-item .opt-wrapper .js-edit-address').live('click', function ($this) {
 //		/*优先判断到店自提*/
 //		if (selffetchList && $('.js-tabber-self-fetch').hasClass('tag-orange')) {
 //			selffetchEdit = true;
@@ -569,7 +569,9 @@ $(function () {
 //		}
 //		else {
 		// if(!isLogin){
-		var nowAdress = addressList[$('#address_id').val()];
+
+		var addrid = $(this).parent().parent().find('#address_id').val();
+		var nowAdress = addressList[addrid];
 		editAdress(function () {
 			$('#addAdress input[name="user_name"]').val(nowAdress.name);
 			$('#addAdress input[name="tel"]').val(nowAdress.tel);
@@ -580,12 +582,14 @@ $(function () {
 			getCitys('city', 'province', nowAdress.city, '城市');
 			getAreas('county', 'city', nowAdress.area, '区县');
 		}, nowAdress.address_id);
+
+
 		// }
 //		}
 	});
 
 	//页面初始化
-	if ($('.js-order-address > .js-edit-address').size()) {
+	if (!$('.js-order-address-item').size()) {
 		if (is_logistics) {
 			$('.js-order-address > .js-edit-address').trigger('click');
 		}
@@ -726,7 +730,7 @@ $(function () {
 				return false;
 			}
 			else {
-				post_data.address_id = $('#address_id').val();
+				post_data.address_id = $('input[name=address_id]:checked').val();
 			}
 //			}
 		}

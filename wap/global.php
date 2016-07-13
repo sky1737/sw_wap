@@ -179,10 +179,10 @@ if (empty($_SESSION['store'])) {
     if (empty($store)) {
         $store = $db_store->getStoreByUid($_SESSION['user']['parent_uid']);
     }
-
+    if(empty($store)) $store = $db_store->getOfficial();
     $_SESSION['store'] = $store;
 } else {
-    if ($_SESSION['store']['uid'] != $_SESSION['user']['uid']) {
+    if ($_SESSION['user']['stores'] && $_SESSION['store']['uid'] != $_SESSION['user']['uid']) {
         if ($store = D('Store')->where(array('uid' => $_SESSION['user']['uid'], 'status' => 1))->find()) {
             $_SESSION['store'] = $store;
         };

@@ -25,6 +25,7 @@ switch ($action) {
 				!empty($_POST['address']) ? $_POST['address'] : json_return(1005, '请填写详细地址');
 			$data_user_address['zipcode'] = !empty($_POST['zipcode']) ? $_POST['zipcode'] : 0;
 			$data_user_address['add_time'] = $_SERVER['REQUEST_TIME'];
+			$data_user_address['default'] = intval(!D('User_address')->where(array('uid'=>$wap_user['uid']))->count('1'));
 			if ($data_user_address['address_id'] = D('User_address')->data($data_user_address)->add()) {
 				json_return(0, $data_user_address);
 			}

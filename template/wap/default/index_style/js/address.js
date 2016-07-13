@@ -103,5 +103,19 @@ $(function(){
 				});
 			}
 		});
+
+		$('#addressList .setdefault').click(function(){
+			var nowDom = $(this).closest('.setdefault');
+			if(confirm('设置该地址为默认收货地址吗？')){
+				$('#wxloading').show();
+				$.get('./index_ajax.php?action=set_default_address',{'address_id':nowDom.data('id')},function(result){
+					if(result.err_code){
+						alert(result.err_msg);
+					}else{
+						$('#wxloading').hide();
+					}
+				});
+			}
+		});
 	}
 });
