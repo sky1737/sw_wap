@@ -145,7 +145,7 @@
 				  </div>
 				</div>-->
 				<div class="header_search_input">
-					<input class="combobox-input" name="" class="input" type="text" placeholder="请输入商品名、称地址等">
+					<input class="combobox-input" name="" class="input" type="text" placeholder="请输入商品名称">
 				</div>
 				<div class="header_search_button sub_search">
 					<button><span></span> 搜索</button>
