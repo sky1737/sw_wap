@@ -19,7 +19,7 @@ $(function () {
 
 
     $('.js-refund-it').click(function () {
-
+        var orderNo = $(this).data('id');
         var popBg = $('<div id="qpPh1bGqgC" style="height:100%;position:fixed;top:0px;left:0px;right:0px;background-color:rgba(0,0,0,0.7);z-index:1000;transition:none 0.2s ease 0s;opacity:1;"></div>');
         var skuHtml = '<div id="n65dA7sX3X" class="sku-layout sku-box-shadow" style="overflow:hidden;bottom:0px;left:0px;right:0px;visibility:visible;position:absolute;z-index:1100;opacity:1;"><div class="adv-opts layout-content"><div class="confirm-action content-foot">';
         skuHtml += '<a href="javascript:;" class="js-refund-money confirm btn btn-block btn-orange-dark">退款</a><div class="goods-models block block-list block-border-top-none"></div><a href="javascript:;" class="js-refund-good cart btn btn-block btn-orange-dark half-button">退货</a></div></div></div>';
@@ -53,14 +53,18 @@ $(function () {
 
         //退款
         $('.js-refund-money').click(function () {
-
+            $.post('./saveorder.php?action=refund&',{orderNo:orderNo},function (data){
+                if(data.err_code == 0){
+                    console.log(data);
+                } else {
+                    alert(data.err_msg);
+                }
+            });
             console.log('refund-m');
-
         });
-
         //退货
         $('.js-refund-good').click(function () {
-
+            window.location.href ='./refund.php?orderNo='+orderNo;
             console.log('refund-g');
         });
 

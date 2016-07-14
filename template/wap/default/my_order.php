@@ -103,7 +103,7 @@
 							<?php }
 
 							if(1 < $order['status'] && $order['status'] < 5) {?>
-								<a class="btn btn-in-order-list js-refund-it" href="<?php echo '#'/*$order['refund_url']*/; ?>">退款</a>
+								<a class="btn btn-in-order-list js-refund-it"  data-id="<?php echo $order['order_no_txt']; ?>" href="<?php echo '#'/*$order['refund_url']*/; ?>">退款</a>
 							<?php } ?>
 						</div>
 					</div>

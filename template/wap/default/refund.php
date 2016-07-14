@@ -29,7 +29,6 @@ if(!defined('TWIKER_PATH'))
                 isLogin = !<?php echo intval(empty($wap_user));?>,
                 pay_url = 'saveorder.php?action=refund';
         </script>
-        <script src="<?php echo TPL_URL; ?>js/pay.js"></script>
         <script src="http://api.map.baidu.com/api?v=1.2" type="text/javascript"></script>
         <script type="text/javascript">
             var postage = '<?php echo $nowOrder['postage'] ?>';
@@ -38,12 +37,29 @@ if(!defined('TWIKER_PATH'))
     </head>
     <body>
     <div class="container js-page-content wap-page-order">
-        <div class="content confirm-container">
-            <input type="button" name="">
-        </div>
-        <div class="js-confirm-use-coupon confirm-use-coupon" style="display:none;">
-            <button type="button" class="js-confirm-coupon btn btn-blue btn-xsmall font-size-14">确定</button>
-        </div>
+        <form name="form" id="form" method="post">
+            <ul>
+                <li>
+                    <div>选择物流信息:</div>
+                    <div>
+                        <select name="express_code">
+                            <?php foreach ($express  as $key => $val):?>
+                                <option value ="<?php echo $val['code']?>"><?php echo $val['name'];?></option>
+                            <?php endforeach;?>
+                        </select>
+                    </div>
+                </li>
+                <li>
+                    <div>物流单号:</div>
+                    <div>
+                        <input type="text" name="express_no" value="">
+                    </div>
+                </li>
+            </ul>
+            <li>
+                <button id="">确认提交</button>
+            </li>
+        </form>
         <?php $noFooterLinks = true;
         include display('footer'); ?>
     </div>
