@@ -48,7 +48,7 @@ $category_products = array();
 $db_product = M('Product');
 foreach ($categories as $val) {
     $category_products[] = $db_product
-        ->getSelling('status = 1 and is_fx = 1 AND is_recommend = 1 AND (category_fid = ' . $val['cat_id'] . ' OR category_id = ' .
+        ->getSelling('status = 1 and is_fx = 1 AND is_hot = 1 AND (category_fid = ' . $val['cat_id'] . ' OR category_id = ' .
             $val['cat_id'] . ')', '', '', 0, 4);
 }
 
