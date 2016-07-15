@@ -43,6 +43,7 @@ if(!defined('TWIKER_PATH'))
                     <div>选择物流信息:</div>
                     <div>
                         <select name="express_code">
+                            <option value ="">请选择快递</option>
                             <?php foreach ($express  as $key => $val):?>
                                 <option value ="<?php echo $val['code']?>"><?php echo $val['name'];?></option>
                             <?php endforeach;?>
@@ -55,13 +56,35 @@ if(!defined('TWIKER_PATH'))
                         <input type="text" name="express_no" value="">
                     </div>
                 </li>
+                <li>
+                    <input type="hidden" name="express_company" value="">
+                    <input type="hidden" name="store_id" value="<?php echo $nowOrder['store_id']?>">
+                    <input type="hidden" name="order_id" value="<?php echo $nowOrder['order_id']?>">
+                    <input type="hidden" name="products" value="<?php echo $product_ids ?>">
+                    <button type="button" id="button">确认提交</button>
+                </li>
             </ul>
-            <li>
-                <button id="">确认提交</button>
-            </li>
         </form>
         <?php $noFooterLinks = true;
         include display('footer'); ?>
     </div>
+    <script>
+        $(function () {
+            $('select').change(function () {
+                var value = $(this).find("option:selected").text();
+                $("input[name='express_company']").val(value);
+            });
+            $("#button").click(function(){
+               $.post('./refund_package.php',$("form").serialize(),function (data) {
+                   if(typeof(data)=="string") data = eval('('+data+')');
+                   if(data.err_code == 0){
+                       window.location.href ='./my_order.php';
+                   } else {
+                       console.log(data);
+                   }
+               });
+            });
+        });
+    </script>
     </body>
     </html>
