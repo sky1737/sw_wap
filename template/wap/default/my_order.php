@@ -104,6 +104,10 @@
 
 							if(1 < $order['status'] && $order['status'] < 5) {?>
 								<a class="btn btn-in-order-list js-refund-it"  data-id="<?php echo $order['order_no_txt']; ?>" href="<?php echo '#'/*$order['refund_url']*/; ?>">退款</a>
+							<?php }
+
+							if(4 == $order['status']) { $product_id = $order['product_list'][0]['product_id']; ?>
+								<a class="btn btn-orange btn-in-order-list" href="./comment_add.php?id=<?php echo $product_id ?>&type=PRODUCT">评价</a>
 							<?php } ?>
 						</div>
 					</div>
