@@ -225,9 +225,9 @@ class Weixin
 
         $refund->setParameter('out_trade_no',$this->order['trade_no']);
         $refund->setParameter('out_refund_no',$this->order['order_no']);
-        $refund->setParameter('op_user_id',$refund->mchid);
-        $refund->setParameter('refund_fee',(int)$this->order['refund_fee']*100);
-        $refund->setParameter('total_fee',(int)$this->order['pay_money']*100);
+        $refund->setParameter('op_user_id',$this->config['pay_weixin_mchid']);
+        $refund->setParameter('refund_fee',(int)($this->order['refund_fee']*100));
+        $refund->setParameter('total_fee',(int)($this->order['pay_money']*100));
 
         $result = $refund->getResult();
         logs('refund_result:' . json_encode($result), 'INFO');

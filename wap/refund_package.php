@@ -20,5 +20,11 @@ if(IS_POST)
         'add_time'=> time()
     );
     $result  = M('Refund_package')->add($data);
+    if($result['err_code'] == 0 )
+    {
+        //改变订单状态 退款中
+        M('Order')->setOrderStatus($_POST['store_id'],$_POST['order_id'],array('status' => 6));
+        json_return(0,'提交成功');
+    }
     json_return($result['err_code'],$result['err_msg']);
 }
