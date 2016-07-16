@@ -42,7 +42,13 @@ class wxlogin_controller extends base_controller
 				$store = D('Store')->where(array('uid' => $_SESSION['user']['uid'], 'status' => 1))->find();
 				$_SESSION['store'] = $store;
 
-				exit('true');
+                $open_self = D('Agent')->where(array('agent_id' => $_SESSION['store']['agent_id']))->find();
+
+                if($open_self['open_self']){
+                    exit('supplier');
+                }else{
+                    exit('true');
+                }
 			}
 			else if ($result['error_code'] == 1001) {
 				exit('no_user');

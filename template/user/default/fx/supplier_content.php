@@ -56,7 +56,7 @@
                         axisLine : {show : false},
                         axisTick : {show : false},
                         splitLine : {show : false},
-                        data : <?php echo $days; ?>
+                        data : <?php echo $days ? $days : 0; ?>
                     }
                 ],
                 yAxis : [
@@ -79,13 +79,13 @@
                         name:'销售额',
                         type:'line',
                         smooth:true,
-                        data:<?php echo $days_7_sales; ?>
+                        data:<?php echo $days_7_sales ? $days_7_sales : 0; ?>
                     },
                     {
                         name:'佣金',
                         type:'line',
                         smooth:true,
-                        data:<?php echo $days_7_profits; ?>
+                        data:<?php echo $days_7_profits ? $days_7_profits : 0; ?>
                     }
                 ]
             });

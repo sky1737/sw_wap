@@ -19,17 +19,22 @@
 		$.get("<?php dourl('index:wxlogin:ajax_weixin_login');?>", {qrcode_id:<?php echo $login_qrcode_id;?>}, function (result) {
 			if(result == 'reg_user'){
 				$('#login_status').html('已扫描！请在微信公众号中点击授权登录。').css('color','green').show();
-				ajax_weixin_login();
+				return false;
 			}else if(result == 'no_user'){
 				$('#login_status').html('没有查找到此用户，请重新扫描二维码！').css('color','red').show();
 				window.location.href = redirect_url;
-			}else if(result!=='true'){
-				ajax_weixin_login();
-			}else{
+				return false;
+			}else if(result=='true'){
 				$('#login_status').html('登录成功！正在跳转。').css('color','green').show();
 				window.top.location.href = redirect_url;
+				return false;
+			}else if(result=='supplier'){
+				$('#login_status').html('登录成功！正在跳转。').css('color','green').show();
+				window.top.location.href = '<?php dourl('supplier:account:supplier');?>';
+				return false;
 			}
 		});
+		window.setTimeout(function () { ajax_weixin_login(); }, 1500);
 	}
 </script>
 <body>
