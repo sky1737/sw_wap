@@ -8,7 +8,7 @@ define('IS_SUB_DIR', true);
 require_once TWIKER_PATH . 'source/init.php';
 
 // 用户登录
-$exclude = array('paynotice.php', 'rechargenotice.php', 'mergepaynotice.php', 'payfornotice.php', 'auto.php');
+$exclude = array('paynotice.php', 'rechargenotice.php', 'mergepaynotice.php', 'payfornotice.php');
 $currentUrl = $_SERVER['REQUEST_URI'];
 $isLoged = true;
 foreach ($exclude as $v) {
@@ -65,8 +65,7 @@ if ($isLoged && empty($_SESSION['user'])) {
                         $user['city'] = $info['city'];
                         $db_user->where(array('openid' => $info['openid']))->data($user)->save();
                         // logs('update:' . $info['openid'], 'INFO');
-                    }
-                    else {
+                    } else {
                         // 注册
                         $user = array(
                             'nickname' => $info['nickname'],
@@ -156,17 +155,14 @@ if ($isLoged && empty($_SESSION['user'])) {
                         header('location:' . $refer);
                         exit;
                     }
-                }
-                else {
+                } else {
                     pigcms_tips('授权不对！<br/>' . $result['errcode'], 'none');
                 }
-            }
-            else {
+            } else {
                 pigcms_tips('授权不对！<br/>' . $result['errcode'], 'none');
             }
         }
-    }
-    else {
+    } else {
         $login = M('User')->autologin('openid', $openid);
         if (!$login['err_code'])
             $_SESSION['user'] = $login['user'];
@@ -183,11 +179,10 @@ if (empty($_SESSION['store'])) {
     if (empty($store)) {
         $store = $db_store->getStoreByUid($_SESSION['user']['parent_uid']);
     }
-
+    if(empty($store)) $store = $db_store->getOfficial();
     $_SESSION['store'] = $store;
-}
-else {
-    if ($_SESSION['store']['uid'] != $_SESSION['user']['uid']) {
+} else {
+    if ($_SESSION['user']['stores'] && $_SESSION['store']['uid'] != $_SESSION['user']['uid']) {
         if ($store = D('Store')->where(array('uid' => $_SESSION['user']['uid'], 'status' => 1))->find()) {
             $_SESSION['store'] = $store;
         };

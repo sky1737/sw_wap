@@ -62,8 +62,8 @@ if (IS_POST) {
 		// 查找是否有评论权限，判断标准为
 		$order_product = M('Order_product')->isComment($relation_id);
 		if (!$order_product) {
-			//echo json_encode(array('status' => false, 'msg' => '购买后才能评论'));
-			//exit;
+			echo json_encode(array('status' => false, 'msg' => '购买后才能评论'));
+			exit;
 		}
 			
 		//产品即管理其店铺id

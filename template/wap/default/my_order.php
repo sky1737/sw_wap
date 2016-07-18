@@ -41,6 +41,7 @@
 					</div>
 					<hr class="margin-0 left-10"/>
 					<?php
+					$i = 0;
 					foreach ($order['product_list'] as $product) {
 					?>
 					<div class="block block-list block-border-top-none block-border-bottom-none">
@@ -60,8 +61,16 @@
 							<div class="right-col">
 								<div class="price"> ¥&nbsp;<span><?php echo $product['pro_price']; ?></span><?php
 								echo $product['is_present'] == 1 ? ' <span style="color:#f60;">赠品</span>' : '' ?></div>
-								<div class="num">×<span class="num-txt"><?php echo $product['pro_num']; ?></span></div>
+								<div class="num">×<span class="num-txt"><?php echo $product['pro_num']; ?></span>
+									<div style="font-weight: bold;">
+										<?php
+										if(4 == $order['status']) { ?>
+											<a  class="btn btn-in-order-list btn-orange" style="padding: 2px 12px;" href="./comment_add.php?id=<?php echo $order['product_list'][$i++]['product_id'] ?>&type=PRODUCT">评价</a>
+										<?php } ?>
+									</div>
+								</div>
 							</div>
+
 						</div>
 					</div>
 					<?php
@@ -103,8 +112,10 @@
 							<?php }
 
 							if(1 < $order['status'] && $order['status'] < 5) {?>
-								<a class="btn btn-in-order-list" href="<?php echo $order['refund_url']; ?>">退款</a>
+								<a class="btn btn-in-order-list js-refund-it"  data-id="<?php echo $order['order_no_txt']; ?>" href="<?php echo '#'/*$order['refund_url']*/; ?>">退款</a>
 							<?php } ?>
+
+
 						</div>
 					</div>
 				</li>

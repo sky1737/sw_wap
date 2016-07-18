@@ -32,7 +32,7 @@ $is_all_supplierproduct = true;
 
 if ($nowOrder['status'] < 1) {
 	//用户地址
-	$userAddress = M('User_address')->find(session_id(), $wap_user['uid']);
+	$userAddresses = M('User_address')->db->where(array('uid'=>$wap_user['uid']))->select();
 	//上门自提
 	if ($now_store['buyer_selffetch']) {
 		$selffetch_list = array();// M('Trade_selffetch')->getListNoPage($now_store['store_id']);

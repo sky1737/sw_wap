@@ -805,33 +805,59 @@ switch ($action) {
 		//1.2 订单已发货  要用户拒收，我们这边确认后才能给他退款
 		//1.3 订单已收货  需要用户提交货运单，我们收到货之后确认退款
 		//查看是否使用了积分和余额
+		//购物立返的积分或者现金要扣除
 		$model_order = M('Order');
 		$model_income = M('User_income');
 		$db_user = D('User');
+
 		$nowOrder = $model_order->find($_POST['orderNo']);
-		if(!empty($nowOrder['balance']))
-		{
-			//使用了账户余额进行付款 ，把余额退回
-			$db_user->where(array('uid' => $order['uid']))->setInc('balance', $nowOrder['balance']);
-		}
-		if(!empty($nowOrder['point']))
-		{
-			//使用了积分进行付款 ，把积分退回
-			$db_user->where(array('uid' => $order['uid']))->setInc('point', $point);
-		}
-		// 购物立返的积分或者现金要扣除
-		$income = $model_income->getPointAndIncomeByOrderNo(array('order_no' => $_POST['orderNo'],'type' => 1));
+
+		$order_no = preg_replace('#' . option('config.orderid_prefix') . '#', '', $_POST['orderNo'], 1);
+
+		$income = $model_income->getPointAndIncomeByOrderNo(array('order_no' => $order_no,'type' => 1));
+
 		if(option('config.default_point'))
 		{
 			//默认为反积分
-			$point_money = $income['point']/option('config.point_exchange');
-			$refund_fee = $nowOrder['pay_money'] - $point_money; //实际退回的钱
+			$diff_money = $income['point']/option('config.point_exchange');
 		} else
 		{
-			$refund_fee = $nowOrder['pay_money'] - $income['income']; //实际退回的钱
+			$diff_money = $income['income'];
 		}
-		import('source.class.pay.Weixin');
-		$openid = $_SESSION['openid'];
-		//调用微信退款接口
+
+        //实际退回的钱  实际支付 - 返现的
+		if($nowOrder['pay_money']!= '0.00')
+		{
+			$refund_fee = $nowOrder['pay_money'] - $diff_money; //实际退回的钱
+			import('source.class.pay.Weixin');
+			$openid = $_SESSION['openid'];
+			$payType =  'weixin';//$_POST['payType'];
+			$payMethodList = M('Config')->get_pay_method();
+			$nowOrder['refund_fee'] =  $refund_fee;
+			//调用微信退款接口
+			logs($openid . ',' .
+				var_export($nowOrder, true) . ',' .
+				var_export($payMethodList[$payType]['config'], true) . ',' .
+				var_export($wap_user, true), 'INFO');
+			$weixin = new Weixin($nowOrder, $payMethodList[$payType]['config'], $wap_user['openid']);
+			$result = $weixin->refund();
+			logs('refundInfo:' . json_encode($result), 'INFO');
+
+			$model_order->refundOrder($nowOrder);
+
+			json_return($result['err_code'], $result['err_msg']);
+		} else
+		{
+			if($nowOrder['balance'] != '0.00')
+			{
+				$nowOrder['refund_fee'] = $nowOrder['balance'] = $nowOrder['balance'] - $diff_money; //实际退回的钱
+			}else
+			{
+				//全额积分付款 不能退款 直接返回
+				json_return(1, '全额积分付款，不允许退款！');
+			}
+			$model_order->refundOrder($nowOrder);
+			json_return(0, '退款成功！');
+		}
 		break;
 }

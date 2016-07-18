@@ -76,7 +76,7 @@ if($count > 0) {
 		}
 
 		if(1 < $order_tmp['status'] && $order_tmp['status'] < 5) {
-			$order_tmp['refund_url'] = './saveorder.php?action=refund&orderid=' . $order_tmp['order_id'];
+			$order_tmp['refund_url'] = './refund.php?orderid=' .$order_tmp['order_id'];
 		}
 
 		// 获取图片地址

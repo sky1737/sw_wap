@@ -273,7 +273,7 @@ overflow: hidden; }
 .content .content_commodity li .content_list_add:after { content: ""; height: 0; clear: both; display: block; }
 .content .content_commodity li .content_list_add span { display: block; width: 25px; height: 25px; background: url(../images/weidian_icon.png) 604px -121px; float: left; margin-left: 40px; }
 .content .content_commodity li .content_shop_name { float: left; font-size: 14px; color: #191919; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 115px; }
-.content .content_commodity li .content_list_erweima .content_shop_name { font-size: 16px; color: #fff; margin: 0 auto; width: 80%; float: none; }
+.content .content_commodity li .content_list_erweima .content_shop_name { text-align: center; font-size: 16px; color: #fff; margin: 0 auto; width: 80%; float: none; }
 .content .content_commodity li .content_list_erweima .content_shop_name:hover { color: #C81623; }
 .content .content_commodity li .content_list_distance { float: left; margin-left: 5px; font-size: 14px; color: #666; }
 .content .content_commodity .content_shop_jion { color: #6c6c6c; float: right; margin-right: 5px; }

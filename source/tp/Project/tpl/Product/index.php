@@ -56,7 +56,9 @@
 					<select name="category">
 						<option value="0">商品分类</option>
 						<volist name="categories" id="category">
-							<option value="{pigcms{$category.cat_id}"><?php if($category['cat_level'] > 1) {
+							<option
+							<if condition="$_GET['category'] eq $category['cat_id']">selected="selected"</if>
+								value="{pigcms{$category.cat_id}"><?php if($category['cat_level'] > 1) {
 									echo str_repeat('&nbsp;&nbsp;', $category['cat_level']);
 								} ?> |-- {pigcms{$category.cat_name}
 							</option>

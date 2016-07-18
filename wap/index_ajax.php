@@ -447,6 +447,18 @@ switch ($action) {
 		}
 		json_return(0, $goods_list);
 		break;
+	case 'set_default_address':
+
+		$id = $_GET['address_id'];
+		if( !is_numeric($id) ) json_return(0, '参数错误！');
+
+		/**
+		 * @var $UaddressM user_address_model
+		 */
+		$UaddressM = M('User_address');
+		$UaddressM->canelDefaultAaddress($_SESSION['user']['uid'], $id);
+		json_return(0, '设置完成');
+		break;
 }
 
 echo ob_get_clean();
