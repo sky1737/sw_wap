@@ -2,6 +2,9 @@
 
 class base_model
 {
+	/**
+	 * @var $db mysql
+	 */
 	public $db;
 
 	public function __construct($model)

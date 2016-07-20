@@ -1,0 +1,81 @@
+<style>
+	.ui-nav-table { position: relative; border-bottom: 1px solid #ccc; margin-bottom: 15px; }
+	.ui-nav-table ul { zoom: 1; margin-bottom: -1px; }
+	.pull-left { float: left; }
+	.ui-nav-table li { float: left; margin-left: -1px; }
+	.ui-nav-table li.active a { border-color: #ccc #ccc #fff; background: #fff; color: #f60; }
+	.ui-nav-table li a { display: inline-block; padding: 0 12px; line-height: 40px; color: #333; border: 1px solid #ccc; background: #f8f8f8; min-width: 80px; text-align: center; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+</style>
+<nav class="js-list-filter-region clearfix">
+	<div class="ui-nav" style="margin-top:0;">
+		<ul>
+			<li class="active"><a href="#all">收支记录</a></li>
+			<!--<li id="js-list-nav-future"><a href="#future">收入</a></li>
+			<li id="js-list-nav-end"><a href="#end">支出</a></li>-->
+		</ul>
+	</div>
+</nav>
+<?php /*<div class="widget-list">
+	<div class="js-list-filter-region clearfix ui-box" style="position:relative;">
+		<div>
+			<!--<a href="#create" class="ui-btn ui-btn-primary">领取优惠券</a>-->
+			<div class="js-list-search ui-search-box">
+				<input class="txt js-coupon-keyword" type="text" placeholder="搜索" value="">
+			</div>
+		</div>
+	</div>
+</div>
+<div class="widget-list-filter">
+	<div class="market-filter-container">
+		<div class="js-list-search">
+			<input type="text" placeholder="搜素已收藏商品" value="">
+			<input type="button" class="market-search-btn ui-btn ui-btn-primary" value="搜索" style="vertical-align:top;">
+		</div>
+	</div>
+</div>*/ ?>
+<div class="ui-box">
+	<table class="ui-table ui-table-list" style="padding:0px;">
+		<thead class="js-list-header-region tableFloatingHeaderOriginal">
+		<!--`income_id`, `uid`, `order_id`, `income`, `point`, `type`, `add_time`, `status`, `remarks`-->
+		<tr>
+			<th class="cell-15">时间</th>
+			<th class="cell-15">类型 | 收支流水号</th>
+			<th class="cell-10 text-right">金额(元)</th>
+			<th class="cell-10 text-right">积分(分)</th>
+			<th class="cell-10 text-right">状态</th>
+			<th class="cell-25">备注</th>
+		</tr>
+		</thead>
+		<tbody class="js-list-body-region">
+		<?php
+		foreach ($incomes as $record) {
+			?>
+			<tr class="widget-list-item">
+				<td><?php echo date('Y-m-d H:i:s', $record['add_time']); ?></td>
+				<td><span><?php
+						echo $types[$record['type']]; ?></span> |
+							<span class="c-gray"><?php
+								if(!empty($record['order'])) {
+									echo $record['order']['order_no'];
+								} ?></span></td>
+				<td class="text-right ui-money ui-money-income"><?php echo ($record['income'] == 0 ? ''
+							: ($record['income'] > 0 ? '+' : '-')) .
+						number_format(abs($record['income']), 2, '.', ''); ?></td>
+				<td class="text-right ui-money ui-money-outlay"><?php echo ($record['point'] == 0 ? ''
+							: ($record['point'] > 0 ? '+' : '-')) .
+						abs($record['point']); ?></td>
+				<td class="text-right"><?php echo $record['status'] ? '正常' : ''; ?></td>
+				<td><?php echo $record['remarks']; ?></td>
+			</tr>
+		<?php } ?>
+		</tbody>
+	</table>
+	<div class="js-list-footer-region ui-box">
+		<div>
+			<div class="pagenavi js-page-list">
+				<?php echo $pages; ?>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="js-list-footer-region ui-box"></div>

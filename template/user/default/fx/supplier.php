@@ -22,6 +22,8 @@
 <script type="text/javascript" src="<?php echo TPL_URL;?>js/base.js"></script>
 <script type="text/javascript">var load_url="<?php dourl('load');?>";</script>
 <script type="text/javascript" src="<?php echo TPL_URL;?>js/fx_supplier.js"></script>
+
+	<script type="text/javascript" src="./static/js/echart/echarts.js"></script>
 </head>
 <body class="font14 usercenter">
 <?php include display('public:header');?>

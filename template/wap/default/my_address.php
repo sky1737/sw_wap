@@ -28,15 +28,16 @@
 	<div class="address_list" id="addressList">
 		<?php
 		if (!empty($address_list)) {
-			foreach ($address_list as $value) {
-				?>
+			foreach ($address_list as $value) { ?>
 				<div class="address">
 					<ul>
-						<li><?php echo $value['province_txt'] . $value['city_txt'] . $value['area_txt'] .
-								$value['address']; ?></li>
-						<li><strong><?php echo $value['name']; ?></strong> <?php echo $value['tel']; ?></li>
-						<li class="edit" data-id="<?php echo $value['address_id']; ?>"><a href="javascript:;">编辑</a>
+
+						<li><?php echo $value['province_txt'] . $value['city_txt'] . $value['area_txt'] . $value['address']; ?></li>
+						<li>
+							<input data-id="<?php echo $value['address_id']; ?>" class='setdefault' type="radio" name="default" <?php echo $value['default'] ? 'checked' : '' ?>/>
+							<strong><?php echo $value['name']; ?></strong> <?php echo $value['tel']; ?>
 						</li>
+						<li class="edit" data-id="<?php echo $value['address_id']; ?>"><a href="javascript:;">编辑</a></li>
 					</ul>
 					<p class="act" data-id="<?php echo $value['address_id']; ?>"><span class="del">删除</span></p>
 				</div>

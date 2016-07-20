@@ -160,29 +160,30 @@ if(!defined('TWIKER_PATH'))
 						if($nowOrder['status'] < 1) { ?>
 							<div class="js-logistics-content logistics-content js-express">
 								<?php
-								if($userAddress && ($now_store['open_logistics'] || $is_all_supplierproduct)) { ?>
-									<div>
-										<div class="block block-form block-border-top-none block-border-bottom-none">
-											<div class="js-order-address express-panel" style="padding-left:0;">
-												<?php if($nowOrder['status'] == 0) { ?>
-													<div class="opt-wrapper">
-														<a href="javascript:;" class="btn btn-xxsmall btn-grayeee butn-edit-address js-edit-address">修改</a>
+								if($userAddresses && ($now_store['open_logistics'] || $is_all_supplierproduct)) {
+										?>
+										<div><div class="block block-form block-border-top-none block-border-bottom-none">
+												<?php
+													foreach ($userAddresses as $uAddr){?>
+													<div class="js-order-address-item express-panel" style="padding-left:0;">
+														<?php if($nowOrder['status'] == 0) { ?>
+															<div class="opt-wrapper"><a href="javascript:;" class="btn btn-xxsmall btn-grayeee butn-edit-address js-edit-address">修改</a></div>
+														<?php } ?>
+														<ul>
+                                                            <li>
+                                                                <input type="radio" name="address_id" id="address_id" value="<?php echo $uAddr['address_id'];?>" <?php if($uAddr['default']){
+                                                                    echo 'checked';
+                                                                };
+                                                                ?>/>
+																<span><?php echo $uAddr['name']; ?></span>, <?php echo $uAddr['tel']; ?>
+															</li>
+															<li><?php echo $uAddr['province_txt']; ?><?php echo $uAddr['city_txt']; ?><?php echo $uAddr['area_txt']; ?></li>
+															<li><?php echo $uAddr['address']; ?></li>
+														</ul>
 													</div>
 												<?php } ?>
-												<ul>
-													<li>
-														<span><?php echo $userAddress['name']; ?></span>, <?php echo $userAddress['tel']; ?>
-													</li>
-													<li><?php echo $userAddress['province_txt']; ?><?php echo $userAddress['city_txt']; ?><?php echo $userAddress['area_txt']; ?></li>
-													<li><?php echo $userAddress['address']; ?></li>
-												</ul>
-											</div>
-										</div>
-										<div class="js-logistics-tips logistics-tips font-size-12 c-orange hide">很抱歉，该地区暂不支持配送。</div>
-									</div>
-									<?php
-								}
-								else { ?>
+										</div><div class="js-logistics-tips logistics-tips font-size-12 c-orange hide">很抱歉，该地区暂不支持配送。</div></div>
+										<?php } /*else {*/ ?>
 									<div class="js-order-address express-panel">
 										<?php
 										if($now_store['open_logistics'] || $is_all_supplierproduct) { ?>
@@ -196,13 +197,11 @@ if(!defined('TWIKER_PATH'))
 											<?php
 										} ?>
 									</div>
-								<?php } ?>
+								<?php /*}*/ ?>
 							</div>
 							<div class="js-logistics-content logistics-content js-self-fetch hide"></div>
-							<input type="hidden" name="address_id" id="address_id" value="<?php echo intval($userAddress['address_id']); ?>" />
 							<input type="hidden" name="selffetch_id" id="selffetch_id" value="0" />
-						<?php }
-						else {
+						<?php } else {
 							/*if($nowOrder['shipping_method'] == 'selffetch') { ?>
 								<div class="block block-form block-border-top-none block-border-bottom-none">
 									<div class="js-order-address express-panel" style="padding-left:0;">
@@ -244,9 +243,7 @@ if(!defined('TWIKER_PATH'))
 								</div>
 							</div>
 							<div class="js-logistics-tips logistics-tips font-size-12 c-orange hide">很抱歉，该地区暂不支持配送。</div>
-							<?php
-
-						} ?>
+							<?php } ?>
 					</div>
 					<?php
 					/*// 满减送

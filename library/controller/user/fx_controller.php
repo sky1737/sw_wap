@@ -3469,4 +3469,46 @@ class fx_controller extends base_controller
 			json_return(1001, date('Y-m-d H:i:s', $time));
 		}
 	}
+
+	//退款 给 平台
+	public function refund_pay()
+	{
+		$uid = $this->user_session['uid'];
+		$name = $this->user_session['name'];
+		$store_id = $this->store_session['store_id'];
+		$order_id = isset($_POST['order_id']) ? intval(trim($_POST['order_id'])) : 0;
+		$pay_momey = isset($_POST['pay_money']) ? $_POST['pay_money'] : 0;
+		$order = M('Order');
+		$user = M('User');
+		$userData = $user->getUser(array('uid' => $uid,'status' => 1));
+		$balance = $userData['balance'];
+		if($order_id){
+			$orderData = $order->getOrder($store_id,$order_id);
+			if($pay_momey *1){
+				if($balance*1 <= 0 || $balance < $pay_momey) {
+					json_return(1, '账户余额不足，请充值');
+				} else{
+					D('User')->where(array('uid' => $uid, 'status' => 1))->setDec('balance', $pay_momey * 1.00);
+					D('User_income')->data(
+						array(
+							'uid'      => $uid,
+							'order_no' => $orderData['order_no'],
+							'income'   => -$pay_momey,
+							'point'    => 0,
+							'type'     => -3,
+							'add_time' => time(),
+							'status'   => 1,
+							'remarks'  => '用户退货商家退款'
+						))->add();
+					M('Refund_package')->save(array('store_id' => $store_id,'order_id' =>$order_id),array('status' => 1,'handle_time'=> time(),'handle_name' =>$name));
+					M('Order')->setOrderStatus($store_id,$order_id,array('status' => 5));
+					json_return(0, $orderData['order_no']);
+				}
+			} else {
+				json_return(1, '请填写支付金额');
+			}
+		} else {
+			json_return(1, '请求不合法！');
+		}
+	}
 }

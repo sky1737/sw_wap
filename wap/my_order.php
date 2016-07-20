@@ -34,7 +34,7 @@ switch ($action) {
 		$where_sql .= " AND `status` = 4";
 		break;
 	default:
-		$where_sql .= " AND `status` > 0 AND `status` < 5";
+		$where_sql .= " AND `status` > 0 ";
 		$pageTitle = '全部订单';
 }
 
@@ -73,6 +73,10 @@ if($count > 0) {
 		}
 		else {
 			$order_tmp['url'] = './order.php?orderid=' . $order_tmp['order_id'];
+		}
+
+		if(1 < $order_tmp['status'] && $order_tmp['status'] < 5) {
+			$order_tmp['refund_url'] = './refund.php?orderid=' .$order_tmp['order_id'];
 		}
 
 		// 获取图片地址
@@ -124,4 +128,3 @@ if($count > 0) {
 include display('my_order');
 
 echo ob_get_clean();
-?>

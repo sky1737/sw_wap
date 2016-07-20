@@ -773,6 +773,9 @@ function M($model)
         }
         $model_obj = new $model_name($model);
 
+        /**
+         * @var $model_obj base_model
+         */
         return $model_obj;
     } else {
         pigcms_tips($model_file . ' 文件不存在。', 'none');

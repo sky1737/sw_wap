@@ -664,7 +664,7 @@ function alertWin(title, msg, w, h) {
 	var closeBtn = tr.insertCell(-1);
 	if (title) {
 		closeBtn.style.cssText = "font: 10pt '宋体';width:40px;";
-		closeBtn.innerHTML = '<a href="javascript:void(0);" class="J_downDialog-close close" style="color:#fff;font-size: 14px; font-weight: 700; width:40px;">&nbsp;</a>';
+		closeBtn.innerHTML = '<a href="javascript:void(0);" class="J_downDialog-close close" style="color:#fff;font-size: 14px; font-weight: 700; width:40px;">×</a>';
 	}
 	closeBtn.onclick = function () {
 		document.body.removeChild(bgObj);

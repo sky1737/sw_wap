@@ -4,12 +4,11 @@
  */
 require_once dirname(__FILE__) . '/global.php';
 
-$store_id = $_GET['id'];
 $page = max(1, $_GET['page']);
 $limit = 5;
 
 //店铺资料
-$now_store = M('Store')->wap_getStore($store_id);
+$now_store = M('Store')->wap_getStore($_SESSION['store']['store_id']);
 if (empty($now_store)) pigcms_tips('您访问的店铺不存在', 'none');
 
 $uid = $wap_user['uid'];

@@ -156,7 +156,8 @@ if($is_preview) {
 					}
 					?>
 					<li>
-						<div style="float:left; width:200px; color:#6c6c6c;"> 运费&nbsp;&nbsp;¥<?php echo $nowProduct['postage'];// $nowProduct['postage_tpl']	? $nowProduct['postage_tpl']['min'] . '~' . $nowProduct['postage_tpl']['max'] : $nowProduct['postage'] ?>元
+						<div style="float:left; width:200px; color:#6c6c6c;"> 运费&nbsp;&nbsp;¥<?php echo $product['postage'];
+						// $nowProduct['postage_tpl']	? $nowProduct['postage_tpl']['min'] . '~' . $nowProduct['postage_tpl']['max'] : $nowProduct['postage'] ?>元
 							</dd>
 						</div>
 					</li>
@@ -305,7 +306,8 @@ if($is_preview) {
 									</li>
 								</ul>
 							</div>
-							<div class="shop_pingjia"><a name="fabiao"></a>
+							<?php
+							/*<div class="shop_pingjia"><a name="fabiao"></a>
 								<div class="shop_pinjiga_title">发表评价</div>
 								<div class="shop_pinjgia_form">
 									<div class="shop_pingjia_form_list  appraise_li-list_top js-score">
@@ -377,7 +379,8 @@ if($is_preview) {
 									<button class="form_button js_save">提交</button>
 									<div style="clear:both"></div>
 								</div>
-							</div>
+							</div>*/
+							?>
 						</div>
 					</div>
 				</div>
