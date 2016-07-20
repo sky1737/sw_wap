@@ -606,6 +606,119 @@ $(function(){
         })
     })
 
+    //确认收到包裹完好
+    $('.js-refund-express').live('click',function () {
+        var html = '<div class="modal-backdrop in"></div><div class="modal hide widget-express in" aria-hidden="false" style="display: block; margin-top: -1000px;">';
+        html += '       <div class="modal-header ">';
+        html += '           <a class="close" data-dismiss="modal">×</a>';
+        html += '           <h3 class="title">退货快递确认</h3>';
+        html += '       </div>';
+        html += '       <div class="modal-body">';
+        html += '           <form onsubmit="return false;" class="form-horizontal">';
+        // html += '           <div class="control-group">';
+        // html += '               <label class="control-label">账户余额：</label>';
+        // html += '               <div class="controls">';
+        // html += '                   <div class="control-action">￥'+ balance +'</div>';
+        // html += '               </div>';
+        // html += '           </div>';
+        html += '           <div class="control-group">';
+        html += '               <label class="control-label">付款金额：</label>';
+        html += '               <div class="controls"><input type="text" class="input js-number" name="pay_money" value="" /></div>';
+        html += '           </div>';
+        html += '       </form>';
+        html += '     </div>';
+        html += '     <div class="modal-footer"><a href="javascript:;" class="ui-btn ui-btn-primary js-refund-pay">确定</a></div>';
+        html += '   </div>';
+        $('body').append(html);
+        $('.modal').animate({'margin-top': ($(window).scrollTop() + $(window).height() * 0.05) + 'px'}, "slow");
+    })
+    //确认后付款
+    $('.js-refund-pay').live('click', function(){
+        var order_id = $('.js-refund-express').attr('data-id');
+        var pay_money = parseFloat($('.js-number').val()) ;
+        var flag = true;
+        if (isNaN(pay_money)) {
+            $('.js-number').closest('.control-group').addClass('error');
+            $('.js-number').after('<p class="help-block error-message">请输入支付金额</p>');
+            flag = false;
+        }else if(pay_money <= 0){
+            $('.js-number').closest('.control-group').addClass('error');
+            $('.js-number').after('<p class="help-block error-message">支付金额必须大于0</p>');
+            flag = false;
+        } else {
+            $('.js-number').closest('.control-group').removeClass('error');
+        }
+        if(flag){
+            $.post(refund_pay_url, {'order_id': order_id, 'pay_money': pay_money}, function(data) {
+                if (data.err_code) {
+                    $('.notifications').html('<div class="alert in fade alert-error">'+ data.err_msg +'</div>');
+                } else {
+                    $.post('/wap/saveorder.php?action=refund',{orderNo:orderNo},function (data){
+                        if(data.err_code == 0){
+                            alert(data.err_msg);
+                            window.location.reload();
+                        } else {
+                            alert(data.err_msg);
+                        }
+                    });
+                }
+            })
+        }
+
+
+
+        // var flag = true;
+        // var products = [];
+        // var express_id = '';
+        // var express_company = '';
+        // var express_no = '';
+        // var order_id = $('.js-express-goods').attr('data-id');
+        //
+        // if ($("input:radio[name='no_express']:checked").val() == 0) { //需要物流
+        //     $('.help-desc').next('.error-message').remove();
+        //     if ($('.select2-choice > .select2-chosen').attr('data-id') == 0) {
+        //         $('.select2-choice > .select2-chosen').closest('.control-group').addClass('error');
+        //         $('.help-desc').after('<p class="help-block error-message">请选择一个物流公司</p>');
+        //         flag = false;
+        //     } else {
+        //         $('.select2-choice > .select2-chosen').closest('.control-group').removeClass('error');
+        //         express_id = $('.select2-choice > .select2-chosen').attr('data-id');
+        //         express_company = $('.select2-choice > .select2-chosen').text();
+        //     }
+        //     $('.js-number').next('.error-message').remove();
+        //     if ($('.js-number').val() == '') {
+        //         $('.js-number').closest('.control-group').addClass('error');
+        //         $('.js-number').after('<p class="help-block error-message">请填写快递单号</p>');
+        //         flag = false;
+        //     } else {
+        //         $('.js-number').closest('.control-group').removeClass('error');
+        //         express_no = $('.js-number').val();
+        //     }
+        // }
+        // if (flag) {
+        //     $('.js-check-item:checked').each(function(i){
+        //         products[i] = $(this).val();
+        //     })
+        //     $.post(create_package_url, {'order_id': order_id, 'express_id': express_id, 'express_company': express_company, 'express_no': express_no, 'products': products.toString()}, function(data) {
+        //         if (!data.err_code) {
+        //             $('.notifications').html('<div class="alert in fade alert-success">' + data.err_msg + '</div>');
+        //             $('.modal').animate({'margin-top': '-' + ($(window).scrollTop() + $(window).height()) + 'px'}, "slow",function(){
+        //                 $('.modal-backdrop,.modal').remove();
+        //             });
+        //             if (page_content == 'detail_content') { //订单详细
+        //                 load_page('.app__content', load_url, {page: page_content, 'order_id': order_id}, '', function(){});
+        //             } else { //订单列表
+        //                 status = $('.ui-nav > ul > .active > a').attr('data');
+        //                 $('.ui-nav > ul > li > a').trigger('click');
+        //             }
+        //         } else {
+        //             $('.notifications').html('<div class="alert in fade alert-error">' + data.err_msg + '</div>');
+        //         }
+        //         t = setTimeout('msg_hide()', 3000);
+        //     })
+        // }
+    })
+
     $('.js-company').live('click', function(){
         if ($(this).hasClass('select2-dropdown-open')) {
             $(this).removeClass('select2-dropdown-open');

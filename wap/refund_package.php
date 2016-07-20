@@ -24,7 +24,11 @@ if(IS_POST)
     {
         //改变订单状态 退款中
         M('Order')->setOrderStatus($_POST['store_id'],$_POST['order_id'],array('status' => 6));
-        json_return(0,'提交成功');
+        json_return(0,'退款申请成功，待管理员确认后即可退款，可在退款订单中查看！');
+    } else
+    {
+        json_return($result['err_code'],$result['err_msg']);
     }
-    json_return($result['err_code'],$result['err_msg']);
+    exit;
+
 }
