@@ -261,26 +261,17 @@ class account_controller extends base_controller
 
     private function _supplier_content()
     {
-        $store_supplier = M('Store_supplier');
-        $store = M('Store');
+        $store_id = addslashes($this->store_session['store_id']);
 
-        $keyword = isset($_POST['keyword']) ? trim($_POST['keyword']) : '';
+        $store = D('Product');
+        $supplier_product_count = $store->where("store_id = $store_id")->count('1');
 
-        $where = array();
-        $where['ss.seller_id'] = $this->store_session['store_id'];
-        if(!empty($keyword)) {
-            $where['s.name'] = array('like' => '%' . $keyword . '%');
-        }
-        if(!empty($_SESSION['store_sync'])) {
-            $where['ss.type'] = 1;
-        }
-        $supplier_count = $store_supplier->supplier_count($where);
-        import('source.class.user_page');
-        $page = new Page($supplier_count, 15);
-        $suppliers = $store_supplier->suppliers($where, $page->firstRow, $page->listRows);
+        $order = D('Order');
 
-        $this->assign('suppliers', $suppliers);
-        $this->assign('page', $page->show());
+        $total_sales_amount = $order->field('sum(`sub_total`-`profit`) as total')->where("store_id = $store_id")->find();
+
+        $this->assign('supplier_product_count', $supplier_product_count);
+        $this->assign('total_sales_amount', $total_sales_amount ? $total_sales_amount['total'] : 0);
     }
 
 

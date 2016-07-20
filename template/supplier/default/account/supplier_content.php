@@ -95,10 +95,10 @@
 <div class="dash-bar clearfix">
 	<div class="js-cont">
 		<div class="info-group">
-			<div class="info-group__inner"> <span class="h4"> <a href="<?php dourl('goods'); ?>"><?php echo $fx_product_count ? $fx_product_count : 0; ?></a> </span> <span class="info-description">分销商品数</span> </div>
+			<div class="info-group__inner"> <span class="h4"> <a href="<?php dourl('goods'); ?>"><?php echo $supplier_product_count ? $supplier_product_count : 0; ?></a> </span> <span class="info-description">我的商品数</span> </div>
 		</div>
 		<div class="info-group">
-			<div class="info-group__inner"> <span class="h4"> <a href="<?php echo dourl('order:all'); ?>">￥<?php echo $sales ? $sales: 0; ?></a> </span> <span class="info-description">销售额</span> </div>
+			<div class="info-group__inner"> <span class="h4"> <a href="<?php echo dourl('order:all'); ?>">￥<?php echo $total_sales_amount ? $total_sales_amount: 0; ?></a> </span> <span class="info-description">销售额</span> </div>
 		</div>
 		<div class="info-group">
 			<div class="info-group__inner"> <span class="h4"> <a href="<?php echo dourl('trade:income'); ?>">￥<?php echo $profit ? $profit :0; ?></a> </span> <span class="info-description"> 佣金 <i>-</i> <a href="<?php echo dourl('trade:income'); ?>">提现</a> </span> </div>
@@ -108,14 +108,14 @@
 <div id="js-pagedata" class="widget widget-pagedata">
 	<div class="widget-inner">
 		<div class="widget-head">
-			<h3 class="widget-title">7天分销趋势</h3>
+			<h3 class="widget-title">7天销售趋势</h3>
 			<ul class="widget-nav">
 				<li> <a href="<?php dourl('statistics'); ?>" class="new-window" target="_blank">详细 》</a> </li>
 			</ul>
 			<div class="help"> <a href="javascript:void(0);" class="js-help-notes"></a>
 				<div class="js-notes-cont hide">
-					<p><strong>销售额：</strong>分销商出售分销商品的总金额。</p>
-					<p><strong>佣金：</strong>分销商出售分销商品获得的利润。</p>
+					<p><strong>销售额：</strong>供应商出售分销商品的总金额。</p>
+					<p><strong>利润：</strong>分销商出售分销商品获得的利润。</p>
 				</div>
 			</div>
 		</div>
