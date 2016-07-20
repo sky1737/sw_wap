@@ -53,9 +53,10 @@ $(function () {
 
         //退款
         $('.js-refund-money').click(function () {
-            $.post('./saveorder.php?action=refund&',{orderNo:orderNo},function (data){
+            $.post('./saveorder.php?action=refund',{orderNo:orderNo},function (data){
                 if(data.err_code == 0){
-                    console.log(data);
+                    alert('data.err_msg');
+                    window.location.reload();
                 } else {
                     alert(data.err_msg);
                 }

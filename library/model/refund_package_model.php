@@ -17,7 +17,7 @@ class refund_package_model extends base_model
 		}
 	}
 
-	public function save_user($condition, $data)
+	public function save($condition, $data)
 	{
 		return array('err_code' => 0, 'err_msg' => $this->db->where($condition)->data($data)->save());
 	}

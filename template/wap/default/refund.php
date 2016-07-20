@@ -78,6 +78,7 @@ if(!defined('TWIKER_PATH'))
                $.post('./refund_package.php',$("form").serialize(),function (data) {
                    if(typeof(data)=="string") data = eval('('+data+')');
                    if(data.err_code == 0){
+                       alert(data.err_msg);
                        window.location.href ='./my_order.php';
                    } else {
                        console.log(data);
