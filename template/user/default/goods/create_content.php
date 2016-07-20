@@ -62,6 +62,17 @@
 					<input type="hidden" class="input-medium" name="class_ids" value="0"/>
 				</div>
 			</div>
+            <div class="control-group">
+                <label class="control-label">商品所属供应商：</label>
+                <div class="controls">
+                    <select name="supplier_id" id="supplier_id">
+                        <option value ="0" data-storeid="0">无</option>
+                        <?php foreach ($supplierStoreInfo as $supplierStore){ ?>
+                            <option data-storeid="<?php echo $supplierStore['store_id'] ?>" value ="<?php echo $supplierStore['uid'] ?>"><?php echo $supplierStore['name'] ?></option>
+                        <?php }?>
+                    </select>
+                </div>
+            </div>
 			<?php /*<div class="control-group">
 				<label class="control-label">购买方式：</label>
 				<div class="controls">

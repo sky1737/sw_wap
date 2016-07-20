@@ -575,6 +575,19 @@ class goods_controller extends base_controller
 
 		if($_POST['page'] == 'create_content') {
 			$cat_list = M('Product_category')->getAllCategory(0,true);
+
+            $agent = D('Agent');
+            $allOpenSelfAgents = $agent->where('open_self <> 0 and status=1')->select();
+            $allOpenSelfAgentIds = array();
+            foreach ($allOpenSelfAgents as $a)  $allOpenSelfAgentIds = $a['agent_id'];
+
+            $store = D('Store');
+            $supplierStoreInfo = $store->where(array('agent_id'=>$allOpenSelfAgentIds))->select();
+
+            //var_dump($storeInfo);exit;
+
+            $this->assign('supplierStoreInfo', $supplierStoreInfo);
+
 			$this->assign('cat_list', $cat_list);
 		}
 		if($_POST['page'] == 'edit_content') {
@@ -1103,7 +1116,25 @@ class goods_controller extends base_controller
 		$product_to_property_value = M('Product_to_property_value');
 		$postage_template = M('Postage_template');
 		$product_custom_field = M('Product_custom_field');
+
+        /**
+         * @var product_category_model $product_category
+         */
 		$product_category = M('Product_category');
+
+        $agent = D('Agent');
+        $allOpenSelfAgents = $agent->where('open_self <> 0 and status=1')->select();
+        $allOpenSelfAgentIds = array();
+        foreach ($allOpenSelfAgents as $a)  $allOpenSelfAgentIds = $a['agent_id'];
+
+        $store = D('Store');
+        $supplierStoreInfo = $store->where(array('agent_id'=>$allOpenSelfAgentIds))->select();
+
+        //var_dump($storeInfo);exit;
+
+        $this->assign('supplierStoreInfo', $supplierStoreInfo);
+
+        //var_dump($allOpenSelfAgents);exit;
 
 		$product = $product->get(array('product_id' => $id, 'store_id' => $this->store_session['store_id']));
 		$this->assign('product', $product);

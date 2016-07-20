@@ -39,6 +39,9 @@ switch ($action) {
 }
 
 
+/**
+ * @var order_model $order_model
+ */
 $order_model = M('Order');
 // 查询订单总数
 $count = $order_model->getOrderTotal($where_sql);

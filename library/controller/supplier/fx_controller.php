@@ -1527,52 +1527,7 @@ class fx_controller extends base_controller
 //		$this->assign('days_7_profits', $days_7_profits);
 //	}
 
-	//我的商品
-	public function supplier_goods()
-	{
-		if(IS_POST) {
-			$products = isset($_POST['products']) ? trim($_POST['products']) : '';
-			if(!empty($products)) {
-				M('Product')
-					->edit(array('product_id' => array('in', explode(',', $products)),
-					             'store_id'   => $this->store_session['store_id']),
-						array('is_fx' => -1));
 
-				json_return(0, '操作成功');
-			}
-			else {
-				json_return(1001, '操作失败');
-			}
-		}
-		$this->display();
-	}
-
-	private function _supplier_goods_content()
-	{
-		$product = M('Product');
-//		$product_group = M('Product_group');
-//		$product_to_group = M('Product_to_group');
-
-		$order_by_field = isset($_POST['orderbyfield']) ? $_POST['orderbyfield'] : '';
-		$order_by_method = isset($_POST['orderbymethod']) ? $_POST['orderbymethod'] : '';
-		$keyword = isset($_POST['keyword']) ? trim($_POST['keyword']) : '';
-
-		$where = array();
-		$where['store_id'] = $this->store_session['store_id'];
-		if($keyword) {
-			$where['name'] = array('like', '%' . $keyword . '%');
-		}
-		$where['buy_way'] = 1; //站内商品
-		$where['is_fx'] = array('in', array(-1, 0));
-		//$where['supplier_id'] = 0;
-		$product_total = $product->getSellingTotal($where);
-		import('source.class.user_page');
-		$page = new Page($product_total, 15);
-		$products = $product->getSelling($where, $order_by_field, $order_by_method, $page->firstRow, $page->listRows);
-
-		$this->assign('page', $page->show());
-		$this->assign('products', $products);
-	}
 
 	//商品市场
 	public function supplier_market()
