@@ -31,7 +31,7 @@ $(function(){
             }
             t = setTimeout('msg_hide()', 3000);
         })
-    })
+    });
 
     $('.js-batch-apply-to-fx').live('click', function(){
         if ($('.js-check-toggle:checked').length == 0) {
@@ -61,5 +61,21 @@ $(function(){
             }
             t = setTimeout('msg_hide()', 3000);
         })
+    });
+
+    $('.js-put-on-off-shelves').live('click', function(){
+
+        var pid = $(this).data('pid');
+
+        $.post('/supplier.php?c=account&a=offshelves', {'pid': pid}, function(data){
+            if (!data.err_code) {
+                $('.notifications').html('<div class="alert in fade alert-success">' + data.err_msg + '</div>');
+
+                //console.log($elem);
+            } else {
+                $('.notifications').html('<div class="alert in fade alert-error">' + data.err_msg + '</div>');
+            }
+            t = setTimeout('msg_hide()', 3000);
+        })
     })
-})
+});

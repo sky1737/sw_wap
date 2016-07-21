@@ -6,8 +6,7 @@
 	</div>
 	<div class="ui-box">
 		<table class="ui-table ui-table-list" style="padding: 0px;">
-			<thead class="js-list-header-region tableFloatingHeaderOriginal"
-style="position: static; top: 0px; margin-top: 0px; left: 601.5px; z-index: 1; width: 850px;">
+			<thead class="js-list-header-region tableFloatingHeaderOriginal" style="position: static; top: 0px; margin-top: 0px; left: 601.5px; z-index: 1; width: 850px;">
 				<?php if (!empty($products)) { ?>
 				<tr>
 					<th class="checkbox cell-35" colspan="3">
@@ -18,6 +17,7 @@ style="position: static; top: 0px; margin-top: 0px; left: 601.5px; z-index: 1; w
 					<th class="cell-8 text-right" style="min-width: 68px; max-width: 68px;"> 成本 </th>
 					<th class="cell-8 text-right" style="min-width: 68px; max-width: 68px;"> 库存 </th>
 					<th class="cell-8 text-right" style="min-width: 68px; max-width: 68px;"> 销量 </th>
+					<th class="cell-8 text-right" style="min-width: 68px; max-width: 68px;">下架 </th>
 				</tr>
 				<?php } ?>
 			</thead>
@@ -34,7 +34,11 @@ style="position: static; top: 0px; margin-top: 0px; left: 601.5px; z-index: 1; w
 					<td class="text-right"><?php echo $product['price']; ?></td>
 					<td class="text-right"><?php echo $product['quantity']; ?></td>
 					<td class="text-right"><?php echo $product['sales']; ?></td>
-
+					<td class="text-right">
+					<div class="pull-left">
+						<a href="javascript:;" data-pid="<?php echo $product['product_id']; ?>" class="ui-btn js-put-on-off-shelves">下架</a>
+					</div>
+					</td>
 				</tr>
 				<?php } ?>
 			</tbody>
@@ -50,7 +54,6 @@ style="position: static; top: 0px; margin-top: 0px; left: 601.5px; z-index: 1; w
 	<div class="js-list-footer-region ui-box">
 		<?php if (!empty($products)) { ?>
 		<div>
-			<div class="pull-left"> <a href="javascript:;" class="ui-btn js-batch-apply-to-fx">批量申请分销</a> </div>
 			<div class="js-page-list ui-box pagenavi"><?php echo $page; ?></div>
 		</div>
 		<?php } ?>

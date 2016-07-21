@@ -98,6 +98,9 @@ class account_controller extends base_controller
 	public function load()
 	{
 		$action = strtolower(trim($_POST['page']));
+
+        //var_dump($action);exit;
+
 		if(empty($action)) pigcms_tips('非法访问！', 'none');
 		switch ($action) {
 			case 'income_content':
@@ -163,7 +166,7 @@ class account_controller extends base_controller
                 $this->_supplier_content();
                 break;
 
-            case 'order_content':
+            case 'supplier_order_content':
 
                 $status = isset($_POST['status']) ? trim($_POST['status']) : ''; //订单状态
                 $shipping_method = isset($_POST['shipping_method']) ? strtolower(trim($_POST['shipping_method'])) : ''; //运送方式 快递发货 上门自提
@@ -199,7 +202,7 @@ class account_controller extends base_controller
                     'shipping_method' => $shipping_method
                 );
 
-                $this->_order_content($data);
+                $this->_supplier_order_content($data);
                 break;
 
             case 'supplier_goods_content':
@@ -263,8 +266,8 @@ class account_controller extends base_controller
     {
         $store_id = addslashes($this->store_session['store_id']);
 
-        $store = D('Product');
-        $supplier_product_count = $store->where("store_id = $store_id")->count('1');
+        $product = D('Product');
+        $supplier_product_count = $product->where("store_id = $store_id and status=1 and is_fx=1")->count('1');
 
         $order = D('Order');
 
@@ -272,6 +275,15 @@ class account_controller extends base_controller
 
         $this->assign('supplier_product_count', $supplier_product_count);
         $this->assign('total_sales_amount', $total_sales_amount ? $total_sales_amount['total'] : 0);
+    }
+
+
+    public function offshelves(){
+
+        $pid =  $_POST['pid'];
+        $product = D('Product')->where("product_id = $pid")->data(array('status'=>0))->save();
+
+        json_return(0, '下架成功！');
     }
 
 
