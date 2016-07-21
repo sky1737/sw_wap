@@ -277,6 +277,11 @@ class account_controller extends base_controller
         $this->assign('total_sales_amount', $total_sales_amount ? $total_sales_amount['total'] : 0);
     }
 
+    //订单详细
+    public function detail()
+    {
+        $this->display();
+    }
 
     public function offshelves(){
 
@@ -982,6 +987,135 @@ class account_controller extends base_controller
 		echo json_encode(array('status' => true, 'msg' => '确认退款中！', 'data' => array('nexturl' => 'refresh')));
 		exit;
 	}
+
+
+    //订单详细页面
+    private function _detail_content()
+    {
+        $order = M('Order');
+        $order_product = M('Order_product');
+        $user = M('User');
+        $package = M('Order_package');
+
+        $order_id = isset($_POST['order_id']) ? intval(trim($_POST['order_id'])) : 0;
+        $order = $order->getOrder($this->store_session['store_id'], $order_id);
+        $products = $order_product->getProducts($order_id);
+        if(empty($order['uid'])) {
+            $order['is_fans'] = false;
+            $is_fans = false;
+            $order['buyer'] = '';
+        }
+        else {
+            //$tmp_order['is_fans'] = $user->isWeixinFans($tmp_order['uid']);
+            $order['is_fans'] = true;
+            $is_fans = true;
+            $user_info = $user->checkUser(array('uid' => $order['uid']));
+            $order['buyer'] = $user_info['nickname'];
+        }
+
+//		$is_supplier = false;
+//		if (!empty($order['suppliers'])) { //订单供货商
+//			$suppliers = explode(',', $order['suppliers']);
+//			if (in_array($this->store_session['store_id'], $suppliers)) {
+//				$is_supplier = true;
+//			}
+//		}
+//		$order['is_supplier'] = $is_supplier;
+
+        $comment_count = 0;
+        $product_count = 0;
+        $tmp_products = array();
+        foreach ($products as $product) {
+            if(!empty($product['comment'])) {
+                $comment_count++;
+            }
+            $product_count++;
+
+            $tmp_products[] = $product['original_product_id'];
+        }
+
+        $status = M('Order')->status();
+        $payment_method = M('Order')->getPaymentMethod();
+
+        if(empty($order['address'])) {
+            $status[0] = '未填收货地址';
+        }
+        else {
+            $status[1] = '已填收货地址';
+        }
+        if(!empty($order['user_order_id'])) {
+            $user_order_id = $order['user_order_id'];
+        }
+        else {
+            $user_order_id = $order['order_id'];
+        }
+        $where = array();
+        $where['user_order_id'] = $user_order_id;
+        $tmp_packages = $package->getPackages($where);
+        $packages = array();
+        foreach ($tmp_packages as $package) {
+            $package_products = explode(',', $package['products']);
+            if(array_intersect($package_products, $tmp_products)) {
+                $packages[] = $package;
+            }
+        }
+
+        // 查看满减送
+        $order_ward_list = M('Order_reward')->getByOrderId($order['order_id']);
+        // 使用优惠券
+        $order_coupon = M('Order_coupon')->getByOrderId($order['order_id']);
+        $this->assign('is_fans', $is_fans);
+        $this->assign('order', $order);
+        $this->assign('products', $products);
+        $this->assign('rows', $comment_count + $product_count);
+        $this->assign('comment_count', $comment_count);
+        $this->assign('status', $status);
+        $this->assign('payment_method', $payment_method);
+        $this->assign('packages', $packages);
+        $this->assign('order_ward_list', $order_ward_list);
+        $this->assign('order_coupon', $order_coupon);
+    }
+
+    public function detail_json()
+    {
+        $order = M('Order');
+        $order_product = M('Order_product');
+
+        $order_id = isset($_POST['order_id']) ? intval(trim($_POST['order_id'])) : 0;
+        $order = $order->getOrder($this->store_session['store_id'], $order_id);
+        $order['address'] = !empty($order['address']) ? unserialize($order['address']) : '';
+        $tmp_products = $order_product->getProducts($order_id);
+        $products = array();
+        foreach ($tmp_products as $product) {
+            $products[] = array(
+                'product_id' => $product['product_id'],
+                'name'       => $product['name'],
+                'price'      => $product['pro_price'],
+                'quantity'   => $product['pro_num'],
+                'skus'       => !empty($product['sku_data']) ? unserialize($product['sku_data']) : '',
+                'url'        => $this->config['wap_site_url'] . '/good.php?id=' . $product['product_id'],
+            );
+        }
+        $order['products'] = $products;
+
+        // 查看满减送
+        $order_ward_list = M('Order_reward')->getByOrderId($order['order_id']);
+        // 使用优惠券
+        $order_coupon = M('Order_coupon')->getByOrderId($order['order_id']);
+        $money = 0;
+        foreach ($order_ward_list as $order_ward) {
+            $money += $order_ward['content']['cash'];
+        }
+
+        if(!empty($order_coupon)) {
+            $money += $order_coupon['money'];
+        }
+
+        $order['reward_money'] = round($money, 2);
+
+        echo json_encode($order);
+        exit;
+    }
 
 
 //	//订单详细
