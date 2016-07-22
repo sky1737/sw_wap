@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="utf-8"/>
-<title>代理概况 -<?php echo $config['site_name'];?>分销平台 |
+<title>供应概况 -<?php echo $config['site_name'];?>分销平台 |
 <?php if (empty($_SESSION['sync_store'])) { ?>
 <?php echo $config['site_name'];?>
 <?php } else { ?>

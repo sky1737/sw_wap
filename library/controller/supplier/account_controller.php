@@ -98,6 +98,9 @@ class account_controller extends base_controller
 	public function load()
 	{
 		$action = strtolower(trim($_POST['page']));
+
+        //var_dump($action);exit;
+
 		if(empty($action)) pigcms_tips('非法访问！', 'none');
 		switch ($action) {
 			case 'income_content':
@@ -163,7 +166,7 @@ class account_controller extends base_controller
                 $this->_supplier_content();
                 break;
 
-            case 'order_content':
+            case 'supplier_order_content':
 
                 $status = isset($_POST['status']) ? trim($_POST['status']) : ''; //订单状态
                 $shipping_method = isset($_POST['shipping_method']) ? strtolower(trim($_POST['shipping_method'])) : ''; //运送方式 快递发货 上门自提
@@ -199,7 +202,11 @@ class account_controller extends base_controller
                     'shipping_method' => $shipping_method
                 );
 
-                $this->_order_content($data);
+                $this->_supplier_order_content($data);
+                break;
+
+            case 'supplier_goods_content':
+                $this->_supplier_goods_content();
                 break;
 
 			default:
@@ -208,28 +215,80 @@ class account_controller extends base_controller
 		$this->display($action);
 	}
 
-    private function _supplier_content()
+    //我的商品
+    public function supplier_goods()
     {
-        $store_supplier = M('Store_supplier');
-        $store = M('Store');
+        if(IS_POST) {
+            $products = isset($_POST['products']) ? trim($_POST['products']) : '';
+            if(!empty($products)) {
+                M('Product')
+                    ->edit(array('product_id' => array('in', explode(',', $products)),
+                                 'store_id'   => $this->store_session['store_id']),
+                        array('is_fx' => -1));
 
+                json_return(0, '操作成功');
+            }
+            else {
+                json_return(1001, '操作失败');
+            }
+        }
+        $this->display();
+    }
+
+    private function _supplier_goods_content()
+    {
+        $product = M('Product');
+//		$product_group = M('Product_group');
+//		$product_to_group = M('Product_to_group');
+
+        $order_by_field = isset($_POST['orderbyfield']) ? $_POST['orderbyfield'] : '';
+        $order_by_method = isset($_POST['orderbymethod']) ? $_POST['orderbymethod'] : '';
         $keyword = isset($_POST['keyword']) ? trim($_POST['keyword']) : '';
 
         $where = array();
-        $where['ss.seller_id'] = $this->store_session['store_id'];
-        if(!empty($keyword)) {
-            $where['s.name'] = array('like' => '%' . $keyword . '%');
+        $where['store_id'] = $this->store_session['store_id'];
+        if($keyword) {
+            $where['name'] = array('like', '%' . $keyword . '%');
         }
-        if(!empty($_SESSION['store_sync'])) {
-            $where['ss.type'] = 1;
-        }
-        $supplier_count = $store_supplier->supplier_count($where);
+        $where['buy_way'] = 1; //站内商品
+        $where['is_fx'] = array('in', array(-1, 0));
+        //$where['supplier_id'] = 0;
+        $product_total = $product->getSellingTotal($where);
         import('source.class.user_page');
-        $page = new Page($supplier_count, 15);
-        $suppliers = $store_supplier->suppliers($where, $page->firstRow, $page->listRows);
+        $page = new Page($product_total, 15);
+        $products = $product->getSelling($where, $order_by_field, $order_by_method, $page->firstRow, $page->listRows);
 
-        $this->assign('suppliers', $suppliers);
         $this->assign('page', $page->show());
+        $this->assign('products', $products);
+    }
+
+    private function _supplier_content()
+    {
+        $store_id = addslashes($this->store_session['store_id']);
+
+        $product = D('Product');
+        $supplier_product_count = $product->where("store_id = $store_id and status=1 and is_fx=1")->count('1');
+
+        $order = D('Order');
+
+        $total_sales_amount = $order->field('sum(`sub_total`-`profit`) as total')->where("store_id = $store_id")->find();
+
+        $this->assign('supplier_product_count', $supplier_product_count);
+        $this->assign('total_sales_amount', $total_sales_amount ? $total_sales_amount['total'] : 0);
+    }
+
+    //订单详细
+    public function detail()
+    {
+        $this->display();
+    }
+
+    public function offshelves(){
+
+        $pid =  $_POST['pid'];
+        $product = D('Product')->where("product_id = $pid")->data(array('status'=>0))->save();
+
+        json_return(0, '下架成功！');
     }
 
 
@@ -928,6 +987,135 @@ class account_controller extends base_controller
 		echo json_encode(array('status' => true, 'msg' => '确认退款中！', 'data' => array('nexturl' => 'refresh')));
 		exit;
 	}
+
+
+    //订单详细页面
+    private function _detail_content()
+    {
+        $order = M('Order');
+        $order_product = M('Order_product');
+        $user = M('User');
+        $package = M('Order_package');
+
+        $order_id = isset($_POST['order_id']) ? intval(trim($_POST['order_id'])) : 0;
+        $order = $order->getOrder($this->store_session['store_id'], $order_id);
+        $products = $order_product->getProducts($order_id);
+        if(empty($order['uid'])) {
+            $order['is_fans'] = false;
+            $is_fans = false;
+            $order['buyer'] = '';
+        }
+        else {
+            //$tmp_order['is_fans'] = $user->isWeixinFans($tmp_order['uid']);
+            $order['is_fans'] = true;
+            $is_fans = true;
+            $user_info = $user->checkUser(array('uid' => $order['uid']));
+            $order['buyer'] = $user_info['nickname'];
+        }
+
+//		$is_supplier = false;
+//		if (!empty($order['suppliers'])) { //订单供货商
+//			$suppliers = explode(',', $order['suppliers']);
+//			if (in_array($this->store_session['store_id'], $suppliers)) {
+//				$is_supplier = true;
+//			}
+//		}
+//		$order['is_supplier'] = $is_supplier;
+
+        $comment_count = 0;
+        $product_count = 0;
+        $tmp_products = array();
+        foreach ($products as $product) {
+            if(!empty($product['comment'])) {
+                $comment_count++;
+            }
+            $product_count++;
+
+            $tmp_products[] = $product['original_product_id'];
+        }
+
+        $status = M('Order')->status();
+        $payment_method = M('Order')->getPaymentMethod();
+
+        if(empty($order['address'])) {
+            $status[0] = '未填收货地址';
+        }
+        else {
+            $status[1] = '已填收货地址';
+        }
+        if(!empty($order['user_order_id'])) {
+            $user_order_id = $order['user_order_id'];
+        }
+        else {
+            $user_order_id = $order['order_id'];
+        }
+        $where = array();
+        $where['user_order_id'] = $user_order_id;
+        $tmp_packages = $package->getPackages($where);
+        $packages = array();
+        foreach ($tmp_packages as $package) {
+            $package_products = explode(',', $package['products']);
+            if(array_intersect($package_products, $tmp_products)) {
+                $packages[] = $package;
+            }
+        }
+
+        // 查看满减送
+        $order_ward_list = M('Order_reward')->getByOrderId($order['order_id']);
+        // 使用优惠券
+        $order_coupon = M('Order_coupon')->getByOrderId($order['order_id']);
+        $this->assign('is_fans', $is_fans);
+        $this->assign('order', $order);
+        $this->assign('products', $products);
+        $this->assign('rows', $comment_count + $product_count);
+        $this->assign('comment_count', $comment_count);
+        $this->assign('status', $status);
+        $this->assign('payment_method', $payment_method);
+        $this->assign('packages', $packages);
+        $this->assign('order_ward_list', $order_ward_list);
+        $this->assign('order_coupon', $order_coupon);
+    }
+
+    public function detail_json()
+    {
+        $order = M('Order');
+        $order_product = M('Order_product');
+
+        $order_id = isset($_POST['order_id']) ? intval(trim($_POST['order_id'])) : 0;
+        $order = $order->getOrder($this->store_session['store_id'], $order_id);
+        $order['address'] = !empty($order['address']) ? unserialize($order['address']) : '';
+        $tmp_products = $order_product->getProducts($order_id);
+        $products = array();
+        foreach ($tmp_products as $product) {
+            $products[] = array(
+                'product_id' => $product['product_id'],
+                'name'       => $product['name'],
+                'price'      => $product['pro_price'],
+                'quantity'   => $product['pro_num'],
+                'skus'       => !empty($product['sku_data']) ? unserialize($product['sku_data']) : '',
+                'url'        => $this->config['wap_site_url'] . '/good.php?id=' . $product['product_id'],
+            );
+        }
+        $order['products'] = $products;
+
+        // 查看满减送
+        $order_ward_list = M('Order_reward')->getByOrderId($order['order_id']);
+        // 使用优惠券
+        $order_coupon = M('Order_coupon')->getByOrderId($order['order_id']);
+        $money = 0;
+        foreach ($order_ward_list as $order_ward) {
+            $money += $order_ward['content']['cash'];
+        }
+
+        if(!empty($order_coupon)) {
+            $money += $order_coupon['money'];
+        }
+
+        $order['reward_money'] = round($money, 2);
+
+        echo json_encode($order);
+        exit;
+    }
 
 
 //	//订单详细
