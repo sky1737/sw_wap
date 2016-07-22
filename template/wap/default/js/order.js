@@ -55,8 +55,8 @@ $(function () {
         $('.js-refund-money').click(function () {
             $.post('./saveorder.php?action=refund',{orderNo:orderNo},function (data){
                 if(data.err_code == 0){
-                    alert('data.err_msg');
-                    window.location.reload();
+                    alert(data.err_msg);
+                    window.location.href ='./my_order.php';
                 } else {
                     alert(data.err_msg);
                 }

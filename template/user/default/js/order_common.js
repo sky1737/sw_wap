@@ -631,7 +631,7 @@ $(function(){
         html += '   </div>';
         $('body').append(html);
         $('.modal').animate({'margin-top': ($(window).scrollTop() + $(window).height() * 0.05) + 'px'}, "slow");
-    })
+    });
     //确认后付款
     $('.js-refund-pay').live('click', function(){
         var order_id = $('.js-refund-express').attr('data-id');
@@ -664,59 +664,6 @@ $(function(){
                 }
             })
         }
-
-
-
-        // var flag = true;
-        // var products = [];
-        // var express_id = '';
-        // var express_company = '';
-        // var express_no = '';
-        // var order_id = $('.js-express-goods').attr('data-id');
-        //
-        // if ($("input:radio[name='no_express']:checked").val() == 0) { //需要物流
-        //     $('.help-desc').next('.error-message').remove();
-        //     if ($('.select2-choice > .select2-chosen').attr('data-id') == 0) {
-        //         $('.select2-choice > .select2-chosen').closest('.control-group').addClass('error');
-        //         $('.help-desc').after('<p class="help-block error-message">请选择一个物流公司</p>');
-        //         flag = false;
-        //     } else {
-        //         $('.select2-choice > .select2-chosen').closest('.control-group').removeClass('error');
-        //         express_id = $('.select2-choice > .select2-chosen').attr('data-id');
-        //         express_company = $('.select2-choice > .select2-chosen').text();
-        //     }
-        //     $('.js-number').next('.error-message').remove();
-        //     if ($('.js-number').val() == '') {
-        //         $('.js-number').closest('.control-group').addClass('error');
-        //         $('.js-number').after('<p class="help-block error-message">请填写快递单号</p>');
-        //         flag = false;
-        //     } else {
-        //         $('.js-number').closest('.control-group').removeClass('error');
-        //         express_no = $('.js-number').val();
-        //     }
-        // }
-        // if (flag) {
-        //     $('.js-check-item:checked').each(function(i){
-        //         products[i] = $(this).val();
-        //     })
-        //     $.post(create_package_url, {'order_id': order_id, 'express_id': express_id, 'express_company': express_company, 'express_no': express_no, 'products': products.toString()}, function(data) {
-        //         if (!data.err_code) {
-        //             $('.notifications').html('<div class="alert in fade alert-success">' + data.err_msg + '</div>');
-        //             $('.modal').animate({'margin-top': '-' + ($(window).scrollTop() + $(window).height()) + 'px'}, "slow",function(){
-        //                 $('.modal-backdrop,.modal').remove();
-        //             });
-        //             if (page_content == 'detail_content') { //订单详细
-        //                 load_page('.app__content', load_url, {page: page_content, 'order_id': order_id}, '', function(){});
-        //             } else { //订单列表
-        //                 status = $('.ui-nav > ul > .active > a').attr('data');
-        //                 $('.ui-nav > ul > li > a').trigger('click');
-        //             }
-        //         } else {
-        //             $('.notifications').html('<div class="alert in fade alert-error">' + data.err_msg + '</div>');
-        //         }
-        //         t = setTimeout('msg_hide()', 3000);
-        //     })
-        // }
     })
 
     $('.js-company').live('click', function(){
