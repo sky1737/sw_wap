@@ -108,7 +108,6 @@ if($count > 0) {
 	if(!empty($store_id_arr)) {
 		$store_contact_list = M('Store_contact')->storeContactList($store_id_arr);
 	}
-
 	if(!empty($physical_id_arr)) {
 		$physical_list = M('Store_physical')->getListByIDList($physical_id_arr);
 	}
