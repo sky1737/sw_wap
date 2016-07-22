@@ -78,6 +78,17 @@
 				<span class="input"><?php echo date('Y-m-d H:i:s', $now_store['date_added']); ?></span>
 			</div>
 		</div>
+
+		<?php
+		if($isSupplier) {?>
+
+		<div class="row">
+			<div class="large-12 columns">
+				<label> 供应商编号 </label>
+				<span class="input"><?php echo $now_store['supplier_code']; ?></span>
+			</div>
+		</div>
+		<?php }?>
 	</form>
 </div>
 <script type="text/javascript">

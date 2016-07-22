@@ -248,6 +248,15 @@ if (empty($_SESSION['store'])) {
 $wap_user = $_SESSION['user'];
 $now_store = $_SESSION['store'];
 
+//是否是 供应商
+if(empty($_SESSION['store']['is_supplier'])){
+    $isSupplier = D('Agent')->where(array('agent_id' => $_SESSION['store']['agent_id']))->find();
+    $_SESSION['store']['is_supplier'] = $isSupplier!=0;
+    redirect('/wap/supplier_ucenter.php');
+}
+$isSupplier = $_SESSION['store']['is_supplier'];
+
+
 //// 检测分销商是否存在
 //if (!empty($_SESSION['wap_drp_store']) && $_SESSION['wap_drp_store']['store_id'] != $tmp_store_id) {
 //	$store_exists =

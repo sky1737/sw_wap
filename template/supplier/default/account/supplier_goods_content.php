@@ -26,7 +26,7 @@
 				<tr>
 					<td class="checkbox"></td>
 					<td class="goods-image-td"><div class="goods-image js-goods-image "> <img src="<?php echo $product['image']; ?>"/> </div></td>
-					<td class="goods-meta"><p class="goods-title"> <a href="<?php echo $config['wap_site_url']; ?>/good.php?id=<?php echo $product['product_id']; ?>" target="_blank" class="new-window" title="<?php echo $product['name']; ?>"> <?php echo $product['name']; ?> </a> </p>
+					<td class="goods-meta"><p class="goods-title"> <a href="/goods/<?php echo $product['product_id']; ?>.html" target="_blank" class="new-window" title="<?php echo $product['name']; ?>"> <?php echo $product['name']; ?> </a> </p>
 						<p><span class="goods-price" goods-price="<?php echo $product['price']; ?>">￥<?php echo $product['price']; ?></span> </p>
 					</td>
 					<td class="text-right"><?php echo $product['pv']; ?></td>
