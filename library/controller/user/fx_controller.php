@@ -3487,22 +3487,32 @@ class fx_controller extends base_controller
 			if($pay_momey *1){
 				if($balance*1 <= 0 || $balance < $pay_momey) {
 					json_return(1, '账户余额不足，请充值');
-				} else{
-					D('User')->where(array('uid' => $uid, 'status' => 1))->setDec('balance', $pay_momey * 1.00);
-					D('User_income')->data(
-						array(
-							'uid'      => $uid,
-							'order_no' => $orderData['order_no'],
-							'income'   => -$pay_momey,
-							'point'    => 0,
-							'type'     => -3,
-							'add_time' => time(),
-							'status'   => 1,
-							'remarks'  => '用户退货商家退款'
-						))->add();
-					M('Refund_package')->save(array('store_id' => $store_id,'order_id' =>$order_id),array('status' => 1,'handle_time'=> time(),'handle_name' =>$name));
-					M('Order')->setOrderStatus($store_id,$order_id,array('status' => 5));
-					json_return(0, $orderData['order_no']);
+				} elseif($pay_momey < $orderData['total']){
+					json_return(1, '应退回金额不能低于￥'.$orderData['total']);
+				}else{
+					$buyUser = $user->getUser(array('uid' =>$orderData['uid'] ,'status' => 1));
+					$result = $order->refundFee($orderData,$buyUser);
+					if($result['error_code'] == 0)
+					{
+						D('User')->where(array('uid' => $uid, 'status' => 1))->setDec('balance', $pay_momey * 1.00);
+						D('User_income')->data(
+							array(
+								'uid'      => $uid,
+								'order_no' => $orderData['order_no'],
+								'income'   => -$pay_momey,
+								'point'    => 0,
+								'type'     => -3,
+								'add_time' => time(),
+								'status'   => 1,
+								'remarks'  => '用户退货商家退款'
+							))->add();
+						M('Refund_package')->save(array('store_id' => $store_id,'order_id' =>$order_id),array('status' => 1,'handle_time'=> time(),'handle_name' =>$name));
+						M('Order')->setOrderStatus($store_id,$order_id,array('status' => 5));
+						json_return(0, '退款成功！');
+					} else
+					{
+						json_return($result['err_code'],$result['err_msg']);
+					}
 				}
 			} else {
 				json_return(1, '请填写支付金额');

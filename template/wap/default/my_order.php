@@ -111,10 +111,11 @@
 							<a class="btn btn-in-order-list" href="<?php echo $order['url']; ?>">详情</a>
 							<?php }
 
-							if(1 < $order['status'] && $order['status'] < 5) {?>
+							if((1 < $order['status'] && $order['status'] < 4) && strtotime("-15 days ") < $order['add_time']) {?>
 								<a class="btn btn-in-order-list js-refund-it"  data-id="<?php echo $order['order_no_txt']; ?>" href="<?php echo '#'/*$order['refund_url']*/; ?>">退款</a>
-							<?php } ?>
-
+							<?php } else { ?>
+								<a class="btn btn-in-order-list js-refund-it"  data-id="<?php echo $order['order_no_txt']; ?>" href="<?php echo '#'/*$order['refund_url']*/; ?>">售后</a>
+							<?php }?>
 
 						</div>
 					</div>

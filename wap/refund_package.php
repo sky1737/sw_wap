@@ -16,6 +16,8 @@ if(IS_POST)
         'store_id'=> $_POST['store_id'],
         'order_id'=> $_POST['order_id'],
         'products'=> $_POST['products'],
+        'refund_reason'=> $_POST['refund_reason'],
+        'is_take'=> $_POST['is_take'],
         'status'=> 0,
         'add_time'=> time()
     );

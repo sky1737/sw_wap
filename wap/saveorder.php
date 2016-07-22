@@ -809,55 +809,104 @@ switch ($action) {
 		$model_order = M('Order');
 		$model_income = M('User_income');
 		$db_user = D('User');
-
 		$nowOrder = $model_order->find($_POST['orderNo']);
 
-		$order_no = preg_replace('#' . option('config.orderid_prefix') . '#', '', $_POST['orderNo'], 1);
-
-		$income = $model_income->getPointAndIncomeByOrderNo(array('order_no' => $order_no,'type' => 1));
-
-		if(option('config.default_point'))
-		{
-			//默认为反积分
-			$diff_money = $income['point']/option('config.point_exchange');
-		} else
-		{
-			$diff_money = $income['income'];
-		}
-
-        //实际退回的钱  实际支付 - 返现的
-		if($nowOrder['pay_money']!= '0.00')
-		{
-			$refund_fee = $nowOrder['pay_money'] - $diff_money; //实际退回的钱
-			import('source.class.pay.Weixin');
-			$openid = $_SESSION['openid'];
-			$payType =  'weixin';//$_POST['payType'];
-			$payMethodList = M('Config')->get_pay_method();
-			$nowOrder['refund_fee'] =  $refund_fee;
-			//调用微信退款接口
-			logs($openid . ',' .
-				var_export($nowOrder, true) . ',' .
-				var_export($payMethodList[$payType]['config'], true) . ',' .
-				var_export($wap_user, true), 'INFO');
-			$weixin = new Weixin($nowOrder, $payMethodList[$payType]['config'], $wap_user['openid']);
-			$result = $weixin->refund();
-			logs('refundInfo:' . json_encode($result), 'INFO');
-
-			$model_order->refundOrder($nowOrder);
-
-			json_return($result['err_code'], $result['err_msg']);
-		} else
-		{
-			if($nowOrder['balance'] != '0.00')
+		if($nowOrder['status'] < 2) {
+			json_return(1,'订单未支付，不能退款');
+		} elseif($nowOrder['status'] == 2) {
+			if($nowOrder['point']/option('config.point_exchange') > $nowOrder['sub_total']/2)
 			{
-				$nowOrder['refund_fee'] = $nowOrder['balance'] = $nowOrder['balance'] - $diff_money; //实际退回的钱
-			}else
-			{
-				//全额积分付款 不能退款 直接返回
-				json_return(1, '全额积分付款，不允许退款！');
+				json_return(1,'积分支付超过订单金额的一半，无法退货，请联系管理员');
 			}
-			$model_order->refundOrder($nowOrder);
-			json_return(0, '退款成功！');
+			//1 计算应退款额
+			//2 支付
+			//3 改变各种状态
+			$result = $model_order->refundFee($nowOrder,$wap_user);
+			json_return($result['err_code'],$result['err_msg']);
+//			if($refund_fee > 0 )
+//			{
+//				$nowOrder['refund_fee'] = $refund_fee;
+//				if($nowOrder['pay_money']*1)
+//				{
+//					import('source.class.pay.Weixin');
+//					$openid = $_SESSION['openid'];
+//					$payType =  'weixin';//$_POST['payType'];
+//					$payMethodList = M('Config')->get_pay_method();
+//					$nowOrder['refund_fee'] =  $refund_fee;
+//					//调用微信退款接口
+//					logs($openid . ',' .
+//						var_export($nowOrder, true) . ',' .
+//						var_export($payMethodList[$payType]['config'], true) . ',' .
+//						var_export($wap_user, true), 'INFO');
+//					$weixin = new Weixin($nowOrder, $payMethodList[$payType]['config'], $wap_user['openid']);
+//					$result = $weixin->refund();
+//					logs('refundInfo:' . json_encode($result), 'INFO');
+//					$model_order->refundOrder($nowOrder);
+//					json_return($result['err_code'], $result['err_msg']);
+//				} else
+//				{
+//					$model_order->refundOrder($nowOrder);
+//					json_return(0, '退款成功！');
+//				}
+//			} else
+//			{
+//				json_return(1,'全额积分付款，不允许退款！');
+//			}
+		} elseif($nowOrder['status'] ==3 ) {
+			json_return(1,'订单已发货，不能直接退款，请走退货流程');
+		} elseif($nowOrder['status'] ==4 ) {
+			json_return(1,'订单已确认，不能退货，请走售后流程');
+		} elseif($nowOrder['status'] == 5) {
+			json_return(1,'订单已取消，不能退款');
+		} elseif($nowOrder['status'] == 6) {
+			json_return(1,'已退款中的订单哟');
+		} else {
+			json_return(1,'订单状态异常，请联系管理员');
 		}
+//		$order_no = preg_replace('#' . option('config.orderid_prefix') . '#', '', $_POST['orderNo'], 1);
+//		$income = $model_income->getPointAndIncomeByOrderNo(array('order_no' => $order_no,'type' => 1));
+//		if(option('config.default_point'))
+//		{
+//			//默认为反积分
+//			$diff_money = $income['point']/option('config.point_exchange');
+//		} else
+//		{
+//			$diff_money = $income['income'];
+//		}
+//
+//        //实际退回的钱  实际支付 - 返现的
+//		if($nowOrder['pay_money']!= '0.00')
+//		{
+//			$refund_fee = $nowOrder['pay_money'] - $diff_money; //实际退回的钱
+//			import('source.class.pay.Weixin');
+//			$openid = $_SESSION['openid'];
+//			$payType =  'weixin';//$_POST['payType'];
+//			$payMethodList = M('Config')->get_pay_method();
+//			$nowOrder['refund_fee'] =  $refund_fee;
+//			//调用微信退款接口
+//			logs($openid . ',' .
+//				var_export($nowOrder, true) . ',' .
+//				var_export($payMethodList[$payType]['config'], true) . ',' .
+//				var_export($wap_user, true), 'INFO');
+//			$weixin = new Weixin($nowOrder, $payMethodList[$payType]['config'], $wap_user['openid']);
+//			$result = $weixin->refund();
+//			logs('refundInfo:' . json_encode($result), 'INFO');
+//
+//			$model_order->refundOrder($nowOrder);
+//
+//			json_return($result['err_code'], $result['err_msg']);
+//		} else
+//		{
+//			if($nowOrder['balance'] != '0.00')
+//			{
+//				$nowOrder['refund_fee'] = $nowOrder['balance'] = $nowOrder['balance'] - $diff_money; //实际退回的钱
+//			}else
+//			{
+//				//全额积分付款 不能退款 直接返回
+//				json_return(1, '全额积分付款，不允许退款！');
+//			}
+//			$model_order->refundOrder($nowOrder);
+//			json_return(0, '退款成功！');
+//		}
 		break;
 }
