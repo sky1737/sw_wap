@@ -39,7 +39,175 @@ class account_controller extends base_controller
         $this->display();
     }
 
-	public function info()
+
+    //商品打包
+    public function package_product()
+    {
+        $order = M('Order');
+        $order_product = M('Order_product');
+        $express = M('Express');
+
+        //快递公司
+        $express = $express->getExpress();
+
+        $order_id = isset($_POST['order_id']) ? intval(trim($_POST['order_id'])) : 0;
+        $data = array();
+        $order = $order->getOrder($this->store_session['store_id'], $order_id);
+        $tmp_products = $order_product->getUnPackageProducts($order_id);
+        $products = array();
+        foreach ($tmp_products as $tmp_product) {
+            $products[] = array(
+                'product_id' => $tmp_product['product_id'],
+                'name'       => $tmp_product['name'],
+                'pro_num'    => $tmp_product['pro_num'],
+                'skus'       => unserialize($tmp_product['sku_data'])
+            );
+        }
+        $address = unserialize($order['address']);
+        $data['address'] = $address;
+        $data['products'] = $products;
+        $data['express'] = $express;
+        echo json_encode($data);
+        exit;
+    }
+
+    //创建包裹
+    public function create_package()
+    {
+        $order = M('Order');
+        $fx_order = M('Fx_order');
+        $order_product = M('Order_product');
+        $order_package = M('Order_package');
+
+        $data = array();
+        $data['store_id'] = $this->store_session['store_id'];
+        $data['order_id'] = isset($_POST['order_id']) ? intval(trim($_POST['order_id'])) : 0;
+        $data['products'] = isset($_POST['products']) ? trim($_POST['products']) : 0;
+        $data['express_company'] = isset($_POST['express_company']) ? trim($_POST['express_company']) : '';
+        $data['express_no'] = isset($_POST['express_no']) ? trim($_POST['express_no']) : '';
+        $data['express_code'] = isset($_POST['express_id']) ? trim($_POST['express_id']) : '';
+        $data['status'] = 1; //已发货
+        $order_info = $order->getOrder($data['store_id'], $data['order_id']);
+        $data['user_order_id'] =
+            !empty($order_info['user_order_id']) ? $order_info['user_order_id'] : $order_info['order_id'];
+        $where = array();
+        $where['_string'] =
+            "order_id = '" . $data['user_order_id'] . "' OR user_order_id = '" . $data['user_order_id'] . "'";
+        $orders = D('Order')->field('order_id,suppliers')->where($where)->select();
+        if($order_package->add($data)) {
+            $where = array();
+            $where['order_id'] = $data['order_id'];
+            $where['product_id'] = array('in', explode(',', $data['products']));
+            $result = $order_product->setPackageInfo($where, array('is_packaged' => 1, 'in_package_status' => 1));
+            if($result) {
+                $where = array();
+                $where['user_order_id'] = $data['user_order_id'];
+                $where['original_product_id'] = array('in', explode(',', $data['products']));
+                D('Order_product')->where($where)->data(array('is_packaged' => 1, 'in_package_status' => 1))->save();
+            }
+            /*$package_products = explode(',', $data['products']);
+            if (!empty($package_products)) { //打包的商品
+                foreach ($package_products as $product_id) {
+                    $this->_package_product($product_id, $orders);
+                }
+            }*/
+
+            //获取未打包的商品
+            $un_package_products = $order_product->getUnPackageProducts($data['order_id']);
+            if(count($un_package_products) == 0) { //已全部打包发货
+                $time = time();
+                $where = array();
+                $where['order_id'] = $data['order_id'];
+                $where['status'] = array('!=', 4);
+                $order->editStatus($where, array('status' => 3, 'sent_time' => $time));
+                /*//单供货商
+                $where = array();
+                $where['_string'] = "suppliers = '" . $this->store_session['store_id'] . "' AND (order_id = '" . $order_info['user_order_id'] . "' OR user_order_id = '" . $order_info['user_order_id'] . "')";
+                $order->editStatus($where, array('status' => 3, 'sent_time' => $time));
+                //多供货商
+                $where = array();
+                $where['_string'] = "FIND_IN_SET(" . $this->store_session['store_id'] . ", suppliers) AND suppliers != '" . $this->store_session['store_id'] . "' AND  (order_id = '" . $order_info['user_order_id'] . "' OR user_order_id = '" . $order_info['user_order_id'] . "') AND packaging = 1";
+                $order->editStatus($where, array('status' => 3, 'sent_time' => $time));
+                //设置状态为打包中
+                $where = array();
+                $where['_string'] = "FIND_IN_SET(" . $this->store_session['store_id'] . ", suppliers) AND suppliers != '" . $this->store_session['store_id'] . "' AND  (order_id = '" . $order_info['user_order_id'] . "' OR user_order_id = '" . $order_info['user_order_id'] . "') AND packaging = 0";
+                $order->editStatus($where, array('packaging' => 1, 'sent_time' => $time));*/
+                //设置订单商品状态为已打包
+                foreach ($orders as $tmp_order_info) {
+                    //查找供货是当前店铺的订单
+                    if(!empty($tmp_order_info['suppliers']) &&
+                        in_array($this->store_session['store_id'], explode(',', $tmp_order_info['suppliers']))
+                    ) {
+                        //修改订单商品状态
+                        $where = array();
+                        $where['order_id'] = $tmp_order_info['order_id'];
+                        $where['original_product_id'] = array('in', explode(',', $data['products']));
+                        $order_product->setPackageInfo($where, array('is_packaged' => 1, 'in_package_status' => 1));
+                    }
+                }
+                $un_package_product_count =
+                    $order_product->getUnPackageProductCount(array('user_order_id' => $data['user_order_id'],
+                                                                   'is_packaged'   => 0));
+                if($un_package_product_count == 0) {
+                    $where = array();
+                    $where['_string'] =
+                        "(order_id = '" . $data['user_order_id'] . "' OR user_order_id = '" . $data['user_order_id'] .
+                        "') AND status != 4";
+                    $order->editStatus($where, array('status' => 3, 'sent_time' => $time));
+
+                    if($order->getOrderCount(array('order_id' => $data['user_order_id'],
+                                                   'status'   => array('in', array(3, 4))))
+                    ) {
+                        $user_order_info = $order->get(array('order_id' => $data['user_order_id']));
+                        M('Store_user_data')->upUserData($user_order_info['store_id'], $user_order_info['uid'],
+                            'send'); //修改已发货订单数
+                    }
+                }
+                if(!empty($order_info['fx_order_id'])) {
+                    $fx_order->setPackaged($order_info['fx_order_id']); //设置分销订单状态为已打包
+                }
+                /*$order->setOrderStatus($data['store_id'], $data['order_id'], array('status' => 3, 'sent_time' => $time)); //修改订单状态为已发货
+                if (!empty($order_info['user_order_id'])) { //统一修改订单发货状态
+                    $where = array();
+                    //判断订单是否含有店铺自有商品
+                    $store_products = $order_product->getStoreProduct($order_info['user_order_id']);
+                    if (!empty($store_products)) { //含有店铺自有商品（不修改发货状态，分销商自行修改）
+                        $where['_string'] = "order_id != '" . $order_info['user_order_id'] . "' AND user_order_id = '" . $order_info['user_order_id'] . "'";
+                    } else {
+                        $where['_string'] = "order_id = '" . $order_info['user_order_id'] . "' OR user_order_id = '" . $order_info['user_order_id'] . "'";
+                    }
+                    $order->editStatus($where, array('status' => 3, 'sent_time' => $time));
+                    //用户订单(判断是否有分销订单)
+                    $user_order_info = $order->get(array('order_id' => $order_info['user_order_id'], 'is_fx' => 1));
+                    if (!empty($user_order_info)) {
+                        $fx_order->setStatus(array('user_order_id' => $order_info['user_order_id']), array('status' => 3, 'supplier_sent_time' => $time));
+                    }
+                }
+                if (!empty($order_info['fx_order_id'])) {
+                    //设置分销订单状态为已打包
+                    if ($fx_order->setPackaged($order_info['fx_order_id'])) {
+                        $fx_order_info = $fx_order->getOrderById($order_info['fx_order_id']); //分销商订单
+                        $where = array();
+                        $where['order_id']   = $fx_order_info['order_id'];
+                        $where['product_id'] = array('in', explode(',', $data['products']));
+                        $order_product->setPackageInfo($where, array('is_packaged' => 1, 'in_package_status' => 1));
+                        //获取未打包的商品
+                        $un_package_products = $order_product->getUnPackageProducts($fx_order_info['order_id']);
+                        if (count($un_package_products) == 0) { //已全部打包发货
+                            $order->setOrderStatus($fx_order_info['store_id'], $fx_order_info['order_id'], array('status' => 3, 'sent_time' => time())); //修改订单状态为已发货
+                        }
+                    }
+                }*/
+            }
+            json_return(0, '包裹创建成功');
+        }
+        else {
+            json_return(1001, '包裹创建失败');
+        }
+    }
+
+    
+    public function info()
 	{
 		if(IS_POST) {
 			$data['nickname'] = I('post.name');
