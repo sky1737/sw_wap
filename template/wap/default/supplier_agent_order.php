@@ -102,7 +102,7 @@
 							<a class="btn btn-in-order-list" href="<?php echo $order['url']; ?>">详情</a>
 							<?php }
 							if($order['status'] == 2 && $order['agent_id'] == $_SESSION['store']['store_id']){ ?>
-								<a class="btn btn-in-order-list" href="<?php echo $order['url']; ?>">发货</a>
+								<a class="btn btn-orange btn-in-order-list" href="./send_package.php?orderNo=YWS<?php echo $order['order_no'] ?>">发货</a>
 							<?php } ?>
 						</div>
 					</div>
