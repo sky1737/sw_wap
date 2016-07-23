@@ -206,7 +206,7 @@ class account_controller extends base_controller
         }
     }
 
-    
+
     public function info()
 	{
 		if(IS_POST) {
