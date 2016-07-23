@@ -37,7 +37,7 @@ if (IS_POST && $_POST['type'] == 'get') {
                 $product['product_id'] . '">' .
                 '<div><img src="' . $product['image'] . '" />' .
                 '<h5 style="font-size: 12px;height:50px;text-align:left;padding: 0 5px;">' . $product['name'] .
-                '</h5><div id="off-shelves" data-id="'.$product["product_id"].'" style="font-size: 13px; text-align: right; padding-right: 12px">下架</div>
+                '</h5><div class="js-off-shelves" data-pid="'.$product["product_id"].'" style="font-size: 13px; text-align: right; padding-right: 12px">下架</div>
                 <ul class="percent" style="width:auto;">' .
                 '<li style="padding: 0 5px;font-size:12px">成本价: ￥' . number_format($product['cost_price']) . '</li>' .
                 '<li style="padding: 0 5px;font-size:12px">会员价: ￥' . number_format($product['price']) . '</li>' .

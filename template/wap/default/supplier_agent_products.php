@@ -71,18 +71,29 @@
 					}
 				});
 				$('#device').show();
+				//下架
+				$('.js-off-shelves').click(function () {
+					var pid = $(this).data('pid');
+					$.post('/supplier.php?c=account&a=offshelves', {'pid': pid}, function(data){
+						if (!data.err_code) {
+							alert(data.err_msg);
+							//console.log($elem);
+						} else {
+							alert(data.err_msg);
+						}
+					})
+				});
 			} else {
 				$('#device').hide();
-				$('ordernull').show();
+				$('#ordernull').show();
 				return;
 			}
 
 			$("#pullUp").show();
 
 			return false;
-		})
+		});
 	}
-
 	(function ($) {
 		$(function () {
 			var pulldownAction = function () {
