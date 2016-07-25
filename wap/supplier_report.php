@@ -31,7 +31,14 @@ if($_GET['a'] == 'sales') {
      */
 	$order = M('Order');
 	$type = !empty($_GET['type']) ? trim($_GET['type']) : '';
-	if(strtolower($type) == 'today') { //今日销售额
+	if(strtolower($type) == 'today') {
+
+	    //今日订单
+
+
+        //全部订单数
+
+	    //今日销售额
 		//今日销售额 00:00-6:00 6:00-12:00 12:00-18:00 18:00-24:00
 		//00:00-6:00
 		$starttime = strtotime(date('Y-m-d') . ' 00:00:00');

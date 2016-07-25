@@ -163,6 +163,17 @@
 				})
 			}
 		});
+
+		var inputElm =  $(".js-supplier-code");
+		inputElm.blur(function(){
+			inputElm.css("background-color","#D6D6FF");
+			$.post("<?php echo U('Store/status'); ?>", {
+				'type': 'supplier_code',
+				'status': inputElm.val(),
+				'store_id': inputElm.data('id')
+			}, function (data) {
+			});
+		});
 	})
 </script>
 <input type="hidden" name="id" value="{pigcms{$store.store_id}" />
@@ -263,7 +274,7 @@
 	</tr>
 	<tr>
 		<th width="80" class="center">物流状态</th>
-		<td class="right-border" colspan="5">
+		<td class="right-border">
 			<?php
 			echo '<span class="cb-enable open_logistics-enable"><label class="cb-enable' .
 				($store['open_logistics'] ? ' selected' : '') . '" data-id="' . $store['store_id'] .
@@ -273,6 +284,12 @@
 				($store['open_logistics'] ? '' : ' selected') . '" data-id="' . $store['store_id'] .
 				'"><span>禁用</span><input type="radio" name="open_logistics" value="0"' .
 				($store['open_logistics'] ? '' : ' checked="checked"') . ' /></label></span>'; ?></td>
+
+		<th class="center">供应商编码</th>
+		<td align="center" colspan="3" class="right-border">
+			<input class="js-supplier-code" type="text" data-id="<?php echo $store['store_id'];?>" name="supplier_code" value="<?php echo $store['supplier_code']; ?>"/>
+		</td>
+
 		<!--<th class="center">送朋友</th>
 		<td align="center" colspan="3" class="right-border">
 			<?php
