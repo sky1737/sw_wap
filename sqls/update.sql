@@ -1,6 +1,7 @@
 ALTER TABLE  `tp_agent` ADD  `is_agent` TINYINT( 1 ) NOT NULL DEFAULT  '0' COMMENT  '是否代理' AFTER  `open_self` ,
 ADD  `is_editor` TINYINT( 1 ) NOT NULL DEFAULT  '0' COMMENT  '是否产品专员' AFTER  `is_agent`;
 
+<<<<<<< HEAD
 
 DROP TABLE IF EXISTS `tp_refund_package`;
 CREATE TABLE `tp_refund_package` (
@@ -21,3 +22,8 @@ CREATE TABLE `tp_refund_package` (
   KEY `store_id` (`store_id`) USING BTREE,
   KEY `order_id` (`order_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='退货订单包裹';
+=======
+#店铺 供应商编码
+ALTER TABLE `tp_store`
+ADD COLUMN `supplier_code`  varchar(255) NULL AFTER `agent_id`;
+>>>>>>> origin

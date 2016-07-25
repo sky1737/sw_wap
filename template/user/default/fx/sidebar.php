@@ -17,7 +17,7 @@ $select_sidebar=isset($select_sidebar)?$select_sidebar:ACTION_NAME; ?>
 			<li <?php if ($select_sidebar == 'supplier') { ?>class="active"<?php } ?>><a href="<?php dourl('supplier'); ?>">我的供货商</a></li>*/?>
 		</ul>
 		<?php
-		if ($store_session['agent_id']) { ?>
+		if (false && $store_session['agent_id']) { ?>
 		<ul>
 			<li>
 				<h4>代理</h4>

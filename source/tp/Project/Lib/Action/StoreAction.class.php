@@ -113,8 +113,9 @@ class StoreAction extends BaseAction
 		if (IS_POST) {
 			$store_id = $this->_post('store_id', 'trim,intval');
 			$type = $this->_post('type', 'trim');
-			$status = $this->_post('status', 'trim,intval');
+			$status = $this->_post('status', 'trim' . ('supplier_code'==$type ? '' : ',intval') );
 			$store->where(array('store_id' => $store_id))->save(array($type => $status));
+            //print_r($store->getLastSql());
 		}
 	}
 
