@@ -66,6 +66,7 @@ else if($_GET['a'] == 'profile') {
 		}
 		else {
 			echo 1;
+			
 		}
 		exit;
 	}
