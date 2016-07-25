@@ -408,7 +408,7 @@ else if($_GET['a'] == 'sales') {
 	$sales = $order->getSales(array('store_id' => $now_store['store_id'], 'status' => array('in', array(1, 2, 3, 4))));
 	$now_store['sales'] = number_format($sales, 2, '.', '');
 
-	include display('drp_store_sales');
+	include display('supplier_store_sales');
 	echo ob_get_clean();
 }
 else if(strtolower($_GET['a']) == 'select') {

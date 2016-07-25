@@ -50,7 +50,7 @@
 </div>
 <div class="row count">
 	<div class="small-6 large-3 columns mid">
-		<a href="./drp_store.php?a=sales" class="count-a">
+		<a href="./supplier_store.php?a=sales" class="count-a">
 		<p class="count-dis-mony"><?php echo $now_store['sales']; ?></p>
 		<span class="count-title">销售总额(元)</span></a> </div>
 	<div class="small-6 large-3 columns mid">
@@ -79,9 +79,9 @@
                 			</a>
                 		</li>
         			<li>
-                			<a  href="./qrcode.php">
+                			<a  href="./supplier_report.php?a=sales">
         						<img src="<?php echo TPL_URL; ?>images/tb/ewm.png" alt="">
-                				<p>店铺二维码</p>
+                				<p>报表</p>
                 			</a>
                 		</li>
         			        	</ul></div>
@@ -92,7 +92,7 @@
 </div>-->
 <div class="panel member-nav">
 	<ul class="side-nav">
-		<li ><a href="./supplier_order.php?a=index"><i class="icon-disorder"></i><span class="text">我的订单</span><i class="arrow"></i></a></li>
+		<li><a href="./supplier_agent_products.php"><i class="icon-product"></i><span class="text">商品管理</span><i class="arrow"></i></a></li>
 	</ul>
 </div>
 <?php
@@ -100,7 +100,7 @@ if($now_store['agent_id']){
 ?>
 <div class="panel member-nav">
 	<ul class="side-nav">
-		<li id="brokerage" class="last"><a href="./supplier.php"><i class="icon-client"></i><span class="text">供应中心</span><i class="arrow"></i></a></li>
+		<li><a href="./supplier_agent_order.php"><i class="icon-disorder"></i><span class="text">发货订单</span><i class="arrow"></i></a></li>
 	</ul>
 </div>
 <?php

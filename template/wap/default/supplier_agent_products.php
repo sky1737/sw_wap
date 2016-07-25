@@ -127,7 +127,7 @@ tr { border: 1px solid #ebebeb; ; }
 <body>
 <div class="fixed">
 	<nav class="tab-bar">
-		<section class="left-small"> <a class="menu-icon" href="./supplier.php"><span></span></a> </section>
+		<section class="left-small"> <a class="menu-icon" href="./supplier_ucenter.php"><span></span></a> </section>
 		<section class="middle tab-bar-section">
 			<h1 class="title">产品管理</h1>
 		</section>
