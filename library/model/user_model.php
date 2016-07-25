@@ -376,7 +376,7 @@ class user_model extends base_model
 			return;
 
 		$agent_uid = D('Store')
-			->where("store_id = {$store_id} and status = 1 and agent_id in (select agent_id from tp_agent where status = 1 and open_self = 1)")
+			->where("store_id = {$store_id} and status = 1 and agent_id in (select agent_id from tp_agent where status = 1 and is_agent = 1)")
 			//->where(array('store_id' => $store_id, 'status' => 1, 'agent_approve' => array('>', 1)))
 			->getField('uid');
 		if(!$agent_uid)
@@ -439,7 +439,7 @@ class user_model extends base_model
 
 		$agent_uid = D('Store')
 			//->where(array('store_id' => $store_id, 'status' => 1, 'agent_approve' => 1))
-			->where("store_id = {$store_id} and status = 1 and agent_id in (select agent_id from tp_agent where status = 1 and open_self = 1)")
+			->where("store_id = {$store_id} and status = 1 and agent_id in (select agent_id from tp_agent where status = 1 and is_agent = 1)")
 			->getField('uid');
 		if(!$agent_uid)
 			return;

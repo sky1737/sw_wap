@@ -17,8 +17,8 @@
 					<tr>
 						<th>编号</th>
 						<th>名称</th>
-						<th>自营区</th>
-						<th>商品数量</th>
+						<th>用戶權限</th>
+						<!--<th>商品数量</th>-->
 						<th>备注</th>
 						<th>状态</th>
 						<th>排序</th>
@@ -31,9 +31,12 @@
 							<tr>
 								<td>{pigcms{$item.agent_id}</td>
 								<td>{pigcms{$item.name}</td>
-								<td><?php echo ($item['open_self'] ? '<span class="green">启用' : '<span class="red">禁用').'</span>'; ?></td>
-								<td>{pigcms{$item.max_products}</td>
-									<td>{pigcms{$item.remarks}</td>
+								<td><span class="green"><?php
+									echo $item['open_self'] ? '供應商' : '';
+									echo $item['is_agent'] ? '代理商' : '';
+									echo $item['is_editor'] ? '產品編輯' : ''; ?></span></td>
+								<!--<td>{pigcms{$item.max_products}</td>-->
+								<td>{pigcms{$item.remarks}</td>
 								<td><?php echo ($item['status'] ? '<span class="green">启用' : '<span class="red">禁用').'</span>'; ?></td>
 								<td>{pigcms{$item.sort}</td>
 								<td class="textcenter">

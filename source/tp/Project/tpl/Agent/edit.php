@@ -7,7 +7,7 @@
 			<td><input type="text" class="input fl" name="name" size="20" placeholder="请输入代理名称" value="{pigcms{$item.name}" validate="required:true" /></td>
 		</tr>
 		<tr>
-			<th width="80">启用自营</th>
+			<th width="80">供應商</th>
 			<td class="radio_box"><span class="cb-enable">
 				<label class="cb-enable<?php echo $item['open_self'] ? ' selected' : ''; ?>"><span>启用</span>
 					<input type="radio" name="open_self" value="1"<?php echo $item['open_self'] ? ' checked="checked"' : ''; ?>/>
@@ -19,9 +19,33 @@
 				</span></td>
 		</tr>
 		<tr>
+			<th width="80">代理</th>
+			<td class="radio_box"><span class="cb-enable">
+				<label class="cb-enable<?php echo $item['is_agent'] ? ' selected' : ''; ?>"><span>启用</span>
+					<input type="radio" name="is_agent" value="1"<?php echo $item['is_agent'] ? ' checked="checked"' : ''; ?>/>
+				</label>
+				</span> <span class="cb-disable">
+				<label class="cb-disable<?php echo $item['is_agent'] ? '' : ' selected'; ?>"><span>关闭</span>
+					<input type="radio" name="is_agent" value="0"<?php echo $item['is_agent'] ? '' : ' checked="checked"'; ?>/>
+				</label>
+				</span></td>
+		</tr>
+		<tr>
+			<th width="80">產品編輯</th>
+			<td class="radio_box"><span class="cb-enable">
+				<label class="cb-enable<?php echo $item['is_editor'] ? ' selected' : ''; ?>"><span>启用</span>
+					<input type="radio" name="is_editor" value="1"<?php echo $item['is_editor'] ? ' checked="checked"' : ''; ?>/>
+				</label>
+				</span> <span class="cb-disable">
+				<label class="cb-disable<?php echo $item['is_editor'] ? '' : ' selected'; ?>"><span>关闭</span>
+					<input type="radio" name="is_editor" value="0"<?php echo $item['is_editor'] ? '' : ' checked="checked"'; ?>/>
+				</label>
+				</span></td>
+		</tr>
+		<!--<tr>
 			<th width="80">商品数量</th>
 			<td><input type="text" class="input fl" name="max_products" size="10" placeholder="请输入商品数量" value="{pigcms{$item.max_products}" validate="required:true,number:true" /></td>
-		</tr>
+		</tr>-->
 		<tr>
 			<th width="80">备注说明</th>
 			<td><input type="text" class="input fl" name="remarks" size="30" placeholder="请输入备注说明" value="{pigcms{$item.remarks}" validate="required:true" /></td>
