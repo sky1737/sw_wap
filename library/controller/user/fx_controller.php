@@ -3491,7 +3491,8 @@ class fx_controller extends base_controller
 					json_return(1, '应退回金额不能低于￥'.$orderData['total']);
 				}else{
 					$buyUser = $user->getUser(array('uid' =>$orderData['uid'] ,'status' => 1));
-					$result = $order->refundFee($orderData,$buyUser);
+					$orders = $order->find(option('config.orderid_prefix').$orderData['order_no']);
+					$result = $order->refundFee($orders,$buyUser);
 					if($result['error_code'] == 0)
 					{
 						D('User')->where(array('uid' => $uid, 'status' => 1))->setDec('balance', $pay_momey * 1.00);

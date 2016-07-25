@@ -653,14 +653,8 @@ $(function(){
                 if (data.err_code) {
                     $('.notifications').html('<div class="alert in fade alert-error">'+ data.err_msg +'</div>');
                 } else {
-                    $.post('/wap/saveorder.php?action=refund',{orderNo:orderNo},function (data){
-                        if(data.err_code == 0){
-                            alert(data.err_msg);
-                            window.location.reload();
-                        } else {
-                            alert(data.err_msg);
-                        }
-                    });
+                    alert(data.err_msg);
+                    window.location.reload();
                 }
             })
         }
