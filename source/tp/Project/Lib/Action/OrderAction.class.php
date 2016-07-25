@@ -47,15 +47,31 @@ class OrderAction extends BaseAction
 		//搜索
 		$condition = array();
 		if (!empty($_GET['type']) && !empty($_GET['keyword'])) {
-			if ($_GET['type'] == 'order_no') {
-				$condition['StoreOrder.order_no'] = $_GET['keyword'];
-			}
-			else if ($_GET['type'] == 'name') {
-				$condition['Store.name'] = array('like', '%' . $_GET['keyword'] . '%');
-			}
-			else if ($_GET['type'] == 'linkman') {
-				$condition['Store.linkman'] = array('like', '%' . $_GET['keyword'] . '%');
-			}
+
+            $keyWord = $_GET['keyword'];
+
+            switch ($_GET['type']){
+
+                case 'order_no':
+                    $condition['StoreOrder.order_no'] = $keyWord;
+                    break;
+                case 'name':
+                    $condition['Store.name'] = array('like', "%$keyWord%");
+                    break;
+
+                case 'linkman':
+                    $condition['Store.linkman'] = array('like', "%$keyWord%");
+                    break;
+
+                case 'trade_no':
+                    $condition['StoreOrder.trade_no'] = $keyWord;
+                    break;
+
+                case 'third_id':
+                    $condition['StoreOrder.third_id'] = $keyWord;
+                    break;
+            }
+
 		}
 		if (!empty($_GET['status'])) {
 			$condition['StoreOrder.status'] = $_GET['status'];
@@ -107,13 +123,28 @@ class OrderAction extends BaseAction
 		//搜索
 		$condition = array();
 		if (!empty($_GET['type']) && !empty($_GET['keyword'])) {
-			if ($_GET['type'] == 'order_no') {
-				$condition['o.order_no'] = $_GET['keyword'];
-			}
-			else if ($_GET['type'] == 'name') {
-				$condition['u.nickname'] = array('like', '%' . $_GET['keyword'] . '%');
-			}
+
+		    $keyWord = $_GET['keyword'];
+
+		    switch ($_GET['type']){
+
+                case 'order_no':
+                    $condition['o.order_no'] = $keyWord;
+                    break;
+                case 'name':
+                    $condition['u.nickname'] = array('like', "%$keyWord%");
+                    break;
+
+                case 'trade_no':
+                    $condition['o.trade_no'] = $keyWord;
+                    break;
+
+                case 'third_id':
+                    $condition['o.third_id'] = $keyWord;
+                    break;
+            }
 		}
+
 		if (!empty($_GET['status'])) {
 			$condition['o.status'] = $_GET['status'];
 		}

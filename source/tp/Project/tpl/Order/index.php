@@ -19,6 +19,8 @@
 					<input type="text" name="keyword" class="input-text" value="{pigcms{$_GET['keyword']}"/>
 					<select name="type">
 						<option value="order_no"<?php echo $_GET['type'] == 'order_no' ? ' selected="selected"' : ''; ?>>订单号</option>
+						<option value="trade_no"<?php echo $_GET['type'] == 'trade_no' ? ' selected="selected"' : ''; ?>>交易号</option>
+						<option value="third_id"<?php echo $_GET['type'] == 'third_id' ? ' selected="selected"' : ''; ?>>付款流水号</option>
 						<option value="merchant"<?php echo $_GET['type'] == 'merchant' ? ' selected="selected"' : ''; ?>>商家名称</option>
 						<option value="name"<?php echo $_GET['type'] == 'name' ? ' selected="selected"' : ''; ?>>店铺名称</option>
 					</select>
@@ -58,7 +60,7 @@
 				</colgroup>
 				<thead>
 					<tr>
-						<th width="150">订单号</th>
+						<th width="150">订单号 / 交易号 / 付款流水号</th>
 						<th>商家名称</th>
 						<th>店铺名称</th>
 						<th>收货人</th>
@@ -75,7 +77,7 @@
 					<if condition="is_array($orders)">
 						<volist name="orders" id="order">
 							<tr>
-								<td>{pigcms{$order.order_no}</td>
+								<td>{pigcms{$order.order_no}<br/>{pigcms{$order.trade_no}<br/>{pigcms{$order.third_id}</td>
 								<td>{pigcms{$order.linkman}</td>
 								<td>{pigcms{$order.store}</td>
 								<td>{pigcms{$order.address_user}</td>
