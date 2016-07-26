@@ -234,10 +234,13 @@ echo ' responsive-800';
 						<dd><?php
 							if($nowProduct['point']==0){
 								echo '￥'.round($nowProduct['rebate'],2);
+							} elseif($nowProduct['point'] < 0) {
+								echo '0积分';
 							} else {
 								echo round($nowProduct['point'],0).'积分';
 							}
-							?></dd>
+							?>
+						</dd>
 					</dl>
 				</div>
 				<div class="qrcode-buy"> <a href="javascript:;" class="js-qrcode-buy btn btn-block btn-orange-dark butn-qrcode">立即购买</a> </div>
