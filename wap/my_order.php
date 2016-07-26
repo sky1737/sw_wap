@@ -34,7 +34,7 @@ switch ($action) {
 		$where_sql .= " AND `status` = 4";
 		break;
 	default:
-		$where_sql .= " AND `status` > 0 ";
+		$where_sql .= " AND `status` >= 0 ";
 		$pageTitle = '全部订单';
 }
 

@@ -930,6 +930,9 @@ class fx_controller extends base_controller
 		$order_ward_list = M('Order_reward')->getByOrderId($order['order_id']);
 		// 使用优惠券
 		$order_coupon = M('Order_coupon')->getByOrderId($order['order_id']);
+		
+		//用户退回包裹信息
+		$refundPackage =  M('Refund_package')->getByOrderId($order['order_id']);
 		$this->assign('is_fans', $is_fans);
 		$this->assign('order', $order);
 		$this->assign('products', $products);
@@ -940,6 +943,7 @@ class fx_controller extends base_controller
 		$this->assign('packages', $packages);
 		$this->assign('order_ward_list', $order_ward_list);
 		$this->assign('order_coupon', $order_coupon);
+		$this->assign('refundPackage', $refundPackage);
 	}
 
 	public function detail_json()
@@ -3521,5 +3525,26 @@ class fx_controller extends base_controller
 		} else {
 			json_return(1, '请求不合法！');
 		}
+	}
+
+	//拒绝签收
+	public function refuse_sign()
+	{
+		$name = $this->user_session['name'];
+		$store_id = $this->store_session['store_id'];
+		$order_id = isset($_POST['order_id']) ? intval(trim($_POST['order_id'])) : 0;
+		$refuse_sign_reason = trim($_POST['refuse_sign_reason']);
+		$orderData =  M('Order')->getOrder($store_id,$order_id);
+		$buyUser = M('User')->getUser(array('uid' =>$orderData['uid'] ,'status' => 1));
+		$data = array(
+			'name' => $name,
+			'store_id' => $store_id,
+			'order_id' => $order_id,
+			'refuse_sign_reason' => $refuse_sign_reason,
+			'openid' => $buyUser['openid'],
+			'money' => $orderData['sub_total']
+		);
+		M('Refund_package')->refuse_sign($data);
+		json_return(0, '拒绝签收成功！');
 	}
 }

@@ -478,7 +478,14 @@
 		} elseif($order['status'] == 6 && $order['agent_id'] == $store_session['store_id'])
 		{
 			echo '<p><a href="javascript:;" class="btn js-refund-express detail-send-goods btn-primary"  data-id="' .
-				$order['order_id'] . '">确认收货</a></p>';
+				$order['order_id'] . '">确认退款</a></p>';
+			if($refundPackage['is_take'] || $order['add_time'] < strtotime("-7 days "))
+			{
+				echo '<p><a href="javascript:;" class="btn js-refuse-sign detail-send-goods btn-primary"  data-id="' .
+					$order['order_id'] . '">拒绝签收</a></p>';
+			}
+			echo '<p><a href="javascript:;" class="btn js-refuse-sign detail-send-goods btn-primary"  data-id="' .
+				$order['order_id'] . '">拒绝签收</a></p>';
 		}
 		//} ?>
 	</div>
