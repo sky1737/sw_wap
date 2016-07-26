@@ -106,17 +106,18 @@
 						<div class="opt-btn">
 							<?php if ($order['status'] < 2) { ?>
 							<a class="btn btn-orange btn-in-order-list" href="<?php echo $order['url']; ?>">付款</a>
-							<?php }
-							else { ?>
+							<?php } else { ?>
 							<a class="btn btn-in-order-list" href="<?php echo $order['url']; ?>">详情</a>
-							<?php }
-
-							if((1 < $order['status'] && $order['status'] < 4) && strtotime("-15 days ") < $order['add_time']) {?>
-								<a class="btn btn-in-order-list js-refund-it"  data-id="<?php echo $order['order_no_txt']; ?>" href="<?php echo '#'/*$order['refund_url']*/; ?>">退款</a>
-							<?php } elseif($order['status'] ==4) { ?>
-								<a class="btn btn-in-order-list js-after-sales"  data-id="<?php echo $store_contact_list[$order['store_id']]['service_tel']; ?>" href="<?php echo '#'/*$order['refund_url']*/; ?>">售后</a>
+							<?php } ?>
+							<?php if(strtotime("-15 days ") < $order['add_time']){ ?>
+									<?php if((1 < $order['status'] && $order['status'] < 4) && strtotime("-15 days ") < $order['add_time']){?>
+									 	<a class="btn btn-in-order-list js-refund-it"  data-id="<?php echo $order['order_no_txt']; ?>" href="<?php echo '#'/*$order['refund_url']*/; ?>">退款</a>
+									<?php }?>
+							<?php } else {?>
+									<?php if($order['status'] ==4){?>
+										<a class="btn btn-in-order-list js-after-sales"  data-id="<?php echo $store_contact_list[$order['store_id']]['service_tel']; ?>" href="<?php echo '#'/*$order['refund_url']*/; ?>">售后</a>
+									<?php }?>
 							<?php }?>
-
 						</div>
 					</div>
 				</li>
