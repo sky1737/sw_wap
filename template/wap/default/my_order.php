@@ -36,7 +36,7 @@
 				foreach ($order_list as $order) {
 				?>
 				<li class="block block-order animated">
-					<div class="header"> <span class="font-size-12">订单号：<?php echo $order['order_no_txt']; ?></span>
+					<div class="header"> <span class="font-size-12">订单号：<?php echo $order['order_no_txt']; ?></span><span class="font-size-12 pull-right">订单状态：<?php echo $order['status_text'];?></span>
 						<?php echo  $order['status'] < 2 ? '<a class="js-cancel-order pull-right font-size-12 c-blue" href="javascript:;" data-id="'.$order['order_id'].'">取消</a>' : ''; ?>
 					</div>
 					<hr class="margin-0 left-10"/>

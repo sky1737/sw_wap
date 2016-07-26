@@ -65,6 +65,38 @@ if($count > 0) {
 	foreach ($order_list as &$order_tmp) {
 		$order_product_list = $order_product_model->orderProduct($order_tmp['order_id']);
 
+        $statusTxt = &$order_tmp['status_text'];
+        switch ($order_tmp['status']){
+
+            case 0:
+                $statusTxt = '临时订单';
+                break;
+
+            case 1:
+                $statusTxt = '待付款';
+                break;
+            case 2:
+                $statusTxt = '待发货';
+                break;
+            case 3:
+                $statusTxt = '已发货';
+                break;
+            case 4:
+                $statusTxt = '已完成';
+                break;
+            case 5:
+                $statusTxt = '已取消';
+                break;
+
+            case 6:
+                $statusTxt = '退款中';
+                break;
+
+            default:
+
+                break;
+        }
+
 		if($order_tmp['total'] == '0.00') {
 			$order_tmp['total'] = $order_tmp['sub_total'];
 		}
