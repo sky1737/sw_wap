@@ -121,10 +121,47 @@ class user_income_model extends base_model
 
 	public function buyReturn($order)
 	{
+	    //如果不是 已 支付 或者 已返
 		if($order['status'] != 2 || $order['profit_status'] != 0)
 			return;
 
-		if(!$order['profit'])
+        //返 订单商品 成本价 给供应商
+        {
+            $cost_price   = $order['sub_total'] - $order['profit']; //该订单 的 所有商品成本之和
+            $store_info   = D('Store')->where(array('store_id' => $order['store_id']))->find();
+            $supplier_uid = $store_info['uid'];
+
+            $is_ok = D('User')->where(array('uid' => $supplier_uid))->setInc('balance', $cost_price);
+            //logs(json_encode(array($cost_price,$supplier_user)), 'SupplierReturn');
+            if (false !== $is_ok) {
+
+                $this->db
+                    ->data(array(
+                        'uid'      => $supplier_uid,
+                        'order_no' => $order['order_no'],
+                        'income'   => $cost_price,
+                        'point'    => 0,
+                        'type'     => 1,
+                        'add_time' => time(),
+                        'status'   => 1,
+                        'remarks'  => '供应商成本立返'
+                    ))
+                    ->add();
+
+                $supplier_user = D('User')->where(array('uid' => $supplier_uid))->find();
+                Notify::getInstance()->accountChange($supplier_user['openid'],
+                    option('config.wap_site_url') . '/balance.php?a=index',
+                    '供应商您好，订单成本现金已到账',
+                    date('Y-m-d h:i:s', $order['add_time']),
+                    $cost_price,
+                    '现金',
+                    $supplier_user['balance'] + $cost_price,
+                    "返还成本的订单号：{$order['order_no']}");
+            }
+        }
+
+        //如果无订单利润
+        if(!$order['profit'])
 			return;
 
 		$rebate = $order['profit'] * 1.00 * option('config.buyer_ratio') / 100.00;
@@ -162,7 +199,7 @@ class user_income_model extends base_model
 				Notify::getInstance()->accountChange($_SESSION['user']['openid'],
 					option('config.wap_site_url') . '/balance.php?a=index',
 					'购物立返现金到账',
-					$order['add_time'],//date('Y-m-d h:i:s', ),
+					date('Y/m/d h:i:s', $order['add_time']),
 					$rebate,
 					'现金',
 					$_SESSION['user']['balance'],
@@ -195,7 +232,7 @@ class user_income_model extends base_model
 					$order['order_no'],
 					'登录代理平台查看',
 					$order['total'],
-					date('Y-m-d H:i:s',$order['add_time']),
+					date('Y/m/d H:i:s',$order['add_time']),
 					'平台地址：'.option('config.site_url').'，扫码登录即可。');
 			}
 		}

@@ -254,9 +254,13 @@ function pay_notice_call($payInfo, $ok_msg = 'success', $err_msg = 'fail')
 ////                    }
 //				}
 
+                // 购买立返
 				$nowOrder['status'] = 2;
-				// 购买立返
-				M('User_income')->buyReturn($nowOrder);
+                /**
+                 * @var $user_inconme user_income_model
+                 */
+                $user_inconme = M('User_income');
+                $user_inconme->buyReturn($nowOrder);
 //				if($nowOrder['profit']) {
 //					$rebate = $nowOrder['profit'] * 1.00 * option('config.buyer_ratio') / 100.00;
 //					$point = 0;
