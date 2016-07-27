@@ -157,7 +157,7 @@ if ($categories) {
 					echo '<div class="Fix page icon_list" data-index="0" style="left: 0px; transition-duration: 300ms; -webkit-transition-duration: 300ms; -webkit-transform: translate(0px, 0px) translateZ(0px);">';
 				}
 				$i++;
-				echo '<a href="./category.php?keyword='.$value['cat_name'].'&id='.$value['cat_id'].'" class="item"><div class="icon fadeInLeft yanchi'.$i.'" style="background:url('.$value['cat_pic'].'); background-size:40px 40px; background-repeat:no-repeat;"></div> '.$value['cat_name'].'</a>';
+				echo '<a href="./category.php?keyword='.$value['cat_name'].'&id='.$value['cat_id'].'" class="item"><div class="icon yanchi'.$i.'" style="background:url('.$value['cat_pic'].'); background-size:40px 40px; background-repeat:no-repeat;"></div> '.$value['cat_name'].'</a>'; // icon fadeInLeft yanchi
 				
 				if ($key % 10 == 9) {
 					echo '</div></div>';
