@@ -603,7 +603,7 @@ $(function(){
             $('body').append(html);
         })
     })
-
+    
     $('.js-company').live('click', function(){
         if ($(this).hasClass('select2-dropdown-open')) {
             $(this).removeClass('select2-dropdown-open');

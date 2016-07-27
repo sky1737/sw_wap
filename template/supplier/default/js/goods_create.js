@@ -922,8 +922,12 @@ $(function () {
 		}
 
 		var weight = $("input[name='weight']").val();
+		var supplierUid = $("select[name='supplier_id']").val();
+		var supplierStoreId = $("#supplier_id").find("option:selected").data("storeid");
 
 		$.post(save_url, {
+			'supplier_uid':supplierUid,
+			'supplier_store_id':supplierStoreId,
 			'category_id': category_id,
 			'buy_way': buy_way,
 			'buy_url': buy_url,

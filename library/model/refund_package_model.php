@@ -36,6 +36,6 @@ class refund_package_model extends base_model
 			'你好，订单退款失败',
 			'申请退款',
 			$data['money'],
-			'您的订单退款失败，商家拒绝签收！原因：'.$data['refuse_sign_reason'].'  请联系管理员！');
+			'您的订单退款失败，商家拒绝签收！原因：'.$data['refuse_sign_reason'].'  请联系商家 电话：'.$data['service_tel'].'! 或登录商城联系客服！');
 	}
 }
