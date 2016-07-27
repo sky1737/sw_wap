@@ -86,7 +86,7 @@
 <?php
 if(!empty($pc_index_top)) {
 	//foreach ($pc_index_top as $adv) {
-	echo '<div><a href="' . $pc_index_top[0]['url'] . '"><img src="' . $pc_index_top[0]['pic'] . '" /></a></div>';
+	echo '<div id="top_banner"><a href="' . $pc_index_top[0]['url'] . '"><img src="' . $pc_index_top[0]['pic'] . '" /></a></div><script type="text/javascript">setTimeout(function(){$("#top_banner").slideToggle("slow");},10000);</script>';
 	//}
 	//echo '<a href="' . $pc_top_right['url'] . '"><img src="' . $pc_top_right['pic'] . '"></a>';
 }
