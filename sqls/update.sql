@@ -25,4 +25,8 @@ CREATE TABLE `tp_refund_package` (
 ALTER TABLE `tp_store`
 ADD COLUMN `supplier_code`  varchar(255) NULL AFTER `agent_id`;
 
-ALTER TABLE  `tp_refund_package` ADD  `refuse_sign_reason` varchar(200)  DEFAULT  '' COMMENT  '商家拒签理由',
+ALTER TABLE  `tp_refund_package` ADD  `refuse_sign_reason` varchar(200)  DEFAULT  '' COMMENT  '商家拒签理由';
+
+ALTER TABLE `tp_product` 
+	ADD COLUMN `create_uid` int(11) NOT NULL DEFAULT 0 AFTER `_cid`;
+
