@@ -12,6 +12,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-status-bar-style" content="default"/>
 <meta name="applicable-device" content="mobile"/>
+<link rel="stylesheet" href="<?php echo TPL_URL; ?>css/base.css"/>
 <link rel="stylesheet" href="<?php echo TPL_URL; ?>css/main.css"/>
 <link rel="stylesheet" href="<?php echo TPL_URL; ?>css/prop.css"/>
 <link rel="stylesheet" href="<?php echo TPL_URL; ?>index_style/css/category_detail.css"/>
@@ -97,6 +98,10 @@ else { ?>
 		<div class="s_empty hide" id="noMoreTips">已无更多商品，您可以换一个关键字搜一下哦~</div>
 	</div>
 </div>
+<?php
+$noFooterLinks = true;
+$noFooterCopy = true;
+include display('footer'); ?>
 <?php
 echo $shareData;
 include display('public_search');
