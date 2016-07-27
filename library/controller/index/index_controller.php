@@ -41,6 +41,10 @@ class index_controller extends base_controller
         // 幻灯片右侧广告位
         $ad_footer = $adver->get_adver_by_key('pc_footer', 0);
         $this->assign('pc_footer', $ad_footer);
+        
+        // 首页顶部广告
+        $pc_index_top = $adver->get_adver_by_key('pc_index_top', 0);
+        $this->assign('pc_index_top', $pc_index_top);
 
         // 获取您周边店铺数量
         $WebUserInfo = show_distance();

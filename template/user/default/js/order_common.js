@@ -611,7 +611,7 @@ $(function(){
         var html = '<div class="modal-backdrop in"></div><div class="modal hide widget-express in" aria-hidden="false" style="display: block; margin-top: -1000px;">';
         html += '       <div class="modal-header ">';
         html += '           <a class="close" data-dismiss="modal">×</a>';
-        html += '           <h3 class="title">退货快递确认</h3>';
+        html += '           <h3 class="title">退款确认</h3>';
         html += '       </div>';
         html += '       <div class="modal-body">';
         html += '           <form onsubmit="return false;" class="form-horizontal">';
@@ -659,6 +659,57 @@ $(function(){
             })
         }
     })
+
+    //拒绝签收
+    $('.js-refuse-sign').live('click',function () {
+        var html = '<div class="modal-backdrop in"></div><div class="modal hide widget-express in" aria-hidden="false" style="display: block; margin-top: -1000px;">';
+        html += '       <div class="modal-header ">';
+        html += '           <a class="close" data-dismiss="modal">×</a>';
+        html += '           <h3 class="title">拒绝签收退货包裹</h3>';
+        html += '       </div>';
+        html += '       <div class="modal-body">';
+        html += '           <form onsubmit="return false;" class="form-horizontal">';
+        // html += '           <div class="control-group">';
+        // html += '               <label class="control-label">账户余额：</label>';
+        // html += '               <div class="controls">';
+        // html += '                   <div class="control-action">￥'+ balance +'</div>';
+        // html += '               </div>';
+        // html += '           </div>';
+        html += '           <div class="control-group">';
+        html += '               <label class="control-label">拒签理由：</label>';
+        html += '               <div class="controls"><input type="text" class="input js-number" name="refuse_sign_reason" value="" /></div>';
+        html += '           </div>';
+        html += '       </form>';
+        html += '     </div>';
+        html += '     <div class="modal-footer"><a href="javascript:;" class="ui-btn ui-btn-primary js-refuse-sign-ok">确定</a></div>';
+        html += '   </div>';
+        $('body').append(html);
+        $('.modal').animate({'margin-top': ($(window).scrollTop() + $(window).height() * 0.05) + 'px'}, "slow");
+    });
+
+    $('.js-refuse-sign-ok').live('click', function(){
+        var order_id = $('.js-refuse-sign').attr('data-id');
+        var refuse_sign_reason = $('.js-number').val();
+        var flag = true;
+        if(refuse_sign_reason == '')
+        {
+            $('.js-number').closest('.control-group').addClass('error');
+            $('.js-number').after('<p class="help-block error-message">请填写拒签理由</p>');
+            flag = false;
+        }
+        if(flag){
+            $.post(refuse_sign_url, {'order_id': order_id, 'refuse_sign_reason': refuse_sign_reason}, function(data) {
+                if (data.err_code) {
+                    $('.notifications').html('<div class="alert in fade alert-error">'+ data.err_msg +'</div>');
+                } else {
+                    alert(data.err_msg);
+                    window.location.reload();
+                }
+            })
+        }
+    })
+    
+    
 
     $('.js-company').live('click', function(){
         if ($(this).hasClass('select2-dropdown-open')) {

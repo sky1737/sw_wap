@@ -37,7 +37,6 @@
 				?>
 				<li class="block block-order animated">
 					<div class="header"> <span class="font-size-12">订单号：<?php echo $order['order_no_txt']; ?></span><span class="font-size-12 pull-right">订单状态：<?php echo $order['status_text'];?></span>
-						<?php echo  $order['status'] < 2 ? '<a class="js-cancel-order pull-right font-size-12 c-blue" href="javascript:;" data-id="'.$order['order_id'].'">取消</a>' : ''; ?>
 					</div>
 					<hr class="margin-0 left-10"/>
 					<?php
@@ -106,6 +105,7 @@
 						<div class="opt-btn">
 							<?php if ($order['status'] < 2) { ?>
 							<a class="btn btn-orange btn-in-order-list" href="<?php echo $order['url']; ?>">付款</a>
+							<a class="btn js-cancel-order pull-right font-size-12 c-blue" href="javascript:;" data-id="<?php echo $order['order_id'] ?>">取消</a>
 							<?php } else { ?>
 							<a class="btn btn-in-order-list" href="<?php echo $order['url']; ?>">详情</a>
 							<?php } ?>

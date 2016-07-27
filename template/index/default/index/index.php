@@ -83,6 +83,14 @@
 </head>
 
 <body>
+<?php
+if(!empty($pc_index_top)) {
+	//foreach ($pc_index_top as $adv) {
+	echo '<div><a href="' . $pc_index_top[0]['url'] . '"><img src="' . $pc_index_top[0]['pic'] . '" /></a></div>';
+	//}
+	//echo '<a href="' . $pc_top_right['url'] . '"><img src="' . $pc_top_right['pic'] . '"></a>';
+}
+?>
 <div class="header">
 	<div role="navigation" id="site-nav">
 		<div id="sn-bg">
@@ -263,8 +271,7 @@
 					if(empty($adList_right)) {
 						echo '请添加标识为 pc_slide_right 的广告';
 					} else {
-						echo '<a href="' . $adList_right[0]['url'] . '"><img src="' . $adList_right[0]['pic'] .
-							'" /></a>';
+						echo '<a href="' . $adList_right[0]['url'] . '"><img src="' . $adList_right[0]['pic'] . '" /></a>';
 					}
 					?>
 				</div>
