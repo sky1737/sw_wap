@@ -496,7 +496,6 @@ class order_model extends base_model
 				{
 					return array('err_code' => 1,'err_msg' => '不允许退款！');
 				}
-
 				$nowOrder['refund_fee'] = $nowOrder['balance'] = $refund_fee;
 				$this->refundOrder($nowOrder,$user);
 				return array('err_code' => 0,'err_msg' => '退款成功！');
