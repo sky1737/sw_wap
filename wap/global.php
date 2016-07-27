@@ -248,11 +248,12 @@ if (empty($_SESSION['store'])) {
 $wap_user = $_SESSION['user'];
 $now_store = $_SESSION['store'];
 
+
 //是否是 供应商
 if(!isset($_SESSION['store']['is_supplier'])){
     $isSupplier = D('Agent')->where(array('agent_id' => $_SESSION['store']['agent_id']))->find();
     $_SESSION['store']['is_supplier'] = $isSupplier!=0;
-    redirect('/wap/supplier_ucenter.php');
+    //redirect('/wap/supplier_ucenter.php');
 }
 $isSupplier = $_SESSION['store']['is_supplier'];
 

@@ -1292,7 +1292,7 @@ class account_controller extends base_controller
             }
             $product_count++;
 
-            $tmp_products[] = $product['original_product_id'];
+            $tmp_products[] = $product['product_id']; //
         }
 
         $status = M('Order')->status();
