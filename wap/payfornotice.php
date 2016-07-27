@@ -77,6 +77,9 @@ function pay_notice_call($payInfo, $ok_msg = 'success', $err_msg = 'fail')
 				}
 
 				// 充值立返，往上三级
+                /**
+                 * @var $model_user user_model
+                 */
 				$model_user = M('User');
 				// 添加红包记录
 				$model_user->payforRedpack($nowOrder['uid'], $nowOrder['order_no'], $nowOrder['pay_money'], 0);
