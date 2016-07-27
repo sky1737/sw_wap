@@ -209,12 +209,13 @@ class account_controller extends base_controller
             }
 
             $buy_user = D('User')->where(array('uid' => $order_info['uid']))->find();
+
             Notify::getInstance()->orderUpdate($buy_user['openid'],
                 option('config.wap_site_url') . '/order.php?orderid=' . $order_info['order_id'],
                 '您好，您的订单已发货',
-                $order['order_no'],
-                date('Y/m/d H:i:s',$order['add_time']),
-                '您的订单已发货啦！');
+                $order_info['order_no'],
+                '已发货',
+                '发货时刻：'.date('Y/m/d H:i'));
 
             json_return(0, '包裹创建成功');
         }
