@@ -930,6 +930,9 @@ class fx_controller extends base_controller
 		$order_ward_list = M('Order_reward')->getByOrderId($order['order_id']);
 		// 使用优惠券
 		$order_coupon = M('Order_coupon')->getByOrderId($order['order_id']);
+		
+		//用户退回包裹信息
+		$refundPackage =  M('Refund_package')->getByOrderId($order['order_id']);
 		$this->assign('is_fans', $is_fans);
 		$this->assign('order', $order);
 		$this->assign('products', $products);
@@ -940,6 +943,7 @@ class fx_controller extends base_controller
 		$this->assign('packages', $packages);
 		$this->assign('order_ward_list', $order_ward_list);
 		$this->assign('order_coupon', $order_coupon);
+		$this->assign('refundPackage', $refundPackage);
 	}
 
 	public function detail_json()
@@ -3468,5 +3472,79 @@ class fx_controller extends base_controller
 		else {
 			json_return(1001, date('Y-m-d H:i:s', $time));
 		}
+	}
+
+	//退款 给 平台
+	public function refund_pay()
+	{
+		$uid = $this->user_session['uid'];
+		$name = $this->user_session['name'];
+		$store_id = $this->store_session['store_id'];
+		$order_id = isset($_POST['order_id']) ? intval(trim($_POST['order_id'])) : 0;
+		$pay_momey = isset($_POST['pay_money']) ? $_POST['pay_money'] : 0;
+		$order = M('Order');
+		$user = M('User');
+		$userData = $user->getUser(array('uid' => $uid,'status' => 1));
+		$balance = $userData['balance'];
+		if($order_id){
+			$orderData = $order->getOrder($store_id,$order_id);
+			if($pay_momey *1){
+				if($balance*1 <= 0 || $balance < $pay_momey) {
+					json_return(1, '账户余额不足，请充值');
+				} elseif($pay_momey < $orderData['total']){
+					json_return(1, '应退回金额不能低于￥'.$orderData['total']);
+				}else{
+					$buyUser = $user->getUser(array('uid' =>$orderData['uid'] ,'status' => 1));
+					$orders = $order->find(option('config.orderid_prefix').$orderData['order_no']);
+					$result = $order->refundFee($orders,$buyUser);
+					if($result['error_code'] == 0)
+					{
+						D('User')->where(array('uid' => $uid, 'status' => 1))->setDec('balance', $pay_momey * 1.00);
+						D('User_income')->data(
+							array(
+								'uid'      => $uid,
+								'order_no' => $orderData['order_no'],
+								'income'   => -$pay_momey,
+								'point'    => 0,
+								'type'     => -3,
+								'add_time' => time(),
+								'status'   => 1,
+								'remarks'  => '用户退货商家退款'
+							))->add();
+						M('Refund_package')->save(array('store_id' => $store_id,'order_id' =>$order_id),array('status' => 1,'handle_time'=> time(),'handle_name' =>$name));
+						M('Order')->setOrderStatus($store_id,$order_id,array('status' => 5));
+						json_return(0, '退款成功！');
+					} else
+					{
+						json_return($result['err_code'],$result['err_msg']);
+					}
+				}
+			} else {
+				json_return(1, '请填写支付金额');
+			}
+		} else {
+			json_return(1, '请求不合法！');
+		}
+	}
+
+	//拒绝签收
+	public function refuse_sign()
+	{
+		$name = $this->user_session['name'];
+		$store_id = $this->store_session['store_id'];
+		$order_id = isset($_POST['order_id']) ? intval(trim($_POST['order_id'])) : 0;
+		$refuse_sign_reason = trim($_POST['refuse_sign_reason']);
+		$orderData =  M('Order')->getOrder($store_id,$order_id);
+		$buyUser = M('User')->getUser(array('uid' =>$orderData['uid'] ,'status' => 1));
+		$data = array(
+			'name' => $name,
+			'store_id' => $store_id,
+			'order_id' => $order_id,
+			'refuse_sign_reason' => $refuse_sign_reason,
+			'openid' => $buyUser['openid'],
+			'money' => $orderData['sub_total']
+		);
+		M('Refund_package')->refuse_sign($data);
+		json_return(0, '拒绝签收成功！');
 	}
 }

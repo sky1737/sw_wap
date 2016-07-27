@@ -51,7 +51,6 @@ if ($_GET['orderid'] * 1 || $_GET['orderno']) {
 	//店铺资料
 	$this_store = M('Store')->wap_getStore($nowOrder['store_id']);
 	if(empty($this_store)) pigcms_tips('您访问的店铺不存在', 'none');
-
 	// 查看满减送
 	$order_ward_list = M('Order_reward')->getByOrderId($nowOrder['order_id']);
 	// 使用优惠券

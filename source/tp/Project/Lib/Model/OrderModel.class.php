@@ -12,5 +12,3 @@ class OrderModel extends Model
 
 
 }
-
-?>

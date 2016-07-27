@@ -88,6 +88,16 @@
 											<input type="hidden" class="input-medium" name="class_ids" value="0" />
 										</div>
 									</div>
+									<div class="control-group">
+										<label class="control-label">商品所属供应商：</label>
+										<div class="controls">
+											<select name="supplier_id" id="supplier_id">
+												<?php foreach ($supplierStoreInfo as $supplierStore){ ?>
+												<option data-storeid="<?php echo $supplierStore['store_id'] ?>" value ="<?php echo $supplierStore['uid'] ?>"><?php echo $supplierStore['name'] ?></option>
+												<?php }?>
+											</select>
+										</div>
+									</div>
 									<?php /*<div class="control-group">
                                         <label class="control-label">购买方式：</label>
 
@@ -598,8 +608,7 @@
 								<div>
 									<div class="control-group">
 										<div class="js-editor edui-default" style="">
-										<textarea rows="2" name="info" class="js-sub-info input-sub-info"
-										          style="width: 440px"><?php echo $product['info']; ?></textarea>
+										<textarea rows="2" name="info" class="js-sub-info input-sub-info" style="width: 440px"><?php echo $product['info']; ?></textarea>
 										</div>
 									</div>
 								</div>

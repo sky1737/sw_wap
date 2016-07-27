@@ -16,9 +16,28 @@ if(IS_POST)
         'store_id'=> $_POST['store_id'],
         'order_id'=> $_POST['order_id'],
         'products'=> $_POST['products'],
+        'refund_reason'=> $_POST['refund_reason'],
+        'is_take'=> $_POST['is_take'],
         'status'=> 0,
         'add_time'=> time()
     );
     $result  = M('Refund_package')->add($data);
-    json_return($result['err_code'],$result['err_msg']);
+    if($result['err_code'] == 0 )
+    {
+        //改变订单状态 退款中
+        M('Order')->setOrderStatus($_POST['store_id'],$_POST['order_id'],array('status' => 6));
+        Notify::getInstance()->orderUpdate($_SESSION['user']['openid'],
+            option('config.wap_site_url') . '/order.php?orderid=' . $_POST['order_id'],
+            '你好，退款申请已发送成功！',
+             $_POST['order_no'],
+            '退款中，等待商家确认',
+            '您的订单退款申请已发送成功，等待供货商确认！');
+        json_return(0,'退款申请成功，待管理员确认后即可退款，可在退款订单中查看！');
+
+    } else
+    {
+        json_return($result['err_code'],$result['err_msg']);
+    }
+    exit;
+
 }

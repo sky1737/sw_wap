@@ -26,7 +26,8 @@
 <div class="mask"></div>
 <div class="fixed">
 	<nav class="tab-bar">
-		<section class="left-small"> <a class="menu-icon" href="./drp_ucenter.php"><span></span></a> </section>
+		<?php  $url = $isSupplier ? 'supplier' : 'drp';?>
+		<section class="left-small"> <a class="menu-icon" href="./<?php echo $url ?>_ucenter.php"><span></span></a> </section>
 		<section class="middle tab-bar-section">
 			<h1 class="title">账户余额</h1>
 		</section>

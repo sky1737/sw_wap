@@ -187,8 +187,11 @@ class goods_controller extends base_controller
 			$common_data = M('Common_data');
 
 			$data = array();
-			$data['uid'] = $this->user_session['uid'];
-			$data['store_id'] = $this->store_session['store_id'];
+
+			$data['uid'] = isset($_POST['supplier_uid']) ? intval(trim($_POST['supplier_uid'])) : 0; //供应商UID
+			$data['store_id'] = isset($_POST['supplier_store_id']) ? intval(trim($_POST['supplier_store_id'])) : 0; //供应商 商店id
+            $data['create_uid'] = $this->user_session['uid'];
+
 			$data['category_id'] = isset($_POST['category_id']) ? intval(trim($_POST['category_id'])) : 0; //分类
 			$data['buy_way'] = 1; // isset($_POST['buy_way']) ? intval(trim($_POST['buy_way'])) : 0; //购买方式
 			$data['buy_url'] = ''; // isset($_POST['buy_url']) ? trim($_POST['buy_url']) : ''; //购买地址
@@ -370,7 +373,8 @@ class goods_controller extends base_controller
 			//$system_product_to_property = M('System_product_to_property');
 			$system_product_to_property_value = M('System_product_to_property_value');
 
-			$store_id = $this->store_session['store_id'];
+            $data['uid'] = isset($_POST['supplier_uid']) ? intval(trim($_POST['supplier_uid'])) : 0; //供应商UID
+			$store_id = isset($_POST['supplier_store_id']) ? intval(trim($_POST['supplier_store_id'])) : 0; //供应商 商店id
 			$product_id = isset($_POST['product_id']) ? intval(trim($_POST['product_id'])) : 0;
 			$data['uid'] = $this->user_session['uid'];
 			$data['category_id'] = isset($_POST['category_id']) ? intval(trim($_POST['category_id'])) : 0; //分类
@@ -440,7 +444,7 @@ class goods_controller extends base_controller
 			//修改商品
 			$product->edit(array('store_id' => $store_id, 'product_id' => $product_id), $data);
 
-			$product_detail = $product->get(array('product_id' => $product_id, 'store_id' => $store_id));
+			//$product_detail = $product->get(array('product_id' => $product_id, 'store_id' => $store_id));
 
 			//添加栏目商品性值关联
 			//if ($product_detail['supplier_id'] == 0) {
@@ -450,14 +454,14 @@ class goods_controller extends base_controller
 			//}
 
 			// 筛选的属性
-			if($product_detail['supplier_id'] == 0) {
+			//if($product_detail['supplier_id'] == 0) {
 				$system_product_to_property_value->delete(array('product_id' => $product_id));
 				foreach ($sys_fields2 as $v) {
 					$system_product_to_property_value->add(array('product_id' => $product_id,
 					                                             'pid'        => $v['sys_property_id'],
 					                                             'vid'        => $v['sys_property_value_id']));
 				}
-			}
+			//}
 
 			// 规格信息
 			if(!empty($skus)) {
@@ -575,6 +579,19 @@ class goods_controller extends base_controller
 
 		if($_POST['page'] == 'create_content') {
 			$cat_list = M('Product_category')->getAllCategory(0,true);
+
+            $agent = D('Agent');
+            $allOpenSelfAgents = $agent->where('open_self <> 0 and status=1')->select();
+            $allOpenSelfAgentIds = array();
+            foreach ($allOpenSelfAgents as $a)  $allOpenSelfAgentIds = $a['agent_id'];
+
+            $store = D('Store');
+            $supplierStoreInfo = $store->where(array('agent_id'=>$allOpenSelfAgentIds))->select();
+
+            //var_dump($storeInfo);exit;
+
+            $this->assign('supplierStoreInfo', $supplierStoreInfo);
+
 			$this->assign('cat_list', $cat_list);
 		}
 		if($_POST['page'] == 'edit_content') {
@@ -1103,7 +1120,25 @@ class goods_controller extends base_controller
 		$product_to_property_value = M('Product_to_property_value');
 		$postage_template = M('Postage_template');
 		$product_custom_field = M('Product_custom_field');
+
+        /**
+         * @var product_category_model $product_category
+         */
 		$product_category = M('Product_category');
+
+        $agent = D('Agent');
+        $allOpenSelfAgents = $agent->where('open_self <> 0 and status=1')->select();
+        $allOpenSelfAgentIds = array();
+        foreach ($allOpenSelfAgents as $a)  $allOpenSelfAgentIds = $a['agent_id'];
+
+        $store = D('Store');
+        $supplierStoreInfo = $store->where(array('agent_id'=>$allOpenSelfAgentIds))->select();
+
+        //var_dump($storeInfo);exit;
+
+        $this->assign('supplierStoreInfo', $supplierStoreInfo);
+
+        //var_dump($allOpenSelfAgents);exit;
 
 		$product = $product->get(array('product_id' => $id, 'store_id' => $this->store_session['store_id']));
 		$this->assign('product', $product);

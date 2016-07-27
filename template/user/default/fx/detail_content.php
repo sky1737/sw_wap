@@ -474,8 +474,18 @@
 		// 需要修改为代理发货，暂定为订单增加代理商store_id，看是否需要增加字段还是使用Supplier_id
 		//if ($order['is_supplier']) {
 		if ($order['status'] == 2 && $order['agent_id'] == $store_session['store_id']) { //商品未发货
-			echo '<p><a href="javascript:;" class="btn js-express-goods detail-send-goods btn-primary" data-id="' .
-				$order['order_id'] . '">发 货</a></p>';
+			echo '<p><a href="javascript:;" class="btn js-express-goods detail-send-goods btn-primary" data-id="' . $order['order_id'] . '">发 货</a></p>';
+		} elseif($order['status'] == 6 && $order['agent_id'] == $store_session['store_id'])
+		{
+			echo '<p><a href="javascript:;" class="btn js-refund-express detail-send-goods btn-primary"  data-id="' .
+				$order['order_id'] . '">确认退款</a></p>';
+			if($refundPackage['is_take'] || $order['add_time'] < strtotime("-7 days "))
+			{
+				echo '<p><a href="javascript:;" class="btn js-refuse-sign detail-send-goods btn-primary"  data-id="' .
+					$order['order_id'] . '">拒绝签收</a></p>';
+			}
+			echo '<p><a href="javascript:;" class="btn js-refuse-sign detail-send-goods btn-primary"  data-id="' .
+				$order['order_id'] . '">拒绝签收</a></p>';
 		}
 		//} ?>
 	</div>

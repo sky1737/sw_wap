@@ -55,7 +55,7 @@
 	</div>
 	<?php } else { ?>
 	<div class="nocontent-tip"><i class="icon-nocontent-laugh"></i>
-		<p class="nocontent-tip-text"> 您还没有下线收益哦，<br>
+		<p class="nocontent-tip-text"> 您还没有分店收益哦，<br>
 			别人都开始数钱啦，快去邀请别人加入百万大奖添加收益吧！ </p>
 	</div>
 	<?php }?>

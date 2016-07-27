@@ -34,11 +34,14 @@ switch ($action) {
 		$where_sql .= " AND `status` = 4";
 		break;
 	default:
-		$where_sql .= " AND `status` > 0 AND `status` < 5";
+		$where_sql .= " AND `status` >= 0 ";
 		$pageTitle = '全部订单';
 }
 
 
+/**
+ * @var order_model $order_model
+ */
 $order_model = M('Order');
 // 查询订单总数
 $count = $order_model->getOrderTotal($where_sql);
@@ -57,11 +60,42 @@ $physical_list = array();
 $store_contact_list = array();
 if($count > 0) {
 	$order_list = $order_model->getOrders($where_sql, 'order_id desc', $offset, $limit); //status asc,
-
 	$order_product_model = M('Order_product');
 	// 将相应的产品放到订单数组里
 	foreach ($order_list as &$order_tmp) {
 		$order_product_list = $order_product_model->orderProduct($order_tmp['order_id']);
+
+        $statusTxt = &$order_tmp['status_text'];
+        switch ($order_tmp['status']){
+
+            case 0:
+                $statusTxt = '临时订单';
+                break;
+
+            case 1:
+                $statusTxt = '待付款';
+                break;
+            case 2:
+                $statusTxt = '待发货';
+                break;
+            case 3:
+                $statusTxt = '已发货';
+                break;
+            case 4:
+                $statusTxt = '已完成';
+                break;
+            case 5:
+                $statusTxt = '已取消';
+                break;
+
+            case 6:
+                $statusTxt = '退款中';
+                break;
+
+            default:
+
+                break;
+        }
 
 		if($order_tmp['total'] == '0.00') {
 			$order_tmp['total'] = $order_tmp['sub_total'];
@@ -86,14 +120,20 @@ if($count > 0) {
 
 		$order_tmp['product_list'] = $order_product_list;
 
-		if($order_tmp['shipping_method'] == 'selffetch') {
-			if($order_tmp['address']['physical_id']) {
-				$physical_id_arr[$order_tmp['address']['physical_id']] = $order_tmp['address']['physical_id'];
-			}
-			else if($order_tmp['address']['store_id']) {
-				$store_id_arr[$order_tmp['address']['store_id']] = $order_tmp['address']['store_id'];
-			}
-		}
+		$store_id_arr[$order_tmp['store_id']] = $order_tmp['store_id'];
+//		dump($order_tmp['address']);
+//		if($order_tmp['address']['store_id']) {
+//			$store_id_arr[$order_tmp['address']['store_id']] = $order_tmp['address']['store_id'];
+//		}
+
+//		if($order_tmp['shipping_method'] == 'selffetch') {
+//			if($order_tmp['address']['physical_id']) {
+//				$physical_id_arr[$order_tmp['address']['physical_id']] = $order_tmp['address']['physical_id'];
+//			}
+//			else if($order_tmp['address']['store_id']) {
+//				$store_id_arr[$order_tmp['address']['store_id']] = $order_tmp['address']['store_id'];
+//			}
+//		}
 	}
 
 	// 分页
@@ -102,10 +142,10 @@ if($count > 0) {
 	$user_page = new Page($count, $limit, $page);
 	$pages = $user_page->show();
 
+
 	if(!empty($store_id_arr)) {
 		$store_contact_list = M('Store_contact')->storeContactList($store_id_arr);
 	}
-
 	if(!empty($physical_id_arr)) {
 		$physical_list = M('Store_physical')->getListByIDList($physical_id_arr);
 	}

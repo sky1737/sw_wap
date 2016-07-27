@@ -346,6 +346,53 @@ class order_model extends base_model
 			array('status' => 5, 'cancel_time' => time(), 'cancel_method' => $cancel_mothod));
 	}
 
+	/**
+	 * 退款
+	 */
+	public function refundOrder($order)
+	{
+		// 增加记录
+		D('User_income')->data(
+			array(
+				'uid'      => $order['uid'],
+				'order_no' => $order['order_no'],
+				'income'   => $order['balance'],
+				'point'    => $order['point'],
+				'type'     => 9,
+				'add_time' => time(),
+				'status'   => 1,
+				'remarks'  => '退货返还'
+			))->add();
+
+		// 返还积分和余额
+		M('User')->income($order['uid'], $order['balance'], $order['point']);
+
+		//更改订单状态
+		$this->setOrderStatus($order['store_id'],$order['order_id'],array('status' => 5,'refund_time' => time()));
+
+		// 返还库存
+		$orderProductList = $order['proList'];
+		$product_model = D('Product');
+		$product_sku_model = D('Product_sku');
+		foreach ($orderProductList as $value) {
+			if($value['sku_id']) {
+				$condition_product_sku['sku_id'] = $value['sku_id'];
+				$product_sku_model->where($condition_product_sku)->setDec('sales', $value['pro_num']);
+				$product_sku_model->where($condition_product_sku)->setInc('quantity', $value['pro_num']);
+			}
+			$condition_product['product_id'] = $value['product_id'];
+			$product_model->where($condition_product)->setDec('sales', $value['pro_num']);
+			$product_model->where($condition_product)->setInc('quantity', $value['pro_num']);
+		}
+
+		Notify::getInstance()->refund($_SESSION['user']['openid'],
+			option('config.wap_site_url') . '/order.php?orderid=' . $order['order_id'],
+			'你好，订单已退款成功',
+			'申请退款',
+			$order['refund_fee'],
+			'您的订单已退款成功！');
+	}
+
 	/*
 	 * 更新库存，返回订单利润
 	 */
@@ -414,6 +461,67 @@ class order_model extends base_model
 	public function getRecords($where, $order, $offset, $limit)
 	{
 		return $this->db->where($where)->order($order)->limit($offset . ',' . $limit)->select();
+	}
+
+	/**
+	 * 退款
+	 */
+	public function  refundFee($nowOrder,$user)
+	{
+		$income =  M('User_income')->getPointAndIncomeByOrderNo(array('order_no' => $nowOrder['order_no'],'type' => 1));
+
+		if(option('config.default_point'))
+		{
+			//默认为反积分
+			$diff_money = $income['point']/option('config.point_exchange');
+		} else
+		{
+			$diff_money = $income['income'];
+		}
+		
+		if($nowOrder['pay_money']*1)
+		{
+			$refund_fee = $nowOrder['pay_money'] - $diff_money;
+		} elseif($nowOrder['balance']*1)
+		{
+			$refund_fee = $nowOrder['balance'] - $diff_money;
+		} else
+		{
+			$refund_fee = 0;
+		}
+
+		if($refund_fee > 0 )
+		{
+			if($nowOrder['pay_money']*1)
+			{
+				import('source.class.pay.Weixin');
+				$openid = $user['openid'];
+				$payType =  'weixin';//$_POST['payType'];
+				$payMethodList = M('Config')->get_pay_method();
+				$nowOrder['refund_fee'] =  $refund_fee;
+				//调用微信退款接口
+				logs($openid . ',' .
+					var_export($nowOrder, true) . ',' .
+					var_export($payMethodList[$payType]['config'], true) . ',' .
+					var_export($user, true), 'INFO');
+				$weixin = new Weixin($nowOrder, $payMethodList[$payType]['config'], $user['openid']);
+				$result = $weixin->refund();
+				logs('refundInfo:' . json_encode($result), 'INFO');
+				if($result['err_code'] == 0)
+				{
+					$this->refundOrder($nowOrder);
+				}
+				return $result;
+			} else
+			{
+				$nowOrder['refund_fee'] = $nowOrder['balance'] = $refund_fee;
+				$this->refundOrder($nowOrder);
+				return array('err_code' => 0,'err_msg' => '退款成功！');
+			}
+		} else
+		{
+			return array('err_code' => 1,'err_msg' => '全额积分付款，不允许退款！');
+		}
 	}
 
 }

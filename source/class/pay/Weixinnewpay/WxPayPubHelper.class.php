@@ -1042,11 +1042,12 @@ class Refund_pub extends Wxpay_client_pub
         curl_setopt($ch, CURLOPT_HEADER, false);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_SSLCERTTYPE, 'PEM');
-        curl_setopt($ch, CURLOPT_SSLCERT, '');
         curl_setopt($ch, CURLOPT_SSLKEYTYPE, 'PEM');
-        curl_setopt($ch, CURLOPT_SSLKEY, '');
+        curl_setopt($ch, CURLOPT_SSLCERT, SSL_CERT_PATH);
+        curl_setopt($ch, CURLOPT_SSLKEY, SSL_KEY_PATH);
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $xml);
+
         $data = curl_exec($ch);
 
         if ($data) {
