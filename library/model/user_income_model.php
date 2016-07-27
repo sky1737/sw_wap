@@ -232,7 +232,7 @@ class user_income_model extends base_model
 					$order['order_no'],
 					'登录代理平台查看',
 					$order['total'],
-					date('Y-m-d H:i:s',$order['add_time']),
+					date('Y/m/d H:i:s',$order['add_time']),
 					'平台地址：'.option('config.site_url').'，扫码登录即可。');
 			}
 		}
