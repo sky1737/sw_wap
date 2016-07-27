@@ -26,7 +26,11 @@ require_once dirname(__FILE__) . '/global.php';
 $payType = isset($_REQUEST['pay_type'])
 	? $_REQUEST['pay_type']
 	: (isset($_REQUEST['attach']) ? $_REQUEST['attach'] : 'weixin');
-$payMethodList = M('Config')->get_pay_method();
+/**
+ * @var $config_m config_model
+ */
+$config_m = M('Config');
+$payMethodList = $config_m->get_pay_method();
 logs($_SERVER['REQUEST_URI'], 'INFO');
 logs(json_encode($_POST), 'INFO');
 if(empty($payMethodList[$payType])) {

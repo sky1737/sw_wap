@@ -677,18 +677,18 @@ class user_model extends base_model
 				if($money > 0) {
 					Notify::getInstance()->cashBack($openid,
 						option('config.wap_site_url') . '/balance.php?a=index',
-						'下线充值佣金结算',
+						'分店充值佣金结算',
 						$order_no,
 						$money,
-						'下线充值佣金结算，点击查看详情');
+						'分店充值佣金结算，点击查看详情');
 				}
 				if($point > 0) {
 					Notify::getInstance()->cashBack($openid,
 						option('config.wap_site_url') . '/balance.php?a=index',
-						'下线充值积分结算',
+						'分店充值积分结算',
 						$order_no,
 						$point,
-						'下线充值积分结算，点击查看详情');
+						'分店充值积分结算，点击查看详情');
 				}
 			}
 		}
@@ -800,10 +800,10 @@ AND u.status =1 AND s.status =1 AND stores >0 WHERE u.`uid` = (SELECT parent_uid
 				if($money > 0) {
 					Notify::getInstance()->cashBack($parent['openid'],
 						option('config.wap_site_url') . '/balance.php?a=index',
-						'下线充值佣金结算',
+						'分店充值佣金结算',
 						$order_no,
 						$money,
-						'下线充值佣金结算，点击查看详情');
+						'分店充值佣金结算，点击查看详情');
 				}
 
 				$level++;

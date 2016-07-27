@@ -70,6 +70,7 @@ function expressDetail() {
 
 	var url = "index.php?c=order&a=express&type=" + type + "&order_no=" + order_no + "&express_no=" + express_no + "&" + Math.random();
 	$.getJSON(url, function(data) {
+		//console.log(url);
 		try {
 			if (data.status == true) {
 				html = '';

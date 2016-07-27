@@ -858,9 +858,21 @@ class fx_controller extends base_controller
 	//订单详细页面
 	private function _detail_content()
 	{
+        /**
+         * @var $order order_model
+         */
 		$order = M('Order');
+        /**
+         * @var $order_product order_product_model
+         */
 		$order_product = M('Order_product');
+        /**
+         * @var $user user_model
+         */
 		$user = M('User');
+        /**
+         * @var $package order_package_model
+         */
 		$package = M('Order_package');
 
 		$order_id = isset($_POST['order_id']) ? intval(trim($_POST['order_id'])) : 0;
