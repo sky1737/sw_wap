@@ -13,10 +13,12 @@
 <meta name="apple-mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-status-bar-style" content="default"/>
 <meta name="applicable-device" content="mobile"/>
+<link rel="stylesheet" href="<?php echo TPL_URL; ?>css/base.css"/>
 <link rel="stylesheet" href="<?php echo TPL_URL; ?>index_style/css/my.css"/>
 <script src="<?php echo $config['oss_url']; ?>/static/js/fastclick.js"></script>
 <script src="<?php echo $config['oss_url']; ?>/static/js/jquery.min.js"></script>
 <script src="<?php echo TPL_URL; ?>index_style/js/base.js"></script>
+<script src="<?php echo TPL_URL; ?>js/base.js"></script>
 </head>
 <body style="padding-bottom:70px;">
 <div class="wx_wrap">
@@ -69,6 +71,13 @@
 		<a href="#" class="link_online">在线客服</a>
 	</div--> 
 </div>
+
+<?php
+$noFooterLinks = true;
+$noFooterCopy = true;
+include display('footer');
+?>
+
 <?php
 include display('public_menu');
 echo $shareData;

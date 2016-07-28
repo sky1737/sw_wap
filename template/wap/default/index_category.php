@@ -12,6 +12,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-status-bar-style" content="default"/>
 <meta name="applicable-device" content="mobile"/>
+<link rel="stylesheet" href="<?php echo TPL_URL; ?>css/base.css"/>
 <link rel="stylesheet" href="<?php echo TPL_URL; ?>index_style/css/category.css"/>
 <link rel="stylesheet" href="<?php echo TPL_URL; ?>css/main.css"/>
 <link rel="stylesheet" href="<?php echo TPL_URL; ?>css/gonggong.css"/>
@@ -68,6 +69,10 @@
 		</div>
 	</div>
 </div>
+<?php
+$noFooterLinks = true;
+$noFooterCopy = true;
+include display('footer'); ?>
 <?php
 echo $shareData;
 include display('public_search');
