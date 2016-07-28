@@ -128,7 +128,7 @@ class user_income_model extends base_model
         //返 订单商品 成本价 给供应商
         {
             $cost_price   = $order['sub_total'] - $order['profit']; //该订单 的 所有商品成本之和
-            $store_info   = D('Store')->where(array('store_id' => $order['store_id']))->find();
+            $store_info   = D('Store')->where(array('store_id' => $order['agent_id']))->find();
             $supplier_uid = $store_info['uid'];
 
             $is_ok = D('User')->where(array('uid' => $supplier_uid))->setInc('balance', $cost_price);
@@ -152,11 +152,13 @@ class user_income_model extends base_model
                 Notify::getInstance()->accountChange($supplier_user['openid'],
                     option('config.wap_site_url') . '/balance.php?a=index',
                     '供应商您好，订单成本现金已到账',
-                    date('Y-m-d h:i:s', $order['add_time']),
+                    date('Y-m-d H:i:s', $order['add_time']),
                     $cost_price,
                     '现金',
                     $supplier_user['balance'] + $cost_price,
                     "返还成本的订单号：{$order['order_no']}");
+
+                //logs(json_encode(array( $supplier_user['balance'] , $cost_price)), 'SupplierInfo');
             }
         }
 
@@ -199,7 +201,7 @@ class user_income_model extends base_model
 				Notify::getInstance()->accountChange($_SESSION['user']['openid'],
 					option('config.wap_site_url') . '/balance.php?a=index',
 					'购物立返现金到账',
-					date('Y/m/d h:i:s', $order['add_time']),
+					date('Y/m/d H:i:s', $order['add_time']),
 					$rebate,
 					'现金',
 					$_SESSION['user']['balance'],
