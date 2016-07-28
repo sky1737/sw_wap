@@ -141,7 +141,7 @@ class order_controller extends base_controller
 
 			// 收货地址
 			/*$address = M('User_address')->getAdressById('', $this->user_session['uid'], $address_id);
-			
+
 			$address_arr = array();
 			if (!empty($address)) {
 				$address_arr['address'] = $address['address'];
@@ -152,15 +152,15 @@ class order_controller extends base_controller
 				$address_arr['area'] = $address['area_txt'];
 				$address_arr['area_code'] = $address['area'];
 			}
-			
-			
+
+
 			$address_list = M('User_address')->getMyAddress($this->user_session['uid']);
 			// 收货地址
 			$address = array();
 			if (!empty($address_list)) {
 				$address = $address_list[0];
 			}
-			
+
 			$address_arr = array();
 			if (!empty($address)) {
 				$address_arr['address'] = $address['address'];
@@ -171,7 +171,7 @@ class order_controller extends base_controller
 				$address_arr['area'] = $address['area_txt'];
 				$address_arr['area_code'] = $address['area'];
 			}
-			
+
 			$data_order['address'] = serialize($address_arr);
 			$data_order['address_user'] = $address['name'];
 			$data_order['address_tel'] = $address['tel'];*/
@@ -828,7 +828,10 @@ class order_controller extends base_controller
 		$order_no = $_GET['order_no'];
 		$express_no = $_GET['express_no'];
 
-		if(empty($type) || empty($express_no) || empty($order_no)) {
+        $old2NewCode = array('zhongtong'=>'ZTO');
+        $type = isset($old2NewCode[$type]) ? $old2NewCode[$type] : $type;
+
+        if(empty($type) || empty($express_no) || empty($order_no)) {
 			echo json_encode(array('status' => false));
 			exit;
 		}
@@ -839,11 +842,7 @@ class order_controller extends base_controller
 			exit;
 		}
 
-		$url = 'http://api.kuaidi100.com/api?id=c05ca2c8e1e2c96a&com=' . $type . '&nu=' . $express_no .
-			'&show=0&muti=1&order=desc&temp=' . time() . rand(100000, 999999);
-		import('class.Express');
-		//$content = Http::curlGet($url);
-		$content = Express::kuadi100($url);
+		$content = Express::kdn($type, $express_no);
 		$content_arr = json_decode($content, true);
 
 		if(empty($content_arr)) {

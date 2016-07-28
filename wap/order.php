@@ -36,10 +36,15 @@ if(IS_POST && $_GET['orderid'] && $_POST['confirm']) {
 // 查看订单详情
 if ($_GET['orderid'] * 1 || $_GET['orderno']) {
 	// if(empty($wap_user)) redirect('./login.php');
+
+    /**
+     * @var $order_m order_model
+     */
+    $order_m = M('Order');
 	if ($_GET['orderid'])
-		$nowOrder = M('Order')->findOrderById($_GET['orderid']);
+		$nowOrder = $order_m->findOrderById($_GET['orderid']);
 	else
-		$nowOrder = M('Order')->find(I('get.orderno', '', 'trim'));
+		$nowOrder = $order_m->find(I('get.orderno', '', 'trim'));
 	if(empty($nowOrder)) pigcms_tips('该订单不存在', 'none');
 
 	if($wap_user['uid'] != $nowOrder['uid'] &&

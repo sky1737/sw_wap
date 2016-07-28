@@ -209,10 +209,10 @@ $(function () {
 				try {
 					if (data.status == true) {
 						html = '<table><tr><td width="30%">处理时间</td><td>处理信息</td></tr>';
-						for (var i in data.data.data) {
+						for (var i in data.data.Traces) {
 							html += "<tr>";
-							html += "<td>" + data.data.data[i].time + "</td>";
-							html += "<td>" + data.data.data[i].context + "</td>";
+							html += "<td>" + data.data.Traces[i].AcceptTime + "</td>";
+							html += "<td>" + data.data.Traces[i].AcceptStation + "</td>";
 							html += "</tr>";
 						}
 						html += "</table>";
