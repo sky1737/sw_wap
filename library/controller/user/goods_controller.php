@@ -583,7 +583,7 @@ class goods_controller extends base_controller
             $agent = D('Agent');
             $allOpenSelfAgents = $agent->where('open_self <> 0 and status=1')->select();
             $allOpenSelfAgentIds = array();
-            foreach ($allOpenSelfAgents as $a)  $allOpenSelfAgentIds[] = $a['agent_id'];
+            foreach ($allOpenSelfAgents as $a)  $allOpenSelfAgentIds[]  = $a['agent_id'];
 
             $store = D('Store');
             $supplierStoreInfo = $store->where(array('agent_id'=>array('in',$allOpenSelfAgentIds)))->select();
@@ -1129,7 +1129,7 @@ class goods_controller extends base_controller
         $agent = D('Agent');
         $allOpenSelfAgents = $agent->where('open_self <> 0 and status=1')->select();
         $allOpenSelfAgentIds = array();
-        foreach ($allOpenSelfAgents as $a)  $allOpenSelfAgentIds[] = $a['agent_id'];
+        foreach ($allOpenSelfAgents as $a)  $allOpenSelfAgentIds[]  = $a['agent_id'];
 
         $store = D('Store');
         $supplierStoreInfo = $store->where(array('agent_id'=>array('in',$allOpenSelfAgentIds)))->select();
