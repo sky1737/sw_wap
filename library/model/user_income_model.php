@@ -141,7 +141,7 @@ class user_income_model extends base_model
                         'order_no' => $order['order_no'],
                         'income'   => $cost_price,
                         'point'    => 0,
-                        'type'     => 1,
+                        'type'     => 10,
                         'add_time' => time(),
                         'status'   => 1,
                         'remarks'  => '供应商成本立返'
