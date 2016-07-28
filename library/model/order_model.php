@@ -349,7 +349,7 @@ class order_model extends base_model
 	/**
 	 * 退款
 	 */
-	public function refundOrder($order)
+	public function refundOrder($order,$user = null)
 	{
 		// 增加记录
 		D('User_income')->data(
@@ -385,7 +385,9 @@ class order_model extends base_model
 			$product_model->where($condition_product)->setInc('quantity', $value['pro_num']);
 		}
 
-		Notify::getInstance()->refund($_SESSION['user']['openid'],
+		$openid = is_null($user) ? $_SESSION['user']['openid']  : $user['openid'];
+
+		Notify::getInstance()->refund($openid,
 			option('config.wap_site_url') . '/order.php?orderid=' . $order['order_id'],
 			'你好，订单已退款成功',
 			'申请退款',
@@ -478,22 +480,28 @@ class order_model extends base_model
 		{
 			$diff_money = $income['income'];
 		}
-		
+
+		//如果 有 现金支付 判断现金支付是否够扣除返还的积分
+		// 够，直接退款
+		// 不够 判断是否有 余额付款
+		// 有 判断 余额+现金  是否够扣除返还的积分
+		//够 余额的支付-（积分-现金）
+		//
 		if($nowOrder['pay_money']*1)
 		{
-			$refund_fee = $nowOrder['pay_money'] - $diff_money;
-		} elseif($nowOrder['balance']*1)
-		{
-			$refund_fee = $nowOrder['balance'] - $diff_money;
-		} else
-		{
-			$refund_fee = 0;
-		}
-
-		if($refund_fee > 0 )
-		{
-			if($nowOrder['pay_money']*1)
+			if($nowOrder['pay_money'] < $diff_money)
 			{
+				$refund_fee = $nowOrder['balance'] + $nowOrder['pay_money'] -$diff_money; //直接退回账户余额
+				if($refund_fee < 0)
+				{
+					return array('err_code' => 1,'err_msg' => '不允许退款！');
+				}
+				$nowOrder['refund_fee'] = $nowOrder['balance'] = $refund_fee;
+				$this->refundOrder($nowOrder,$user);
+				return array('err_code' => 0,'err_msg' => '退款成功！');
+			} else
+			{
+				$refund_fee = $nowOrder['pay_money'] - $diff_money;
 				import('source.class.pay.Weixin');
 				$openid = $user['openid'];
 				$payType =  'weixin';//$_POST['payType'];
@@ -509,18 +517,16 @@ class order_model extends base_model
 				logs('refundInfo:' . json_encode($result), 'INFO');
 				if($result['err_code'] == 0)
 				{
-					$this->refundOrder($nowOrder);
+					$this->refundOrder($nowOrder,$user);
 				}
 				return $result;
-			} else
-			{
-				$nowOrder['refund_fee'] = $nowOrder['balance'] = $refund_fee;
-				$this->refundOrder($nowOrder);
-				return array('err_code' => 0,'err_msg' => '退款成功！');
 			}
-		} else
+		} elseif($nowOrder['balance']*1)
 		{
-			return array('err_code' => 1,'err_msg' => '全额积分付款，不允许退款！');
+			$refund_fee = $nowOrder['balance'] - $diff_money;
+			$nowOrder['refund_fee'] = $nowOrder['balance'] = $refund_fee;
+			$this->refundOrder($nowOrder,$user);
+			return array('err_code' => 0,'err_msg' => '退款成功！');
 		}
 	}
 

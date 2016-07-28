@@ -169,19 +169,19 @@
 						<?php } ?>
 					</div>
 					<div id="raty-action-<?php echo $order['order_id']; ?>" class="raty-action"
-					     style="display: none; cursor: pointer;">
+						 style="display: none; cursor: pointer;">
 						<img src="<?php echo TPL_URL; ?>images/cancel-custom-off.png" alt="x" title="去星"
-						     data-id="<?php echo $order['order_id']; ?>" class="raty-cancel"/>&nbsp;
+							 data-id="<?php echo $order['order_id']; ?>" class="raty-cancel"/>&nbsp;
 						<img src="<?php echo TPL_URL; ?>images/star-off.png" data-id="<?php echo $order['order_id']; ?>"
-						     class="star" alt="1" title="一星"/>
+							 class="star" alt="1" title="一星"/>
 						<img src="<?php echo TPL_URL; ?>images/star-off.png" data-id="<?php echo $order['order_id']; ?>"
-						     class="star" alt="2" title="二星"/>
+							 class="star" alt="2" title="二星"/>
 						<img src="<?php echo TPL_URL; ?>images/star-off.png" data-id="<?php echo $order['order_id']; ?>"
-						     class="star" alt="3" title="三星"/>
+							 class="star" alt="3" title="三星"/>
 						<img src="<?php echo TPL_URL; ?>images/star-off.png" data-id="<?php echo $order['order_id']; ?>"
-						     class="star" alt="4" title="四星"/>
+							 class="star" alt="4" title="四星"/>
 						<img src="<?php echo TPL_URL; ?>images/star-off.png" data-id="<?php echo $order['order_id']; ?>"
-						     class="star" alt="5" title="五星"/>
+							 class="star" alt="5" title="五星"/>
 					</div>
 				</div>
 			</div>
@@ -290,7 +290,7 @@
 			<ul class="js-express-tab">
 				<?php foreach ($packages as $key => $package) { ?>
 					<li <?php if ($key == 0) { ?>class="active"<?php } ?>
-					    data-pack-id="<?php echo $package['package_id']; ?>">包裹<?php echo $key + 1; ?></li>
+						data-pack-id="<?php echo $package['package_id']; ?>">包裹<?php echo $key + 1; ?></li>
 				<?php } ?>
 			</ul>
 		</div>
@@ -298,8 +298,8 @@
 			<?php if ($packages) { ?>
 				<?php foreach ($packages as $key => $package) { ?>
 					<div class="js-express-tab-content <?php if ($key > 0) { ?>hide<?php } ?>"
-					     data-pack-id="<?php echo $package['page_id']; ?>"
-					     data-express-no="<?php echo $package['express_no']; ?>">
+						 data-pack-id="<?php echo $package['page_id']; ?>"
+						 data-express-no="<?php echo $package['express_no']; ?>">
 						<p><?php echo $package['express_company']; ?>
 							运单号：<?php echo $package['express_no']; ?>                                                    </p>
 						<!--<div class="js-express-detail express-detail" data-number="1"><p>2015-03-10 16:13:23 已签收,签收人是本人签收</p></div>
@@ -415,6 +415,18 @@
 				<td>￥<?php echo $order['sub_total']; ?></td>
 			</tr>
 			<tr>
+				<td>实付金额：</td>
+				<td>￥<span class="order-postage"><?php echo $order['pay_money']; ?></span></td>
+			</tr>
+			<tr>
+				<td>余额抵现：</td>
+				<td>￥<span class="order-postage"><?php echo $order['balance']; ?></span></td>
+			</tr>
+			<tr>
+				<td>积分抵现：</td>
+				<td>￥<span class="order-postage"><?php echo round($order['point'] * 1.00 / $config['point_exchange'], 2); ?> </span></td>
+			</tr>
+			<tr>
 				<td>运费：</td>
 				<td>￥<span class="order-postage"><?php echo $order['postage']; ?></span></td>
 			</tr>
@@ -461,10 +473,20 @@
 		// 暂时注释，店主发货
 		// 需要修改为代理发货，暂定为订单增加代理商store_id，看是否需要增加字段还是使用Supplier_id
 		//if ($order['is_supplier']) {
-			if ($order['status'] == 2 && $order['shipping_method'] != 'selffetch') { //商品未发货
-				echo '<p><a href="javascript:;" class="btn js-express-goods detail-send-goods btn-primary" data-id="' .
-					$order['order_id'] . '">发 货</a></p>';
+		if ($order['status'] == 2 && $order['agent_id'] == $store_session['store_id']) { //商品未发货
+			echo '<p><a href="javascript:;" class="btn js-express-goods detail-send-goods btn-primary" data-id="' . $order['order_id'] . '">发 货</a></p>';
+		} elseif($order['status'] == 6 && $order['agent_id'] == $store_session['store_id'])
+		{
+			echo '<p><a href="javascript:;" class="btn js-refund-express detail-send-goods btn-primary"  data-id="' .
+				$order['order_id'] . '">确认退款</a></p>';
+			if($refundPackage['is_take'] || $order['add_time'] < strtotime("-7 days "))
+			{
+				echo '<p><a href="javascript:;" class="btn js-refuse-sign detail-send-goods btn-primary"  data-id="' .
+					$order['order_id'] . '">拒绝签收</a></p>';
 			}
+			echo '<p><a href="javascript:;" class="btn js-refuse-sign detail-send-goods btn-primary"  data-id="' .
+				$order['order_id'] . '">拒绝签收</a></p>';
+		}
 		//} ?>
 	</div>
 </div>
