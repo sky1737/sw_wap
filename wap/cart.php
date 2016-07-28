@@ -159,7 +159,8 @@ else if($action == 'pay') {
 			$config['wap_site_url'] . '/my_order.php',
 			'你好，你已下单成功。',
 			$data_order['order_no'],
-			$value[0]['name'] . (count($value) > 1 ? '等' : ''),
+			'下单成功，待付款',
+//			$value[0]['name'] . (count($value) > 1 ? '等' : ''),
 			'请及时付款，如有疑问请联系客服。');
 
 		// 合并付款的总金额
