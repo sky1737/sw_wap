@@ -619,12 +619,12 @@ $(function(){
         html += '       </div>';
         html += '       <div class="modal-body">';
         html += '           <form onsubmit="return false;" class="form-horizontal">';
-        // html += '           <div class="control-group">';
-        // html += '               <label class="control-label">账户余额：</label>';
-        // html += '               <div class="controls">';
-        // html += '                   <div class="control-action">￥'+ balance +'</div>';
-        // html += '               </div>';
-        // html += '           </div>';
+        html += '           <div class="control-group">';
+        html += '               <label class="control-label">应退款额：</label>';
+        html += '               <div class="controls">';
+        html += '                   <div class="control-action">￥'+ return_money +'</div>';
+        html += '               </div>';
+        html += '           </div>';
         html += '           <div class="control-group">';
         html += '               <label class="control-label">付款金额：</label>';
         html += '               <div class="controls"><input type="text" class="input js-number" name="pay_money" value="" /></div>';
