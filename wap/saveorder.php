@@ -811,9 +811,10 @@ switch ($action) {
 		$db_user = D('User');
 		$nowOrder = $model_order->find($_POST['orderNo']);
 
+
 		if($nowOrder['status'] < 2) {
 			json_return(1,'订单未支付，不能退款');
-		} elseif($nowOrder['status'] == 2) {
+		} elseif($nowOrder['status'] == 2){
 			if($nowOrder['point']/option('config.point_exchange') > $nowOrder['sub_total']/2)
 			{
 				json_return(1,'积分支付超过订单金额的一半，无法退货，请联系管理员');
@@ -823,44 +824,13 @@ switch ($action) {
 			//3 改变各种状态
 			$result = $model_order->refundFee($nowOrder,$wap_user);
 			json_return($result['err_code'],$result['err_msg']);
-//			if($refund_fee > 0 )
-//			{
-//				$nowOrder['refund_fee'] = $refund_fee;
-//				if($nowOrder['pay_money']*1)
-//				{
-//					import('source.class.pay.Weixin');
-//					$openid = $_SESSION['openid'];
-//					$payType =  'weixin';//$_POST['payType'];
-//					$payMethodList = M('Config')->get_pay_method();
-//					$nowOrder['refund_fee'] =  $refund_fee;
-//					//调用微信退款接口
-//					logs($openid . ',' .
-//						var_export($nowOrder, true) . ',' .
-//						var_export($payMethodList[$payType]['config'], true) . ',' .
-//						var_export($wap_user, true), 'INFO');
-//					$weixin = new Weixin($nowOrder, $payMethodList[$payType]['config'], $wap_user['openid']);
-//					$result = $weixin->refund();
-//					logs('refundInfo:' . json_encode($result), 'INFO');
-//					$model_order->refundOrder($nowOrder);
-//					json_return($result['err_code'], $result['err_msg']);
-//				} else
-//				{
-//					$model_order->refundOrder($nowOrder);
-//					json_return(0, '退款成功！');
-//				}
-//			} else
-//			{
-//				json_return(1,'全额积分付款，不允许退款！');
-//			}
-		} elseif($nowOrder['status'] ==3 ) {
+		}elseif($nowOrder['status'] ==3 || ($nowOrder['status'] == 4 &&  strtotime("-7 days ") <= $nowOrder['sent_time'])) {
 			json_return(1,'订单已发货，不能直接退款，请走退货流程');
-		} elseif($nowOrder['status'] ==4 ) {
-			json_return(1,'订单已确认，不能退货，请走售后流程');
-		} elseif($nowOrder['status'] == 5) {
+		}elseif($nowOrder['status'] == 5) {
 			json_return(1,'订单已取消，不能退款');
 		} elseif($nowOrder['status'] == 6) {
 			json_return(1,'已退款中的订单哟');
-		} else {
+		}else {
 			json_return(1,'订单状态异常，请联系管理员');
 		}
 //		$order_no = preg_replace('#' . option('config.orderid_prefix') . '#', '', $_POST['orderNo'], 1);

@@ -584,6 +584,10 @@ $(function(){
             html += '                   <label class="control-label">快递单号：</label>';
             html += '                   <div class="controls"><input type="text" class="input js-number" name="express_no" value="" /></div>';
             html += '               </div>';
+            html += '               <div class="control-group">';
+            html += '                   <label class="control-label">物流费：</label>';
+            html += '                   <div class="controls"><input type="text" class="input js-money" name="express_money" value="" /></div>';
+            html += '               </div>';
             html += '           </div>';
             html += '       </form>';
             html += '       </div>'
@@ -834,6 +838,7 @@ $(function(){
         var products = [];
         var express_id = '';
         var express_company = '';
+        var express_money = parseFloat($('.js-money').val()).toFixed(2);
         var express_no = '';
         var order_id = $('.js-express-goods').attr('data-id');
 
@@ -862,7 +867,7 @@ $(function(){
             $('.js-check-item:checked').each(function(i){
                 products[i] = $(this).val();
             })
-            $.post(create_package_url, {'order_id': order_id, 'express_id': express_id, 'express_company': express_company, 'express_no': express_no, 'products': products.toString()}, function(data) {
+            $.post(create_package_url, {'order_id': order_id, 'express_id': express_id, 'express_company': express_company, 'express_no': express_no, 'express_money':express_money, 'products': products.toString()}, function(data) {
                 if (!data.err_code) {
                     $('.notifications').html('<div class="alert in fade alert-success">' + data.err_msg + '</div>');
                     $('.modal').animate({'margin-top': '-' + ($(window).scrollTop() + $(window).height()) + 'px'}, "slow",function(){

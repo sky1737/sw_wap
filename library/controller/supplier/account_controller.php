@@ -92,6 +92,7 @@ class account_controller extends base_controller
         $data['order_id'] = isset($_POST['order_id']) ? intval(trim($_POST['order_id'])) : 0;
         $data['products'] = isset($_POST['products']) ? trim($_POST['products']) : 0;
         $data['express_company'] = isset($_POST['express_company']) ? trim($_POST['express_company']) : '';
+        $data['express_money'] = isset($_POST['express_money']) ? floatval(trim($_POST['express_money'])) : 0;
         $data['express_no'] = isset($_POST['express_no']) ? trim($_POST['express_no']) : '';
         $data['express_code'] = isset($_POST['express_id']) ? trim($_POST['express_id']) : '';
         $data['status'] = 1; //已发货

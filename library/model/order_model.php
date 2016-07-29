@@ -470,17 +470,31 @@ class order_model extends base_model
 	 */
 	public function  refundFee($nowOrder,$user)
 	{
-		$income =  M('User_income')->getPointAndIncomeByOrderNo(array('order_no' => $nowOrder['order_no'],'type' => 1));
+		$express_money = 0 ;//邮费
 
+		$income =  M('User_income')->getPointAndIncomeByOrderNo(array('order_no' => $nowOrder['order_no'],'type' => 1));
+		$package_info = D('Order_package')->where(array('store_id' =>$nowOrder['store_id'],'order_id' =>  $nowOrder['order_id'],'status' => 1))->find();
+		if(!empty($package_info))
+		{
+			$express_money = $package_info['express_money'];
+		}
 		if(option('config.default_point'))
 		{
 			//默认为反积分
-			$diff_money = $income['point']/option('config.point_exchange');
+			$diff_money = $income['point']/option('config.point_exchange'); // 30%
+			$sum_money = 0 ;
+			if($nowOrder['status'] == 4)
+			{
+				//已完成订单的退款 要计算扣除 已经返还的佣金
+				 $sum_point = M('User_income')->sumProfit(array('order_no' => $nowOrder['order_no']));
+				$sum_money = $sum_point/option('config.point_exchange'); // 一级分销返佣15% 二级分销返佣15%  一级代理返佣15% 二级代理返佣15%
+			}
+			$diff_money = $diff_money + $sum_money;
 		} else
 		{
 			$diff_money = $income['income'];
 		}
-
+		$diff_money = $diff_money + $express_money;
 		//如果 有 现金支付 判断现金支付是否够扣除返还的积分
 		// 够，直接退款
 		// 不够 判断是否有 余额付款

@@ -29,6 +29,8 @@ if(IS_POST && $_GET['orderid'] && $_POST['confirm']) {
 	// 确认收货，完成订单
 	$order_model->confirmOrder($order);
 
+	//TODO 给用户发通知
+
 	echo json_encode(array('status' => true, 'msg' => '订单已完成！', 'data' => array('nexturl' => 'refresh')));
 	exit;
 }
