@@ -38,12 +38,11 @@ if(IS_POST)
             '您的订单退款申请已发送成功，等待供货商确认！');
         $store_info   = D('Store')->where(array('store_id' => $order_info['agent_id']))->find();
         $user_info = D('User')->where(array('uid' => $store_info['uid']))->find();
-        Notify::getInstance()->notifyAgent($user_info['openid'], option('config.site_url'),
+        Notify::getInstance()->notifyAgentRefund($user_info['openid'], option('config.site_url'),
             '有退货订单，请尽快登录代理平台处理',
             $order_info['order_no'],
             '登录代理平台查看',
             $order_info['total'],
-            date('Y/m/d H:i',$order_info['add_time']),
             '平台地址：'.option('config.site_url').'，扫码登录即可。');
 
         json_return(0,'退款申请成功，待管理员确认后即可退款，可在退款订单中查看！');
