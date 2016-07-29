@@ -67,13 +67,11 @@ foreach ($products as $p)
     $incSalesNum = mt_rand(0, $maxAddSale);
     if ($maxAddSale) //如果指定了 最大 增加销量数
     {
-        D('Product')->where(array('product_id' => $pid))->setInc('sales', $maxAddSale);
+        D('Product')->where(array('product_id' => $pid))->setInc('sales', $incSalesNum);
         $incCommNum = intval($incSalesNum * (mt_rand(50, 200) / 1000)); //根据 新增销量数 确定 新增评论数范围 5% - 20%
     }
-    else
-    {
-        $incCommNum = $addComm; //直接指定
-    }
+    else $incCommNum = $addComm; //直接指定
+
 
     //----------评论增加
     $catgFilePath = "$baseDir/{$catgId}.txt"; //评论文案文件 (一行一个,纯文本)

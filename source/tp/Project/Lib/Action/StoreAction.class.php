@@ -11,7 +11,7 @@ class StoreAction extends BaseAction
 	public function index()
 	{
 		$store = D('StoreView');
-		$sale_category = M('SaleCategory');
+		$agent = M('Agent');
 
 		$condition = array();
 		if (!empty($_GET['type']) && !empty($_GET['keyword'])) {
@@ -31,17 +31,12 @@ class StoreAction extends BaseAction
 				$condition['Store.tel'] = array('like', '%' . trim($_GET['keyword']));
 			}
 		}
-		if (!empty($_GET['sale_category'])) {
-			$condition['_string'] =
-				"(Store.sale_category_id = '" . $_GET['sale_category'] . "' OR Store.sale_category_fid = '" .
-				$_GET['sale_category'] . "')";
-		}
-		if (isset($_GET['approve']) && is_numeric($_GET['approve'])) {
-			$condition['approve'] = $_GET['approve'];
-		}
-		if (isset($_GET['status']) && is_numeric($_GET['status'])) {
-			$condition['status'] = $_GET['status'];
-		}
+		if (!empty($_GET['agent_id'])) $condition['_string'] = "(Agent.agent_id = '{$_GET['agent_id']}')";
+
+		if (isset($_GET['approve']) && is_numeric($_GET['approve']))  $condition['approve'] = $_GET['approve'];
+
+		if (isset($_GET['status']) && is_numeric($_GET['status']))  $condition['status'] = $_GET['status'];
+
 		$store_count = $store->where($condition)->count();
 		import('@.ORG.system_page');
 		$page = new Page($store_count, 10);
@@ -49,7 +44,8 @@ class StoreAction extends BaseAction
 			$store->where($condition)->order("Store.store_id DESC")->limit($page->firstRow . ',' . $page->listRows)
 				->select();
 
-		$sale_categories = $sale_category->where(array('status' => 1))->select();
+		$agents = $agent->where(array('status' => 1,'is_editor'=>0))->select();
+        //echo $agent->getLastSql();exit;
 
 		//未处理的提现记录
 		$withdrawal = M('StoreWithdrawal');
@@ -57,7 +53,7 @@ class StoreAction extends BaseAction
 
 		$this->assign('stores', $stores);
 		$this->assign('page', $page->show());
-		$this->assign('sale_categories', $sale_categories);
+		$this->assign('agent_list', $agents);
 		$this->assign('withdrawal_count', $withdrawal_count);
 		$this->display();
 	}
