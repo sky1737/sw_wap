@@ -189,7 +189,7 @@ if($is_preview) {
 								<?php
 								if($product['show_sku']) {
 									?>
-									&nbsp;&nbsp;（库存<span id="sAmout"><?php echo $product['quantity'] ?></span>件）
+									&nbsp;&nbsp;（库存/销量：<span id="sAmout"><?php echo "{$product['quantity']}/{$product['sales']}" ?></span>件）
 									<?php
 								}
 								if($product['buyer_quota']) {

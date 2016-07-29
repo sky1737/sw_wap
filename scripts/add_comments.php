@@ -19,7 +19,7 @@ error_reporting(E_ALL); //开启所有错误
     $whereCid   = isset($_GET['cid']) ? $_GET['cid'] : 0; //产品的 分类id
     $maxAddSale = isset($_GET['maxaddsale']) ? $_GET['maxaddsale'] : 2000; //销量增加阀值
     $addComm    = isset($_GET['addcomm']) ? $_GET['addcomm'] : 0; //评论增加数
-    $sqlLimit   = $_GET['limit']; //sql limt 条件, 例如: 2,1
+    $sqlLimit   = isset($_GET['limit']) ? $_GET['limit'] : ''; //sql limt 条件, 例如: 2,1
     //如果不增加销量, 但也不增加 评论
     empty($maxAddSale) && empty($addComm) && die('如果您不增加销量,请填写要增加的评论数!');
 }

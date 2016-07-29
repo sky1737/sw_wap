@@ -10,6 +10,9 @@
 		border-radius: 2px;
 	}
 </style>
+<script type="text/javascript">
+	var return_money = "<?php echo $return_money?>";
+</script>
 <h1 class="order-title">订单号：<?php echo $order['order_no']; ?></h1>
 <ul class="order-process clearfix">
 	<?php

@@ -556,7 +556,7 @@ $(function(){
             html += '               <label class="control-label">发货方式：</label>';
             html += '               <div class="controls">';
             html += '                   <label class="radio inline"><input type="radio" name="no_express" value="0" checked="true" data-validate="no" style="width:auto;height:auto;" />需要物流</label>';
-            html += '                   <label class="radio inline"><input type="radio" name="no_express" value="1" data-validate="no" style="width:auto;height:auto;" />无需物流</label>';
+            //html += '                   <label class="radio inline"><input type="radio" name="no_express" value="1" data-validate="no" style="width:auto;height:auto;" />无需物流</label>';
             html += '               </div>';
             html += '           </div>';
             html += '           <div class="clearfix control-2-col js-express-info">';
@@ -619,12 +619,12 @@ $(function(){
         html += '       </div>';
         html += '       <div class="modal-body">';
         html += '           <form onsubmit="return false;" class="form-horizontal">';
-        // html += '           <div class="control-group">';
-        // html += '               <label class="control-label">账户余额：</label>';
-        // html += '               <div class="controls">';
-        // html += '                   <div class="control-action">￥'+ balance +'</div>';
-        // html += '               </div>';
-        // html += '           </div>';
+        html += '           <div class="control-group">';
+        html += '               <label class="control-label">应退款额：</label>';
+        html += '               <div class="controls">';
+        html += '                   <div class="control-action">￥'+ return_money +'</div>';
+        html += '               </div>';
+        html += '           </div>';
         html += '           <div class="control-group">';
         html += '               <label class="control-label">付款金额：</label>';
         html += '               <div class="controls"><input type="text" class="input js-number" name="pay_money" value="" /></div>';

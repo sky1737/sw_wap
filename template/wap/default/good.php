@@ -219,6 +219,10 @@ echo ' responsive-800';
 					<?php	}
 						}
 					} ?>
+					<dl>
+						<dt>销量：</dt>
+						<dd><?php echo $nowProduct['sales']; ?></dd>
+					</dl>
 					<?php if ($nowProduct['show_sku']) { ?>
 					<dl>
 						<dt>剩余：</dt>
