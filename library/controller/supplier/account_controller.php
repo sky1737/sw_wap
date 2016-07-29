@@ -1339,6 +1339,12 @@ class account_controller extends base_controller
         $order_ward_list = M('Order_reward')->getByOrderId($order['order_id']);
         // 使用优惠券
         $order_coupon = M('Order_coupon')->getByOrderId($order['order_id']);
+
+        //应付款金额
+        $package_info = D('Order_package')->where(array('store_id' =>$order['store_id'],'order_id' =>  $order['order_id'],'status' => 1))->find();
+        $express_money =  empty($package_info) ?  0 :$package_info['express_money'];
+        //商家应退回的钱
+        $return_money = $order['sub_total']- $order['profit'] - $express_money;
         $this->assign('is_fans', $is_fans);
         $this->assign('order', $order);
         $this->assign('products', $products);
@@ -1349,6 +1355,7 @@ class account_controller extends base_controller
         $this->assign('packages', $packages);
         $this->assign('order_ward_list', $order_ward_list);
         $this->assign('order_coupon', $order_coupon);
+        $this->assign('return_money', $return_money);
     }
 
     public function detail_json()
@@ -1965,11 +1972,15 @@ class account_controller extends base_controller
         $balance = $userData['balance'];
         if($order_id){
             $orderData = $order->getOrder($store_id,$order_id);
+            $package_info = D('Order_package')->where(array('store_id' =>$orderData['store_id'],'order_id' =>  $orderData['order_id'],'status' => 1))->find();
+            $express_money =  empty($package_info) ?  0 :$package_info['express_money'];
+            //商家应退回的钱
+            $return_money = $orderData['sub_total']-$orderData['profit']-$express_money;
             if($pay_momey *1){
                 if($balance*1 <= 0 || $balance < $pay_momey) {
                     json_return(1, '账户余额不足，请充值');
-                } elseif($pay_momey < $orderData['total']){
-                    json_return(1, '应退回金额不能低于￥'.$orderData['total']);
+                } elseif($pay_momey < $return_money){
+                    json_return(1, '应退回金额不能低于￥'.$return_money);
                 }else{
                     $buyUser = $user->getUser(array('uid' =>$orderData['uid'] ,'status' => 1));
                     $orders = $order->find(option('config.orderid_prefix').$orderData['order_no']);

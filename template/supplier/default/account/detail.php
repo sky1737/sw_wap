@@ -24,8 +24,8 @@
 			page_content = 'detail_content',
 			package_product_url = "<?php dourl('package_product'); ?>",
 			create_package_url = "<?php dourl('create_package'); ?>";
-		refund_pay_url = "<?php dourl('refund_pay'); ?>";
-		refuse_sign_url = "<?php dourl('refuse_sign'); ?>";
+			refund_pay_url = "<?php dourl('refund_pay'); ?>";
+			refuse_sign_url = "<?php dourl('refuse_sign'); ?>";
 	</script>
 	<script type="text/javascript" src="<?php echo TPL_URL;?>js/order_detail.js"></script>
 	<script type="text/javascript" src="<?php echo TPL_URL;?>js/order_common.js"></script>
