@@ -349,7 +349,7 @@ class order_model extends base_model
 	/**
 	 * 退款
 	 */
-	public function refundOrder($order)
+	public function refundOrder($order,$user = null)
 	{
 		// 增加记录
 		D('User_income')->data(
@@ -385,7 +385,9 @@ class order_model extends base_model
 			$product_model->where($condition_product)->setInc('quantity', $value['pro_num']);
 		}
 
-		Notify::getInstance()->refund($_SESSION['user']['openid'],
+		$openid = is_null($user) ? $_SESSION['user']['openid']  : $user['openid'];
+
+		Notify::getInstance()->refund($openid,
 			option('config.wap_site_url') . '/order.php?orderid=' . $order['order_id'],
 			'你好，订单已退款成功',
 			'申请退款',
@@ -468,32 +470,53 @@ class order_model extends base_model
 	 */
 	public function  refundFee($nowOrder,$user)
 	{
-		$income =  M('User_income')->getPointAndIncomeByOrderNo(array('order_no' => $nowOrder['order_no'],'type' => 1));
+		$express_money = 0 ;//邮费
 
+		$income =  M('User_income')->getPointAndIncomeByOrderNo(array('order_no' => $nowOrder['order_no'],'type' => 1));
+		$package_info = D('Order_package')->where(array('store_id' =>$nowOrder['store_id'],'order_id' =>  $nowOrder['order_id'],'status' => 1))->find();
+		if(!empty($package_info))
+		{
+			$express_money = $package_info['express_money'];
+		}
 		if(option('config.default_point'))
 		{
 			//默认为反积分
-			$diff_money = $income['point']/option('config.point_exchange');
+			$diff_money = $income['point']/option('config.point_exchange'); // 30%
+			$sum_money = 0 ;
+			if($nowOrder['status'] == 4)
+			{
+				//已完成订单的退款 要计算扣除 已经返还的佣金
+				 $sum_point = M('User_income')->sumProfit(array('order_no' => $nowOrder['order_no']));
+				$sum_money = $sum_point/option('config.point_exchange'); // 一级分销返佣15% 二级分销返佣15%  一级代理返佣15% 二级代理返佣15%
+			}
+			$diff_money = $diff_money + $sum_money;
 		} else
 		{
 			$diff_money = $income['income'];
 		}
-		
+		$diff_money = $diff_money + $express_money;
+		//如果 有 现金支付 判断现金支付是否够扣除返还的积分
+		// 够，直接退款
+		// 不够 判断是否有 余额付款
+		// 有 判断 余额+现金  是否够扣除返还的积分
+		//够 余额的支付-（积分-现金）
+		//
 		if($nowOrder['pay_money']*1)
 		{
-			$refund_fee = $nowOrder['pay_money'] - $diff_money;
-		} elseif($nowOrder['balance']*1)
-		{
-			$refund_fee = $nowOrder['balance'] - $diff_money;
-		} else
-		{
-			$refund_fee = 0;
-		}
-
-		if($refund_fee > 0 )
-		{
-			if($nowOrder['pay_money']*1)
+			if($nowOrder['pay_money'] < $diff_money)
 			{
+				$refund_fee = $nowOrder['balance'] > $nowOrder['total']  ?  $nowOrder['sub_total'] + $nowOrder['pay_money'] - $diff_money  :  $nowOrder['balance'] + $nowOrder['pay_money'] - $diff_money;
+				//$refund_fee = $nowOrder['sub_total'] + $nowOrder['pay_money'] -$diff_money; //直接退回账户余额
+				if($refund_fee < 0)
+				{
+					return array('err_code' => 1,'err_msg' => '不允许退款！');
+				}
+				$nowOrder['refund_fee'] = $nowOrder['balance'] = $refund_fee;
+				$this->refundOrder($nowOrder,$user);
+				return array('err_code' => 0,'err_msg' => '退款成功！');
+			} else
+			{
+				$refund_fee = $nowOrder['pay_money'] - $diff_money;
 				import('source.class.pay.Weixin');
 				$openid = $user['openid'];
 				$payType =  'weixin';//$_POST['payType'];
@@ -509,18 +532,17 @@ class order_model extends base_model
 				logs('refundInfo:' . json_encode($result), 'INFO');
 				if($result['err_code'] == 0)
 				{
-					$this->refundOrder($nowOrder);
+					$this->refundOrder($nowOrder,$user);
 				}
 				return $result;
-			} else
-			{
-				$nowOrder['refund_fee'] = $nowOrder['balance'] = $refund_fee;
-				$this->refundOrder($nowOrder);
-				return array('err_code' => 0,'err_msg' => '退款成功！');
 			}
-		} else
+		} elseif($nowOrder['balance']*1)
 		{
-			return array('err_code' => 1,'err_msg' => '全额积分付款，不允许退款！');
+
+			$refund_fee = $nowOrder['balance'] > $nowOrder['total']  ?  $nowOrder['sub_total'] - $diff_money  :  $nowOrder['balance'] - $diff_money;
+			$nowOrder['refund_fee'] = $nowOrder['balance'] = $refund_fee;
+			$this->refundOrder($nowOrder,$user);
+			return array('err_code' => 0,'err_msg' => '退款成功！');
 		}
 	}
 

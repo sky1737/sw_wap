@@ -102,9 +102,7 @@
             </div>
             <p class="action">
                 <input type="hidden" name="express_company" value="">
-                <input type="hidden" name="store_id" value="<?php echo $nowOrder['store_id']?>">
                 <input type="hidden" name="order_id" value="<?php echo $nowOrder['order_id']?>">
-                <input type="hidden" name="order_no" value="<?php echo $nowOrder['order_no']?>">
                 <input type="hidden" name="products" value="<?php echo $product_ids ?>">
                 <button class="submit" id="button">确认提交</button>
             </p>

@@ -648,92 +648,99 @@ $(function () {
 			balance: balance,
 			point: point
 		};
-		if ($('#address_id').size() > 0) {
-//			// 自提
-//			if ($('.js-tabber-self-fetch').hasClass('tag-orange')) {
-//				var selffetch_id = $('#selffetch_id').val();
-//				var selffetch_name = $.trim($('.js-logistics-content .js-name').val());
-//				var selffetch_phone = $.trim($('.js-logistics-content .js-phone').val());
-//				if (parseInt(selffetch_id) < 1) {
-//					motify.log('请选择自提点');
-//					return false;
-//				}
-//				else if (selffetch_name.length == 0) {
-//					motify.log('请填写您的姓名');
-//					return false;
-//				}
-//				else if (!/^0[0-9\-]{10,13}$/.test(selffetch_phone) && !/^((\+86)|(86))?(1)\d{10}$/.test(selffetch_phone)) {
-//					motify.log('请填写正确的联系方式');
-//					return false;
-//				}
-//				else {
-//					post_data.shipping_method = 'selffetch';
-//					post_data.selffetch_id = selffetch_id;
-//					post_data.selffetch_name = selffetch_name;
-//					post_data.selffetch_phone = selffetch_phone;
-//					post_data.selffetch_date = $('.js-logistics-content .js-time').eq(0).val();
-//					post_data.selffetch_time = $('.js-logistics-content .js-time').eq(1).val();
-//				}
-//			}
-//			// 送朋友
-//			else if ($(".js-tabber-friend").hasClass("tag-orange")) {
-//				var friend_name = $(".js-friend_name").val();
-//				var friend_phone = $(".js-friend_phone").val();
-//				var province = $("#friend_province").val();
-//				var city = $("#friend_city").val()
-//				var county = $("#friend_county").val();
-//				var friend_address = $(".js-friend_address").val();
-//
-//				if (friend_name.length == 0) {
-//					motify.log("请填写朋友姓名");
-//					return false;
-//				}
-//				if (!/^0[0-9\-]{10,13}$/.test(friend_phone) && !/^((\+86)|(86))?(1)\d{10}$/.test(friend_phone)) {
-//					motify.log("请填写正确的联系方式");
-//					return false;
-//				}
-//				if (province.length == 0) {
-//					motify.log("请选择省");
-//					return false;
-//				}
-//				if (city.length == 0) {
-//					motify.log("请选择城市");
-//					return false;
-//				}
-//				if (county.length == 0) {
-//					motify.log("请选择区县");
-//					return false;
-//				}
-//				if (friend_address.length == 0) {
-//					motify.log("请填写详细地址");
-//					return false;
-//				}
-//				if (friend_address.length < 10) {
-//					motify.log("详细地址不能少于10个字符");
-//					return false;
-//				}
-//
-//				post_data.shipping_method = "friend";
-//				post_data.friend_name = friend_name;
-//				post_data.friend_phone = friend_phone;
-//				post_data.province = province;
-//				post_data.city = city;
-//				post_data.county = county;
-//				post_data.friend_address = friend_address;
-//				post_data.friend_date = $('.js-logistics-content .js-time').eq(0).val();
-//				post_data.friend_time = $('.js-logistics-content .js-time').eq(1).val();
-//			}
-//			// 快递
-//			else {
-			if (parseInt($('#address_id').val()) < 1) {
-				motify.log('请选择收货地址');
-				return false;
-			}
-			else {
-				post_data.address_id = $('input[name=address_id]:checked').val();
-			}
-//			}
+
+		if($('input[name=address_id]:checked').val()){
+			post_data.address_id =  $('input[name=address_id]:checked').val();
+		} else {
+			motify.log('请选择收货地址');
+			return false;
 		}
+// 		if ($('#address_id').size() > 0) {
+// //			// 自提
+// //			if ($('.js-tabber-self-fetch').hasClass('tag-orange')) {
+// //				var selffetch_id = $('#selffetch_id').val();
+// //				var selffetch_name = $.trim($('.js-logistics-content .js-name').val());
+// //				var selffetch_phone = $.trim($('.js-logistics-content .js-phone').val());
+// //				if (parseInt(selffetch_id) < 1) {
+// //					motify.log('请选择自提点');
+// //					return false;
+// //				}
+// //				else if (selffetch_name.length == 0) {
+// //					motify.log('请填写您的姓名');
+// //					return false;
+// //				}
+// //				else if (!/^0[0-9\-]{10,13}$/.test(selffetch_phone) && !/^((\+86)|(86))?(1)\d{10}$/.test(selffetch_phone)) {
+// //					motify.log('请填写正确的联系方式');
+// //					return false;
+// //				}
+// //				else {
+// //					post_data.shipping_method = 'selffetch';
+// //					post_data.selffetch_id = selffetch_id;
+// //					post_data.selffetch_name = selffetch_name;
+// //					post_data.selffetch_phone = selffetch_phone;
+// //					post_data.selffetch_date = $('.js-logistics-content .js-time').eq(0).val();
+// //					post_data.selffetch_time = $('.js-logistics-content .js-time').eq(1).val();
+// //				}
+// //			}
+// //			// 送朋友
+// //			else if ($(".js-tabber-friend").hasClass("tag-orange")) {
+// //				var friend_name = $(".js-friend_name").val();
+// //				var friend_phone = $(".js-friend_phone").val();
+// //				var province = $("#friend_province").val();
+// //				var city = $("#friend_city").val()
+// //				var county = $("#friend_county").val();
+// //				var friend_address = $(".js-friend_address").val();
+// //
+// //				if (friend_name.length == 0) {
+// //					motify.log("请填写朋友姓名");
+// //					return false;
+// //				}
+// //				if (!/^0[0-9\-]{10,13}$/.test(friend_phone) && !/^((\+86)|(86))?(1)\d{10}$/.test(friend_phone)) {
+// //					motify.log("请填写正确的联系方式");
+// //					return false;
+// //				}
+// //				if (province.length == 0) {
+// //					motify.log("请选择省");
+// //					return false;
+// //				}
+// //				if (city.length == 0) {
+// //					motify.log("请选择城市");
+// //					return false;
+// //				}
+// //				if (county.length == 0) {
+// //					motify.log("请选择区县");
+// //					return false;
+// //				}
+// //				if (friend_address.length == 0) {
+// //					motify.log("请填写详细地址");
+// //					return false;
+// //				}
+// //				if (friend_address.length < 10) {
+// //					motify.log("详细地址不能少于10个字符");
+// //					return false;
+// //				}
+// //
+// //				post_data.shipping_method = "friend";
+// //				post_data.friend_name = friend_name;
+// //				post_data.friend_phone = friend_phone;
+// //				post_data.province = province;
+// //				post_data.city = city;
+// //				post_data.county = county;
+// //				post_data.friend_address = friend_address;
+// //				post_data.friend_date = $('.js-logistics-content .js-time').eq(0).val();
+// //				post_data.friend_time = $('.js-logistics-content .js-time').eq(1).val();
+// //			}
+// //			// 快递
+// //			else {
+// 			if (parseInt($('#address_id').val()) < 1) {
+// 				motify.log('请选择收货地址');
+// 				return false;
+// 			}
+// 			else {
+// 				post_data.address_id = parseInt($('#address_id').val()); //$('input[name=address_id]:checked').val();
+// 			}
+// //			}
+// 		}
 
 //		try {
 //			if ($("input[name='user_coupon_id']").length > 0) {

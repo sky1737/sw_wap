@@ -42,11 +42,13 @@ $_SESSION['user'] = $wap_user = D('User')->where(array('uid' => $wap_user['uid']
 //	$offline_payment = true;
 //}
 //$is_all_selfproduct = true;
-//$is_all_supplierproduct = true;
+
+$is_all_supplierproduct = true;
 
 if($nowMerge['status'] < 1) {
 	// 用户地址
-	$userAddress = M('User_address')->find('', $wap_user['uid']);
+	$userAddress = D('User_address')->where(array('uid'=>$wap_user['uid']))->select();
+	//$userAddress = M('User_address')->find('', $wap_user['uid']);
 }
 else {
 	$nowMerge['address'] = unserialize($nowMerge['address']);

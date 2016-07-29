@@ -5,6 +5,16 @@
 if(!defined('TWIKER_PATH')) exit('deny access!');
 
 return array(
+    'DB_HOST'=>'127.0.0.1',
+    'DB_NAME'=>'yws_',//数据库名
+    'DB_USER'=>'root',//数据库用户名
+    'DB_PWD'=>'root',//数据库密码
+    'DB_PORT'=>'3306',
+    'DB_CHARSET'=>'utf8',
+    'DB_PREFIX'=>'tp_',
+);
+
+return array(
 	'DB_HOST'=>'localhost',
 	'DB_NAME'=>'yunws',//数据库名
 	'DB_USER'=>'root',//数据库用户名

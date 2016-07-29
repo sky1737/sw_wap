@@ -73,6 +73,19 @@ class Notify
         ));
     }
 
+    public function notifyAgentRefund($openid, $url, $first, $keyword1, $keyword2, $keyword3, $remark)
+    {
+        return $this->_db->sendTempMsg('OPENTM100003', array(
+            'openid'   => $openid,
+            'url'      => $url,
+            'first'    => $first,
+            'keyword1' => $keyword1,
+            'keyword2' => $keyword2,
+            'keyword3' => $keyword3,
+            'remark'   => $remark,
+        ));
+    }
+
     public function accountChange($openid, $url, $first, $date, $adCharge, $type, $cashBalance, $remark)
     {
         // 'first', 'date', 'adCharge', 'type', 'cashBalance', 'remark'
