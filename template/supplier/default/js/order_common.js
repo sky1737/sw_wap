@@ -556,7 +556,7 @@ $(function(){
             html += '               <label class="control-label">发货方式：</label>';
             html += '               <div class="controls">';
             html += '                   <label class="radio inline"><input type="radio" name="no_express" value="0" checked="true" data-validate="no" style="width:auto;height:auto;" />需要物流</label>';
-            html += '                   <label class="radio inline"><input type="radio" name="no_express" value="1" data-validate="no" style="width:auto;height:auto;" />无需物流</label>';
+            //html += '                   <label class="radio inline"><input type="radio" name="no_express" value="1" data-validate="no" style="width:auto;height:auto;" />无需物流</label>';
             html += '               </div>';
             html += '           </div>';
             html += '           <div class="clearfix control-2-col js-express-info">';
