@@ -116,6 +116,21 @@ class templateNews
                     "\r\n" .
                     '{{remark.DATA}}',
             ),
+            'OPENTM100003' => array(
+                'name'    => '买家申请退货',
+                'vars'    => array('first', 'keyword1', 'keyword2', 'keyword3', 'remark'),
+                'content' => '' .
+                    "\r\n" .
+                    '{{first.DATA}}' .
+                    "\r\n" .
+                    '订单号：{{keyword1.DATA}}' .
+                    "\r\n" .
+                    '商品名称：{{keyword2.DATA}}' .
+                    "\r\n" .
+                    '订单金额：{{keyword3.DATA}}' .
+                    "\r\n" .
+                    '{{remark.DATA}}',
+            ),
             // 2000 开头账户提示
             'OPENTM200000' => array(
                 'name'    => '帐户资金变动提醒',

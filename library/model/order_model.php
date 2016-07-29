@@ -505,7 +505,8 @@ class order_model extends base_model
 		{
 			if($nowOrder['pay_money'] < $diff_money)
 			{
-				$refund_fee = $nowOrder['balance'] + $nowOrder['pay_money'] -$diff_money; //直接退回账户余额
+				$refund_fee = $nowOrder['balance'] > $nowOrder['total']  ?  $nowOrder['sub_total'] + $nowOrder['pay_money'] - $diff_money  :  $nowOrder['balance'] + $nowOrder['pay_money'] - $diff_money;
+				//$refund_fee = $nowOrder['sub_total'] + $nowOrder['pay_money'] -$diff_money; //直接退回账户余额
 				if($refund_fee < 0)
 				{
 					return array('err_code' => 1,'err_msg' => '不允许退款！');
@@ -537,7 +538,8 @@ class order_model extends base_model
 			}
 		} elseif($nowOrder['balance']*1)
 		{
-			$refund_fee = $nowOrder['balance'] - $diff_money;
+
+			$refund_fee = $nowOrder['balance'] > $nowOrder['total']  ?  $nowOrder['sub_total'] - $diff_money  :  $nowOrder['balance'] - $diff_money;
 			$nowOrder['refund_fee'] = $nowOrder['balance'] = $refund_fee;
 			$this->refundOrder($nowOrder,$user);
 			return array('err_code' => 0,'err_msg' => '退款成功！');
