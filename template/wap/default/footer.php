@@ -38,6 +38,6 @@ if (empty($noFooterLinks) && empty($noFooterCopy)) { ?>
      <!--   <script charset="utf-8" type="text/javascript" src="http://wpa.b.qq.com/cgi/wpa.php?key=XzgwMDE5MTY2MV80MjY1OTZfODAwMTkxNjYxXw"></script>-->
         <!-- WPA Button End -->
         <?php // <a href="./weidian.php" class="item_cart">微店列表</a> ?>
-<!--        <a href="./my.php" class="item_uc">个人中心</a>-->
+        <a href="./my.php" class="item_uc">个人中心</a>
     </div>
 </div>

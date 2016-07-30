@@ -232,15 +232,36 @@ if(!defined('TWIKER_PATH'))
 
 							} */ ?>
 							<div class="block block-form block-border-top-none block-border-bottom-none">
-								<div class="js-order-address express-panel" style="padding-left:0;">
-									<ul>
-										<li>
-											<span><?php echo $nowOrder['address_user']; ?></span>, <?php echo $nowOrder['address_tel']; ?>
-										</li>
-										<li><?php echo $nowOrder['address']['province']; ?><?php echo $nowOrder['address']['city']; ?><?php echo $nowOrder['address']['area']; ?></li>
-										<li><?php echo $nowOrder['address']['address']; ?></li>
-									</ul>
-								</div>
+								<?php
+								foreach ($userAddresses as $uAddr){?>
+									<div class="js-order-address-item express-panel" style="padding-left:0;">
+										<?php if($nowOrder['status'] == 0) { ?>
+											<div class="opt-wrapper"><a href="javascript:;" class="btn btn-xxsmall btn-grayeee butn-edit-address js-edit-address">修改</a></div>
+										<?php } ?>
+										<ul>
+											<li>
+												<input type="radio" name="address_id" id="address_id" value="<?php echo $uAddr['address_id'];?>" <?php if($uAddr['default']){
+													echo 'checked';
+												};
+												?>/>
+												<span><?php echo $uAddr['name']; ?></span>, <?php echo $uAddr['tel']; ?>
+											</li>
+											<li><?php echo $uAddr['province_txt']; ?><?php echo $uAddr['city_txt']; ?><?php echo $uAddr['area_txt']; ?></li>
+											<li><?php echo $uAddr['address']; ?></li>
+										</ul>
+									</div>
+								<?php } ?>
+
+
+<!--								<div class="js-order-address express-panel" style="padding-left:0;">-->
+<!--									<ul>-->
+<!--										<li>-->
+<!--											<span>--><?php //echo $nowOrder['address_user']; ?><!--</span>, --><?php //echo $nowOrder['address_tel']; ?>
+<!--										</li>-->
+<!--										<li>--><?php //echo $nowOrder['address']['province']; ?><!----><?php //echo $nowOrder['address']['city']; ?><!----><?php //echo $nowOrder['address']['area']; ?><!--</li>-->
+<!--										<li>--><?php //echo $nowOrder['address']['address']; ?><!--</li>-->
+<!--									</ul>-->
+<!--								</div>-->
 							</div>
 							<div class="js-logistics-tips logistics-tips font-size-12 c-orange hide">很抱歉，该地区暂不支持配送。</div>
 							<?php } ?>
