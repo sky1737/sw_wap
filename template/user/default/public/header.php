@@ -12,8 +12,11 @@
 				<?php if($user_session['stores']) { ?>
 				<li class="divide">|</li>
 				<li <?php if (in_array($select_nav, array('case', 'store', 'setting'))) echo 'class="active"'; ?>> <a href="<?php dourl('store:index'); ?>">店铺</a> </li>
-				<li class="divide">|</li>
+
+					<?php if($store_session['agent']['is_agent']) {?>
+						<li class="divide">|</li>
 				<li <?php if ($select_nav == 'fx') echo 'class="active"'; ?>> <a href="<?php echo dourl('fx:index'); ?>">市场</a> </li>
+				<?php } ?>
 				<?php if($store_session['agent']['open_self']) {?>
 				<li class="divide">|</li>
 				<li <?php if ($select_nav == 'goods') echo 'class="active"'; ?>> <a href="<?php dourl('goods:index'); ?>">自营</a> </li>
