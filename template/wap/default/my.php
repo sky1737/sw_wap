@@ -58,10 +58,10 @@
 	
 	<!-- S 入口列表 -->
 	<ul class="my_list">
-		<li class="tiao"><a href="./cart.php"><img src="<?php echo TPL_URL; ?>images/tb//gwc.png" alt="">我的购物车</a></li>
-		<li class="tiao"><a href="./trade.php?id=<?php echo $now_store['store_id']; ?>"><img src="<?php echo TPL_URL; ?>images/tb//lljl.png" alt="">我的浏览记录</a></li><!---->
+		<li class="tiao"><a href="./cart.php"><img src="<?php echo TPL_URL; ?>images/tb/gwc.png" alt="">我的购物车</a></li>
+		<li class="tiao"><a href="./trade.php?id=<?php echo $now_store['store_id']; ?>"><img src="<?php echo TPL_URL; ?>images/tb/lljl.png" alt="">我的浏览记录</a></li><!---->
 		<li class="hr"></li>
-		<li class="tiao"><a href="./my_address.php"><img src="<?php echo TPL_URL; ?>images/tb//shdz.png" alt="">收货地址管理</a></li>
+		<li class="tiao"><a href="./my_address.php"><img src="<?php echo TPL_URL; ?>images/tb/shdz.png" alt="">收货地址管理</a></li>
 		<!--<li class="hr"></li>
 		<li class="tiao"><a href="./app_million.php"><img src="<?php echo TPL_URL; ?>images/tb/bwdj.png" alt="">十万大奖</a></li>-->
 	</ul>
