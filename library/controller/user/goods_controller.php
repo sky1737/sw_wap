@@ -365,6 +365,9 @@ class goods_controller extends base_controller
 //				}
 //			}
 
+            /**
+             * @var $product product_model
+             */
 			$product = M('Product');
 			$product_category = M('Product_category');
 			$product_image = M('Product_image');
@@ -440,6 +443,7 @@ class goods_controller extends base_controller
 				$data['category_fid'] = $data['category_id'];
 				$data['category_id'] = 0;
 			}
+            //var_dump($store_id,$product_id,$data);die();
 
 			//修改商品
 			$product->edit(array('store_id' => $store_id, 'product_id' => $product_id), $data);

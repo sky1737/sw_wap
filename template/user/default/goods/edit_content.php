@@ -93,7 +93,7 @@
 										<div class="controls">
 											<select name="supplier_id" id="supplier_id">
 												<?php foreach ($supplierStoreInfo as $supplierStore){ ?>
-												<option data-storeid="<?php echo $supplierStore['store_id'] ?>" value ="<?php echo $supplierStore['uid'] ?>"><?php echo $supplierStore['name'] ?></option>
+												<option <?php echo $product['store_id']==$supplierStore['store_id'] ? 'selected' : '' ?> data-storeid="<?php echo $supplierStore['store_id'] ?>" value ="<?php echo $supplierStore['uid'] ?>"><?php echo $supplierStore['name'] ?></option>
 												<?php }?>
 											</select>
 										</div>
