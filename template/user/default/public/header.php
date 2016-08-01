@@ -17,7 +17,7 @@
 						<li class="divide">|</li>
 				<li <?php if ($select_nav == 'fx') echo 'class="active"'; ?>> <a href="<?php echo dourl('fx:index'); ?>">市场</a> </li>
 				<?php } ?>
-				<?php if($store_session['agent']['open_self']) {?>
+				<?php if($store_session['agent']['is_editor']) {?>
 				<li class="divide">|</li>
 				<li <?php if ($select_nav == 'goods') echo 'class="active"'; ?>> <a href="<?php dourl('goods:index'); ?>">自营</a> </li>
 				<?php } ?>

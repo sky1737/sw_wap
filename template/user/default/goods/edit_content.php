@@ -91,7 +91,7 @@
 									<div class="control-group">
 										<label class="control-label">商品所属供应商：</label>
 										<div class="controls">
-											<select name="supplier_id" id="supplier_id">
+											<select disabled name="supplier_id" id="supplier_id">
 												<?php foreach ($supplierStoreInfo as $supplierStore){ ?>
 												<option <?php echo $product['store_id']==$supplierStore['store_id'] ? 'selected' : '' ?> data-storeid="<?php echo $supplierStore['store_id'] ?>" value ="<?php echo $supplierStore['uid'] ?>"><?php echo $supplierStore['name'] ?></option>
 												<?php }?>
