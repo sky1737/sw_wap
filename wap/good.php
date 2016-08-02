@@ -16,7 +16,19 @@ if(!$is_mobile && $_SESSION['user'] && option('config.synthesize_store')) {
 		exit;
 	}
 }
-
+$cachKey = $wap_user['uid'].'_good_ids';
+$cacheGoods = S($cachKey);
+if(empty($cacheGoods))
+{
+	$cacheGoods = array($product_id);
+	S($cachKey,$cacheGoods);
+} else {
+	if(!in_array($product_id,$cacheGoods))
+	{
+		array_push($cacheGoods,$product_id);
+		S($cachKey,$cacheGoods);
+	}
+}
 //商品默认展示
 $nowProduct = D('Product')->where(array('product_id' => $product_id))->find();
 if(empty($nowProduct)) pigcms_tips('您访问的商品不存在', 'none');

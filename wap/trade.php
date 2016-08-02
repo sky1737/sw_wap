@@ -5,107 +5,159 @@
 require_once dirname(__FILE__) . '/global.php';
 
 $page = max(1, $_GET['page']);
-$limit = 5;
+$limit = 2;
 
-//店铺资料
-$now_store = M('Store')->wap_getStore($_SESSION['store']['store_id']);
-if (empty($now_store)) pigcms_tips('您访问的店铺不存在', 'none');
 
-$uid = $wap_user['uid'];
-$session_id = session_id();
-/*if($uid){
-	$condition_order = "(`o`.`uid`='$uid' OR `o`.`session_id`='$session_id')";
-}else{
-	$condition_order = "`o`.`session_id`='$session_id'";
-}
-$condition_order .= " AND `o`.`store_id`='$store_id' AND `o`.`order_id`=`op`.`order_id` AND `op`.`product_id`=`p`.`product_id` AND `o`.`status`<5 GROUP BY `o`.`order_id`";
-$orderList = D('')->field('`o`.`order_id`,`o`.`order_no`,`o`.`total`,`o`.`sub_total`,`o`.`pro_count`,`o`.`status`,`op`.`pro_num`,`op`.`pro_price`,`op`.`sku_data`,`p`.`image`,`p`.`name`')->table(array('Order'=>'o','Order_product'=>'op','Product'=>'p'))->where($condition_order)->order('`o`.`order_id` DESC')->select();
-foreach($orderList as &$value){
-	if($value['sku_data']){
-		$value['sku_data_arr'] = unserialize($value['sku_data']);
-	}
-	if($value['comment']){
-		$value['comment_arr'] = unserialize($value['comment']);
-	}
-	$value['order_no_txt'] = option('config.orderid_prefix').$value['order_no'];
-	$value['image'] = getAttachmentUrl($value['image']);
-	if($value['status'] < 2){
-		$value['url'] = './pay.php?id='.$value['order_no_txt'];
-	}else{
-		$value['url'] = './order.php?orderid='.$value['order_id'];
-	}
-}
-*/
+$cachKey = $wap_user['uid'].'_good_ids';
+$cacheGoods = S($cachKey);
+$products = array();
+if(!empty($cacheGoods))
+{
+	$condition['product_id']  = array('in',$cacheGoods);
 
-$where_sql = '';
-if ($uid) {
-	$where_sql .= "(`uid` = '$uid' OR `session_id` = '$session_id')";
-}
-else {
-	$where_sql .= "`session_id` = '$session_id'";
-}
-$where_sql .= " AND `store_id` = '" . $store_id . "' AND `status` < 5";
-
-$count = D('Order')->where($where_sql)->count('order_id');
-
-$orderList = array();
-$pages = '';
-$physical_list = array();
-$store_contact_list = array();
-if ($count > 0) {
-	$page = min($page, ceil($count / $limit));
-	$offset = ($page - 1) * $limit;
-
-	$orderList = D('Order')->where($where_sql)->order('order_id desc')->limit($offset . ', ' . $limit)->select();
-	$order_id_arr = array();
-	$store_id_arr = array();
-	$physical_id_arr = array();
-	foreach ($orderList as &$value) {
-		if ($value['sku_data']) {
-			$value['sku_data_arr'] = unserialize($value['sku_data']);
-		}
-
-		if ($value['comment']) {
-			$value['comment_arr'] = unserialize($value['comment']);
-		}
-
-		$value['address'] = unserialize($value['address']);
-		$value['order_no_txt'] = option('config.orderid_prefix') . $value['order_no'];
-
-		if ($value['status'] < 2) {
-			$value['url'] = './pay.php?id=' . $value['order_no_txt'];
-		}
-		else {
-			$value['url'] = './order.php?orderid=' . $value['order_id'];
-		}
-
-		$order_id_arr[$value['order_id']] = $value['order_id'];
-
-		if ($value['shipping_method'] == 'selffetch') {
-			if ($value['address']['physical_id']) {
-				$physical_id_arr[$value['address']['physical_id']] = $value['address']['physical_id'];
-			}
-			else if ($value['address']['store_id']) {
-				$store_id_arr[$value['address']['store_id']] = $value['address']['store_id'];
+	$count =D('Product')->where($condition)->count('product_id');
+	if($count) {
+		$page = min($page, ceil($count / $limit));
+		$offset = ($page - 1) * $limit;
+		$products = D('Product')
+			->field('`product_id`,`name`,`image`,`price`,`market_price`,`cost_price`,`sales`,`category_id`')
+			->where($condition)
+			->order('product_id desc')
+			->limit($offset . ', ' . $limit)
+			->select();
+		$category_ids = array();
+		foreach ($products as &$value) {
+			array_push($category_ids,$value['category_id']);
+			$value['image'] = getAttachmentUrl($value['image']);
+			$value['rebate'] = round(($value['price'] * 1.00 - $value['cost_price'] * 1.00) * $buyer_ratio / 100, 2);
+			if($config['default_point']) {
+				$value['point'] = round($value['rebate'] * $exchange, 0);
+				$value['rebate'] = 0.00;
+				$value['cost_price'] = 0.00;
 			}
 		}
 
-		$value['order_product_list'] = M('Order_product')->orderProduct($value['order_id']);
+		// 分页
+		import('source.class.user_page');
+		$user_page = new Page($count, $limit, $page);
+		$pages = $user_page->show();
+
+		//推荐商品
+		$recProducts = array();
+		if(count($category_ids)){
+			$category_ids =  array_unique($category_ids);
+			$where['category_id']  = array('in',$category_ids);
+			$where['product_id']  = array('not in',$cacheGoods);
+			$recProducts = D('Product')
+				->field('`product_id`,`name`,`image`,`price`,`market_price`,`cost_price`,`sales`,`category_id`')
+				->where($where)
+				->limit(4)
+				->select();
+		}
+
 	}
 
-	if (!empty($store_id_arr)) {
-		$store_contact_list = M('Store_contact')->storeContactList($store_id_arr);
-	}
-
-	if (!empty($physical_id_arr)) {
-		$physical_list = M('Store_physical')->getListByIDList($physical_id_arr);
-	}
-
-	// 分页
-	import('source.class.user_page');
-	$user_page = new Page($count, $limit, $page);
-	$pages = $user_page->show();
 }
+
+////店铺资料
+//$now_store = M('Store')->wap_getStore($_SESSION['store']['store_id']);
+//if (empty($now_store)) pigcms_tips('您访问的店铺不存在', 'none');
+//
+//$uid = $wap_user['uid'];
+//$session_id = session_id();
+///*if($uid){
+//	$condition_order = "(`o`.`uid`='$uid' OR `o`.`session_id`='$session_id')";
+//}else{
+//	$condition_order = "`o`.`session_id`='$session_id'";
+//}
+//$condition_order .= " AND `o`.`store_id`='$store_id' AND `o`.`order_id`=`op`.`order_id` AND `op`.`product_id`=`p`.`product_id` AND `o`.`status`<5 GROUP BY `o`.`order_id`";
+//$orderList = D('')->field('`o`.`order_id`,`o`.`order_no`,`o`.`total`,`o`.`sub_total`,`o`.`pro_count`,`o`.`status`,`op`.`pro_num`,`op`.`pro_price`,`op`.`sku_data`,`p`.`image`,`p`.`name`')->table(array('Order'=>'o','Order_product'=>'op','Product'=>'p'))->where($condition_order)->order('`o`.`order_id` DESC')->select();
+//foreach($orderList as &$value){
+//	if($value['sku_data']){
+//		$value['sku_data_arr'] = unserialize($value['sku_data']);
+//	}
+//	if($value['comment']){
+//		$value['comment_arr'] = unserialize($value['comment']);
+//	}
+//	$value['order_no_txt'] = option('config.orderid_prefix').$value['order_no'];
+//	$value['image'] = getAttachmentUrl($value['image']);
+//	if($value['status'] < 2){
+//		$value['url'] = './pay.php?id='.$value['order_no_txt'];
+//	}else{
+//		$value['url'] = './order.php?orderid='.$value['order_id'];
+//	}
+//}
+//*/
+//
+//$where_sql = '';
+//if ($uid) {
+//	$where_sql .= "(`uid` = '$uid' OR `session_id` = '$session_id')";
+//}
+//else {
+//	$where_sql .= "`session_id` = '$session_id'";
+//}
+//$where_sql .= " AND `store_id` = '" . $store_id . "' AND `status` < 5";
+//
+//$count = D('Order')->where($where_sql)->count('order_id');
+//
+//$orderList = array();
+//$pages = '';
+//$physical_list = array();
+//$store_contact_list = array();
+//if ($count > 0) {
+//	$page = min($page, ceil($count / $limit));
+//	$offset = ($page - 1) * $limit;
+//
+//	$orderList = D('Order')->where($where_sql)->order('order_id desc')->limit($offset . ', ' . $limit)->select();
+//	$order_id_arr = array();
+//	$store_id_arr = array();
+//	$physical_id_arr = array();
+//	foreach ($orderList as &$value) {
+//		if ($value['sku_data']) {
+//			$value['sku_data_arr'] = unserialize($value['sku_data']);
+//		}
+//
+//		if ($value['comment']) {
+//			$value['comment_arr'] = unserialize($value['comment']);
+//		}
+//
+//		$value['address'] = unserialize($value['address']);
+//		$value['order_no_txt'] = option('config.orderid_prefix') . $value['order_no'];
+//
+//		if ($value['status'] < 2) {
+//			$value['url'] = './pay.php?id=' . $value['order_no_txt'];
+//		}
+//		else {
+//			$value['url'] = './order.php?orderid=' . $value['order_id'];
+//		}
+//
+//		$order_id_arr[$value['order_id']] = $value['order_id'];
+//
+//		if ($value['shipping_method'] == 'selffetch') {
+//			if ($value['address']['physical_id']) {
+//				$physical_id_arr[$value['address']['physical_id']] = $value['address']['physical_id'];
+//			}
+//			else if ($value['address']['store_id']) {
+//				$store_id_arr[$value['address']['store_id']] = $value['address']['store_id'];
+//			}
+//		}
+//
+//		$value['order_product_list'] = M('Order_product')->orderProduct($value['order_id']);
+//	}
+//
+//	if (!empty($store_id_arr)) {
+//		$store_contact_list = M('Store_contact')->storeContactList($store_id_arr);
+//	}
+//
+//	if (!empty($physical_id_arr)) {
+//		$physical_list = M('Store_physical')->getListByIDList($physical_id_arr);
+//	}
+//
+//	// 分页
+//	import('source.class.user_page');
+//	$user_page = new Page($count, $limit, $page);
+//	$pages = $user_page->show();
+//}
 //print_r($orderList);exit;
 
 //分享配置 start
@@ -121,6 +173,5 @@ import('WechatShare');
 $share = new WechatShare();
 $shareData = $share->getSgin($share_conf);
 //分享配置 end
-
 include display('trade');
 echo ob_get_clean();
