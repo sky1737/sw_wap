@@ -274,6 +274,12 @@ class account_controller extends base_controller
         if($_POST['page'] == 'selling_content') {
             $this->_selling_goods_list();
         }
+        if($_POST['page'] == 'stockout_content') {
+            $this->_stockout_goods_list();
+        }
+        if($_POST['page'] == 'soldout_content') {
+            $this->_soldout_goods_list();
+        }
 
         $this->display($_POST['page']);
     }
@@ -323,6 +329,89 @@ class account_controller extends base_controller
         $this->assign('products', $products);
     }
 
+    /**
+     * 已售罄的商品列表
+     */
+    private function _stockout_goods_list()
+    {
+        $product = M('Product');
+        $product_group = M('Product_group');
+        $product_to_group = M('Product_to_group');
+
+        $order_by_field = isset($_POST['orderbyfield']) ? $_POST['orderbyfield'] : '';
+        $order_by_method = isset($_POST['orderbymethod']) ? $_POST['orderbymethod'] : '';
+        $keyword = isset($_POST['keyword']) ? trim($_POST['keyword']) : '';
+        $group_id = isset($_POST['group_id']) ? trim($_POST['group_id']) : '';
+
+        $where = array();
+        $where['store_id'] = $this->store_session['store_id'];
+        if($keyword) {
+            $where['name'] = array('like', '%' . $keyword . '%');
+        }
+        if($group_id) {
+            $products = $product_to_group->getProducts($group_id);
+            $product_ids = array();
+            if(!empty($products)) {
+                foreach ($products as $item) {
+                    $product_ids[] = $item['product_id'];
+                }
+            }
+            $where['product_id'] = array('in', $product_ids);
+        }
+        $product_total = $product->getStockoutTotal($where);
+        import('source.class.user_page');
+        $page = new Page($product_total, 15);
+        $products = $product->getStockout($where, $order_by_field, $order_by_method, $page->firstRow, $page->listRows);
+
+        $product_groups = $product_group->get_all_list($this->store_session['store_id']);
+
+        $this->assign('product_groups', $product_groups);
+        $this->assign('product_groups_json', json_encode($product_groups));
+        $this->assign('page', $page->show());
+        $this->assign('products', $products);
+    }
+
+    /**
+     * 仓库中的商品
+     */
+    private function _soldout_goods_list()
+    {
+        $product = M('Product');
+        $product_group = M('Product_group');
+        $product_to_group = M('Product_to_group');
+
+        $order_by_field = isset($_POST['orderbyfield']) ? $_POST['orderbyfield'] : '';
+        $order_by_method = isset($_POST['orderbymethod']) ? $_POST['orderbymethod'] : '';
+        $keyword = isset($_POST['keyword']) ? trim($_POST['keyword']) : '';
+        $group_id = isset($_POST['group_id']) ? trim($_POST['group_id']) : '';
+
+        $where = array();
+        $where['store_id'] = $this->store_session['store_id'];
+        if($keyword) {
+            $where['name'] = array('like', '%' . $keyword . '%');
+        }
+        if($group_id) {
+            $products = $product_to_group->getProducts($group_id);
+            $product_ids = array();
+            if(!empty($products)) {
+                foreach ($products as $item) {
+                    $product_ids[] = $item['product_id'];
+                }
+            }
+            $where['product_id'] = array('in', $product_ids);
+        }
+        $product_total = $product->getSoldoutTotal($where);
+        import('source.class.user_page');
+        $page = new Page($product_total, 15);
+        $products = $product->getSoldout($where, $order_by_field, $order_by_method, $page->firstRow, $page->listRows);
+
+        $product_groups = $product_group->get_all_list($this->store_session['store_id']);
+
+        $this->assign('product_groups', $product_groups);
+        $this->assign('product_groups_json', json_encode($product_groups));
+        $this->assign('page', $page->show());
+        $this->assign('products', $products);
+    }
 
 
     /**
@@ -357,6 +446,15 @@ class account_controller extends base_controller
             exit;
         }
 
+        $this->display();
+    }
+
+
+    /**
+     * 商品售完
+     */
+    public function stockout()
+    {
         $this->display();
     }
 
