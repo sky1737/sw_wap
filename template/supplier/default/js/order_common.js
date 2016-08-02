@@ -626,6 +626,12 @@ $(function(){
         html += '               </div>';
         html += '           </div>';
         html += '           <div class="control-group">';
+        html += '               <label class="control-label">商品成本：</label>';
+        html += '               <div class="controls">';
+        html += '                   <div class="control-action">￥'+ cost +'</div>';
+        html += '               </div>';
+        html += '           </div>';
+        html += '           <div class="control-group">';
         html += '               <label class="control-label">付款金额：</label>';
         html += '               <div class="controls"><input type="text" class="input js-number" name="pay_money" value="" /></div>';
         html += '           </div>';

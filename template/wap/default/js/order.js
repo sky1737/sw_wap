@@ -15,6 +15,7 @@ $(function () {
                 }
             }
         });
+
     });
 
 
@@ -22,6 +23,7 @@ $(function () {
         var orderNo = $(this).data('id');
         var popBg = $('<div id="qpPh1bGqgC" style="height:100%;position:fixed;top:0px;left:0px;right:0px;background-color:rgba(0,0,0,0.7);z-index:1000;transition:none 0.2s ease 0s;opacity:1;"></div>');
         var skuHtml = '<div id="n65dA7sX3X" class="sku-layout sku-box-shadow" style="overflow:hidden;bottom:0px;left:0px;right:0px;visibility:visible;position:absolute;z-index:1100;opacity:1;"><div class="adv-opts layout-content"><div class="confirm-action content-foot">';
+        skuHtml +='<span style="font-weight:bold;color: red">温馨提示：（部分金额转化为积分形式退还到账户，达到一定积分即可提现，防止洗钱、恶意刷积分行为）</span>';
         skuHtml += '<a href="javascript:;" class="js-refund-money confirm btn btn-block btn-orange-dark">退款(无需退货)</a><div class="goods-models block block-list block-border-top-none"></div><a href="javascript:;" class="js-refund-good cart btn btn-block btn-orange-dark half-button">退货并退款</a></div></div></div>';
 
         var popCon = $(skuHtml);

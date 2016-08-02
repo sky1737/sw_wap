@@ -1345,6 +1345,7 @@ class account_controller extends base_controller
         $express_money =  empty($package_info) ?  0 :$package_info['express_money'];
         //商家应退回的钱
         $return_money = $order['sub_total']- $order['profit'] - $express_money;
+        $cost = $order['sub_total']-$order['profit'];
         $this->assign('is_fans', $is_fans);
         $this->assign('order', $order);
         $this->assign('products', $products);
@@ -1356,6 +1357,7 @@ class account_controller extends base_controller
         $this->assign('order_ward_list', $order_ward_list);
         $this->assign('order_coupon', $order_coupon);
         $this->assign('return_money', $return_money);
+        $this->assign('cost', $cost);
     }
 
     public function detail_json()
