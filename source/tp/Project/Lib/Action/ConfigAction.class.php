@@ -24,7 +24,7 @@ class ConfigAction extends BaseAction
         $database_config = D('Config');
         $condition_config['gid'] = $gid;
         $condition_config['status'] = '1';
-        $tmp_config_list = $database_config->where($condition_config)->order('`id` asc')->select();
+        $tmp_config_list = $database_config->where($condition_config)->order('`sort` ASC,`id` asc')->select();
 
         foreach ($tmp_config_list as $key => $value) {
             $config_list[$value['tab_id']]['name'] = $value['tab_name'];

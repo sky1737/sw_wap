@@ -1,3 +1,10 @@
+update tp_config set status = 0 where id = 108;
+update `yunws`.`tp_config` set `status`=0 where `id`=96;
+insert `tp_config`(`name`,`type`,`value`,`info`,`desc`,`tab_id`,`gid`,`sort`,`status`) values('agent_ratio_3','type=text&size=3&validate=required:true,number:true,maxlength:2','15','物流费用','','0',12,108,1);
+update tp_config set `sort`  = `id`  where `gid`  = 12;
+
+
+
 ALTER TABLE  `tp_agent` ADD  `is_agent` TINYINT( 1 ) NOT NULL DEFAULT  '0' COMMENT  '是否代理' AFTER  `open_self` ,
 ADD  `is_editor` TINYINT( 1 ) NOT NULL DEFAULT  '0' COMMENT  '是否产品专员' AFTER  `is_agent`;
 
