@@ -1,8 +1,8 @@
 <script type="text/javascript">
-	var product_groups_json = '<?php echo $product_groups_json; ?>';
+    var product_groups_json = '<?php echo $product_groups_json; ?>';
 </script>
 <style type="text/css">
-	.red { color: red; }
+.red { color: red; }
 </style>
 <div class="goods-list">
 	<div class="js-list-filter-region clearfix ui-box" style="position: relative;">
@@ -33,12 +33,13 @@
 	<div class="ui-box">
 		<table class="ui-table ui-table-list" style="padding: 0px;">
 			<thead class="js-list-header-region tableFloatingHeaderOriginal" style="position: static; top: 0px; margin-top: 0px; left: 601.5px; z-index: 1; width: 850px;">
-			<?php if (!empty($products)) { ?>
+				<?php if (!empty($products)) { ?>
 				<tr>
 					<th class="checkbox cell-35" colspan="3" style="min-width: 332px; max-width: 332px;"> <label class="checkbox inline">
 							<input type="checkbox" class="js-check-all">
 							商品</label>
 						<a href="javascript:;" class="orderby" data-orderby="price">价格</a> </th>
+					<th class="cell-8 text-right" style="min-width: 68px; max-width: 68px;"> 成本 </th>
 					<th class="cell-10" style="min-width: 85px; max-width: 85px;">访问量</th>
 					<th class="cell-8 text-right" style="min-width: 68px; max-width: 68px;"> <a href="javascript:;" class="orderby" data-orderby="quantity">库存</a> </th>
 					<th class="cell-8 text-right" style="min-width: 68px; max-width: 68px;"> <a href="javascript:;" class="orderby" data-orderby="sales">总销量</a> </th>
@@ -46,30 +47,31 @@
 					<th class="cell-8 text-right" style="min-width: 68px; max-width: 68px;"> <a href="javascript:;" class="orderby" data-orderby="sort">序号<span class="orderby-arrow desc"></span></a> </th>
 					<th class="cell-15 text-right" style="min-width: 127px; max-width: 127px;">操作</th>
 				</tr>
-			<?php } ?>
+				<?php } ?>
 			</thead>
 			<tbody class="js-list-body-region">
-			<?php foreach ($products as $product) { ?>
+				<?php foreach ($products as $product) { ?>
 				<tr>
 					<td class="checkbox"><input type="checkbox" class="js-check-toggle" value="<?php echo $product['product_id']; ?>" /></td>
 					<td class="goods-image-td"><div class="goods-image js-goods-image "> <img src="<?php echo $product['image']; ?>" /> </div></td>
 					<td class="goods-meta"><p class="goods-title"> <a href="<?php echo $config['site_url']; ?>/goods/<?php echo $product['product_id']; ?>.html" target="_blank" class="new-window" title="<?php echo $product['name']; ?>">
-								<?php if (!empty($_POST['keyword'])) { ?>
-									<?php echo str_replace($_POST['keyword'], '<span class="red">' . $_POST['keyword'] . '</span>', $product['name']); ?>
-								<?php } else { ?>
-									<?php echo $product['name']; ?>
-								<?php } ?>
+							<?php if (!empty($_POST['keyword'])) { ?>
+							<?php echo str_replace($_POST['keyword'], '<span class="red">' . $_POST['keyword'] . '</span>', $product['name']); ?>
+							<?php } else { ?>
+							<?php echo $product['name']; ?>
+							<?php } ?>
 							</a> </p>
 						<p> <span class="goods-price" goods-price="<?php echo $product['price']; ?>">￥<?php echo $product['price']; ?></span>
 							<?php
-
+							
 							if ($product['is_fx']==-1) {
 								echo '<i class="platform-tag">分销待审</i>';
 							} else if($product['is_fx']==1){
 								echo '<i class="platform-tag">分销</i>';
-							}
+								}
 							?>
 						</p></td>
+					<td class="text-right"><?php echo $product['cost_price']; ?></td>
 					<td><div>PV: <?php echo $product['pv']; ?></div></td>
 					<td class="text-right"><?php echo $product['quantity']; ?></td>
 					<td class="text-right"><?php echo $product['sales']; ?></td>
@@ -77,31 +79,32 @@
 					<td class="text-right"><a class="js-change-num" href="javascript:void(0);"><?php echo $product['sort']; ?></a>
 						<input class="input-mini js-input-num" type="number" min="0" maxlength="8" style="display:none;" data-id="<?php echo $product['product_id']; ?>" value="<?php echo $product['sort']; ?>"></td>
 					<td class="text-right">
-						<p><a href="javascript:void(0);" class="js-promotion-btn" <?php if (!empty($product['supplier_id'])) { ?>data-fx="true"<?php } else { ?>data-fx="false"<?php } ?> data="<?php echo $product['product_id']; ?>">推广商品</a> </p>
-						<?php /*
+						<p>
+							<a href="javascript:void(0);" class="js-promotion-btn" <?php if (!empty($product['supplier_id'])) { ?>data-fx="true"<?php } else { ?>data-fx="false"<?php } ?> data="<?php echo $product['product_id']; ?>">推广商品</a> </p>
+							<?php /*
 							<p><a href="javascript:;" class="js-copy hover-show">复制</a></p>*/?></td>
 				</tr>
-			<?php } ?>
+				<?php } ?>
 			</tbody>
 		</table>
 		<?php if (empty($products)) { ?>
-			<div class="js-list-empty-region">
-				<div>
-					<div class="no-result">还没有相关数据。</div>
-				</div>
+		<div class="js-list-empty-region">
+			<div>
+				<div class="no-result">还没有相关数据。</div>
 			</div>
+		</div>
 		<?php } ?>
 	</div>
 	<div class="js-list-footer-region ui-box">
 		<?php if (!empty($products)) { ?>
-			<div>
-				<div class="pull-left">
-					<!--<a href="javascript:;" class="ui-btn js-batch-tag" data-loading-text="加载...">改分组</a>-->
-					<a href="javascript:;" class="ui-btn js-batch-unload">下架</a> <a href="javascript:;" class="ui-btn js-batch-delete">删除</a>
-					<!--<a href="javascript:;" class="ui-btn js-batch-discount">会员折扣</a>-->
-				</div>
-				<div class="js-page-list ui-box pagenavi"><?php echo $page;?></div>
+		<div>
+			<div class="pull-left">
+				<!--<a href="javascript:;" class="ui-btn js-batch-tag" data-loading-text="加载...">改分组</a>-->
+				<a href="javascript:;" class="ui-btn js-batch-unload">下架</a>
+				<!--<a href="javascript:;" class="ui-btn js-batch-discount">会员折扣</a>--> 
 			</div>
+			<div class="js-page-list ui-box pagenavi"><?php echo $page;?></div>
+		</div>
 		<?php } ?>
 	</div>
 </div>

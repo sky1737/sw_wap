@@ -226,6 +226,199 @@ class account_controller extends base_controller
     }
 
 
+    public function goods_load()
+    {
+        if(empty($_POST['page']))
+            pigcms_tips('非法访问！', 'none');
+
+        if($_POST['page'] == 'create_content') {
+            $cat_list = M('Product_category')->getAllCategory(0,true);
+
+            $agent = D('Agent');
+            $allOpenSelfAgents = $agent->where('open_self <> 0 and status=1')->select();
+            $allOpenSelfAgentIds = array();
+            foreach ($allOpenSelfAgents as $a)  $allOpenSelfAgentIds[]  = $a['agent_id'];
+
+            $store = D('Store');
+            $supplierStoreInfo = $store->where(array('agent_id'=>array('in',$allOpenSelfAgentIds)))->select();
+
+            //var_dump($storeInfo);exit;
+
+            $this->assign('supplierStoreInfo', $supplierStoreInfo);
+
+            $this->assign('cat_list', $cat_list);
+        }
+        if($_POST['page'] == 'edit_content') {
+            $this->_edit_content($_GET['id']);
+        }
+//		//商品分组列表
+//		if($_POST['page'] == 'category_content') {
+//			$group_list = M('Product_group')->get_list($this->store_session['store_id']);
+//			$this->assign('group_list', $group_list);
+//		}
+//		//商品分组编辑
+//		if($_POST['page'] == 'category_edit') {
+//			$now_group = M('Product_group')->get_group($this->store_session['store_id'], $_POST['group_id']);
+//			if(!empty($now_group)) {
+//				if($now_group['has_custom']) {
+//					$customField = M('Custom_field')->get_field($this->store_session['store_id'], 'good_cat',
+//						$now_group['group_id']);
+//					$this->assign('customField', json_encode($customField));
+//				}
+//				$this->assign('now_group', $now_group);
+//			}
+//			else {
+//				exit('当前分组不存在！');
+//			}
+//		}
+        if($_POST['page'] == 'selling_content') {
+            $this->_selling_goods_list();
+        }
+
+        $this->display($_POST['page']);
+    }
+
+
+    /**
+     * 出售中的商品列表
+     */
+    private function _selling_goods_list()
+    {
+        $product = M('Product');
+//		$product_group = M('Product_group');
+//		$product_to_group = M('Product_to_group');
+
+        $order_by_field = isset($_POST['orderbyfield']) ? $_POST['orderbyfield'] : '';
+        $order_by_method = isset($_POST['orderbymethod']) ? $_POST['orderbymethod'] : '';
+        $keyword = isset($_POST['keyword']) ? trim($_POST['keyword']) : '';
+        $group_id = isset($_POST['group_id']) ? trim($_POST['group_id']) : '';
+
+        $where = array();
+        $where['store_id'] = $this->store_session['store_id'];
+        $where['quantity'] = array('>', 0);
+        $where['soldout'] = 0;
+        if($keyword) {
+            $where['name'] = array('like', '%' . $keyword . '%');
+        }
+        if($group_id) {
+            $products = $product_to_group->getProducts($group_id);
+            $product_ids = array();
+            if(!empty($products)) {
+                foreach ($products as $item) {
+                    $product_ids[] = $item['product_id'];
+                }
+            }
+            $where['product_id'] = array('in', $product_ids);
+        }
+        $product_total = $product->getSellingTotal($where);
+        import('source.class.user_page');
+        $page = new Page($product_total, 15);
+        $products = $product->getSelling($where, $order_by_field, $order_by_method, $page->firstRow, $page->listRows);
+
+        //$product_groups = $product_group->get_all_list($this->store_session['store_id']);
+
+        //$this->assign('product_groups', $product_groups);
+        //$this->assign('product_groups_json', json_encode($product_groups));
+        $this->assign('page', $page->show());
+        $this->assign('products', $products);
+    }
+
+
+
+    /**
+     * 商品下架
+     */
+    public function soldout()
+    {
+        if(IS_POST) {
+            $product = M('Product');
+            $product_id = isset($_REQUEST['product_id']) ? $_REQUEST['product_id'] : array();
+
+            if(!empty($product_id)) {
+                foreach ($product_id as $id) {
+                    $product_info =
+                        D('Product')->field('product_id,is_fx,fx_type,source_product_id,original_product_id')
+                                    ->where(array('product_id' => $id))->find();
+                    if($product->soldout($this->store_session['store_id'], array($id))) {
+                        if(!empty($product_info['is_fx']) && empty($product_info['original_product_id'])) { //供货商
+                            $this->_soldoutFxProduct($product_info['product_id']);
+                        }
+                        else if(!empty($product_info['source_product_id'])) { //分销商
+                            $this->_soldoutFxProduct($product_info['product_id']);
+                        }
+                    }
+                }
+                $this->_sync_wei_page_goods($product_id); //同步微页面商品
+                json_return(0, '商品下架成功');
+            }
+            else {
+                json_return(1001, '商品下架失败');
+            }
+            exit;
+        }
+
+        $this->display();
+    }
+
+    //下架分销商品
+    private function _soldoutFxProduct($product_id)
+    {
+        $products = D('Product')->where(array('source_product_id' => $product_id))->select();
+        if(!empty($products)) {
+            foreach ($products as $product) {
+                D('Product')->where(array('product_id' => $product['product_id']))->data(array('status' => 2))->save();
+                $this->_sync_wei_page_goods($product['product_id'], $product['store_id']);
+                $this->_soldoutFxProduct($product['product_id']);
+            }
+        }
+    }
+
+
+    //同步微页面商品
+    private function _sync_wei_page_goods($product_id, $store_id = '')
+    {
+        $product_id = !is_array($product_id) ? array($product_id) : $product_id;
+        //删除微页面的商品
+        if(empty($store_id)) {
+            $store_id = $this->store_session['store_id'];
+        }
+        $fields = D('Custom_field')->where(array('store_id' => $store_id, 'field_type' => 'goods'))->select();
+        if($fields) {
+            foreach ($fields as $field) {
+                $products = unserialize($field['content']);
+                if(!empty($products) && !empty($products['goods'])) {
+                    $new_products = array();
+                    foreach ($products['goods'] as $product) {
+                        if(!in_array($product['id'], $product_id)) {
+                            $new_products[] = $product;
+                        }
+                    }
+                    $products['goods'] = $new_products;
+                    $content = serialize($products);
+                    D('Custom_field')->where(array('field_id' => $field['field_id']))
+                                     ->data(array('content' => $content))->save();
+                }
+            }
+        }
+    }
+
+    //获取扫码活动
+    public function get_qrcode_activity()
+    {
+        $activity = M('Product_qrcode_activity');
+
+        $product_id = isset($_POST['product_id']) ? intval(trim($_POST['product_id'])) : 0;
+
+        $activities = $activity->getActivities($this->store_session['store_id'], $product_id);
+        if(!empty($activities)) {
+            echo json_encode($activities);
+        }
+        else {
+            echo false;
+        }
+        exit;
+    }
+
     public function info()
 	{
 		if(IS_POST) {
