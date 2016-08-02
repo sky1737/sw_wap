@@ -127,6 +127,8 @@ if ($nowOrder['status'] < 1) {
 	$user_coupon_list = Appmarket::getCoupon($reward_list, $user_coupon_list);
 }
 else {
+	//用户地址
+	$userAddresses = M('User_address')->db->where(array('uid'=>$wap_user['uid']))->select();
 	$nowOrder['address'] = unserialize($nowOrder['address']);
 	$selffetch_list = true;
 	// 查看满减送
