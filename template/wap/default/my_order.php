@@ -18,6 +18,7 @@
 <script src="<?php echo $config['oss_url']; ?>/static/js/jquery.min.js"></script>
 <script src="<?php echo TPL_URL; ?>js/base.js"></script>
 <script src="<?php echo TPL_URL; ?>js/order.js"></script>
+<script src="<?php echo TPL_URL; ?>js/order_paid.js"></script>
 <script>
 	$(function () {
 		$("#pages a").click(function () {
@@ -130,6 +131,9 @@
 <!--									<a class="btn btn-in-order-list js-after-sales"  data-id="--><?php //echo $store_contact_list[$order['store_id']]['service_tel']; ?><!--" href="--><?php //echo '#'/*$order['refund_url']*/; ?><!--">售后</a>-->
 <!--								--><?php //}?>
 <!--							--><?php //}?>
+							<?php if($uid == $order['uid'] && $order['status'] == 3){?>
+								<a href="javascript:;" data-id="<?php echo $order['order_id']; ?>" class="btn btn-xxsmall btn-pink js-order_confirm">已收货</a>
+							<?php }?>
 						</div>
 					</div>
 				</li>

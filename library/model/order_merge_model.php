@@ -387,6 +387,9 @@ class order_model extends base_model
 		$profit = $order['profit'] * 1.00;
 
 		if($profit > 0) {
+			/**
+			 * @var $db_user user_model
+			 */
 			$db_user = M('User');
 			// 找到客户的推客，递归计算返佣
 			$user = $db_user->getUser(array('uid' => $order['uid']));
@@ -395,8 +398,8 @@ class order_model extends base_model
 				$db_user->promoter($user['parent_uid'], $order['order_no'], $profit, 1);
 				// 代理结算
 				$db_user->agent($user['parent_uid'], $order['order_no'], $profit, 1);
-				// 物流结算
-				$db_user->postage($order['agent_id'], $order['order_no'], $profit);
+//				// 物流结算
+//				$db_user->postage($order['agent_id'], $order['order_no'], $profit);
 				// 商品成本结算
 				$db_user->costReturn($order['agent_id'], $order['order_no'], $order['total'] * 1.00 - $profit);
 			}
