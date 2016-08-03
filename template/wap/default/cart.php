@@ -31,7 +31,7 @@
 	<div class="content">
 		<div class="tabber tabber-n2 tabber-double-11 clearfix">
 			<a class="active" href="./cart.php?id=<?php echo $now_store['store_id'] ?>">购物车</a>
-			<a href="./trade.php?id=<?php echo $now_store['store_id'] ?>">购物记录</a>
+			<a href="./trade.php">浏览记录</a>
 		</div>
 		<div id="cart-container" class="block block-order">
 			<?php if (!empty($now_store)) { ?>
