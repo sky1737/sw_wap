@@ -58,15 +58,57 @@ class StoreAction extends BaseAction
 		$this->display();
 	}
 
+    public function create($uid){
+
+        $database_user = D('User');
+        $user = $database_user->where(array('uid' => $uid))->find();
+
+        $database_store = D('Store');
+        $store = $database_store->where(array('uid' => $uid, 'status' => 1))->find();
+        if (empty($store)) {
+            $data = array('uid' => $uid,
+                          'name' => $user['nickname'] . '的商城',
+                          'logo' => $user['avatar'],
+                          'date_added' => time(),
+                          'drp_supplier_id' => 0,
+                          'open_logistics' => 1,
+                          'offline_payment' => 0,
+                          'open_friend' => 0,
+                          'status' => 1
+            );
+            // 自动创建店铺默认不审核
+            //			if($this->config['ischeck_store'] * 1) {
+            //				$data['status'] = 2;
+            //			}
+            $store['store_id'] = $database_store->add($data);
+            if ($store['store_id'])
+            {
+                $database_user->where(array('uid' => $uid))->save(array('stores' => 1));
+                $this->success('创建店铺成功！');
+            }else
+            {
+                $this->error('创建店铺失败！');
+            }
+        }
+    }
+
 	//
 	public function detail()
 	{
-		$store = D('StoreView');
+        $store_view = D('StoreView');
 		$bank = M('Bank');
 
 		$store_id = $this->_get('id', 'trim,intval');
+		$uid = $this->_get('uid', 'trim,intval');
 
-		$store = $store->where(array('Store.store_id' => $store_id))->find();
+        $whereStr = '';
+        if($store_id) $whereStr = "Store.store_id = $store_id";
+        if($store_id && $uid) $whereStr .= ' OR ';
+        if($uid) $whereStr .= "Store.uid = $uid";
+
+		$store = $store_view->where($whereStr)->find();
+        //print_r($store_view->db()->getLastSql());exit;
+
 		if (!empty($store['logo'])) {
 			$store['logo'] = getAttachmentUrl($store['logo']);
 		}
