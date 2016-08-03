@@ -1000,7 +1000,7 @@ class goods_controller extends base_controller
 		$group_id = isset($_POST['group_id']) ? trim($_POST['group_id']) : '';
 
 		$where = array();
-		$where['store_id'] = $this->store_session['store_id'];
+		//$where['store_id'] = $this->store_session['store_id'];
 		$where['quantity'] = array('>', 0);
 		$where['soldout'] = 0;
 		if($keyword) {
@@ -1044,7 +1044,7 @@ class goods_controller extends base_controller
 		$group_id = isset($_POST['group_id']) ? trim($_POST['group_id']) : '';
 
 		$where = array();
-		$where['store_id'] = $this->store_session['store_id'];
+		//$where['store_id'] = $this->store_session['store_id'];
 		if($keyword) {
 			$where['name'] = array('like', '%' . $keyword . '%');
 		}
@@ -1086,7 +1086,7 @@ class goods_controller extends base_controller
 		$group_id = isset($_POST['group_id']) ? trim($_POST['group_id']) : '';
 
 		$where = array();
-		$where['store_id'] = $this->store_session['store_id'];
+		//$where['store_id'] = $this->store_session['store_id'];
 		if($keyword) {
 			$where['name'] = array('like', '%' . $keyword . '%');
 		}

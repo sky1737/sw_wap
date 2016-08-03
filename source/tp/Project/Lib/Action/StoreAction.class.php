@@ -44,7 +44,7 @@ class StoreAction extends BaseAction
 			$store->where($condition)->order("Store.store_id DESC")->limit($page->firstRow . ',' . $page->listRows)
 				->select();
 
-		$agents = $agent->where(array('status' => 1,'is_editor'=>0))->select();
+		$agents = $agent->where(array('status' => 1))->select();
         //echo $agent->getLastSql();exit;
 
 		//未处理的提现记录
