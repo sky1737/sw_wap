@@ -85,10 +85,19 @@
 							<td class="textcenter">
 								<a href="javascript:void(0);"
 								   onclick="window.top.artiframe('{pigcms{:U('User/edit',array('uid'=>$vo['uid']))}','编辑用户信息',800,420,true,false,false,editbtn,'edit',true);">编辑</a>
-								| <a href="javascript:void(0);"
-								     onclick="if(confirm('确认删除？')){location.href='{pigcms{:U('User/dele',array('uid'=>$vo['uid']))}';}">删除</a>
-								| <a href="javascript:;" style="color: #3865B8"
-								     onclick="window.top.artiframe('{pigcms{:U('User/stores', array('uid' => $vo['uid'], 'frame_show' => true))}','商家 {pigcms{$vo.nickname} 的店铺',750,700,true,false,false,false,'detail',true)">查看店铺</a>
+								|
+								<a href="javascript:void(0);" onclick="if(confirm('确认删除？')){location.href='{pigcms{:U('User/dele',array('uid'=>$vo['uid']))}';}">删除</a>
+								|
+								<?php if($vo['stores']){ ?>
+									<a href="javascript:void(0);" style="color: #3865B8" onclick="window.top.artiframe('{pigcms{:U('Store/detail',array('uid'=>$vo['uid'],'frame_show'=>true))}','店铺详细 - {pigcms{$store.name}',650,500,true,false,false,false,'detail',true);">店铺详细</a>
+								<?php }else{ ?>
+									<a href="javascript:void(0);" onclick="if(confirm('确认创建店铺吗？')){location.href='{pigcms{:U('Store/create',array('uid'=>$vo['uid']))}';}">创建店铺</a>
+								<?php
+								/*
+									<a href="javascript:;" style="color: #3865B8" onclick="window.top.artiframe('{pigcms{:U('User/stores', array('uid' => $vo['uid'], 'frame_show' => true))}','商家 {pigcms{$vo.nickname} 的店铺',750,700,true,false,false,false,'detail',true)">查看店铺</a>
+								*/
+								} ?>
+
 								| <a href="javascript:void(0);"
 								     onclick="window.top.artiframe('{pigcms{:U('User/details',array('uid'=>$vo['uid']))}','收支明细',800,420,true,false,false,editbtn,'edit',true);">收支明细</a>
 								| <a href="{pigcms{:U('tab_store',array('uid'=>$vo['uid']))}" target="_blank">进入店铺</a>
