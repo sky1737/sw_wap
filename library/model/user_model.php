@@ -275,8 +275,16 @@ class user_model extends base_model
         if (!$ratio)
             return;
 
+        $parent = D('')->table("User as u")
+             ->join("Store as s ON u.uid = s.uid", "LEFT")
+            ->join("Agent as a ON a.agent_id = s.agent_id", "LEFT")
+            ->field('`u`.`uid` as uid, `u`.`parent_uid` as parent_uid')
+             ->where("`u`.`uid`='$parent_uid' AND `u`.`stores`='1' AND `u`.`status`='1' AND `a`.`open_self`=0 AND `a`.`is_editor`=0")
+             ->find();
+/*
         $parent = $this->db->where(array('uid' => $parent_uid, 'status' => 1, 'stores' => array('>', 0)))
             ->field('uid,parent_uid')->find();
+*/
         if (!$parent)
             return;
 
@@ -324,7 +332,7 @@ class user_model extends base_model
         if (!$ratio)
             return;
 
-        $parent = D('')->query('SELECT u.`uid`, u.`parent_uid`, s.`store_id`, s.`agent_id`, a.`is_agent` from `tp_user` u INNER JOIN `tp_store` s on u.`uid`= s.`uid` INNER JOIN `tp_agent` a on s.`agent_id`= a.`agent_id` where u.`status`= 1 and s.`status`= 1 and u.`stores`= 1 u.`uid` = ' . $parent_uid);
+        $parent = D('')->query('SELECT u.`uid`, u.`parent_uid`, s.`store_id`, s.`agent_id`, a.`is_agent` from `tp_user` u INNER JOIN `tp_store` s on u.`uid`= s.`uid` INNER JOIN `tp_agent` a on s.`agent_id`= a.`agent_id` where a.`open_self`=0 AND a.`is_editor`=0 AND u.`status`= 1 and s.`status`= 1 and u.`stores`= 1 u.`uid` = ' . $parent_uid);
         if (empty($parent))
             return;
 
@@ -453,7 +461,7 @@ class user_model extends base_model
 
         $agent_uid = D('Store')
             //->where(array('store_id' => $store_id, 'status' => 1, 'agent_approve' => 1))
-            ->where("store_id = {$store_id} and status = 1 and agent_id in (select agent_id from tp_agent where status = 1 and is_agent = 1)")
+            ->where("store_id = {$store_id} and status = 1 and agent_id in (select agent_id from tp_agent where status = 1 and is_agent = 1 and open_self =0 AND is_editor=0)")
             ->getField('uid');
         if (!$agent_uid)
             return;
