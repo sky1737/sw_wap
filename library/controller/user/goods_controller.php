@@ -1150,7 +1150,7 @@ class goods_controller extends base_controller
 
         //var_dump($allOpenSelfAgents);exit;
 
-		$product = $product->get(array('product_id' => $id, 'store_id' => $this->store_session['store_id']));
+		$product = $product->get(array('product_id' => $id/*, 'store_id' => $this->store_session['store_id']*/));
 		$this->assign('product', $product);
 		if(empty($product)) {
 			exit('当前商品不存在！');
