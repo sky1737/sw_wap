@@ -881,6 +881,9 @@ class goods_controller extends base_controller
 	public function soldout()
 	{
 		if(IS_POST) {
+            /**
+             * @var $product product_model
+             */
 			$product = M('Product');
 			$product_id = isset($_REQUEST['product_id']) ? $_REQUEST['product_id'] : array();
 

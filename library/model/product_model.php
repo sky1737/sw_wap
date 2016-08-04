@@ -219,7 +219,7 @@ class product_model extends base_model
 	{
 		if(!empty ($product_ids) && !empty ($store_id)) {
 			$where = array();
-			$where ['store_id'] = $store_id;
+			//$where ['store_id'] = $store_id;
 			$where ['product_id'] = array(
 				'in',
 				$product_ids
