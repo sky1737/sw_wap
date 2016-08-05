@@ -490,7 +490,7 @@ class product_model extends base_model
 	public function delete($store_id, $product_id)
 	{
 		$where = array();
-		$where ['store_id'] = $store_id;
+		//$where ['store_id'] = $store_id;
 		if(is_array($product_id)) {
 			$where ['product_id'] = array(
 				'in',
