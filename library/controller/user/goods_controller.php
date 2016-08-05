@@ -1664,6 +1664,9 @@ class goods_controller extends base_controller
 	//删除商品
 	public function del_product()
 	{
+        /**
+         * @var $product product_model
+         */
 		$product = M('Product');
 
 		$product_id = isset($_POST['product_id']) ? $_POST['product_id'] : 0;
