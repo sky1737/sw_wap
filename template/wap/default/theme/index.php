@@ -246,9 +246,9 @@ else {
 ?>
 <style type="text/css">
 .toutiao {background:#fff;}
-.toutiao dt {width:90px;height:56px;float:left; background:url(/template/wap/default/theme/images/toutiao.jpg) no-repeat 10px center;}
+.toutiao dt {width:90px;height:56px;float:left; background:url(/template/wap/default/theme/images/toutiao.png) no-repeat 10px center;}
 .toutiao dd {padding:6px 0 6px 100px;height:44px;line-height:22px;}
-.toutiao dd a { display:block;font-size:12px;background:url(/template/wap/default/theme/images/toutiao_dot.jpg) no-repeat 5px 10px;height:22px; padding: 0 5px 0 15px;float:left;overflow:hidden; }
+.toutiao dd a {display:block;font-size:12px;background:url(/template/wap/default/theme/images/toutiao_dot.jpg) no-repeat 5px 10px;height:22px; padding: 0 5px 0 15px;float:left;overflow:hidden;}
 </style>
 <div class="content" style="padding:1px 0;height:56px;overflow:hidden;">
 	<div class="content-body">
