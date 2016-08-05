@@ -37,11 +37,13 @@ $(function () {
 				$(this).addClass('state_switch');
 				productShowRows = false;
 				$('#itemList').addClass('mod_itemgrid').removeClass('mod_itemlist_small').find('.hproduct').addClass('item_long_cover');
+				$('#itemList').find('span.comment_num').hide();
 			}
 			else {
 				$(this).removeClass('state_switch');
 				productShowRows = true;
 				$('#itemList').addClass('mod_itemlist_small').removeClass('mod_itemgrid').find('.hproduct').removeClass('item_long_cover');
+				$('#itemList').find('span.comment_num').show()
 			}
 		}
 		else {
@@ -165,7 +167,7 @@ function getProducts() {
 							'<p class="cover"><img src="' + product.image + '"></p>' +
 							'<p class="fn">' + product.name + '</p>' +
 							'<p class="prices"><strong><em>¥&nbsp;' + product.price + '</em></strong>&nbsp;&nbsp;<del><em>¥&nbsp;' + product.market_price + '</em></del></p>' +
-							'<p class="back"><a>购买立返</a> <strong><em>' + (product.point == undefined || product.point == 0 ? '￥' + product.rebate : (product.point<0?0:product.point)+'积分') + '</em></strong></p>' +
+							'<p class="back">购买立返 <strong><em>' + (product.point == undefined || product.point == 0 ? '￥' + product.rebate : (product.point<0?0:product.point)+'积分') + '</em></strong></p>' +
 							'<p class="sku"><span class="comment_num ' + (product.sales == '0' ? 'hide' : '') + '">销量 <span>' + product.sales + '</span></span>&nbsp;<span class="stock hide">无货</span></p>' +
 							'</a></div>';
 					}
