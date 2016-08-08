@@ -44,12 +44,12 @@
 				</thead>
 				<tbody>
 				<?php
-				foreach ($result as $user) {
+				foreach ($result as $fansInfo) {
 					?>
 					<tr>
-						<td><?php echo $user['nickname']; ?></td>
-						<td style="text-align: left"><a href="./drp_team.php?&a=view&parent=<?php echo $user['uid']; ?>"><?php echo $user['name']; ?></a></td>
-						<td style="text-align: right"><?php echo number_format($user['totals'], 2, '.',''); ?></td>
+						<td><?php echo $fansInfo['nickname']; ?></td>
+						<td style="text-align: left"><a href="./drp_team.php?&a=view&parent=<?php echo $fansInfo['uid']; ?>"><?php echo $fansInfo['name']; ?></a></td>
+						<td style="text-align: right"><?php echo number_format($fansInfo['totals'], 2, '.',''); ?></td>
 					</tr>
 				<?php
 					} ?>
