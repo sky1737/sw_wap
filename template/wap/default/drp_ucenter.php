@@ -99,14 +99,14 @@
 </div>
 <?php
 if($now_store['agent_id']){
-?>
-<div class="panel member-nav">
+/*
+	<div class="panel member-nav">
 	<ul class="side-nav">
 		<li id="brokerage" class="last"><a href="./agent.php"><i class="icon-client"></i><span
 					class="text">代理中心</span><i class="arrow"></i></a></li>
 	</ul>
 </div>
-<?php
+*/
 }
 include display('drp_footer');
 echo $shareData;
