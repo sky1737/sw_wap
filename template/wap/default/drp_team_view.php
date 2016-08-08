@@ -44,6 +44,7 @@
 				</thead>
 				<tbody>
 				<?php
+				
 				foreach ($result as $fansInfo) {
 					?>
 					<tr>
