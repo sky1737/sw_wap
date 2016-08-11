@@ -825,8 +825,14 @@ class store_controller extends base_controller
 				$store['agent'] = D('Agent')->where(array('agent_id' => $store['agent_id']))->find();
 			}
 
-			$_SESSION['store'] = $store;
-			redirect(url('store:index'));
+            $_SESSION['store'] = $store;
+
+            if(isset($store['agent']) && 1==$store['agent']['open_self']){ //是供应商
+                redirect(url('supplier:store:index'));
+            }else{
+                redirect(url('store:index'));
+            }
+
 		}
 		else {
 			pigcms_tips('该店铺不存在！');
