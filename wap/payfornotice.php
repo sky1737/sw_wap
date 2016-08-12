@@ -57,7 +57,7 @@ function pay_notice_call($payInfo, $ok_msg = 'success', $err_msg = 'fail')
                     ->find();
                 if ($user) {
                     //  = 0 and  = 0 and  = 0
-                    $vip_id = D('User_vip')->where(array('open_self' => 0, 'is_agent' => 0, 'is_editor' => 0))->getField('agent_id');
+                    $vip_id = D('Agent')->where(array('open_self' => 0, 'is_agent' => 0, 'is_editor' => 0))->getField('agent_id');
                     $store_data = array('uid' => $nowOrder['uid'],
                         'vip_id' => $vip_id,
                         'name' => $user['nickname'] . '的商城',
