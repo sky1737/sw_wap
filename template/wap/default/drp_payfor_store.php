@@ -104,7 +104,7 @@
 //									if (data.err_code) {
 //										alert(data.err_msg + '(' + data.err_msg + ')')
 //									}
-								window.location.href = './drp_ucenter.php';
+								window.location.href = './drp_ucenter.php?refresh=1';
 //								}, 'JSON');
 							}
 							else {
