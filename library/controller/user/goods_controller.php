@@ -2154,7 +2154,7 @@ class goods_controller extends base_controller
             $where['status'] = intval($data['status']);
         }
         else { // 所有订单（不包含临时订单）
-            $where['status'] = array('>', 2);
+            $where['status'] = array('>=', 2);
         }
         if($data['order_no']) {
             $where['order_no'] = $data['order_no'];
