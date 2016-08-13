@@ -352,14 +352,18 @@ class OrderAction extends BaseAction
 		//订单包裹
 		$where = array();
 		$where['user_order_id'] = $user_order_id;
-		$tmp_packages = $package->getPackages($where);
+        $packages = $package->getPackages($where);
+        /*
 		$packages = array();
 		foreach ($tmp_packages as $package) {
 			$package_products = explode(',', $package['products']);
+            var_dump($tmp_packages,$package_products);exit;
 			if (array_intersect($package_products, $tmp_packages)) {
 				$packages[] = $package;
 			}
 		}
+        var_dump($packages);exit;
+        */
 		//$this->assign('is_fans', $is_fans);
 		$this->assign('order', $order);
 		$this->assign('products', $products);
@@ -370,6 +374,18 @@ class OrderAction extends BaseAction
 		$this->assign('packages', $packages);
 		$this->display();
 	}
+
+
+    public function changeexpressno()
+    {
+        $package = M('OrderPackage');
+        if (IS_POST) {
+            $package_id = $this->_post('package_id', 'trim,intval');
+            $no = $this->_post('no', 'trim,intval');
+            $package->where(array('package_id' => $package_id))->save(array('express_no' => $no));
+            //print_r($package->getLastSql());
+        }
+    }
 
 	public function check()
 	{
