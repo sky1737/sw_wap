@@ -364,6 +364,14 @@ class OrderAction extends BaseAction
 		}
         var_dump($packages);exit;
         */
+
+        /**
+         * @var $express mysql
+         */
+        $express = M('Express');
+        //快递公司
+        $express = $express->field('code,name')->select();
+
 		//$this->assign('is_fans', $is_fans);
 		$this->assign('order', $order);
 		$this->assign('products', $products);
@@ -372,6 +380,7 @@ class OrderAction extends BaseAction
 		$this->assign('status', $status);
 		$this->assign('payment_method', $payment_method);
 		$this->assign('packages', $packages);
+		$this->assign('express', $express);
 		$this->display();
 	}
 
@@ -383,6 +392,18 @@ class OrderAction extends BaseAction
             $package_id = $this->_post('package_id', 'trim,intval');
             $no = $this->_post('no', 'trim,intval');
             $package->where(array('package_id' => $package_id))->save(array('express_no' => $no));
+            //print_r($package->getLastSql());
+        }
+    }
+
+    public function changeexpresscom()
+    {
+        $package = M('OrderPackage');
+        if (IS_POST) {
+            $package_id = $this->_post('package_id', 'trim,intval');
+            $name = $this->_post('name', 'trim');
+            $code = $this->_post('code', 'trim');
+            $package->where(array('package_id' => $package_id))->save(array('express_company' => $name,'express_code' => $code));
             //print_r($package->getLastSql());
         }
     }

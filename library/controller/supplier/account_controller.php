@@ -50,6 +50,9 @@ class account_controller extends base_controller
     {
         $order = M('Order');
         $order_product = M('Order_product');
+        /**
+         * @var $express express_model
+         */
         $express = M('Express');
 
         //快递公司

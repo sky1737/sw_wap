@@ -119,6 +119,18 @@
 			}, function (data) {
 			});
 		});
+
+		$(".js-order-express-company").change(function () {
+			var package_id = $(this).closest("div").data("pack-id");
+			var code = $(this).val();
+			var name = $(this).find("option:selected").text();
+			$.post("<?php echo U('Order/changeexpresscom'); ?>", {
+				'name': name,
+				'code': code,
+				'package_id': package_id
+			}, function (data) {
+			})
+		});
 	});
 </script>
 <h1 class="order-title">订单号：{pigcms{$order.order_no}</h1>
@@ -316,8 +328,14 @@ if(!empty($packages)) { ?>
 					     data-pack-id="<?php echo $package['package_id']; ?>"
 					     data-express-no="<?php echo $package['express_no']; ?>">
 						<p>
-							<?php echo $package['express_company']; ?> 运单号：
-
+							<select class="js-order-express-company"">
+								<?php
+								foreach ($express as $e){
+									echo "<option value=\"{$e['code']}\"" .($e['code'] == $package['express_code'] ? 'selected' : '') ."  >{$e['name']}</option>";
+								}
+								?>
+							</select>
+							 运单号：
 							<input class="js-order-express-no" type="text" data-id="<?php echo $package['package_id'];?>" name="express_no" value="<?php echo $package['express_no']; ?>"/>
 						</p>
 					</div>
