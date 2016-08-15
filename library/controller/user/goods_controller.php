@@ -379,7 +379,7 @@ class goods_controller extends base_controller
             $data['uid'] = isset($_POST['supplier_uid']) ? intval(trim($_POST['supplier_uid'])) : 0; //供应商UID
 			$store_id = isset($_POST['supplier_store_id']) ? intval(trim($_POST['supplier_store_id'])) : 0; //供应商 商店id
 			$product_id = isset($_POST['product_id']) ? intval(trim($_POST['product_id'])) : 0;
-			$data['uid'] = $this->user_session['uid'];
+
 			$data['category_id'] = isset($_POST['category_id']) ? intval(trim($_POST['category_id'])) : 0; //分类
 			$data['buy_way'] = 1;// isset($_POST['buy_way']) ? intval(trim($_POST['buy_way'])) : 0; //购买方式
 			$data['buy_url'] = '';// isset($_POST['buy_url']) ? trim($_POST['buy_url']) : ''; //购买地址
@@ -449,7 +449,7 @@ class goods_controller extends base_controller
             $asl_store_id = addslashes($store_id);
             $asl_create_uid = addslashes($this->user_session['uid']);
 			$product->edit(array(
-                '_string'=> "(`store_id` = '$asl_store_id' OR create_uid = '$asl_create_uid')",
+                //'_string'=> "(`store_id` = '$asl_store_id' OR create_uid = '$asl_create_uid')",
                 'product_id'=>$product_id,
             ), $data);
             //print_r($product->db->last_sql);die();

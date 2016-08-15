@@ -174,6 +174,17 @@
 			}, function (data) {
 			});
 		});
+
+		var storeInputElm =  $(".js-store-name");
+		storeInputElm.blur(function(){
+			storeInputElm.css("background-color","#D6D6FF");
+			$.post("<?php echo U('Store/status'); ?>", {
+				'type': 'name',
+				'status': storeInputElm.val(),
+				'store_id': storeInputElm.data('id')
+			}, function (data) {
+			});
+		});
 	})
 </script>
 <input type="hidden" name="id" value="{pigcms{$store.store_id}" />
@@ -184,7 +195,9 @@
 			<div class="show"><img src="{pigcms{$store.logo}" width="60" height="60" /></div>
 		</td>
 		<th width="80" class="center">店铺名称</th>
-		<td colspan="3" class="right-border">{pigcms{$store.name}</td>
+		<td colspan="3" class="right-border">
+			<input class="js-store-name" type="text" data-id="<?php echo $store['store_id'];?>" name="name" value="{pigcms{$store.name}"/>
+		</td>
 	</tr>
 	<tr>
 		<th width="80" class="center">商户账号</th>
