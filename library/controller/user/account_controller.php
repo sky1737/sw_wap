@@ -30,7 +30,6 @@ class account_controller extends base_controller
 
     public function index()
     {
-        $this->assign('banner', M('Adver')->get_adver_by_key('user_home', 0));
         $this->display();
     }
 
@@ -76,6 +75,7 @@ class account_controller extends base_controller
         $where['uid'] = $this->user_session['uid'];
         $where['status'] = array('>', 0);
 
+        $this->assign('banner', M('Adver')->get_adver_by_key('user_home', 0));
         $this->assign('total',
             M('Order')->getOrderTotal(array('uid' => $this->user_session['uid'], 'status' => array('>', 0))));
     }
