@@ -196,7 +196,7 @@
 		</td>
 		<th width="80" class="center">店铺名称</th>
 		<td colspan="3" class="right-border">
-			<input class="js-store-name" type="text" data-id="<?php echo $store['store_id'];?>" name="name" value="{pigcms{$store.name}"/>
+			<input style="width: 260px"  class="js-store-name" type="text" data-id="<?php echo $store['store_id'];?>" name="name" value="{pigcms{$store.name}"/>
 		</td>
 	</tr>
 	<tr>
