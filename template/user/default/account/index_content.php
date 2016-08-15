@@ -43,7 +43,8 @@
 		<!--<div class="ui-store-board-cert-waiting">已认证</div>-->
 	</div>
 	<div style=" background:#fff;">
-		<li><a href="/user.php?c=store&a=select"><img src="static/images/kaidian.png"></a></li>
+		<if condition="!empty($banner)"><a href="<?php echo $banner[0]['url']; ?>"><img src="<?php echo $banner[0]['pic']; ?>"></a></if>
+		<!--<li><a href="/user.php?c=store&a=select"><img src="static/images/kaidian.png"></a></li>-->
 	</div>
 	<!--<div id="js-overview" class="ui-overview">
 		<div class="overview-group">
