@@ -50,7 +50,10 @@ class comment_controller extends base_controller{
 			default :
 				break;
 		}
-		
+
+        /**
+         * @var $comment_model comment_model
+         */
 		$comment_model = M('Comment');
 		$count = $comment_model->getCount($where);
 		
@@ -60,7 +63,7 @@ class comment_controller extends base_controller{
 		if ($count > 0) {
 			$page = min($page, ceil($count / $limit));
 			$offset = ($page - 1) * $limit;
-			$comment_list = $comment_model->getList($where, 'id desc', $limit, $offset, true);
+			$comment_list = $comment_model->getList($where, 'dateline desc', $limit, $offset, true);
 			
 			import('source.class.user_page');
 			$user_page = new Page($count, $limit, $page);

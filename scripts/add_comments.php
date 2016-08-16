@@ -8,7 +8,7 @@ define('TPL_URL', '/template/supplier/default/');
 
 define('TWIKER_PATH', dirname(__FILE__) . '/../');
 define('GROUP_NAME', 'supplier');
-define('USE_FRAMEWORK', true);
+define('USE_FRAMEWORK', TRUE);
 require_once TWIKER_PATH . 'source/init.php';
 
 error_reporting(E_ALL); //开启所有错误
@@ -106,7 +106,7 @@ foreach ($products as $p)
                 {
                     //增加评论
                     $cid = D('Comment')->data(array(
-                        'dateline'    => time(),
+                        'dateline'    => time() + mt_rand(-2592000*2, 0),
                         'order_id'    => 0,
                         'relation_id' => $pid,
                         'uid'         => $randUid,
@@ -123,7 +123,7 @@ foreach ($products as $p)
                     break; //结束 while
                 }
 
-            } while (true); //则重新随机 另一个用户
+            } while (TRUE); //则重新随机 另一个用户
 
         }
 

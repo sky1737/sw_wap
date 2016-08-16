@@ -84,7 +84,7 @@ class comment_model extends base_model{
 	/**
 	 * 
 	 */
-	public function getSimiplyList($where, $limit = 5, $offset = 0) {
+	public function getSimiplyList($where, $limit = 5, $offset = 0,$order_by='') {
 		$this->db->where($where);
 		if (!empty($order_by)) {
 			$this->db->order($order_by);

@@ -200,13 +200,17 @@ class goods_controller extends base_controller
 			$product_category_tag_list = M('System_tag')->geNameList($where);
 		}
 
+        /**
+         * @var $comment comment_model
+         */
+        $comment = M('Comment');
 		// 店铺信息下面的评论
 		$where = array();
 		$where['type'] = 'PRODUCT';
 		$where['relation_id'] = $this->id;
 		$where['status'] = 1;
 		$where['delete_flg'] = 0;
-		$comment_list = M('Comment')->getSimiplyList($where);
+		$comment_list = $comment->getSimiplyList($where);
 
 		// 最新动态
 		$sns_list = M('Financial_record')->sns();
