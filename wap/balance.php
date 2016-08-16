@@ -390,7 +390,7 @@ else if ($_GET['a'] == 'withdrawal') { // 提现申请页面
 	}
 
 	if (empty($now_store['linkman']) || empty($now_store['tel'])) {
-		redirect('./drp_store.php?a=edit', 3, '请先善店铺信息再来提现！');
+		redirect('./drp_store.php?a=edit', 3, '<h2>请先完善店铺信息再来提现！<br>正在跳转。。。<h2>');
 	}
 
 //	$card = M('User_card')->getCard($wap_user['uid']);
