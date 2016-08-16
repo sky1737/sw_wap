@@ -390,7 +390,7 @@ class OrderAction extends BaseAction
         $package = M('OrderPackage');
         if (IS_POST) {
             $package_id = $this->_post('package_id', 'trim,intval');
-            $no = $this->_post('no', 'trim,intval');
+            $no = $this->_post('no', 'trim');
             $package->where(array('package_id' => $package_id))->save(array('express_no' => $no));
             //print_r($package->getLastSql());
         }
