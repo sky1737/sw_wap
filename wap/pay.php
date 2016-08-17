@@ -32,7 +32,12 @@ $is_all_supplierproduct = true;
 
 if ($nowOrder['status'] < 1) {
 	//用户地址
-	$userAddresses = M('User_address')->db->where(array('uid'=>$wap_user['uid']))->select();
+    /**
+     * @var $uAddrM user_address_model
+     */
+    $uAddrM =  M('User_address');
+    $userAddresses = $uAddrM->select(session_id(), $wap_user['uid']);
+
 	//上门自提
 	if ($now_store['buyer_selffetch']) {
 		$selffetch_list = array();// M('Trade_selffetch')->getListNoPage($now_store['store_id']);
@@ -128,7 +133,13 @@ if ($nowOrder['status'] < 1) {
 }
 else {
 	//用户地址
-	$userAddresses = M('User_address')->db->where(array('uid'=>$wap_user['uid']))->select();
+	//$userAddresses = M('User_address')->db->where(array('uid'=>$wap_user['uid']))->select();
+    /**
+     * @var $uAddrM user_address_model
+     */
+    $uAddrM =  M('User_address');
+    $userAddresses = $uAddrM->select(session_id(), $wap_user['uid']);
+
 	$nowOrder['address'] = unserialize($nowOrder['address']);
 	$selffetch_list = true;
 	// 查看满减送

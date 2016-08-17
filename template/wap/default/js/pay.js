@@ -157,7 +157,28 @@ $(function () {
 					if (__alldiv[area][0] != '市辖区' && __alldiv[area][0] != '县') {
 						area_text = __alldiv[area][0];
 					}
-					$('.js-logistics-content').html('<div><div class="block block-form block-border-top-none block-border-bottom-none"><div class="js-order-address express-panel" style="padding-left:0;"><div class="opt-wrapper"><a href="javascript:;" class="btn btn-xxsmall btn-grayeee butn-edit-address js-edit-address">修改</a></div><ul><li><span>' + data.name + '</span>, ' + data.tel + '</li><li>' + __alldiv[province][0] + ' ' + __alldiv[city][0] + ' ' + area_text + ' </li><li>' + data.address + '</li></ul></div></div><div class="js-logistics-tips logistics-tips font-size-12 c-orange hide">很抱歉，该地区暂不支持配送。</div></div>');
+
+					var orghtml = '<div><div class="block block-form block-border-top-none block-border-bottom-none">' +
+						'<div class="js-order-address express-panel" style="padding-left:0;">' +
+						'<div class="opt-wrapper"><a href="javascript:;" class="btn btn-xxsmall btn-grayeee butn-edit-address js-edit-address">修改</a></div><ul>' +
+						'<li><span>' + data.name + '</span>, ' + data.tel + '</li><li>' + __alldiv[province][0] + ' ' + __alldiv[city][0] + ' ' + area_text + ' </li>' +
+						'<li>' + data.address + '</li></ul></div></div>' +
+						'<div class="js-logistics-tips logistics-tips font-size-12 c-orange hide">很抱歉，该地区暂不支持配送。</div></div>';
+
+					var html = '<div><div class="block block-form block-border-top-none block-border-bottom-none">'+
+					'<div class="js-order-address-item express-panel" style="padding-left:0;">'+
+					'<div class="opt-wrapper"><a href="javascript:;" class="btn btn-xxsmall btn-grayeee butn-edit-address js-edit-address">修改</a></div>'+
+					'<ul>'+
+					'<li>'+
+					'<input type="radio" name="address_id" id="address_id" value="' + data.address_id + '" checked="">'+
+					'<span>' + data.name + '</span>, ' + data.tel + '</li>'+
+					'<li>' + __alldiv[province][0] + ' ' + __alldiv[city][0] + ' ' + area_text + '</li>'+
+					'<li>' + data.address + '</li>'+
+					'</ul>'+
+					'</div>'+
+					'</div></div>';
+
+					$('.js-logistics-content').html(html);
 					$('#address_id').val(data.address_id);
 					addAdressDom.removeClass('active').remove();
 					getPostage();
