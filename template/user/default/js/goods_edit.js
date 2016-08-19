@@ -284,8 +284,8 @@ $(function () {
 			});
 			$(this).addClass('current').siblings().removeClass('current');
 
-			cat_id = $(this).attr('data-id');
-			cat_name = $(this).attr('data-name');
+			//cat_id = $(this).attr('data-id');
+			//cat_name = $(this).attr('data-name');
 		}
 	});
 	$('.widget-goods-klass-children li').live('click', function () {
