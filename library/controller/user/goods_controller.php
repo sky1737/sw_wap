@@ -372,6 +372,9 @@ class goods_controller extends base_controller
 			$product_category = M('Product_category');
 			$product_image = M('Product_image');
 			$product_custom_field = M('Product_custom_field');
+            /**
+             * @var $product_sku product_sku_model
+             */
 			$product_sku = M('Product_sku');
 			//$system_product_to_property = M('System_product_to_property');
 			$system_product_to_property_value = M('System_product_to_property_value');
@@ -472,13 +475,19 @@ class goods_controller extends base_controller
 					                                             'vid'        => $v['sys_property_value_id']));
 				}
 			//}
+            /**
+             * @var $product_to_property product_to_property_model
+             * @var $product_to_property_value product_to_property_value_model
+             */
+            $product_to_property = M('Product_to_property');
+            $product_to_property_value = M('Product_to_property_value');
 
 			// 规格信息
 			if(!empty($skus)) {
 				//$skus = $product_sku->edit($product_id, $skus);
 				$product_sku->edit($product_id, $skus);
 
-// 添加关联
+                // 添加关联
 				$prop_vids = array();
 				$prop_pids = array();
 				foreach ($skus as $sku) {
@@ -494,12 +503,13 @@ class goods_controller extends base_controller
 					}
 				}
 
-				$product_to_property = M('Product_to_property');
 				$product_to_property->edit($store_id, $product_id, $prop_pids);
-
-				$product_to_property_value = M('Product_to_property_value');
 				$product_to_property_value->edit($store_id, $product_id, $prop_vids);
-			}
+			}else{
+                $product_to_property->db->where("`product_id` = {$product_id}")->delete();
+                $product_to_property_value->db->where("`product_id` = {$product_id}")->delete();
+                $product_sku->db->where("`product_id` = {$product_id}")->delete();
+            }
 
 			//修改图片，不删除源文件
 			if($product_image->delete($product_id)) {
