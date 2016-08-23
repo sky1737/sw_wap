@@ -506,9 +506,9 @@ class goods_controller extends base_controller
 				$product_to_property->edit($store_id, $product_id, $prop_pids);
 				$product_to_property_value->edit($store_id, $product_id, $prop_vids);
 			}else{
+                $product_sku->db->where("`product_id` = {$product_id}")->delete();
                 $product_to_property->db->where("`product_id` = {$product_id}")->delete();
                 $product_to_property_value->db->where("`product_id` = {$product_id}")->delete();
-                $product_sku->db->where("`product_id` = {$product_id}")->delete();
             }
 
 			//修改图片，不删除源文件
@@ -1134,6 +1134,13 @@ class goods_controller extends base_controller
 		$cat_list = M('Product_category')->getAllCategory(0,true);
 		$this->assign('cat_list', $cat_list);
 
+        /**
+         * @var $product_sku product_sku_model
+         * @var $product_property present_product_model
+         * @var $product_property_value product_property_value_model
+         * @var $product_to_property product_to_property_model
+         * @var $product_to_property_value product_to_property_value_model
+         */
 		$product = M('Product');
 		$product_image = M('Product_image');
 		$product_sku = M('Product_sku');

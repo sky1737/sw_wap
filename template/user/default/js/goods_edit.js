@@ -200,6 +200,16 @@ $(function () {
 		$('.js-fields-region').click(function () {
 			$('.js-goods-sidebar-sub-title').hide();
 		});
+
+		//如果  没有 sku 则 开放 编辑
+		var sku_dom_count = 0;
+		$.each($('.js-sku-atom-container'), function (i, item) {
+			if ($(item).find('.sku-atom').size() > 0) sku_dom_count++;
+		});
+		var readonly = sku_dom_count != 0;
+		$('input[name="total_stock"]').prop('readonly', readonly);
+		$('input[name="price"]').prop('readonly', readonly);
+		$('input[name="weight"]').prop('readonly', readonly);
 	});
 
 	var defaultHtmlObj = function () {
