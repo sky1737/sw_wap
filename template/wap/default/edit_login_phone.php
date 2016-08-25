@@ -64,6 +64,9 @@
         <p class="action">
             <button class="submit" id="edit">确认</button>
         </p>
+        <p class="action">
+            <a href="/wap" style="display: block;line-height: 40px;text-align: center;color: green;text-decoration: underline">暂不设置，直接进入商城首页</a>
+        </p>
     </div>
 </div>
 <?php include display('public_menu'); ?>

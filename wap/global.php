@@ -150,6 +150,13 @@ if ($isLoged && empty($_SESSION['user'])) {
                     $_SESSION['openid'] = $info['openid'];
                     $_SESSION['oauthed'] = $info['nickname'];
 
+                    //完善登陆手机号
+                    if (
+                        (empty($user['phone']) || empty($user['password'])) &&
+                        false === stripos($currentUrl, 'edit_login_phone')
+                    ) redirect('/wap/edit_login_phone.php');
+
+
                     $refer = I('get.refer');
                     if (!empty($refer)) {
                         header('location:' . $refer);
@@ -171,14 +178,6 @@ if ($isLoged && empty($_SESSION['user'])) {
     }
 }
 
-//完善登陆手机号
-if (
-    isset($_SESSION['user']) &&
-    (empty($_SESSION['user']['phone']) || empty($_SESSION['user']['password'])) &&
-    false === stripos($currentUrl, 'edit_login_phone')
-) {
-    redirect('/wap/edit_login_phone.php');
-}
 
 if (!is_array($_SESSION['store'])) $_SESSION['store'] = null;
 
