@@ -46,7 +46,7 @@
     </script>
 </head>
 <body>
-<div class="wx_wrap">
+<div class="wx_wrap" style="padding-top: 10px">
     <div class="address_new">
         <input type="hidden" id="uid" name="uid" value="<?php echo $_SESSION['user']['uid']; ?>"/>
         <p>
@@ -69,6 +69,5 @@
         </p>
     </div>
 </div>
-<?php include display('public_menu'); ?>
 </body>
 </html>
