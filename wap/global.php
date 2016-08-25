@@ -174,7 +174,7 @@ if ($isLoged && empty($_SESSION['user'])) {
 //完善登陆手机号
 if (
     isset($_SESSION['user']) &&
-    empty($_SESSION['user']['phone']) &&
+    (empty($_SESSION['user']['phone']) || empty($_SESSION['user']['password'])) &&
     false === stripos($currentUrl, 'edit_login_phone')
 ) {
     redirect('/wap/edit_login_phone.php');

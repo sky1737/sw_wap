@@ -6,7 +6,7 @@
     <meta name="keywords" content="<?php echo $config['seo_keywords']; ?>"/>
     <meta name="description" content="<?php echo $config['seo_description']; ?>"/>
     <link rel="icon" href="<?php echo $config['site_url']; ?>/favicon.ico"/>
-    <title>登陆手机号</title>
+    <title>完善手机号登陆信息</title>
     <meta name="format-detection" content="telephone=no"/>
     <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
@@ -30,6 +30,7 @@
                     $.post('', {
                         uid: $('#uid').val(),
                         phone: $('#mobile').val(),
+                        password: $('#password').val(),
                     }, function (result) {
                         if (result.err_code) {
                             $('#wxloading').hide();
@@ -50,8 +51,14 @@
         <input type="hidden" id="uid" name="uid" value="<?php echo $_SESSION['user']['uid']; ?>"/>
         <p>
             <label for="mobile">
-                <span class="tit">完善手机号</span>
+                <span class="tit">手机号</span>
                 <input type="tel" id="mobile" name="mobile" value="<?php echo $_SESSION['user']['phone']; ?>" placeholder="登陆手机号，一经填写不可修改，请认真填写">
+            </label>
+        </p>
+        <p>
+            <label for="pw">
+                <span class="tit">登陆密码</span>
+                <input type="tel" id="password" name="password" value="" placeholder="登陆密码，请认真填写并牢记，可暂时留空">
             </label>
         </p>
         <p class="action">
