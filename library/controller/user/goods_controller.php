@@ -1136,7 +1136,7 @@ class goods_controller extends base_controller
 
         /**
          * @var $product_sku product_sku_model
-         * @var $product_property present_product_model
+         * @var $product_property product_property_model
          * @var $product_property_value product_property_value_model
          * @var $product_to_property product_to_property_model
          * @var $product_to_property_value product_to_property_value_model

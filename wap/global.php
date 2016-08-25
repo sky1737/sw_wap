@@ -171,6 +171,15 @@ if ($isLoged && empty($_SESSION['user'])) {
     }
 }
 
+//完善登陆手机号
+if (
+    isset($_SESSION['user']) &&
+    empty($_SESSION['user']['phone']) &&
+    false === stripos($currentUrl, 'edit_login_phone')
+) {
+    redirect('/wap/edit_login_phone.php');
+}
+
 if (!is_array($_SESSION['store'])) $_SESSION['store'] = null;
 
 if (empty($_SESSION['store'])) {
