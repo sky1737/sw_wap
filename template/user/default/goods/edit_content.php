@@ -270,6 +270,14 @@
 												       0) { ?>value="<?php echo $product['cost_price']; ?>"<?php } ?> />
 											</div>
 										</div>
+										<div class="control-group">
+											<label class="control-label"><em class="required">*</em>售价折扣：</label>
+											<div class="controls">
+											<input type="text" class="input-small" placeholder="折扣率：" name="discountpre"
+											   <?php if($product['discount'] >
+											   0) { ?>value="<?php echo $product['discount']; ?>"<?php } ?> />
+											</div>
+										</div>
 									<?php }
 									else { ?>
 										<div class="control-group">

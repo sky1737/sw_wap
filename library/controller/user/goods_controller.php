@@ -390,11 +390,13 @@ class goods_controller extends base_controller
 			$data['show_sku'] = isset($_POST['show_stock']) ? intval(trim($_POST['show_stock'])) : 0; //是否显示库存数量
 			$data['code'] = isset($_POST['code']) ? trim($_POST['code']) : ''; //商家编码
 			$data['name'] = isset($_POST['name']) ? mysql_real_escape_string(trim($_POST['name'])) : ''; //名称
-			$data['price'] = isset($_POST['price']) ? floatval(trim($_POST['price'])) : 0; //价格
+			$data['price'] = isset($_POST['price']) ? floatval(trim($_POST['price'])) : 0; //销售价格
 			$data['market_price'] =
-				isset($_POST['market_price']) ? floatval(trim($_POST['market_price'])) : 0; //原价
+				isset($_POST['market_price']) ? floatval(trim($_POST['market_price'])) : 0; //市场价
 			$data['cost_price'] =
-				isset($_POST['cost_price']) ? floatval(trim($_POST['cost_price'])) : 0; //原价
+				isset($_POST['cost_price']) ? floatval(trim($_POST['cost_price'])) : 0; //成本价
+            $data['discount'] =
+                isset($_POST['discountpre']) ? floatval(trim($_POST['discountpre'])) : 10; //折扣率
 			$data['weight'] = isset($_POST['weight']) ? floatval(trim($_POST['weight'])) : 0;
 			if(isset($_POST['postage_type'])) {
 				$data['postage_type'] =

@@ -791,6 +791,15 @@ $(function () {
 //            $('.cost').focus();
 //            return false;
 		}
+
+		//商品售价折扣验证
+		if ($("input[name='discountpre']").val() == '' || isNaN($("input[name='discountpre']").val()) || $("input[name='discountpre']").val() < 0) {
+			$("input[name='discountpre']").val('10');
+//            layer_tips(1, '商品折扣价不正确');
+//            $('.cost').val('');
+//            $('.cost').focus();
+//            return false;
+		}
 //        if (isNaN($("input[name='cost']").val()) || $("input[name='cost']").val() < 0) {
 //            layer_tips(1, '商品成本价只能填写大于0的数字');
 //            $('.cost').val('');
@@ -978,6 +987,7 @@ $(function () {
 		var price = $("input[name='price']").val();
 		var market_price = $("input[name='market']").val();
 		var cost_price = $("input[name='cost']").val();
+		var discountpre = $("input[name='discountpre']").val();
 		var images = [];
 		$('.app-image-list > .sort > a > img').each(function (i) {
 			images[i] = $(this).attr('src');
@@ -1052,6 +1062,7 @@ $(function () {
 			'price': price,
 			'market_price': market_price,
 			'cost_price': cost_price,
+			'discountpre': discountpre,
 			'images': images,
 			'postage_type': postage_type,
 			'postage': postage,

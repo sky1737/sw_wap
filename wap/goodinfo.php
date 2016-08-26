@@ -9,7 +9,7 @@ if (IS_POST) {
 		case 'getSku':
 			$product_id = (isset($_POST['product_id']) ? intval($_POST['product_id']) : json_return(1000, '缺少必要参数'));
 			$nowProduct = D('Product')->where(array('product_id' => $product_id))
-				->field('`product_id`,`name`,`buy_way`,`quantity`,`image`,`price`,`sold_time`,`buyer_quota`,`buy_url`,`has_property`')
+				->field('`discount`,`product_id`,`name`,`buy_way`,`quantity`,`image`,`price`,`sold_time`,`buyer_quota`,`buy_url`,`has_property`')
 				->find();
 
 			if (empty($nowProduct)) {
