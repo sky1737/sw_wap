@@ -1677,6 +1677,9 @@ class account_controller extends base_controller
         $order['products'] = $products;
 
         // 查看满减送
+        
+        
+        
         $order_ward_list = M('Order_reward')->getByOrderId($order['order_id']);
         // 使用优惠券
         $order_coupon = M('Order_coupon')->getByOrderId($order['order_id']);

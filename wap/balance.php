@@ -301,13 +301,14 @@ else if ($_GET['a'] == 'exchange') {
 		) {
 			json_return(1000, '兑换积分数量为 ' . option('config.point_exchange') . ' 的倍数且大于零！');
 		}
-		$data['amount'] = round($data['point'] / (option('config.point_exchange') * 1.00), 2);
-		$data['add_time'] = time();
 
 		$wap_user = D('User')->where(array('uid' => $wap_user['uid'], 'status' => 1))->find();
-		if ($wap_user['balance'] < $data['amount']) {
-			json_return(1002, '余额不足，提现失败！');
+		if ($wap_user['point'] < $data['point']) {
+			json_return(1002, '积分不足，兑换失败！');
 		}
+
+		$data['amount'] = round($data['point'] / (option('config.point_exchange') * 1.00), 2);
+		$data['add_time'] = time();
 
 		$user_exch = D('User_exch');
 		if ($user_exch->data($data)->add()) {
@@ -318,13 +319,13 @@ else if ($_GET['a'] == 'exchange') {
 			json_return(0, '');
 		}
 		else {
-			json_return(1001, '写入日志失败，提现不成功！');
+			json_return(1001, '写入日志失败，兑换不成功！');
 		}
 	}
 
-	if (empty($now_store['linkman']) || empty($now_store['tel'])) {
-		redirect('./drp_store.php?a=edit', 3, '请先善店铺信息再来提现！');
-	}
+//	if (empty($now_store['linkman']) || empty($now_store['tel'])) {
+//		redirect('./drp_store.php?a=edit', 3, '请先善店铺信息再来提现！');
+//	}
 
 	$wap_user = D('User')->where(array('uid' => $wap_user['uid'], 'status' => 1))->find();
 	if ($_SESSION['user'] != $wap_user)
@@ -363,7 +364,7 @@ else if ($_GET['a'] == 'withdrawal') { // 提现申请页面
 			$payType = 'weixin';
 			$payMethodList = M('Config')->get_pay_method();
 			if (empty($payMethodList[$payType])) {
-				json_return(1012, '您选择的支付方式不存在，请更新支付方式！');
+				json_return(1012, '提现方式无效，仅支持微信提现！');
 			}
 
 			import('source.class.pay.Weixin');
