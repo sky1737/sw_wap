@@ -602,4 +602,188 @@ class OrderAction extends BaseAction
 
 	}
 
+	//电子币收支明细
+	public function income()
+	{
+//		$uid = I('get.uid', 'intval');
+//		if(!$uid) {
+//			$this->error('传递参数有误!');
+//		}
+//		$where['uid'] = $uid;
+
+		$where = array();
+
+		$db = D('User_income');
+		$count_user = $db->where($where)->count();
+
+		import('@.ORG.system_page');
+		$p = new Page($count_user, 20);
+		$list = $db->field(true)
+			->where($where)
+			->order('`income_id` DESC')
+			->limit($p->firstRow . ',' . $p->listRows)
+			->select();
+
+		if(!empty($list)) {
+			$order_db = M('Order');
+			foreach ($list as &$item) {
+				if($item['order_no']) {
+					$item['order'] = $order_db->where(array('order_no' => $item['order_no']))->find();
+				}
+			}
+		}
+		$this->assign('list', $list);
+		$pager = $p->show();
+		$this->assign('pager', $pager);
+		$this->assign('types', array(
+			-3 => '提现',
+			-2 => '活动使用',
+			-1 => '购物使用',
+			1  => '购物立返',
+			2  => '一级分销返佣',
+			3  => '二级分销返佣',
+			4  => '一级代理利润',
+			5  => '二级代理利润',
+			6  => '物流费用',
+			7  => '推荐奖励',
+			8  => '活动奖励',
+			9  => '管理员充值',
+			10 => '退货返还',
+			11 => '成本结算',
+			12 => '积分兑换',
+			99 => '充值'
+		));
+
+		$this->display();
+	}
+
+	//红包开店收支明细
+	public function payfor_log()
+	{
+		$db_prefix = C('DB_PREFIX');
+		$act = $_GET['act'];
+
+		$condition = " 1=1 ";
+		$csvTitle = "全部";
+		if (!empty($_GET['type']) && !empty($_GET['keyword'])) {
+
+			$keyWord = $_GET['keyword'];
+
+			switch ($_GET['type']){
+				case 'order_no':
+					$csvTitle = '订单号';
+					$condition .= " AND  order_no=".$keyWord;
+					break;
+				case 'name':
+					$csvTitle = '用户名';
+					$condition .= " AND  nickname like'%".$keyWord."%'";
+					break;
+				case 'trade_no':
+					$csvTitle = '交易号';
+					$condition .= " AND  trade_no=".$keyWord;
+					break;
+				case 'third_id':
+					$csvTitle = '微信支付单号';
+					$condition .= " AND  third_id=".$keyWord;
+					break;
+			}
+		}
+
+		if ($this->_get('start_time', 'trim') && $this->_get('end_time', 'trim')) {
+			$condition .= " AND add_time >= '" . strtotime($this->_get('start_time', 'trim')) .
+				"' AND add_time <= '" . strtotime($this->_get('end_time')) . "'";
+		}
+		else if ($this->_get('start_time', 'trim')) {
+			$condition .= " AND  add_time >='". strtotime($this->_get('start_time', 'trim'))."'";
+		}
+		else if ($this->_get('end_time', 'trim')) {
+			$condition .= " AND  add_time <='". strtotime($this->_get('end_time', 'trim'))."'";
+		}
+
+		$sql = " SELECT order_no,trade_no,third_id,uid,pay_type,pay_money,add_time,1 as type,remarks FROM " .$db_prefix."payfor_order WHERE status=2 ";
+
+		$sql.= " union all ";
+
+		$sql.= " SELECT order_no, trade_no, trade_no as third_id,uid,'weixin' as pay_type,amount as pay_money,add_time,0 as type,'' as remarks FROM " .$db_prefix."payfor_redpack WHERE status=1";
+
+
+		$count_sql = "select count(*) as count from ( ".$sql." ) as A  left join  ".$db_prefix."user as B on A.uid=B.uid  where ".$condition;
+
+		$count =  M()->query($count_sql);
+
+		$count = $count[0]['count'];
+
+		import('@.ORG.system_page');
+
+		$p = new Page($count, 20);
+
+		if($act == 'export' ){
+			$p->listRows = '1000';
+		}
+		$list_sql = "select A.*,B.nickname from ( ".$sql." ) as A left join  ".$db_prefix."user as B on A.uid=B.uid WHERE  ". $condition ."  limit ".$p->listRows ." offset $p->firstRow";
+
+		$list =M()->query($list_sql);
+
+
+		if($act =='export'){
+			$expText = "筛选条件\n";
+			$expText .= $csvTitle.":".$keyWord.",下单时间：".$this->_get('start_time', 'trim').",".$this->_get('end_time', 'trim')."\n\n";
+			$expText .= "UID,用户名,时间,订单号,交易号,微信支付单号,类型,金额(元),积分(分),状态,备注\n";
+			foreach ($list as $l) {
+				$expTextArray = array();
+				$expTextArray[] = $l['uid'];
+				$expTextArray[] = $l['nickname'];
+				$expTextArray[] = date('Y-m-d H:i:s',$l['add_time']);
+				$expTextArray[] = $l['order_no'];
+				$expTextArray[] = $l['trade_no'];
+				$expTextArray[] = $l['third_id'];
+				$expTextArray[] = $l['type'] ? '开店' : '红包';
+				$expTextArray[] = ($l['type']  ? '+' : '-') . number_format(abs($l['pay_money']), 2, '.', '');
+				$expTextArray[] = ($l['type']  ? '+' : '-') .'0';
+				$expTextArray[] = '已支付';
+				$expTextArray[] = $l['remarks'];
+
+				foreach ($expTextArray as $t) {
+					$expText .= '"' . $t . '",';
+				}
+				$expText .= "\n";
+			}
+
+			$expText = mb_convert_encoding($expText, 'CP936', 'UTF8');
+
+			return $this->exportCsv('红包开店收支明细' . date('Y-m-d H:I') . '.csv', $expText); //导出
+
+		}
+
+		$pager = $p->show();
+		$this->assign('pager', $pager);
+
+		$this->assign('list', $list);
+
+		$this->display();
+
+	}
+
+
+	/**
+	 * 导出 excel
+	 *
+	 * @param $filename
+	 * @param $data
+	 *
+	 * @return bool
+	 */
+	private  function exportCsv($filename, $data)
+	{
+
+		header("Content-type:text/csv");
+		header("Content-Disposition:attachment; filename=" . $filename);
+		header('Cache-Control:must-revalidate, post-check=0, pre-check=0');
+		header('Expires:0');
+		header('Pragma:public');
+
+		echo $data;
+		exit;
+	}
+
 } 
