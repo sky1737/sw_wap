@@ -1,7 +1,7 @@
 <?php $select_nav = isset($select_nav) ? $select_nav : MODULE_NAME; ?>
 
 <div id="hd" class="wrap rel">
-	<div class="wrap_1000 clearfix"> 
+	<div class="wrap_1000 clearfix">
 		<nav class="ui-header-nav">
 			<ul class="clearfix">
 				<?php if ($config['pc_shopercenter_logo'] != '') { ?>
@@ -10,8 +10,12 @@
 				<?php } ?>
 				<li <?php if ($select_nav == 'account') echo 'class="active"'; ?>> <a href="<?php dourl('account:index'); ?>">账户</a> </li>
 				<?php if($user_session['stores']) { ?>
+
+				<?php if(!$store_session['agent']['is_editor']) { ?>
+
 				<li class="divide">|</li>
 				<li <?php if (in_array($select_nav, array('case', 'store', 'setting'))) echo 'class="active"'; ?>> <a href="<?php dourl('store:index'); ?>">店铺</a> </li>
+				<?php } ?>
 
 					<?php if($store_session['agent']['is_agent']) {?>
 						<li class="divide">|</li>
@@ -19,7 +23,7 @@
 				<?php } ?>
 				<?php if($store_session['agent']['is_editor']) {?>
 				<li class="divide">|</li>
-				<li <?php if ($select_nav == 'goods') echo 'class="active"'; ?>> <a href="<?php dourl('goods:index'); ?>">自营</a> </li>
+				<li <?php if ($select_nav == 'goods') echo 'class="active"'; ?>> <a href="<?php dourl('goods:index'); ?>">产品</a> </li>
 				<?php } ?>
 				<?php /*<li class="divide">|</li>
 				<li <?php if (in_array($select_nav, array('order', 'trade'))) echo 'class="active"'; ?> > <a href="<?php echo dourl('order:dashboard'); ?>">订单</a> </li>*/?>
@@ -34,7 +38,7 @@
 				}
 				/*<li class="divide">|</li>
 				<li> <a href="<?php echo dourl('index:account:yj'); ?>">佣金</a> </li>*/?>
-				
+
 				<!--li class="js-weibo-notify">
 					<a href="#">微博<sup class="notify-counter" style="visibility: hidden;"></sup></a>
 
@@ -53,7 +57,7 @@
 							<li><a href="<?php echo $config['bbs_url'];?>" target="_blank">交流社区</a></li>
 						<?php }*/
 				?>
-				
+
 				<li class="usertips"> <a href="javascript:void(0)" class="mycenter">用户设置</a>
 					<div class="downmenu1">
 						<ul class="userlinks">

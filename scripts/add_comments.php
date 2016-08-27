@@ -8,7 +8,7 @@ define('TPL_URL', '/template/supplier/default/');
 
 define('TWIKER_PATH', dirname(__FILE__) . '/../');
 define('GROUP_NAME', 'supplier');
-define('USE_FRAMEWORK', true);
+define('USE_FRAMEWORK', TRUE);
 require_once TWIKER_PATH . 'source/init.php';
 
 error_reporting(E_ALL); //开启所有错误
@@ -72,70 +72,70 @@ foreach ($products as $p)
     }
     else $incCommNum = $addComm; //直接指定
 
+    $sPre = -1;
 
     //----------评论增加
     $catgFilePath = "$baseDir/{$catgId}.txt"; //评论文案文件 (一行一个,纯文本)
-    if (file_exists($catgFilePath))
+    if (!file_exists($catgFilePath))
     {
-        //当前商品 评论已用过的 uid
-        $hasUseUids = array();
-
-        for ($i = 0; $i < $incCommNum; $i++)
-        {
-            if (mt_rand(0, 9) < 3) //30% 用 特定类别 评论
-            {
-                $catgFile         = file($catgFilePath);
-                $maxCatgCommIndex = count($catgFile) - 1;
-                $content          = $catgFile[ mt_rand(0, $maxCatgCommIndex) ]; //随机取 对应类别 评论
-            }
-            else $content = $commFile[ mt_rand(0, $maxCommIndex) ]; //70% 用 通用评论
-
-            do
-            {
-                //next while 初始化
-                if (isset($randUid)) empty($hasUseUids[ $randUid ]) ? ($hasUseUids[ $randUid ] = 1) : $hasUseUids[ $randUid ]++; //统计用户 在该商品 评论的出现次数
-
-                //随机取一个用户
-                //$randUser = D('User')->where("uid >= " . mt_rand(0, $maxUid))->field('uid')->select();
-                //$randUid  = $randUser['uid'];
-                $randUid = $allUid[ mt_rand(0, $maxUidIndex) ];
-                //var_dump($randUid);exit;
-
-                //如果该用户在本商品评论中 未出现过, 或 随机到的次数为 即将增加销量数的 30% (很可能没有其他可随机用户了)
-                if (!isset($hasUseUids[ $randUid ]) || ($hasUseUids[ $randUid ] > $incCommNum * 0.3))
-                {
-                    //增加评论
-                    $cid = D('Comment')->data(array(
-                        'dateline'    => time(),
-                        'order_id'    => 0,
-                        'relation_id' => $pid,
-                        'uid'         => $randUid,
-                        'store_id'    => $p['store_id'],
-                        'score'       => mt_rand(0, 99) > 10 ? mt_rand(4, 5) : 3, //满意占 80%
-                        'type'        => 'PRODUCT',
-                        'status'      => 1,
-                        'content'     => $content,
-                        'has_image'   => 0,
-                    ))->add();
-
-                    $hasUseUids[ $randUid ] = 1; //标记 已使用过
-
-                    break; //结束 while
-                }
-
-            } while (true); //则重新随机 另一个用户
-
-        }
-
-        echo "$pCount\t 商品ID：$pid\t 新增销量 $incSalesNum \t件，新增评论 $incCommNum \t条\r\n";
-
-    }
-    else
-    {
-        echo "$pCount\t 商品ID：$pid\t 新增销量 $incSalesNum \t件，【未找到{$catgId}类别评论文案】\r\n";
-
+        echo "$pCount\t 商品ID：$pid\t 新增销量 $incSalesNum \t件，【未找到{$catgId}类别评论文案，使用通用评论】\r\n";
         empty($notFoundCountMap[ $catgId ]) ? ($notFoundCountMap[ $catgId ] = 1) : $notFoundCountMap[ $catgId ]++;//统计 未找到的分类
     }
+    else $sPre = 3;//30% 用 特定类别 评论
+
+    //当前商品 评论已用过的 uid
+    $hasUseUids = array();
+    for ($i = 0; $i < $incCommNum; $i++)
+    {
+        if (mt_rand(0, 9) < $sPre)
+        {
+            $catgFile         = file($catgFilePath);
+            $maxCatgCommIndex = count($catgFile) - 1;
+            $content          = $catgFile[ mt_rand(0, $maxCatgCommIndex) ]; //随机取 对应类别 评论
+        }
+        else $content = $commFile[ mt_rand(0, $maxCommIndex) ]; //70% 用 通用评论
+
+        //var_dump($content);exit;
+        do
+        {
+            //next while 初始化
+            if (isset($randUid)) empty($hasUseUids[ $randUid ]) ? ($hasUseUids[ $randUid ] = 1) : $hasUseUids[ $randUid ]++; //统计用户 在该商品 评论的出现次数
+
+            //随机取一个用户
+            //$randUser = D('User')->where("uid >= " . mt_rand(0, $maxUid))->field('uid')->select();
+            //$randUid  = $randUser['uid'];
+            $randUid = $allUid[ mt_rand(0, $maxUidIndex) ];
+            //var_dump($randUid);exit;
+
+            //如果该用户在本商品评论中 未出现过, 或 随机到的次数为 即将增加销量数的 30% (很可能没有其他可随机用户了)
+            if (!isset($hasUseUids[ $randUid ]) || ($hasUseUids[ $randUid ] > $incCommNum * 0.3))
+            {
+                //增加评论
+                $cid = D('Comment')->data(array(
+                    'dateline'    => time() + mt_rand(-2592000 * 2, 0),
+                    'order_id'    => 0,
+                    'relation_id' => $pid,
+                    'uid'         => $randUid,
+                    'store_id'    => $p['store_id'],
+                    'score'       => mt_rand(0, 99) > 10 ? mt_rand(4, 5) : 3, //满意占 80%
+                    'type'        => 'PRODUCT',
+                    'status'      => 1,
+                    'content'     => $content,
+                    'has_image'   => 0,
+                ))->add();
+
+                $hasUseUids[ $randUid ] = 1; //标记 已使用过
+
+                break; //结束 while
+            }
+
+        } while (TRUE); //则重新随机 另一个用户
+
+    }
+
+    echo "$pCount\t 商品ID：$pid\t 新增销量 $incSalesNum \t件，新增评论 $incCommNum \t条\r\n";
+
+
 }
 
 echo "\r\n未在comments文件夹文案中 找到 catgId 的评论列表 统计：Cid => Count \r\n";

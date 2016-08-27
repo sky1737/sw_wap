@@ -49,7 +49,7 @@
 	<?php if ($rate > 0) { ?>
 	<div class="tip-text">最低兑换积分数量为<b id="ExchangeRate"><?php echo $rate; ?></b>分</div>
 	<?php } ?>
-	<a href="javascript:void(0)" onclick="btnSave()" class="button [radius round] red">立即提取</a>
+	<a href="javascript:void(0)" onclick="btnSave()" class="button [radius round] red">立即兑换</a>
 </div>
 <script type="text/javascript">
 function btnSave() {

@@ -59,7 +59,7 @@ function get_pinlun_list($product_id)
 	if ($count > 0) {
 		$page = min($page, ceil($count / $limit));
 		$offset = ($page - 1) * $limit;
-		$comment_list = $comment_model->getList($where, 'id desc', $limit, $offset, true);
+		$comment_list = $comment_model->getList($where, 'dateline desc', $limit, $offset, true);
 	}
 
 	$user_list = array();

@@ -200,6 +200,16 @@ $(function () {
 		$('.js-fields-region').click(function () {
 			$('.js-goods-sidebar-sub-title').hide();
 		});
+
+		//如果  没有 sku 则 开放 编辑
+		var sku_dom_count = 0;
+		$.each($('.js-sku-atom-container'), function (i, item) {
+			if ($(item).find('.sku-atom').size() > 0) sku_dom_count++;
+		});
+		var readonly = sku_dom_count != 0;
+		$('input[name="total_stock"]').prop('readonly', readonly);
+		$('input[name="price"]').prop('readonly', readonly);
+		$('input[name="weight"]').prop('readonly', readonly);
 	});
 
 	var defaultHtmlObj = function () {
@@ -284,8 +294,8 @@ $(function () {
 			});
 			$(this).addClass('current').siblings().removeClass('current');
 
-			cat_id = $(this).attr('data-id');
-			cat_name = $(this).attr('data-name');
+			//cat_id = $(this).attr('data-id');
+			//cat_name = $(this).attr('data-name');
 		}
 	});
 	$('.widget-goods-klass-children li').live('click', function () {
@@ -781,6 +791,15 @@ $(function () {
 //            $('.cost').focus();
 //            return false;
 		}
+
+		//商品售价折扣验证
+		if ($("input[name='discountpre']").val() == '' || isNaN($("input[name='discountpre']").val()) || $("input[name='discountpre']").val() < 0) {
+			$("input[name='discountpre']").val('10');
+//            layer_tips(1, '商品折扣价不正确');
+//            $('.cost').val('');
+//            $('.cost').focus();
+//            return false;
+		}
 //        if (isNaN($("input[name='cost']").val()) || $("input[name='cost']").val() < 0) {
 //            layer_tips(1, '商品成本价只能填写大于0的数字');
 //            $('.cost').val('');
@@ -968,6 +987,7 @@ $(function () {
 		var price = $("input[name='price']").val();
 		var market_price = $("input[name='market']").val();
 		var cost_price = $("input[name='cost']").val();
+		var discountpre = $("input[name='discountpre']").val();
 		var images = [];
 		$('.app-image-list > .sort > a > img').each(function (i) {
 			images[i] = $(this).attr('src');
@@ -1042,6 +1062,7 @@ $(function () {
 			'price': price,
 			'market_price': market_price,
 			'cost_price': cost_price,
+			'discountpre': discountpre,
 			'images': images,
 			'postage_type': postage_type,
 			'postage': postage,

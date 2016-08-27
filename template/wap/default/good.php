@@ -179,11 +179,35 @@ echo ' responsive-800';
 					<div class="original-price"> 价格:￥<?php echo ($maxPrice != 0 && $minPrice != $maxPrice) ? $minPrice . ' - ' . $maxPrice : $minPrice; ?></div>
 					<?php }
 					else { ?>
-					<div class="current-price"> <span>￥&nbsp;</span><i class="js-goods-price price"><?php
-					echo ($maxPrice != 0 && $minPrice != $maxPrice) ? $minPrice . '-' . $maxPrice : $minPrice; ?></i> </div>
-					<?php if ($nowProduct['market_price'] != 0.00) { ?>
-					<div class="original-price">原价:￥<?php echo $nowProduct['market_price']; ?></div>
+					<div class="current-price">
+						<span>￥</span>
+						<i class="js-goods-price price">
+							<?php
+							$discount = $nowProduct['discount'];
+
+							if(($maxPrice != 0 && $minPrice != $maxPrice)){
+								if($discount<10){
+									echo $minPrice*$discount/10 . '-' . $maxPrice*$discount/10;
+								}else echo $minPrice . '-' . $maxPrice;
+
+							}else{
+								echo $discount<10 ? $minPrice*$discount/10 : $minPrice;
+							}
+							?>
+						</i>
+					</div>
+					<?php if ($nowProduct['market_price'] != 0.00) {
+
+							if($discount<10){
+								?>
+								<div class="original-price">原售价:￥<?php echo ($maxPrice != 0 && $minPrice != $maxPrice) ? $minPrice . '-' . $maxPrice : $minPrice; ?></div>
+								<?php
+							}
+
+						?>
+					<div class="original-price">市场价:￥<?php echo $nowProduct['market_price']; ?></div>
 					<?php
+
 						}
 					}
 					?>

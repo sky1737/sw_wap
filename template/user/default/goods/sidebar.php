@@ -17,5 +17,12 @@
 			<li <?php if($select_sidebar == 'product_comment') echo 'class="active"';?>> <a href="<?php dourl('product_comment');?>">商品评价</a> </li>
 			<li <?php if($select_sidebar == 'store_comment') echo 'class="active"';?>> <a href="<?php dourl('store_comment'); ?>">店铺评价</a> </li>
 		</ul>
+
+		<?php if($store_session['agent']['is_editor']) {?>
+		<h4>订单查看</h4>
+		<ul>
+			<li <?php if($select_sidebar == 'view_supplier_order') echo 'class="active"';?>> <a href="<?php dourl('view_supplier_order');?>">所有订单</a> </li>
+		</ul>
+		<?php } ?>
 	</nav>
 </aside>

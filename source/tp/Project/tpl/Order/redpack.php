@@ -71,6 +71,9 @@
 							<td class="textcenter red" colspan="10">列表为空！</td>
 						</tr>
 					</if>
+					<tr>
+						<td colspan="10"><input type="text" value="http://www.yun-ws.com/wap/drp_register.php?type=redpack&order_no=" style="width:80%;padding:10px;" /></td>
+					</tr>
 				</tbody>
 			</table>
 		</div>

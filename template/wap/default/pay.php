@@ -187,7 +187,7 @@ if(!defined('TWIKER_PATH'))
 									<div class="js-order-address express-panel">
 										<?php
 										if($now_store['open_logistics'] || $is_all_supplierproduct) { ?>
-											<div class="js-edit-address address-tip"><span>添加收货地址</span></div>
+											<div class="js-add-address address-tip"><span>添加收货地址</span></div>
 											<?php
 										}
 										else if($is_all_selfproduct && $now_store['buyer_selffetch'] &&

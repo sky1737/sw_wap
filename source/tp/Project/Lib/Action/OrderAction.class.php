@@ -352,14 +352,26 @@ class OrderAction extends BaseAction
 		//订单包裹
 		$where = array();
 		$where['user_order_id'] = $user_order_id;
-		$tmp_packages = $package->getPackages($where);
+        $packages = $package->getPackages($where);
+        /*
 		$packages = array();
 		foreach ($tmp_packages as $package) {
 			$package_products = explode(',', $package['products']);
+            var_dump($tmp_packages,$package_products);exit;
 			if (array_intersect($package_products, $tmp_packages)) {
 				$packages[] = $package;
 			}
 		}
+        var_dump($packages);exit;
+        */
+
+        /**
+         * @var $express mysql
+         */
+        $express = M('Express');
+        //快递公司
+        $express = $express->field('code,name')->select();
+
 		//$this->assign('is_fans', $is_fans);
 		$this->assign('order', $order);
 		$this->assign('products', $products);
@@ -368,8 +380,33 @@ class OrderAction extends BaseAction
 		$this->assign('status', $status);
 		$this->assign('payment_method', $payment_method);
 		$this->assign('packages', $packages);
+		$this->assign('express', $express);
 		$this->display();
 	}
+
+
+    public function changeexpressno()
+    {
+        $package = M('OrderPackage');
+        if (IS_POST) {
+            $package_id = $this->_post('package_id', 'trim,intval');
+            $no = $this->_post('no', 'trim');
+            $package->where(array('package_id' => $package_id))->save(array('express_no' => $no));
+            //print_r($package->getLastSql());
+        }
+    }
+
+    public function changeexpresscom()
+    {
+        $package = M('OrderPackage');
+        if (IS_POST) {
+            $package_id = $this->_post('package_id', 'trim,intval');
+            $name = $this->_post('name', 'trim');
+            $code = $this->_post('code', 'trim');
+            $package->where(array('package_id' => $package_id))->save(array('express_company' => $name,'express_code' => $code));
+            //print_r($package->getLastSql());
+        }
+    }
 
 	public function check()
 	{

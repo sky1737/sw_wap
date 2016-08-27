@@ -22,9 +22,12 @@ require_once dirname(__FILE__) . '/global.php';
 //		pigcms_tips('抱歉，您没有权限访问', 'none');
 //	}
 //}
+if ($_GET['refresh'] == "1") {
+    $_SESSION['user'] = $wap_user = D('User')->where(array('uid' => $wap_user['uid'], 'status' => 1))->find();
+}
 
 if (!IS_POST && $wap_user['stores'] == 0 && !strpos($_SERVER['REQUEST_URI'], 'drp_register.php'))
-	redirect('./drp_register.php');
+    redirect('./drp_register.php');
 
 //$flag = true;
 //$tmp_store = D('Store')->field('uid,open_drp_limit,drp_limit_buy,drp_limit_share,drp_limit_condition')

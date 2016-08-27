@@ -157,7 +157,23 @@ $(function () {
 					if (__alldiv[area][0] != '市辖区' && __alldiv[area][0] != '县') {
 						area_text = __alldiv[area][0];
 					}
-					$('.js-logistics-content').html('<div><div class="block block-form block-border-top-none block-border-bottom-none"><div class="js-order-address express-panel" style="padding-left:0;"><div class="opt-wrapper"><a href="javascript:;" class="btn btn-xxsmall btn-grayeee butn-edit-address js-edit-address">修改</a></div><ul><li><span>' + data.name + '</span>, ' + data.tel + '</li><li>' + __alldiv[province][0] + ' ' + __alldiv[city][0] + ' ' + area_text + ' </li><li>' + data.address + '</li></ul></div></div><div class="js-logistics-tips logistics-tips font-size-12 c-orange hide">很抱歉，该地区暂不支持配送。</div></div>');
+
+					var orghtml = '<div><div class="block block-form block-border-top-none block-border-bottom-none"><div class="js-order-address express-panel" style="padding-left:0;"><div class="opt-wrapper"><a href="javascript:;" class="btn btn-xxsmall btn-grayeee butn-edit-address js-edit-address">修改</a></div><ul><li><span>' + data.name + '</span>, ' + data.tel + '</li><li>' + __alldiv[province][0] + ' ' + __alldiv[city][0] + ' ' + area_text + ' </li><li>' + data.address + '</li></ul></div></div><div class="js-logistics-tips logistics-tips font-size-12 c-orange hide">很抱歉，该地区暂不支持配送。</div></div>'
+
+					var html = '<div><div class="block block-form block-border-top-none block-border-bottom-none">'+
+					'<div class="js-order-address-item express-panel" style="padding-left:0;">'+
+					'<div class="opt-wrapper"><a href="javascript:;" class="btn btn-xxsmall btn-grayeee butn-edit-address js-edit-address">修改</a></div>'+
+					'<ul>'+
+					'<li>'+
+					'<input type="radio" name="address_id" id="address_id" value="' + data.address_id + '" checked="">'+
+					'<span>' + data.name + '</span>, ' + data.tel + '</li>'+
+					'<li>' + __alldiv[province][0] + ' ' + __alldiv[city][0] + ' ' + area_text + '</li>'+
+					'<li>' + data.address + '</li>'+
+					'</ul>'+
+					'</div>'+
+					'</div></div>';
+
+					$('.js-logistics-content').html(html);
 					$('#address_id').val(data.address_id);
 					addAdressDom.removeClass('active').remove();
 					getPostage();
@@ -167,7 +183,7 @@ $(function () {
 		});
 		if (callbackObj) callbackObj();
 	}
-	$('.js-order-address > .js-edit-address').live('click', function () {
+	$('.js-add-address').on('click', function () {
 		editAdress();
 	});
 
@@ -750,7 +766,8 @@ $(function () {
 //		catch (e) {
 //		}
 
-		var loadingCon = $('<div style="overflow:hidden;visibility:visible;position:absolute;z-index:1100;transition:opacity 300ms ease;-webkit-transition:opacity 300ms ease;opacity:1;top:' + (($(window).height() - 100) / 2) + 'px;left:' + (($(window).width() - 200) / 2) + 'px;"><div class="loader-container"><div class="loader center">处理中</div></div></div>');
+		//var loadingCon = $('<div style="overflow:hidden;visibility:visible;position:absolute;z-index:1100;transition:opacity 300ms ease;-webkit-transition:opacity 300ms ease;opacity:1;top:' + (($(window).height() - 100) / 2) + 'px;left:' + (($(window).width() - 200) / 2) + 'px;"><div class="loader-container"><div class="loader center">处理中</div></div></div>');
+		var loadingCon = $('<div style="overflow:hidden;visibility:visible;position:absolute;z-index:1100;transition:opacity 300ms ease;-webkit-transition:opacity 300ms ease;opacity:1;top:' + (($(window).height() - 100) / 2) + 'px;left:' + (($(window).width() - 200) / 2) + 'px;"><div class="loader-container" style="width: 200px;background: #fff;padding: 50px 10px;text-align: center;"><div class="loader center">处理中，请稍候...</div></div></div>');
 		var loadingBg = $('<div style="height:100%;position:fixed;top:0px;left:0px;right:0px;z-index:1000;opacity:1;transition:opacity 0.2s ease;-webkit-transition:opacity 0.2s ease;background-color:rgba(0,0,0,0.901961);"></div>');
 		$('html').css({'position': 'relative', 'overflow': 'hidden', 'height': $(window).height() + 'px'});
 		$('body').css({
@@ -773,7 +790,7 @@ $(function () {
 		//}
 		$.post(pay_url, post_data, function (result) {
 			payShowAfter();
-			loadingBg.css('opacity', 0);
+			//loadingBg.css('opacity', 0);
 			setTimeout(function () {
 				loadingCon.remove();
 				loadingBg.remove();

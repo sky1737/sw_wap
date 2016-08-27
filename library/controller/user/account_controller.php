@@ -8,155 +8,156 @@
  */
 class account_controller extends base_controller
 {
-	public function __construct()
-	{
-		parent::__construct();
+    public function __construct()
+    {
+        parent::__construct();
 //		$user = M('User')->getUserById($this->user_session['uid']);
 //		$user['last_ip'] = long2ip($user['last_ip']);
 //		$this->assign('user', $user);
-	}
+    }
 
-	public function ajax_rand_product()
-	{
-		$where1 = "p.status = 1 and p.is_fx = 1";
-		$order_by_field1 = "ROUND( ( 0.5 - RAND( ) ) *2 *5 ) ";
-		$order_by_method1 = "";
+    public function ajax_rand_product()
+    {
+        $where1 = "p.status = 1 and p.is_fx = 1";
+        $order_by_field1 = "ROUND( ( 0.5 - RAND( ) ) *2 *5 ) ";
+        $order_by_method1 = "";
 
-		$product = M('Product')->getSellingAndDistance($where1, $order_by_field1, $order_by_method1, 0, 12);
+        $product = M('Product')->getSellingAndDistance($where1, $order_by_field1, $order_by_method1, 0, 12);
 
-		echo json_encode($product);
-		exit;
-	}
+        echo json_encode($product);
+        exit;
+    }
 
-	public function index()
-	{
-		$this->display();
-	}
+    public function index()
+    {
+        $this->display();
+    }
 
-	public function info()
-	{
-		if(IS_POST) {
-			$data['nickname'] = I('post.name');
-			$data['phone'] = I('post.phone');
-			if(I('post.avatar')) {
-				$data['avatar'] = getAttachmentUrl(I('post.avatar'));
-			}
+    public function info()
+    {
+        if (IS_POST) {
+            $data['nickname'] = I('post.name');
+            $data['phone'] = I('post.phone');
+            if (I('post.avatar')) {
+                $data['avatar'] = getAttachmentUrl(I('post.avatar'));
+            }
 
-			$data['intro'] = I('post.intro');
-			if(empty($data['nickname'])) {
-				json_return(1, '请填写昵称');
-			}
-			if(!preg_match('/^1[34578]{1}\d{9}$/', $data['phone'])) {
-				json_return(1, '手机号码不正确！');
-			}
+            $data['intro'] = I('post.intro');
+            if (empty($data['nickname'])) {
+                json_return(1, '请填写昵称');
+            }
+            if (!preg_match('/^1[34578]{1}\d{9}$/', $data['phone'])) {
+                json_return(1, '手机号码不正确！');
+            }
 
-			$result = M('User')->save_user(array('uid' => $this->user_session['uid']), $data);
+            $result = M('User')->save_user(array('uid' => $this->user_session['uid']), $data);
 
-			// 更新session数据
-			$_SESSION['user']['nickname'] = $data['nickname'];
-			$_SESSION['user']['phone'] = $data['phone'];
-			$_SESSION['user']['intro'] = $data['intro'];
-			if(!empty($data['avatar'])) {
-				$_SESSION['user']['avatar'] = $data['avatar'];
-			}
-			json_return(0, '保存成功！');
-		}
-		$this->display();
-	}
+            // 更新session数据
+            $_SESSION['user']['nickname'] = $data['nickname'];
+            $_SESSION['user']['phone'] = $data['phone'];
+            $_SESSION['user']['intro'] = $data['intro'];
+            if (!empty($data['avatar'])) {
+                $_SESSION['user']['avatar'] = $data['avatar'];
+            }
+            json_return(0, '保存成功！');
+        }
+        $this->display();
+    }
 
-	public function _info_content()
-	{
+    public function _info_content()
+    {
 
-	}
+    }
 
-	public function _index_content()
-	{
-		$where = array();
-		$where['uid'] = $this->user_session['uid'];
-		$where['status'] = array('>', 0);
+    public function _index_content()
+    {
+        $where = array();
+        $where['uid'] = $this->user_session['uid'];
+        $where['status'] = array('>', 0);
 
-		$this->assign('total',
-			M('Order')->getOrderTotal(array('uid' => $this->user_session['uid'], 'status' => array('>', 0))));
-	}
+        $this->assign('banner', M('Adver')->get_adver_by_key('user_home', 0));
+        $this->assign('total',
+            M('Order')->getOrderTotal(array('uid' => $this->user_session['uid'], 'status' => array('>', 0))));
+    }
 
-	public function check()
-	{
-		$key = I('post.key');
-		$value = I('post.value');
-		if(empty($name)) return false;
+    public function check()
+    {
+        $key = I('post.key');
+        $value = I('post.value');
+        if (empty($name)) return false;
 
-		$unique = M('User')->getUnique($key, $value);
-		exit($unique);
-	}
+        $unique = M('User')->getUnique($key, $value);
+        exit($unique);
+    }
 
-	public function load()
-	{
-		$action = strtolower(trim($_POST['page']));
-		if(empty($action)) pigcms_tips('非法访问！', 'none');
-		switch ($action) {
-			case 'income_content':
-				$this->_income_content();
-				break;
-			case 'income_withdraw_content':
-				$this->_income_withdraw_content();
-				break;
-			case 'income_trade_content':
-				$this->_income_trade_content();
-				break;
-			case 'income_details_content':
-				$this->_income_details_content();
-				break;
-			case 'income_setting_content':
-				$this->_income_setting_content();
-				break;
-			case 'income_edit_content':
-				$this->_income_edit_content();
-				break;
-			case 'income_apply_content':
-				$this->_income_apply_content();
-				break;
+    public function load()
+    {
+        $action = strtolower(trim($_POST['page']));
+        if (empty($action)) pigcms_tips('非法访问！', 'none');
+        switch ($action) {
+            case 'income_content':
+                $this->_income_content();
+                break;
+            case 'income_withdraw_content':
+                $this->_income_withdraw_content();
+                break;
+            case 'income_trade_content':
+                $this->_income_trade_content();
+                break;
+            case 'income_details_content':
+                $this->_income_details_content();
+                break;
+            case 'income_setting_content':
+                $this->_income_setting_content();
+                break;
+            case 'income_edit_content':
+                $this->_income_edit_content();
+                break;
+            case 'income_apply_content':
+                $this->_income_apply_content();
+                break;
 
-			case 'coupon_content':
-				$this->_coupon_content();
-				break;
-			case 'order_content':
-				$this->_order_content();
-				break;
-			case 'detail_content':
-				$this->_detail_content();
-				break;
-			case 'collect_store_content':
-				$this->_collect_store_content();
-				break;
-			case 'collect_goods_content':
-				$this->_collect_goods_content();
-				break;
-			case 'attention_store_content':
-				$this->_attention_store_content();
+            case 'coupon_content':
+                $this->_coupon_content();
+                break;
+            case 'order_content':
+                $this->_order_content();
+                break;
+            case 'detail_content':
+                $this->_detail_content();
+                break;
+            case 'collect_store_content':
+                $this->_collect_store_content();
+                break;
+            case 'collect_goods_content':
+                $this->_collect_goods_content();
+                break;
+            case 'attention_store_content':
+                $this->_attention_store_content();
 
-			case 'address_content':
-				$this->_address_content();
-				break;
-			case 'info_content':
-				$this->_info_content();
-				break;
-			case 'index_content':
-				$this->_index_content();
-				break;
+            case 'address_content':
+                $this->_address_content();
+                break;
+            case 'info_content':
+                $this->_info_content();
+                break;
+            case 'index_content':
+                $this->_index_content();
+                break;
 //			case 'personal_content':
 //				$this->_personal_content();
 //				break;
 //			case 'company_content':
 //				$this->_company_content();
 //				break;
-			case 'password_content':
-				$this->_password_content();
-				break;
-			default:
-				break;
-		}
-		$this->display($action);
-	}
+            case 'password_content':
+                $this->_password_content();
+                break;
+            default:
+                break;
+        }
+        $this->display($action);
+    }
 
 //	public function income()
 //	{
@@ -194,38 +195,38 @@ class account_controller extends base_controller
 //		$this->assign('pages', $page->show());
 //	}
 
-	/**
-	 * 收入提现
-	 */
-	public function income()
-	{
-		$this->display();
-	}
+    /**
+     * 收入提现
+     */
+    public function income()
+    {
+        $this->display();
+    }
 
-	private function _income_content()
-	{
-		$store = M('Store');
-		//$financial_record = M('Financial_record');
-		$income_db = M('User_income');
+    private function _income_content()
+    {
+        $store = M('Store');
+        //$financial_record = M('Financial_record');
+        $income_db = M('User_income');
 
-		//七天收入
-		$start_day = date("Y-m-d", strtotime('-7 day'));
-		$end_day = date('Y-m-d', strtotime('-1 day'));
-		$start_time = strtotime($start_day . ' 00:00:00');
-		$end_time = strtotime($end_day . ' 23:59:59');
-		$where = array();
-		//$where['store_id'] = $this->store_session['store_id'];
-		$where['uid'] = $this->store_session['uid'];
-		//$where['type'] = array('in', array(1, 5));
-		$where['_string'] = " add_time >= '" . $start_time . "' AND add_time <= '" . $end_time . "'";
-		$day_7_income = $income_db->sumProfit($where);
-		$day_7_point = $income_db->sumPoint($where);
+        //七天收入
+        $start_day = date("Y-m-d", strtotime('-7 day'));
+        $end_day = date('Y-m-d', strtotime('-1 day'));
+        $start_time = strtotime($start_day . ' 00:00:00');
+        $end_time = strtotime($end_day . ' 23:59:59');
+        $where = array();
+        //$where['store_id'] = $this->store_session['store_id'];
+        $where['uid'] = $this->store_session['uid'];
+        //$where['type'] = array('in', array(1, 5));
+        $where['_string'] = " add_time >= '" . $start_time . "' AND add_time <= '" . $end_time . "'";
+        $day_7_income = $income_db->sumProfit($where);
+        $day_7_point = $income_db->sumPoint($where);
 
-		$user_card = D('User_card')->where(array('uid' => $this->user_session['uid']))->find();
-		if($user_card) {
-			$user_card['bank'] = M('Bank')->getBank($user_card['bank_id']);
-		}
-		$this->assign('card', $user_card);
+        $user_card = D('User_card')->where(array('uid' => $this->user_session['uid']))->find();
+        if ($user_card) {
+            $user_card['bank'] = M('Bank')->getBank($user_card['bank_id']);
+        }
+        $this->assign('card', $user_card);
 //		if(!empty($store['bank_id']) && !empty($store['bank_card'])) {
 //			$this->assign('bind_bank_card', true);
 //		}
@@ -233,41 +234,39 @@ class account_controller extends base_controller
 //			$this->assign('bind_bank_card', false);
 //		}
 
-		$this->assign('day_7_income', number_format($day_7_income, 2, '.', ''));
-		$this->assign('day_7_point', $day_7_point);
-	}
+        $this->assign('day_7_income', number_format($day_7_income, 2, '.', ''));
+        $this->assign('day_7_point', $day_7_point);
+    }
 
-	// 提现记录
-	private function _income_withdraw_content()
-	{
-		$cash_db = M('User_cash');
+    // 提现记录
+    private function _income_withdraw_content()
+    {
+        $cash_db = M('User_cash');
 
-		$where = array();
-		$where['c.uid'] = $this->user_session['uid'];
-		if(!empty($_POST['status'])) {
-			$where['sw.status'] = $_POST['status'];
-		}
-		if(!empty($_POST['start_time']) && !empty($_POST['stop_time'])) {
-			$where['_string'] = "c.add_time >= '" . strtotime(trim($_POST['start_time'])) . "' AND c.add_time <= '" .
-				strtotime(trim($_POST['stop_time'])) . "'";
-		}
-		else if(!empty($_POST['start_time'])) {
-			$where['_string'] = "c.add_time >= '" . strtotime(trim($_POST['start_time'])) . "'";
-		}
-		else if(!empty($_POST['stop_time'])) {
-			$where['_string'] = "c.add_time <= '" . strtotime(trim($_POST['stop_time'])) . "'";
-		}
-		$withdrawal_count = $cash_db->getCount($where);
-		import('source.class.user_page');
-		$page = new Page($withdrawal_count, 20);
-		$withdrawals = $cash_db->getRecords($where, $page->firstRow, $page->listRows);
+        $where = array();
+        $where['c.uid'] = $this->user_session['uid'];
+        if (!empty($_POST['status'])) {
+            $where['sw.status'] = $_POST['status'];
+        }
+        if (!empty($_POST['start_time']) && !empty($_POST['stop_time'])) {
+            $where['_string'] = "c.add_time >= '" . strtotime(trim($_POST['start_time'])) . "' AND c.add_time <= '" .
+                strtotime(trim($_POST['stop_time'])) . "'";
+        } else if (!empty($_POST['start_time'])) {
+            $where['_string'] = "c.add_time >= '" . strtotime(trim($_POST['start_time'])) . "'";
+        } else if (!empty($_POST['stop_time'])) {
+            $where['_string'] = "c.add_time <= '" . strtotime(trim($_POST['stop_time'])) . "'";
+        }
+        $withdrawal_count = $cash_db->getCount($where);
+        import('source.class.user_page');
+        $page = new Page($withdrawal_count, 20);
+        $withdrawals = $cash_db->getRecords($where, $page->firstRow, $page->listRows);
 
-		$status = $cash_db->getStatus();
+        $status = $cash_db->getStatus();
 
-		$this->assign('withdrawals', $withdrawals);
-		$this->assign('page', $page->show());
-		$this->assign('status', $status);
-	}
+        $this->assign('withdrawals', $withdrawals);
+        $this->assign('page', $page->show());
+        $this->assign('status', $status);
+    }
 
 //	//交易记录
 //	private function _income_trade_content()
@@ -321,85 +320,85 @@ class account_controller extends base_controller
 //		$this->assign('status_text', $status_text);
 //	}
 
-	// 添加银行卡信息
-	public function settingwithdrawal()
-	{
-		if(IS_POST) {
-			$card_id = isset($_POST['card_id']) ? intval(trim($_POST['card_id'])) : 0;
-			$bank_id = isset($_POST['bank_id']) ? intval(trim($_POST['bank_id'])) : 0;
-			$bank_name = isset($_POST['bank_name']) ? trim($_POST['bank_name']) : '';
-			$card_no = isset($_POST['card_no']) ? trim($_POST['card_no']) : '';
-			$card_user = isset($_POST['card_user']) ? trim($_POST['card_user']) : '';
-			if(!$bank_id) {
-				json_return(1, '请选择发卡银行！');
-			}
-			if(empty($bank_name)) {
-				json_return(1, '请填写开户行！');
-			}
-			if(!preg_match("/^\d{12,20}$/", $card_no)) {
-				json_return(1, '请填写银行卡号！');
-			}
-			if(!$card_user) {
-				json_encode('请填写持卡人！');
-			}
+    // 添加银行卡信息
+    public function settingwithdrawal()
+    {
+        if (IS_POST) {
+            $card_id = isset($_POST['card_id']) ? intval(trim($_POST['card_id'])) : 0;
+            $bank_id = isset($_POST['bank_id']) ? intval(trim($_POST['bank_id'])) : 0;
+            $bank_name = isset($_POST['bank_name']) ? trim($_POST['bank_name']) : '';
+            $card_no = isset($_POST['card_no']) ? trim($_POST['card_no']) : '';
+            $card_user = isset($_POST['card_user']) ? trim($_POST['card_user']) : '';
+            if (!$bank_id) {
+                json_return(1, '请选择发卡银行！');
+            }
+            if (empty($bank_name)) {
+                json_return(1, '请填写开户行！');
+            }
+            if (!preg_match("/^\d{12,20}$/", $card_no)) {
+                json_return(1, '请填写银行卡号！');
+            }
+            if (!$card_user) {
+                json_encode('请填写持卡人！');
+            }
 
-			$db = M('User_card');
-			if(!$card_id) {
-				$card = $db->getCard($this->user_session['uid']);
-				if(empty($card)) {
-					$db->add(array('uid'       => $this->user_session['uid'],
-					               'bank_id'   => $bank_id,
-					               'bank_name' => $bank_name,
-					               'card_no'   => $card_no,
-					               'card_user' => $card_user,
-					               'add_time'  => time()));
-					json_return(0, '添加银行卡成功！');
-				}
-				$card_id = $card['card_id'];
-			}
+            $db = M('User_card');
+            if (!$card_id) {
+                $card = $db->getCard($this->user_session['uid']);
+                if (empty($card)) {
+                    $db->add(array('uid' => $this->user_session['uid'],
+                        'bank_id' => $bank_id,
+                        'bank_name' => $bank_name,
+                        'card_no' => $card_no,
+                        'card_user' => $card_user,
+                        'add_time' => time()));
+                    json_return(0, '添加银行卡成功！');
+                }
+                $card_id = $card['card_id'];
+            }
 
-			$db->save(
-				array('uid'     => $this->user_session['uid'],
-				      'card_id' => $card_id),
-				array('bank_id'   => $bank_id,
-				      'bank_name' => $bank_name,
-				      'card_no'   => $card_no,
-				      'card_user' => card_user)
-			);
-			json_return(0, '保存成功！');
-		}
-	}
+            $db->save(
+                array('uid' => $this->user_session['uid'],
+                    'card_id' => $card_id),
+                array('bank_id' => $bank_id,
+                    'bank_name' => $bank_name,
+                    'card_no' => $card_no,
+                    'card_user' => card_user)
+            );
+            json_return(0, '保存成功！');
+        }
+    }
 
-	// 收支明细
-	private function _income_details_content()
-	{
-		$income_db = M('User_income');
-		$order_db = D('Order');
+    // 收支明细
+    private function _income_details_content()
+    {
+        $income_db = M('User_income');
+        $order_db = D('Order');
 
-		$where = array();
-		$where['uid'] = $this->user_session['uid'];
-		$where['status'] = 1;
+        $where = array();
+        $where['uid'] = $this->user_session['uid'];
+        $where['status'] = 1;
 
-		$total = $income_db->getTotal($where);
-		import('source.class.user_page');
-		$page = new Page($total, 15);
-		$list = $income_db->getRecords($where, '`income_id` DESC', $page->firstRow, $page->listRows);
+        $total = $income_db->getTotal($where);
+        import('source.class.user_page');
+        $page = new Page($total, 15);
+        $list = $income_db->getRecords($where, '`income_id` DESC', $page->firstRow, $page->listRows);
 
-		$incomes = array();
-		foreach ($list as $tmp_order) {
-			if($tmp_order['order_no']) {
-				$order = $order_db->where(array('order_no' => $tmp_order['order_no']))->find();
-				$tmp_order['order'] = $order;
-			}
-			$incomes[] = $tmp_order;
-		}
+        $incomes = array();
+        foreach ($list as $tmp_order) {
+            if ($tmp_order['order_no']) {
+                $order = $order_db->where(array('order_no' => $tmp_order['order_no']))->find();
+                $tmp_order['order'] = $order;
+            }
+            $incomes[] = $tmp_order;
+        }
 
-		//订单状态
-		$types = $income_db->typeTxt(0);
-		$this->assign('types', $types);
+        //订单状态
+        $types = $income_db->typeTxt(0);
+        $this->assign('types', $types);
 
-		$this->assign('incomes', $incomes);
-		$this->assign('pages', $page->show());
+        $this->assign('incomes', $incomes);
+        $this->assign('pages', $page->show());
 //		$order = M('Order');
 //		$financial_record = M('Financial_record');
 //
@@ -435,22 +434,22 @@ class account_controller extends base_controller
 //		$this->assign('page', $page->show());
 //		$this->assign('record_types', $record_types);
 //		$this->assign('payment_methods', $payment_methods);
-	}
+    }
 
-	//设置提现账号 界面
-	private function _income_setting_content()
-	{
-		$bank = M('Bank');
-		$banks = $bank->getEnableBanks();
+    //设置提现账号 界面
+    private function _income_setting_content()
+    {
+        $bank = M('Bank');
+        $banks = $bank->getEnableBanks();
 
-		$user_card = D('User_card')->where(array('uid' => $this->user_session['uid']))->find();
+        $user_card = D('User_card')->where(array('uid' => $this->user_session['uid']))->find();
 //		if($user_card) {
 //			$user_card['bank'] = $bank->getBank($user_card['bank_id']);
 //		}
-		$this->assign('card', $user_card);
-		$this->assign('store', $this->store_session);
-		$this->assign('banks', $banks);
-	}
+        $this->assign('card', $user_card);
+        $this->assign('store', $this->store_session);
+        $this->assign('banks', $banks);
+    }
 
 //	// 修改提现账号
 //	private function _income_edit_content()
@@ -471,57 +470,55 @@ class account_controller extends base_controller
 //		$this->assign('bank_card_user', $store['bank_card_user']);
 //	}
 
-	// 申请提现 界面
-	private function _income_apply_content()
-	{
-		$bank = M('Bank');
-		//$store = M('Store');
+    // 申请提现 界面
+    private function _income_apply_content()
+    {
+        $bank = M('Bank');
+        //$store = M('Store');
 
-		//$store = $store->getStore($this->store_session['store_id']);
-		$user_card = D('User_card')->where(array('uid' => $this->user_session['uid']))->find();
-		if($user_card) {
-			$user_card['bank'] = $bank->getBank($user_card['bank_id']);
-		}
-		$this->assign('card', $user_card);
+        //$store = $store->getStore($this->store_session['store_id']);
+        $user_card = D('User_card')->where(array('uid' => $this->user_session['uid']))->find();
+        if ($user_card) {
+            $user_card['bank'] = $bank->getBank($user_card['bank_id']);
+        }
+        $this->assign('card', $user_card);
 
-		$balance = D('User')->where(array('uid' => $this->user_session['uid'], 'status' => 1))->getField('balance');
-		$this->assign('balance', number_format($balance, 2, '.', ''));
-	}
+        $balance = D('User')->where(array('uid' => $this->user_session['uid'], 'status' => 1))->getField('balance');
+        $this->assign('balance', number_format($balance, 2, '.', ''));
+    }
 
-	//添加提现申请
-	public function applywithdrawal()
-	{
-		if(IS_POST) {
-			$data = array();
-			$data['trade_no'] = date('YmdHis', $_SERVER['REQUEST_TIME']) . mt_rand(100000, 999999);
-			$data['uid'] = $this->user_session['uid'];
-			$data['card_id'] = isset($_POST['card_id']) ? intval(trim($_POST['card_id'])) : 0;
-			if(!$data['card_id']) {
-				json_return(1000, '请绑定银行卡信息！');
-			}
-			$data['type'] = 0;
-			$data['amount'] = isset($_POST['amount']) ? floatval(trim($_POST['amount'])) : 0;
-			if($data['amount'] < option('config.withdrawal_min') * 1.00) {
-				json_return(1000, '最低提现金额为 ' . round(option('config.withdrawal_min') * 1.00, 2) . ' 元！');
-			}
-			$data['status'] = 1;
-			$data['add_time'] = time();
+    //添加提现申请
+    public function applywithdrawal()
+    {
+        if (IS_POST) {
+            $data = array();
+            $data['trade_no'] = date('YmdHis', $_SERVER['REQUEST_TIME']) . mt_rand(100000, 999999);
+            $data['uid'] = $this->user_session['uid'];
+            $data['card_id'] = isset($_POST['card_id']) ? intval(trim($_POST['card_id'])) : 0;
+            if (!$data['card_id']) {
+                json_return(1000, '请绑定银行卡信息！');
+            }
+            $data['type'] = 0;
+            $data['amount'] = isset($_POST['amount']) ? floatval(trim($_POST['amount'])) : 0;
+            if ($data['amount'] < option('config.withdrawal_min') * 1.00) {
+                json_return(1000, '最低提现金额为 ' . round(option('config.withdrawal_min') * 1.00, 2) . ' 元！');
+            }
+            $data['status'] = 1;
+            $data['add_time'] = time();
 
-			$wap_user = D('User')->where(array('uid' => $this->user_session['uid'], 'status' => 1))->find();
-			$user_cash = M('User_cash');
-			if($wap_user['balance'] >= $data['amount']) {
-				if($user_cash->add($data)) {
-					M('User')->applywithdrawal($data['uid'], $data['amount']);
-					//$store->drpProfitCash($data['store_id'], $data['amount']);
-					json_return(0, $data['amount']);
-				}
-				else {
-					json_return(1001, '写入日志失败，提现不成功！');
-				}
-			}
-			else {
-				json_return(1002, '余额不足，提现失败！');
-			}
+            $wap_user = D('User')->where(array('uid' => $this->user_session['uid'], 'status' => 1))->find();
+            $user_cash = M('User_cash');
+            if ($wap_user['balance'] >= $data['amount']) {
+                if ($user_cash->add($data)) {
+                    M('User')->applywithdrawal($data['uid'], $data['amount']);
+                    //$store->drpProfitCash($data['store_id'], $data['amount']);
+                    json_return(0, $data['amount']);
+                } else {
+                    json_return(1001, '写入日志失败，提现不成功！');
+                }
+            } else {
+                json_return(1002, '余额不足，提现失败！');
+            }
 //			$store = M('Store');
 //			$store_withdrawal = M('Store_withdrawal');
 //
@@ -558,8 +555,8 @@ class account_controller extends base_controller
 //			else {
 //				json_return(1001, '提现申请失败');
 //			}
-		}
-	}
+        }
+    }
 
 //	//删除提现账号
 //	public function delwithdrawal()
@@ -574,45 +571,44 @@ class account_controller extends base_controller
 //		}
 //	}
 
-	public function coupon()
-	{
-		$this->display();
-	}
+    public function coupon()
+    {
+        $this->display();
+    }
 
-	function _coupon_content()
-	{
+    function _coupon_content()
+    {
 
-	}
+    }
 
-	public function order()
-	{
-		$this->display();
-	}
+    public function order()
+    {
+        $this->display();
+    }
 
-	function _order_content()
-	{
-		$order = M('Order');
-		$order_product = M('Order_product');
-		$user = M('User');
+    function _order_content()
+    {
+        $order = M('Order');
+        $order_product = M('Order_product');
+        $user = M('User');
 
-		$where = array();
-		$where['uid'] = $this->user_session['uid'];
-		if($_POST['status'] != '*') {
-			$where['status'] = intval($_POST['status']);
-		}
-		else { //所有订单（不包含临时订单）
-			$where['status'] = array('>', 0);
-		}
+        $where = array();
+        $where['uid'] = $this->user_session['uid'];
+        if ($_POST['status'] != '*') {
+            $where['status'] = intval($_POST['status']);
+        } else { //所有订单（不包含临时订单）
+            $where['status'] = array('>', 0);
+        }
 
-		$order_total = $order->getOrderTotal($where);
-		import('source.class.user_page');
-		$page = new Page($order_total, 15);
-		$tmp_orders = $order->getOrders($where, '`order_id` DESC', $page->firstRow, $page->listRows);
+        $order_total = $order->getOrderTotal($where);
+        import('source.class.user_page');
+        $page = new Page($order_total, 15);
+        $tmp_orders = $order->getOrders($where, '`order_id` DESC', $page->firstRow, $page->listRows);
 
-		$orders = array();
-		foreach ($tmp_orders as $tmp_order) {
-			$products = $order_product->getProducts($tmp_order['order_id']);
-			$tmp_order['products'] = $products;
+        $orders = array();
+        foreach ($tmp_orders as $tmp_order) {
+            $products = $order_product->getProducts($tmp_order['order_id']);
+            $tmp_order['products'] = $products;
 //			if(empty($tmp_order['uid'])) {
 //				$tmp_order['is_fans'] = false;
 //				$tmp_order['buyer'] = '';
@@ -639,7 +635,7 @@ class account_controller extends base_controller
 //				}
 //			}
 
-			$tmp_order['products'] = $products;
+            $tmp_order['products'] = $products;
 //			$tmp_order['has_my_product'] = $has_my_product;
 //			if(!empty($tmp_order['user_order_id'])) {
 //				$order_info =
@@ -647,94 +643,94 @@ class account_controller extends base_controller
 //				$seller = D('Store')->field('name')->where(array('store_id' => $order_info['store_id']))->find();
 //				$tmp_order['seller'] = $seller['name'];
 //			}
-			$orders[] = $tmp_order;
-		}
+            $orders[] = $tmp_order;
+        }
 
-		//订单状态
-		$order_status = $order->status();
-		$this->assign('order_status', $order_status);
+        //订单状态
+        $order_status = $order->status();
+        $this->assign('order_status', $order_status);
 
-		//支付方式
-		$payment_method = $order->getPaymentMethod();
-		$this->assign('payment_method', $payment_method);
+        //支付方式
+        $payment_method = $order->getPaymentMethod();
+        $this->assign('payment_method', $payment_method);
 
-		$this->assign('status', $_POST['status']);
-		$this->assign('orders', $orders);
-		$this->assign('page', $page->show());
-	}
+        $this->assign('status', $_POST['status']);
+        $this->assign('orders', $orders);
+        $this->assign('page', $page->show());
+    }
 
-	function order_cancel()
-	{
-		$order_id = $_GET['order_id'];
-		if(empty($order_id)) {
-			echo json_encode(array('status' => false, 'msg' => '参数错误'));
-			exit;
-		}
+    function order_cancel()
+    {
+        $order_id = $_GET['order_id'];
+        if (empty($order_id)) {
+            echo json_encode(array('status' => false, 'msg' => '参数错误'));
+            exit;
+        }
 
-		// 实例化order_model
-		$order_model = M('Order');
-		$order = $order_model->find($order_id);
+        // 实例化order_model
+        $order_model = M('Order');
+        $order = $order_model->find($order_id);
 
-		// 权限判断是否可以取消订单
-		if($order['uid'] != $this->user_session['uid']) {
-			echo json_encode(array('status' => false, 'msg' => '您无权操作'));
-			exit;
-		}
+        // 权限判断是否可以取消订单
+        if ($order['uid'] != $this->user_session['uid']) {
+            echo json_encode(array('status' => false, 'msg' => '您无权操作'));
+            exit;
+        }
 
-		if($order['status'] > 1) {
-			echo json_encode(array('status' => false, 'msg' => '此订单不能取消'));
-			exit;
-		}
+        if ($order['status'] > 1) {
+            echo json_encode(array('status' => false, 'msg' => '此订单不能取消'));
+            exit;
+        }
 
-		// 更改订单状态
-		$order_model->cancelOrder($order);
+        // 更改订单状态
+        $order_model->cancelOrder($order);
 
-		echo json_encode(array('status' => true, 'msg' => '订单取消完成', 'data' => array('nexturl' => 'refresh')));
-		exit;
-	}
+        echo json_encode(array('status' => true, 'msg' => '订单取消完成', 'data' => array('nexturl' => 'refresh')));
+        exit;
+    }
 
-	function order_confirm()
-	{
-		$order_id = $_GET['order_id'];
-		if(empty($order_id)) {
-			echo json_encode(array('status' => false, 'msg' => '参数错误！'));
-			exit;
-		}
+    function order_confirm()
+    {
+        $order_id = $_GET['order_id'];
+        if (empty($order_id)) {
+            echo json_encode(array('status' => false, 'msg' => '参数错误！'));
+            exit;
+        }
 
-		// 实例化order_model
-		$order_model = M('Order');
-		$order = $order_model->find($order_id);
+        // 实例化order_model
+        $order_model = M('Order');
+        $order = $order_model->find($order_id);
 
-		// 权限判断是否可以确认订单
-		if($order['uid'] != $this->user_session['uid']) {
-			echo json_encode(array('status' => false, 'msg' => '您无权操作！'));
-			exit;
-		}
+        // 权限判断是否可以确认订单
+        if ($order['uid'] != $this->user_session['uid']) {
+            echo json_encode(array('status' => false, 'msg' => '您无权操作！'));
+            exit;
+        }
 
-		if($order['status'] < 2) {
-			echo json_encode(array('status' => false, 'msg' => '此订单不能确认收货！'));
-			exit;
-		}
+        if ($order['status'] < 2) {
+            echo json_encode(array('status' => false, 'msg' => '此订单不能确认收货！'));
+            exit;
+        }
 
-		// 确认收货，完成订单
-		$order_model->confirmOrder($order);
+        // 确认收货，完成订单
+        $order_model->confirmOrder($order);
 
-		echo json_encode(array('status' => true, 'msg' => '订单已完成！', 'data' => array('nexturl' => 'refresh')));
-		exit;
-	}
+        echo json_encode(array('status' => true, 'msg' => '订单已完成！', 'data' => array('nexturl' => 'refresh')));
+        exit;
+    }
 
-	function order_refund()
-	{
-		$order_id = $_GET['order_id'];
-		if(empty($order_id)) {
-			echo json_encode(array('status' => false, 'msg' => '参数错误！'));
-			exit;
-		}
+    function order_refund()
+    {
+        $order_id = $_GET['order_id'];
+        if (empty($order_id)) {
+            echo json_encode(array('status' => false, 'msg' => '参数错误！'));
+            exit;
+        }
 
 
-		echo json_encode(array('status' => true, 'msg' => '确认退款中！', 'data' => array('nexturl' => 'refresh')));
-		exit;
-	}
+        echo json_encode(array('status' => true, 'msg' => '确认退款中！', 'data' => array('nexturl' => 'refresh')));
+        exit;
+    }
 
 
 //	//订单详细
@@ -865,297 +861,294 @@ class account_controller extends base_controller
 //		exit;
 //	}
 
-	public function collect_store()
-	{
-		$this->display();
-	}
+    public function collect_store()
+    {
+        $this->display();
+    }
 
-	function _collect_store_content()
-	{
-		// 基本参数设定
-		$page = max(1, $_GET['page']);
-		$limit = 20;
+    function _collect_store_content()
+    {
+        // 基本参数设定
+        $page = max(1, $_GET['page']);
+        $limit = 20;
 
-		$count = D('')->table(array('User_collect' => 'uc', 'Store' => 's'))
-			->where("`uc`.`type` = '2' AND `uc`.`user_id` = '" . $this->user_session['uid'] .
-				"' AND `uc`.`dataid` = `s`.`store_id`")->count("`uc`.`collect_id`");
+        $count = D('')->table(array('User_collect' => 'uc', 'Store' => 's'))
+            ->where("`uc`.`type` = '2' AND `uc`.`user_id` = '" . $this->user_session['uid'] .
+                "' AND `uc`.`dataid` = `s`.`store_id`")->count("`uc`.`collect_id`");
 
-		$store_list = array();
-		$pages = '';
-		if($count > 0) {
-			$total_pages = ceil($count / $limit);
-			$page = min($page, $total_pages);
-			$offset = ($page - 1) * $limit;
-
-
-			$store_list = D('')->table(array('User_collect' => 'uc', 'Store' => 's'))
-				->where("`uc`.`type` = '2' AND `uc`.`user_id` = '" . $this->user_session['uid'] .
-					"' AND `uc`.`dataid` = `s`.`store_id`")
-				->order("`uc`.`collect_id` DESC")->limit($offset . ',' . $limit)
-				->select();
-			foreach ($store_list as &$store) {
-				if(empty($store['logo'])) {
-					$store['logo'] = getAttachmentUrl('images/default_shop_2.jpg', false);
-				}
-				else {
-					$store['logo'] = getAttachmentUrl($store['logo']);
-				}
-			}
-			// 分页
-			import('source.class.user_page');
-
-			$user_page = new Page($count, $limit, $page);
-			$pages = $user_page->show();
-		}
-
-		$this->assign('store_list', $store_list);
-		$this->assign('pages', $pages);
-	}
-
-	public function collect_goods()
-	{
-		$this->display();
-	}
-
-	function _collect_goods_content()
-	{
-		// 基本参数设定
-		$page = max(1, $_GET['page']);
-		$limit = 20;
-
-		//$count = D('User_collect')->where(array('type' => 1, 'user_id' => $this->user_session['uid']))->count('collect_id');
-		$count = D('')->table(array('User_collect' => 'uc', 'Product' => 'p'))
-			->where("`uc`.`type` = '1' AND `uc`.`user_id` = '" . $this->user_session['uid'] .
-				"' AND `uc`.`dataid` = `p`.`product_id`")->count("`uc`.`collect_id`");
-
-		$product_list = array();
-		$pages = '';
-		if($count > 0) {
-			$total_pages = ceil($count / $limit);
-			$page = min($page, $total_pages);
-			$offset = ($page - 1) * $limit;
+        $store_list = array();
+        $pages = '';
+        if ($count > 0) {
+            $total_pages = ceil($count / $limit);
+            $page = min($page, $total_pages);
+            $offset = ($page - 1) * $limit;
 
 
-			$product_list = D('')->table(array('User_collect' => 'uc', 'Product' => 'p'))
-				->where("`uc`.`type` = '1' AND `uc`.`user_id` = '" . $this->user_session['uid'] .
-					"' AND `uc`.`dataid` = `p`.`product_id`")->order("`uc`.`collect_id` DESC")->limit($offset . ',' .
-					$limit)->select();
+            $store_list = D('')->table(array('User_collect' => 'uc', 'Store' => 's'))
+                ->where("`uc`.`type` = '2' AND `uc`.`user_id` = '" . $this->user_session['uid'] .
+                    "' AND `uc`.`dataid` = `s`.`store_id`")
+                ->order("`uc`.`collect_id` DESC")->limit($offset . ',' . $limit)
+                ->select();
+            foreach ($store_list as &$store) {
+                if (empty($store['logo'])) {
+                    $store['logo'] = getAttachmentUrl('images/default_shop_2.jpg', false);
+                } else {
+                    $store['logo'] = getAttachmentUrl($store['logo']);
+                }
+            }
+            // 分页
+            import('source.class.user_page');
 
-			foreach ($product_list as &$product) {
-				$product['image'] = getAttachmentUrl($product['image']);
-			}
-			// 分页
-			import('source.class.user_page');
+            $user_page = new Page($count, $limit, $page);
+            $pages = $user_page->show();
+        }
 
-			$user_page = new Page($count, $limit, $page);
-			$pages = $user_page->show();
-		}
+        $this->assign('store_list', $store_list);
+        $this->assign('pages', $pages);
+    }
 
+    public function collect_goods()
+    {
+        $this->display();
+    }
 
-		$this->assign('products', $product_list);
-		$this->assign('pages', $pages);
-	}
+    function _collect_goods_content()
+    {
+        // 基本参数设定
+        $page = max(1, $_GET['page']);
+        $limit = 20;
 
-	public function attention_store()
-	{
-		$this->display();
-	}
+        //$count = D('User_collect')->where(array('type' => 1, 'user_id' => $this->user_session['uid']))->count('collect_id');
+        $count = D('')->table(array('User_collect' => 'uc', 'Product' => 'p'))
+            ->where("`uc`.`type` = '1' AND `uc`.`user_id` = '" . $this->user_session['uid'] .
+                "' AND `uc`.`dataid` = `p`.`product_id`")->count("`uc`.`collect_id`");
 
-	function _attention_store_content()
-	{
-		// 基本参数设定
-		$page = max(1, $_GET['page']);
-		$limit = 10;
-
-		$count = D('')->table(array('User_attention' => 'ua', 'Store' => 's'))
-			->where("`ua`.`data_type` = '2' AND `ua`.`user_id` = '" . $this->user_session['uid'] .
-				"' AND `ua`.`data_id` = `s`.`store_id`")->count("`ua`.`id`");
-
-		$store_list = array();
-		$pages = '';
-
-
-		if($count > 0) {
-			$total_pages = ceil($count / $limit);
-			$page = min($page, $total_pages);
-			$offset = ($page - 1) * $limit;
-
-			$product_model = M('Product');
-			$store_list = D('')->table(array('User_attention' => 'ua', 'Store' => 's'))
-				->where("`ua`.`data_type` = '2' AND `ua`.`user_id` = '" . $this->user_session['uid'] .
-					"' AND `ua`.`data_id` = `s`.`store_id`")->order("`ua`.`id` DESC")->limit($offset . ',' . $limit)
-				->select();
+        $product_list = array();
+        $pages = '';
+        if ($count > 0) {
+            $total_pages = ceil($count / $limit);
+            $page = min($page, $total_pages);
+            $offset = ($page - 1) * $limit;
 
 
-			foreach ($store_list as &$store) {
-				if(empty($store['logo'])) {
-					$store['logo'] = getAttachmentUrl('images/default_shop_2.jpg', false);
-				}
-				else {
-					$store['logo'] = getAttachmentUrl($store['logo']);
-				}
-				//每个店铺获取 10个热销商品 10个新品
-				// 店铺热销个产品
-				$store['hot_list'] =
-					$product_model->getSelling(array('store_id' => $store['store_id'], 'status' => 1), 'sales', 'desc',
-						0, 9);
-				$store['hot_list_count'] = count($store['hot_list']);
+            $product_list = D('')->table(array('User_collect' => 'uc', 'Product' => 'p'))
+                ->where("`uc`.`type` = '1' AND `uc`.`user_id` = '" . $this->user_session['uid'] .
+                    "' AND `uc`.`dataid` = `p`.`product_id`")->order("`uc`.`collect_id` DESC")->limit($offset . ',' .
+                    $limit)->select();
 
-				/*新品*/
-				$store['news_list'] =
-					$product_model->getSelling(array('store_id' => $store['store_id'], 'status' => 1), '', '', 0, 9);
-				$store['news_list_count'] = count($store['news_list']);
+            foreach ($product_list as &$product) {
+                $product['image'] = getAttachmentUrl($product['image']);
+            }
+            // 分页
+            import('source.class.user_page');
 
-				// 评论满意，一般，不满意数量，以及满意百分比
-				$where = array();
-				$where['type'] = 'STORE';
-				$where['relation_id'] = $store['store_id'];
-				$comment_type_count = M('Comment')->getCountList($where);
-				$satisfaction_pre = '100%';
-				if($comment_type_count['total'] > 0) {
-					$satisfaction_pre = round($comment_type_count['t3'] / $comment_type_count['total'] * 100) . '%';
-				}
-				$store['satisfaction_pre'] = $satisfaction_pre;
-
-				$store['imUrl'] = getImUrl($_SESSION['user']['uid'], $store['store_id']);
-			}
+            $user_page = new Page($count, $limit, $page);
+            $pages = $user_page->show();
+        }
 
 
-			// 分页
-			import('source.class.user_page');
+        $this->assign('products', $product_list);
+        $this->assign('pages', $pages);
+    }
 
-			$user_page = new Page($count, $limit, $page);
-			$pages = $user_page->show();
-		}
+    public function attention_store()
+    {
+        $this->display();
+    }
 
+    function _attention_store_content()
+    {
+        // 基本参数设定
+        $page = max(1, $_GET['page']);
+        $limit = 10;
 
-		$this->assign('store_list', $store_list);
-		$this->assign('pages', $pages);
-	}
+        $count = D('')->table(array('User_attention' => 'ua', 'Store' => 's'))
+            ->where("`ua`.`data_type` = '2' AND `ua`.`user_id` = '" . $this->user_session['uid'] .
+                "' AND `ua`.`data_id` = `s`.`store_id`")->count("`ua`.`id`");
 
-	public function address()
-	{
-		$db = M('User_address');
-
-		// 添加新收货地址
-		if(IS_POST) {
-			$name = $_POST['name'];
-			$tel = $_POST['tel'];
-			$province = $_POST['province'];
-			$city = $_POST['city'];
-			$area = $_POST['area'];
-			$address = $_POST['address'];
-			$zipcode = $_POST['zipcode'];
-			$default = $_POST['default'] + 0;
-
-			if(empty($name)) {
-				json_response(false, '收货人没有填写！');
-			}
-
-			if(empty($tel) || !preg_match("/1[34578]{1}\d{9}$/", $tel)) {
-				json_response(false, '手机号码格式不正确！');
-			}
-
-			if(empty($province)) {
-				json_response(false, '省份没有选择！');
-			}
-
-			if(empty($city)) {
-				json_response(false, '城市没有选择！');
-			}
-
-			if(empty($area)) {
-				json_response(false, '地区没有选择！');
-			}
-
-			if(empty($address)) {
-				json_response(false, '详细地址没有填写！');
-			}
-
-			if(strlen($zipcode) != 6 && !is_numeric($zipcode)) {
-				json_response(false, '邮编填写错误！');
-			}
-
-			// 更新数据库操作，当有address_id时做更新操作，没有时做添加操作
-			$data = array();
-			$data['uid'] = $this->user_session['uid'];
-			$data['name'] = $name;
-			$data['tel'] = $tel;
-			$data['province'] = $province;
-			$data['city'] = $city;
-			$data['area'] = $area;
-			$data['address'] = $address;
-			$data['zipcode'] = $zipcode;
-			$data['default'] = $default;
-
-			$msg = '添加成功';
-
-			$address_id = $_POST['address_id'];
-			if(!empty($address_id)) {
-				$msg = '修改成功';
-				// 更改记录条件
-				$condition = array();
-				$condition['uid'] = $this->user_session['uid'];
-				$condition['address_id'] = $address_id;
-
-				$db->save_address($condition, $data);
-			}
-			else {
-				$data['add_time'] = time();
-				$address_id = $db->add($data);
-			}
+        $store_list = array();
+        $pages = '';
 
 
-			// 设置默认收货地址
-			if($default == 1) {
-				$db->canelDefaultAaddress($this->user_session['uid'], $address_id);
-			}
+        if ($count > 0) {
+            $total_pages = ceil($count / $limit);
+            $page = min($page, $total_pages);
+            $offset = ($page - 1) * $limit;
 
-			json_response(true, $msg, 'refresh');
-		}
+            $product_model = M('Product');
+            $store_list = D('')->table(array('User_attention' => 'ua', 'Store' => 's'))
+                ->where("`ua`.`data_type` = '2' AND `ua`.`user_id` = '" . $this->user_session['uid'] .
+                    "' AND `ua`.`data_id` = `s`.`store_id`")->order("`ua`.`id` DESC")->limit($offset . ',' . $limit)
+                ->select();
 
-		$id = $_GET['id'];
-		if(is_numeric($id) && $id > 0) {
-			$item = $db->getAdressById(null, $this->user_session['uid'], $id);
-			$this->assign('item', $item);
-		}
 
-		$this->display();
-	}
+            foreach ($store_list as &$store) {
+                if (empty($store['logo'])) {
+                    $store['logo'] = getAttachmentUrl('images/default_shop_2.jpg', false);
+                } else {
+                    $store['logo'] = getAttachmentUrl($store['logo']);
+                }
+                //每个店铺获取 10个热销商品 10个新品
+                // 店铺热销个产品
+                $store['hot_list'] =
+                    $product_model->getSelling(array('store_id' => $store['store_id'], 'status' => 1), 'sales', 'desc',
+                        0, 9);
+                $store['hot_list_count'] = count($store['hot_list']);
 
-	function _address_content()
-	{
-		$db = M('User_Address');
-		$list = $db->getMyAddress($this->user_session['uid']);
-		$this->assign('list', $list);
-	}
+                /*新品*/
+                $store['news_list'] =
+                    $product_model->getSelling(array('store_id' => $store['store_id'], 'status' => 1), '', '', 0, 9);
+                $store['news_list_count'] = count($store['news_list']);
 
-	/**
-	 * 设置默认收货地址
-	 */
-	function address_default()
-	{
-		$id = $_GET['id'];
-		if(!is_numeric($id))
-			json_response(false, '参数错误！');
+                // 评论满意，一般，不满意数量，以及满意百分比
+                $where = array();
+                $where['type'] = 'STORE';
+                $where['relation_id'] = $store['store_id'];
+                $comment_type_count = M('Comment')->getCountList($where);
+                $satisfaction_pre = '100%';
+                if ($comment_type_count['total'] > 0) {
+                    $satisfaction_pre = round($comment_type_count['t3'] / $comment_type_count['total'] * 100) . '%';
+                }
+                $store['satisfaction_pre'] = $satisfaction_pre;
 
-		M('User_address')->canelDefaultAaddress($this->user_session['uid'], $id);
-		json_response(true, '设置完成', 'refresh');
-	}
+                $store['imUrl'] = getImUrl($_SESSION['user']['uid'], $store['store_id']);
+            }
 
-	/**
-	 * 删除收货地址
-	 */
-	function address_delete()
-	{
-		$id = $_GET['id'];
-		if(!is_numeric($id))
-			json_response(false, '参数错误！');
 
-		M('User_address')->deleteAddress(array('address_id' => $id, 'uid' => $this->user_session['uid']));
+            // 分页
+            import('source.class.user_page');
 
-		json_response(true, '删除完成', 'refresh');
-	}
+            $user_page = new Page($count, $limit, $page);
+            $pages = $user_page->show();
+        }
+
+
+        $this->assign('store_list', $store_list);
+        $this->assign('pages', $pages);
+    }
+
+    public function address()
+    {
+        $db = M('User_address');
+
+        // 添加新收货地址
+        if (IS_POST) {
+            $name = $_POST['name'];
+            $tel = $_POST['tel'];
+            $province = $_POST['province'];
+            $city = $_POST['city'];
+            $area = $_POST['area'];
+            $address = $_POST['address'];
+            $zipcode = $_POST['zipcode'];
+            $default = $_POST['default'] + 0;
+
+            if (empty($name)) {
+                json_response(false, '收货人没有填写！');
+            }
+
+            if (empty($tel) || !preg_match("/1[34578]{1}\d{9}$/", $tel)) {
+                json_response(false, '手机号码格式不正确！');
+            }
+
+            if (empty($province)) {
+                json_response(false, '省份没有选择！');
+            }
+
+            if (empty($city)) {
+                json_response(false, '城市没有选择！');
+            }
+
+            if (empty($area)) {
+                json_response(false, '地区没有选择！');
+            }
+
+            if (empty($address)) {
+                json_response(false, '详细地址没有填写！');
+            }
+
+            if (strlen($zipcode) != 6 && !is_numeric($zipcode)) {
+                json_response(false, '邮编填写错误！');
+            }
+
+            // 更新数据库操作，当有address_id时做更新操作，没有时做添加操作
+            $data = array();
+            $data['uid'] = $this->user_session['uid'];
+            $data['name'] = $name;
+            $data['tel'] = $tel;
+            $data['province'] = $province;
+            $data['city'] = $city;
+            $data['area'] = $area;
+            $data['address'] = $address;
+            $data['zipcode'] = $zipcode;
+            $data['default'] = $default;
+
+            $msg = '添加成功';
+
+            $address_id = $_POST['address_id'];
+            if (!empty($address_id)) {
+                $msg = '修改成功';
+                // 更改记录条件
+                $condition = array();
+                $condition['uid'] = $this->user_session['uid'];
+                $condition['address_id'] = $address_id;
+
+                $db->save_address($condition, $data);
+            } else {
+                $data['add_time'] = time();
+                $address_id = $db->add($data);
+            }
+
+
+            // 设置默认收货地址
+            if ($default == 1) {
+                $db->canelDefaultAaddress($this->user_session['uid'], $address_id);
+            }
+
+            json_response(true, $msg, 'refresh');
+        }
+
+        $id = $_GET['id'];
+        if (is_numeric($id) && $id > 0) {
+            $item = $db->getAdressById(null, $this->user_session['uid'], $id);
+            $this->assign('item', $item);
+        }
+
+        $this->display();
+    }
+
+    function _address_content()
+    {
+        $db = M('User_Address');
+        $list = $db->getMyAddress($this->user_session['uid']);
+        $this->assign('list', $list);
+    }
+
+    /**
+     * 设置默认收货地址
+     */
+    function address_default()
+    {
+        $id = $_GET['id'];
+        if (!is_numeric($id))
+            json_response(false, '参数错误！');
+
+        M('User_address')->canelDefaultAaddress($this->user_session['uid'], $id);
+        json_response(true, '设置完成', 'refresh');
+    }
+
+    /**
+     * 删除收货地址
+     */
+    function address_delete()
+    {
+        $id = $_GET['id'];
+        if (!is_numeric($id))
+            json_response(false, '参数错误！');
+
+        M('User_address')->deleteAddress(array('address_id' => $id, 'uid' => $this->user_session['uid']));
+
+        json_response(true, '删除完成', 'refresh');
+    }
 
 //	//个人资料
 //	public function personal()
@@ -1244,55 +1237,52 @@ class account_controller extends base_controller
 //		$this->assign('company', $company);
 //	}
 
-	//密码
-	public function password()
-	{
-		if(IS_POST) {
-			$user = M('User');
-			$current = I('post.current');
-			$password = I('post.password');
-			$confirm = I('post.confirm');
-			if($current == "") {
-				json_return(1, '当前密码不能为空！');
-			}
+    //密码
+    public function password()
+    {
+        if (IS_POST) {
+            $user = M('User');
+            $current = I('post.current');
+            $password = I('post.password');
+            $confirm = I('post.confirm');
+            if ($current == "") {
+                json_return(1, '当前密码不能为空！');
+            }
 
-			if($password == '') {
-				json_return(1, '新密码不能为空！');
-			}
+            if ($password == '') {
+                json_return(1, '新密码不能为空！');
+            }
 
-			if($password != $confirm) {
-				json_return(1, "两次密码输入不一致！");
-			}
+            if ($password != $confirm) {
+                json_return(1, "两次密码输入不一致！");
+            }
 
-			if($password == $password) {
-				json_return(1, "新密码不能和当前密码一致！");
-			}
+            if ($password == $password) {
+                json_return(1, "新密码不能和当前密码一致！");
+            }
 
-			$user_info = $user->getUserById($this->user_session['uid']);
-			if($user_info['password'] != md5($current)) {
-				json_return(1, "当前密码输入错误！");
-			}
+            $user_info = $user->getUserById($this->user_session['uid']);
+            if ($user_info['password'] != md5($current)) {
+                json_return(1, "当前密码输入错误！");
+            } else {
+                if ($user->setField(array('uid' => $this->user_session['uid']),
+                    array('password' => md5($password)))
+                ) {
+                    unset($_SESSION['user']);
+                    session_destroy();
+                    json_return(0, '修改成功，请重新登录！');
+                } else {
+                    json_return(1, '修改失败');
+                }
+            }
+        }
+        $this->display();
+    }
 
-			else {
-				if($user->setField(array('uid' => $this->user_session['uid']),
-					array('password' => md5($password)))
-				) {
-					unset($_SESSION['user']);
-					session_destroy();
-					json_return(0, '修改成功，请重新登录！');
-				}
-				else {
-					json_return(1, '修改失败');
-				}
-			}
-		}
-		$this->display();
-	}
+    //密码修改
+    private function _password_content()
+    {
 
-	//密码修改
-	private function _password_content()
-	{
-
-	}
+    }
 
 }

@@ -91,9 +91,11 @@
 									<div class="control-group">
 										<label class="control-label">商品所属供应商：</label>
 										<div class="controls">
-											<select disabled name="supplier_id" id="supplier_id">
-												<?php foreach ($supplierStoreInfo as $supplierStore){ ?>
-												<option <?php echo $product['store_id']==$supplierStore['store_id'] ? 'selected' : '' ?> data-storeid="<?php echo $supplierStore['store_id'] ?>" value ="<?php echo $supplierStore['uid'] ?>"><?php echo $supplierStore['name'] ?></option>
+											<select name="supplier_id" id="supplier_id">
+												<?php foreach ($supplierStoreInfo as $supplierStore){
+													//var_dump($product,$supplierStoreInfo);exit;
+													?>
+												<option <?php echo $product['uid']==$supplierStore['uid'] ? 'selected' : '' ?> data-storeid="<?php echo $supplierStore['store_id'] ?>" value ="<?php echo $supplierStore['uid'] ?>"><?php echo $supplierStore['name'] ?></option>
 												<?php }?>
 											</select>
 										</div>
@@ -266,6 +268,14 @@
 												<input type="text" class="input-small" placeholder="成本：" name="cost"
 												       <?php if($product['cost_price'] >
 												       0) { ?>value="<?php echo $product['cost_price']; ?>"<?php } ?> />
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label"><em class="required">*</em>售价折扣：</label>
+											<div class="controls">
+											<input type="text" class="input-small" placeholder="折扣率：" name="discountpre"
+											   <?php if($product['discount'] >
+											   0) { ?>value="<?php echo $product['discount']; ?>"<?php } ?> />
 											</div>
 										</div>
 									<?php }

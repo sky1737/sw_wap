@@ -372,6 +372,9 @@ class goods_controller extends base_controller
 			$product_category = M('Product_category');
 			$product_image = M('Product_image');
 			$product_custom_field = M('Product_custom_field');
+            /**
+             * @var $product_sku product_sku_model
+             */
 			$product_sku = M('Product_sku');
 			//$system_product_to_property = M('System_product_to_property');
 			$system_product_to_property_value = M('System_product_to_property_value');
@@ -379,7 +382,7 @@ class goods_controller extends base_controller
             $data['uid'] = isset($_POST['supplier_uid']) ? intval(trim($_POST['supplier_uid'])) : 0; //供应商UID
 			$store_id = isset($_POST['supplier_store_id']) ? intval(trim($_POST['supplier_store_id'])) : 0; //供应商 商店id
 			$product_id = isset($_POST['product_id']) ? intval(trim($_POST['product_id'])) : 0;
-			$data['uid'] = $this->user_session['uid'];
+
 			$data['category_id'] = isset($_POST['category_id']) ? intval(trim($_POST['category_id'])) : 0; //分类
 			$data['buy_way'] = 1;// isset($_POST['buy_way']) ? intval(trim($_POST['buy_way'])) : 0; //购买方式
 			$data['buy_url'] = '';// isset($_POST['buy_url']) ? trim($_POST['buy_url']) : ''; //购买地址
@@ -387,11 +390,13 @@ class goods_controller extends base_controller
 			$data['show_sku'] = isset($_POST['show_stock']) ? intval(trim($_POST['show_stock'])) : 0; //是否显示库存数量
 			$data['code'] = isset($_POST['code']) ? trim($_POST['code']) : ''; //商家编码
 			$data['name'] = isset($_POST['name']) ? mysql_real_escape_string(trim($_POST['name'])) : ''; //名称
-			$data['price'] = isset($_POST['price']) ? floatval(trim($_POST['price'])) : 0; //价格
+			$data['price'] = isset($_POST['price']) ? floatval(trim($_POST['price'])) : 0; //销售价格
 			$data['market_price'] =
-				isset($_POST['market_price']) ? floatval(trim($_POST['market_price'])) : 0; //原价
+				isset($_POST['market_price']) ? floatval(trim($_POST['market_price'])) : 0; //市场价
 			$data['cost_price'] =
-				isset($_POST['cost_price']) ? floatval(trim($_POST['cost_price'])) : 0; //原价
+				isset($_POST['cost_price']) ? floatval(trim($_POST['cost_price'])) : 0; //成本价
+            $data['discount'] =
+                isset($_POST['discountpre']) ? floatval(trim($_POST['discountpre'])) : 10; //折扣率
 			$data['weight'] = isset($_POST['weight']) ? floatval(trim($_POST['weight'])) : 0;
 			if(isset($_POST['postage_type'])) {
 				$data['postage_type'] =
@@ -449,7 +454,7 @@ class goods_controller extends base_controller
             $asl_store_id = addslashes($store_id);
             $asl_create_uid = addslashes($this->user_session['uid']);
 			$product->edit(array(
-                '_string'=> "(`store_id` = '$asl_store_id' OR create_uid = '$asl_create_uid')",
+                //'_string'=> "(`store_id` = '$asl_store_id' OR create_uid = '$asl_create_uid')",
                 'product_id'=>$product_id,
             ), $data);
             //print_r($product->db->last_sql);die();
@@ -472,13 +477,19 @@ class goods_controller extends base_controller
 					                                             'vid'        => $v['sys_property_value_id']));
 				}
 			//}
+            /**
+             * @var $product_to_property product_to_property_model
+             * @var $product_to_property_value product_to_property_value_model
+             */
+            $product_to_property = M('Product_to_property');
+            $product_to_property_value = M('Product_to_property_value');
 
 			// 规格信息
 			if(!empty($skus)) {
 				//$skus = $product_sku->edit($product_id, $skus);
 				$product_sku->edit($product_id, $skus);
 
-// 添加关联
+                // 添加关联
 				$prop_vids = array();
 				$prop_pids = array();
 				foreach ($skus as $sku) {
@@ -494,12 +505,13 @@ class goods_controller extends base_controller
 					}
 				}
 
-				$product_to_property = M('Product_to_property');
 				$product_to_property->edit($store_id, $product_id, $prop_pids);
-
-				$product_to_property_value = M('Product_to_property_value');
 				$product_to_property_value->edit($store_id, $product_id, $prop_vids);
-			}
+			}else{
+                $product_sku->db->where("`product_id` = {$product_id}")->delete();
+                $product_to_property->db->where("`product_id` = {$product_id}")->delete();
+                $product_to_property_value->db->where("`product_id` = {$product_id}")->delete();
+            }
 
 			//修改图片，不删除源文件
 			if($product_image->delete($product_id)) {
@@ -1124,6 +1136,13 @@ class goods_controller extends base_controller
 		$cat_list = M('Product_category')->getAllCategory(0,true);
 		$this->assign('cat_list', $cat_list);
 
+        /**
+         * @var $product_sku product_sku_model
+         * @var $product_property product_property_model
+         * @var $product_property_value product_property_value_model
+         * @var $product_to_property product_to_property_model
+         * @var $product_to_property_value product_to_property_value_model
+         */
 		$product = M('Product');
 		$product_image = M('Product_image');
 		$product_sku = M('Product_sku');
@@ -2075,5 +2094,286 @@ class goods_controller extends base_controller
 
 
 	}
+
+    public function view_supplier_order()
+    {
+        $this->display();
+    }
+
+
+    public function load()
+    {
+        $action = strtolower(trim($_POST['page']));
+
+        $store_id = $this->store_session['store_id'];
+
+        //var_dump($action);exit;
+
+        if(empty($action)) pigcms_tips('非法访问！', 'none');
+        switch ($action) {
+            case 'supplier_order_content':
+
+                $status = isset($_POST['status']) ? trim($_POST['status']) : ''; //订单状态
+                $shipping_method = isset($_POST['shipping_method']) ? strtolower(trim($_POST['shipping_method'])) : ''; //运送方式 快递发货 上门自提
+                $payment_method = isset($_POST['payment_method']) ? strtolower(trim($_POST['payment_method'])) : ''; //支付方式
+                $type = isset($_POST['type']) ? $_POST['type'] : '*'; //订单类型 普通订单 代付订单
+                $orderbyfield = isset($_POST['orderbyfield']) ? trim($_POST['orderbyfield']) : '';
+                $orderbymethod = isset($_POST['orderbymethod']) ? trim($_POST['orderbymethod']) : '';
+                $page = isset($_POST['p']) ? intval(trim($_POST['p'])) : 1;
+                $order_no = isset($_POST['order_no']) ? trim($_POST['order_no']) : '';
+                $trade_no = isset($_POST['trade_no']) ? trim($_POST['trade_no']) : '';
+                $user = isset($_POST['user']) ? trim($_POST['user']) : ''; //收货人
+                $tel = isset($_POST['tel']) ? trim($_POST['tel']) : ''; //收货人手机
+                $time_type = isset($_POST['time_type']) ? trim($_POST['time_type']) : '';
+                $start_time = isset($_POST['start_time']) ? trim($_POST['start_time']) : '';
+                $stop_time = isset($_POST['stop_time']) ? trim($_POST['stop_time']) : '';
+                $weixin_user = isset($_POST['weixin_user']) ? trim($_POST['weixin_user']) : '';
+
+                $data = array(
+                    'status' => $status,
+                    'orderbyfield' => $orderbyfield,
+                    'orderbymethod' => $orderbymethod,
+                    'page' => $page,
+                    'order_no' => $order_no,
+                    'trade_no' => $trade_no,
+                    'user' => $user,
+                    'tel' => $tel,
+                    'time_type' => $time_type,
+                    'start_time' => $start_time,
+                    'stop_time' => $stop_time,
+                    'weixin_user' => $weixin_user,
+                    'type' => $type,
+                    'payment_method' => $payment_method,
+                    'shipping_method' => $shipping_method
+                );
+
+                $this->_supplier_order_content($data);
+                break;
+
+            case 'detail_content':
+                $this->_view_detail_content();
+                $action = 'view_order_detail_content';
+                break;
+
+            default:
+                break;
+        }
+        $this->display($action);
+    }
+
+
+    private function _supplier_order_content($data)
+    {
+        $order = M('Order');
+        $order_product = M('Order_product');
+        $user = M('User');
+
+        $where = array();
+        if($data['status'] != '*') {
+            $where['status'] = intval($data['status']);
+        }
+        else { // 所有订单（不包含临时订单）
+            $where['status'] = array('>=', 2);
+        }
+        if($data['order_no']) {
+            $where['order_no'] = $data['order_no'];
+        }
+        if(is_numeric($data['type'])) {
+            $where['type'] = $data['type'];
+        }
+        if(!empty($data['user'])) {
+            $where['address_user'] = $data['user'];
+        }
+        if(!empty($data['tel'])) {
+            $where['address_tel'] = $data['tel'];
+        }
+        if(!empty($data['payment_method'])) {
+            $where['payment_method'] = $data['payment_method'];
+        }
+        if(!empty($data['shipping_method'])) {
+            $where['shipping_method'] = $data['shipping_method'];
+        }
+        $field = '';
+        if(!empty($data['time_type'])) {
+            $field = $data['time_type'];
+        }
+        if(!empty($data['start_time']) && !empty($data['stop_time']) && !empty($field)) {
+            $where['_string'] = "`" . $field . "` >= " . strtotime($data['start_time']) . " AND `" . $field . "` <= " .
+                strtotime($data['stop_time']);
+        }
+        else if(!empty($data['start_time']) && !empty($field)) {
+            $where[$field] = array('>=', strtotime($data['start_time']));
+        }
+        else if(!empty($data['stop_time']) && !empty($field)) {
+            $where[$field] = array('<=', strtotime($data['stop_time']));
+        }
+        //排序
+        if(!empty($data['orderbyfield']) && !empty($data['orderbymethod'])) {
+            $orderby = "`{$data['orderbyfield']}` " . $data['orderbymethod'];
+        }
+        else {
+            $orderby = '`order_id` DESC';
+        }
+        $order_total = $order->getOrderTotal($where);
+        import('source.class.user_page');
+        $page = new Page($order_total, 15);
+        $tmp_orders = $order->getOrders($where, $orderby, $page->firstRow, $page->listRows);
+
+        $orders = array();
+        foreach ($tmp_orders as $tmp_order) {
+            $products = $order_product->getProducts($tmp_order['order_id']);
+            $tmp_order['products'] = $products;
+            if(empty($tmp_order['uid'])) {
+                $tmp_order['is_fans'] = false;
+                $tmp_order['buyer'] = '';
+            }
+            else {
+                //$tmp_order['is_fans'] = $user->isWeixinFans($tmp_order['uid']);
+                $tmp_order['is_fans'] = true;
+                $user_info = $user->checkUser(array('uid' => $tmp_order['uid']));
+                $tmp_order['buyer'] = $user_info['nickname'];
+            }
+            $is_supplier = false;
+            if(!empty($tmp_order['suppliers'])) { //订单供货商
+                $suppliers = explode(',', $tmp_order['suppliers']);
+                if(in_array($this->store_session['store_id'], $suppliers)) {
+                    $is_supplier = true;
+                }
+            }
+            $tmp_order['is_supplier'] = $is_supplier;
+            $has_my_product = false;
+            foreach ($products as &$product) {
+                $product['image'] = getAttachmentUrl($product['image']);
+                if(empty($product['is_fx'])) {
+                    $has_my_product = true;
+                }
+            }
+
+            $tmp_order['products'] = $products;
+            $tmp_order['has_my_product'] = $has_my_product;
+            if(!empty($tmp_order['user_order_id'])) {
+                $order_info =
+                    D('Order')->field('store_id')->where(array('order_id' => $tmp_order['user_order_id']))->find();
+                $seller = D('Store')->field('name')->where(array('store_id' => $order_info['store_id']))->find();
+                $tmp_order['seller'] = $seller['name'];
+            }
+            $orders[] = $tmp_order;
+        }
+
+        //订单状态
+        $order_status = $order->status();
+        $this->assign('order_status', $order_status);
+
+        //支付方式
+        $payment_method = $order->getPaymentMethod();
+        $this->assign('payment_method', $payment_method);
+
+        $this->assign('status', $data['status']);
+        $this->assign('orders', $orders);
+        $this->assign('page', $page->show());
+    }
+
+
+    //订单详细
+    public function view_order_detail()
+    {
+        $this->display();
+    }
+
+    //订单详细页面
+    private function _view_detail_content()
+    {
+        $order = M('Order');
+        $order_product = M('Order_product');
+        $user = M('User');
+        $package = M('Order_package');
+
+        $order_id = isset($_POST['order_id']) ? intval(trim($_POST['order_id'])) : 0;
+        $order = $order->getOrder($this->store_session['store_id'], $order_id);
+        $products = $order_product->getProducts($order_id);
+        if(empty($order['uid'])) {
+            $order['is_fans'] = false;
+            $is_fans = false;
+            $order['buyer'] = '';
+        }
+        else {
+            //$tmp_order['is_fans'] = $user->isWeixinFans($tmp_order['uid']);
+            $order['is_fans'] = true;
+            $is_fans = true;
+            $user_info = $user->checkUser(array('uid' => $order['uid']));
+            $order['buyer'] = $user_info['nickname'];
+        }
+
+        //		$is_supplier = false;
+        //		if (!empty($order['suppliers'])) { //订单供货商
+        //			$suppliers = explode(',', $order['suppliers']);
+        //			if (in_array($this->store_session['store_id'], $suppliers)) {
+        //				$is_supplier = true;
+        //			}
+        //		}
+        //		$order['is_supplier'] = $is_supplier;
+
+        $comment_count = 0;
+        $product_count = 0;
+        $tmp_products = array();
+        foreach ($products as $product) {
+            if(!empty($product['comment'])) {
+                $comment_count++;
+            }
+            $product_count++;
+
+            $tmp_products[] = $product['product_id']; //
+        }
+
+        $status = M('Order')->status();
+        $payment_method = M('Order')->getPaymentMethod();
+
+        if(empty($order['address'])) {
+            $status[0] = '未填收货地址';
+        }
+        else {
+            $status[1] = '已填收货地址';
+        }
+        if(!empty($order['user_order_id'])) {
+            $user_order_id = $order['user_order_id'];
+        }
+        else {
+            $user_order_id = $order['order_id'];
+        }
+        $where = array();
+        $where['user_order_id'] = $user_order_id;
+        $tmp_packages = $package->getPackages($where);
+        $packages = array();
+        foreach ($tmp_packages as $package) {
+            $package_products = explode(',', $package['products']);
+            if(array_intersect($package_products, $tmp_products)) {
+                $packages[] = $package;
+            }
+        }
+
+        // 查看满减送
+        $order_ward_list = M('Order_reward')->getByOrderId($order['order_id']);
+        // 使用优惠券
+        $order_coupon = M('Order_coupon')->getByOrderId($order['order_id']);
+
+        //应付款金额
+        $package_info = D('Order_package')->where(array('store_id' =>$order['store_id'],'order_id' =>  $order['order_id'],'status' => 1))->find();
+        $express_money =  empty($package_info) ?  0 :$package_info['express_money'];
+        //商家应退回的钱
+        $return_money = $order['sub_total']- $order['profit'] - $express_money;
+        $cost = $order['sub_total']-$order['profit'];
+        $this->assign('is_fans', $is_fans);
+        $this->assign('order', $order);
+        $this->assign('products', $products);
+        $this->assign('rows', $comment_count + $product_count);
+        $this->assign('comment_count', $comment_count);
+        $this->assign('status', $status);
+        $this->assign('payment_method', $payment_method);
+        $this->assign('packages', $packages);
+        $this->assign('order_ward_list', $order_ward_list);
+        $this->assign('order_coupon', $order_coupon);
+        $this->assign('return_money', $return_money);
+        $this->assign('cost', $cost);
+    }
 
 }

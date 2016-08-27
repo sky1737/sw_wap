@@ -150,6 +150,13 @@ if ($isLoged && empty($_SESSION['user'])) {
                     $_SESSION['openid'] = $info['openid'];
                     $_SESSION['oauthed'] = $info['nickname'];
 
+                    //完善登陆手机号
+                    if (
+                        (empty($user['phone']) || empty($user['password'])) &&
+                        false === stripos($currentUrl, 'edit_login_phone')
+                    ) redirect('/wap/edit_login_phone.php');
+
+
                     $refer = I('get.refer');
                     if (!empty($refer)) {
                         header('location:' . $refer);
@@ -170,6 +177,7 @@ if ($isLoged && empty($_SESSION['user'])) {
             pigcms_tips($login['err_msg'], 'none');
     }
 }
+
 
 if (!is_array($_SESSION['store'])) $_SESSION['store'] = null;
 
@@ -252,7 +260,7 @@ $now_store = $_SESSION['store'];
 //是否是 供应商
 if(!isset($_SESSION['store']['is_supplier'])){
     $isSupplier = D('Agent')->where(array('agent_id' => $_SESSION['store']['agent_id']))->find();
-    $_SESSION['store']['is_supplier'] = $isSupplier!=0;
+    $_SESSION['store']['is_supplier'] = isset($isSupplier['open_self']) && 1==$isSupplier['open_self'];
     //redirect('/wap/supplier_ucenter.php');
 }
 $isSupplier = $_SESSION['store']['is_supplier'];

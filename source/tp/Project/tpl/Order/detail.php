@@ -107,8 +107,31 @@
 			$(this).addClass('active');
 			$('.section-detail > .js-express-tab-content').eq(index).siblings('div').addClass('hide')
 			$('.section-detail > .js-express-tab-content').eq(index).removeClass('hide');
-		})
-	})
+		});
+
+		//修改订单号
+		var inputElm =  $(".js-order-express-no");
+		inputElm.blur(function(){
+			inputElm.css("background-color","#D6D6FF");
+			$.post("<?php echo U('Order/changeexpressno'); ?>", {
+				'package_id': inputElm.data('id'),
+				'no': inputElm.val()
+			}, function (data) {
+			});
+		});
+
+		$(".js-order-express-company").change(function () {
+			var package_id = $(this).closest("div").data("pack-id");
+			var code = $(this).val();
+			var name = $(this).find("option:selected").text();
+			$.post("<?php echo U('Order/changeexpresscom'); ?>", {
+				'name': name,
+				'code': code,
+				'package_id': package_id
+			}, function (data) {
+			})
+		});
+	});
 </script>
 <h1 class="order-title">订单号：{pigcms{$order.order_no}</h1>
 <ul class="order-process clearfix">
@@ -283,7 +306,11 @@
 		</div>
 	</div>
 </div>
-<?php if(!empty($packages)) { ?>
+<?php
+
+//var_dump($packages);exit;
+
+if(!empty($packages)) { ?>
 	<div class="section section-express">
 		<div class="section-title clearfix">
 			<h2>物流状态</h2>
@@ -298,9 +325,19 @@
 			<?php if($packages) { ?>
 				<?php foreach ($packages as $key => $package) { ?>
 					<div class="js-express-tab-content <?php if($key > 0) { ?>hide<?php } ?>"
-					     data-pack-id="<?php echo $package['page_id']; ?>"
+					     data-pack-id="<?php echo $package['package_id']; ?>"
 					     data-express-no="<?php echo $package['express_no']; ?>">
-						<p><?php echo $package['express_company']; ?> 运单号：<?php echo $package['express_no']; ?> </p>
+						<p>
+							<select class="js-order-express-company"">
+								<?php
+								foreach ($express as $e){
+									echo "<option value=\"{$e['code']}\"" .($e['code'] == $package['express_code'] ? 'selected' : '') ."  >{$e['name']}</option>";
+								}
+								?>
+							</select>
+							 运单号：
+							<input class="js-order-express-no" type="text" data-id="<?php echo $package['package_id'];?>" name="express_no" value="<?php echo $package['express_no']; ?>"/>
+						</p>
 					</div>
 				<?php } ?>
 			<?php } ?>
