@@ -303,6 +303,59 @@ class OrderAction extends BaseAction
 		$this->display();
 	}
 
+    public function payforlottery()
+    {
+        $lottery = D('LotteryView');
+        //搜索
+        $condition = array();
+        if (!empty($_GET['type']) && !empty($_GET['keyword'])) {
+            if ($_GET['type'] == 'order_no') {
+                $condition['o.order_no'] = $_GET['keyword'];
+            }
+            else if ($_GET['type'] == 'name') {
+                $condition['u.nickname'] = array('like', '%' . $_GET['keyword'] . '%');
+            }
+        }
+        if (!empty($_GET['status'])) {
+            $condition['o.status'] = $_GET['status'];
+        }
+        if (!empty($_GET['is_check'])) {
+            $condition['o.is_check'] = $_GET['is_check'];
+        }
+
+        //自定义查询条件
+        if (!empty($where)) {
+            foreach ($where as $key => $value) {
+                $condition[$key] = $value;
+            }
+        }
+        if ($this->_get('start_time', 'trim') && $this->_get('end_time', 'trim')) {
+            $condition['_string'] = "l.time >= '" . strtotime($this->_get('start_time', 'trim')) .
+                "' AND l.time <= '" . strtotime($this->_get('end_time')) . "'";
+        }
+        else if ($this->_get('start_time', 'trim')) {
+            $condition['l.time'] = array('egt', strtotime($this->_get('start_time', 'trim')));
+        }
+        else if ($this->_get('end_time', 'trim')) {
+            $condition['l.time'] = array('elt', strtotime($this->_get('end_time', 'trim')));
+        }
+
+        //不含临时订单
+        $order_count = $lottery->where($condition)->count();
+
+        import('@.ORG.system_page');
+        $page = new Page($order_count, 10);
+        $orders =
+            $lottery->where($condition)->order("o.order_id DESC")
+                    ->limit($page->firstRow . ',' . $page->listRows)
+                    ->select();
+        //print_r($lottery->_sql());exit;
+        $this->assign('page', $page->show());
+        $this->assign('orders', $orders);
+
+        $this->display();
+    }
+
 	public function detail()
 	{
 		$order = D('OrderView');

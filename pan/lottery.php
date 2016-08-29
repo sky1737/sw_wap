@@ -13,6 +13,7 @@ $gifts = array(
     array('pre' => 1, 'name' => '500积分',),
     array('pre' => 0, 'name' => '双飞游',),
 );
+$pointMap = array(2 => 50, 3 => 100, 4 => 200, 5 => 300, 6 => 500); //积分礼品表
 
 $uid = $_SESSION['user']['uid'];
 
@@ -65,6 +66,9 @@ switch ($act)
                 'time'      => time(),
             ))->save();
 
+
+            isset($pointMap[ $rid ]) && D('User')->setInc('point', $pointMap[ $rid ]);
+
             echoJson(array('isOK' => $isOK, 'id' => $rid, 'name' => $giftName));
 
         }
@@ -78,7 +82,10 @@ switch ($act)
     case 'list':
 
         $list = $actLotteryLogM->field('gift_name,time')->where(array('uid' => $uid, 'act_id' => 0, 'time'))->order('id desc')->select();
-        foreach ($list as &$l) $l['time'] = date('Y-m-d H:i', $l['time']);
+        foreach ($list as &$l) {
+            unset($l['pre']);
+            $l['time'] = date('Y-m-d H:i', $l['time']);
+        }
         echoJson(array('uid' => $uid, 'list' => $list, 'gifts' => $gifts));
         break;
 
