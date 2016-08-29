@@ -657,6 +657,7 @@ $(function () {
 </script>
 <?php include display('public_search'); ?>
 <?php include display('public_menu'); ?>
+<?php include display('lottery'); ?>
 <?php echo $shareData; ?>
 </body>
 </html>
