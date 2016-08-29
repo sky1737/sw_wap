@@ -19,10 +19,17 @@ $share = new WechatShare();
 $shareData = $share->getSgin($share_conf);
 //分享配置 end
 
-if (empty($keyword)) {
-	include display('index_category');
+if (isset($_GET['discount'])) {
+    $db_banner = M('Adver');
+    $banner = $db_banner->get_adver_by_key('wap_lottery_top', 0);
+    //print_r($banner);
+    $footer = $db_banner->get_adver_by_key('wap_lottery_footer', 0);
+    //print_r($footer);
+    include display('index_category_discount');
 }
-else {
+elseif(empty($keyword)){
+    include display('index_category');
+}else{
 	$key_id = intval($_GET['id']);
 
 	// 顶级分类和子分类
