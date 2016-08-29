@@ -202,6 +202,8 @@ class goods_controller extends base_controller
 			$data['price'] = isset($_POST['price']) ? floatval(trim($_POST['price'])) : 0; //价格
 			$data['market_price'] = isset($_POST['market_price']) ? floatval(trim($_POST['market_price'])) : 0; //原价
 			$data['cost_price'] = isset($_POST['cost_price']) ? floatval(trim($_POST['cost_price'])) : 0; //原价
+            $data['discount'] =
+                isset($_POST['discountpre']) ? floatval(trim($_POST['discountpre'])) : 10; //折扣率
 			$data['weight'] = isset($_POST['weight']) ? floatval(trim($_POST['weight'])) : 0; // 重量
 			$data['postage_type'] = isset($_POST['postage_type']) ? intval(trim($_POST['postage_type'])) : 0; //邮费类型
 			$data['postage'] = isset($_POST['postage']) ? floatval(trim($_POST['postage'])) : 0; //固定邮费

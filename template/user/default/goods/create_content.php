@@ -204,7 +204,12 @@
                                                value=""/>
                                     </div>
                                 </div>
-
+                                <div class="control-group">
+                                    <label class="control-label"><em class="required">*</em>售价折扣：</label>
+                                    <div class="controls">
+                                        <input type="text" class="input-small" placeholder="折扣率：" name="discountpre" value="10" />
+                                    </div>
+                                </div>
                                 <div class="control-group">
                                     <label class="control-label"><em class="required">*</em>商品图：</label>
                                     <div class="controls">

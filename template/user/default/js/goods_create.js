@@ -856,6 +856,7 @@ $(function () {
 		var is_wholesale = $("input[name='is_wholesale']").is(":checked") ? 1 : 0;
 		var market_price = $("input[name='market']").val();
 		var cost_price = $("input[name='cost']").val();
+		var discountpre = $("input[name='discountpre']").val();
 		var images = [];
 
 		$('.app-image-list > .sort > a > img').each(function (i) {
@@ -938,6 +939,7 @@ $(function () {
 			'price': price,
 			'cost_price': cost_price,
 			'market_price': market_price,
+			'discountpre': discountpre,
 			'images': images,
 			'postage_type': postage_type,
 			'postage': postage,
@@ -1078,6 +1080,16 @@ $(function () {
 		}, 200);
 		return false;
 	})
+
+	//折扣
+	$("input[name='discountpre']").live('blur', function () {
+		//商品售价折扣验证
+		var discount = $("input[name='discountpre']").val();
+		if ( discount== '' || isNaN($("input[name='discountpre']").val()) || discount < 0 || discount>10) {
+			$("input[name='discountpre']").val('10');
+		}
+	})
+
 });
 
 function get_trade_delivery(show_err, obj) {
