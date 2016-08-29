@@ -12,16 +12,16 @@
 	</div>
 	<table class="search_table" width="100%">
 		<tr>
-			<td><form  id="form" action="{pigcms{:U('Order/income')}" method="get">
+			<td><form id="form" action="{pigcms{:U('Order/buy_log')}" method="get">
 					<input type="hidden" name="c" value="Order"/>
-					<input type="hidden" name="a" value="income"/>
+					<input type="hidden" name="a" value="buy_log"/>
 					<input type="hidden" name="act" value=""/>
 					筛选:
 					<input type="text" name="keyword" class="input-text" value="{pigcms{$_GET['keyword']}"/>
 					<select name="type">
 						<option value="order_no"<?php echo $_GET['type'] == 'order_no' ? ' selected="selected"' : ''; ?>>订单号</option>
 						<option value="trade_no"<?php echo $_GET['type'] == 'trade_no' ? ' selected="selected"' : ''; ?>>交易号</option>
-						<option value="third_id"<?php echo $_GET['type'] == 'third_id' ? ' selected="selected"' : ''; ?>>付款流水号</option>
+						<option value="third_id"<?php echo $_GET['type'] == 'third_id' ? ' selected="selected"' : ''; ?>>微信支付单号</option>
 						<option value="name"<?php echo $_GET['type'] == 'name' ? ' selected="selected"' : ''; ?>>用户名</option>
 					</select>
 					&nbsp;&nbsp;下单时间：
@@ -57,7 +57,6 @@
 						<th>金额(元)</th>
 						<th>积分(分)</th>
 						<th>状态</th>
-						<th>备注</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -70,11 +69,10 @@
 								<td>{pigcms{$record['order_no']}</td>
 								<td>{pigcms{$record['trade_no']}</td>
 								<td>{pigcms{$record['third_id']}</td>
-								<td>{pigcms{$types[$record['type']]}</td>
-								<td class="text-right ui-money ui-money-income"><?php echo ($record['income'] > 0 ? '+' : '-') . number_format(abs($record['income']), 2, '.', ''); ?></td>
-								<td class="text-right ui-money ui-money-outlay"><?php echo ($record['point'] > 0 ? '+' : '-') . abs($record['point']); ?></td>
-								<td class="text-right">成功</td>
-								<td>{pigcms{$record['remarks']}</td>
+								<td>购物</td>
+								<td class="text-right ui-money ui-money-income"><?php echo ( '-') . number_format(abs($record['balance']), 2, '.', ''); ?></td>
+								<td class="text-right ui-money ui-money-outlay"><?php echo ( '-') .abs($record['point']); ?></td>
+								<td class="text-right">{pigcms{$types[$record['status']]}</td>
 							</tr>
 						</volist>
 						<tr>

@@ -21,7 +21,7 @@
 					<select name="type">
 						<option value="order_no"<?php echo $_GET['type'] == 'order_no' ? ' selected="selected"' : ''; ?>>订单号</option>
 						<option value="trade_no"<?php echo $_GET['type'] == 'trade_no' ? ' selected="selected"' : ''; ?>>交易号</option>
-						<option value="third_id"<?php echo $_GET['type'] == 'third_id' ? ' selected="selected"' : ''; ?>>付款流水号</option>
+						<option value="third_id"<?php echo $_GET['type'] == 'third_id' ? ' selected="selected"' : ''; ?>>微信支付单号</option>
 						<option value="name"<?php echo $_GET['type'] == 'name' ? ' selected="selected"' : ''; ?>>用户名</option>
 					</select>
 					&nbsp;&nbsp;下单时间：

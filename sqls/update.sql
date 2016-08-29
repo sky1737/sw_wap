@@ -42,3 +42,7 @@ ALTER TABLE `tp_order_package` ADD COLUMN `express_money` decimal(10,2)	 DEFAULT
 ALTER TABLE `tp_product` ADD COLUMN `is_experience` int(1) NOT NULL DEFAULT '0' COMMENT '付邮免费体验';
 
 INSERT INTO `yunws`.`tp_system_menu` (`id`, `fid`, `name`, `module`, `action`, `sort`, `show`, `status`) VALUES (NULL, '4', '收支记录', 'Order', 'income', '0', '1', '1');
+
+INSERT INTO `yunws`.`tp_system_menu` (`id`, `fid`, `name`, `module`, `action`, `sort`, `show`, `status`) VALUES (NULL, '4', '红包开店收支明细', 'Order', 'payfor_log', '0', '1', '1');
+
+INSERT INTO `yunws`.`tp_system_menu` (`id`, `fid`, `name`, `module`, `action`, `sort`, `show`, `status`) VALUES (NULL, '4', '购物收支明细', 'Order', 'buy_log', '0', '1', '1');

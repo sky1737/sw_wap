@@ -695,37 +695,7 @@ class OrderAction extends BaseAction
 	//电子币收支明细
 	public function income()
 	{
-//		$uid = I('get.uid', 'intval');
-//		if(!$uid) {
-//			$this->error('传递参数有误!');
-//		}
-//		$where['uid'] = $uid;
-
-		$where = array();
-
-		$db = D('User_income');
-		$count_user = $db->where($where)->count();
-
-		import('@.ORG.system_page');
-		$p = new Page($count_user, 20);
-		$list = $db->field(true)
-			->where($where)
-			->order('`income_id` DESC')
-			->limit($p->firstRow . ',' . $p->listRows)
-			->select();
-
-		if(!empty($list)) {
-			$order_db = M('Order');
-			foreach ($list as &$item) {
-				if($item['order_no']) {
-					$item['order'] = $order_db->where(array('order_no' => $item['order_no']))->find();
-				}
-			}
-		}
-		$this->assign('list', $list);
-		$pager = $p->show();
-		$this->assign('pager', $pager);
-		$this->assign('types', array(
+		$type = array(
 			-3 => '提现',
 			-2 => '活动使用',
 			-1 => '购物使用',
@@ -742,7 +712,90 @@ class OrderAction extends BaseAction
 			11 => '成本结算',
 			12 => '积分兑换',
 			99 => '充值'
-		));
+		);
+		$act = $_GET['act'];
+		$condition = " A.status=1 ";
+		$csvTitle = "全部";
+		$keyWord = $_GET['keyword'];
+		if (!empty($_GET['type']) && !empty($_GET['keyword'])) {
+			switch ($_GET['type']){
+				case 'order_no':
+					$csvTitle = '订单号';
+					$condition .= " AND  A.order_no=".$keyWord;
+					break;
+				case 'name':
+					$csvTitle = '用户名';
+					$condition .= " AND  C.nickname like'%".$keyWord."%'";
+					break;
+				case 'trade_no':
+					$csvTitle = '交易号';
+					$condition .= " AND  B.trade_no=".$keyWord;
+					break;
+				case 'third_id':
+					$csvTitle = '微信支付单号';
+					$condition .= " AND  B.third_id=".$keyWord;
+					break;
+			}
+		}
+		if ($this->_get('start_time', 'trim') && $this->_get('end_time', 'trim')) {
+			$condition .= " AND add_time >= '" . strtotime($this->_get('start_time', 'trim')) .
+				"' AND add_time <= '" . strtotime($this->_get('end_time')) . "'";
+		}
+		else if ($this->_get('start_time', 'trim')) {
+			$condition .= " AND  add_time >='". strtotime($this->_get('start_time', 'trim'))."'";
+		}
+		else if ($this->_get('end_time', 'trim')) {
+			$condition .= " AND  add_time <='". strtotime($this->_get('end_time', 'trim'))."'";
+		}
+
+		$db_prefix = C('DB_PREFIX');
+
+		$sql = $db_prefix."user_income as A";
+		$sql .=" LEFT JOIN ".$db_prefix."order  as B on A.order_no = B.order_no ";
+		$sql .=" LEFT JOIN ".$db_prefix."user  as C on A.uid = C.uid " ;
+		$sql .= " WHERE " .$condition;
+
+		$count_sql = "select count(*) as count from  ".$sql;
+		$count =  M()->query($count_sql);
+		$count_user = $count[0]['count'];
+
+		$list_sql = " SELECT A.uid,A.order_no,trade_no,B.third_id,A.income,A.point,A.type,A.add_time,remarks,c.nickname FROM " .$sql;
+		$list = M()->query($list_sql);
+
+		if($act =='export'){
+			$expText = "筛选条件\n";
+			$expText .= $csvTitle.":".$keyWord.",下单时间：".$this->_get('start_time', 'trim').",".$this->_get('end_time', 'trim')."\n\n";
+			$expText .= "UID,用户名,时间,订单号,交易号,微信支付单号,类型,金额(元),积分(分),状态,备注\n";
+			foreach ($list as $l) {
+				$expTextArray = array();
+				$expTextArray[] = $l['uid'];
+				$expTextArray[] = $l['nickname'];
+				$expTextArray[] = date('Y-m-d H:i:s',$l['add_time']);
+				$expTextArray[] = $l['order_no'];
+				$expTextArray[] = $l['trade_no'];
+				$expTextArray[] = $l['third_id'];
+				$expTextArray[] = $type[$l['type'] ];
+				$expTextArray[] = ($l['income'] > 0  ? '+' : '-') . number_format(abs($l['income']), 2, '.', '');
+				$expTextArray[] = ($l['point'] > 0 ? '+' : '-') .abs($l['point']);
+				$expTextArray[] = '成功';
+				$expTextArray[] = $l['remarks'];
+				foreach ($expTextArray as $t) {
+					$expText .= '"' . $t . '",';
+				}
+				$expText .= "\n";
+			}
+			$expText = mb_convert_encoding($expText, 'CP936', 'UTF8');
+			return $this->exportCsv('电子币收支明细' . date('Y-m-d H:I') . '.csv', $expText); //导出
+		}
+
+		import('@.ORG.system_page');
+
+		$p = new Page($count_user, 20);
+
+		$this->assign('list', $list);
+		$pager = $p->show();
+		$this->assign('pager', $pager);
+		$this->assign('types',$type );
 
 		$this->display();
 	}
@@ -850,6 +903,98 @@ class OrderAction extends BaseAction
 
 		$this->assign('list', $list);
 
+		$this->display();
+
+	}
+
+	//购物收支明细
+	public function buy_log()
+	{
+		$type = array(
+			2  => '未发货',
+			3  => '已发货',
+			4  => '已完成',
+			5  => '已取消',
+		);
+		$db_prefix = C('DB_PREFIX');
+		$act = $_GET['act'];
+		$keyWord = $_GET['keyword'];
+		$condition = ' A.status in(2,3,4) or (A.status = 5 and refund_time > 0) ';
+		$csvTitle = '';
+		if (!empty($_GET['type']) && !empty($_GET['keyword'])) {
+			switch ($_GET['type']){
+				case 'order_no':
+					$csvTitle = '订单号';
+					$condition .= " AND  order_no=".$keyWord;
+					break;
+				case 'name':
+					$csvTitle = '用户名';
+					$condition .= " AND  B.nickname like'%".$keyWord."%'";
+					break;
+				case 'trade_no':
+					$csvTitle = '交易号';
+					$condition .= " AND  trade_no=".$keyWord;
+					break;
+				case 'third_id':
+					$csvTitle = '微信支付单号';
+					$condition .= " AND  A.third_id=".$keyWord;
+					break;
+			}
+		}
+
+		if ($this->_get('start_time', 'trim') && $this->_get('end_time', 'trim')) {
+			$condition .= " AND add_time >= '" . strtotime($this->_get('start_time', 'trim')) .
+				"' AND add_time <= '" . strtotime($this->_get('end_time')) . "'";
+		}
+		else if ($this->_get('start_time', 'trim')) {
+			$condition .= " AND  add_time >='". strtotime($this->_get('start_time', 'trim'))."'";
+		}
+		else if ($this->_get('end_time', 'trim')) {
+			$condition .= " AND  add_time <='". strtotime($this->_get('end_time', 'trim'))."'";
+		}
+
+
+		$sql = $db_prefix."order as A";
+		$sql .=" LEFT JOIN ".$db_prefix."user  as B on A.uid = B.uid " ;
+		$sql .= " WHERE " .$condition;
+
+		$count_sql = "select count(*) as count from  ".$sql;
+		$count =  M()->query($count_sql);
+		$count_user = $count[0]['count'];
+
+		$list_sql = " SELECT A.uid,order_no,trade_no,A.third_id,A.balance,A.point,A.status,add_time,nickname FROM " .$sql;
+		$list = M()->query($list_sql);
+		
+		if($act =='export'){
+			$expText = "筛选条件\n";
+			$expText .= $csvTitle.":".$keyWord.",下单时间：".$this->_get('start_time', 'trim').",".$this->_get('end_time', 'trim')."\n\n";
+			$expText .= "UID,用户名,时间,订单号,交易号,微信支付单号,类型,金额(元),积分(分),状态\n";
+			foreach ($list as $l) {
+				$expTextArray = array();
+				$expTextArray[] = $l['uid'];
+				$expTextArray[] = $l['nickname'];
+				$expTextArray[] = date('Y-m-d H:i:s',$l['add_time']);
+				$expTextArray[] = $l['order_no'];
+				$expTextArray[] = $l['trade_no'];
+				$expTextArray[] = $l['third_id'];
+				$expTextArray[] = '购物';
+				$expTextArray[] = ('-') . number_format(abs($l['balance']), 2, '.', '');
+				$expTextArray[] = ( '-') .abs($l['point']);
+				$expTextArray[] = $type[$l['status']];
+				foreach ($expTextArray as $t) {
+					$expText .= '"' . $t . '",';
+				}
+				$expText .= "\n";
+			}
+			$expText = mb_convert_encoding($expText, 'CP936', 'UTF8');
+			return $this->exportCsv('购物收支明细' . date('Y-m-d H:I') . '.csv', $expText); //导出
+		}
+		import('@.ORG.system_page');
+		$p = new Page($count_user, 20);
+		$pager = $p->show();
+		$this->assign('pager', $pager);
+		$this->assign('list', $list);
+		$this->assign('types',$type );
 		$this->display();
 
 	}
