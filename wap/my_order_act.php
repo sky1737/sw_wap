@@ -17,7 +17,12 @@ $where_sql = "`uid` = '{$uid}'";
 
 $page_url = 'my_order.php?action=' . $action;
 
+$beg_tiem = strtotime('20160909');
+$end_tiem = strtotime('20161008');
 $where_sql.= " AND status >=2 AND status<=4";
+$where_sql.= " AND add_time >= ".$beg_tiem."AND add_time<=".$end_tiem;
+$where_sql.= " AND store_id in(156,157) ";
+
 /**
  * @var order_model $order_model
  */
