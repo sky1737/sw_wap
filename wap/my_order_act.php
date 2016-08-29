@@ -17,7 +17,12 @@ $where_sql = "`uid` = '{$uid}'";
 
 $page_url = 'my_order.php?action=' . $action;
 
-$where_sql.= " AND status >=2 AND status<=4";
+$beg_tiem = strtotime('20160909');
+$end_tiem = strtotime('20161008');
+$where_sql .= " AND status >=2 AND status<=4";
+$where_sql .= " AND add_time >= " . $beg_tiem . "AND add_time<=" . $end_tiem;
+$where_sql .= " AND store_id in(156,157) ";
+
 /**
  * @var order_model $order_model
  */
@@ -37,51 +42,52 @@ $physical_id_arr = array();
 $store_id_arr = array();
 $physical_list = array();
 $store_contact_list = array();
-if($count > 0) {
-	$order_list = $order_model->getOrders($where_sql, 'order_id desc', $offset, $limit); //status asc,
-	$order_product_model = M('Order_product');
-	// 将相应的产品放到订单数组里
-	foreach ($order_list as &$order_tmp) {
-		$order_product_list = $order_product_model->orderProduct($order_tmp['order_id']);
+if ($count > 0) {
+    $order_list = $order_model->getOrders($where_sql, 'order_id desc', $offset, $limit); //status asc,
+    $order_product_model = M('Order_product');
+    // 将相应的产品放到订单数组里
+    foreach ($order_list as &$order_tmp) {
+        $order_product_list = $order_product_model->orderProduct($order_tmp['order_id']);
 
-		if($order_tmp['total'] == '0.00') {
-			$order_tmp['total'] = $order_tmp['sub_total'];
-		}
-		$order_tmp['address'] = unserialize($order_tmp['address']);
-		$order_tmp['order_no_txt'] = option('config.orderid_prefix') . $order_tmp['order_no'];
-		$order_tmp['url'] = './order.php?orderid=' . $order_tmp['order_id'];
-		$order_tmp['refund_url'] = './refund.php?orderid=' .$order_tmp['order_id'];
+        if ($order_tmp['total'] == '0.00') {
+            $order_tmp['total'] = $order_tmp['sub_total'];
+        }
+        $order_tmp['address'] = unserialize($order_tmp['address']);
+        $order_tmp['order_no_txt'] = option('config.orderid_prefix') . $order_tmp['order_no'];
+        $order_tmp['url'] = './order.php?orderid=' . $order_tmp['order_id'];
+        $order_tmp['refund_url'] = './refund.php?orderid=' . $order_tmp['order_id'];
 
-		// 获取图片地址
-		foreach ($order_product_list as &$order_product) {
-			$order_product['url'] = 'good.php?id=' . $order_product['product_id'];
-		}
+        // 获取图片地址
+        foreach ($order_product_list as &$order_product) {
+            $order_product['url'] = 'good.php?id=' . $order_product['product_id'];
+        }
 
-		$order_tmp['product_list'] = $order_product_list;
+        $order_tmp['product_list'] = $order_product_list;
 
-		$store_id_arr[$order_tmp['store_id']] = $order_tmp['store_id'];
+        $store_id_arr[$order_tmp['store_id']] = $order_tmp['store_id'];
 
-	}
+    }
 
-	// 分页
-	import('source.class.user_page');
+    // 分页
+    import('source.class.user_page');
 
-	$user_page = new Page($count, $limit, $page);
-	$pages = $user_page->show();
+    $user_page = new Page($count, $limit, $page);
+    $pages = $user_page->show();
 
 
-	if(!empty($store_id_arr)) {
-		$store_contact_list = M('Store_contact')->storeContactList($store_id_arr);
-	}
-	if(!empty($physical_id_arr)) {
-		$physical_list = M('Store_physical')->getListByIDList($physical_id_arr);
-	}
+    if (!empty($store_id_arr)) {
+        $store_contact_list = M('Store_contact')->storeContactList($store_id_arr);
+    }
+    if (!empty($physical_id_arr)) {
+        $physical_list = M('Store_physical')->getListByIDList($physical_id_arr);
+    }
 }
 
 $db_banner = M('Adver');
-
-$banner = $db_banner->get_adver_by_key('wap_zhongqiu_top',0);
+$banner = $db_banner->get_adver_by_key('wap_lottery_top', 0);
+//print_r($banner);
+$footer = $db_banner->get_adver_by_key('wap_lottery_footer', 0);
+//print_r($footer);
 
 include display('my_order_act');
-
 echo ob_get_clean();

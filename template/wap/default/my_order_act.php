@@ -46,7 +46,13 @@
 <div class="container">
     <div>
         <div class="mid-autumn-img">
-            <img src="./image/img-logo.jpg" />
+            <?php
+            if(empty($banner[0])) {
+                echo '请添加标签为 wap_lottery_top 的广告。';
+            } else {
+                $value = $banner[0];
+                echo '<a href="'.$value['url'].'"><img src="'.$value['pic'].'" alt="'.$value['name'].'" /></a>';
+            } ?>
         </div>
         <div id="order-list-container">
             <div class="b-list">
@@ -81,9 +87,9 @@
                                         </div>
                                     </div>
                                 </div>
-                            <?php $j++; endforeach;?>
+                                <?php $j++; endforeach;?>
                         </li>
-                    <?php $i++; $sub_total += $value['total']; endforeach;?>
+                        <?php $i++; $sub_total += $value['total']; endforeach;?>
                     <?php $rate = ($sub_total/2999)*100?>
                     <div class="mid-autumn-footer">
                         <div class="mid-autumn-cost">已消费<span>￥<?php echo  $sub_total?></span><span> | </span>还差<span>￥<?php echo $sub_total < 299 ? 2999-$sub_total : 0?></span></div>
@@ -101,35 +107,16 @@
                 <?php endif;?>
             </div>
         </div>
-    </div>
-    <script charset="utf-8" src="http://wpa.b.qq.com/cgi/wpa.php"></script>
-    <script type="text/javascript">
-        BizQQWPA.addCustom({aty: '0', a: '0', nameAccount: 800191661, selector: 'BizQQWPA'});
-    </script>
-    <div class="wx_aside" id="quckArea">
-        <a href="javascript:void(0);" id="quckIco2" class="btn_more">更多</a>
-        <div class="wx_aside_item" id="quckMenu">
-            <a href="./index.php" class="item_index">首页</a>
-            <a href="./category.php" class="item_fav">商品分类</a>
-            <a href="./cart.php" class="item_cart" id>购物车</a>
-            <!--        <div id="BizQQWPA"  class="item_uc" >QQ客服</div>-->
-            <a href="#" class="item_uc" id="BizQQWPA">QQ客服</a>
-            <!-- WPA Button Begin -->
-            <!--   <script charset="utf-8" type="text/javascript" src="http://wpa.b.qq.com/cgi/wpa.php?key=XzgwMDE5MTY2MV80MjY1OTZfODAwMTkxNjYxXw"></script>-->
-            <!-- WPA Button End -->
-            <a href="./my.php" class="item_uc">个人中心</a>
+        <div class="mid-autumn-img">
+            <?php
+            if(empty($footer[0])) {
+                echo '请添加标签为 wap_lottery_footer 的广告。';
+            } else {
+                $value = $footer[0];
+                echo '<a href="'.$value['url'].'"><img src="'.$value['pic'].'" alt="'.$value['name'].'" /></a>';
+            } ?>
         </div>
     </div>
-</div>
-<div style="height: 50px;"></div>
-<div class="wx_nav">
-    <a href="./index.php" class="nav_index ">首页</a>
-    <a href="./category.php" class="nav_search ">分类</a>
-
-    <!--	-->
-    <!--	<a href="./--><!--_ucenter.php" class="nav_shopcart --><!--">--><!--</a>-->
-    <a href="./cart.php" class="nav_shopcart ">购物车</a>
-    <a href="./my.php" class="nav_me ">个人中心</a>
 </div>
 <script>
     $(function(){

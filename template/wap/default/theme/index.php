@@ -97,7 +97,6 @@ $(function () {
 		<?php
 		if ($slide) { ?>
 		<div class="banner">
-
 			<div class="swiper-container s1 swiper-container-horizontal">
 				<div class="swiper-wrapper">
 					<?php
@@ -657,6 +656,7 @@ $(function () {
 </script>
 <?php include display('public_search'); ?>
 <?php include display('public_menu'); ?>
+<?php include display('lottery'); ?>
 <?php echo $shareData; ?>
 </body>
 </html>

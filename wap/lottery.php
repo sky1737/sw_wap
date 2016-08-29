@@ -1,5 +1,4 @@
 <?php
-
 require_once dirname(dirname(__FILE__)) . '/wap/global.php';
 
 //奖品概率
