@@ -513,6 +513,11 @@ switch ($action) {
 					// 通过帐户余额支付成功
 					$model_income->buyReturn($nowOrder);
 
+                    D('Activity_lottery_log')->data(array(
+                        'uid'       => $wap_user['uid'],
+                        'order_id'  => $nowOrder['order_id'],
+                    ))->add();
+
 					json_return(0, '/wap/order.php?orderid=' . $nowOrder['order_id']);
 					exit;
 				}

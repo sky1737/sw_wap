@@ -51,39 +51,25 @@ switch ($act)
 
         $giftName = $gifts[ $rid ]['name'];
 
-        if (FALSE)
+        $one = $actLotteryLogM->field('id')->where(array(
+            'uid'     => $uid,
+            'gift_id' => -1,
+            'time'    => 0,
+        ))->find();
+
+        if ($one)
         {
-            $one = $actLotteryLogM->field('id')->where(array(
-                'uid'     => $uid,
-                'gift_id' => -1,
-                'time'    => 0,
-            ))->find();
-
-            if ($one)
-            {
-
-                $isOK = $actLotteryLogM->where("id={$one['id']}")->data(array(
-                    'gift_id'   => $rid,
-                    'gift_name' => $giftName,
-                    'time'      => time(),
-                ))->save();
-
-                echoJson(array('isOK' => $isOK, 'id' => $rid, 'name' => $giftName));
-
-            }
-            else echoJson(array('isOK' => 0, 'msg' => '没有剩余次数'));
-
-        }
-        else
-        {
-            $isOK = $actLotteryLogM->data(array(
-                'uid'       => $uid,
-                'order_id'  => mt_rand(1, 99999999),
+            $isOK = $actLotteryLogM->where("id={$one['id']}")->data(array(
                 'gift_id'   => $rid,
                 'gift_name' => $giftName,
                 'time'      => time(),
-            ))->add();
+            ))->save();
+
+            echoJson(array('isOK' => $isOK, 'id' => $rid, 'name' => $giftName));
+
         }
+        else echoJson(array('isOK' => 0, 'msg' => '没有剩余次数'));
+
 
         echoJson(array('isOK' => $isOK, 'id' => $rid, 'name' => $giftName));
 

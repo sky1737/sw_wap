@@ -426,6 +426,11 @@ function pay_notice_call($payInfo, $ok_msg = 'success', $err_msg = 'fail')
 //                }
 				// 更改赠送的优惠券为可用
 //				M('User_coupon')->save(array('is_valid' => 1), array('give_order_id' => $nowOrder['order_id']));
+                D('Activity_lottery_log')->data(array(
+                    'uid'       => $nowOrder['uid'],
+                    'order_id'  => $nowOrder['order_id'],
+                ))->add();
+
 				exit($ok_msg);
 			}
 			else {
