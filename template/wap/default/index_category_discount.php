@@ -31,7 +31,7 @@
 		echo '请添加标签为 wap_lottery_top 的广告。';
 	} else {
 		$value = $banner[0];
-		echo '<a href="'.$value['url'].'"><img src="'.$value['pic'].'" alt="'.$value['name'].'" /></a>';
+		echo '<a href="'.$value['url'].'"><img style="width: 100%" src="'.$value['pic'].'" alt="'.$value['name'].'" /></a>';
 	} ?>
 </div>
 <div class="wx_wrap">
@@ -49,7 +49,7 @@
 		echo '请添加标签为 wap_lottery_footer 的广告。';
 	} else {
 		$value = $footer[0];
-		echo '<a href="'.$value['url'].'"><img src="'.$value['pic'].'" alt="'.$value['name'].'" /></a>';
+		echo '<a href="'.$value['url'].'"><img style="width: 100%" src="'.$value['pic'].'" alt="'.$value['name'].'" /></a>';
 	} ?>
 </div>
 <?php
