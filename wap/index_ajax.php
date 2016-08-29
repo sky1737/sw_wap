@@ -23,6 +23,8 @@ switch ($action) {
 		$key_id = $_POST['key_id'];
 		$page = $_POST['page'];
 		$prop = $_POST['prop'];
+		$isDiscount = isset($_POST['discount']);
+
 		// 筛选属性ID集合
 		$prop_arr = array();
 		if(!empty($prop)) {
@@ -41,6 +43,8 @@ switch ($action) {
 			$now_category =
 				D('Product_category')->field('`cat_id`,`cat_fid`')->where(array('cat_id' => $key_id))->find();
 		}
+
+        $isDiscount && $condition['discount'] = array('<', '10');
 		$condition['status'] = '1';
 		$condition['is_fx'] = '1';
 		$condition['quantity'] = array('!=', '0');
@@ -84,12 +88,14 @@ switch ($action) {
 			default:
 				$sort_by = '`product_id` DESC';
 		}
+
 		$json_return['list'] = D('Product')
-			->field('`product_id`,`name`,`image`,`price`,`market_price`,`cost_price`,`sales`')
+			->field('`product_id`,`name`,`image`,`price`,`market_price`,`cost_price`,`sales`,`discount`')
 			->where($condition)
 			->order($sort_by)
 			->limit((($page - 1) * 10) . ',10')
 			->select();
+        //var_dump(D('Product')->last_sql);exit;
 		if(count($json_return['list']) < 10) {
 			$json_return['noNextPage'] = true;
 		}

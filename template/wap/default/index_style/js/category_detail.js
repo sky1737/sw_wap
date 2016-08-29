@@ -159,14 +159,16 @@ function getProducts() {
 					if (result.err_msg.count) {
 						$('#sFound').removeClass('hide').find('#totResult').html(result.err_msg.count);
 					}
+
 					var productHtml = '';
 					for (var i in result.err_msg.list) {
 						var product = result.err_msg.list[i];
+						var discountStr = product.discount < 10 ? '&nbsp;&nbsp;'+product.discount+'折' : '';
 						productHtml += '<div class="hproduct ' + (productShowRows ? '' : 'item_long_cover') + '">' +
 							'<a href="./good.php?id=' + product.product_id + '&platform=1">' +
 							'<p class="cover"><img src="' + product.image + '"></p>' +
 							'<p class="fn">' + product.name + '</p>' +
-							'<p class="prices"><strong><em>¥&nbsp;' + product.price + '</em></strong>&nbsp;&nbsp;<del><em>¥&nbsp;' + product.market_price + '</em></del></p>' +
+							'<p class="prices"><del><em>¥&nbsp;' + product.price + '</em></del><strong><em>¥&nbsp;' + (product.price*product.discount/10).toFixed(2) + '</em></strong>'+discountStr+'</p>' +
 							'<p class="back">购买立返 <strong><em>' + (product.point == undefined || product.point == 0 ? '￥' + product.rebate : (product.point<0?0:product.point)+'积分') + '</em></strong></p>' +
 							'<p class="sku"><span class="comment_num ' + (product.sales == '0' ? 'hide' : '') + '">销量 <span>' + product.sales + '</span></span>&nbsp;<span class="stock hide">无货</span></p>' +
 							'</a></div>';
