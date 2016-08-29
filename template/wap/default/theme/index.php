@@ -97,7 +97,6 @@ $(function () {
 		<?php
 		if ($slide) { ?>
 		<div class="banner">
-
 			<div class="swiper-container s1 swiper-container-horizontal">
 				<div class="swiper-wrapper">
 					<?php
