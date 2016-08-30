@@ -4,15 +4,16 @@ require_once dirname(dirname(__FILE__)) . '/wap/global.php';
 //奖品概率
 $gifts = array(
     array('pre' => 100, 'name' => '谢谢惠顾',),
-    array('pre' => 100, 'name' => '谢谢惠顾',),
     array('pre' => 50, 'name' => '50积分',),
     array('pre' => 4, 'name' => '100积分',),
+    array('pre' => 100, 'name' => '谢谢惠顾',),
     array('pre' => 3, 'name' => '200积分',),
     array('pre' => 2, 'name' => '300积分',),
+    array('pre' => 100, 'name' => '谢谢惠顾',),
     array('pre' => 1, 'name' => '500积分',),
     array('pre' => 0, 'name' => '双飞游',),
 );
-$pointMap = array(2 => 50, 3 => 100, 4 => 200, 5 => 300, 6 => 500); //积分礼品表
+$pointMap = array(1 => 50, 2 => 100, 4 => 200, 5 => 300, 7 => 500); //积分礼品表
 
 $uid = $_SESSION['user']['uid'];
 
