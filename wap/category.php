@@ -25,6 +25,13 @@ if (isset($_GET['discount'])) {
     //print_r($banner);
     $footer = $db_banner->get_adver_by_key('wap_lottery_footer', 0);
     //print_r($footer);
+
+    // 顶级分类和子分类
+    /**
+     * @var $product_category_model product_category_model
+     */
+    $product_category_model = M('Product_category');
+    $category = $product_category_model->db->field('cat_id,cat_name')->where(array('cat_fid' => 0,'cat_status'=>1))->order('cat_sort desc')->select();
     include display('index_category_discount');
 }
 elseif(empty($keyword)){
@@ -33,6 +40,9 @@ elseif(empty($keyword)){
 	$key_id = intval($_GET['id']);
 
 	// 顶级分类和子分类
+    /**
+     * @var $product_category_model product_category_model
+     */
 	$product_category_model = M('Product_category');
 	$category_detail = $product_category_model->getCategory($key_id);
 

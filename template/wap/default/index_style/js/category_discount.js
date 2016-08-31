@@ -23,9 +23,61 @@ $(function () {
 		$('#itemList').addClass('mod_itemlist_small').removeClass('mod_itemgrid');
 		$('#sortBlock .icon_switch').closest('a').removeClass('state_switch');
 	}
+	$('#sortBlock a').click(function () {
+		var sortType = $(this).data('type');
 
+		if (sortType == 'prop') {
+			$("html,body").animate({scrollTop: 0}, 0)
+			$(".sidebar-content").show();
+			$("body").addClass("body_no_scroll");
+			return;
+		}
+		if (sortType == 'listmode') {
+			if (productShowRows) {
+				$(this).addClass('state_switch');
+				productShowRows = false;
+				$('#itemList').addClass('mod_itemgrid').removeClass('mod_itemlist_small').find('.hproduct').addClass('item_long_cover');
+				$('#itemList').find('span.comment_num').hide();
+			}
+			else {
+				$(this).removeClass('state_switch');
+				productShowRows = true;
+				$('#itemList').addClass('mod_itemlist_small').removeClass('mod_itemgrid').find('.hproduct').removeClass('item_long_cover');
+				$('#itemList').find('span.comment_num').show()
+			}
+		}
+		else {
+			if (sortType == 'price') {
+				if ($(this).data('mark') == 1) {
+					$(this).data('mark', 2).removeClass('state_switch').addClass('select').siblings().removeClass('select');
+					productSort = 'price_asc';
+				}
+				else {
+					$(this).data('mark', 2).addClass('select state_switch').siblings().removeClass('select');
+					$(this).data('mark', 1);
+					productSort = 'price_desc';
+				}
+
+			}
+			else {
+				$(this).addClass('select').siblings().removeClass('select');
+				$('#sortBlock .icon_sort').closest('a').removeClass('select state_switch').data('mark', 1);
+				productSort = sortType;
+			}
+			$('#noMoreTips,#sFound,#itemList').addClass('hide');
+			productIsAjax = false;
+			$('#itemList').empty();
+			productPage = 1;
+			$('.wx_loading2').show();
+			getProducts();
+		}
+	});
 	getProducts();
-
+	$('#topSearchClear').click(function () {
+		$('#topSearchTxt').val('');
+		$(this).hide();
+		// location.href = './category.php';
+	});
 	$('#itemList .hproduct').live('click', function () {
 		$(this).addClass('active').siblings('.hproduct').removeClass('active');
 	});
@@ -43,10 +95,52 @@ $(function () {
 		}
 	});
 
+	$(".tab-con li").click(function () {
+		if ($(this).hasClass("checked")) {
+			$(this).closest(".opened").find("small").html("全部");
+			$(this).removeClass("checked");
+		}
+		else {
+			$(this).closest(".opened").find("small").html($(this).find("span").html());
+			$(this).addClass("checked");
 
+			$(this).siblings().removeClass("checked");
+		}
+	});
+
+	$(".J_search_prop").click(function () {
+		//window.scrollTo(0, 0);
+		$("body").removeClass("body_no_scroll");
+		$(".sidebar-content").hide();
+
+
+		cat_id = "";
+		$(".sidebar-items-container").find(".checked").each(function () {
+			if (cat_id.length == 0) {
+				cat_id = $(this).data("cat_id");
+			}
+			else {
+				cat_id += "_" + $(this).data("cat_id");
+			}
+		});
+
+		$('#noMoreTips,#sFound,#itemList').addClass('hide');
+		productIsAjax = false;
+		$('#itemList').empty();
+		productPage = 1;
+		$('.wx_loading2').show();
+		getProducts();
+	});
+
+	$(".J_search_reset").click(function () {
+		$(".sort-of-brand").html("全部");
+		$(".sidebar-categories li").removeClass("checked");
+
+		cat_id = "";
+	});
 });
 
-var prop = "";
+var cat_id = "";
 function getProducts() {
 	$('.wx_loading2').show();
 	productIsAjax = true;
@@ -54,7 +148,7 @@ function getProducts() {
 	$.ajax({
 		type: "POST",
 		url: 'index_ajax.php?action=get_product_list',
-		data: 'key_id=' + key_id + '&page=' + productPage + '&sort=' + productSort + "&prop=" + prop + "&discount=1",
+		data: 'key_id=' + cat_id + '&page=' + productPage + '&sort=' + productSort + "&discount=1",
 		dataType: 'json',
 		success: function (result) {
 			$('.wx_loading2').hide();
