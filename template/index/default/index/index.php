@@ -7,6 +7,7 @@
 <title><?php echo $config['site_name']; ?></title>
 <meta name="keywords" content="<?php echo $config['seo_keywords'] ?>" />
 <meta name="description" content="<?php echo $config['seo_description'] ?>" />
+<meta name="baidu-site-verification" content="9ahyZrvPg9" />
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <link href="<?php echo TPL_URL; ?>css/style.css" type="text/css" rel="stylesheet">
 <link href="<?php echo TPL_URL; ?>css/index.css" type="text/css" rel="stylesheet">
