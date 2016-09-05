@@ -25,7 +25,15 @@
 					</div>
 				</div>
 			</div>*/?>
+
 			<div class="js-list-search ui-search-box">
+				<select name="supplier_id" id="supplier_id">
+					<?php foreach ($supplierStoreInfo as $supplierStore){
+						//var_dump($product,$supplierStoreInfo);exit;
+						?>
+						<option <?php echo $supplierUid==$supplierStore['uid'] ? 'selected' : '' ?> data-storeid="<?php echo $supplierStore['store_id'] ?>" value ="<?php echo $supplierStore['uid'] ?>"><?php echo $supplierStore['name'] ?></option>
+					<?php }?>
+				</select>
 				<input class="txt" type="text" placeholder="搜索" value="">
 			</div>
 		</div>
@@ -101,8 +109,18 @@
 		<div>
 			<div class="pull-left">
 				<!--<a href="javascript:;" class="ui-btn js-batch-tag" data-loading-text="加载...">改分组</a>-->
-				<a href="javascript:;" class="ui-btn js-batch-unload">下架</a> <a href="javascript:;" class="ui-btn js-batch-delete">删除</a> 
-				<!--<a href="javascript:;" class="ui-btn js-batch-discount">会员折扣</a>--> 
+				<a href="javascript:;" class="ui-btn js-batch-unload">下架</a>
+				<a href="javascript:;" class="ui-btn js-batch-delete">删除</a>
+
+				<select name="move_supplier_id" id="move_supplier_id">
+					<?php foreach ($supplierStoreInfo as $supplierStore){
+						//var_dump($product,$supplierStoreInfo);exit;
+						?>
+						<option data-storeid="<?php echo $supplierStore['store_id'] ?>" value ="<?php echo $supplierStore['uid'] ?>"><?php echo $supplierStore['name'] ?></option>
+					<?php }?>
+				</select>
+				<a href="javascript:;" class="ui-btn js-batch-move_supplier_id">移动到该供应商</a>
+				<!--<a href="javascript:;" class="ui-btn js-batch-discount">会员折扣</a>-->
 			</div>
 			<div class="js-page-list ui-box pagenavi"><?php echo $page;?></div>
 		</div>

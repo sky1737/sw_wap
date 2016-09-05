@@ -31,6 +31,8 @@ $(function(){
         var keyword = '';
         if ($('.js-list-search > .txt').val() != '') {
             keyword = $('.js-list-search > .txt').val();
+
+            var supplierUid = $("select[name='supplier_id']").val();
         }
         $('.app__content').load(load_url, {page: page_content, 'p': p, 'keyword': keyword, 'group_id': group_id, 'orderbyfield': orderbyfield, 'orderbymethod': orderbymethod}, function(){
             if (group != '') {
@@ -252,7 +254,7 @@ $(function(){
                 });
             });
         });
-    })
+    });
 
     //批量删除商品
     $('.js-batch-delete').live('click', function(e){
@@ -278,7 +280,35 @@ $(function(){
                 }
             })
         });
-    })
+    });
+
+    //批量设置商品供应商
+    $('.js-batch-move_supplier_id').live('click', function(e){
+        if ($('.js-check-toggle:checked').length == 0) {
+            $('.notifications').html('');
+            $('.notifications').html('<div class="alert in fade alert-error"><a href="javascript:;" class="close pull-right">×</a>请选择商品</div>');
+            $('body').append('<div class="notify-backdrop fade in"></div>');
+            return false;
+        }
+        var product_id = [];
+        $('.js-check-toggle:checked').each(function(i){
+            product_id[i] = $(this).val();
+        });
+        button_box($(this), e, 'right', 'confirm', '确认移动？', function(){
+            var supplierUid = $("select[name='move_supplier_id']").val();
+            console.log(supplierUid);
+            $.post('user.php?c=goods&a=movesupplier', {'product_id': product_id,'supplierUid': supplierUid}, function(data) {
+                close_button_box();
+                t = setTimeout('msg_hide()', 3000);
+                if (data.err_code == 0) {
+                    $('.notifications').html('<div class="alert in fade alert-success">' + data.err_msg + '</div>');
+                    load_page('.app__content',load_url,{page: page_content},'');
+                } else {
+                    $('.notifications').html('<div class="alert in fade alert-error">' + data.err_msg + '</div>');
+                }
+            })
+        });
+    });
 
     //删除单个商品
     $('.js-delete').live('click', function(e){
@@ -347,7 +377,10 @@ $(function(){
                 group_id = $('.chosen-single').attr('group-id');
                 group = $('.chosen-single > span').text();
             }
-            $('.app__content').load(load_url, {page: page_content, 'keyword': keyword, 'group_id': group_id}, function(){
+
+            var supplierUid = $("select[name='supplier_id']").val();
+            console.log(supplierUid);
+            $('.app__content').load(load_url, {page: page_content, 'keyword': keyword, 'supplierUid': supplierUid, 'group_id': group_id}, function(){
                 $('.chosen-single > span').text(group);
                 $('.chosen-single').attr('group-id', group_id);
                 $('.ui-search-box .txt').val(keyword);

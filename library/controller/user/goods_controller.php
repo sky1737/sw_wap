@@ -596,6 +596,19 @@ class goods_controller extends base_controller
 		$this->display();
 	}
 
+    //批量修改供应商
+    public function movesupplier()
+    {
+        $product_id  = isset($_POST['product_id']) ? $_POST['product_id'] : array();
+        $supplierUid = isset($_POST['supplierUid']) ? intval(trim($_POST['supplierUid'])) : 0;
+        $product = D('Product');
+        if ($product_id && $supplierUid)
+        {
+            $product->where(array('product_id' => array('in', $product_id)))->data(array('uid'=> $supplierUid))->save();
+        }
+        json_return(0,$product->last_sql);
+    }
+
 	public function goods_load()
 	{
 		if(empty($_POST['page']))
@@ -642,7 +655,20 @@ class goods_controller extends base_controller
 //			}
 //		}
 		if($_POST['page'] == 'selling_content') {
-			$this->_selling_goods_list();
+
+            $agent = D('Agent');
+            $allOpenSelfAgents = $agent->where('open_self <> 0 and status=1')->select();
+            $allOpenSelfAgentIds = array();
+            foreach ($allOpenSelfAgents as $a)  $allOpenSelfAgentIds[]  = $a['agent_id'];
+
+            $store = D('Store');
+            $supplierStoreInfo = $store->where(array('agent_id'=>array('in',$allOpenSelfAgentIds)))->select();
+
+            $supplierUid = isset($_POST['supplierUid']) ? trim($_POST['supplierUid']) : '';
+			$this->_selling_goods_list($supplierUid);
+
+            $this->assign('supplierUid', $supplierUid);
+            $this->assign('supplierStoreInfo', $supplierStoreInfo);
 		}
 		if($_POST['page'] == 'stockout_content') {
 			$this->_stockout_goods_list();
@@ -681,7 +707,7 @@ class goods_controller extends base_controller
 //        $catid_str = $_GET['catid'];
 //        if (empty($catid_str))
 //            return false;
-//        
+//
 //        $catid = end(explode("-", $catid_str));
 //        $cat_arr = M('Product_category')->getCategory($catid);
 //        if (empty($cat_arr['filter_attr'])) {
@@ -1005,7 +1031,7 @@ class goods_controller extends base_controller
 	/**
 	 * 出售中的商品列表
 	 */
-	private function _selling_goods_list()
+	private function _selling_goods_list($supplierUid)
 	{
 		$product = M('Product');
 //		$product_group = M('Product_group');
@@ -1022,6 +1048,9 @@ class goods_controller extends base_controller
 		$where['soldout'] = 0;
 		if($keyword) {
 			$where['name'] = array('like', '%' . $keyword . '%');
+		}
+        if($supplierUid) {
+			$where['uid'] = $supplierUid;
 		}
 		if($group_id) {
 			$products = $product_to_group->getProducts($group_id);
