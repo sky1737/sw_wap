@@ -606,7 +606,7 @@ class goods_controller extends base_controller
         {
             $product->where(array('product_id' => array('in', $product_id)))->data(array('uid'=> $supplierUid))->save();
         }
-        json_return(0);
+        json_return(0,'移动成功');
     }
 
 	public function goods_load()
