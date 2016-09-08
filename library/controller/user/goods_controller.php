@@ -1033,6 +1033,9 @@ class goods_controller extends base_controller
 	 */
 	private function _selling_goods_list($supplierUid)
 	{
+        /**
+         * @var $product product_model
+         */
 		$product = M('Product');
 //		$product_group = M('Product_group');
 //		$product_to_group = M('Product_to_group');

@@ -28,6 +28,7 @@
 
 			<div class="js-list-search ui-search-box">
 				<select name="supplier_id" id="supplier_id">
+					<option value="">全部</option>
 					<?php foreach ($supplierStoreInfo as $supplierStore){
 						//var_dump($product,$supplierStoreInfo);exit;
 						?>
@@ -85,7 +86,8 @@
 					<td class="text-right"><a class="js-change-num" href="javascript:void(0);"><?php echo $product['sort']; ?></a>
 						<input class="input-mini js-input-num" type="number" min="0" maxlength="8" style="display:none;" data-id="<?php echo $product['product_id']; ?>" value="<?php echo $product['sort']; ?>"></td>
 					<td class="text-right">
-						<p><a href="<?php echo dourl('edit', array('id' => $product['product_id'])); ?>">编辑</a>
+						<p>
+							<a target="_blank" href="<?php echo dourl('edit', array('id' => $product['product_id'])); ?>">编辑</a>
 							<span>-</span>
 							<a href="javascript:void(0);" class="js-delete" data="<?php echo $product['product_id']; ?>">删除</a>
 							<span>-</span>
