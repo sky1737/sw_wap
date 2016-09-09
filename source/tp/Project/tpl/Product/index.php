@@ -51,6 +51,12 @@
 						<option value="store"
 						<if condition="$_GET['type'] eq 'store'">selected="selected"</if>
 						>店铺名称</option>
+						<option value="create_uid"
+						<if condition="$_GET['type'] eq 'create_uid'">selected="selected"</if>
+						>创建者id</option>
+						<option value="create_u_name"
+						<if condition="$_GET['type'] eq 'create_u_name'">selected="selected"</if>
+						>创建者昵称</option>
 					</select>
 					&nbsp;&nbsp;分类：
 					<select name="category">
@@ -189,6 +195,9 @@
 								<span class="attr">分类：<b>{pigcms{$product.category}</b></span>
 								<br />
 								<span class="attr">商家：<b>{pigcms{$product.store}</b></span>
+								<br />
+								<span class="attr">创建者 UID：<b>{pigcms{$product.createUid}</b></span>
+								<span class="attr">昵称：<b>{pigcms{$product.createUName}</b></span>
 							</td>
 							<!--<td>{pigcms{$product.category}</td>
 							<td>{pigcms{$product.store}</td>-->

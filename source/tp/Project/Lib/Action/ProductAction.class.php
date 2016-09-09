@@ -27,8 +27,15 @@ class ProductAction extends BaseAction
 			else if ($this->_get('type', 'trim') == 'store') {
 				$where['Store.name'] = array('like', '%' . $this->_get('keyword', 'trim') . '%');
 			}
+            else if ($this->_get('type', 'trim') == 'create_u_name') {
+                $where['User.nickname'] = array('like', '%' . $this->_get('keyword', 'trim') . '%');
+            }
+            else if ($this->_get('type', 'trim') == 'create_uid') {
+                $where['User.uid'] = $this->_get('keyword', 'trim,intval');
+            }
 		}
 
+        //var_dump($where);exit;
 		$isfx = 0;
 		if ($this->_get('isfx', 'trim') && is_numeric($this->_get('isfx', 'trim'))) {
 			if ($this->_get('isfx') == '2') {
@@ -134,6 +141,8 @@ class ProductAction extends BaseAction
 				'category' => $tmp_product['category'],
 				//'group' => $group_name,
 				'store' => $tmp_product['store'],
+				'createUName' => $tmp_product['createUName'],
+				'createUid' => $tmp_product['createUid'],
 				'price' => $tmp_product['price'],
 				'cost_price' => $tmp_product['cost_price'],
 				'quantity' => $tmp_product['quantity'],
