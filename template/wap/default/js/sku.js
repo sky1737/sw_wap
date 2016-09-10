@@ -14,15 +14,17 @@ function getFinalPrice(min, max, discount) {
 	}
 	else {
 
-		if(discount<10){
+		/*if(discount<10){
 
 			if((max != 0 && min != max)){
-				 str = min*discount/10 + ' - ' + max*discount/10;
-			}else str =  min*discount/10;
+				 str = min/discount*10 + ' - ' + max/discount*10;
+			}else str =  min/discount*10;
 
 			return str + ' <span style="font-size: small">'+discount+' 折</span>';
 
-		}else  return ((max != 0 && min != max) ? min + ' - ' + max : min)
+		}else
+			*/
+			return ((max != 0 && min != max) ? min + ' - ' + max : min)  + (discount<10 ? ' <span style="font-size: small">'+discount+' 折</span>' :'');
 	}
 }
 function skuBuy(product_id, buyType, showCallback) {

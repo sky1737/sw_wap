@@ -170,9 +170,9 @@ echo ' responsive-800';
 						}
 						else {
 							echo ($maxPrice != 0 && $minPrice != $maxPrice) ?
-								round($minPrice * $nowActivity ['discount'] / 10, 2) . '-' .
-								round($maxPrice * $nowActivity ['discount'] / 10, 2)
-								: round($minPrice * $nowActivity ['discount'] / 10, 2);
+								round($minPrice / $nowActivity ['discount'] * 10, 2) . '-' .
+								round($maxPrice / $nowActivity ['discount'] * 10, 2)
+								: round($minPrice / $nowActivity ['discount'] * 10, 2);
 						}
 						?>
 						</i> <span class="price-tag">扫码折扣价</span> </div>
@@ -182,32 +182,30 @@ echo ' responsive-800';
 					<div class="current-price">
 						<span>￥</span>
 						<i class="js-goods-price price">
-							<?php
-							$discount = $nowProduct['discount'];
-
-							if(($maxPrice != 0 && $minPrice != $maxPrice)){
-								if($discount<10){
-									echo $minPrice*$discount/10 . '-' . $maxPrice*$discount/10;
-								}else echo $minPrice . '-' . $maxPrice;
-
-							}else{
-								echo $discount<10 ? $minPrice*$discount/10 : $minPrice;
-							}
-							?>
+							<?php echo ($maxPrice != 0 && $minPrice != $maxPrice) ? $minPrice . '-' . $maxPrice : $minPrice; ?>
 						</i>
 					</div>
 					<?php if ($nowProduct['market_price'] != 0.00) {
-
+							$discount = $nowProduct['discount'];
+							//var_dump($discount);exit;
 							if($discount<10){
 								?>
-								<div class="original-price">原售价:￥<?php echo ($maxPrice != 0 && $minPrice != $maxPrice) ? $minPrice . '-' . $maxPrice : $minPrice; ?></div>
+								<div class="original-price">原售价:￥
+									<?php
+									if(($maxPrice != 0 && $minPrice != $maxPrice)){
+										if($discount<10){
+											echo $minPrice/$discount*10 . '-' . $maxPrice/$discount*10;
+										}else echo $minPrice . '-' . $maxPrice;
+
+									}else{
+										echo $discount<10 ? $minPrice/$discount*10 : $minPrice;
+									}
+									?></div>
 								<?php
 							}
-
 						?>
-					<div class="original-price">市场价:￥<?php echo $nowProduct['market_price']; ?></div>
+					<div class="original-price">市场价:￥<?php echo $nowProduct['market_price'] /$discount * 10; ?></div>
 					<?php
-
 						}
 					}
 					?>
