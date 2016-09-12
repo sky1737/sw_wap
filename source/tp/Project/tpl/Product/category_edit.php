@@ -139,10 +139,7 @@
                     <option value="0">顶级分类</option>
                     <volist name="categories" id="all_category">
                         <if condition="$all_category['cat_id'] neq $category['cat_id']">
-                            <option value="{pigcms{$all_category.cat_id}"
-                            <if condition="$all_category['cat_id'] eq $category['cat_fid']">selected</if>
-                            >{pigcms{$all_category.cat_name}
-                            </option>
+                            <option value="{pigcms{$all_category.cat_id}"<?php echo $all_category['cat_id'] == $category['cat_fid']?'selected':''; ?>>{pigcms{$all_category.prefix}{pigcms{$all_category.cat_name}</option>
                         </if>
                     </volist>
                 </select></td>

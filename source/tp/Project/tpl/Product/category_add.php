@@ -139,7 +139,7 @@ $(function () {
             <select name="parent_id">
                 <option value="0">顶级分类</option>
                 <volist name="categories" id="category">
-                    <option value="{pigcms{$category.cat_id}">{pigcms{$category.cat_name}</option>
+                    <option value="{pigcms{$category.cat_id}">{pigcms{$category.prefix}{pigcms{$category.cat_name}</option>
                 </volist>
             </select>
         </td>

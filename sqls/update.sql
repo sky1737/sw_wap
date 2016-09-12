@@ -46,3 +46,57 @@ INSERT INTO `yunws`.`tp_system_menu` (`id`, `fid`, `name`, `module`, `action`, `
 INSERT INTO `yunws`.`tp_system_menu` (`id`, `fid`, `name`, `module`, `action`, `sort`, `show`, `status`) VALUES (NULL, '4', '红包开店收支明细', 'Order', 'payfor_log', '0', '1', '1');
 
 INSERT INTO `yunws`.`tp_system_menu` (`id`, `fid`, `name`, `module`, `action`, `sort`, `show`, `status`) VALUES (NULL, '4', '购物收支明细', 'Order', 'buy_log', '0', '1', '1');
+
+INSERT INTO `yunws`.`tp_system_menu` (`id`, `fid`, `name`, `module`, `action`, `sort`, `show`, `status`) VALUES (NULL, '3', '品牌管理', 'Product', 'brand', '0', '1', '1');
+
+CREATE TABLE IF NOT EXISTS `tp_product_brand` (
+  `brand_id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(250) NOT NULL COMMENT '商铺品牌名',
+  `pic` varchar(200) NOT NULL COMMENT '品牌图片',
+  `order_by` int(100) NOT NULL DEFAULT '0' COMMENT '排序，越小越前面',
+  `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否启用（1：启用；  0：禁用）',
+  PRIMARY KEY (`brand_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='商铺品牌表' AUTO_INCREMENT=70 ;
+
+INSERT INTO `tp_product_brand` (`brand_id`, `name`, `pic`, `order_by`, `status`) VALUES
+(17, '梦妆', 'brand/2015/12/567a15a016bae.png', 0, 1),
+(19, '妮维雅', 'brand/2015/12/567a14599171f.png', 0, 1),
+(20, '花印', 'brand/2015/12/567a146851a20.png', 0, 1),
+(21, '迪奥', 'brand/2015/12/567a14a8b02b2.png', 0, 1),
+(22, '资生堂', 'brand/2015/12/567a14bad1fe4.png', 0, 1),
+(23, '欧莱雅', 'brand/2015/12/567a14cd7ad47.png', 0, 1),
+(24, '泊美', 'brand/2015/12/567a15dd557bc.png', 0, 1),
+(25, '新面孔', 'brand/2015/12/567a15f9d7bd5.png', 0, 1),
+(26, '相宜本草', 'brand/2015/12/567a160fae42b.png', 0, 1),
+(27, '金珀莱', 'brand/2015/12/567a162107a42.png', 0, 1),
+(29, '玛丽黛佳', 'brand/2015/12/567a5227a6dc5.png', 0, 1),
+(30, '韩蓓丽', 'brand/2015/12/567a5292df2c0.png', 0, 1),
+(31, '火烈鸟', 'brand/2015/12/567a52b0b8fca.png', 0, 1),
+(32, '查明一猫', 'brand/2015/12/567a52d1c8f08.png', 0, 1),
+(33, 'UOUO', 'brand/2015/12/567a52e754c20.png', 0, 1),
+(34, '梦妆', 'brand/2015/12/567a530aef5fa.png', 0, 1),
+(35, '欧莱雅', 'brand/2015/12/567a532482dc5.png', 0, 1),
+(36, '资生堂', 'brand/2015/12/567a5341854b4.png', 0, 1),
+(37, '迪奥', 'brand/2015/12/567a5358bd203.png', 0, 1),
+(38, '妮维雅', 'brand/2015/12/567a536c41fab.png', 0, 1),
+(39, '海飞丝', 'brand/2015/12/567a589e42fb5.png', 0, 1),
+(40, '美涛', 'brand/2015/12/567a58adce7f1.png', 0, 1),
+(41, '欧莱雅', 'brand/2015/12/567a58bbaf7f9.png', 0, 1),
+(42, '飘柔', 'brand/2015/12/567a58cf77e4f.png', 0, 1),
+(43, '施华蔻', 'brand/2015/12/567a58df1392a.png', 0, 1),
+(44, '舒蕾', 'brand/2015/12/567a58f156c5e.png', 0, 1),
+(45, '丝蕴', 'brand/2015/12/567a58ffeaf71.png', 0, 1),
+(46, '清扬', 'brand/2015/12/567a590c23d6f.png', 0, 1),
+(47, '潘婷', 'brand/2015/12/567a59d7f2532.jpg', 0, 1),
+(48, '沙宣', 'brand/2015/12/567a5927858d1.jpg', 0, 1),
+(49, '飘柔', 'brand/2015/12/567a59e10f849.png', 0, 1),
+(60, '梦仙奴.', 'brand/2015/12/567a62db73ef7.png', 0, 1),
+(61, '雅顿', 'brand/2015/12/567a62eab9235.png', 0, 1),
+(62, '香奈儿', 'brand/2015/12/567a62f8e619b.png', 0, 1),
+(63, '宝格丽', 'brand/2015/12/567a6308b32d4.png', 0, 1),
+(64, '安娜苏', 'brand/2015/12/567a631a92668.png', 0, 1),
+(65, '小雏菊', 'brand/2015/12/567a632a2331c.png', 0, 1),
+(66, 'ck凯文克莱', 'brand/2015/12/567a633ebdd96.png', 0, 1),
+(67, '兰蔻', 'brand/2015/12/567a634b71248.png', 0, 1),
+(68, '娇兰', 'brand/2015/12/567a63571e5af.png', 0, 1),
+(69, '马克贾克', 'brand/2015/12/567a636aab535.png', 0, 1);
