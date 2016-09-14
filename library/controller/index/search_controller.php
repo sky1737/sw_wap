@@ -357,13 +357,18 @@ class search_controller extends base_controller{
 			$page = min($page, $total_pages);
 			$offset = ($page - 1) * $limit;
 
+            /**
+             * @var $productM product_model
+             */
+            $productM = M('Product');
 			if($order == 'juli') {
 				$orders =" juli ";
 				
-				$product_list = M('Product')->getSellingBydistance($where_sql2, $orders, $sort, $offset, $limit);
+				$product_list = $productM->getSellingBydistance($where_sql2, $orders, $sort, $offset, $limit);
 			} else {
-				$product_list = M('Product')->getSelling($where_sql, $order, $sort, $offset, $limit);
+				$product_list = $productM->getSelling($where_sql, $order, $sort, $offset, $limit);
 			}
+            //var_dump($productM->db->last_sql);exit;
 			// 查找店铺
 			$store_id_list = array();
 			foreach ($product_list as $product) {

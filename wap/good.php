@@ -46,7 +46,11 @@ else {
 		->data(array('image_size' => serialize($nowProduct['image_size'])))->save();
 }
 $nowProduct['image'] = getAttachmentUrl($nowProduct['image']);
-$nowProduct['images'] = M('Product_image')->getImages($product_id, true);
+/**
+ * @var $productImgM product_image_model
+ */
+$productImgM = M('Product_image');
+$nowProduct['images'] = $productImgM->getImages($product_id, true);
 $nowProduct['images_num'] = count($nowProduct['images']);
 if($nowProduct['has_property']) {
 	//库存信息

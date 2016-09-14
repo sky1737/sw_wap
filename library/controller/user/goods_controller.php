@@ -192,6 +192,7 @@ class goods_controller extends base_controller
 			$data['store_id'] = isset($_POST['supplier_store_id']) ? intval(trim($_POST['supplier_store_id'])) : 0; //供应商 商店id
             $data['create_uid'] = $this->user_session['uid'];
 
+            $data['is_import'] = isset($_POST['is_import']) ? intval(trim($_POST['is_import'])) : 0; //是否是海外商品
 			$data['category_id'] = isset($_POST['category_id']) ? intval(trim($_POST['category_id'])) : 0; //分类
 			$data['buy_way'] = 1; // isset($_POST['buy_way']) ? intval(trim($_POST['buy_way'])) : 0; //购买方式
 			$data['buy_url'] = ''; // isset($_POST['buy_url']) ? trim($_POST['buy_url']) : ''; //购买地址
@@ -393,6 +394,8 @@ class goods_controller extends base_controller
 			$data['code'] = isset($_POST['code']) ? trim($_POST['code']) : ''; //商家编码
 			$data['name'] = isset($_POST['name']) ? mysql_real_escape_string(trim($_POST['name'])) : ''; //名称
 			$data['price'] = isset($_POST['price']) ? floatval(trim($_POST['price'])) : 0; //销售价格
+			$data['is_import'] = isset($_POST['is_import']) ? intval(trim($_POST['is_import'])) : 0; //是否是海外商品
+            //var_dump($data['is_overseas']);exit;
 			$data['market_price'] =
 				isset($_POST['market_price']) ? floatval(trim($_POST['market_price'])) : 0; //市场价
 			$data['cost_price'] =
@@ -412,7 +415,7 @@ class goods_controller extends base_controller
 					!empty($_POST['postage_tpl_id']) ? intval(trim($_POST['postage_tpl_id'])) : 0; //邮费模板
 			}
 			$data['buyer_quota'] = isset($_POST['buyer_quota']) ? intval(trim($_POST['buyer_quota'])) : 0; //每人限购
-			$data['sold_time'] = isset($_POST['sold_time']) ? strtotime(trim($_POST['sold_time'])) : 0; //开售时间
+			$data['sold_time'] = isset($_POST['sold_time']) ? intval(strtotime(trim($_POST['sold_time']))) : 0; //开售时间
 			$data['allow_discount'] = isset($_POST['discount']) ? intval(trim($_POST['discount'])) : 0; //会员折扣
 			$data['invoice'] = isset($_POST['invoice']) ? intval(trim($_POST['invoice'])) : 0; //发票
 			$data['warranty'] = isset($_POST['warranty']) ? intval(trim($_POST['warranty'])) : 0; //保修
@@ -451,7 +454,7 @@ class goods_controller extends base_controller
 				$data['category_id'] = 0;
 			}
             //var_dump($store_id,$product_id,$data);die();
-
+            //var_dump($product_id,$data);exit;
 			//修改商品
             $asl_store_id = addslashes($store_id);
             $asl_create_uid = addslashes($this->user_session['uid']);
