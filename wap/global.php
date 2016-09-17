@@ -27,7 +27,7 @@ if ($isLoged && empty($_SESSION['user'])) {
     $code = I('get.code');
     if (!$openid || !$_SESSION['oauthed']) {
         if (!$openid && !$code) {
-            $custom_url = $config['wap_site_url'] . '/?refer=' . $_SERVER['REQUEST_URI'];
+            $custom_url = $config['wap_site_url'] . '/?refer=' .base64_encode($_SERVER['REQUEST_URI']);
             logs($custom_url, 'INFO');
 
             $oauthUrl =
@@ -159,7 +159,7 @@ if ($isLoged && empty($_SESSION['user'])) {
 
                     $refer = I('get.refer');
                     if (!empty($refer)) {
-                        header('location:' . $refer);
+                        header('location:' . base64_decode($refer));
                         exit;
                     }
                 } else {
