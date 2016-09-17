@@ -542,6 +542,15 @@
 										</div>
 									</div>
 									<div class="control-group">
+										<label class="control-label">进口商品：</label>
+										<div class="controls">
+											<label class="checkbox inline">
+												<input type="checkbox" name="is_import" value="1"<?php
+												echo $product['is_import'] != 0 ? ' checked="checked"'
+													: ''; ?> /> 为进口商品</label>
+										</div>
+									</div>
+									<div class="control-group">
 										<label class="control-label">发票：</label>
 										<div class="controls">
 											<label class="radio inline">

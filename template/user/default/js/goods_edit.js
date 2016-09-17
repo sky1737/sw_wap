@@ -1010,6 +1010,7 @@ $(function () {
 		var discount = $("input[name='join_level_discount']:checked").val();
 		var is_recommend = $("input[name='is_recommend']:checked").val();
 		var is_fx = $("input[name='is_fx']:checked").val();
+		var is_import = $("input[name='is_import']:checked").val();
 		var invoice = $("input[name='invoice']:checked").val();
 		var warranty = $("input[name='warranty']:checked").val();
 		var intro = $("textarea[name='intro']").val();
@@ -1048,6 +1049,7 @@ $(function () {
 
 		var weight = $("input[name='weight']").val();
 		$.post(save_url, {
+			'is_import':is_import,
 			'supplier_uid':supplierUid,
 			'supplier_store_id':supplierStoreId,
 			'product_id': product_id,
