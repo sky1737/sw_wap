@@ -54,7 +54,8 @@
 						<th>交易号</th>
 						<th>微信支付单号</th>
 						<th>类型</th>
-						<th>金额(元)</th>
+						<th>实际付款金额(元)</th>
+						<th>余额(元)</th>
 						<th>积分(分)</th>
 						<th>状态</th>
 					</tr>
@@ -70,6 +71,7 @@
 								<td>{pigcms{$record['trade_no']}</td>
 								<td>{pigcms{$record['third_id']}</td>
 								<td>购物</td>
+								<td class="text-right ui-money ui-money-income"><?php echo ( '+') . number_format(abs($record['pay_money']), 2, '.', ''); ?></td>
 								<td class="text-right ui-money ui-money-income"><?php echo ( '-') . number_format(abs($record['balance']), 2, '.', ''); ?></td>
 								<td class="text-right ui-money ui-money-outlay"><?php echo ( '-') .abs($record['point']); ?></td>
 								<td class="text-right">{pigcms{$types[$record['status']]}</td>
