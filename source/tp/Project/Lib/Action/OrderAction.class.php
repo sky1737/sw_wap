@@ -748,6 +748,11 @@ class OrderAction extends BaseAction
 			$condition .= " AND  add_time <='". strtotime($this->_get('end_time', 'trim'))."'";
 		}
 
+		if(!empty($_GET['status']))
+		{
+			$condition .= " AND  A.type =".$_GET['status'];
+		}
+
 		$db_prefix = C('DB_PREFIX');
 
 		$sql = $db_prefix."user_income as A";
@@ -962,13 +967,13 @@ class OrderAction extends BaseAction
 		$count =  M()->query($count_sql);
 		$count_user = $count[0]['count'];
 
-		$list_sql = " SELECT A.uid,order_no,trade_no,A.third_id,A.balance,A.point,A.status,add_time,nickname FROM " .$sql;
+		$list_sql = " SELECT A.uid,order_no,trade_no,A.third_id,A.balance,A.point,A.status,add_time,nickname,pay_money FROM " .$sql;
 		$list = M()->query($list_sql);
 		
 		if($act =='export'){
 			$expText = "筛选条件\n";
 			$expText .= $csvTitle.":".$keyWord.",下单时间：".$this->_get('start_time', 'trim').",".$this->_get('end_time', 'trim')."\n\n";
-			$expText .= "UID,用户名,时间,订单号,交易号,微信支付单号,类型,金额(元),积分(分),状态\n";
+			$expText .= "UID,用户名,时间,订单号,交易号,微信支付单号,类型,实际付款金额(元),余额(元),积分(分),状态\n";
 			foreach ($list as $l) {
 				$expTextArray = array();
 				$expTextArray[] = $l['uid'];
@@ -978,6 +983,7 @@ class OrderAction extends BaseAction
 				$expTextArray[] = "'".$l['trade_no'];
 				$expTextArray[] = "'".$l['third_id'];
 				$expTextArray[] = '购物';
+				$expTextArray[] = ('+') . number_format(abs($l['pay_money']), 2, '.', '');
 				$expTextArray[] = ('-') . number_format(abs($l['balance']), 2, '.', '');
 				$expTextArray[] = ( '-') .abs($l['point']);
 				$expTextArray[] = $type[$l['status']];
