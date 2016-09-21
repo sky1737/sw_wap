@@ -114,7 +114,7 @@ class base_controller extends controller
 		// 友情链接
 		$link_list = F('pc_link_list');
 		if(empty($link_list)) {
-			$link_list = D('Flink')->where(array('status' => 1))->order('sort desc')->limit(10)->select();
+			$link_list = D('Flink')->where(array('status' => 1))->order('sort desc')->limit(100)->select();
 			F('pc_link_list', $link_list);
 		}
 		$this->assign('link_list', $link_list);

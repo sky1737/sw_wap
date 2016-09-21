@@ -24,6 +24,13 @@
 						<option value="third_id"<?php echo $_GET['type'] == 'third_id' ? ' selected="selected"' : ''; ?>>付款流水号</option>
 						<option value="name"<?php echo $_GET['type'] == 'name' ? ' selected="selected"' : ''; ?>>用户名</option>
 					</select>
+					&nbsp;&nbsp;状态：
+					<select name="status">
+						<option value="">订单状态</option>
+						<volist name="types" id="value">
+							<option value="{pigcms{$key}"<?php echo $_GET['status'] == $key ? ' selected="selected"' : ''; ?>>{pigcms{$value}</option>
+						</volist>
+					</select>
 					&nbsp;&nbsp;下单时间：
 					<input type="text" name="start_time" id="js-start-time" class="input-text Wdate" style="width: 150px" value="{pigcms{$Think.get.start_time}"/>
 					-
