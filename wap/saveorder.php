@@ -147,7 +147,11 @@ switch ($action) {
 			$data_order_product['pro_weight'] = $nowProduct['weight'];
 
 			if(D('Order_product')->data($data_order_product)->add()) {
-				M('Store_user_data')->upUserData($supplier_id, $wap_user['uid'], 'unpay');
+                /**
+                 * @var $storeUserDataM store_user_data_model
+                 */
+                $storeUserDataM = M('Store_user_data');
+                $storeUserDataM->upUserData($supplier_id, $wap_user['uid'], 'unpay');
 
 				// 产生提醒
 				import('source.class.Notify');
@@ -186,8 +190,8 @@ switch ($action) {
 				$data_user_cart['add_time'] = $_SERVER['REQUEST_TIME'];
 				$data_user_cart['comment'] = !empty($_POST['custom']) ? serialize($_POST['custom']) : '';
 
-				if(D('User_cart')->data($data_user_cart)->add())
-					json_return(0, '添加成功');
+                $isOK= D('User_cart')->data($data_user_cart)->add();
+				if($isOK) json_return(0, '添加成功');
 			}
 			else {
 				if(D('User_cart')->where(array('id' => $data_user_cart['id']))->setInc('pro_num', $quantity))

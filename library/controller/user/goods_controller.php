@@ -386,6 +386,7 @@ class goods_controller extends base_controller
 			$store_id = isset($_POST['supplier_store_id']) ? intval(trim($_POST['supplier_store_id'])) : 0; //供应商 商店id
 			$product_id = isset($_POST['product_id']) ? intval(trim($_POST['product_id'])) : 0;
 
+			$data['store_id'] = $store_id;
 			$data['category_id'] = isset($_POST['category_id']) ? intval(trim($_POST['category_id'])) : 0; //分类
 			$data['buy_way'] = 1;// isset($_POST['buy_way']) ? intval(trim($_POST['buy_way'])) : 0; //购买方式
 			$data['buy_url'] = '';// isset($_POST['buy_url']) ? trim($_POST['buy_url']) : ''; //购买地址
@@ -1072,7 +1073,7 @@ class goods_controller extends base_controller
 		import('source.class.user_page');
 		$page = new Page($product_total, 15);
 		$products = $product->getSelling($where, $order_by_field, $order_by_method, $page->firstRow, $page->listRows);
-
+        //var_dump($product->db->last_sql);exit;
 		//$product_groups = $product_group->get_all_list($this->store_session['store_id']);
 
 		//$this->assign('product_groups', $product_groups);
