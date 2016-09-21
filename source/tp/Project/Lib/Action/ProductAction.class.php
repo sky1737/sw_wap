@@ -14,7 +14,7 @@ class ProductAction extends BaseAction
         $product = D('ProductView');
 //        $to_group = M('ProductToGroup');
 //        $group = M('ProductGroup');
-        $category = M('ProductCategory');
+        $category_db = M('ProductCategory');
 
         $where = array();
         if ($this->_get('type', 'trim') && $this->_get('keyword', 'trim')) {
@@ -151,7 +151,7 @@ class ProductAction extends BaseAction
             );
         }
 
-        $categories = $category->order('cat_path ASC')->select();
+        $categories = $category_db->order('cat_path ASC')->select();
 
         $this->assign('products', $products);
         $this->assign('page', $page->show());
@@ -244,21 +244,20 @@ class ProductAction extends BaseAction
 
     public function category()
     {
-        $category = M('ProductCategory');
+        $category_db = M('ProductCategory');
 
         $where = array();
         if ($this->_get('cat_id', 'trim,intval')) {
             $where['_string'] = "cat_id = '" . $this->_get('cat_id', 'trim,intval') . "' OR cat_fid = '" .
                 $this->_get('cat_id', 'trim,intval') . "'";
         }
-        $category_count = $category->where($where)->count('cat_id');
+        $category_count = $category_db->where($where)->count('cat_id');
         import('@.ORG.system_page');
         $page = new Page($category_count, 30);
-        $categories =
-            $category->where($where)->order('cat_path ASC')->limit($page->firstRow, $page->listRows)->select();
+        $categories = $category_db->where($where)->order('cat_path ASC')->limit($page->firstRow, $page->listRows)->select();
 
         //所有分类
-        $all_categories = $category->order('cat_path ASC')->select();
+        $all_categories = $category_db->order('cat_path ASC')->select();
         $this->assign('all_categories', $all_categories);
 //        // 全部分类
 //        $categories = // 'cat_level' => 1,
@@ -285,7 +284,7 @@ class ProductAction extends BaseAction
 
     public function category_add()
     {
-        $category = M('ProductCategory');
+        $category_db = M('ProductCategory');
 
         if (IS_POST) {
             //pc端小图标ico
@@ -377,10 +376,9 @@ class ProductAction extends BaseAction
             $data['filter_attr'] = $property_str;
             if (!empty($data['cat_fid'])) {
                 $data['cat_level'] = 2;
-                $path = $category->where(array('cat_id' => $data['cat_fid']))->getField('cat_path');
+                $path = $category_db->where(array('cat_id' => $data['cat_fid']))->getField('cat_path');
                 $data['cat_path'] = $path;
             } else {
-                $data['cat_level'] = 1;
                 $data['cat_path'] = 0;
             }
 
@@ -389,14 +387,15 @@ class ProductAction extends BaseAction
                 $data['tag_str'] = '';
             }
 
-            if ($cat_id = $category->add($data)) {
+            if ($cat_id = $category_db->add($data)) {
                 if ($cat_id <= 9) {
                     $str_cat_id = '0' . $cat_id;
                 } else {
                     $str_cat_id = $cat_id;
                 }
                 $path = $data['cat_path'] . ',' . $str_cat_id;
-                $category->where(array('cat_id' => $cat_id))->save(array('cat_path' => $path));
+                $data = array('cat_path' => $path, 'cat_level' => count(explode(',', $path)) - 1);
+                $category_db->where(array('cat_id' => $cat_id))->save($data);
                 $this->frame_submit_tips(1, '添加成功！');
             } else {
                 $this->frame_submit_tips(0, '添加失败！请重试~');
@@ -411,7 +410,7 @@ class ProductAction extends BaseAction
 //        $this->categoryTree($categories, 0, '', $array);
 //        $this->assign('categories', $array);
         //所有分类
-        $categories = $category->order('cat_path ASC')->select();
+        $categories = $category_db->order('cat_path ASC')->select();
         $this->assign('categories', $categories);
 
         //获取属性类别
@@ -550,7 +549,8 @@ class ProductAction extends BaseAction
                     $str_cat_id = $cat_id;
                 }
                 $path = $data['cat_path'] . ',' . $str_cat_id;
-                $category_db->where(array('cat_id' => $cat_id))->save(array('cat_path' => $path));
+                $data = array('cat_path' => $path, 'cat_level' => count(explode(',', $path)) - 1);
+                $category_db->where(array('cat_id' => $cat_id))->save($data);
 
 //                if ($_POST['cat_pic'] && $now_cat['cat_pic']) {
 //                    unlink('./upload/' . $now_cat['cat_pic']);
@@ -593,7 +593,7 @@ class ProductAction extends BaseAction
 //        $array = array();
 //        $this->categoryTree($categories, 0, '', $array);
 //        $this->assign('categories', $array);
-        $categories = $category->order('cat_path ASC')->select();
+        $categories = $category_db->order('cat_path ASC')->select();
         $this->assign('categories', $categories);
 
         //获取属性类别的 所有属性
@@ -671,11 +671,11 @@ class ProductAction extends BaseAction
     //删除分类
     public function category_del()
     {
-        $category = M('ProductCategory');
+        $category_db = M('ProductCategory');
 
         $cat_id = $this->_get('id', 'trim,intval');
-        if ($category->delete($cat_id)) {
-            $category->where(array('cat_fid' => $cat_id))->delete(); //删除子分类
+        if ($category_db->delete($cat_id)) {
+            $category_db->where(array('cat_fid' => $cat_id))->delete(); //删除子分类
             $this->success('删除成功！');
         } else {
             $this->error('删除失败！请重试~');
@@ -685,12 +685,12 @@ class ProductAction extends BaseAction
     //修改分类状态
     public function category_status()
     {
-        $category = M('ProductCategory');
+        $category_db = M('ProductCategory');
 
         $cat_id = $this->_post('cat_id', 'trim,intval');
         $status = $this->_post('status', 'trim,intval');
-        $category->where(array('cat_id' => $cat_id))->save(array('cat_status' => $status));
-        $category->where(array('cat_fid' => $cat_id))->save(array(
+        $category_db->where(array('cat_id' => $cat_id))->save(array('cat_status' => $status));
+        $category_db->where(array('cat_fid' => $cat_id))->save(array(
             'cat_status' => $status,
             'cat_parent_status' => $status
         ));
@@ -729,7 +729,7 @@ class ProductAction extends BaseAction
         $product = D('ProductView');
         $to_group = M('ProductToGroup');
         $group = M('ProductGroup');
-        $category = M('ProductCategory');
+        $category_db = M('ProductCategory');
 
         $where = array();
         //$where['source_product_id']=array("gt",0);
@@ -829,7 +829,7 @@ class ProductAction extends BaseAction
 
         $groups = $group->select();
 
-        $categories = $category->order('cat_path ASC')->select();
+        $categories = $category_db->order('cat_path ASC')->select();
 
         $this->assign('products', $products);
         $this->assign('page', $page->show());
