@@ -17,7 +17,7 @@ error_reporting(E_ALL); //开启所有错误
     !isset($_GET['run']) || (!isset($_GET['limit']) && !isset($_GET['notimeout'])) && die('请加参安全运行!');
     $wherePid   = isset($_GET['pid']) ? $_GET['pid'] : 0; //产品id
     $whereCid   = isset($_GET['cid']) ? $_GET['cid'] : 0; //产品的 分类id
-    $maxAddSale = isset($_GET['maxaddsale']) ? $_GET['maxaddsale'] : 2000; //销量增加阀值
+    $maxAddSale = isset($_GET['maxaddsale']) ? $_GET['maxaddsale'] : 200; //销量增加阀值
     $addComm    = isset($_GET['addcomm']) ? $_GET['addcomm'] : 0; //评论增加数
     $sqlLimit   = isset($_GET['limit']) ? $_GET['limit'] : ''; //sql limt 条件, 例如: 2,1
     //如果不增加销量, 但也不增加 评论
@@ -68,7 +68,7 @@ foreach ($products as $p)
     if ($maxAddSale) //如果指定了 最大 增加销量数
     {
         D('Product')->where(array('product_id' => $pid))->setInc('sales', $incSalesNum);
-        $incCommNum = intval($incSalesNum * (mt_rand(50, 200) / 1000)); //根据 新增销量数 确定 新增评论数范围 5% - 20%
+        $incCommNum = intval($incSalesNum * (mt_rand(90, 300) / 1000)); //根据 新增销量数 确定 新增评论数范围 9% - 30%
     }
     else $incCommNum = $addComm; //直接指定
 

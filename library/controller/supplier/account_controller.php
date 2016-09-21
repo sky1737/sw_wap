@@ -275,7 +275,7 @@ class account_controller extends base_controller
 //			}
 //		}
         if($_POST['page'] == 'selling_content') {
-            $this->_selling_goods_list();
+            $this->_selling_goods_list($_SESSION['user']['uid']);
         }
         if($_POST['page'] == 'stockout_content') {
             $this->_stockout_goods_list();
@@ -291,8 +291,11 @@ class account_controller extends base_controller
     /**
      * 出售中的商品列表
      */
-    private function _selling_goods_list()
+    private function _selling_goods_list($supplierUid=0)
     {
+        /**
+         * @var $product product_model
+         */
         $product = M('Product');
 //		$product_group = M('Product_group');
 //		$product_to_group = M('Product_to_group');
@@ -309,6 +312,10 @@ class account_controller extends base_controller
         if($keyword) {
             $where['name'] = array('like', '%' . $keyword . '%');
         }
+        //var_dump($_SESSION);exit;
+        if($supplierUid) {
+            $where['uid'] = $supplierUid;
+        }
         if($group_id) {
             $products = $product_to_group->getProducts($group_id);
             $product_ids = array();
@@ -323,7 +330,7 @@ class account_controller extends base_controller
         import('source.class.user_page');
         $page = new Page($product_total, 15);
         $products = $product->getSelling($where, $order_by_field, $order_by_method, $page->firstRow, $page->listRows);
-
+        //var_dump($product->db->last_sql);exit;
         //$product_groups = $product_group->get_all_list($this->store_session['store_id']);
 
         //$this->assign('product_groups', $product_groups);

@@ -180,6 +180,9 @@ if ($isLoged && empty($_SESSION['user'])) {
 if (!is_array($_SESSION['store'])) $_SESSION['store'] = null;
 
 if (empty($_SESSION['store'])) {
+    /**
+     * @var $db_store store_model
+     */
     $db_store = M('Store');
     $store = $db_store->getStoreByUid($_SESSION['user']['uid']);
     if (empty($store)) {

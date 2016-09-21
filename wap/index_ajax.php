@@ -8,7 +8,11 @@ $action = $_GET['action'];
 
 switch ($action) {
 	case 'get_category':
-		$cat_list = M('Product_category')->getAllCategory('',true);
+        /**
+         * @var $cateM product_category_model
+         */
+        $cateM = M('Product_category');
+		$cat_list = $cateM->getAllCategory('',true);
 		//print_r($cat_list);
 		/*foreach ($cat_list as $key => $value) {
 			if(empty($value['larray'])) {
