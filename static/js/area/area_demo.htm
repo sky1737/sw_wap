@@ -79,23 +79,23 @@ strong { color:red; display:block}
 <!--<a href="http://www.biweb.cn/tools/area/area.rar" style="font-size:2em; color:blue">下载控件</a>
 <p style="text-align:center; margin:3em"><a href="http://www.biweb.cn/" target="_blank">作者：萧峰 biweb.cn</a></p>-->
 <script type="text/javascript">
-//var s = "";
-//for (var key in __alldiv) {
-//	if (key.indexOf('0000') == 2 || key == 500000){
-//		s += "INSERT INTO `tp_area` (`code`, `name`, `pcode`) VALUES ('"+key+"', '"+__alldiv[key][0]+"', '" + __alldiv[key][1] + "');\n";
-//		for (var city in __alldiv) {
-//			if(key == __alldiv[city][1]) {
-//				s += "INSERT INTO `tp_area` (`code`, `name`, `pcode`) VALUES ('"+city+"', '"+__alldiv[city][0]+"', '"+__alldiv[city][1]+"');\n";
-//			}
-//			for(var area in __alldiv) {
-//				if(city == __alldiv[area][1]) {
-//					s += "INSERT INTO `tp_area` (`code`, `name`, `pcode`) VALUES ('"+area+"', '"+__alldiv[area][0]+"', '"+__alldiv[area][1]+"');\n";
-//				}
-//			}
-//		}
-//	}
-//}
-//document.write('<textarea>'+s+'</textarea>');
+var s = "";
+for (var key in __alldiv) {
+	if (key.indexOf('0000') == 2 || key == 500000){
+		s += "INSERT INTO `tp_area` (`code`, `name`, `pcode`) VALUES ('"+key+"', '"+__alldiv[key][0]+"', '" + __alldiv[key][1] + "');\n";
+		for (var city in __alldiv) {
+			if(key == __alldiv[city][1]) {
+				s += "INSERT INTO `tp_area` (`code`, `name`, `pcode`) VALUES ('"+city+"', '"+__alldiv[city][0]+"', '"+__alldiv[city][1]+"');\n";
+				for(var area in __alldiv) {
+					if(city == __alldiv[area][1]) {
+						s += "INSERT INTO `tp_area` (`code`, `name`, `pcode`) VALUES ('"+area+"', '"+__alldiv[area][0]+"', '"+__alldiv[area][1]+"');\n";
+					}
+				}
+			}
+		}
+	}
+}
+document.write('<textarea>'+s+'</textarea>');
 </script>
 </body>
 </html>
