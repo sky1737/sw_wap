@@ -764,6 +764,8 @@ class OrderAction extends BaseAction
 		$count =  M()->query($count_sql);
 		$count_user = $count[0]['count'];
 
+		$sql .= " ORDER BY A.add_time DESC";
+
 		$list_sql = " SELECT A.uid,A.order_no,trade_no,B.third_id,A.income,A.point,A.type,A.add_time,remarks,c.nickname FROM " .$sql;
 		$list = M()->query($list_sql);
 
