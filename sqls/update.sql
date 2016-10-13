@@ -100,3 +100,10 @@ INSERT INTO `tp_product_brand` (`brand_id`, `name`, `pic`, `order_by`, `status`)
 (67, '兰蔻', 'brand/2015/12/567a634b71248.png', 0, 1),
 (68, '娇兰', 'brand/2015/12/567a63571e5af.png', 0, 1),
 (69, '马克贾克', 'brand/2015/12/567a636aab535.png', 0, 1);
+
+update `yunws`.`tp_config` set `name`='promoter_ratio_3' where `id`=105;
+update `yunws`.`tp_config` set `name`='promoter_ratio_2' where `id`=104;
+update `yunws`.`tp_config` set `name`='promoter_ratio_1' where `id`=103;
+update `yunws`.`tp_config` set `info`='三级推客返佣' where `id`=105;
+update `yunws`.`tp_config` set `info`='二级推客返佣' where `id`=104;
+update `yunws`.`tp_config` set `info`='一级推客返佣' where `id`=103;
