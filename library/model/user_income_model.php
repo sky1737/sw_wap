@@ -126,117 +126,111 @@ class user_income_model extends base_model
 			return;
 
         //返 订单商品 成本价 给供应商
-        {
-            $cost_price   = $order['sub_total'] - $order['profit']; //该订单 的 所有商品成本之和
-            $store_info   = D('Store')->where(array('store_id' => $order['agent_id']))->find();
-            $supplier_uid = $store_info['uid'];
+		$cost_price   = $order['sub_total'] - $order['profit']; //该订单 的 所有商品成本之和
+		$store_info   = D('Store')->where(array('store_id' => $order['agent_id']))->find();
+		$supplier_uid = $store_info['uid'];
 
-            $is_ok = D('User')->where(array('uid' => $supplier_uid))->setInc('balance', $cost_price);
-            //logs(json_encode(array($cost_price,$supplier_user)), 'SupplierReturn');
-            if (false !== $is_ok) {
+		D('User')->where(array('uid' => $supplier_uid))->setInc('balance', $cost_price);
+		import('source.class.Notify');
+		$this->db
+			->data(array(
+				'uid'      => $supplier_uid,
+				'order_no' => $order['order_no'],
+				'income'   => $cost_price,
+				'point'    => 0,
+				'type'     => 10,
+				'add_time' => time(),
+				'status'   => 1,
+				'remarks'  => '供应商成本立返'
+			))
+			->add();
 
-                $this->db
-                    ->data(array(
-                        'uid'      => $supplier_uid,
-                        'order_no' => $order['order_no'],
-                        'income'   => $cost_price,
-                        'point'    => 0,
-                        'type'     => 10,
-                        'add_time' => time(),
-                        'status'   => 1,
-                        'remarks'  => '供应商成本立返'
-                    ))
-                    ->add();
+		$supplier_user = D('User')->where(array('uid' => $supplier_uid))->find();
+		Notify::getInstance()->accountChange($supplier_user['openid'],
+			option('config.wap_site_url') . '/balance.php?a=index',
+			'供应商您好，订单成本现金已到账',
+			date('Y-m-d H:i:s', $order['add_time']),
+			$cost_price,
+			'现金',
+			$supplier_user['balance'] + $cost_price,
+			"返还成本的订单号：{$order['order_no']}");
 
-                $supplier_user = D('User')->where(array('uid' => $supplier_uid))->find();
-                Notify::getInstance()->accountChange($supplier_user['openid'],
-                    option('config.wap_site_url') . '/balance.php?a=index',
-                    '供应商您好，订单成本现金已到账',
-                    date('Y-m-d H:i:s', $order['add_time']),
-                    $cost_price,
-                    '现金',
-                    $supplier_user['balance'] + $cost_price,
-                    "返还成本的订单号：{$order['order_no']}");
+		$db_user = D('User');
 
-                //logs(json_encode(array( $supplier_user['balance'] , $cost_price)), 'SupplierInfo');
-            }
-        }
+		// 没有立返
+//        //如果无订单利润
+//        if(!$order['profit'])
+//			return;
+//
+//		$rebate = $order['profit'] * 1.00 * option('config.buyer_ratio') / 100.00;
+//		$point = 0;
+//		if(option('config.default_point')) {
+//			$point = (int)($rebate * option('config.point_exchange'));
+//			$rebate = 0.00;
+//		}
+//		if($rebate > 0 || $point > 0) {
+//			// 用户收益
+//			$this->db
+//				->data(array(
+//					'uid'      => $order['uid'],
+//					'order_no' => $order['order_no'],
+//					'income'   => $rebate,
+//					'point'    => $point,
+//					'type'     => 1,
+//					'add_time' => time(),
+//					'status'   => 1,
+//					'remarks'  => '购物立返'
+//				))
+//				->add();
+//
+//			// 用户表数值增加
+//			$db_user->where(array('uid' => $order['uid']))->setInc('balance', $rebate);
+//			$db_user->where(array('uid' => $order['uid']))->setInc('point', $point);
+//			D('Order')->where(array('order_id' => $order['order_id']))->setInc('profit_status');
+//
+//			// 更新缓存用户信息
+//			$_SESSION['user'] = D('User')->where(array('uid' => $order['uid'], 'status' => 1))->find();
+//
+//			if($rebate > 0) {
+//				Notify::getInstance()->accountChange($_SESSION['user']['openid'],
+//					option('config.wap_site_url') . '/balance.php?a=index',
+//					'购物立返现金到账',
+//					date('Y/m/d H:i:s', $order['add_time']),
+//					$rebate,
+//					'现金',
+//					$_SESSION['user']['balance'],
+//					'购物立返现金到账，点击查看详情');
+//			}
+//			if($point > 0) {
+//				Notify::getInstance()->accountChange($_SESSION['user']['openid'],
+//					option('config.wap_site_url') . '/balance.php?a=index',
+//					'购物立返积分到帐',
+//					date('Y/m/d H:i', $order['add_time']),
+//					$point,
+//					'积分',
+//					$_SESSION['user']['point'],
+//					'购物立返积分到帐，点击查看详情');
+//			}
+//		}
 
-        //如果无订单利润
-        if(!$order['profit'])
-			return;
+		Notify::getInstance()->orderUpdate($_SESSION['user']['openid'],
+			option('config.wap_site_url') . '/order.php?orderid=' . $order['order_id'],
+			'你好，订单已支付成功',
+			$order['order_no'],
+			'支付成功，待发货',
+			'您的订单已支付成功，已通知供商发货啦！');
 
-		$rebate = $order['profit'] * 1.00 * option('config.buyer_ratio') / 100.00;
-		$point = 0;
-		if(option('config.default_point')) {
-			$point = (int)($rebate * option('config.point_exchange'));
-			$rebate = 0.00;
-		}
-		if($rebate > 0 || $point > 0) {
-			// 用户收益
-			$this->db
-				->data(array(
-					'uid'      => $order['uid'],
-					'order_no' => $order['order_no'],
-					'income'   => $rebate,
-					'point'    => $point,
-					'type'     => 1,
-					'add_time' => time(),
-					'status'   => 1,
-					'remarks'  => '购物立返'
-				))
-				->add();
-
-			// 用户表数值增加
-			$db_user = D('User');
-			$db_user->where(array('uid' => $order['uid']))->setInc('balance', $rebate);
-			$db_user->where(array('uid' => $order['uid']))->setInc('point', $point);
-			D('Order')->where(array('order_id' => $order['order_id']))->setInc('profit_status');
-
-			// 更新缓存用户信息
-			$_SESSION['user'] = D('User')->where(array('uid' => $order['uid'], 'status' => 1))->find();
-
-			import('source.class.Notify');
-			if($rebate > 0) {
-				Notify::getInstance()->accountChange($_SESSION['user']['openid'],
-					option('config.wap_site_url') . '/balance.php?a=index',
-					'购物立返现金到账',
-					date('Y/m/d H:i:s', $order['add_time']),
-					$rebate,
-					'现金',
-					$_SESSION['user']['balance'],
-					'购物立返现金到账，点击查看详情');
-			}
-			if($point > 0) {
-				Notify::getInstance()->accountChange($_SESSION['user']['openid'],
-					option('config.wap_site_url') . '/balance.php?a=index',
-					'购物立返积分到帐',
-					date('Y/m/d H:i', $order['add_time']),
-					$point,
-					'积分',
-					$_SESSION['user']['point'],
-					'购物立返积分到帐，点击查看详情');
-			}
-
-			Notify::getInstance()->orderUpdate($_SESSION['user']['openid'],
-				option('config.wap_site_url') . '/order.php?orderid=' . $order['order_id'],
-				'你好，订单已支付成功',
-				$order['order_no'],
-				'支付成功，待发货',
-				'您的订单已支付成功，已通知供商发货啦！');
-
-			$agent_openid = $db_user->where("`uid` = (select `uid` from `tp_store` where `store_id` =
+		$agent_openid = $db_user->where("`uid` = (select `uid` from `tp_store` where `store_id` =
 			{$order['agent_id']} and `status` = 1)")
-				->getField('openid');
-			if($agent_openid) {
-				Notify::getInstance()->notifyAgent($agent_openid, option('config.site_url'),
-					'有新订单啦，请尽快登录代理平台发货',
-					$order['order_no'],
-					'登录代理平台查看',
-					$order['total'],
-					date('Y/m/d H:i:s',$order['add_time']),
-					'平台地址：'.option('config.site_url').'，扫码登录即可。');
-			}
+			->getField('openid');
+		if($agent_openid) {
+			Notify::getInstance()->notifyAgent($agent_openid, option('config.site_url'),
+				'有新订单啦，请尽快登录代理平台发货',
+				$order['order_no'],
+				'登录代理平台查看',
+				$order['total'],
+				date('Y/m/d H:i:s',$order['add_time']),
+				'平台地址：'.option('config.site_url').'，扫码登录即可。');
 		}
 	}
 
