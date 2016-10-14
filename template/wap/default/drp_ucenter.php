@@ -94,7 +94,8 @@
 	<ul class="side-nav">
 		<li> <a href="./drp_team.php"><i class="icon-lowLevel"></i><span class="text">我的团队</span><i class="arrow"></i></a>
 		<li ><a href="./drp_order.php?a=index"><i class="icon-disorder"></i><span class="text">分销订单</span><i class="arrow"></i></a></li>
-		<li class="last"><a href="./balance.php?a=statistics"><i class="icon-commission"></i><span class="text">我的佣金</span><i class="arrow"></i></a></li>
+		<li><a href="./balance.php?a=statistics"><i class="icon-commission"></i><span class="text">我的佣金</span><i class="arrow"></i></a></li>
+		<li class="last"><a href="drp_products.php"><i class="icon-commission"></i><span class="text">商品库</span><i class="arrow"></i></a></li>
 	</ul>
 </div>
 <?php

@@ -59,4 +59,3 @@ function getAttachmentUrl($fileUrl, $is_remote = true)
     }
 }
 
-?>

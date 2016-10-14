@@ -357,6 +357,7 @@ class goods_controller extends base_controller
 	//修改商品
 	public function edit()
 	{
+
 		if(IS_POST) {
 //			if ($_POST['group_ids']) {
 //				$tmp_arr = explode(',', $_POST['group_ids']);
@@ -1292,6 +1293,7 @@ class goods_controller extends base_controller
 
 		$skuSubGroup = "";
 		$html = "";
+
 		if($product['supplier_id']) { //分销商品
 			$id = $product['source_product_id'];
 			$pids = $product_to_property->getPids($product['supplier_id'], $id);
@@ -1462,6 +1464,7 @@ class goods_controller extends base_controller
 		}
 		else {
 			$props = $product_to_property->getProperties($this->store_session['store_id'], $id);
+
 			if(count($props) > 0) {
 				foreach ($props as $k => $v) {
 					$skuSubGroup .= '<div class="sku-sub-group">';
@@ -1533,6 +1536,7 @@ class goods_controller extends base_controller
 				$pid = $pids[0]['pid'];
 				$name = $product_property->getName($pid);
 				$vids = $product_to_property_value->getVids($this->store_session['store_id'], $id, $pid);
+
 				if(!empty($pids[1]['pid']) && !empty($pids[2]['pid'])) {
 					$pid1 = $pids[1]['pid'];
 					$name1 = $product_property->getName($pid1);
@@ -1589,7 +1593,10 @@ class goods_controller extends base_controller
 						$value = $product_property_value->getValue($pid, $vid['vid']);
 						foreach ($vids1 as $key1 => $vid1) {
 							$properties = $pid . ':' . $vid['vid'] . ';' . $pid1 . ':' . $vid1['vid'];
+							//echo  $properties;
+							//echo '</br>';
 							$sku = $product_sku->getSku($id, $properties);
+							//var_dump($sku);
 							$html .= '    <tr class="sku" sku-id="' . $sku['sku_id'] . '" properties="' .
 								$sku['properties'] . '">';
 							$value1 = $product_property_value->getValue($pid1, $vid1['vid']);
