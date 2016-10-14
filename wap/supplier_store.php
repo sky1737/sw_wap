@@ -142,7 +142,7 @@ else if($_GET['a'] == 'sales') {
 //		redirect('./ucenter.php?id=' . intval(trim($_COOKIE['wap_store_id'])));
 //	}
 	$order = M('Order');
-	$type = !empty($_GET['type']) ? trim($_GET['type']) : 'today';
+	$type = !empty($_GET['type']) ? trim($_GET['type']) : '';
 	if(strtolower($type) == 'today') { //今日销售额
 		//今日销售额 00:00-6:00 6:00-12:00 12:00-18:00 18:00-24:00
 		//00:00-6:00
