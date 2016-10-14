@@ -95,7 +95,7 @@
 <div class="dash-bar clearfix">
 	<div class="js-cont">
 		<div class="info-group">
-			<div class="info-group__inner"> <span class="h4"> <a href="<?php dourl('goods'); ?>"><?php echo $supplier_product_count ? $supplier_product_count : 0; ?></a> </span> <span class="info-description">上架 可供应 商品数</span> </div>
+			<div class="info-group__inner"> <span class="h4"> <a href="<?php dourl('supplier_goods'); ?>"><?php echo $supplier_product_count ? $supplier_product_count : 0; ?></a> </span> <span class="info-description">上架 可供应 商品数</span> </div>
 		</div>
 		<div class="info-group">
 			<div class="info-group__inner"> <span class="h4"> <a href="<?php echo dourl('order:all'); ?>">￥<?php echo $total_sales_amount ? $total_sales_amount: 0; ?></a> </span> <span class="info-description">销售额</span> </div>
