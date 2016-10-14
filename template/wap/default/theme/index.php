@@ -286,15 +286,11 @@ else {
 </style>
 <div class="content">
 	<div class="content-body" style="padding:10px;background:#fff;">
-		<div>
-			<?php
-			if(empty($activity)){
-				echo '请添加标签为 wap_activity 广告！';
-			} else {
-				$value = $activity[0];
-				echo '<a href="'.$value['url'].'"><img src="'.$value['pic'].'" alt="'.$value['name'].'" width="100%" /></a>';
-			} ?>
-		</div>
+		<?php
+		if(!empty($activity)){
+			$value = $activity[0];
+			echo '<div><a href="'.$value['url'].'"><img src="'.$value['pic'].'" alt="'.$value['name'].'" width="100%" /></a></div>';
+		} ?>
 		<ul class="banner4">
 			<?php
 			if(empty($banner4)) {
