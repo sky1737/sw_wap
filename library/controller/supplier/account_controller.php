@@ -847,10 +847,12 @@ class account_controller extends base_controller
 
         $order = D('Order');
 
-        $total_sales_amount = $order->field('sum(`sub_total`-`profit`) as total')->where("store_id = $store_id AND status = 4")->find();
+        $total_sales_amount = $order->field('sum(`sub_total`) as total')->where("store_id = $store_id AND status = 4")->find();
+        $total_sales_profit = $order->field('sum(`profit`) as total')->where("store_id = $store_id AND status = 4")->find();
 
         $this->assign('supplier_product_count', $supplier_product_count);
         $this->assign('total_sales_amount', $total_sales_amount ? $total_sales_amount['total'] : 0);
+        $this->assign('total_sales_profit', $total_sales_profit ? $total_sales_profit['total'] : 0);
 
         // 七天销售额、佣金
         $days_7_sales = array();

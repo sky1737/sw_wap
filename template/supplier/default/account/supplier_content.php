@@ -101,7 +101,7 @@
 			<div class="info-group__inner"> <span class="h4"> <a href="<?php echo dourl('order:all'); ?>">￥<?php echo $total_sales_amount ? $total_sales_amount: 0; ?></a> </span> <span class="info-description">销售额</span> </div>
 		</div>
 		<div class="info-group">
-			<div class="info-group__inner"> <span class="h4"> <a href="<?php echo dourl('trade:income'); ?>">￥<?php echo $profit ? $profit :0; ?></a> </span> <span class="info-description"> 佣金 <i>-</i> <a href="<?php echo dourl('trade:income'); ?>">提现</a> </span> </div>
+			<div class="info-group__inner"> <span class="h4"> <a href="<?php echo dourl('trade:income'); ?>">￥<?php echo $total_sales_profit ? $total_sales_profit :0; ?></a> </span> <span class="info-description"> 佣金 <i>-</i> <a href="<?php echo dourl('trade:income'); ?>">提现</a> </span> </div>
 		</div>
 	</div>
 </div>
