@@ -818,10 +818,11 @@ AND u.status =1 AND s.status =1 AND stores >0 WHERE u.`uid` = (SELECT parent_uid
                 if ($money > 0) {
                     Notify::getInstance()->cashBack($parent['openid'],
                         option('config.wap_site_url') . '/balance.php?a=index',
-                        '分店充值佣金结算',
+                        //'分店充值佣金结算',
+                        '推荐用户开店',
                         $order_no,
                         $money,
-                        '分店充值佣金结算，点击查看详情');
+                        '推荐用户开店，点击查看详情');
                 }
 
                 $level++;
