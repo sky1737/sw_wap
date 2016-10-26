@@ -299,7 +299,7 @@ else {
 }
 
 $exchange = $config['point_exchange'] + 0;
-$buyer_ratio = $config['buyer_ratio'] + 0;
+$buyer_ratio = $config['promoter_ratio_1'] + 0;
 $nowProduct['rebate'] = round(($nowProduct['price'] * 1.00 - $nowProduct['cost_price'] * 1.00) * $buyer_ratio / 100, 2);
 if($config['default_point']) {
 	$nowProduct['point'] = round($nowProduct['rebate'] * $exchange, 0);

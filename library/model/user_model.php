@@ -657,11 +657,12 @@ class user_model extends base_model
     public function rechargePromoter($uid, $order_no, $profit, $level = 0)
     {
         $ratio = 0;
-        if ($level == 0) {
-            $ratio = option('config.buyer_ratio') * 1;
+        /*if ($level == 0) {
+            $ratio = option('config.promoter_ratio_1') * 1;
         } else {
             $ratio = option('config.promoter_ratio_' . $level) * 1;
-        }
+        }*/
+        $ratio = option('config.promoter_ratio_'.($level+1)) * 1;
 
         if (!$uid || !$profit || !$ratio)
             return;

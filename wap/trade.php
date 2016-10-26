@@ -29,7 +29,7 @@ if(!empty($cacheGoods))
 		foreach ($products as &$value) {
 			array_push($category_ids,$value['category_id']);
 			$value['image'] = getAttachmentUrl($value['image']);
-			$value['rebate'] = round(($value['price'] * 1.00 - $value['cost_price'] * 1.00) * $buyer_ratio / 100, 2);
+			$value['rebate'] = round(($value['price'] * 1.00 - $value['cost_price'] * 1.00) * $config['promoter_ratio_1'] / 100, 2);
 			if($config['default_point']) {
 				$value['point'] = round($value['rebate'] * $exchange, 0);
 				$value['rebate'] = 0.00;
