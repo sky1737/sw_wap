@@ -5,6 +5,11 @@
  * Date: 2015/5/11
  * Time: 10:29
  */
+if (isset($_GET['refresh'])) {
+    $_SESSION['user'] = null;
+    $_SESSION['store'] = null;
+}
+
 require_once dirname(__FILE__) . '/global.php';
 
 //if (IS_POST && empty($_SESSION['user'])) {
@@ -22,9 +27,7 @@ require_once dirname(__FILE__) . '/global.php';
 //		pigcms_tips('抱歉，您没有权限访问', 'none');
 //	}
 //}
-if ($_GET['refresh'] == "1") {
-    $_SESSION['user'] = $wap_user = D('User')->where(array('uid' => $wap_user['uid'], 'status' => 1))->find();
-}
+
 
 if (!IS_POST && $wap_user['stores'] == 0 && !strpos($_SERVER['REQUEST_URI'], 'drp_register.php'))
     redirect('./drp_register.php');

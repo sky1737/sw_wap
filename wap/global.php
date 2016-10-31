@@ -176,7 +176,6 @@ if ($isLoged && empty($_SESSION['user'])) {
     }
 }
 
-
 if (!is_array($_SESSION['store'])) $_SESSION['store'] = null;
 
 if (empty($_SESSION['store'])) {
