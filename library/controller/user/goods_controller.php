@@ -203,6 +203,7 @@ class goods_controller extends base_controller
 			$data['price'] = isset($_POST['price']) ? floatval(trim($_POST['price'])) : 0; //价格
 			$data['market_price'] = isset($_POST['market_price']) ? floatval(trim($_POST['market_price'])) : 0; //原价
 			$data['cost_price'] = isset($_POST['cost_price']) ? floatval(trim($_POST['cost_price'])) : 0; //原价
+			$data['factory_price'] = isset($_POST['factory_price']) ? floatval(trim($_POST['factory_price'])) : 0; //原价
             $data['discount'] =
                 isset($_POST['discountpre']) ? floatval(trim($_POST['discountpre'])) : 10; //折扣率
 			$data['weight'] = isset($_POST['weight']) ? floatval(trim($_POST['weight'])) : 0; // 重量
@@ -222,6 +223,7 @@ class goods_controller extends base_controller
 			$data['has_custom'] = !empty($_POST['custom']) ? 1 : 0;
 			//$data['has_category'] = !empty($group_ids_arr) ? 1 : 0;
 			$data['is_recommend'] = !empty($_POST['is_recommend']) ? -1 : 0;
+			$data['is_hot'] = !empty($_POST['is_hot']) ? -1 : 0;
 			$data['is_fx'] = !empty($_POST['is_fx']) ? -1 : 0;
 			if(empty($data['buy_way'])) {
 				$data['quantity'] = 1;
@@ -290,6 +292,7 @@ class goods_controller extends base_controller
 							'price'      => $sku['price'],
 							'market'     => $sku['market'],
 							'cost'       => $sku['cost'],
+							'factory'       => $sku['factory'],
 							'quantity'   => $sku['quantity'],
 							'weight'     => $sku['weight'],
 							'code'       => $sku['code']
@@ -402,6 +405,8 @@ class goods_controller extends base_controller
 				isset($_POST['market_price']) ? floatval(trim($_POST['market_price'])) : 0; //市场价
 			$data['cost_price'] =
 				isset($_POST['cost_price']) ? floatval(trim($_POST['cost_price'])) : 0; //成本价
+			$data['factory_price'] =
+				isset($_POST['factory_price']) ? floatval(trim($_POST['factory_price'])) : 0; //成本价
             $data['discount'] =
                 isset($_POST['discountpre']) ? floatval(trim($_POST['discountpre'])) : 10; //折扣率
 			$data['weight'] = isset($_POST['weight']) ? floatval(trim($_POST['weight'])) : 0;
@@ -427,6 +432,7 @@ class goods_controller extends base_controller
 			$data['has_custom'] = !empty($_POST['custom']) ? 1 : 0;
 			//$data['has_category'] = !empty($group_ids_arr) ? 1 : 0;
 			$data['is_recommend'] = !empty($_POST['is_recommend']) ? -1 : 0;
+			$data['is_hot'] = !empty($_POST['is_hot']) ? -1 : 0;
 			$data['is_fx'] = !empty($_POST['is_fx']) ? -1 : 0;
 			if(empty($data['buy_way'])) {
 				$data['quantity'] = 1;
@@ -1295,172 +1301,173 @@ class goods_controller extends base_controller
 		$html = "";
 
 		if($product['supplier_id']) { //分销商品
-			$id = $product['source_product_id'];
-			$pids = $product_to_property->getPids($product['supplier_id'], $id);
-			$pids2 = $product_to_property->getPids($this->store_session['store_id'], $id);
-			if(!empty($pids[0]['pid'])) {
-				$pid = $pids[0]['pid'];
-				$name = $product_property->getName($pid);
-				$vids = $product_to_property_value->getVids($product['supplier_id'], $id, $pid);
-				if(!empty($pids[1]['pid']) && !empty($pids[2]['pid'])) {
-					$pid1 = $pids[1]['pid'];
-					$name1 = $product_property->getName($pid1);
-					$vids1 = $product_to_property_value->getVids($product['supplier_id'], $id, $pid1);
-					$pid2 = $pids[2]['pid'];
-					$name2 = $product_property->getName($pid2);
-					$vids2 = $product_to_property_value->getVids($product['supplier_id'], $id, $pid2);
-					$html = '<thead>';
-					$html .= '    <tr>';
-					$html .= '        <th class="text-center">' . $name . '</th>';
-					$html .= '        <th class="text-center">' . $name1 . '</th>';
-					$html .= '        <th class="text-center">' . $name2 . '</th>';
-					$html .= '        <th class="th-price text-right">价格（元）</th>';
-					$html .= '        <th class="th-stock text-right">成本（元）</th>';
-					$html .= '        <th class="text-right">建议售价（元）</th>';
-					$html .= '    </tr>';
-					$html .= '</thead>';
-					$html .= '<tbody>';
-					foreach ($vids as $key => $vid) {
-						$value = $product_property_value->getValue($pid, $vid['vid']);
-						foreach ($vids1 as $key1 => $vid1) {
-							$value1 = $product_property_value->getValue($pid1, $vid1['vid']);
-							foreach ($vids2 as $key2 => $vid2) {
-								$properties =
-									$pid . ':' . $vid['vid'] . ';' . $pid1 . ':' . $vid1['vid'] . ';' . $pid2 . ':' .
-									$vid2['vid'];
-								$sku = $product_sku->getSku($id, $properties);
-								$sku2 = $product_sku->getSku($product['product_id'], $properties);
-								$html .= '    <tr class="sku" sku-id="' . $sku2['sku_id'] . '" properties="' .
-									$sku['properties'] . '">';
-								$value2 = $product_property_value->getValue($pid2, $vid2['vid']);
-								if($key1 == 0 && $key2 == 0) {
-									$html .=
-										'    <td class="text-center" rowspan="' . count($vids1) * count($vids2) . '">' .
-										$value . '</td>';
-								}
-								if($key2 == 0) {
-									$html .= '    <td class="text-center" rowspan="' . count($vids2) . '">' . $value1 .
-										'</td>';
-								}
-								$html .= '        <td class="text-center">' . $value2 . '</td>';
-								if(!empty($product['unified_price_setting'])) { //供货商统一定价
-									$html .= '        <td class="text-right">' . $sku2['price'] .
-										'<input type="hidden" name="sku_price" class="js-price input-mini" value="' .
-										$sku2['price'] . '" /></td>';
-								}
-								else {
-									$html .=
-										'        <td class="text-right"><input type="text" name="sku_price" class="js-price input-mini" data-min-price="' .
-										$sku['min_fx_price'] . '" data-max-price="' . $sku['max_fx_price'] .
-										'" value="' . $sku2['price'] . '" maxlength="10"></td>';
-								}
-								$html .= '        <td class="text-right">' . $sku['cost_price'] .
-									'<input type="hidden" name="stock_num" class="js-stock-num input-mini" value="' .
-									$sku2['quantity'] . '" /></td>';
-								$html .= '        <td class="text-right">' . $sku['min_fx_price'] . ' - ' .
-									$sku['max_fx_price'] .
-									'<input type="hidden" name="code" class="js-code input-small" value="' .
-									$sku2['code'] . '" /></td>';
-								$html .= '    </tr>';
-							}
-						}
-					}
-				}
-				else if(!empty($pids[1]['pid'])) {
-					$pid1 = $pids[1]['pid'];
-					$name1 = $product_property->getName($pid1);
-					$vids1 = $product_to_property_value->getVids($product['supplier_id'], $id, $pid1);
-					$html = '<thead>';
-					$html .= '    <tr>';
-					$html .= '        <th class="text-center">' . $name . '</th>';
-					$html .= '        <th class="text-center">' . $name1 . '</th>';
-					$html .= '        <th class="th-price text-right">价格（元）</th>';
-					$html .= '        <th class="th-stock text-right">成本（元）</th>';
-					$html .= '        <th class="text-right">建议售价（元）</th>';
-					$html .= '    </tr>';
-					$html .= '</thead>';
-					$html .= '<tbody>';
-					foreach ($vids as $key => $vid) {
-						$value = $product_property_value->getValue($pid, $vid['vid']);
-						foreach ($vids1 as $key1 => $vid1) {
-							$properties = $pid . ':' . $vid['vid'] . ';' . $pid1 . ':' . $vid1['vid'];
-							$sku = $product_sku->getSku($id, $properties);
-							$sku2 = $product_sku->getSku($product['product_id'], $properties);
-							$html .= '    <tr class="sku" sku-id="' . $sku2['sku_id'] . '" properties="' .
-								$sku['properties'] . '">';
-							$value1 = $product_property_value->getValue($pid1, $vid1['vid']);
-							if($key1 == 0) {
-								$html .= '    <td class="text-center" rowspan="' . count($vids1) . '">' . $value .
-									'</td>';
-							}
-							$html .= '        <td class="text-center">' . $value1 . '</td>';
-							if(!empty($product['unified_price_setting'])) { //供货商统一定价
-								$html .= '        <td class="text-right">' . $sku2['price'] .
-									'<input type="hidden" name="sku_price" class="js-price input-mini" value="' .
-									$sku2['price'] . '" /></td>';
-							}
-							else {
-								$html .=
-									'        <td class="text-right"><input type="text" name="sku_price" class="js-price input-mini" data-min-price="' .
-									$sku['min_fx_price'] . '" data-max-price="' . $sku['max_fx_price'] . '" value="' .
-									$sku2['price'] . '" maxlength="10"></td>';
-							}
-							$html .= '        <td class="text-right">' . $sku['cost_price'] .
-								'<input type="hidden" name="stock_num" class="js-stock-num input-mini" value="' .
-								$sku2['quantity'] . '" /></td>';
-							$html .= '        <td class="text-right">' . $sku['min_fx_price'] . ' - ' .
-								$sku['max_fx_price'] .
-								'<input type="hidden" name="code" class="js-code input-small" value="' . $sku2['code'] .
-								'" /></td>';
-							$html .= '    </tr>';
-						}
-					}
-				}
-				else {
-					$html = '<thead>';
-					$html .= '    <tr>';
-					$html .= '        <th class="text-center">' . $name . '</th>';
-					$html .= '        <th class="th-price text-right">价格（元）</th>';
-					$html .= '        <th class="th-stock text-right">成本（元）</th>';
-					$html .= '        <th class="text-right">建议售价（元）</th>';
-					$html .= '    </tr>';
-					$html .= '</thead>';
-					$html .= '<tbody>';
-					foreach ($vids as $key => $vid) {
-						$value = $product_property_value->getValue($pid, $vid['vid']);
-						$properties = $pid . ':' . $vid['vid'];
-						$sku = $product_sku->getSku($id, $properties);
-						$sku2 = $product_sku->getSku($product['product_id'], $properties);
-						$html .=
-							'<tr class="sku" sku-id="' . $sku2['sku_id'] . '" properties="' . $sku['properties'] .
-							'">';
-						$value = $product_property_value->getValue($pid, $vid['vid']);
-						$html .= '<td class="text-center">' . $value . '</td>';
-						if(!empty($product['unified_price_setting'])) { //供货商统一定价
-							$html .= '<td class="text-right">' . $sku2['price'] .
-								'<input type="hidden" name="sku_price" class="js-price input-mini" value="' .
-								$sku2['price'] . '" /></td>';
-						}
-						else {
-							$html .=
-								'<td class="text-right"><input type="text" name="sku_price" class="js-price input-mini" data-min-price="' .
-								$sku['min_fx_price'] . '" data-max-price="' . $sku['max_fx_price'] . '" value="' .
-								$sku2['price'] . '" maxlength="10"></td>';
-						}
-						$html .= '<td class="text-right">' . $sku['cost_price'] .
-							'<input type="hidden" name="stock_num" class="js-stock-num input-mini" value="' .
-							$sku2['quantity'] . '" /></td>';
-						$html .= '<td class="text-right">' . $sku['min_fx_price'] . ' - ' . $sku['max_fx_price'] .
-							'<input type="hidden" name="code" class="js-code input-small" value="' . $sku2['code'] .
-							'" /></td>';
-						$html .= '    </tr>';
-					}
-				}
-				$html .= '</tbody>';
-				if(empty($product['unified_price_setting'])) { //供货商统一定价
-					$html .= '<tfoot><tr><td colspan="6"><div class="batch-opts">批量设置： <span class="js-batch-type"><a class="js-batch-price" href="javascript:;">价格</a></span><span class="js-batch-form" style="display:none;"><input type="text" class="js-batch-txt input-mini" placeholder=""> <a class="js-batch-save fx-product" href="javascript:;">保存</a> <a class="js-batch-cancel" href="javascript:;">取消</a><p class="help-desc"></p></span></div></td></tr></tfoot>';
-				}
-			}
+			//$id = $product['source_product_id'];
+			//$pids = $product_to_property->getPids($product['supplier_id'], $id);
+			//$pids2 = $product_to_property->getPids($this->store_session['store_id'], $id);
+			//if(!empty($pids[0]['pid'])) {
+			//	$pid = $pids[0]['pid'];
+			//	$name = $product_property->getName($pid);
+			//	$vids = $product_to_property_value->getVids($product['supplier_id'], $id, $pid);
+			//	if(!empty($pids[1]['pid']) && !empty($pids[2]['pid'])) {
+			//		$pid1 = $pids[1]['pid'];
+			//		$name1 = $product_property->getName($pid1);
+			//		$vids1 = $product_to_property_value->getVids($product['supplier_id'], $id, $pid1);
+			//		$pid2 = $pids[2]['pid'];
+			//		$name2 = $product_property->getName($pid2);
+			//		$vids2 = $product_to_property_value->getVids($product['supplier_id'], $id, $pid2);
+			//		$html = '<thead>';
+			//		$html .= '    <tr>';
+			//		$html .= '        <th class="text-center">' . $name . '</th>';
+			//		$html .= '        <th class="text-center">' . $name1 . '</th>';
+			//		$html .= '        <th class="text-center">' . $name2 . '</th>';
+			//		$html .= '        <th class="th-price text-right">价格（元）</th>';
+			//		$html .= '        <th class="th-stock text-right">成本（元）</th>';
+			//		$html .= '        <th class="text-right">建议售价（元）</th>';
+			//		$html .= '    </tr>';
+			//		$html .= '</thead>';
+			//		$html .= '<tbody>';
+			//		foreach ($vids as $key => $vid) {
+			//			$value = $product_property_value->getValue($pid, $vid['vid']);
+			//			foreach ($vids1 as $key1 => $vid1) {
+			//				$value1 = $product_property_value->getValue($pid1, $vid1['vid']);
+			//				foreach ($vids2 as $key2 => $vid2) {
+			//					$properties =
+			//						$pid . ':' . $vid['vid'] . ';' . $pid1 . ':' . $vid1['vid'] . ';' . $pid2 . ':' .
+			//						$vid2['vid'];
+			//					$sku = $product_sku->getSku($id, $properties);
+			//					$sku2 = $product_sku->getSku($product['product_id'], $properties);
+			//					$html .= '    <tr class="sku" sku-id="' . $sku2['sku_id'] . '" properties="' .
+			//						$sku['properties'] . '">';
+			//					$value2 = $product_property_value->getValue($pid2, $vid2['vid']);
+			//					if($key1 == 0 && $key2 == 0) {
+			//						$html .=
+			//							'    <td class="text-center" rowspan="' . count($vids1) * count($vids2) . '">' .
+			//							$value . '</td>';
+			//					}
+			//					if($key2 == 0) {
+			//						$html .= '    <td class="text-center" rowspan="' . count($vids2) . '">' . $value1 .
+			//							'</td>';
+			//					}
+			//					$html .= '        <td class="text-center">' . $value2 . '</td>';
+			//					if(!empty($product['unified_price_setting'])) { //供货商统一定价
+			//						$html .= '        <td class="text-right">' . $sku2['price'] .
+			//							'<input type="hidden" name="sku_price" class="js-price input-mini" value="' .
+			//							$sku2['price'] . '" /></td>';
+			//					}
+			//					else {
+			//						$html .=
+			//							'        <td class="text-right"><input type="text" name="sku_price" class="js-price input-mini" data-min-price="' .
+			//							$sku['min_fx_price'] . '" data-max-price="' . $sku['max_fx_price'] .
+			//							'" value="' . $sku2['price'] . '" maxlength="10"></td>';
+			//					}
+			//					$html .= '        <td class="text-right">' . $sku['cost_price'] .
+			//						'<input type="hidden" name="stock_num" class="js-stock-num input-mini" value="' .
+			//						$sku2['quantity'] . '" /></td>';
+            //
+			//					$html .= '        <td class="text-right">' . $sku['min_fx_price'] . ' - ' .
+			//						$sku['max_fx_price'] .
+			//						'<input type="hidden" name="code" class="js-code input-small" value="' .
+			//						$sku2['code'] . '" /></td>';
+			//					$html .= '    </tr>';
+			//				}
+			//			}
+			//		}
+			//	}
+			//	else if(!empty($pids[1]['pid'])) {
+			//		$pid1 = $pids[1]['pid'];
+			//		$name1 = $product_property->getName($pid1);
+			//		$vids1 = $product_to_property_value->getVids($product['supplier_id'], $id, $pid1);
+			//		$html = '<thead>';
+			//		$html .= '    <tr>';
+			//		$html .= '        <th class="text-center">' . $name . '</th>';
+			//		$html .= '        <th class="text-center">' . $name1 . '</th>';
+			//		$html .= '        <th class="th-price text-right">价格（元）</th>';
+			//		$html .= '        <th class="th-stock text-right">成本（元）</th>';
+			//		$html .= '        <th class="text-right">建议售价（元）</th>';
+			//		$html .= '    </tr>';
+			//		$html .= '</thead>';
+			//		$html .= '<tbody>';
+			//		foreach ($vids as $key => $vid) {
+			//			$value = $product_property_value->getValue($pid, $vid['vid']);
+			//			foreach ($vids1 as $key1 => $vid1) {
+			//				$properties = $pid . ':' . $vid['vid'] . ';' . $pid1 . ':' . $vid1['vid'];
+			//				$sku = $product_sku->getSku($id, $properties);
+			//				$sku2 = $product_sku->getSku($product['product_id'], $properties);
+			//				$html .= '    <tr class="sku" sku-id="' . $sku2['sku_id'] . '" properties="' .
+			//					$sku['properties'] . '">';
+			//				$value1 = $product_property_value->getValue($pid1, $vid1['vid']);
+			//				if($key1 == 0) {
+			//					$html .= '    <td class="text-center" rowspan="' . count($vids1) . '">' . $value .
+			//						'</td>';
+			//				}
+			//				$html .= '        <td class="text-center">' . $value1 . '</td>';
+			//				if(!empty($product['unified_price_setting'])) { //供货商统一定价
+			//					$html .= '        <td class="text-right">' . $sku2['price'] .
+			//						'<input type="hidden" name="sku_price" class="js-price input-mini" value="' .
+			//						$sku2['price'] . '" /></td>';
+			//				}
+			//				else {
+			//					$html .=
+			//						'        <td class="text-right"><input type="text" name="sku_price" class="js-price input-mini" data-min-price="' .
+			//						$sku['min_fx_price'] . '" data-max-price="' . $sku['max_fx_price'] . '" value="' .
+			//						$sku2['price'] . '" maxlength="10"></td>';
+			//				}
+			//				$html .= '        <td class="text-right">' . $sku['cost_price'] .
+			//					'<input type="hidden" name="stock_num" class="js-stock-num input-mini" value="' .
+			//					$sku2['quantity'] . '" /></td>';
+			//				$html .= '        <td class="text-right">' . $sku['min_fx_price'] . ' - ' .
+			//					$sku['max_fx_price'] .
+			//					'<input type="hidden" name="code" class="js-code input-small" value="' . $sku2['code'] .
+			//					'" /></td>';
+			//				$html .= '    </tr>';
+			//			}
+			//		}
+			//	}
+			//	else {
+			//		$html = '<thead>';
+			//		$html .= '    <tr>';
+			//		$html .= '        <th class="text-center">' . $name . '</th>';
+			//		$html .= '        <th class="th-price text-right">价格（元）</th>';
+			//		$html .= '        <th class="th-stock text-right">成本（元）</th>';
+			//		$html .= '        <th class="text-right">建议售价（元）</th>';
+			//		$html .= '    </tr>';
+			//		$html .= '</thead>';
+			//		$html .= '<tbody>';
+			//		foreach ($vids as $key => $vid) {
+			//			$value = $product_property_value->getValue($pid, $vid['vid']);
+			//			$properties = $pid . ':' . $vid['vid'];
+			//			$sku = $product_sku->getSku($id, $properties);
+			//			$sku2 = $product_sku->getSku($product['product_id'], $properties);
+			//			$html .=
+			//				'<tr class="sku" sku-id="' . $sku2['sku_id'] . '" properties="' . $sku['properties'] .
+			//				'">';
+			//			$value = $product_property_value->getValue($pid, $vid['vid']);
+			//			$html .= '<td class="text-center">' . $value . '</td>';
+			//			if(!empty($product['unified_price_setting'])) { //供货商统一定价
+			//				$html .= '<td class="text-right">' . $sku2['price'] .
+			//					'<input type="hidden" name="sku_price" class="js-price input-mini" value="' .
+			//					$sku2['price'] . '" /></td>';
+			//			}
+			//			else {
+			//				$html .=
+			//					'<td class="text-right"><input type="text" name="sku_price" class="js-price input-mini" data-min-price="' .
+			//					$sku['min_fx_price'] . '" data-max-price="' . $sku['max_fx_price'] . '" value="' .
+			//					$sku2['price'] . '" maxlength="10"></td>';
+			//			}
+			//			$html .= '<td class="text-right">' . $sku['cost_price'] .
+			//				'<input type="hidden" name="stock_num" class="js-stock-num input-mini" value="' .
+			//				$sku2['quantity'] . '" /></td>';
+			//			$html .= '<td class="text-right">' . $sku['min_fx_price'] . ' - ' . $sku['max_fx_price'] .
+			//				'<input type="hidden" name="code" class="js-code input-small" value="' . $sku2['code'] .
+			//				'" /></td>';
+			//			$html .= '    </tr>';
+			//		}
+			//	}
+			//	$html .= '</tbody>';
+			//	if(empty($product['unified_price_setting'])) { //供货商统一定价
+			//		$html .= '<tfoot><tr><td colspan="6"><div class="batch-opts">批量设置： <span class="js-batch-type"><a class="js-batch-price" href="javascript:;">价格</a></span><span class="js-batch-form" style="display:none;"><input type="text" class="js-batch-txt input-mini" placeholder=""> <a class="js-batch-save fx-product" href="javascript:;">保存</a> <a class="js-batch-cancel" href="javascript:;">取消</a><p class="help-desc"></p></span></div></td></tr></tfoot>';
+			//	}
+			//}
 		}
 		else {
 			$props = $product_to_property->getProperties($this->store_session['store_id'], $id);
@@ -1506,6 +1513,7 @@ class goods_controller extends base_controller
 				$thCode = '<th class="th-price text-right">价格（元）</th>' .
 					'<th class="th-market text-right">市场（元）</th>' .
 					'<th class="th-cost text-right">成本（元）</th>' .
+					'<th class="th-factory text-right">厂价（元）</th>' .
 					'<th class="th-stock text-right">库存</th>' .
 					'<th class="th-stock text-right">重量（克）</th>' .
 					'<th class="th-code">商家编码</th>' .
@@ -1523,6 +1531,8 @@ class goods_controller extends base_controller
 						$sku['market_price'] . '" maxlength="10"></td>' .
 						'<td class="text-right"><input type="text" name="sku_cost" class="js-cost input-mini" value="' .
 						$sku['cost_price'] . '" maxlength="10"></td>' .
+						'<td class="text-right"><input type="text" name="sku_factory" class="js-factory input-mini" value="' .
+						$sku['factory_price'] . '" maxlength="10"></td>' .
 						'<td class="text-right"><input type="text" name="stock_num" class="js-stock-num input-mini" value="' .
 						$sku['quantity'] . '" maxlength="9"></td>' .
 						'<td class="text-right"><input type="text" name="sku_weight" class="js-sku_weight input-mini" value="' .
@@ -1578,7 +1588,7 @@ class goods_controller extends base_controller
 							}
 						}
 					}
-					$html .= '</tbody><tfoot><tr><td colspan="6"><div class="batch-opts">批量设置： <span class="js-batch-type"><a class="js-batch-price" href="javascript:;">价格</a>&nbsp;&nbsp;<a class="js-batch-stock" href="javascript:;">库存</a>&nbsp;&nbsp;<a class="js-batch-weight" href="javascript:;">重量</a></span><span class="js-batch-form" style="display:none;"><input type="text" class="js-batch-txt input-mini" placeholder=""><a class="js-batch-save" href="javascript:;">保存</a> <a class="js-batch-cancel" href="javascript:;">取消</a><p class="help-desc"></p></span></div></td></tr></tfoot>';
+					$html .= '</tbody><tfoot><tr><td colspan="6"><div class="batch-opts">批量设置： <span class="js-batch-type"><a class="js-batch-price" href="javascript:;">价格</a>&nbsp;<a class="js-batch-market" href="javascript:;">市场</a>&nbsp;<a class="js-batch-cost" href="javascript:;">成本</a>&nbsp;<a class="js-batch-factory" href="javascript:;">厂价</a>&nbsp;<a class="js-batch-stock" href="javascript:;">库存</a>&nbsp;<a class="js-batch-weight" href="javascript:;">重量</a></span><span class="js-batch-form" style="display:none;"><input type="text" class="js-batch-txt input-mini" placeholder=""><a class="js-batch-save" href="javascript:;">保存</a> <a class="js-batch-cancel" href="javascript:;">取消</a><p class="help-desc"></p></span></div></td></tr></tfoot>';
 				}
 				else if(!empty($pids[1]['pid'])) {
 					$pid1 = $pids[1]['pid'];
@@ -1638,6 +1648,7 @@ class goods_controller extends base_controller
 				'<a class="js-batch-price" href="javascript:;">价格</a>&nbsp;' .
 				'<a class="js-batch-market" href="javascript:;">市场</a>&nbsp;' .
 				'<a class="js-batch-cost" href="javascript:;">成本</a>&nbsp;' .
+				'<a class="js-batch-factory" href="javascript:;">厂价</a>&nbsp;' .
 				'<a class="js-batch-stock" href="javascript:;">库存</a>&nbsp;' .
 				'<a class="js-batch-weight" href="javascript:;">重量</a>' .
 				'</span>' .
@@ -2406,7 +2417,7 @@ class goods_controller extends base_controller
         $express_money =  empty($package_info) ?  0 :$package_info['express_money'];
         //商家应退回的钱
         $return_money = $order['sub_total']- $order['profit'] - $express_money;
-        $cost = $order['sub_total']-$order['profit'];
+        $cost = $order['sub_total'] - $order['profit'];
         $this->assign('is_fans', $is_fans);
         $this->assign('order', $order);
         $this->assign('products', $products);
