@@ -866,7 +866,7 @@ $(function () {
 		var is_wholesale = $("input[name='is_wholesale']").is(":checked") ? 1 : 0;
 		var market_price = $("input[name='market']").val();
 		var cost_price = $("input[name='cost']").val();
-		var cost_factory = $("input[name='factory']").val();
+		var factory_price = $("input[name='factory']").val();
 		var discountpre = $("input[name='discountpre']").val();
 		var images = [];
 

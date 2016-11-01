@@ -1625,7 +1625,7 @@ class goods_controller extends base_controller
 					$html .= $thCode;
 
 					foreach ($vids as $key => $vid) {
-						$value = $product_property_value->getValue($pid, $vid['vid']);
+						//$value = $product_property_value->getValue($pid, $vid['vid']);
 						$properties = $pid . ':' . $vid['vid'];
 						$sku = $product_sku->getSku($id, $properties);
 						$html .=
