@@ -820,14 +820,14 @@ AND u.status =1 AND s.status =1 AND stores >0 WHERE u.`uid` = (SELECT parent_uid
         if ($parent['agent_id']) {
             if ($parent['parent_uid'] == 0) {
                 if ($level == 1) {
-                    $money = $this->RedPackRatio['agent_1'] * 1.00 +
-                        $this->RedPackRatio['agent_2'] * 1.00 +
-                        $this->RedPackRatio['agent_3'] * 1.00;
+                    $money = $total * $this->RedPackRatio['agent_1'] / 100.00  +
+                        $total * $this->RedPackRatio['agent_2'] / 100.00 +
+                        $total * $this->RedPackRatio['agent_3'] / 100.00;
                 } else if ($level == 2) {
-                    $money = $this->RedPackRatio['agent_2'] * 1.00 +
-                        $this->RedPackRatio['agent_3'] * 1.00;
+                    $money = $total * $this->RedPackRatio['agent_2'] / 100.00 +
+                        $total * $this->RedPackRatio['agent_3'] / 100.00;
                 } else {
-                    $money = $this->RedPackRatio['agent_3'] * 1.00;
+                    $money = $total * $this->RedPackRatio['agent_3'] / 100.00;
                 }
             } else {
                 if ($level == 3) {
