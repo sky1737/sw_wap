@@ -22,6 +22,7 @@ class product_sku_model extends base_model
                 'price' => $sku['price'],
                 'market_price' => $sku['market'],
                 'cost_price' => $sku['cost'],
+                'factory_price' => $sku['factory'],
                 'code' => $sku['code'],
                 'drp_level_1_cost_price' => $sku['drp_level_1_cost_price'],
                 'drp_level_2_cost_price' => $sku['drp_level_2_cost_price'],
@@ -50,6 +51,7 @@ class product_sku_model extends base_model
                 'price' => $sku['price'],
                 'market' => $sku['market'],
                 'cost' => $sku['cost'],
+                'factory' => $sku['factory'],
                 'quantity' => $sku['quantity'],
                 'code' => $sku['code']
             );
@@ -74,6 +76,7 @@ class product_sku_model extends base_model
                     'price' => $sku['price'],
                     'market_price' => $sku['market'],
                     'cost_price' => $sku['cost'],
+                    'factory_price' => $sku['factory'],
                     'code' => $sku['code'],
                     'drp_level_1_cost_price' => $sku['drp_level_1_cost_price'],
                     'drp_level_2_cost_price' => $sku['drp_level_2_cost_price'],
@@ -94,9 +97,7 @@ class product_sku_model extends base_model
                 $sku['sku_id'] = $this->db->data($data)->add();
             } else {
                 $this->db->where(array('sku_id' => $sku['sku_id'], 'product_id' => $product_id))
-                    ->data(array('properties' => $sku['properties'], 'quantity' => $sku['quantity'],
-                        'weight' => $sku['weight'], 'price' => $sku['price'], 'market_price' => $sku['market'],
-                        'cost_price' => $sku['cost'], 'code' => $sku['code']))->save();
+                    ->data(array('properties' => $sku['properties'], 'quantity' => $sku['quantity'], 'weight' => $sku['weight'], 'price' => $sku['price'], 'market_price' => $sku['market'], 'cost_price' => $sku['cost'], 'factory_price' => $sku['factory'], 'code' => $sku['code']))->save();
             }
 
             $tmp_skus[] = array(
@@ -105,6 +106,7 @@ class product_sku_model extends base_model
                 'price' => $sku['price'],
                 'market' => $sku['market'],
                 'cost' => $sku['cost'],
+                'factory' => $sku['factory'],
                 'quantity' => $sku['quantity'],
                 'weight' => $sku['weight'],
                 'code' => $sku['code']
@@ -169,6 +171,11 @@ class product_sku_model extends base_model
                     $data['cost_price'] = $sku['drp_level_' . $drp_level . '_cost_price'];
                 } else {
                     $data['cost_price'] = !empty($sku['cost_price']) ? $sku['cost_price'] : 0;
+                }
+                if (!empty($sku['drp_level_' . $drp_level . '_cost_price'])) {
+                    $data['factory_price'] = $sku['drp_level_' . $drp_level . '_factory_price'];
+                } else {
+
                 }
             } else {
                 $data = array(
