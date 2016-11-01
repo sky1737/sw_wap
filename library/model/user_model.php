@@ -765,29 +765,15 @@ class user_model extends base_model
         if (!$uid || !$total || !$money)
             return;
 
-        $parent = $this->db
-            ->where("`status` = 1 AND `stores` > 0 AND `uid` = (SELECT `parent_uid` FROM `tp_user` where `uid` = {$uid})")
-            ->field('uid, openid')
-            ->find();
+        $parent = $this->db->where("`status` = 1 AND `stores` > 0 AND `uid` = (SELECT `parent_uid` FROM `tp_user` where `uid` = {$uid})")->field('uid, openid')->find();
         if (empty($parent))
             return;
 
         $this->income($parent['uid'], $money, 0);
-        D('User_income')->data(array(
-            'uid' => $parent['uid'],
-            'order_no' => $order_no,
-            'income' => $money,
-            'point' => 0,
-            'type' => 7,
-            'add_time' => time(),
-            'status' => 1,
-            'remarks' => '推荐用户开店返佣'))
-            ->add();
+        D('User_income')->data(array('uid' => $parent['uid'], 'order_no' => $order_no, 'income' => $money, 'point' => 0, 'type' => 7, 'add_time' => time(), 'status' => 1, 'remarks' => '推荐用户开店返佣'))->add();
 
-        // 充值订单状态
-        D('payfor_order')->where(array('order_no' => $order_no))
-            ->data(array('profit_status' => $level))
-            ->save();
+        // 充值订单分佣状态
+        D('payfor_order')->where(array('order_no' => $order_no))->data(array('profit_status' => $level))->save();
 
         import('source.class.Notify');
         if ($money > 0) {
@@ -820,7 +806,7 @@ AND u.status =1 AND s.status =1 AND stores >0 WHERE u.`uid` = (SELECT parent_uid
         if ($parent['agent_id']) {
             if ($parent['parent_uid'] == 0) {
                 if ($level == 1) {
-                    $money = $total * $this->RedPackRatio['agent_1'] / 100.00  +
+                    $money = $total * $this->RedPackRatio['agent_1'] / 100.00 +
                         $total * $this->RedPackRatio['agent_2'] / 100.00 +
                         $total * $this->RedPackRatio['agent_3'] / 100.00;
                 } else if ($level == 2) {
