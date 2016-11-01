@@ -58,7 +58,7 @@ function pay_notice_call($payInfo, $ok_msg = 'success', $err_msg = 'fail')
                 if ($user) {
                     //$agent_id = D('Agent')->where(array('open_self' => 0, 'is_agent' => 0, 'is_editor' => 0))->getField('agent_id');
                     $agent_id = $nowOrder['agent_id'];
-                    $agent = D('Agent')->where(array('agent_id' => $agent_id)) - find();
+                    $agent = D('Agent')->where(array('agent_id' => $agent_id))->find();
                     //if(empty($agent)){
                     //}
                     logs($agent_id, 'VipId');
@@ -95,6 +95,8 @@ function pay_notice_call($payInfo, $ok_msg = 'success', $err_msg = 'fail')
                     if ($agent['consumer']) {
                         $db_user->where(array('uid' => $nowOrder['uid'], 'status' => 1))->setInc('balance', $agent['consumer']);
                         $db_user->where(array('uid' => $nowOrder['uid'], 'status' => 1))->setInc('consumer', $agent['consumer']);
+
+                        $model_user->payforCommission($nowOrder['uid'], $nowOrder['order_no'], $nowOrder['commission'], 1);
                     } else {
                         // consumer 为 0 时
                         // 添加红包记录
@@ -131,7 +133,6 @@ function pay_notice_call($payInfo, $ok_msg = 'success', $err_msg = 'fail')
                     // 代理分佣
                     $model_user->payforAgent($nowOrder['uid'], $nowOrder['order_no'], $agent['commission'], 1);
                 }
-
 
                 exit($ok_msg);
             } else {
