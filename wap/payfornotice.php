@@ -96,10 +96,10 @@ function pay_notice_call($payInfo, $ok_msg = 'success', $err_msg = 'fail')
                         $db_user->where(array('uid' => $nowOrder['uid'], 'status' => 1))->setInc('balance', $agent['consumer']);
                         $db_user->where(array('uid' => $nowOrder['uid'], 'status' => 1))->setInc('consumer', $agent['consumer']);
 
-                        $model_user->income($nowOrder['uid'], $agent['consumer'], 0);
+                        //$model_user->income($nowOrder['uid'], $agent['consumer'], 0);
                         D('User_income')->data(array('uid' => $nowOrder['uid'], 'order_no' => $nowOrder['order_no'], 'income' => $agent['consumer'], 'point' => 0, 'type' => 8, 'add_time' => time(), 'status' => 1, 'remarks' => '实体店加盟赠送消费金额！'))->add();
 
-                        $model_user->payforCommission($nowOrder['uid'], $nowOrder['order_no'], $agent['commission'], 1);
+                        $model_user->payforCommission($nowOrder['uid'], $nowOrder['order_no'], $agent['commission'], 0);
                     } else {
                         // consumer 为 0 时
                         // 添加红包记录
