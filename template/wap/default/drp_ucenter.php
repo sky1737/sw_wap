@@ -108,7 +108,9 @@
         <li><a href="drp_products.php"><i class="icon-commission"></i><span class="text">商品库</span><i class="arrow"></i></a>
         </li>
         <li style="height: 5px;background: #eee;"></li>
-        <li class="last"><a href="app_z.php"><i class="icon-commission"></i><span class="text">云温商众筹</span><i
+        <li><a href="app_z.php"><i class="icon-commission"></i><span class="text">云温商众筹</span><i
+                    class="arrow"></i></a></li>
+        <li class="last"><a href="app_z_my.php"><i class="icon-commission"></i><span class="text">我的众筹</span><i
                     class="arrow"></i></a></li>
     </ul>
 </div>
