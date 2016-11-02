@@ -91,7 +91,9 @@ if ($nowOrder['status'] < 1) {
 	$uid = 0;
 	$total_price = 0;
 	$product_price_arr = array();
+	$productIds = array();
 	foreach ($nowOrder['proList'] as $product) {
+		$productIds[] = $product['product_id'];
 		// 分销商品不参与满赠和使用优惠券
 		if ($product['if_fx'] != '0') {
 			$offline_payment = false;
@@ -113,6 +115,7 @@ if ($nowOrder['status'] < 1) {
 		$total_price += $product['pro_price'] * $product['pro_num'];
 	}
 
+	//var_dump($product_id_arr);die;
 	$reward_arr = array();
 	$reward_arr['product_id_arr'] = $product_id_arr;
 	$reward_arr['store_id'] = $store_id;
@@ -148,6 +151,7 @@ else {
 	$user_coupon = M('Order_coupon')->getByOrderId($nowOrder['order_id']);
 
 	foreach ($nowOrder['proList'] as $product) {
+		$productIds[] = $product['product_id'];
 		// 分销商品不参与满赠和使用优惠券
 		if ($product['is_fx']) {
 			$is_all_selfproduct = false;
@@ -158,6 +162,7 @@ else {
 	}
 }
 
+$importCount = M('Product')->checkIsImport(implode(',',$productIds));
 if (!empty($nowOrder['float_amount'])) {
 	$nowOrder['sub_total'] += $nowOrder['float_amount'];
 	$nowOrder['sub_total'] = number_format($nowOrder['sub_total'], 2, '.', '');
