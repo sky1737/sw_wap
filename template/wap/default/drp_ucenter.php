@@ -30,7 +30,7 @@
     <nav class="tab-bar">
         <section class="left-small"><a class="menu-icon" href="./"><span></span></a></section>
         <section class="middle tab-bar-section">
-            <h1 class="title">分公司管理</h1>
+            <h1 class="title">我的店铺</h1>
         </section>
     </nav>
 </div>
