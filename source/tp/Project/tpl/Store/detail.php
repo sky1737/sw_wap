@@ -33,7 +33,7 @@
 		});
 		
 		$(".js-agent_id").change(function () {
-			var store_id = $(this).closest("td").data("id");
+			var store_id = $(this).data("id");
 			var status = $(this).val();
 			$.post("<?php echo U('Store/status'); ?>", {
 				'type': 'agent_id',
@@ -42,7 +42,19 @@
 			}, function (data) {
 			})
 		});
-		
+
+
+		$("input[name='is_branch_com']").click(function () {
+				var store_id = $(this).data('id');
+				var status = $(this).val();
+				$.post("<?php echo U('Store/status'); ?>", {
+					'type': 'is_branch_company',
+					'status': status,
+					'store_id': store_id
+				})
+		});
+
+
 		$('.approve-enable > .cb-enable').click(function () {
 			if (!$(this).hasClass('selected')) {
 				var store_id = $(this).data('id');
@@ -96,7 +108,6 @@
 			if (!$(this).hasClass('selected')) {
 				var store_id = $(this).data('id');
 				$.post("<?php echo U('Store/status'); ?>", {
-					'type': 'status',
 					'type': 'open_logistics',
 					'status': 1,
 					'store_id': store_id
@@ -144,7 +155,6 @@
 			if (!$(this).hasClass('selected')) {
 				var store_id = $(this).data('id');
 				$.post("<?php echo U('Store/status'); ?>", {
-					'type': 'status',
 					'type': 'drp_approve',
 					'status': 1,
 					'store_id': store_id
@@ -240,7 +250,7 @@
 				?>
 			</select></td>
 		<th width="80" class="center">认证状态</th>
-		<td class="right-border" colspan="3">
+		<td class="right-border" >
 			<?php
 			echo '<span class="cb-enable approve-enable"><label class="cb-enable' .
 				($store['approve'] ? ' selected' : '') . '" data-id="' . $store['store_id'] .
@@ -250,6 +260,18 @@
 				($store['approve'] ? '' : ' selected') . '" data-id="' . $store['store_id'] .
 				'"><span>取消</span><input type="radio" name="approve" value="0"' .
 				($store['approve'] ? '' : ' checked="checked"') . ' /></label></span>'; ?></td>
+		<th width="80" class="center">为分公司</th>
+		<td class="right-border">
+			<?php
+			echo '<span class="cb-enable">
+			<label class="cb-enable' . ($store['is_branch_company'] ? ' selected' : '') . '"'. '>
+			<span>是</span>
+			<input type="radio" name="is_branch_com" value="1"' ." data-id='{$store['store_id']}'". ($store['is_branch_company'] ? ' checked="checked"' : '') . ' /></label>
+			</span>'
+				. '<span class="cb-disable"><label class="cb-disable' .
+				($store['is_branch_company'] ? '' : ' selected') .
+				'"><span>否</span><input type="radio" name="is_branch_com" value="0"' ." data-id='{$store['store_id']}'".
+				($store['is_branch_company'] ? '' : ' checked="checked"') . ' /></label></span>'; ?></td>
 	</tr>
 	<tr>
 		<th width="80" class="center">分销状态</th>
