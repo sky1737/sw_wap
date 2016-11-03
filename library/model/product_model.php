@@ -727,4 +727,27 @@ class product_model extends base_model
 
 		return !empty ($profit ['drp_profit']) ? $profit ['drp_profit'] : 0;
 	}
+
+
+	/**
+	 *
+	 * 检查是否有全球购商品
+	 * @desc
+	 * @author    [zl,]
+	 * @since     2016/09/
+	 * @modify
+	 *
+	 * @param $productIds
+	 *
+	 * @return array
+	 */
+	public function checkIsImport($productIds)
+	{
+		$db_prefix = option('system.DB_PREFIX');
+
+		$sql = "SELECT count(*) as counts  FROM  `" . $db_prefix .
+			"product` WHERE `product_id` IN (" . $productIds . ") AND  is_import =1 ";
+		$coupon_count = $this->db->query($sql);
+		return $coupon_count[0]['counts'] ? 1  : 0 ;
+	}
 }

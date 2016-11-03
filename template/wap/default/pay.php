@@ -27,6 +27,7 @@ if(!defined('TWIKER_PATH'))
 				orderNo = '<?php echo $nowOrder['order_no_txt'];?>',
 				sub_total =<?php echo $nowOrder['sub_total'];?>,
 				isLogin = !<?php echo intval(empty($wap_user));?>,
+				isImport = <?php echo $isImport;?>,
 				pay_url = 'saveorder.php?action=pay';
 		</script>
 		<script src="<?php echo TPL_URL; ?>js/pay.js"></script>
@@ -157,7 +158,7 @@ if(!defined('TWIKER_PATH'))
 							</div>
 						</div>
 						<?php
-						if($nowOrder['status'] < 1) { ?>
+						if($nowOrder['status'] < 1) {?>
 							<div class="js-logistics-content logistics-content js-express">
 								<?php
 								if($userAddresses && ($now_store['open_logistics'] || $is_all_supplierproduct)) {
@@ -251,8 +252,7 @@ if(!defined('TWIKER_PATH'))
 										</ul>
 									</div>
 								<?php } ?>
-
-
+								
 <!--								<div class="js-order-address express-panel" style="padding-left:0;">-->
 <!--									<ul>-->
 <!--										<li>-->
@@ -266,6 +266,18 @@ if(!defined('TWIKER_PATH'))
 							<div class="js-logistics-tips logistics-tips font-size-12 c-orange hide">很抱歉，该地区暂不支持配送。</div>
 							<?php } ?>
 					</div>
+					<?php  if($isImport) :?>
+						<div class="js-user_coupon block-item order-total" style="text-align:left;">
+							<p>
+								真实姓名：
+								<input type="text" class="txt txt-ye" id="real_name" name="real_name" value="" size="10">
+							</p>
+							<p style="margin-top:10px;">
+								身份证号：
+								<input type="text" class="txt txt-ye" id="id_card" name="id_card" value="" size="20">
+							</p>
+						</div>
+					<?php endif;?>
 					<?php
 					/*// 满减送
 					//var_dump($reward_list);

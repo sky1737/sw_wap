@@ -216,6 +216,18 @@ switch ($action) {
         if ($nowOrder['status'] > 1)
             json_return(1007, '该订单已支付或关闭，不再允许付款！');
 
+        //TODO  验证
+        if($_POST['isImport'])
+        {
+            if($_POST['real_name'] == '')
+            {
+                json_return(1007, '全球购商品必须提交真实姓名！');
+            }
+            if($_POST['id_card'] == '')
+            {
+                json_return(1007, '全球购商品必须提交真实身份证号！');
+            }
+        }
         $offline_payment = false;
         if (empty($nowOrder['status'])) {
             if (empty($nowOrder['order_id']))
@@ -543,6 +555,9 @@ switch ($action) {
 
             $condition_order['order_id'] = $nowOrder['order_id'];
             $data_order['trade_no'] = $trade_no;
+
+            $data_order['real_name'] = $_POST['real_name'];
+            $data_order['id_card'] = $_POST['id_card'];
             if (!$db_order->where($condition_order)->data($data_order)->save()) {
                 json_return(1010, '订单信息保存失败');
             }

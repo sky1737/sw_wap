@@ -133,13 +133,13 @@ span.prefix .icon-mobile { background-position: -111px 4px; }
 .icon-monyg,
 .icon-horn,
 .icon-level-p,
-.icon-level-dis,
 .icon-level-shopkeeper,
 .icon-level-employee,
 .icon-lowLevel,
 .icon-friends,
 .icon-share-circle,
-.icon-friend-circle { background: url("../images/distribution2.png") no-repeat; background-size: 300px 1000px; display: inline-block; width: 20px; height: 20px; margin: 8px; vertical-align: middle;  }
+.icon-friend-circle { background: url("../images/distribution3.png") no-repeat; background-size: 300px 1000px; display: inline-block; width: 20px; height: 20px; margin: 8px; vertical-align: middle;  }
+.icon-level-dis { background: url("../images/distribution2.png") no-repeat; background-size: 300px 1000px; display: inline-block; width: 20px; height: 20px; margin: 8px; vertical-align: middle;  }
 .icon-daohang {background: url("../images/tb/gl.png") no-repeat;  }
 .icon-qq { background-position: 0 -494px; width: 40px; height: 40px; }
 .icon-taobao { background-position: -50px -494px; width: 40px; height: 40px; }
@@ -179,7 +179,7 @@ span.prefix .icon-mobile { background-position: -111px 4px; }
     /*background: url(../index_style/css/img/123.jpg);*/}
 .icon-level-shopkeeper { background-position: -150px -638px; width: 70px; height: 70px; }
 .icon-level-employee { background-position: -225px -638px; width: 70px; height: 70px; }
-.icon-lowLevel { background-position: -193px -591px; margin-top: 0; width: 41px; height: 41px; margin: 0; }
+.icon-lowLevel { background-position: 1px -591px; margin-top: 0; width: 41px; height: 41px; margin: 0; }
 .icon-friends { background-position: -194px -716px; margin-top: 0; width: 41px; height: 41px; margin: 0; }
 .icon-share-circle { background-position: -51px -938px; margin-top: 0; width: 40px; height: 40px; margin: 0; }
 .icon-friend-circle { background-position: -101px -938px; margin-top: 0; width: 40px; height: 40px; margin: 0; }
