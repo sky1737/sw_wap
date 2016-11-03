@@ -217,10 +217,17 @@ switch ($action) {
             json_return(1007, '该订单已支付或关闭，不再允许付款！');
 
         //TODO  验证
-        //if(isset($_POST['real_name']))
-        //{
-        //
-        //}
+        if($_POST['isImport'])
+        {
+            if($_POST['real_name'] == '')
+            {
+                json_return(1007, '全球购商品必须提交真实姓名！');
+            }
+            if($_POST['id_card'] == '')
+            {
+                json_return(1007, '全球购商品必须提交真实身份证号！');
+            }
+        }
         $offline_payment = false;
         if (empty($nowOrder['status'])) {
             if (empty($nowOrder['order_id']))
