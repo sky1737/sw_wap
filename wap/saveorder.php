@@ -216,6 +216,11 @@ switch ($action) {
         if ($nowOrder['status'] > 1)
             json_return(1007, '该订单已支付或关闭，不再允许付款！');
 
+        //TODO  验证
+        //if(isset($_POST['real_name']))
+        //{
+        //
+        //}
         $offline_payment = false;
         if (empty($nowOrder['status'])) {
             if (empty($nowOrder['order_id']))
@@ -543,6 +548,9 @@ switch ($action) {
 
             $condition_order['order_id'] = $nowOrder['order_id'];
             $data_order['trade_no'] = $trade_no;
+
+            $data_order['real_name'] = $_POST['real_name'];
+            $data_order['id_card'] = $_POST['id_card'];
             if (!$db_order->where($condition_order)->data($data_order)->save()) {
                 json_return(1010, '订单信息保存失败');
             }

@@ -157,7 +157,7 @@ if(!defined('TWIKER_PATH'))
 							</div>
 						</div>
 						<?php
-						if($nowOrder['status'] < 1) { ?>
+						if($nowOrder['status'] < 1) {?>
 							<div class="js-logistics-content logistics-content js-express">
 								<?php
 								if($userAddresses && ($now_store['open_logistics'] || $is_all_supplierproduct)) {
@@ -251,8 +251,7 @@ if(!defined('TWIKER_PATH'))
 										</ul>
 									</div>
 								<?php } ?>
-
-
+								
 <!--								<div class="js-order-address express-panel" style="padding-left:0;">-->
 <!--									<ul>-->
 <!--										<li>-->
@@ -266,6 +265,13 @@ if(!defined('TWIKER_PATH'))
 							<div class="js-logistics-tips logistics-tips font-size-12 c-orange hide">很抱歉，该地区暂不支持配送。</div>
 							<?php } ?>
 					</div>
+
+					<?php  if($importCount) :?>
+						<span id="js-user_coupon">真实姓名</span>
+						<input name="real_name" value=""/>
+						<span id="js-user_coupon">身份证号</span>
+						<input name="id_card" value=""/>
+					<?php endif;?>
 					<?php
 					/*// 满减送
 					//var_dump($reward_list);
