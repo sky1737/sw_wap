@@ -35,8 +35,8 @@ class cookies
     {
         if (!$key) return null;
 
-        if (isset($_COOKIE[ $key ])) {
-            return $_COOKIE[ $key ];
+        if (isset($_COOKIE[$key])) {
+            return $_COOKIE[$key];
         }
 
         return null;
@@ -187,9 +187,9 @@ function getTwikerUrl($twid)
 function doStripslashes()
 {
     if (get_magic_quotes_gpc()) {
-        $_GET     = stripslashesDeep($_GET);
-        $_POST    = stripslashesDeep($_POST);
-        $_COOKIE  = stripslashesDeep($_COOKIE);
+        $_GET = stripslashesDeep($_GET);
+        $_POST = stripslashesDeep($_POST);
+        $_COOKIE = stripslashesDeep($_COOKIE);
         $_REQUEST = stripslashesDeep($_REQUEST);
     }
 }
@@ -207,9 +207,9 @@ function stripslashesDeep($value)
 /**
  * URL重定向
  *
- * @param string  $url  重定向的URL地址
+ * @param string $url 重定向的URL地址
  * @param integer $time 重定向的等待时间（秒）
- * @param string  $msg  重定向前的提示信息
+ * @param string $msg 重定向前的提示信息
  *
  * @return void
  */
@@ -257,8 +257,8 @@ function getWebUrl()
 function getUrlTopDomain($url)
 {
     $domain_array = parse_url($url);
-    $host         = strtolower($domain_array['host']);
-    $two_suffix   = array('.com.cn', '.gov.cn', '.net.cn', '.org.cn', '.ac.cn');
+    $host = strtolower($domain_array['host']);
+    $two_suffix = array('.com.cn', '.gov.cn', '.net.cn', '.org.cn', '.ac.cn');
     foreach ($two_suffix as $key => $value) {
         preg_match('#(.*?)' . $value . '$#', $host, $match_arr);
         if (!empty($match_arr)) {
@@ -287,7 +287,7 @@ function getUrlTopDomain($url)
 function getUrlDomain($url)
 {
     $domain_array = parse_url($url);
-    $host         = strtolower($domain_array['host']);
+    $host = strtolower($domain_array['host']);
 
     return $host;
 }
@@ -301,9 +301,9 @@ function getUrlDomain($url)
  * I('get.'); 获取$_GET
  * </code>
  *
- * @param string $name    变量的名称 支持指定类型
- * @param mixed  $default 不存在的时候默认值
- * @param mixed  $filter  参数过滤方法
+ * @param string $name 变量的名称 支持指定类型
+ * @param mixed $default 不存在的时候默认值
+ * @param mixed $filter 参数过滤方法
  *
  * @return mixed
  */
@@ -367,7 +367,7 @@ function I($name, $default = '', $filter = null)
     //		}
     //	}
     if (empty($name)) { // 获取全部变量
-        $data    = $input;
+        $data = $input;
         $filters = isset($filter) ? $filter : C('DEFAULT_FILTER');
         if ($filters) {
             $filters = explode(',', $filters);
@@ -375,8 +375,8 @@ function I($name, $default = '', $filter = null)
                 $data = array_map($filter, $data); // 参数过滤
             }
         }
-    } elseif (isset($input[ $name ])) { // 取值操作
-        $data    = $input[ $name ];
+    } elseif (isset($input[$name])) { // 取值操作
+        $data = $input[$name];
         $filters = isset($filter) ? $filter : ''; // C('DEFAULT_FILTER')
         if ($filters) {
             $filters = explode(',', $filters);
@@ -401,9 +401,9 @@ function I($name, $default = '', $filter = null)
 /**
  * 快速文件数据读取和保存 针对简单类型数据 字符串、数组
  *
- * @param string $name  缓存名称
- * @param mixed  $value 缓存值
- * @param string $path  缓存路径
+ * @param string $name 缓存名称
+ * @param mixed $value 缓存值
+ * @param string $path 缓存路径
  *
  * @return mixed
  */
@@ -422,18 +422,18 @@ function F($name, $value = '', $path = DATA_PATH)
             if (!is_dir($dir)) {
                 mkdir($dir, 0755, true);
             }
-            $_cache[ $name ] = $value;
+            $_cache[$name] = $value;
 
             return file_put_contents($filename, strip_whitespace("<?php\treturn " . var_export($value, true) . ";?>"));
         }
     }
-    if (isset($_cache[ $name ])) {
-        return $_cache[ $name ];
+    if (isset($_cache[$name])) {
+        return $_cache[$name];
     }
     // 获取缓存数据
     if (is_file($filename)) {
-        $value           = include $filename;
-        $_cache[ $name ] = $value;
+        $value = include $filename;
+        $_cache[$name] = $value;
     } else {
         $value = false;
     }
@@ -444,20 +444,20 @@ function F($name, $value = '', $path = DATA_PATH)
 /**
  * 快速哈希文件数据读取和保存 针对简单类型数据 字符串、数组
  *
- * @param string $name  缓存名称
- * @param mixed  $value 缓存值
- * @param mixed  $level 缓存的目录数
- * @param string $path  缓存路径
+ * @param string $name 缓存名称
+ * @param mixed $value 缓存值
+ * @param mixed $level 缓存的目录数
+ * @param string $path 缓存路径
  *
  * @return mixed
  */
 function S($name, $value = '', $time = 0, $level = 2, $path = CACHE_PATH)
 {
     static $_scache = array();
-    $name     = md5($name);
+    $name = md5($name);
     $haxi_dir = '';
     for ($i = 0; $i < $level; $i++) {
-        $haxi_dir .= $name[ $i ] . '/';
+        $haxi_dir .= $name[$i] . '/';
     }
     $filename = $path . $haxi_dir . $name . '.php';
 
@@ -478,14 +478,14 @@ function S($name, $value = '', $time = 0, $level = 2, $path = CACHE_PATH)
             if ($time > 0) {
                 $save_file['expire_time'] = $_SERVER['REQUEST_TIME'] + $time;
             }
-            $_scache[ $name ] = $value;
+            $_scache[$name] = $value;
 
             return file_put_contents($filename,
                 strip_whitespace("<?php\treturn " . var_export($save_file, true) . ";?>"));
         }
     }
-    if (isset($_scache[ $name ])) {
-        return $_scache[ $name ];
+    if (isset($_scache[$name])) {
+        return $_scache[$name];
     }
     // 获取缓存数据
     if (is_file($filename)) {
@@ -494,8 +494,8 @@ function S($name, $value = '', $time = 0, $level = 2, $path = CACHE_PATH)
             strpos($name, '*') ? array_map("unlink", glob($filename)) : unlink($filename);
             $return = false;
         }
-        $return           = $value['content'];
-        $_scache[ $name ] = $return;
+        $return = $value['content'];
+        $_scache[$name] = $return;
     } else {
         $return = false;
     }
@@ -514,14 +514,14 @@ function strip_whitespace($content)
 {
     $stripStr = '';
     //分析php源码
-    $tokens     = token_get_all($content);
+    $tokens = token_get_all($content);
     $last_space = false;
     for ($i = 0, $j = count($tokens); $i < $j; $i++) {
-        if (is_string($tokens[ $i ])) {
+        if (is_string($tokens[$i])) {
             $last_space = false;
-            $stripStr .= $tokens[ $i ];
+            $stripStr .= $tokens[$i];
         } else {
-            switch ($tokens[ $i ][0]) {
+            switch ($tokens[$i][0]) {
                 //过滤各种PHP注释
                 case T_COMMENT:
                 case T_DOC_COMMENT:
@@ -539,11 +539,11 @@ function strip_whitespace($content)
                 case T_END_HEREDOC:
                     $stripStr .= "THINK;\n";
                     for ($k = $i + 1; $k < $j; $k++) {
-                        if (is_string($tokens[ $k ]) && $tokens[ $k ] == ';') {
+                        if (is_string($tokens[$k]) && $tokens[$k] == ';') {
                             $i = $k;
                             break;
                         } else {
-                            if ($tokens[ $k ][0] == T_CLOSE_TAG) {
+                            if ($tokens[$k][0] == T_CLOSE_TAG) {
                                 break;
                             }
                         }
@@ -551,7 +551,7 @@ function strip_whitespace($content)
                     break;
                 default:
                     $last_space = false;
-                    $stripStr .= $tokens[ $i ][1];
+                    $stripStr .= $tokens[$i][1];
             }
         }
     }
@@ -625,9 +625,9 @@ function __autoload($class)
  */
 function import($file)
 {
-    $file_arr       = explode('.', $file);
+    $file_arr = explode('.', $file);
     $file_arr_count = count($file_arr);
-    if (class_exists($file_arr[ $file_arr_count - 1 ], false)) return false;
+    if (class_exists($file_arr[$file_arr_count - 1], false)) return false;
     switch ($file_arr_count) {
         case 1:
             if (substr($file_arr[0], 0, 1) == '@') {
@@ -669,13 +669,13 @@ function D($table = '', $other = array())
     static $db_list;
     import('source.class.mysql');
     if (empty($other)) {
-        if (!empty($table) && isset($db_list[ $table ])) {
-            return $db_list[ $table ];
+        if (!empty($table) && isset($db_list[$table])) {
+            return $db_list[$table];
         }
         $db = new mysql();
 
         if ($table) {
-            $db_list[ $table ] = $db;
+            $db_list[$table] = $db;
             $db->table($table);
         }
     } else {
@@ -691,7 +691,7 @@ function D($table = '', $other = array())
  */
 function R($group, $mode, $action)
 {
-    $mode      = strtolower($mode);
+    $mode = strtolower($mode);
     $mode_file = TWIKER_PATH . 'library/controller/' . $group . '/' . $mode . '_controller.php';
     if (file_exists($mode_file)) {
         $mode_name = $mode . '_controller';
@@ -736,19 +736,19 @@ function option($name = null, $value = null)
         if (!strpos($name, '.')) {
             $name = strtolower($name);
             if (is_null($value)) {
-                return isset($_G[ $name ]) ? $_G[ $name ] : null;
+                return isset($_G[$name]) ? $_G[$name] : null;
             }
-            $_G[ $name ] = $value;
+            $_G[$name] = $value;
 
             return;
         }
         // 二维数组设置和获取支持
-        $name    = explode('.', $name);
+        $name = explode('.', $name);
         $name[0] = strtolower($name[0]);
         if (is_null($value)) {
-            return isset($_G[ $name[0] ][ $name[1] ]) ? $_G[ $name[0] ][ $name[1] ] : null;
+            return isset($_G[$name[0]][$name[1]]) ? $_G[$name[0]][$name[1]] : null;
         }
-        $_G[ $name[0] ][ $name[1] ] = $value;
+        $_G[$name[0]][$name[1]] = $value;
 
         return;
     }
@@ -762,7 +762,7 @@ function option($name = null, $value = null)
 function M($model)
 {
     $lower_model = strtolower($model);
-    $model_file  = TWIKER_PATH . 'library/model/' . $lower_model . '_model.php';
+    $model_file = TWIKER_PATH . 'library/model/' . $lower_model . '_model.php';
     if (file_exists($model_file)) {
         $model_name = $lower_model . '_model';
         if (!class_exists($model_name, false)) {
@@ -790,9 +790,9 @@ function datetime($unix_time)
 /**
  * 浏览器友好的变量输出
  *
- * @param mixed   $var    变量
- * @param boolean $echo   是否输出 默认为True 如果为false 则返回输出字符串
- * @param string  $label  标签 默认为空
+ * @param mixed $var 变量
+ * @param boolean $echo 是否输出 默认为True 如果为false 则返回输出字符串
+ * @param string $label 标签 默认为空
  * @param boolean $strict 是否严谨 默认为true
  *
  * @return void|string
@@ -831,10 +831,10 @@ function dump($var, $echo = true, $label = null, $strict = true)
 function display($tpl = '')
 {
     global $_G;
-    $now_group  = GROUP_NAME;
+    $now_group = GROUP_NAME;
     $now_module = MODULE_NAME;
     $now_action = ACTION_NAME;
-    $now_theme  = $_G['config'][ 'theme_' . $now_group . '_group' ];
+    $now_theme = $_G['config']['theme_' . $now_group . '_group'];
 
 
     if (empty($now_theme)) {
@@ -844,20 +844,20 @@ function display($tpl = '')
     if (empty($tpl)) {
         $tpl_file = $now_group . '/' . $now_theme . '/' . $now_module . '/' . $now_action . '.php';
     } else {
-        $tpl_arr       = explode(':', $tpl);
+        $tpl_arr = explode(':', $tpl);
         $tpl_arr_count = count($tpl_arr);
         switch ($tpl_arr_count) {
             case 1:
                 if ($now_group == 'wap' && option('config.is_diy_template')) {
 
                     if (file_exists(TPL_PATH . $now_group . '/' . $now_theme . '/theme/' .
-                        $tpl_arr[ $tpl_arr_count - 1 ] . '.php')) {
+                        $tpl_arr[$tpl_arr_count - 1] . '.php')) {
                         if (USE_FRAMEWORK) {
                             $tpl_file = $now_group . '/' . $now_theme . '/' . $now_module . '/' . '/theme/' .
-                                $tpl_arr[ $tpl_arr_count - 1 ] . '.php';
+                                $tpl_arr[$tpl_arr_count - 1] . '.php';
                         } else {
                             $tpl_file =
-                                $now_group . '/' . $now_theme . '/theme/' . $tpl_arr[ $tpl_arr_count - 1 ] . '.php';
+                                $now_group . '/' . $now_theme . '/theme/' . $tpl_arr[$tpl_arr_count - 1] . '.php';
                         }
                     } else {
 
@@ -891,7 +891,7 @@ function display($tpl = '')
                 break;
             case 3:
                 $tpl_file =
-                    $tpl_arr[0] . '/' . $_G['config'][ 'theme_' . $tpl_arr[0] . '_group' ] . '/' . $tpl_arr[1] . '/' .
+                    $tpl_arr[0] . '/' . $_G['config']['theme_' . $tpl_arr[0] . '_group'] . '/' . $tpl_arr[1] . '/' .
                     $tpl_arr[2] . '.php';
                 break;
             default:
@@ -954,7 +954,7 @@ function url_rewrite($file, $params = array(), $html = "", $rewrite = true)
     if ($rewrite) {
         if (strpos($file, ':')) {
             $file = substr($file, 0, strpos($file, ':'));
-            $url  = 'http://' . $_SERVER['HTTP_HOST'] . '/' . $file; // option('config.site_url')
+            $url = 'http://' . $_SERVER['HTTP_HOST'] . '/' . $file; // option('config.site_url')
         } else {
             $url = ($file == 'index') ? '' : '/' . $file;
         }
@@ -1008,11 +1008,11 @@ function msubstr($str, $start = 0, $length, $suffix = true, $charset = "utf-8")
             return iconv_substr($str, $start, $length, $charset);
         }
     }
-    $re['utf-8']  = "/[\x01-\x7f]|[\xc2-\xdf][\x80-\xbf]|[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xff][\x80-\xbf]{3}/";
+    $re['utf-8'] = "/[\x01-\x7f]|[\xc2-\xdf][\x80-\xbf]|[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xff][\x80-\xbf]{3}/";
     $re['gb2312'] = "/[\x01-\x7f]|[\xb0-\xf7][\xa0-\xfe]/";
-    $re['gbk']    = "/[\x01-\x7f]|[\x81-\xfe][\x40-\xfe]/";
-    $re['big5']   = "/[\x01-\x7f]|[\x81-\xfe]([\x40-\x7e]|\xa1-\xfe])/";
-    preg_match_all($re[ $charset ], $str, $match);
+    $re['gbk'] = "/[\x01-\x7f]|[\x81-\xfe][\x40-\xfe]/";
+    $re['big5'] = "/[\x01-\x7f]|[\x81-\xfe]([\x40-\x7e]|\xa1-\xfe])/";
+    preg_match_all($re[$charset], $str, $match);
     $slice = join("", array_slice($match[0], $start, $length));
     if ($suffix) return $slice . "…";
 
@@ -1066,7 +1066,7 @@ function json_response($true, $msg = '', $url = '')
  * 检测插件是否存在
  *
  * @param string $plugin 插件名称
- * @param string $attr   参数
+ * @param string $attr 参数
  */
 function check_plugin($plugin)
 {
@@ -1082,7 +1082,7 @@ function check_plugin($plugin)
  * 得到插件的url
  *
  * @param string $plugin 插件名称
- * @param string $attr   参数
+ * @param string $attr 参数
  */
 function url_plugin($plugin, $attr = '')
 {
@@ -1166,7 +1166,7 @@ function getAttachmentUrl($fileUrl, $is_remote = true)
         }
 
         $attachment_upload_type = option('config.attachment_upload_type');
-        $url                    = option('config.site_url') . '/upload/';
+        $url = option('config.site_url') . '/upload/';
         if ($attachment_upload_type == '1' && $is_remote) {
             $url = 'http://' . option('config.attachment_up_domainname') . '/';
         }
@@ -1194,11 +1194,11 @@ function get_client_ip($type = 0)
 {
     $type = $type ? 1 : 0;
     static $ip = null;
-    if ($ip !== null) return $ip[ $type ];
+    if ($ip !== null) return $ip[$type];
     if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
         $arr = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
         $pos = array_search('unknown', $arr);
-        if (false !== $pos) unset($arr[ $pos ]);
+        if (false !== $pos) unset($arr[$pos]);
         $ip = trim($arr[0]);
     } elseif (isset($_SERVER['HTTP_CLIENT_IP'])) {
         $ip = $_SERVER['HTTP_CLIENT_IP'];
@@ -1207,9 +1207,9 @@ function get_client_ip($type = 0)
     }
     // IP地址合法验证
     $long = sprintf("%u", ip2long($ip));
-    $ip   = $long ? array($ip, $long) : array('0.0.0.0', 0);
+    $ip = $long ? array($ip, $long) : array('0.0.0.0', 0);
 
-    return $ip[ $type ];
+    return $ip[$type];
 }
 
 
@@ -1239,14 +1239,14 @@ function drawImg($from, $w = 100, $h = 100, $newfile)
             break;
     }
 
-    $temp      = pathinfo($from);
-    $name      = $temp["basename"];//文件名
-    $dir       = $temp["dirname"];//文件所在的文件夹
+    $temp = pathinfo($from);
+    $name = $temp["basename"];//文件名
+    $dir = $temp["dirname"];//文件所在的文件夹
     $extension = $temp["extension"];//文件扩展名
-    $width     = $info[0];//获取图片宽度
-    $height    = $info[1];//获取图片高度
-    $per1      = round($width / $height, 2);//计算原图长宽比
-    $per2      = round($w / $h, 2);//计算缩略图长宽比
+    $width = $info[0];//获取图片宽度
+    $height = $info[1];//获取图片高度
+    $per1 = round($width / $height, 2);//计算原图长宽比
+    $per2 = round($w / $h, 2);//计算缩略图长宽比
 
     //计算缩放比例
     if ($per1 > $per2 || $per1 == $per2) {
@@ -1281,7 +1281,7 @@ function getAttachment($file)
         return;
     }
 
-    $search                 = trim(option('config.site_url'), '/') . '/upload/';
+    $search = trim(option('config.site_url'), '/') . '/upload/';
     $attachment_upload_type = option('config.attachment_upload_type');
     if ($attachment_upload_type == '1') {
         $search = trim('http://' . option('config.attachment_up_domainname'), '/') . '/';
@@ -1319,7 +1319,7 @@ function get_encrypt_key($array, $app_key)
  */
 function curl_post($url, $data)
 {
-    $ch        = curl_init();
+    $ch = curl_init();
     $headers[] = "Accept-Charset: utf-8";
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
@@ -1365,7 +1365,7 @@ function api_curl_post($url, $data)
 function error_json_return($err_code, $err_msg)
 {
     $json_arr['err_code'] = $err_code;
-    $json_arr['err_msg']  = $err_msg;
+    $json_arr['err_msg'] = $err_msg;
     exit(json_encode($json_arr));
 }
 
@@ -1392,7 +1392,7 @@ function getImUrl($userId, $storeId)
         $url = IM_SERVER_PATH . '?app_id=' . option('config.im_appid') . '&openid=' . $userId . '&key=' . $key .
             '#serviceList_' . $storeId;
     } else {
-        $store    = D('Store')->where("status = 1 AND store_id = '" . $storeId . "'")->find();
+        $store = D('Store')->where("status = 1 AND store_id = '" . $storeId . "'")->find();
         $user_tmp = $_SESSION['wap_user'];
 
         /*if (empty($_SESSION['wap_user'])) {
@@ -1429,8 +1429,8 @@ function getTimeType($start_time, $end_time)
 
     // 时间修正
     if ($start_time > $end_time) {
-        $tmp        = $end_time;
-        $end_time   = $start_time;
+        $tmp = $end_time;
+        $end_time = $start_time;
         $start_time = $tmp;
     }
 
@@ -1508,7 +1508,7 @@ function object_array($array)
     }
     if (is_array($array)) {
         foreach ($array as $key => $value) {
-            $array[ $key ] = object_array($value);
+            $array[$key] = object_array($value);
         }
     }
 
@@ -1520,7 +1520,7 @@ function object_array($array)
 function show_distance()
 {
     if (isset($_COOKIE['Web_user']) && $_COOKIE['Web_user']) {
-        $array           = object_array(json_decode($_COOKIE['Web_user']));
+        $array = object_array(json_decode($_COOKIE['Web_user']));
         $array['status'] = true;
     } else {
         $array = array('status' => false);
@@ -1554,15 +1554,15 @@ function anonymous($str, $len1 = 2, $len2 = 1)
  */
 function convertUrlQuery($url)
 {
-    $arr   = parse_url($url);
+    $arr = parse_url($url);
     $query = $arr['query'];
     if (!empty($query)) {
         $queryParts = explode('&', $query);
 
         $params = array();
         foreach ($queryParts as $param) {
-            $item               = explode('=', $param);
-            $params[ $item[0] ] = $item[1];
+            $item = explode('=', $param);
+            $params[$item[0]] = $item[1];
         }
     } else {
         $params = '';
@@ -1591,9 +1591,9 @@ function returnSquarePoint($lng, $lat, $distance = 0.5)
     $dlat = rad2deg($dlat);
 
     return array(
-        'left-top'     => array('lat' => $lat + $dlat, 'lng' => $lng - $dlng),
-        'right-top'    => array('lat' => $lat + $dlat, 'lng' => $lng + $dlng),
-        'left-bottom'  => array('lat' => $lat - $dlat, 'lng' => $lng - $dlng),
+        'left-top' => array('lat' => $lat + $dlat, 'lng' => $lng - $dlng),
+        'right-top' => array('lat' => $lat + $dlat, 'lng' => $lng + $dlng),
+        'left-bottom' => array('lat' => $lat - $dlat, 'lng' => $lng - $dlng),
         'right-bottom' => array('lat' => $lat - $dlat, 'lng' => $lng + $dlng),
     );
 }
