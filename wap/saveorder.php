@@ -225,8 +225,11 @@ switch ($action) {
 		if(empty($nowOrder['status'])) {
 			if(empty($nowOrder['order_id']))
 				json_return(1008, '该订单不存在');
-
-			$order_store = M('Store')->wap_getStore($nowOrder['store_id']);
+            /**
+             * @var $storeM store_model
+             */
+            $storeM = M('Store');
+			$order_store = $storeM->wap_getStore($nowOrder['store_id']);
 //			if($order_store['offline_payment']) {
 //				$offline_payment = true;
 //			}
@@ -503,6 +506,9 @@ switch ($action) {
 				$nowOrder['point'] = $point;
 				$nowOrder['balance'] = $balance;
 				// 余额支付和积分抵现
+                /**
+                 * @var $model_income user_income_model
+                 */
 				$model_income = M('User_income');
 				$model_income->buyOff($nowOrder);
 				if($total == 0) {
@@ -514,7 +520,7 @@ switch ($action) {
 //						'支付成功，待发货',
 //						'您的订单已支付成功，已通知供商发货啦！');
 
-					// 通过帐户余额支付成功
+
 					$model_income->buyReturn($nowOrder);
 
                     D('Activity_lottery_log')->data(array(
@@ -564,8 +570,11 @@ switch ($action) {
 //		else if($_POST['payType'] == 'offline' && $offline_payment) {
 //			json_return(0, '/wap/order.php?orderid=' . $nowOrder['order_id']);
 //		}
-
-			$payMethodList = M('Config')->get_pay_method();
+            /**
+             * @var $configM config_model
+             */
+            $configM = M('Config');
+			$payMethodList = $configM->get_pay_method();
 			if(empty($payMethodList[$payType])) {
 			json_return(1012, '您选择的支付方式不存在<br/>请更新支付方式');
 		}

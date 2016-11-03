@@ -313,7 +313,11 @@ else if ($_GET['a'] == 'exchange') {
 		$user_exch = D('User_exch');
 		if ($user_exch->data($data)->add()) {
 			// 减少余额
-			M('User')->applyExchange($data['uid'], $data['point'], $data['amount']);
+            /**
+             * @var $userM user_model
+             */
+            $userM = M('User');
+            $userM->applyExchange($data['uid'], $data['point'], $data['amount']);
 
 			// 提现成功
 			json_return(0, '');

@@ -6,7 +6,7 @@ require_once dirname(__FILE__) . '/global.php';
 
 $nowOrder = M('Order')->find($_GET['id']);
 if (empty($nowOrder)) pigcms_tips('该订单号不存在', 'none');
-
+//var_dump($nowOrder);exit;
 if ($nowOrder['status'] > 1 && $nowOrder['payment_method'] != 'codpay') redirect('./order.php?orderno=' . $_GET['id']);
 //if ($nowOrder['status'] > 1 && $nowOrder['payment_method'] == 'codpay') redirect('./order.php?orderid=' .
 //	$nowOrder['order_id']);
