@@ -546,6 +546,13 @@ $(function () {
 		$('.js-batch-txt').attr('placeholder', '请输入成本价格');
 		$('.js-batch-txt').focus();
 	});
+	$('.js-batch-factory').live('click', function () {
+		js_batch_type = 'factory';
+		$('.js-batch-form').show();
+		$('.js-batch-type').hide();
+		$('.js-batch-txt').attr('placeholder', '请输入成本价格');
+		$('.js-batch-txt').focus();
+	});
 	$('.js-batch-stock').live('click', function () {
 		js_batch_type = 'stock';
 		$('.js-batch-form').show();
@@ -563,6 +570,7 @@ $(function () {
 	$('.js-batch-save').live('click', function () {
 		var batch_txt = $('.js-batch-txt');
 		switch (js_batch_type) {
+			case 'factory':
 			case 'cost':
 			case 'price':
 			case 'market':
@@ -814,6 +822,7 @@ $(function () {
 			}
 			var sku_price = $(this).find('.js-price').val(); //库存价格
 			var sku_cost = $(this).find('.js-cost').val(); //库存价格
+			var sku_factory = $(this).find('.js-factory').val(); //库存价格
 			var sku_market = $(this).find('.js-market').val(); //库存价格
 			var sku_quantity = $(this).find('.js-stock-num').val(); //库存数量
 			var sku_weight = $(this).find('.js-sku_weight').val(); // 库存重量
@@ -822,6 +831,7 @@ $(function () {
 				"props_str": props_str.substring(0, props_str.length - 1),
 				"price": sku_price,
 				"cost": sku_cost,
+				"factory": sku_factory,
 				"market": sku_market,
 				"quantity": sku_quantity,
 				"weight": sku_weight,
@@ -856,6 +866,7 @@ $(function () {
 		var is_wholesale = $("input[name='is_wholesale']").is(":checked") ? 1 : 0;
 		var market_price = $("input[name='market']").val();
 		var cost_price = $("input[name='cost']").val();
+		var factory_price = $("input[name='factory']").val();
 		var discountpre = $("input[name='discountpre']").val();
 		var images = [];
 
@@ -895,6 +906,7 @@ $(function () {
 		}
 		var discount = $("input[name='join_level_discount']:checked").val();
 		var is_recommend = $("input[name='is_recommend']:checked").val();
+		var is_hot = $("input[name='is_hot']:checked").val();
 		var is_fx = $("input[name='is_fx']:checked").val();
 		var is_import = $("input[name='is_import']:checked").val();
 		var invoice = $("input[name='invoice']:checked").val();
@@ -940,6 +952,7 @@ $(function () {
 			'name': name,
 			'price': price,
 			'cost_price': cost_price,
+			'factory_price': factory_price,
 			'market_price': market_price,
 			'discountpre': discountpre,
 			'images': images,
@@ -963,6 +976,7 @@ $(function () {
 			'is_wholesale': is_wholesale,
 			'is_fx': is_fx,
 			'is_recommend': is_recommend,
+			'is_hot': is_hot,
 			'custom': customField.checkEvent()
 		}, function (data) {
 			if (data.err_code == 0) {
@@ -1207,15 +1221,8 @@ function show_next(next_id) {
 					}
 					if ($("input[name='cost']").val() == '' || isNaN($("input[name='cost']").val()) || $("input[name='cost']").val() < 0) {
 						$("input[name='cost']").val(0);
-//                        $('.js-step').hide();
-//                        $('#step-2').show();
-//                        $('.js-step-1').removeClass('active');
-//                        $('.js-step-2').addClass('active');
-//                        $('.fm-goods-info button.js-switch-step').attr('data-next-step', 3);
-//                        layer_tips(1, '商品成本价只能填写大于0的数字');
-//                        $("input[name='cost']").val('');
-//                        $("input[name='cost']").focus();
-//                        return false;
+					}if ($("input[name='factory']").val() == '' || isNaN($("input[name='factory']").val()) || $("input[name='factory']").val() < 0) {
+						$("input[name='factory']").val(0);
 					}
 					if ($('.app-image-list > .sort').length == 0) {
 						$('.js-step').hide();
@@ -1424,6 +1431,12 @@ function show_next(next_id) {
 //                    $("input[name='cost']").val('');
 //                    $("input[name='cost']").focus();
 //                    return false;
+				}if ($("input[name='factory']").val() == '' || isNaN($("input[name='factory']").val()) || $("input[name='factory']").val() < 0) {
+					$("input[name='factory']").val('');
+//                    layer_tips(1, '商品成本价只能填写大于0的数字');
+//                    $("input[name='cost']").val('');
+//                    $("input[name='cost']").focus();
+//                    return false;
 				}
 				if ($('.app-image-list > .sort').length == 0) {
 					layer_tips(1, '商品图至少有一张');
@@ -1531,6 +1544,7 @@ function create_sku() {
 	var thead = '<th class="th-price">价格（元）</th>' +
 		'<th class="th-market">市场（元）</th>' +
 		'<th class="th-cost">成本（元）</th>' +
+		'<th class="th-factory">厂价（元）</th>' +
 		'<th class="th-stock">库存</th>' +
 		'<th>重量(克)</th>' +
 		'<th class="th-code">商品编码</th>' +
@@ -1541,6 +1555,7 @@ function create_sku() {
 	var tbody = '<td><input type="text" name="sku_price" class="js-price input-mini" value="" maxlength="10"/></td>' +
 		'<td><input type="text" name="sku_market" class="js-market input-mini" value="" maxlength="10"/></td>' +
 		'<td><input type="text" name="sku_cost" class="js-cost input-mini" value="" maxlength="10"/></td>' +
+		'<td><input type="text" name="sku_factory" class="js-factory input-mini" value="" maxlength="10"/></td>' +
 		'<td><input type="text" name="stock_num" class="js-stock-num input-mini" value="" maxlength="9"/></td>' +
 		'<td><input type="text" name="sku_weight" class="js-sku_weight input-mini" value="0" maxlength="9"/></td>' +
 		'<td><input type="text" name="code" class="js-code input-mini" value=""></td>' +
@@ -1608,6 +1623,7 @@ function create_sku() {
 		'<a class="js-batch-price" href="javascript:;">价格</a>&nbsp;' +
 		'<a class="js-batch-market" href="javascript:;">市场</a>&nbsp;' +
 		'<a class="js-batch-cost" href="javascript:;">成本</a>&nbsp;' +
+		'<a class="js-batch-factory" href="javascript:;">厂价</a>&nbsp;' +
 		'<a class="js-batch-stock" href="javascript:;">库存</a>&nbsp;' +
 		'<a class="js-batch-weight" href="javascript:;">重量</a>' +
 		'</span>' +

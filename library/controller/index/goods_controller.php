@@ -40,12 +40,12 @@ class goods_controller extends base_controller
 
 		if($this->config['default_point']) {
 			$this->product['point'] = round(($this->product['price'] * 1.00 - $this->product['cost_price'] * 1.00) *
-				($this->config['buyer_ratio'] * 1.00) * ($this->config['point_exchange'] * 1.00) / 100.00, 0);
+				($this->config['promoter_ratio_1'] * 1.00) * ($this->config['point_exchange'] * 1.00) / 100.00, 0);
 		}
 
 		if(!$this->config['default_point']) {
 			$this->product['profit'] = round(($this->product['price'] * 1.00 - $this->product['cost_price'] * 1.00) *
-				($this->config['buyer_ratio'] * 1.00) / 100.00, 2);
+				($this->config['promoter_ratio_1'] * 1.00) / 100.00, 2);
 		}
 
 		if(!is_mobile() && $this->user_session && $this->product['uid'] == $this->user_session['uid']) {

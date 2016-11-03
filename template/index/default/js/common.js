@@ -733,51 +733,51 @@ function alertlogin() {
  })
  */
 
-function getLocation() {
-	if (navigator.geolocation) {
-		var options = {
-			enableHighAccuracy: true,
-			maximumAge: 1000
-		};
-		//浏览器支持geolocation
-		navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
-	}
-	else {
-		console.log('不支持 geolocation');
-	}
-}
-
-function onSuccess(pos) {
-	var long = pos.coords.longitude;
-	var lat = pos.coords.latitude;
-	if (long == 0 || lat == 0)
-		return;
-
-	var str = '{"long":"' + long + '","lat":"' + lat + '"}';
-	addCookie('Web_user', str, 240);
-}
-function onError(error) {
-	switch (error.code) {
-		case 1:
-			console.log("位置服务被拒绝");
-			break;
-		case 2:
-			console.log("暂时获取不到位置信息");
-			break;
-		case 3:
-			console.log("获取信息超时");
-			break;
-		case 4:
-			console.log("未知错误");
-			break;
-	}
-	return false;
-}
+//function getLocation() {
+//	if (navigator.geolocation) {
+//		var options = {
+//			enableHighAccuracy: true,
+//			maximumAge: 1000
+//		};
+//		//浏览器支持geolocation
+//		navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
+//	}
+//	else {
+//		console.log('不支持 geolocation');
+//	}
+//}
+//
+//function onSuccess(pos) {
+//	var long = pos.coords.longitude;
+//	var lat = pos.coords.latitude;
+//	if (long == 0 || lat == 0)
+//		return;
+//
+//	var str = '{"long":"' + long + '","lat":"' + lat + '"}';
+//	addCookie('Web_user', str, 240);
+//}
+//function onError(error) {
+//	switch (error.code) {
+//		case 1:
+//			console.log("位置服务被拒绝");
+//			break;
+//		case 2:
+//			console.log("暂时获取不到位置信息");
+//			break;
+//		case 3:
+//			console.log("获取信息超时");
+//			break;
+//		case 4:
+//			console.log("未知错误");
+//			break;
+//	}
+//	return false;
+//}
 
 $(function () {
-	if (!getCookie("Web_user")) {
+	/*if (!getCookie("Web_user")) {
 		getLocation();
-	}
+	}*/
 
 	//网站顶部搜索框
 	$(".header_search_left_list li").click(function () {

@@ -276,15 +276,15 @@ class user_model extends base_model
             return;
 
         $parent = D('')->table("User as u")
-             ->join("Store as s ON u.uid = s.uid", "LEFT")
+            ->join("Store as s ON u.uid = s.uid", "LEFT")
             ->join("Agent as a ON a.agent_id = s.agent_id", "LEFT")
             ->field('`u`.`uid` as uid, `u`.`parent_uid` as parent_uid')
-             ->where("`u`.`uid`='$parent_uid' AND `u`.`stores`='1' AND `u`.`status`='1' AND `a`.`open_self`=0 AND `a`.`is_editor`=0")
-             ->find();
-/*
-        $parent = $this->db->where(array('uid' => $parent_uid, 'status' => 1, 'stores' => array('>', 0)))
-            ->field('uid,parent_uid')->find();
-*/
+            ->where("`u`.`uid`='$parent_uid' AND `u`.`stores`='1' AND `u`.`status`='1' AND `a`.`open_self`=0 AND `a`.`is_editor`=0")
+            ->find();
+        /*
+                $parent = $this->db->where(array('uid' => $parent_uid, 'status' => 1, 'stores' => array('>', 0)))
+                    ->field('uid,parent_uid')->find();
+        */
         if (!$parent)
             return;
 
@@ -657,11 +657,12 @@ class user_model extends base_model
     public function rechargePromoter($uid, $order_no, $profit, $level = 0)
     {
         $ratio = 0;
-        if ($level == 0) {
-            $ratio = option('config.buyer_ratio') * 1;
+        /*if ($level == 0) {
+            $ratio = option('config.promoter_ratio_1') * 1;
         } else {
             $ratio = option('config.promoter_ratio_' . $level) * 1;
-        }
+        }*/
+        $ratio = option('config.promoter_ratio_' . ($level + 1)) * 1;
 
         if (!$uid || !$profit || !$ratio)
             return;
@@ -741,7 +742,7 @@ class user_model extends base_model
     public function payforRedpack($uid, $order_no, $total, $level = 0)
     {
         $level++;
-        $money = $this->RedPackRatio['redpack_' . $level] * 1.00;
+        $money = $total * $this->RedPackRatio['redpack_' . $level] / 100.00;
         if (!$uid || !$total || !$money)
             return;
 
@@ -752,21 +753,45 @@ class user_model extends base_model
         if (empty($parent))
             return;
 
-        D('Payfor_redpack')
-            ->data(array('order_no' => $order_no,
-                'uid' => $parent['uid'],
-                'openid' => $parent['openid'],
-                'add_time' => time(),
-                'status' => 0,
-                'amount' => $money))
-            ->add();
+        D('Payfor_redpack')->data(array('order_no' => $order_no, 'uid' => $parent['uid'], 'openid' => $parent['openid'], 'add_time' => time(), 'status' => 0, 'amount' => $money))->add();
 
         $this->payforRedpack($parent['uid'], $order_no, $total, $level);
     }
 
+    public function payforCommission($uid, $order_no, $total, $level = 0)
+    {
+        $level++;
+        $money = $total * $this->RedPackRatio['redpack_' . $level] / 100.00;
+        if (!$uid || !$total || !$money)
+            return;
+
+        $parent = $this->db->where("`status` = 1 AND `stores` > 0 AND `uid` = (SELECT `parent_uid` FROM `tp_user` where `uid` = {$uid})")->field('uid, openid')->find();
+        if (empty($parent))
+            return;
+
+        $this->income($parent['uid'], $money, 0);
+        D('User_income')->data(array('uid' => $parent['uid'], 'order_no' => $order_no, 'income' => $money, 'point' => 0, 'type' => 7, 'add_time' => time(), 'status' => 1, 'remarks' => '推荐用户开店返佣'))->add();
+
+        // 充值订单分佣状态
+        D('payfor_order')->where(array('order_no' => $order_no))->data(array('profit_status' => $level))->save();
+
+        import('source.class.Notify');
+        if ($money > 0) {
+            Notify::getInstance()->cashBack($parent['openid'],
+                option('config.wap_site_url') . '/balance.php?a=index',
+                //'分店充值佣金结算',
+                '推荐用户开店',
+                $order_no,
+                $money,
+                '推荐用户开店，点击查看详情');
+        }
+
+        $this->payforCommission($parent['uid'], $order_no, $total, $level);
+    }
+
     public function payforAgent($uid, $order_no, $total, $level = 1)
     {
-        $money = $this->RedPackRatio['agent_' . $level] * 1.00;
+        $money = $total * $this->RedPackRatio['agent_' . $level] / 100.00;
         if (!$uid || !$total || !$money)
             return;
 
@@ -781,14 +806,14 @@ AND u.status =1 AND s.status =1 AND stores >0 WHERE u.`uid` = (SELECT parent_uid
         if ($parent['agent_id']) {
             if ($parent['parent_uid'] == 0) {
                 if ($level == 1) {
-                    $money = $this->RedPackRatio['agent_1'] * 1.00 +
-                        $this->RedPackRatio['agent_2'] * 1.00 +
-                        $this->RedPackRatio['agent_3'] * 1.00;
+                    $money = $total * $this->RedPackRatio['agent_1'] / 100.00 +
+                        $total * $this->RedPackRatio['agent_2'] / 100.00 +
+                        $total * $this->RedPackRatio['agent_3'] / 100.00;
                 } else if ($level == 2) {
-                    $money = $this->RedPackRatio['agent_2'] * 1.00 +
-                        $this->RedPackRatio['agent_3'] * 1.00;
+                    $money = $total * $this->RedPackRatio['agent_2'] / 100.00 +
+                        $total * $this->RedPackRatio['agent_3'] / 100.00;
                 } else {
-                    $money = $this->RedPackRatio['agent_3'] * 1.00;
+                    $money = $total * $this->RedPackRatio['agent_3'] / 100.00;
                 }
             } else {
                 if ($level == 3) {
@@ -806,7 +831,7 @@ AND u.status =1 AND s.status =1 AND stores >0 WHERE u.`uid` = (SELECT parent_uid
                     'type' => 7,
                     'add_time' => time(),
                     'status' => 1,
-                    'remarks' => '推荐用户开店代理返佣'))
+                    'remarks' => '推荐用户开店返佣'))
                     ->add();
 
                 // 充值订单状态
@@ -818,10 +843,11 @@ AND u.status =1 AND s.status =1 AND stores >0 WHERE u.`uid` = (SELECT parent_uid
                 if ($money > 0) {
                     Notify::getInstance()->cashBack($parent['openid'],
                         option('config.wap_site_url') . '/balance.php?a=index',
-                        '分店充值佣金结算',
+                        //'分店充值佣金结算',
+                        '推荐用户开店',
                         $order_no,
                         $money,
-                        '分店充值佣金结算，点击查看详情');
+                        '推荐用户开店，点击查看详情');
                 }
 
                 $level++;

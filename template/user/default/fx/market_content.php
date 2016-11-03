@@ -53,7 +53,7 @@
 					<th class="cell-8 text-right"><a href="javascript:;" data-orderby="stock_num">库存</a></th>
 					<th class="cell-10 text-right"><a href="javascript:;" data-orderby="sold_num">销量</a></th>
 					<th class="cell-10 text-right"><a href="javascript:;" data-orderby="fx_count">人气</a></th>
-					<th class="cell-15 text-right">操作</th>
+					<th class="cell-15 text-right">分销利润</th>
 				</tr>
 			</thead>
 			<tbody class="js-list-body-region">
@@ -87,6 +87,7 @@
 					<td class="text-right"><?php echo $product['sales']; ?></td>
 					<td class="text-right"><?php echo $product['pv']; ?></td>
 					<td class="text-right"><?php
+						echo '￥' . round(($product['price'] - $product['cost_price']) * $config['promoter_ratio_1'] / 100,2);
 					//echo '<p class="js-opts">排除/添加</p>';
 					/*
 						<?php if (in_array($product['product_id'], $fx_products)) { ?>

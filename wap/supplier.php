@@ -118,7 +118,7 @@ else {
 //    $store_id = $store['store_id'];
 
     //店铺销售额
-    $sales = $order->getSales(array('store_id' => $store['store_id'], 'status' => array('in', array(1,2,3,4))));
+    $sales = $order->getSales(array('store_id' => $store['store_id'], 'status' => array('in', array(2,3,4))));
 	$now_store['sales'] = number_format($sales, 2, '.', '');
     // 佣金总额
     // $balance = $financial_record->drpProfit(array('store_id' => $store['store_id']));

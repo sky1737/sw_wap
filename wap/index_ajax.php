@@ -104,7 +104,7 @@ switch ($action) {
 			$json_return['noNextPage'] = true;
 		}
 		$exchange = $config['point_exchange'] + 0;
-		$buyer_ratio = $config['buyer_ratio'] + 0;
+		$buyer_ratio = $config['promoter_ratio_1'] + 0;
 		foreach ($json_return['list'] as &$value) {
 			// $value['price'] = floatval($value['price']);
 			$value['image'] = getAttachmentUrl($value['image']);

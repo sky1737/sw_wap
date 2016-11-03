@@ -202,6 +202,9 @@
                                                value=""/>
                                         <input type="text" class="input-small" placeholder="成本：" name="cost"
                                                value=""/>
+                                        <input type="text" class="input-small" placeholder="厂价：" name="factory"
+                                               <?php if($product['factory_price'] >
+                                               0) { ?>value="<?php echo $product['factory_price']; ?>"<?php } ?> />
                                     </div>
                                 </div>
                                 <div class="control-group">
@@ -363,6 +366,15 @@
                                         <label class="checkbox inline">
                                             <input type="checkbox" name="is_recommend" value="1"/> 参加推荐商品
                                         </label>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">热门：</label>
+                                    <div class="controls">
+                                        <label class="checkbox inline">
+                                            <input type="checkbox" name="is_hot" value="1"<?php
+                                            echo $product['is_hot'] != 0 ? ' checked="true"' : ''; ?> />
+                                            参加热门商品 </label>
                                     </div>
                                 </div>
 								<div class="control-group">

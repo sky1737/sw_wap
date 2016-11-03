@@ -847,10 +847,58 @@ class account_controller extends base_controller
 
         $order = D('Order');
 
-        $total_sales_amount = $order->field('sum(`sub_total`-`profit`) as total')->where("store_id = $store_id")->find();
+        $total_sales_amount = $order->field('sum(`sub_total`) as total')->where("store_id = $store_id AND status = 4")->find();
+        $total_sales_profit = $order->field('sum(`profit`) as total')->where("store_id = $store_id AND status = 4")->find();
 
         $this->assign('supplier_product_count', $supplier_product_count);
         $this->assign('total_sales_amount', $total_sales_amount ? $total_sales_amount['total'] : 0);
+        $this->assign('total_sales_profit', $total_sales_profit ? $total_sales_profit['total'] : 0);
+
+        // 七天销售额、佣金
+        $days_7_sales = array();
+        $days_7_profits = array();
+        $days = array();
+        $tmp_days = array();
+        for ($i = 7; $i >= 1; $i--) {
+            $day = date("Y-m-d", strtotime('-' . $i . 'day'));
+            $days[] = $day;
+        }
+        foreach ($days as $day) {
+            //开始时间
+            $start_time = strtotime($day . ' 00:00:00');
+            //结束时间
+            $stop_time = strtotime($day . ' 23:59:59');
+            $where = array();
+            $where['store_id'] = $this->store_session['store_id'];
+            $where['status'] = array('in', array(1, 2, 3, 4));
+            $where['_string'] = "paid_time >= " . $start_time . " AND paid_time < " . $stop_time;
+            $data = $order->where($where)->field("sum(total) total, sum(profit) profit")->find();
+            //var_dump($data);
+            if(empty($data)){
+                $days_7_sales[]  = 0;
+                $days_7_profits[] = 0;
+            } else {
+                $days_7_sales[] = number_format($data['total'], 2, '.', '');
+                $days_7_profits[] = number_format($data['profit'], 2, '.', '');
+            }
+//            $tmp_days_7_sales = $order->where($where)->sum('total');
+//            $days_7_sales[] = !empty($tmp_days_7_sales) ? number_format($tmp_days_7_sales, 2, '.', '') : 0;
+//
+//            $where = array();
+//            $where['store_id'] = $this->store_session['store_id'];
+//            $where['_string'] = "add_time >= " . $start_time . " AND add_time < " . $stop_time;
+//            $tmp_days_7_profits = $order->where($where)->sum('profit');
+//            $days_7_profits[] = !empty($tmp_days_7_profits) ? number_format($tmp_days_7_profits, 2, '.', '') : 0;
+
+            $tmp_days[] = "'" . $day . "'";
+        }
+        $days = '[' . implode(',', $tmp_days) . ']';
+        $days_7_sales = '[' . implode(',', $days_7_sales) . ']';
+        $days_7_profits = '[' . implode(',', $days_7_profits) . ']';
+
+        $this->assign('days', $days);
+        $this->assign('days_7_sales', $days_7_sales);
+        $this->assign('days_7_profits', $days_7_profits);
     }
 
     //订单详细

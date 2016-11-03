@@ -17,7 +17,8 @@
 					<tr>
 						<th>编号</th>
 						<th>名称</th>
-						<th>用戶權限</th>
+						<th>价格</th>
+						<th>权限</th>
 						<!--<th>商品数量</th>-->
 						<th>备注</th>
 						<th>状态</th>
@@ -31,6 +32,7 @@
 							<tr>
 								<td>{pigcms{$item.agent_id}</td>
 								<td>{pigcms{$item.name}</td>
+								<td>{pigcms{$item.price}</td>
 								<td><span class="green"><?php
 									echo $item['open_self'] ? '供應商' : '';
 									echo $item['is_agent'] ? '代理商' : '';

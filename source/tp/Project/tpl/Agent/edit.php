@@ -3,11 +3,26 @@
 	<input type="hidden" name="agent_id" value="{pigcms{$item.agent_id}" />
 	<table cellpadding="0" cellspacing="0" class="frame_form" width="100%">
 		<tr>
-			<th width="80">代理名称</th>
+			<th width="80">名称</th>
 			<td><input type="text" class="input fl" name="name" size="20" placeholder="请输入代理名称" value="{pigcms{$item.name}" validate="required:true" /></td>
 		</tr>
+
+
 		<tr>
-			<th width="80">供應商</th>
+			<th width="80">销售价格</th>
+			<td><input type="text" class="input fl" name="price" size="20" placeholder="请输入代理名称" value="{pigcms{$item.price}" validate="required:true" /></td>
+		</tr>
+		<tr>
+			<th width="80">分佣金额</th>
+			<td><input type="text" class="input fl" name="commission" size="20" placeholder="请输入代理名称" value="{pigcms{$item.commission}" validate="required:true" /></td>
+		</tr>
+		<tr>
+			<th width="80">赠送消费</th>
+			<td><input type="text" class="input fl" name="consumer" size="20" placeholder="请输入代理名称" value="{pigcms{$item.consumer}" validate="required:true" /></td>
+		</tr>
+
+		<tr>
+			<th width="80">供应商</th>
 			<td class="radio_box"><span class="cb-enable">
 				<label class="cb-enable<?php echo $item['open_self'] ? ' selected' : ''; ?>"><span>启用</span>
 					<input type="radio" name="open_self" value="1"<?php echo $item['open_self'] ? ' checked="checked"' : ''; ?>/>

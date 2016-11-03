@@ -27,9 +27,8 @@ if ($isLoged && empty($_SESSION['user'])) {
     $code = I('get.code');
     if (!$openid || !$_SESSION['oauthed']) {
         if (!$openid && !$code) {
-            $custom_url = $config['wap_site_url'] . '/?refer=' . $_SERVER['REQUEST_URI'];
+            $custom_url = $config['wap_site_url'] . '/?refer=' . base64_encode($_SERVER['REQUEST_URI']);
             logs($custom_url, 'INFO');
-
             $oauthUrl =
                 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' .
                 $appid . '&redirect_uri=' . urlencode($custom_url) .
@@ -150,18 +149,17 @@ if ($isLoged && empty($_SESSION['user'])) {
                     $_SESSION['openid'] = $info['openid'];
                     $_SESSION['oauthed'] = $info['nickname'];
 
+                    $refer = I('get.refer');
+                    if (!empty($refer)) {
+                        header('location:' . base64_decode($refer));
+                        exit;
+                    }
+
                     //完善登陆手机号
                     if (
                         (empty($user['phone']) || empty($user['password'])) &&
                         false === stripos($currentUrl, 'edit_login_phone')
                     ) redirect('/wap/edit_login_phone.php');
-
-
-                    $refer = I('get.refer');
-                    if (!empty($refer)) {
-                        header('location:' . $refer);
-                        exit;
-                    }
                 } else {
                     pigcms_tips('授权不对！<br/>' . $result['errcode'], 'none');
                 }
@@ -178,7 +176,6 @@ if ($isLoged && empty($_SESSION['user'])) {
     }
 }
 
-
 if (!is_array($_SESSION['store'])) $_SESSION['store'] = null;
 
 if (empty($_SESSION['store'])) {
@@ -190,7 +187,7 @@ if (empty($_SESSION['store'])) {
     if (empty($store)) {
         $store = $db_store->getStoreByUid($_SESSION['user']['parent_uid']);
     }
-    if(empty($store)) $store = $db_store->getOfficial();
+    if (empty($store)) $store = $db_store->getOfficial();
     $_SESSION['store'] = $store;
 } else {
     if ($_SESSION['user']['stores'] && $_SESSION['store']['uid'] != $_SESSION['user']['uid']) {
@@ -261,9 +258,9 @@ $now_store = $_SESSION['store'];
 
 
 //是否是 供应商
-if(!isset($_SESSION['store']['is_supplier'])){
+if (!isset($_SESSION['store']['is_supplier'])) {
     $isSupplier = D('Agent')->where(array('agent_id' => $_SESSION['store']['agent_id']))->find();
-    $_SESSION['store']['is_supplier'] = isset($isSupplier['open_self']) && 1==$isSupplier['open_self'];
+    $_SESSION['store']['is_supplier'] = isset($isSupplier['open_self']) && 1 == $isSupplier['open_self'];
     //redirect('/wap/supplier_ucenter.php');
 }
 $isSupplier = $_SESSION['store']['is_supplier'];

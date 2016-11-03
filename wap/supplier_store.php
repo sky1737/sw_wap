@@ -150,7 +150,7 @@ else if($_GET['a'] == 'sales') {
 		$stoptime = strtotime(date('Y-m-d') . ' 06:00:00');
 		$where = array();
 		$where['store_id'] = $now_store['store_id'];
-		$where['status'] = array('in', array(1, 2, 3, 4));
+		$where['status'] = array('in', array(2, 3, 4));
 		$where['_string'] = "paid_time >= " . $starttime . " AND paid_time < " . $stoptime;
 		$todaysaletotal_0_6 = $order->getSales($where);
 		if(!$todaysaletotal_0_6) {
@@ -161,7 +161,7 @@ else if($_GET['a'] == 'sales') {
 		$stoptime = strtotime(date('Y-m-d') . ' 12:00:00');
 		$where = array();
 		$where['store_id'] = $now_store['store_id'];
-		$where['status'] = array('in', array(1, 2, 3, 4));
+		$where['status'] = array('in', array(2, 3, 4));
 		$where['_string'] = "paid_time >= " . $starttime . " AND paid_time < " . $stoptime;
 		$todaysaletotal_6_12 = $order->getSales($where);
 		if(!$todaysaletotal_6_12) {
@@ -172,7 +172,7 @@ else if($_GET['a'] == 'sales') {
 		$stoptime = strtotime(date('Y-m-d') . ' 18:00:00');
 		$where = array();
 		$where['store_id'] = $now_store['store_id'];
-		$where['status'] = array('in', array(1, 2, 3, 4));
+		$where['status'] = array('in', array(2, 3, 4));
 		$where['_string'] = "paid_time >= " . $starttime . " AND paid_time < " . $stoptime;
 		$todaysaletotal_12_18 = $order->getSales($where);
 		if(!$todaysaletotal_12_18) {
@@ -183,7 +183,7 @@ else if($_GET['a'] == 'sales') {
 		$stoptime = strtotime(date('Y-m-d') . ' 23:59:59');
 		$where = array();
 		$where['store_id'] = $now_store['store_id'];
-		$where['status'] = array('in', array(1, 2, 3, 4));
+		$where['status'] = array('in', array(2, 3, 4));
 		$where['_string'] = "paid_time >= " . $starttime . " AND paid_time < " . $stoptime;
 		$todaysaletotal_18_24 = $order->getSales($where);
 		if(!$todaysaletotal_18_24) {
@@ -204,7 +204,7 @@ else if($_GET['a'] == 'sales') {
 		$stoptime = strtotime($date . ' 06:00:00');
 		$where = array();
 		$where['store_id'] = $now_store['store_id'];
-		$where['status'] = array('in', array(1, 2, 3, 4));
+		$where['status'] = array('in', array(2, 3, 4));
 		$where['_string'] = "paid_time >= " . $starttime . " AND paid_time < " . $stoptime;
 		$yesterdaysaletotal_0_6 = $order->getSales($where);
 		if(!$yesterdaysaletotal_0_6) {
@@ -215,7 +215,7 @@ else if($_GET['a'] == 'sales') {
 		$stoptime = strtotime($date . ' 12:00:00');
 		$where = array();
 		$where['store_id'] = $now_store['store_id'];
-		$where['status'] = array('in', array(1, 2, 3, 4));
+		$where['status'] = array('in', array(2, 3, 4));
 		$where['_string'] = "paid_time >= " . $starttime . " AND paid_time < " . $stoptime;
 		$yesterdaysaletotal_6_12 = $order->getSales($where);
 		if(!$yesterdaysaletotal_6_12) {
@@ -226,7 +226,7 @@ else if($_GET['a'] == 'sales') {
 		$stoptime = strtotime($date . ' 18:00:00');
 		$where = array();
 		$where['store_id'] = $now_store['store_id'];
-		$where['status'] = array('in', array(1, 2, 3, 4));
+		$where['status'] = array('in', array(2, 3, 4));
 		$where['_string'] = "paid_time >= " . $starttime . " AND paid_time < " . $stoptime;
 		$yesterdaysaletotal_12_18 = $order->getSales($where);
 		if(!$yesterdaysaletotal_12_18) {
@@ -237,7 +237,7 @@ else if($_GET['a'] == 'sales') {
 		$stoptime = strtotime($date . ' 23:59:59');
 		$where = array();
 		$where['store_id'] = $now_store['store_id'];
-		$where['status'] = array('in', array(1, 2, 3, 4));
+		$where['status'] = array('in', array(2, 3, 4));
 		$where['_string'] = "paid_time >= " . $starttime . " AND paid_time < " . $stoptime;
 		$yesterdaysaletotal_18_24 = $order->getSales($where);
 		if(!$yesterdaysaletotal_18_24) {
@@ -264,7 +264,7 @@ else if($_GET['a'] == 'sales') {
 		$stoptime = strtotime($now_start . ' 23:59:59');
 		$where = array();
 		$where['store_id'] = $now_store['store_id'];
-		$where['status'] = array('in', array(1, 2, 3, 4));
+		$where['status'] = array('in', array(2, 3, 4));
 		$where['_string'] = "paid_time >= " . $starttime . " AND paid_time < " . $stoptime;
 		$weeksaletotal_1 = $order->getSales($where);
 		if(!$weeksaletotal_1) {
@@ -275,7 +275,7 @@ else if($_GET['a'] == 'sales') {
 		$stoptime = strtotime(date("Y-m-d", strtotime($now_start . "+1 day")) . ' 23:59:59');
 		$where = array();
 		$where['store_id'] = $now_store['store_id'];
-		$where['status'] = array('in', array(1, 2, 3, 4));
+		$where['status'] = array('in', array(2, 3, 4));
 		$where['_string'] = "paid_time >= " . $starttime . " AND paid_time < " . $stoptime;
 		$weeksaletotal_2 = $order->getSales($where);
 		if(!$weeksaletotal_2) {
@@ -286,7 +286,7 @@ else if($_GET['a'] == 'sales') {
 		$stoptime = strtotime(date("Y-m-d", strtotime($now_start . "+2 day")) . ' 23:59:59');
 		$where = array();
 		$where['store_id'] = $now_store['store_id'];
-		$where['status'] = array('in', array(1, 2, 3, 4));
+		$where['status'] = array('in', array(2, 3, 4));
 		$where['_string'] = "paid_time >= " . $starttime . " AND paid_time < " . $stoptime;
 		$weeksaletotal_3 = $order->getSales($where);
 		if(!$weeksaletotal_3) {
@@ -297,7 +297,7 @@ else if($_GET['a'] == 'sales') {
 		$stoptime = strtotime(date("Y-m-d", strtotime($now_start . "+3 day")) . ' 23:59:59');
 		$where = array();
 		$where['store_id'] = $now_store['store_id'];
-		$where['status'] = array('in', array(1, 2, 3, 4));
+		$where['status'] = array('in', array(2, 3, 4));
 		$where['_string'] = "paid_time >= " . $starttime . " AND paid_time < " . $stoptime;
 		$weeksaletotal_4 = $order->getSales($where);
 		if(!$weeksaletotal_4) {
@@ -308,7 +308,7 @@ else if($_GET['a'] == 'sales') {
 		$stoptime = strtotime(date("Y-m-d", strtotime($now_start . "+4 day")) . ' 23:59:59');
 		$where = array();
 		$where['store_id'] = $now_store['store_id'];
-		$where['status'] = array('in', array(1, 2, 3, 4));
+		$where['status'] = array('in', array(2, 3, 4));
 		$where['_string'] = "paid_time >= " . $starttime . " AND paid_time < " . $stoptime;
 		$weeksaletotal_5 = $order->getSales($where);
 		if(!$weeksaletotal_5) {
@@ -319,7 +319,7 @@ else if($_GET['a'] == 'sales') {
 		$stoptime = strtotime(date("Y-m-d", strtotime($now_start . "+5 day")) . ' 23:59:59');
 		$where = array();
 		$where['store_id'] = $now_store['store_id'];
-		$where['status'] = array('in', array(1, 2, 3, 4));
+		$where['status'] = array('in', array(2, 3, 4));
 		$where['_string'] = "paid_time >= " . $starttime . " AND paid_time < " . $stoptime;
 		$weeksaletotal_6 = $order->getSales($where);
 		if(!$weeksaletotal_6) {
@@ -330,7 +330,7 @@ else if($_GET['a'] == 'sales') {
 		$stoptime = strtotime(date("Y-m-d", strtotime($now_start . "+6 day")) . ' 23:59:59');
 		$where = array();
 		$where['store_id'] = $now_store['store_id'];
-		$where['status'] = array('in', array(1, 2, 3, 4));
+		$where['status'] = array('in', array(2, 3, 4));
 		$where['_string'] = "paid_time >= " . $starttime . " AND paid_time < " . $stoptime;
 		$weeksaletotal_7 = $order->getSales($where);
 		if(!$weeksaletotal_7) {
@@ -353,7 +353,7 @@ else if($_GET['a'] == 'sales') {
 		$stoptime = strtotime($year . '-' . $month . '-07' . ' 00:00:00');
 		$where = array();
 		$where['store_id'] = $now_store['store_id'];
-		$where['status'] = array('in', array(1, 2, 3, 4));
+		$where['status'] = array('in', array(2, 3, 4));
 		$where['_string'] = "paid_time >= " . $starttime . " AND paid_time < " . $stoptime;
 		$monthsaletotal_1_7 = $order->getSales($where);
 		if(!$monthsaletotal_1_7) {
@@ -364,7 +364,7 @@ else if($_GET['a'] == 'sales') {
 		$stoptime = strtotime($year . '-' . $month . '-14' . ' 00:00:00');
 		$where = array();
 		$where['store_id'] = $now_store['store_id'];
-		$where['status'] = array('in', array(1, 2, 3, 4));
+		$where['status'] = array('in', array(2, 3, 4));
 		$where['_string'] = "paid_time >= " . $starttime . " AND paid_time < " . $stoptime;
 		$monthsaletotal_7_14 = $order->getSales($where);
 		if(!$monthsaletotal_7_14) {
@@ -375,7 +375,7 @@ else if($_GET['a'] == 'sales') {
 		$stoptime = strtotime($year . '-' . $month . '-21' . ' 00:00:00');
 		$where = array();
 		$where['store_id'] = $now_store['store_id'];
-		$where['status'] = array('in', array(1, 2, 3, 4));
+		$where['status'] = array('in', array(2, 3, 4));
 		$where['_string'] = "paid_time >= " . $starttime . " AND paid_time < " . $stoptime;
 		$monthsaletotal_14_21 = $order->getSales($where);
 		if(!$monthsaletotal_14_21) {
@@ -388,7 +388,7 @@ else if($_GET['a'] == 'sales') {
 		$stoptime = strtotime($year . '-' . $month . '-' . $lastday . ' 23:59:59');
 		$where = array();
 		$where['store_id'] = $now_store['store_id'];
-		$where['status'] = array('in', array(1, 2, 3, 4));
+		$where['status'] = array('in', array(2, 3, 4));
 		$where['_string'] = "paid_time >= " . $starttime . " AND paid_time < " . $stoptime;
 		$monthsaletotal_21_end = $order->getSales($where);
 		if(!$monthsaletotal_21_end) {
@@ -405,7 +405,7 @@ else if($_GET['a'] == 'sales') {
 	}
 
 	//店铺销售额
-	$sales = $order->getSales(array('store_id' => $now_store['store_id'], 'status' => array('in', array(1, 2, 3, 4))));
+	$sales = $order->getSales(array('store_id' => $now_store['store_id'], 'status' => array('in', array(2, 3, 4))));
 	$now_store['sales'] = number_format($sales, 2, '.', '');
 
 	include display('supplier_store_sales');
@@ -435,7 +435,7 @@ else if(strtolower($_GET['a']) == 'select') {
 	}
 
 	//店铺销售额
-	$sales = $order->getSales(array('store_id' => $now_store['store_id'], 'status' => array('in', array(1, 2, 3, 4))));
+	$sales = $order->getSales(array('store_id' => $now_store['store_id'], 'status' => array('in', array(2, 3, 4))));
 	$store['sales'] = number_format($sales, 2, '.', '');
 	//店铺余额
 	$balance = $financial_record->drpProfit(array('store_id' => $now_store['store_id']));
@@ -475,7 +475,7 @@ else if($_GET['a'] == 'account') {
 
 	//店铺销售额
 	$sales =
-		$order->getSales(array('store_id' => $now_store['store_id'], 'status' => array('in', array(1, 2, 3, 4))));
+		$order->getSales(array('store_id' => $now_store['store_id'], 'status' => array('in', array(2, 3, 4))));
 	$now_store['sales'] = number_format($sales, 2, '.', '');
 	//店铺余额
 	//$balance = $financial_record->drpProfit(array('store_id' => $now_store['store_id']));

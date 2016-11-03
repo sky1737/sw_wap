@@ -265,7 +265,7 @@ body fieldset.blue legend { padding: 3px 8px; font-weight: 700; color: #347add; 
 .pagebar a.next { margin-right: 5px; height: 20px; line-height: 20px; text-align: center; display: inline-block; _display: inline; }
 .pagebar a,
 .pagebar .current,
-.pagebar .dots { width: 20px; }
+.pagebar .dots { width: 35px; }
 .pagebar a:hover { background-color: #E8E0D1; text-decoration: none; }
 .pagebar .current { font-weight: bold; background: #E8E0D1; }
 .pagebar .next,

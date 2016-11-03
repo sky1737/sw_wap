@@ -20,8 +20,8 @@
             <ul>
                 <li style="background:#457CB5;line-height:44px;color:white;font-weight:bold;">会员</li>
                 <li><b>用户总数</b><br><span>{pigcms{$website_user_count|default=0}</span></li>
-                <li><b>商户总数</b><br><span>{pigcms{$website_merchant_count|default=0}</span></li>
-                <li><b>店铺总数</b><br><span>{pigcms{$website_merchant_store_count|default=0}</span></li>
+                <li><b>店铺总数</b><br><span>1{pigcms{$website_merchant_count|default=0}</span></li>
+                <li><b>商户总数</b><br><span>1{pigcms{$website_merchant_store_count|default=0}</span></li>
                 <li><b>昨日新增用户</b><span>{pigcms{$yesterday_add_user_count|default=0}</span></li>
                 <li><b>昨日新增店铺</b><span>{pigcms{$yesterday_add_store_count|default=0}</span></li>
                 <li style="background:#3A6EA5;line-height:44px;color:white;font-weight:bold;">订单</li>
@@ -32,9 +32,8 @@
                 <li><b>昨日新增订单</b><span>{pigcms{$yesterday_ordered_count|default=0}</span></li>
                 <li style="background:#FF658E;line-height:44px;color:white;font-weight:bold;">商品</li>
                 <li><b>商品总数</b><br><span>{pigcms{$website_merchant_goods_count|default=0}</span></li>
-                <li><b></b><br><span>{pigcms{$selling_product_count|default=0}</span></li>
                 <li><b>在售商品数</b><br><span>{pigcms{$selling_product_count|default=0}</span></li>
-                <li><b>昨日新增商品</b><br><span>{pigcms{$yesterday_add_product_count|default=0}</span></li>
+                <li><b>昨日新增商品</b><br><span>1{pigcms{$yesterday_add_product_count|default=0}</span></li>
                 <li><b></b><span></span></li>
                 <li><b></b><span></span></li>
             </ul>

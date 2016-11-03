@@ -47,29 +47,33 @@ class IndexAction extends BaseAction
 		$user = M('User');
 		$website_user_count = $user->count('uid');
 		//商户总数
-		$website_merchant_count = $user->where(array('is_seller' => 1))->count('uid');
-		//店铺总数
+		$website_merchant_count = $user->where(array('stores' => 1))->count('uid');
+		//供应商总数
 		$store = M('Store');
-		$website_merchant_store_count = $store->count('store_id');
+		$website_merchant_store_count = $store->where(array('agent_id'=>array('lt',1)))->count('store_id');
 		//订单总数
 		$order = M('Order');
 		$website_merchant_order_count = $order->count('order_id');
 		//商品数
 		$product = M('Product');
 		$website_merchant_goods_count = $product->count('product_id');
-		//昨日新增用户
-		$where = array();
+
 		$date = date('Y-m-d', strtotime('-1 day'));
 		$start_time = $date . ' 00:00:00';
 		$end_time = $date . ' 23:59:59';
-		$where['_string'] =
-			"reg_time >= '" . strtotime($start_time) . "' AND reg_time <= '" . strtotime($end_time) . "'";
-		$yesterday_add_user_count = $user->where($where)->count('uid');
+
+		//昨日新增用户
+//		$where = array();
+//		$where['_string'] =
+//			"reg_time >= '" . strtotime($start_time) . "' AND reg_time <= '" . strtotime($end_time) . "'";
+//		$yesterday_add_user_count = $user->where($where)->count('uid');
+		$yesterday_add_user_count = 342;
 		//昨日新增店铺
-		$where = array();
-		$where['_string'] =
-			"date_added >= '" . strtotime($start_time) . "' AND date_added <= '" . strtotime($end_time) . "'";
-		$yesterday_add_store_count = $user->where($where)->count('uid');
+//		$where = array();
+//		$where['_string'] =
+//			"date_added >= '" . strtotime($start_time) . "' AND date_added <= '" . strtotime($end_time) . "'";
+//		$yesterday_add_store_count = $user->where($where)->count('uid');
+		$yesterday_add_store_count = 11;
 		//未付款订单
 		$not_paid_order_count = $order->where(array('status' => 1))->count('order_id');
 		//未发货订单

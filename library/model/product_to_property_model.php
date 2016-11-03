@@ -29,8 +29,14 @@ class product_to_property_model extends base_model
 
     public function getPids($store_id, $product_id, $fields = 'pid')
     {
-        $pids = $this->db->field($fields)->where(array(/*'store_id' => $store_id, */'product_id' => $product_id))->order('order_by ASC')->select();
-        return $pids;
+        $db_prefix = option('system.DB_PREFIX');
+        $sql = "SELECT  {$fields}  FROM `{$db_prefix}product_to_property` WHERE  `store_id` > 0 AND  `product_id` = {$product_id} ORDER BY `order_by` ASC;";
+        return $this->db->query($sql);
+
+        //
+        //$pids = $this->db->field($fields)->where(array(/*'store_id' => $store_id, */'product_id' => $product_id,'store_id >' => 0))
+        //    ->order('order_by ASC')->select();
+        //return $pids;
     }
 
     public function getProperties($store_id, $product_id)

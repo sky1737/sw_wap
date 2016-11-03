@@ -764,6 +764,16 @@ class OrderAction extends BaseAction
 		$count =  M()->query($count_sql);
 		$count_user = $count[0]['count'];
 
+		import('@.ORG.system_page');
+
+		$p = new Page($count_user, 20);
+
+		if($act == 'export' ){ $p->listRows = '1000'; }
+
+		$sql .= " limit ".$p->listRows ." offset $p->firstRow";
+
+		$sql .= " ORDER BY A.add_time DESC";
+
 		$list_sql = " SELECT A.uid,A.order_no,trade_no,B.third_id,A.income,A.point,A.type,A.add_time,remarks,c.nickname FROM " .$sql;
 		$list = M()->query($list_sql);
 
@@ -793,13 +803,9 @@ class OrderAction extends BaseAction
 			return $this->exportCsv('电子币收支明细' . date('Y-m-d H:I') . '.csv', $expText); //导出
 		}
 
-		import('@.ORG.system_page');
-
-		$p = new Page($count_user, 20);
-
-		$this->assign('list', $list);
 		$pager = $p->show();
 		$this->assign('pager', $pager);
+		$this->assign('list', $list);
 		$this->assign('types',$type );
 
 		$this->display();
@@ -967,6 +973,16 @@ class OrderAction extends BaseAction
 		$count =  M()->query($count_sql);
 		$count_user = $count[0]['count'];
 
+		import('@.ORG.system_page');
+
+		$p = new Page($count_user, 20);
+
+		if($act == 'export' ){
+			$p->listRows = '1000';
+		}
+
+		$sql .= " limit ".$p->listRows ." offset $p->firstRow";
+
 		$list_sql = " SELECT A.uid,order_no,trade_no,A.third_id,A.balance,A.point,A.status,add_time,nickname,pay_money FROM " .$sql;
 		$list = M()->query($list_sql);
 		
@@ -995,8 +1011,6 @@ class OrderAction extends BaseAction
 			$expText = mb_convert_encoding($expText, 'CP936', 'UTF8');
 			return $this->exportCsv('购物收支明细' . date('Y-m-d H:I') . '.csv', $expText); //导出
 		}
-		import('@.ORG.system_page');
-		$p = new Page($count_user, 20);
 		$pager = $p->show();
 		$this->assign('pager', $pager);
 		$this->assign('list', $list);
