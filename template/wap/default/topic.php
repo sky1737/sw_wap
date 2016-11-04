@@ -12,7 +12,6 @@
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <meta name="apple-mobile-web-app-status-bar-style" content="default"/>
     <meta name="applicable-device" content="mobile"/>
-    <link rel="stylesheet" href="<?php echo TPL_URL; ?>css/base.css"/>
 </head>
 <body>
 <?php echo $topic['content']; ?>
