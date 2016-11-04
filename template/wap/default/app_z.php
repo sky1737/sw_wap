@@ -72,7 +72,7 @@
         </div>
         <div class="z-cols">
             <span class="num">1.99%</span><br>
-            <span class="til">赠送消费</span>
+            <span class="til">赠送消费金</span>
         </div>
         <div class="z-cols" style="border:none;">
             <span class="num">28天</span><br>

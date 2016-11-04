@@ -162,11 +162,13 @@ else {
 	}
 }
 
-$importCount = M('Product')->checkIsImport(implode(',',$productIds));
+$isImport = M('Product')->checkIsImport(implode(',',$productIds));
+$isImport =1;
 if (!empty($nowOrder['float_amount'])) {
 	$nowOrder['sub_total'] += $nowOrder['float_amount'];
 	$nowOrder['sub_total'] = number_format($nowOrder['sub_total'], 2, '.', '');
 }
+
 
 // dump($nowOrder);
 // 付款方式

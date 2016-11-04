@@ -662,9 +662,24 @@ $(function () {
 			orderNo: orderNo,
 			msg: msg,
 			balance: balance,
-			point: point
+			point: point,
+			isImport : isImport
 		};
 
+		if(isImport){
+			post_data.real_name = $('#real_name').val();
+			post_data.id_card = $('#id_card').val();
+			if(post_data.real_name == '')
+			{
+				motify.log('全球购商品必须提交真实姓名');
+				return false;
+			}
+			if(post_data.id_card == '')
+			{
+				motify.log('全球购商品必须提交真实身份证号');
+				return false;
+			}
+		}
 		if($('input[name=address_id]:checked').val()){
 			post_data.address_id =  $('input[name=address_id]:checked').val();
 		} else {

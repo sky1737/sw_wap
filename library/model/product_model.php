@@ -748,6 +748,6 @@ class product_model extends base_model
 		$sql = "SELECT count(*) as counts  FROM  `" . $db_prefix .
 			"product` WHERE `product_id` IN (" . $productIds . ") AND  is_import =1 ";
 		$coupon_count = $this->db->query($sql);
-		return $coupon_count;
+		return $coupon_count[0]['counts'] ? 1  : 0 ;
 	}
 }
