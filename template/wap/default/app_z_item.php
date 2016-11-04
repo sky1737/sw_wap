@@ -251,6 +251,7 @@ if (!defined('TWIKER_PATH')) exit('deny access!');
     </style>
     <div class="z-join">
         <?php
+        //print_r($now_store);
         foreach($item['items'] as $it){ ?>
             <div class="z-join-item">
                 <div class="z-join-title">
@@ -258,7 +259,13 @@ if (!defined('TWIKER_PATH')) exit('deny access!');
                         <span class="z-join-money"><i>¥</i><?php echo $it['minimum']; ?>-<?php echo $it['maximum']; ?></span>
                         <span class="z-join-joins"><?php echo $it['buys']; ?>人已支持</span>
                     </div>
-                    <a href="/wap/index.php?ctl=cart&amp;id=1533" class="z-join-btn">立即支持</a>
+                    <?php
+                    if($now_store['agent_id'] == $it['agent_id']) {
+                        echo '<a href="app_z.php?a=join&amp;zid='.$it['zid'].'&amp;itemid='.$it['item_id'].'" class="z-join-btn">立即支持</a>';
+                    } else {
+                        echo '<a href="javascript:;" class="z-join-btn" style="background: #ccc;">立即支持</a>';
+                    }
+                    ?>
                     <div class="line" style="height: 10px;"></div>
                 </div>
                 <div class="z-join-return"><?php echo $it['note']; ?></div>
