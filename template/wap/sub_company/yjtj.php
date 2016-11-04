@@ -22,7 +22,7 @@
 </head>
 <body class="huibg">
 <nav class="navbar text-center">
-    <button class="topleft" onclick="javascript:history.go(-1);"><span class="iconfont icon-fanhui"></span></button>
+    <a href="index.php" class="topleft" ><span class="iconfont icon-fanhui"></span></a>
     <a class="navbar-tit center-block">业绩统计</a>
 </nav>
 <br/>
@@ -36,8 +36,8 @@
     <div class="tab-pane fade in active" id="sp1">
         <ul class="ddlist">
             <div class="order-detail">
-                <li><span>当月销量：</span>￥9969.0</li>
-                <li><span>总计销量：</span>￥8855869.0</li>
+                <li><span>当月销售额：</span>￥<?php echo $monthSubTotals ?></li>
+                <li><span>总计销售额：</span>￥<?php echo $allSubTotals ?></li>
             </div>
             <!--<div class="record-ye">
 	   	  <p>销售总额</p>
@@ -50,7 +50,7 @@
                 <form action="" method="get">
                     <div class="form-group m-r-10">
                         <select class="form-control" name="month">
-                            <option value="0">按月查询</option>
+                            <option value="0">本月</option>
                             <option value="1">1个月</option>
                             <option value="3">3个月</option>
                             <option value="6">6个月</option>

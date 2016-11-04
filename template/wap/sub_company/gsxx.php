@@ -29,10 +29,10 @@
 <div class="dingdan">
     <div class="ddlist">
         <div class="dtit">公司信息</div>
-        <div class="dz"><p class="ziku">名 称：</p>云温商温州分公司</div>
-        <div class="dz"><p class="ziku">电 话：</p>8888888</div>
-        <div class="dz"><p class="ziku">邮 箱：</p>888@163.com</div>
-        <div class="dz"><p class="ziku">地 址：</p><span>某某路88号</span></div>
+        <div class="dz"><p class="ziku">名 称：</p><?php echo $info['name']; ?></div>
+        <div class="dz"><p class="ziku">电 话：</p><?php echo $info['name']; ?></div>
+        <div class="dz"><p class="ziku">邮 箱：</p><?php echo $info['name']; ?></div>
+        <div class="dz"><p class="ziku">地 址：</p><span><?php echo $info['name']; ?></span></div>
     </div>
     <div class="ddlist">
         <div class="dtit">企业组织机构代码</div>
@@ -40,9 +40,9 @@
     </div>
     <div class="ddlist">
         <div class="dtit">负责人</div>
-        <div class="dz"><p class="ziku">名 称：</p>陈某某 先生/女士</div>
-        <div class="dz"><p class="ziku">电 话：</p>13888888888</div>
-        <div class="dz"><p class="ziku">邮 箱：</p>888@163.com</div>
+        <div class="dz"><p class="ziku">名 称：</p><?php echo $info['name']; ?></div>
+        <div class="dz"><p class="ziku">电 话：</p><?php echo $info['name']; ?></div>
+        <div class="dz"><p class="ziku">邮 箱：</p><?php echo $info['name']; ?></div>
     </div>
 </div>
 

@@ -30,8 +30,8 @@
 <div class="dingdan">
     <div class="ddlist">
         <div class="dtit">公司信息</div>
-        <div class="dz"><p class="ziku">名 称：</p>云温商温州分公司</div>
-        <div class="dz"><p class="ziku">电 话：</p>8888888</div>
+        <div class="dz"><p class="ziku">名 称：</p><?php $info['name'] ?></div>
+        <div class="dz"><p class="ziku">电 话：</p>9999999</div>
         <div class="dz"><p class="ziku">邮 箱：</p>888@163.com</div>
         <div class="dz"><p class="ziku">地 址：</p><span>某某路88号</span></div>
     </div>
