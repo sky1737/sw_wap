@@ -26,7 +26,7 @@ if (IS_POST) {
             $data .= '<tr>
 <td><a href="./good.php?id=' . $product['product_id'] . '" style="color:#666;">' . $product['name'] . '</a></td>
 <td>￥' . $product['price'] . '</td>
-<td>￥' . round(($product['price'] - $product['cost_price']) * $config['promoter_ratio_1'] / 100, 2) . '</td>
+<td><!--('.$product['price'].'-'.$product['cost_price'].')*'.$config['promoter_ratio_1'].'/100.00-->￥' . round(($product['price'] - $product['cost_price']) * $config['promoter_ratio_1'] / 100.00, 2) . '</td>
 </tr>';
         }
     }
