@@ -78,14 +78,14 @@ if ($_GET['a'] == 'join') { // IS_GET
         $_SESSION['user'] = $wap_user;
 
     $balance = !empty($wap_user['balance']) ? $wap_user['balance'] : 0;
-    $point = !empty($wap_user['point']) ? $wap_user['point'] : 0;
+    //$point = !empty($wap_user['point']) ? $wap_user['point'] : 0;
 
-    $time = time();
-    $list = D('Recharge')->where(array(
-        'start_time' => array('<', $time),
-        'end_time' => array('>', $time),
-        'status' => 1
-    ))->select();
+    //$time = time();
+    //$list = D('Recharge')->where(array(
+    //    'start_time' => array('<', $time),
+    //    'end_time' => array('>', $time),
+    //    'status' => 1
+    //))->select();
 
     include display('app_z_item_order');
     echo ob_get_clean();

@@ -8,7 +8,7 @@ if (!defined('TWIKER_PATH')) exit('deny access!');
     <meta charset="utf-8"/>
     <meta name="keywords" content="<?php echo $config['seo_keywords']; ?>"/>
     <meta name="description" content="<?php echo $config['seo_description']; ?>"/>
-    <title><?php echo $item['title']; ?></title>
+    <title><?php echo $z['title']; ?></title>
     <meta name="format-detection" content="telephone=no"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
@@ -28,7 +28,7 @@ if (!defined('TWIKER_PATH')) exit('deny access!');
     <nav class="tab-bar">
         <section class="left-small"><a class="menu-icon" href="./"><span></span></a></section>
         <section class="middle tab-bar-section">
-            <h1><?php echo $item['title']; ?></h1>
+            <h1><?php echo $z['title']; ?></h1>
         </section>
     </nav>
 </div>
@@ -37,117 +37,118 @@ if (!defined('TWIKER_PATH')) exit('deny access!');
         margin-top: 45px;
     }
 
-    h1.title {
+    .z_box {
         background: #fff;
-        margin: 0;
-        padding: 5px 10px;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+
+    .z_box h3 {
         font-size: 1.2rem;
+        margin: 0;
+        padding: 0;
+        color: #333333;
         font-weight: normal;
-        text-align: center;
+        margin-bottom: 5px;
     }
 
-    .z-money {
-        background: #fff;
-        line-height: 20px;
-        color: #A4A4A4;
-        padding: 5px 10px;
-        overflow: hidden;
+    .z_box h3 b {
+        color: #e13045;
     }
 
-    .z-money .money-left {
-        float: left;
-        font-size: .6rem;
+    .z_box h4, .z_box label {
+        font-size: 1rem;
+        margin: 0;
+        padding: 0;
+        color: #666;
+        font-weight: normal;
+        margin-bottom: 5px;
     }
 
-    .z-money .money-left span.red {
-        font-size: .8rem;
-        color: #f60;
+    .z_box .note {
+        font-size: 1rem;
+        line-height: 1.3rem;
+        color: #666;
     }
 
-    .z-money .money-left span {
-        font-size: .8rem;
-        color: #333
+    .agree {
+        padding: 0 10px;
     }
 
-    .z-money .z-state {
-        height: 22px;
-        line-height: 22px;
-        font-size: .6rem;
-        display: inline-block;
-        padding: 0px 5px;
-        color: #FFF;
-    }
-
-    .z-info {
-        background: #fff;
-        padding: 5px 10px;
-    }
-
-    .z-info .process-bg {
-        background: #d5d5d5;
-        height: 20px;
-        border-radius: 4px;
-        position: relative;
-        font-size: 12px;
-        line-height: 20px;
-    }
-
-    .z-info .process {
-        max-width: 100%;
-        border-radius: 4px;
-        display: block;
-        font-size: 12px;
-        background: #6baaea;
-        height: 20px;
+    a.btn {
+        background-color: #e13045;
+        line-height: 1.6rem;
+        border-radius: 5px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
         color: #fff;
-        line-height: 20px;
-        text-indent: 5px;
-        overflow: visible;
-    }
-
-    .z-info .z-cols {
-        float: left;
-        width: 33%;
-        font-size: .8rem;
-        line-height: 1.2rem;
-        margin: 7px 0;
-        overflow: hidden;
-        text-align: center;
-        border-right: 1px solid #dfdfdf;
-    }
-
-    .line {
-        clear: both;
-        height: 5px;
-        line-height: 5px;
-        overflow: hidden;
-    }
-
-    .z-expand {
-        background: #fff;
-        margin-top: 5px;
-    }
-
-    .z-expand .z-intro {
-        padding: 5px 10px;
-        display: none;
-    }
-
-    .z-expand .z-intro p {
-        margin-bottom: auto;
-    }
-
-    .z-expand .btn {
-        text-align: center;
+        padding: 10px 40px;
+        text-decoration: none;
         display: block;
-        font-size: .6rem;
-        color: #999;
-        padding: 10px 10px;
+        font-size: 1.1rem;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    input[type=number], input[type=checkbox] {
+        margin-bottom: 0;
     }
 </style>
-<div class="wx_wrap" style="">
-
+<div class="wx_wrap" style="padding: 10px;;">
+    <div class="z_box">
+        <h3>档位金额：<b><?php echo $z_item['minimum'] . ' - ' . $z_item['maximum']; ?></b></h3>
+        <h4>回报内容：</h4>
+        <div class="note"><?php echo $z_item['note']; ?></div>
+    </div>
+    <div class="z_box">
+        <label>请输入支持金额：</label>
+        <input type="number" name="amount" id="amount" value="<?php echo $z_item['maximum']; ?>"/>
+    </div>
+    <div class="z_box">
+        <label>账户余额：<b><?php echo $balance; ?></b></label>
+        <input type="number" name="balance" id="balance" value="<?php echo $balance; ?>"/>
+    </div>
+    <!--<div class="z_box">-->
+    <!--    <h4>风险说明：</h4>-->
+    <!--    <div class="note">-->
+    <!--        请您务必审慎阅读、充分理解协议中相关条款内容，其中包括：<br>-->
+    <!--        1、风险提示条款和特别提示条款；<br>-->
+    <!--        2、与您约定法律适用和管辖的条款；<br>-->
+    <!--        3、其他以粗体标识的重要条款。<br>-->
+    <!--        如您不同意相关协议、公告、规则、操作流程和项目页面承诺，您有权选择不支持；一旦选择支持，即视为您已确知并完全同意相关协议。-->
+    <!--    </div>-->
+    <!--</div>-->
+    <div class="agree">
+        <label><input type="checkbox" value="1" checked="checked" id="agree" name="agree"/> 阅读并同意《<a href="">支持者协议</a>》</label>
+    </div>
+    <div>
+        <a href="javascript:;" class="btn">立即支付 ￥<b><?php echo $z_item['maximum']; ?></b></a>
+    </div>
 </div>
+<script type="text/javascript">
+    $(function () {
+        var min = parseInt('<?php echo intval($z_item['minimum']); ?>');
+        var max = parseInt('<?php echo intval($z_item['maximum']); ?>');
+        var balance = parseFloat('<?php echo $balance; ?>')
+        var $val = max;
+        $('#amount').blur(function () {
+            $val = parseInt($(this).val());
+            if ($val < min) $val = min;
+            if ($val > max) $val = max;
+
+            $(this).val($val);
+            $('a.btn b').text($val);
+        });
+        $('#balance').blur(function () {
+            var val = parseInt($(this).val());
+            if (val < 0) val = 0;
+            if (val > balance) val = balance;
+
+            $(this).val(val);
+            $('a.btn b').text(val);
+        });
+    });
+</script>
 <?php
 include display('drp_footer');
 echo $shareData;
