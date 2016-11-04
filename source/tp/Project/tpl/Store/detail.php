@@ -131,7 +131,6 @@
 			if (!$(this).hasClass('selected')) {
 				var store_id = $(this).data('id');
 				$.post("<?php echo U('Store/status'); ?>", {
-					'type': 'status',
 					'type': 'open_friend',
 					'status': 1,
 					'store_id': store_id
