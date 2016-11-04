@@ -23,10 +23,11 @@ if (IS_POST) {
     $data = '';
     if ($products) {
         foreach ($products as $product) {
+            // <!--('.$product['price'].'-'.$product['cost_price'].')*'.$config['promoter_ratio_1'].'/100.00-->
             $data .= '<tr>
 <td><a href="./good.php?id=' . $product['product_id'] . '" style="color:#666;">' . $product['name'] . '</a></td>
 <td>￥' . $product['price'] . '</td>
-<td><!--('.$product['price'].'-'.$product['cost_price'].')*'.$config['promoter_ratio_1'].'/100.00-->￥' . round(($product['price'] - $product['cost_price']) * $config['promoter_ratio_1'] / 100.00, 2) . '</td>
+<td>￥' . round(($product['price'] - $product['cost_price']) * $config['promoter_ratio_1'] / 100.00, 2) . '</td>
 </tr>';
         }
     }
