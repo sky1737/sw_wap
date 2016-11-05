@@ -7,7 +7,7 @@
           content="<?php echo $topic['seo_title'] ? $topic['seo_title'] : $config['seo_keywords']; ?>"/>
     <meta name="description"
           content="<?php echo $topic['seo_des'] ? $topic['seo_des'] : $config['seo_description']; ?>"/>
-    <link rel="icon" href="<?php echo $config['site_url']; ?>/favicon.ico" />
+    <link rel="icon" href="<?php echo $config['site_url']; ?>/favicon.ico"/>
     <title><?php echo $topic['seo_title'] ? $topic['seo_title'] : $topic['title']; ?></title>
     <meta name="format-detection" content="telephone=no"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
@@ -20,13 +20,16 @@
             margin: 0;
             padding: 0;
         }
+
         body {
             max-width: 960px;
             margin: 0 auto;
         }
+
         img {
             border: none;
             width: 100%;
+            display: block;
         }
     </style>
 </head>
