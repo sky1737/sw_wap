@@ -9,7 +9,7 @@ $info = array(
     'comName'    => isset($companyInfo['name']) ? $companyInfo['name'] : $userInfo['nickname'],
     'comTel'     => isset($storeInfo['service_tel']) ? $storeInfo['service_tel'] : $userInfo['tel'],
     'comAddress' => isset($companyInfo['address']) ? $companyInfo['address'] : $userInfo['province'] . $userInfo['city'],
-    'uName'      => isset($userInfo['truename']) && $userInfo['truename']? $userInfo['truename'] : $storeInfo['name'],
+    'uName'      => isset($userInfo['truename']) && $userInfo['truename'] ? $userInfo['truename'] : $storeInfo['name'],
     'tel'        => isset($userInfo['phone']) ? $userInfo['phone'] : $storeInfo['tel'],
 );
 //var_dump($userInfo, $storeInfo, $companyInfo,$info); exit;
