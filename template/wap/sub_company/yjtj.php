@@ -22,7 +22,7 @@
 </head>
 <body class="huibg">
 <nav class="navbar text-center">
-    <a href="index.php" class="topleft" ><span class="iconfont icon-fanhui"></span></a>
+    <a href="index.php" class="topleft"><span class="iconfont icon-fanhui"></span></a>
     <a class="navbar-tit center-block">业绩统计</a>
 </nav>
 <br/>
@@ -114,7 +114,7 @@
             <li>
                 <form action="" method="get">
                     <div class="form-group m-r-10">
-                        <select class="form-control" name="month">
+                        <select class="form-control" name="month" id="ddlist_select">
                             <option value="0">按月查询</option>
                             <option value="1">1个月</option>
                             <option value="3">3个月</option>
@@ -126,31 +126,30 @@
                         <div class="row">
                             <div class="col-md-2"></div>
                             <div class="col-md-10">
-                                <button type="submit" class="btn btn-danger btn-block btn-lg">查询</button>
+                                <button type="button" id="ddlist_btn" class="btn btn-danger btn-block btn-lg">查询</button>
                             </div>
                         </div>
                     </div>
                 </form>
             </li>
         </ul>
-        <!--
-      <ul class="ddlist">
-          <li>
-             <a href="ddinfo.html">
-                <p>某某供货商</p>
-                <p>订单时间：2015-09-18 21:00:35</p>
-                <p>某某商品</p>
-                <p><span>价格：1200</span></p>
-                <p><span>利润：200</span></p>
-             </a>
-          </li>
-       </ul>
-        -->
+
+        <div class="chart-container">
+            <p>销售总量: <span> ￥</span><span id="saleTotal">0</span></p>
+            <canvas id="saleChart" width="400" height="400"></canvas>
+        </div>
     </div>
 </div>
 
+<script>
+    function intiChartModel() {
+        return $.parseJSON('<?php echo $data ?>');
+    }
+</script>
 
 <script src="js/classie.js"></script>
+<script src="js/chart.min.js"></script>
 <script src="js/main3.js"></script>
+
 </body>
 </html>

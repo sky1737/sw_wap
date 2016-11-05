@@ -1,9 +1,45 @@
 jQuery.extend({
-    isEmail: function(str) {
+    isEmail: function (str) {
         return /^(?:\w+\.?)*\w+@(?:\w+\.)+\w+$/.test($.trim(str));
     },
-    isIDCard: function(obj) {
-        var aCity = {11: "北京", 12: "天津", 13: "河北", 14: "山西", 15: "内蒙古", 21: "辽宁", 22: "吉林", 23: "黑龙 江", 31: "上海", 32: "江苏", 33: "浙江", 34: "安徽", 35: "福建", 36: "江西", 37: "山东", 41: "河南", 42: "湖 北", 43: "湖南", 44: "广东", 45: "广西", 46: "海南", 50: "重庆", 51: "四川", 52: "贵州", 53: "云南", 54: "西 藏", 61: "陕西", 62: "甘肃", 63: "青海", 64: "宁夏", 65: "新疆", 71: "台湾", 81: "香港", 82: "澳门", 91: "国 外"};
+    isIDCard: function (obj) {
+        var aCity = {
+            11: "北京",
+            12: "天津",
+            13: "河北",
+            14: "山西",
+            15: "内蒙古",
+            21: "辽宁",
+            22: "吉林",
+            23: "黑龙 江",
+            31: "上海",
+            32: "江苏",
+            33: "浙江",
+            34: "安徽",
+            35: "福建",
+            36: "江西",
+            37: "山东",
+            41: "河南",
+            42: "湖 北",
+            43: "湖南",
+            44: "广东",
+            45: "广西",
+            46: "海南",
+            50: "重庆",
+            51: "四川",
+            52: "贵州",
+            53: "云南",
+            54: "西 藏",
+            61: "陕西",
+            62: "甘肃",
+            63: "青海",
+            64: "宁夏",
+            65: "新疆",
+            71: "台湾",
+            81: "香港",
+            82: "澳门",
+            91: "国 外"
+        };
         var iSum = 0;
         //var info = "";
         var strIDno = obj;
@@ -15,8 +51,7 @@ jQuery.extend({
             return false;// 非法地区
 
         // 15位身份证转换为18位
-        if (idCardLength == 15)
-        {
+        if (idCardLength == 15) {
             sBirthday = "19" + strIDno.substr(6, 2) + "-" + Number(strIDno.substr(8, 2)) + "-" + Number(strIDno.substr(10, 2));
             var d = new Date(sBirthday.replace(/-/g, "/"))
             var dd = d.getFullYear().toString() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
@@ -41,7 +76,7 @@ jQuery.extend({
         if (sBirthday != (d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate()))
             return false; //非法生日
         // 身份证编码规范验证
-        for (var i = 17; i >= 0; i --)
+        for (var i = 17; i >= 0; i--)
             iSum += (Math.pow(2, i) % 11) * parseInt(strIDno.charAt(17 - i), 11);
         if (iSum % 11 != 1)
             return false;// 非法身份证号
@@ -60,48 +95,48 @@ jQuery.extend({
 
 
     },
-    isUrl: function(str) {
+    isUrl: function (str) {
         return /^http:\/\/[A-Za-z0-9]+\.[A-Za-z0-9]+[\/=\?%\-&_~`@[\]\':+!]*([^<>\"\"])*$/.test($.trim(str));
     },
-    isInt: function(str) {
-        return  /^[-\+]?\d+$/.test($.trim(str));
+    isInt: function (str) {
+        return /^[-\+]?\d+$/.test($.trim(str));
     },
-    isUserID: function(str) {
+    isUserID: function (str) {
         return /^\s*[A-Za-z0-9_-]{6,20}\s*$/.test($.trim(str));
     },
-    isMobile: function(str) {
+    isMobile: function (str) {
         return $.trim(str) !== '' && /^1[3|4|5|7|8][0-9]\d{4,8}$/.test($.trim(str));
     },
-    isChinese: function(str) {
+    isChinese: function (str) {
         return $.trim(str) != '' & !/[^\u4e00-\u9fa5]/.test($.trim(str));
     },
-    isEnglish:function(str){
-       return $.trim(str) != '' & !/[^a-zA-Z]/.test($.trim(str));
+    isEnglish: function (str) {
+        return $.trim(str) != '' & !/[^a-zA-Z]/.test($.trim(str));
     },
-    isPassword: function(str) {
-        return  /^[^\u4e00-\u9fa5\s]{6,20}$/.test($.trim(str));
+    isPassword: function (str) {
+        return /^[^\u4e00-\u9fa5\s]{6,20}$/.test($.trim(str));
     },
-    isFloat: function(str) {
+    isFloat: function (str) {
         return /^(\+|-)?\d+($|\.\d+$)/.test($.trim(str));
     },
-    isNumber: function(str) {
+    isNumber: function (str) {
         return !$.isEmpty(str) && !isNaN(str);
     },
-    isIP: function(str) {
+    isIP: function (str) {
         if (/^(\d+)\.(\d+)\.(\d+)\.(\d+)$/.test($.trim(str))) {
             if (RegExp.$1 < 256 && RegExp.$2 < 256 && RegExp.$3 < 256 && RegExp.$4 < 256)
                 return true;
         }
         return false;
     },
-    isDate: function(str) {
+    isDate: function (str) {
         var r = $.trim(str).split("-");
         if (r == null)
             return false;
         var d = new Date(r[0], r[1] - 1, r[2]);
         return (d.getFullYear() == r[0] && (d.getMonth() + 1) == r[1] && d.getDate() == r[2]);
     },
-    htmlEncode: function(str) {
+    htmlEncode: function (str) {
         str = str.replace(/&/g, '&amp;');
         str = str.replace(/</g, '&lt;');
         str = str.replace(/>/g, '&gt;');
@@ -112,7 +147,7 @@ jQuery.extend({
         str = str.replace(/\x27/g, '&#39;');
         return $.trim(str);
     },
-    htmlDecode: function(str) {
+    htmlDecode: function (str) {
         str = str.replace(/&amp;/gi, '&');
         str = str.replace(/&nbsp;/gi, ' ');
         str = str.replace(/&quot;/gi, '"');
@@ -122,16 +157,16 @@ jQuery.extend({
         str = str.replace(/<br[^>]*>(?:(\r\n)|\r|\n)?/gi, '\n');
         return $.trim(str);
     },
-    preview: function(str) {
+    preview: function (str) {
         var testwin = open("");
         testwin.document.open();
         testwin.document.write(str);
         testwin.document.close();
     },
-    isEmpty: function(str) {
+    isEmpty: function (str) {
         return $.trim(str) == '' || str == undefined
     },
-    arrayIndexOf: function(arr, substr, start) {
+    arrayIndexOf: function (arr, substr, start) {
         var ta, rt, d = '\0';
         if (start != null) {
             ta = arr.slice(start);
@@ -146,7 +181,7 @@ jQuery.extend({
         rt += str.slice(0, t).replace(/[^\0]/g, '').length;
         return rt;
     },
-    arrayLastIndexOf: function(arr, substr, start) {
+    arrayLastIndexOf: function (arr, substr, start) {
         var ta, rt, d = '\0';
         if (start != null) {
             ta = arr.slice(start);
@@ -162,13 +197,13 @@ jQuery.extend({
         rt += str.slice(t).replace(/[^\0]/g, '').length - 2;
         return rt;
     },
-    arrayReplace: function(arr, reg, rpby) {
+    arrayReplace: function (arr, reg, rpby) {
         var ta = arr.slice(0), d = '\0';
         var str = ta.join(d);
         str = str.replace(reg, rpby);
         return str.split(d);
     },
-    arraySearch: function(arr, reg) {
+    arraySearch: function (arr, reg) {
         var ta = arr.slice(0), d = '\0', str = d + ta.join(d) + d, regstr = reg.toString();
         reg = new RegExp(regstr.replace(/\/((.|\n)+)\/.*/g, '\\0$1\\0'), regstr.slice(regstr.lastIndexOf('/') + 1));
         t = str.search(reg);
@@ -176,9 +211,9 @@ jQuery.extend({
             return -1;
         return str.slice(0, t).replace(/[^\0]/g, '').length;
     },
-    nullundefined: function(str) {
+    nullundefined: function (str) {
     },
-    setClipboard: function(maintext) {
+    setClipboard: function (maintext) {
         if (window.clipboardData) {
             window.clipboardData.setData("Text", maintext);
             alert("复制成功！");
@@ -211,120 +246,117 @@ jQuery.extend({
         }
     }
 });
-(function($) {
-    $.fn.isInt = function() {
+(function ($) {
+    $.fn.isInt = function () {
         return $.isInt($(this).val());
     }
 })(jQuery);
-(function($) {
-    $.fn.isIDCard = function() {
+(function ($) {
+    $.fn.isIDCard = function () {
         return $.isIDCard($(this).val());
     }
 })(jQuery);
-(function($) {
-    $.fn.isEnglish = function() {
+(function ($) {
+    $.fn.isEnglish = function () {
         return $.isEnglish($(this).val());
     }
 })(jQuery);
-(function($) {
-    $.fn.isEmail = function() {
+(function ($) {
+    $.fn.isEmail = function () {
         return $.isEmail($(this).val());
     }
 })(jQuery);
-(function($) {
-    $.fn.isDate = function() {
+(function ($) {
+    $.fn.isDate = function () {
         return $.isDate($(this).val());
     }
 })(jQuery);
-(function($) {
-    $.fn.isIP = function() {
+(function ($) {
+    $.fn.isIP = function () {
         return $.isIP($(this).val());
     }
 })(jQuery);
-(function($) {
-    $.fn.isChinese = function() {
+(function ($) {
+    $.fn.isChinese = function () {
         return $.isChinese($(this).val());
     }
 })(jQuery);
-(function($) {
-    $.fn.isEmpty = function() {
+(function ($) {
+    $.fn.isEmpty = function () {
         return $.isEmpty($(this).val());
     }
 })(jQuery);
-(function($) {
-    $.fn.isUrl = function() {
+(function ($) {
+    $.fn.isUrl = function () {
         return $.isUrl($(this).val());
     }
 })(jQuery);
-(function($) {
-    $.fn.isFloat = function() {
+(function ($) {
+    $.fn.isFloat = function () {
         return $.isFloat($(this).val());
     }
 })(jQuery);
-(function($) {
-    $.fn.isNumber = function() {
+(function ($) {
+    $.fn.isNumber = function () {
         return $.isNumber($(this).val());
     }
 })(jQuery);
-(function($) {
-    $.fn.isUserID = function() {
+(function ($) {
+    $.fn.isUserID = function () {
         return $.isUserID($(this).val());
     }
 })(jQuery);
-(function($) {
-    $.fn.isPassword = function() {
+(function ($) {
+    $.fn.isPassword = function () {
         return $.isPassword($(this).val());
     }
 })(jQuery);
-(function($) {
-    $.fn.isMobile = function() {
+(function ($) {
+    $.fn.isMobile = function () {
         return $.isMobile($(this).val());
     }
 })(jQuery);
-(function($) {
-    $.fn.len = function() {
+(function ($) {
+    $.fn.len = function () {
         return $(this).val().length;
     }
 })(jQuery);
-(function($) {
-    $.fn.checked = function() {
+(function ($) {
+    $.fn.checked = function () {
 
         return $(this).get(0).checked();
     }
 })(jQuery);
-(function($){
-    
-    $.fn.resizeImage = function(iwidth,iheight){
-        
-        var w = $(this).width() ;
-        var h =  $(this).height() ;
+(function ($) {
+
+    $.fn.resizeImage = function (iwidth, iheight) {
+
+        var w = $(this).width();
+        var h = $(this).height();
         var _img = new Image();
         _img.src = $(this).attr("src");
-        if(_img.width > _img.height)
-        {
-           h = (_img.height / _img.width) *w;
+        if (_img.width > _img.height) {
+            h = (_img.height / _img.width) * w;
             w = (_img.width > iwidth) ? iwidth : _img.width;
-           
-        }
-        else if(_img.width < _img.height)
-        {
-           w= (_img.width / _img.height) * h ;
-           h= (_img.height > iheight) ? iheight : _img.height;
-           
-        }
-        else
-        {
-          h = (_img.height > iheight) ? iheight : _img.height;
-          w= (_img.width > iwidth) ? iwidth : _img.width;
-        }
-        $(this).css({width: w+ "px",height:h+"px"});
-    }
-       
-    
-})(jQuery);
-(function($) {
 
-    $.fn.breakWords = function(width) {
+        }
+        else if (_img.width < _img.height) {
+            w = (_img.width / _img.height) * h;
+            h = (_img.height > iheight) ? iheight : _img.height;
+
+        }
+        else {
+            h = (_img.height > iheight) ? iheight : _img.height;
+            w = (_img.width > iwidth) ? iwidth : _img.width;
+        }
+        $(this).css({width: w + "px", height: h + "px"});
+    }
+
+
+})(jQuery);
+(function ($) {
+
+    $.fn.breakWords = function (width) {
         var _this = $(this);
         var content = _this.html();
 
@@ -354,8 +386,8 @@ jQuery.extend({
 
     }
 })(jQuery);
-(function($) {
-    $.fn.limitWidth = function() {
+(function ($) {
+    $.fn.limitWidth = function () {
         var _this = $(this);
         var elments = _this.getElementsByTagName("*");
         for (var i = 0; i < elments.length; i++) {
@@ -371,17 +403,17 @@ jQuery.extend({
         return _this;
     }
 })(jQuery);
-(function($) {
-    $.fn.limitLength = function(num, inputID,isInput) {
+(function ($) {
+    $.fn.limitLength = function (num, inputID, isInput) {
 
         var textarea = $(this);
-         
+
         var input = null;
         if (inputID) {
             input = $("#" + inputID);
         }
         if (input) {
-          isInput?input.val(num - textarea.len()):input.html(num - textarea.len());
+            isInput ? input.val(num - textarea.len()) : input.html(num - textarea.len());
         }
         function limit(textarea, num) {
             if (textarea.len() >= num) {
@@ -389,197 +421,195 @@ jQuery.extend({
             }
             else {
                 if (input) {
-                   isInput?input.val(num - textarea.len()):input.html(num - textarea.len());
+                    isInput ? input.val(num - textarea.len()) : input.html(num - textarea.len());
                 }
             }
         }
-        textarea.keypress(function(e) {
+
+        textarea.keypress(function (e) {
             limit($(this), num);
-        }).keyup(function(e) {
+        }).keyup(function (e) {
             limit($(this), num);
-        }).mouseup(function(e) {
+        }).mouseup(function (e) {
             limit($(this), num);
         });
         return textarea;
     }
 })(jQuery);
-(function($) {
-    $.fn.nulldefined = function() {
+(function ($) {
+    $.fn.nulldefined = function () {
     }
 })(jQuery);
 var GC = {
-    addFavorite: function(url, text) //收藏夹
-    {
-        if (document.all) {
-            window.external.addFavorite(url, text);
-        }
-        else if (window.sidebar) {
-            window.sidebar.addPanel(text, url, "");
-        }
-    },
-        
-    holder: function(objid){
-          
-          var _this = $("#" + objid);
-          var placeholder = _this.attr("holder");
-          if($.trim(_this.val())==""){
-                  _this.addClass("placeholder");
-                  _this.val(placeholder);
-          }
-          _this.focus(function(){
-              if($.trim(_this.val())==placeholder){
-                  _this.removeClass("placeholder");
-                  _this.val("");
-              }
-           }).blur(function(){ 
-              if($.trim(_this.val())==""){
-                  _this.addClass("placeholder");
-                  _this.val(placeholder);
-              }
-           });
-    },
-        
-    setHomePage: function(obj, vrl) //首页
-    {
-        if (confirm('确认要将' + vrl + '设置为首页?')) {
-            try {
-                obj.style.behavior = 'url(#default#homepage)';
-                obj.setHomePage(vrl);
+        addFavorite: function (url, text) //收藏夹
+        {
+            if (document.all) {
+                window.external.addFavorite(url, text);
             }
-            catch (e) {
-                if (window.netscape) {
-                    try {
-                        netscape.security.PrivilegeManager.enablePrivilege("UniversalXPConnect");
+            else if (window.sidebar) {
+                window.sidebar.addPanel(text, url, "");
+            }
+        },
+
+        holder: function (objid) {
+
+            var _this = $("#" + objid);
+            var placeholder = _this.attr("holder");
+            if ($.trim(_this.val()) == "") {
+                _this.addClass("placeholder");
+                _this.val(placeholder);
+            }
+            _this.focus(function () {
+                if ($.trim(_this.val()) == placeholder) {
+                    _this.removeClass("placeholder");
+                    _this.val("");
+                }
+            }).blur(function () {
+                if ($.trim(_this.val()) == "") {
+                    _this.addClass("placeholder");
+                    _this.val(placeholder);
+                }
+            });
+        },
+
+        setHomePage: function (obj, vrl) //首页
+        {
+            if (confirm('确认要将' + vrl + '设置为首页?')) {
+                try {
+                    obj.style.behavior = 'url(#default#homepage)';
+                    obj.setHomePage(vrl);
+                }
+                catch (e) {
+                    if (window.netscape) {
+                        try {
+                            netscape.security.PrivilegeManager.enablePrivilege("UniversalXPConnect");
+                        }
+                        catch (e) {
+                            alert("此操作被浏览器拒绝！\n请在浏览器地址栏填写“about:config”并回车\n然后将[signed.applets.codebase_principal_support]设置为'true'");
+                        }
+                        var prefs = Components.classes['@mozilla.org/preferences-service;1'].getService(Components.interfaces.nsIPrefBranch);
+                        prefs.setCharPref('browser.startup.homepage', vrl);
                     }
-                    catch (e) {
-                        alert("此操作被浏览器拒绝！\n请在浏览器地址栏填写“about:config”并回车\n然后将[signed.applets.codebase_principal_support]设置为'true'");
-                    }
-                    var prefs = Components.classes['@mozilla.org/preferences-service;1'].getService(Components.interfaces.nsIPrefBranch);
-                    prefs.setCharPref('browser.startup.homepage', vrl);
                 }
             }
-        }
-    },
-    undefined: function(variable) {
-        return typeof variable == 'undefined' ? true : false;
-    },
-    form: function(formid) {
-        if (formid == null || formid == undefined)
-        {
-            return document.forms[0];
-        }
-        else {
-            return document.forms[formid];
-        }
-    },
-    openWindow : function(url){
-        var a = document.createElement("a");
+        },
+        undefined: function (variable) {
+            return typeof variable == 'undefined' ? true : false;
+        },
+        form: function (formid) {
+            if (formid == null || formid == undefined) {
+                return document.forms[0];
+            }
+            else {
+                return document.forms[formid];
+            }
+        },
+        openWindow: function (url) {
+            var a = document.createElement("a");
             a.setAttribute("href", url);
             a.setAttribute("target", "_blank");
             a.setAttribute("id", "openwin");
             document.body.appendChild(a);
             a.click();
-    },
-    getElementsByName: function(name) {
-        var ret = [];
-        var elements = document.getElementsByTagName("input");
+        },
+        getElementsByName: function (name) {
+            var ret = [];
+            var elements = document.getElementsByTagName("input");
 
-        for (var i = 0; i < elements.length; i++) {
-            if (elements[i].name == name) {
-                ret.push(elements[i]);
+            for (var i = 0; i < elements.length; i++) {
+                if (elements[i].name == name) {
+                    ret.push(elements[i]);
+                }
             }
-        }
-        return ret;
-    },
-    checkAll: function(ischecked, formid) {
+            return ret;
+        },
+        checkAll: function (ischecked, formid) {
 
-        if (formid) {
-            $("#" + formid + " input[type='checkbox']").attr("checked", ischecked);
-        } else {
-            $("input[type='checkbox']").attr("checked", ischecked);
-        }
-
-    },
-    selectedCount: function(formid) {
-        var chks = null;
-        var n = 0;
-        if (formid) {
-            chks = $("#" + formid + " input[type='checkbox']");
-        } else {
-            chks = $("input[type='checkbox']");
-        }
-        chks.each(function() {
-            if ($(this).get(0).checked) {
-                n++;
+            if (formid) {
+                $("#" + formid + " input[type='checkbox']").attr("checked", ischecked);
+            } else {
+                $("input[type='checkbox']").attr("checked", ischecked);
             }
-        });
-        return n;
-    },
-    selecteds: function(formid) {
-        var ids = "";
-        var chks = null;
 
-        if (formid) {
-            chks = $("#" + formid + " input[type='checkbox']");
-        } else {
-            chks = $("input[type='checkbox']");
-        }
-        chks.each(function() {
-            if ($(this).get(0).checked) {
+        },
+        selectedCount: function (formid) {
+            var chks = null;
+            var n = 0;
+            if (formid) {
+                chks = $("#" + formid + " input[type='checkbox']");
+            } else {
+                chks = $("input[type='checkbox']");
+            }
+            chks.each(function () {
+                if ($(this).get(0).checked) {
+                    n++;
+                }
+            });
+            return n;
+        },
+        selecteds: function (formid) {
+            var ids = "";
+            var chks = null;
+
+            if (formid) {
+                chks = $("#" + formid + " input[type='checkbox']");
+            } else {
+                chks = $("input[type='checkbox']");
+            }
+            chks.each(function () {
+                if ($(this).get(0).checked) {
+                    if (ids != "") {
+                        ids += ",";
+                    }
+                    ids += $(this).val();
+                }
+            });
+            return ids;
+
+        },
+        allids: function (formid) {
+            var ids = "";
+            var chks = null;
+
+            if (formid) {
+                chks = $("#" + formid + " input[type='checkbox']");
+            } else {
+                chks = $("input[type='checkbox']");
+            }
+            chks.each(function () {
+
                 if (ids != "") {
                     ids += ",";
                 }
                 ids += $(this).val();
+
+            });
+            return ids;
+
+        },
+        uncheckAll: function (formid) {
+            if (formid) {
+                $("#" + formid + " input[type='checkbox']").attr("checked", false);
+            } else {
+                $("input[type='checkbox']").attr("checked", false);
             }
-        });
-        return ids;
 
-    },
-    allids: function(formid) {
-        var ids = "";
-        var chks = null;
 
-        if (formid) {
-            chks = $("#" + formid + " input[type='checkbox']");
-        } else {
-            chks = $("input[type='checkbox']");
         }
-        chks.each(function() {
-
-            if (ids != "") {
-                ids += ",";
-            }
-            ids += $(this).val();
-
-        });
-        return ids;
-
-    },
-    uncheckAll: function(formid) {
-        if (formid) {
-            $("#" + formid + " input[type='checkbox']").attr("checked", false);
-        } else {
-            $("input[type='checkbox']").attr("checked", false);
-        }
-
-
     }
-}
 
 
-
-
-;
-(function($) {
+    ;
+(function ($) {
     $.fn.extend({
-        "placeholder": function(options) {
+        "placeholder": function (options) {
             options = $.extend({
                 placeholderColor: '#aaa',
                 isUseSpan: true, //是否使用插入span标签模拟placeholder的方式,默认false,默认使用value模拟
                 onInput: true  //使用标签模拟(isUseSpan为true)时，是否绑定onInput事件取代focus/blur事件
             }, options);
 
-            $(this).each(function() {
+            $(this).each(function () {
                 var _this = this;
                 var supportPlaceholder = 'placeholder' in document.createElement('input');
                 if (!supportPlaceholder) {
@@ -590,11 +620,11 @@ var GC = {
 
                     var defaultColor = $(_this).css('color');
                     if (!options.isUseSpan) {
-                
-                        $(_this).focus(function() {
+
+                        $(_this).focus(function () {
                             var pattern = new RegExp("^" + defaultValue + "$|^$");
                             pattern.test($(_this).val()) && $(_this).val('').css('color', defaultColor);
-                        }).blur(function() {
+                        }).blur(function () {
                             if ($(_this).val() == defaultValue) {
                                 $(_this).css('color', defaultColor);
                             } else if ($(_this).val().length == 0) {
@@ -612,11 +642,11 @@ var GC = {
                             'padding-left': parseInt($(_this).css('padding-left')) + 2 + 'px',
                             'line-height': _this.nodeName.toLowerCase() == 'textarea' ? $(_this).css('line-weight') : $(_this).outerHeight() + 'px',
                             'padding-top': _this.nodeName.toLowerCase() == 'textarea' ? parseInt($(_this).css('padding-top')) + 2 : 0,
-                            "left":$(_this).position().left + "px",
-                            "top":$(_this).position().top + "px" 
-                    
+                            "left": $(_this).position().left + "px",
+                            "top": $(_this).position().top + "px"
+
                         });
-                        $(_this).before($imitate.click(function() {
+                        $(_this).before($imitate.click(function () {
                             $(_this).trigger('focus');
                         }));
 
@@ -625,13 +655,13 @@ var GC = {
                         if (!options.onInput) {
                             //绑定oninput/onpropertychange事件
                             var inputChangeEvent = typeof(_this.oninput) == 'object' ? 'input' : 'propertychange';
-                            $(_this).bind(inputChangeEvent, function() {
+                            $(_this).bind(inputChangeEvent, function () {
                                 $imitate[0].style.display = $(_this).val().length != 0 ? 'none' : 'inline-block';
                             });
                         } else {
-                            $(_this).focus(function() {
+                            $(_this).focus(function () {
                                 $imitate.hide();
-                            }).blur(function() {
+                            }).blur(function () {
                                 /^$/.test($(_this).val()) && $imitate.show();
                             });
                         }
@@ -644,56 +674,54 @@ var GC = {
 })(jQuery);
 
 
-
-
-(function($) {
+(function ($) {
     $.fn.extend({
-        "initSelect": function(options) {
+        "initSelect": function (options) {
             options = $.extend({
                 debug: false,
-                maxlength:10
+                maxlength: 10
             }, options);
-           
-            $(this).each(function() {
-                 var _input =$(this);
-                 var _div = $("#" + $(this).attr("id") + "_div");
-                 var _ul =  $("#" + $(this).attr("id") + "_ul");
-                 _div.mouseenter(function(){
-                     _ul.show();
-                 }).mouseleave(function(){ 
-                     _ul.hide();
-                 });
-                 var txt = "";
-                 var val = _input.val();
-                 
-                 $("li",_ul).each(function(){
-                    
+
+            $(this).each(function () {
+                var _input = $(this);
+                var _div = $("#" + $(this).attr("id") + "_div");
+                var _ul = $("#" + $(this).attr("id") + "_ul");
+                _div.mouseenter(function () {
+                    _ul.show();
+                }).mouseleave(function () {
+                    _ul.hide();
+                });
+                var txt = "";
+                var val = _input.val();
+
+                $("li", _ul).each(function () {
+
                     var item = $(this);
-                    if(item.attr("val")==val){
-                       $("span",$(".selected",_div)).html( item.attr("text").substr(0,options.maxlength));
-                     }
-                     
-                     if( item.attr("haschild")=="true"){
-               
-                         var _cul =   $("#" + _input.attr("id") + "_" + item.attr("val")+"_ul");
-                            item.mouseenter(function(){
+                    if (item.attr("val") == val) {
+                        $("span", $(".selected", _div)).html(item.attr("text").substr(0, options.maxlength));
+                    }
+
+                    if (item.attr("haschild") == "true") {
+
+                        var _cul = $("#" + _input.attr("id") + "_" + item.attr("val") + "_ul");
+                        item.mouseenter(function () {
                             _cul.show();
-                        }).mouseleave(function(){ 
+                        }).mouseleave(function () {
                             _cul.hide();
                         });
-                     }
-                 }).click(function(ev){
-                         var txt1 = $(this).attr("text");
-                         var val1 = $(this).attr("val");
-                        
-                        $("ul",_div).hide();
-                        _input.val( val1 );
-                        $("span",$(".selected",_div)).html(txt1.substr(0,options.maxlength));
-                        ev.stopPropagation();
-                     });;
-                 
-                 
-                
+                    }
+                }).click(function (ev) {
+                    var txt1 = $(this).attr("text");
+                    var val1 = $(this).attr("val");
+
+                    $("ul", _div).hide();
+                    _input.val(val1);
+                    $("span", $(".selected", _div)).html(txt1.substr(0, options.maxlength));
+                    ev.stopPropagation();
+                });
+                ;
+
+
             });
             return this;
         }
