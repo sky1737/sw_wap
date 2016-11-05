@@ -28,7 +28,6 @@
 
         img {
             border: none;
-            width: 100%;
             display: block;
         }
     </style>
