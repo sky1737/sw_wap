@@ -22,27 +22,29 @@
 </head>
 <body class="huibg">
 <nav class="navbar text-center">
-    <button class="topleft" onclick="javascript:history.go(-1);"><span class="iconfont icon-fanhui"></span></button>
+    <a href="index.php" class="topleft"><span class="iconfont icon-fanhui"></span></a>
     <a class="navbar-tit center-block">公司信息</a>
     <!--<button class="topnav" id="open-button"><a href="gsxxxg.html"><span class="iconfont icon-1"></span></a></button>-->
 </nav>
 <div class="dingdan">
     <div class="ddlist">
         <div class="dtit">公司信息</div>
-        <div class="dz"><p class="ziku">名 称：</p><?php echo $info['name']; ?></div>
-        <div class="dz"><p class="ziku">电 话：</p><?php echo $info['name']; ?></div>
-        <div class="dz"><p class="ziku">邮 箱：</p><?php echo $info['name']; ?></div>
-        <div class="dz"><p class="ziku">地 址：</p><span><?php echo $info['name']; ?></span></div>
+        <div class="dz"><p class="ziku">名 称：</p><?php echo $info['comName']; ?></div>
+        <div class="dz"><p class="ziku">电 话：</p><?php echo $info['comTel']; ?></div>
+        <!--<div class="dz"><p class="ziku">邮 箱：</p><?php /*echo $info['name']; */ ?></div>-->
+        <div class="dz"><p class="ziku">地 址：</p><span><?php echo $info['comAddress']; ?></span></div>
     </div>
+    <!--
     <div class="ddlist">
         <div class="dtit">企业组织机构代码</div>
         <div class="dz noblord">123123123</div>
     </div>
+    -->
     <div class="ddlist">
         <div class="dtit">负责人</div>
-        <div class="dz"><p class="ziku">名 称：</p><?php echo $info['name']; ?></div>
-        <div class="dz"><p class="ziku">电 话：</p><?php echo $info['name']; ?></div>
-        <div class="dz"><p class="ziku">邮 箱：</p><?php echo $info['name']; ?></div>
+        <div class="dz"><p class="ziku">名 称：</p><?php echo $info['uName']; ?></div>
+        <div class="dz"><p class="ziku">电 话：</p><?php echo $info['tel']; ?></div>
+        <!--<div class="dz"><p class="ziku">邮 箱：</p><?php /*echo $info['name']; */ ?></div>-->
     </div>
 </div>
 
