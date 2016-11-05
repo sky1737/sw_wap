@@ -94,58 +94,84 @@ if (!defined('TWIKER_PATH')) exit('deny access!');
         margin-bottom: 0;
     }
 </style>
-<div class="wx_wrap" style="padding: 10px;;">
-    <div class="z_box">
-        <h3>档位金额：<b><?php echo $z_item['minimum'] . ' - ' . $z_item['maximum']; ?></b></h3>
-        <h4>回报内容：</h4>
-        <div class="note"><?php echo $z_item['note']; ?></div>
+<form method="post">
+    <div class="wx_wrap" style="padding: 10px;;">
+        <div class="z_box">
+            <h3>档位金额：<b><?php echo $z_item['minimum'] . ' - ' . $z_item['maximum']; ?></b></h3>
+            <h4>回报内容：</h4>
+            <div class="note"><?php echo $z_item['note']; ?></div>
+        </div>
+        <div class="z_box">
+            <label>请输入支持金额：</label>
+            <input type="number" name="amount" id="amount" value="<?php printf('%.2f',$z_item['maximum']); ?>"/>
+        </div>
+        <div class="z_box">
+            <label>账户余额：<b><?php echo $balance; ?></b></label>
+            <input type="number" name="balance" id="balance" value="0.00"/>
+        </div>
+        <!--<div class="z_box">-->
+        <!--    <h4>风险说明：</h4>-->
+        <!--    <div class="note">-->
+        <!--        请您务必审慎阅读、充分理解协议中相关条款内容，其中包括：<br>-->
+        <!--        1、风险提示条款和特别提示条款；<br>-->
+        <!--        2、与您约定法律适用和管辖的条款；<br>-->
+        <!--        3、其他以粗体标识的重要条款。<br>-->
+        <!--        如您不同意相关协议、公告、规则、操作流程和项目页面承诺，您有权选择不支持；一旦选择支持，即视为您已确知并完全同意相关协议。-->
+        <!--    </div>-->
+        <!--</div>-->
+        <div class="agree">
+            <label><input type="checkbox" value="1" checked="checked" id="agree" name="agree"/> 阅读并同意《<a
+                    href="">支持者协议</a>》</label>
+        </div>
+        <div>
+            <a href="javascript:;" class="btn">立即支付 ￥<b><?php echo $z_item['maximum']; ?></b></a>
+        </div>
     </div>
-    <div class="z_box">
-        <label>请输入支持金额：</label>
-        <input type="number" name="amount" id="amount" value="<?php echo $z_item['maximum']; ?>"/>
-    </div>
-    <div class="z_box">
-        <label>账户余额：<b><?php echo $balance; ?></b></label>
-        <input type="number" name="balance" id="balance" value="<?php echo $balance; ?>"/>
-    </div>
-    <!--<div class="z_box">-->
-    <!--    <h4>风险说明：</h4>-->
-    <!--    <div class="note">-->
-    <!--        请您务必审慎阅读、充分理解协议中相关条款内容，其中包括：<br>-->
-    <!--        1、风险提示条款和特别提示条款；<br>-->
-    <!--        2、与您约定法律适用和管辖的条款；<br>-->
-    <!--        3、其他以粗体标识的重要条款。<br>-->
-    <!--        如您不同意相关协议、公告、规则、操作流程和项目页面承诺，您有权选择不支持；一旦选择支持，即视为您已确知并完全同意相关协议。-->
-    <!--    </div>-->
-    <!--</div>-->
-    <div class="agree">
-        <label><input type="checkbox" value="1" checked="checked" id="agree" name="agree"/> 阅读并同意《<a href="">支持者协议</a>》</label>
-    </div>
-    <div>
-        <a href="javascript:;" class="btn">立即支付 ￥<b><?php echo $z_item['maximum']; ?></b></a>
-    </div>
-</div>
+</form>
 <script type="text/javascript">
     $(function () {
-        var min = parseInt('<?php echo intval($z_item['minimum']); ?>');
-        var max = parseInt('<?php echo intval($z_item['maximum']); ?>');
-        var balance = parseFloat('<?php echo $balance; ?>')
-        var $val = max;
+        var MIN = parseInt('<?php echo intval($z_item['minimum']); ?>'); // 最小投资金额
+        var MAX = parseInt('<?php echo intval($z_item['maximum']); ?>'); // 增大投资金额
+        var DIV = parseInt('<?php echo intval($z_item['amount']); ?>'); // 增加倍数
+        var BALANCE = parseFloat('<?php echo $balance; ?>').toFixed(2);
+
+        //function getb() {
+        //
+        //    return b;
+        //}
+
+        function getv() {
+            var $a = $('#amount');
+            var v = parseInt($a.val());
+            if (isNaN(v) || v < MIN) v = MIN;
+            if (v > MAX) v = MAX;
+            var rem = (v - MIN) % DIV;
+            if (rem != 0) {
+                v = MIN + Math.floor((v - MIN) / DIV) * DIV;
+            }
+            $a.val(v.toFixed(2));
+
+            var $b = $('#balance');
+            var b = parseFloat($b.val()).toFixed(2);
+            if (isNaN(b) || b < 0) b = 0;
+            if (b > BALANCE) b = BALANCE;
+            if (b > v) b = v;
+            $b.val(b);
+
+            return (v - b).toFixed(2);
+        }
+
         $('#amount').blur(function () {
-            $val = parseInt($(this).val());
-            if ($val < min) $val = min;
-            if ($val > max) $val = max;
-
-            $(this).val($val);
-            $('a.btn b').text($val);
+            $('a.btn b').text(getv());
         });
-        $('#balance').blur(function () {
-            var val = parseInt($(this).val());
-            if (val < 0) val = 0;
-            if (val > balance) val = balance;
 
-            $(this).val(val);
-            $('a.btn b').text(val);
+        $('#balance').blur(function () {
+            $('a.btn b').text(getv());
+        });
+
+        $('.btn').click(function () {
+            $('a.btn b').text(getv());
+            $('form').get(0).submit();
         });
     });
 </script>
