@@ -29,7 +29,7 @@
 <ul id="myTab" class="nav nav-tabs">
     <li class="active"><a href="#sp1" data-toggle="tab">销售信息</a>
     </li>
-    <li><a href="#sp2" data-toggle="tab">业绩报表</a></li>
+    <li><a href="#sp2" data-toggle="tab">本月销售额报表</a></li>
 </ul>
 
 <div id="myTabContent" class="tab-content">
@@ -110,6 +110,7 @@
                -->
     </div>
     <div class="tab-pane fade" id="sp2">
+        <!--
         <ul class="ddlist">
             <li>
                 <form action="" method="get">
@@ -133,9 +134,9 @@
                 </form>
             </li>
         </ul>
-
+        -->
         <div class="chart-container">
-            <p>销售总量: <span> ￥</span><span id="saleTotal">0</span></p>
+            <p>销售额总量: <span> ￥</span><span id="saleTotal">0</span></p>
             <canvas id="saleChart" width="400" height="400"></canvas>
         </div>
     </div>

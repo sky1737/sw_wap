@@ -14,21 +14,28 @@ $endTimestamp   = strtotime(date('Y-m-1') . " +1 month");
 $timeTerm       = " AND  $startTimestamp<complate_time AND  complate_time<$endTimestamp";
 
 $db_pre = option('system.DB_PREFIX');
-$sql    = "SELECT SUM(sub_total) AS sub_totals FROM {$db_pre}order where `agent_id` in (91,194) and status=4 AND complate_time";
 //var_dump($sql . $timeTerm);exit;
-$monthResult    = D('')->query($sql . $timeTerm);
-$monthSubTotals = intval(isset($monthResult[0]['sub_totals']) ? $monthResult[0]['sub_totals'] : 0);
+$monthResult    = D('')->query("SELECT sub_total, complate_time FROM {$db_pre}order where `agent_id` in (91,194) and status=4 AND complate_time" . $timeTerm);
+$monthSubTotals = 0;
+$yData          = array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+foreach ($monthResult as $r)
+{
+    $monthSubTotals += $r['sub_total'];
+    $yData[ intval(($r['complate_time']-$startTimestamp) /86400/ 3) ] += $r['sub_total'];
+}
 
-$allResult    = D('')->query($sql);
+//var_dump($yData);exit;
+
+$allResult    = D('')->query("SELECT SUM(sub_total) AS sub_totals FROM {$db_pre}order where `agent_id` in (91,194) and status=4 AND complate_time");
 $allSubTotals = intval(isset($allResult[0]['sub_totals']) ? $allResult[0]['sub_totals'] : 0);
 
 $data = array(
-    '1'  => array(
+    '0' => array(
         'x'     => array('1-3日', '4-6日', '7-9日', '10-12日', '13-15日', '16-18日', '19-21日', '22-24日', '25-27日', '28-30日'),
-        'y'     => array(65, 59, 80, 81, 56, 55, 40, 90, 23, 56),
-        'total' => 560,
+        'y'     => $yData,
+        'total' => array_sum($yData),
     ),
-    '3'  => array(
+    /*'3'  => array(
         'x'     => array('8月上', '8月中', '8月下', '9月上', '9月中', '9月下', '10月上', '10月中', '10月下'),
         'y'     => array(124, 178, 240, 243, 168, 165, 120, 255, 101),
         'total' => 1560,
@@ -42,16 +49,9 @@ $data = array(
         'x'     => array('1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'),
         'y'     => array(402, 690, 960, 1020, 672, 640, 480, 1020, 404, 204, 56, 0),
         'total' => 3560,
-    ),
-    '0'  => array(
-        'x'     => array(),
-        'y'     => array(),
-        'total' => 0,
-
-    ),
+    ),*/
 );
 $data = json_encode($data);
-
 
 $tpl = implode(DIRECTORY_SEPARATOR, array_slice(explode(DIRECTORY_SEPARATOR, __FILE__), -2));
 $tpl = str_replace(DIRECTORY_SEPARATOR, '/', $tpl);
