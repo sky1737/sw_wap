@@ -17,7 +17,7 @@ class IndexAction extends BaseAction
 		$condition_system_menu['status'] = 1;
 		$condition_system_menu['show'] = 1;
 		$menu_list =
-			$database_system_menu->field(true)->where($condition_system_menu)->order('`sort` DESC,`fid` ASC,`id` ASC')
+			$database_system_menu->field(true)->where($condition_system_menu)->order('`sort` desc,`fid` ASC,`id` ASC')
 				->select();
 		foreach ($menu_list as $key => $value) {
 			if ($value['fid'] == 0) {

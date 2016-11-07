@@ -131,7 +131,6 @@
 			if (!$(this).hasClass('selected')) {
 				var store_id = $(this).data('id');
 				$.post("<?php echo U('Store/status'); ?>", {
-					'type': 'status',
 					'type': 'open_friend',
 					'status': 1,
 					'store_id': store_id
@@ -286,7 +285,7 @@
 				'"><span>取消</span><input type="radio" name="drp_approve" value="0"' .
 				($store['drp_approve'] ? '' : ' checked="checked"') . ' /></label></span>'; ?></td>
 		<th width="80" class="center">代理状态</th>
-		<td class="right-border" colspan="3" data-id="<?php echo $store['store_id']; ?>"><select class="js-agent_id">
+		<td class="right-border" colspan="3" ><select class="js-agent_id" data-id="<?php echo $store['store_id']; ?>">
 				<?php
 				$sel = 'selected="selected"';
 				if(!empty($store['agents'])) {
