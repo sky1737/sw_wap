@@ -13,71 +13,91 @@ if ($_GET['a'] == 'join') { // IS_GET
     $z = $db_z->where(array('status' => 1, 'zid' => $zid))->find();
     if (empty($z)) redirect("app_z.php");
 
-    $itemid = $_GET['itemid'];
+    $item_id = $_GET['itemid'];
     $db_z_item = D('App_z_item');
-    $z_item = $db_z_item->where(array('zid' => $zid, 'item_id' => $itemid, 'status' => 1))->find();
+    $z_item = $db_z_item->where(array('zid' => $zid, 'item_id' => $item_id, 'status' => 1))->find();
     if (empty($z_item)) redirect('app_z.php');
-
-    if (IS_POST) {
-        $balance = $_POST['balance'];
-        if ($balance <= 0) {
-            json_return(1, '错误的充值金额！');
-        }
-        $time = time();
-        $recharge = D('Recharge')->where(array('amount' => $balance, 'start_time' => array('<', $time),
-            'end_time' => array('>', $time),
-            'status' => 1))->find();
-        if (empty($recharge)) {
-            json_return(1, '错误的充值金额，请重新选择！');
-        }
-
-        $payType = 'weixin';
-        $db_recharge_order = D('Recharge_order');
-        $nowOrder = $db_recharge_order->where(array('uid' => $wap_user['uid'],
-            'total' => $recharge['amount'],
-            'point' => $recharge['point'],
-            'status' => 1))->find();
-        if (empty($nowOrder)) {
-            $nowOrder = array(
-                'order_no' => date('YmdHis', $_SERVER['REQUEST_TIME']) . mt_rand(100000, 999999),
-                'trade_no' => date('YmdHis', $_SERVER['REQUEST_TIME']) . mt_rand(100000, 999999),
-                'uid' => $wap_user['uid'],
-                'total' => $recharge['amount'],
-                'point' => $recharge['point'],
-                'profit' => $recharge['profit'],
-                'pay_type' => $payType,
-                'status' => 1,
-                'add_time' => time(),
-                'remarks' => '充值 ' . $recharge['amount'] . ' 元赠送积分 ' . $recharge['point'] . '。',
-                'pay_money' => $recharge['amount']);
-            if (!$nowOrder['order_id'] = $db_recharge_order->data($nowOrder)->add()) {
-                json_return(1, '生成支付订单失败，请重试！');
-            }
-        }
-
-        $payMethodList = M('Config')->get_pay_method();
-        if (empty($payMethodList[$payType])) {
-            json_return(1012, '您选择的支付方式不存在，请更新支付方式！');
-        }
-
-        $nowOrder['order_no_txt'] = option('config.orderid_prefix') . $nowOrder['order_no'];
-
-        import('source.class.pay.Weixin');
-        $payClass = new Weixin($nowOrder, $payMethodList[$payType]['config'], $wap_user['openid'], 'recharge');
-        $result = $payClass->pay();
-        logs('payInfo:' . json_encode($result), 'INFO');
-        if ($result['err_code']) {
-            json_return(1013, $result['err_msg']);
-        } else {
-            json_return(0, json_decode($result['pay_data']));
-        }
-    }
 
     $wap_user = D('User')->where(array('uid' => $wap_user['uid'], 'status' => 1))->find();
     if ($_SESSION['user'] != $wap_user)
         $_SESSION['user'] = $wap_user;
 
     $balance = !empty($wap_user['balance']) ? $wap_user['balance'] : 0;
+
+    if (IS_POST) {
+        $min = floatval($z_item['minimum']);
+        $invest = floatval($_POST['invest']);
+        if ($invest < $min || $invest > floatval($z_item['maximum']) || ($invest - $min) % floatval($z_item['amount']) > 0)
+            json_return(1, "错误的理财金额！");
+
+        $amount = floatval($_POST['amount']);
+        if ($amount < 0 || $amount > $balance)
+            json_return(1, "使用余额数量错误！");
+
+        $pay_money = $invest - $amount;
+        $time = time();
+
+        //$payType = 'weixin';
+        $db_app_z_order = D('App_z_order');
+        $nowOrder = array(
+            // `uid`, `zid`, `agent_id`, `total`, `profit_status`, `agent_status`, `pay_type`, `status`, `add_time`, `paid_time`, `complate_time`,
+            'order_no' => date('YmdHis', $_SERVER['REQUEST_TIME']) . mt_rand(100000, 999999),
+            'trade_no' => date('YmdHis', $_SERVER['REQUEST_TIME']) . mt_rand(100000, 999999),
+            'uid' => $wap_user['uid'],
+            'zid' => $zid,
+            'item_id' => $item_id,
+            'agent_id' => $z['agent_id'],
+
+            'total' => $invest,
+            'point' => 0,
+            'balance' => $balance,
+            'pay_money' => $pay_money,
+
+            'profit' => $invest * intval($z['profit_rate']) / 10000,
+            'gift' => $invest * intval($z['gift_rate']) / 10000,
+            'commission' => $invest * intval($z['commission_rate']) / 10000,
+
+            'pay_type' => '',
+            'status' => 1,
+            'add_time' => time(),
+            'remarks' => $z['title'] . ' 投资 ￥' . $invest . '。',
+        );
+        if (!$nowOrder['order_id'] = $db_app_z_order->data($nowOrder)->add()) {
+            json_return(1, '生成理财订单失败，请重试！');
+        }
+
+        if ($pay_money > 0) {
+            $payType = 'weixin';
+
+            $payMethodList = M('Config')->get_pay_method();
+            if (empty($payMethodList[$payType])) {
+                json_return(1012, '您选择的支付方式不存在，请更新支付方式！');
+            }
+
+            $nowOrder['order_no_txt'] = option('config.orderid_prefix') . $nowOrder['order_no'];
+
+            import('source.class.pay.Weixin');
+            $payClass = new Weixin($nowOrder, $payMethodList[$payType]['config'], $wap_user['openid'], 'recharge');
+            $result = $payClass->pay();
+            logs('payInfo:' . json_encode($result), 'INFO');
+            if ($result['err_code']) {
+                json_return(1013, $result['err_msg']);
+            } else {
+                json_return(0, json_decode($result['pay_data']));
+            }
+        } else {
+            $model_user = M('User');
+
+            // 发放收益
+            $db_user->where(array('uid' => $wap_user['uid']))->setInc('balance', $nowOrder['profit']);
+            // 赠送消费金额
+            $db_user->where(array('uid' => $wap_user['uid']))->setInc('balance', $nowOrder['gift']);
+            $db_user->where(array('uid' => $wap_user['uid']))->setInc('consumer', $nowOrder['gift']);
+
+            // 更改订单状态
+            $db_app_z_order->where(array('order_id' => $nowOrder['order_id']))->data(array('pay_type' => 'account', 'paid_time' => $time, 'status' => 2))->save();
+        }
+    }
     //$point = !empty($wap_user['point']) ? $wap_user['point'] : 0;
 
     //$time = time();
