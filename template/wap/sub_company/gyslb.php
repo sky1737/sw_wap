@@ -22,7 +22,7 @@
 </head>
 <body class="huibg">
 <nav class="navbar text-center">
-    <button class="topleft" onclick="javascript:history.go(-1);"><span class="iconfont icon-fanhui"></span></button>
+    <a href="index.php" class="topleft"><span class="iconfont icon-fanhui"></span></a>
     <a class="navbar-tit center-block">我的供应商</a>
     <!--<button class="topnav" id="open-button"><span class="iconfont icon-1"></span></button>-->
 </nav>
