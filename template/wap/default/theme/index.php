@@ -291,6 +291,7 @@ else {
 			$value = $activity[0];
 			echo '<div><a href="'.$value['url'].'"><img src="'.$value['pic'].'" alt="'.$value['name'].'" width="100%" /></a></div>';
 		} ?>
+
 		<ul class="banner4">
 			<?php
 			if(empty($banner4)) {
