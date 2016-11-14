@@ -93,55 +93,91 @@ if (!defined('TWIKER_PATH')) exit('deny access!');
     input[type=number], input[type=checkbox] {
         margin-bottom: 0;
     }
+
+    dl {
+        clear: both;
+    }
+
+    dl dt {
+        font-style: normal;
+        font-weight: normal;
+        margin: 0;
+        float: left;
+        font-size: 1rem;
+        line-height: 1.5rem;
+        color: #999;
+    }
+
+    dl dd {
+        font-size: 1rem;
+        float: right;
+        color: #ccc;
+        margin: 0;
+    }
+
+    dl dd span {
+        color: #e13045;
+        text-decoration: underline;
+    }
 </style>
-<form method="post">
-    <div class="wx_wrap" style="padding: 10px;;">
-        <div class="z_box">
-            <h3>档位金额：<b><?php echo $z_item['minimum'] . ' - ' . $z_item['maximum']; ?></b></h3>
-            <h4>回报内容：</h4>
-            <div class="note"><?php echo $z_item['note']; ?></div>
-        </div>
-        <div class="z_box">
-            <label>请输入支持金额：</label>
-            <input type="number" name="amount" id="amount" value="<?php printf('%.2f',$z_item['maximum']); ?>"/>
-        </div>
-        <div class="z_box">
-            <label>账户余额：<b><?php echo $balance; ?></b></label>
-            <input type="number" name="balance" id="balance" value="0.00"/>
-        </div>
-        <!--<div class="z_box">-->
-        <!--    <h4>风险说明：</h4>-->
-        <!--    <div class="note">-->
-        <!--        请您务必审慎阅读、充分理解协议中相关条款内容，其中包括：<br>-->
-        <!--        1、风险提示条款和特别提示条款；<br>-->
-        <!--        2、与您约定法律适用和管辖的条款；<br>-->
-        <!--        3、其他以粗体标识的重要条款。<br>-->
-        <!--        如您不同意相关协议、公告、规则、操作流程和项目页面承诺，您有权选择不支持；一旦选择支持，即视为您已确知并完全同意相关协议。-->
-        <!--    </div>-->
-        <!--</div>-->
-        <div class="agree">
-            <label><input type="checkbox" value="1" checked="checked" id="agree" name="agree"/> 阅读并同意《<a
-                    href="">支持者协议</a>》</label>
-        </div>
-        <div>
-            <a href="javascript:;" class="btn">立即支付 ￥<b><?php echo $z_item['maximum']; ?></b></a>
-        </div>
+<div class="wx_wrap" style="padding: 10px;;">
+    <div class="z_box">
+        <h3>档位金额：<b><?php echo $z_item['minimum'] . ' - ' . $z_item['maximum']; ?></b></h3>
+        <h4>回报内容：</h4>
+        <div class="note"><?php echo $z_item['note']; ?></div>
     </div>
-</form>
+    <div class="z_box">
+        <label>请输入投资金额：</label>
+        <input type="number" name="invest" id="invest" value="<?php printf('%.2f', $z_item['maximum']); ?>"/>
+    </div>
+    <div class="z_box">
+        <label>使用余额&nbsp; <span style="font-size: .6rem; color: #e13045;">账户余额：<b
+                    style="font-weight: normal;"><?php echo $balance; ?></b></span></label>
+        <input type="number" name="amount" id="amount" value="0.00"/>
+    </div>
+    <div class="z_box">
+        <dl>
+            <dt>投资金额</dt>
+            <dd>￥<span id="t"><?php printf('%.2f', $z_item['maximum']); ?></span></dd>
+        </dl>
+        <dl>
+            <dt>微信支付</dt>
+            <dd>￥<span id="w"><?php printf('%.2f', $z_item['maximum']); ?></span></dd>
+        </dl>
+        <dl>
+            <dt>余额支付</dt>
+            <dd>￥<span id="b">0.00</span></dd>
+        </dl>
+    </div>
+    <!--<div class="z_box">-->
+    <!--    <h4>风险说明：</h4>-->
+    <!--    <div class="note">-->
+    <!--        请您务必审慎阅读、充分理解协议中相关条款内容，其中包括：<br>-->
+    <!--        1、风险提示条款和特别提示条款；<br>-->
+    <!--        2、与您约定法律适用和管辖的条款；<br>-->
+    <!--        3、其他以粗体标识的重要条款。<br>-->
+    <!--        如您不同意相关协议、公告、规则、操作流程和项目页面承诺，您有权选择不支持；一旦选择支持，即视为您已确知并完全同意相关协议。-->
+    <!--    </div>-->
+    <!--</div>-->
+    <div class="agree">
+        <label><input type="checkbox" value="1" checked="checked" id="agree" name="agree"/> 阅读并同意《<a
+                href="">支持者协议</a>》</label>
+    </div>
+    <input type="hidden" id="zid" name="zid" value="<?php echo $z['zid']; ?>">
+    <input type="hidden" id="item_id" name="item_id" value="<?php echo $z_item['item_id']; ?>">
+    <div>
+        <a href="javascript:;" class="btn">立即支付</a>
+    </div>
+</div>
 <script type="text/javascript">
     $(function () {
         var MIN = parseInt('<?php echo intval($z_item['minimum']); ?>'); // 最小投资金额
         var MAX = parseInt('<?php echo intval($z_item['maximum']); ?>'); // 增大投资金额
         var DIV = parseInt('<?php echo intval($z_item['amount']); ?>'); // 增加倍数
-        var BALANCE = parseFloat('<?php echo $balance; ?>').toFixed(2);
-
-        //function getb() {
-        //
-        //    return b;
-        //}
+        var BALANCE = parseFloat('<?php echo $balance; ?>');
 
         function getv() {
-            var $a = $('#amount');
+            var $a = $('#invest');
             var v = parseInt($a.val());
             if (isNaN(v) || v < MIN) v = MIN;
             if (v > MAX) v = MAX;
@@ -150,28 +186,101 @@ if (!defined('TWIKER_PATH')) exit('deny access!');
                 v = MIN + Math.floor((v - MIN) / DIV) * DIV;
             }
             $a.val(v.toFixed(2));
+            $('span#t').text(v.toFixed(2));
 
-            var $b = $('#balance');
-            var b = parseFloat($b.val()).toFixed(2);
+            var $b = $('#amount');
+            var b = parseFloat($b.val());
             if (isNaN(b) || b < 0) b = 0;
             if (b > BALANCE) b = BALANCE;
             if (b > v) b = v;
-            $b.val(b);
+            $b.val(b.toFixed(2));
+            $('span#b').text(b.toFixed(2));
 
-            return (v - b).toFixed(2);
+            $('span#w').text((v - b).toFixed(2));
+
+            return (v - b);
         }
 
-        $('#amount').blur(function () {
-            $('a.btn b').text(getv());
+        $('input[type=number]').focus(function () {
+            var $obj = $(this);
+            if (parseFloat($obj.val()) == 0.00) {
+                $obj.val('');
+            }
         });
 
-        $('#balance').blur(function () {
-            $('a.btn b').text(getv());
+        $('#invest').blur(function () {
+            getv();
+        });
+
+        $('#amount').blur(function () {
+            getv();
         });
 
         $('.btn').click(function () {
-            $('a.btn b').text(getv());
-            $('form').get(0).submit();
+
+            //var loadingCon = $('<div style="overflow:hidden;visibility:visible;position:absolute;z-index:1100;transition:opacity 300ms ease;-webkit-transition:opacity 300ms ease;opacity:1;top:' + (($(window).height() - 100) / 2) + 'px;left:' + (($(window).width() - 200) / 2) + 'px;"><div class="loader-container"><div class="loader center">处理中</div></div></div>');
+            var loadingCon = $('<div style="overflow:hidden;visibility:visible;position:absolute;z-index:1100;transition:opacity 300ms ease;-webkit-transition:opacity 300ms ease;opacity:1;top:' + (($(window).height() - 100) / 2) + 'px;left:' + (($(window).width() - 200) / 2) + 'px;"><div class="loader-container" style="width: 200px;background: #fff;padding: 50px 10px;text-align: center;"><div class="loader center">处理中，请稍候...</div></div></div>');
+            var loadingBg = $('<div style="height:100%;position:fixed;top:0px;left:0px;right:0px;z-index:1000;opacity:1;transition:opacity 0.2s ease;-webkit-transition:opacity 0.2s ease;background-color:rgba(0,0,0,0.901961);"></div>');
+            $('html').css({'position': 'relative', 'overflow': 'hidden', 'height': $(window).height() + 'px'});
+            $('body').css({
+                'overflow': 'hidden',
+                'height': $(window).height() + 'px',
+                'padding': '0px'
+            }).append(loadingCon).append(loadingBg);
+            nowScroll = $(window).scrollTop();
+
+            $.post('app_z.php?a=join&zid=<?php echo $z['zid']; ?>&itemid=<?php echo $z_item['item_id']; ?>', {
+                invest: $('#invest').val(),
+                amount: $('#amount').val()
+            }, function (result) {
+
+                $('html').css({'overflow': 'visible', 'height': 'auto', 'position': 'static'});
+                $('body').css({'overflow': 'visible', 'height': 'auto', 'padding-bottom': '45px'});
+                $(window).scrollTop(nowScroll);
+
+                //loadingBg.css('opacity', 0);
+                setTimeout(function () {
+                    loadingCon.remove();
+                    loadingBg.remove();
+                }, 200);
+
+                // 0 微信支付
+                if (result.err_code == 0) {
+                    if (typeof(result.err_msg) == "object" && payType == 'weixin' && window.WeixinJSBridge) {
+                        window.WeixinJSBridge.invoke("getBrandWCPayRequest", result.err_msg, function (res) {
+                            WeixinJSBridge.log(res.err_msg);
+                            if (res.err_msg == "get_brand_wcpay_request:ok") {
+                                //if (orderNo.indexOf(orderPrefix) == 0) {
+                                //    window.location.href = './order.php?orderno=' + orderNo;
+                                //}
+                                //else {
+                                //    window.location.href = './my_order.php';
+                                //}
+                                alert('支付成功！');
+                                location.href = 'app_z_my.php';
+                            }
+                            else {
+                                if (res.err_msg == "get_brand_wcpay_request:cancel") {
+                                    alert("您取消了微信支付");
+                                }
+                                else if (res.err_msg == "get_brand_wcpay_request:fail") {
+                                    alert("微信支付失败\n错误信息：" + res.err_desc);
+                                }
+                                else {
+                                    alert(res.err_msg + "\n" + res.err_desc)
+                                }
+                                return false;
+                            }
+                        });
+                    }
+                } else if (result.err_code == 10) {
+                    alert('支付成功！');
+                    location.href = 'app_z_my.php';
+                }
+                else {
+                    alert(result.err_msg)
+                }
+            }, 'JSON');
         });
     });
 </script>
