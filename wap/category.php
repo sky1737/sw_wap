@@ -19,6 +19,8 @@ $share = new WechatShare();
 $shareData = $share->getSgin($share_conf);
 //分享配置 end
 
+$supplier_uid = intval($_GET['suid']); //供应商UID
+
 if (isset($_GET['discount'])) {
     $db_banner = M('Adver');
     $banner = $db_banner->get_adver_by_key('wap_lottery_top', 0);
@@ -34,7 +36,7 @@ if (isset($_GET['discount'])) {
     $category = $product_category_model->db->field('cat_id,cat_name')->where(array('cat_fid' => 0,'cat_status'=>1))->order('cat_sort desc')->select();
     include display('index_category_discount');
 }
-elseif(empty($keyword)){
+elseif(empty($keyword) && !$supplier_uid){
     include display('index_category');
 }else{
 	$key_id = intval($_GET['id']);

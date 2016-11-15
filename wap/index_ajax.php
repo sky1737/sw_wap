@@ -29,6 +29,8 @@ switch ($action) {
 		$prop = $_POST['prop'];
 		$isDiscount = isset($_POST['discount']);
 
+        $supplier_uid = intval($_POST['suid']);
+
 		// 筛选属性ID集合
 		$prop_arr = array();
 		if(!empty($prop)) {
@@ -48,10 +50,13 @@ switch ($action) {
 				D('Product_category')->field('`cat_id`,`cat_fid`')->where(array('cat_id' => $key_id))->find();
 		}
 
+        $supplier_uid && $condition['uid'] = $supplier_uid;
+
         $isDiscount && $condition['discount'] = array('<', '10');
 		$condition['status'] = '1';
 		$condition['is_fx'] = '1';
 		$condition['quantity'] = array('!=', '0');
+        //var_dump($condition);exit;
 		if($now_category) {
 			if($now_category['cat_fid']) {
 				$condition['category_id'] = $now_category['cat_id'];

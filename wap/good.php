@@ -366,6 +366,11 @@ if($config['default_point']) {
 //}
 
 
+$store = D('Store');
+$supplierStoreInfo = $store->where(array('uid' => $nowProduct['uid']))->find();
+
+//var_dump($supplierStoreInfo);exit;
+
 //$imUrl = getImUrl($_SESSION['user']['uid'], $store_id);
 //分享配置 start
 $share_conf = array(

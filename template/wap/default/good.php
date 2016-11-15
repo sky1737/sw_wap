@@ -280,6 +280,10 @@
                                     ?>
                                 </dd>
                             </dl>
+                            <dl>
+                                <dt>供应商：</dt>
+                                <dd><a href="<?php echo "/wap/category.php?suid={$supplierStoreInfo['uid']}"; ?>"><?php echo $supplierStoreInfo['name']; ?> (点击查看该供应商的所有产品)</a></dd>
+                            </dl>
                         </div>
                         <div class="qrcode-buy"><a href="javascript:;"
                                                    class="js-qrcode-buy btn btn-block btn-orange-dark butn-qrcode">立即购买</a>

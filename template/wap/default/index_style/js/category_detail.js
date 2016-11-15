@@ -147,7 +147,7 @@ function getProducts() {
 	$.ajax({
 		type: "POST",
 		url: 'index_ajax.php?action=get_product_list',
-		data: 'keyword=' + keyword + '&key_id=' + key_id + '&page=' + productPage + '&sort=' + productSort + "&prop=" + prop,
+		data: 'keyword=' + keyword + '&key_id=' + key_id + '&page=' + productPage + '&sort=' + productSort + "&prop=" + prop + "&suid=" + suid,
 		dataType: 'json',
 		success: function (result) {
 			$('.wx_loading2').hide();

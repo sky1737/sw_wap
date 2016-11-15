@@ -21,7 +21,7 @@
 <script src="<?php echo $config['oss_url']; ?>/static/js/jquery.min.js"></script>
 <script src="<?php echo $config['oss_url']; ?>/static/js/idangerous.swiper.min.js"></script>
 <script src="<?php echo TPL_URL; ?>js/base.js"></script>
-<script>var keyword = '<?php echo $keyword;?>', key_id = '<?php echo $key_id;?>';</script>
+<script>var keyword = '<?php echo $keyword;?>', key_id = '<?php echo $key_id;?>', suid = '<?php echo $supplier_uid;?>';</script>
 <script src="<?php echo TPL_URL; ?>index_style/js/category_detail.js"></script>
 <script>
 	$(function () {
