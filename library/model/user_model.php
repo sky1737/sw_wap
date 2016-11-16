@@ -797,7 +797,7 @@ class user_model extends base_model
 
         $parent =
             D('')->query('SELECT u.uid, u.parent_uid, u.openid, s.store_id, s.agent_id FROM `tp_user` u INNER JOIN `tp_store` s ON u.uid = s.uid
-AND u.status =1 AND s.status =1 AND stores >0 WHERE u.`uid` = (SELECT parent_uid FROM `tp_user` WHERE `uid` =' .
+AND u.status =1 AND s.status =1 AND stores > 0 inner join `tp_agent` a on s.`agent_id` = a.`agent_id` and a.`is_agent` = 1 WHERE u.`uid` = (SELECT parent_uid FROM `tp_user` WHERE `uid` =' .
                 $uid . ')');
         if (empty($parent))
             return;
@@ -855,5 +855,104 @@ AND u.status =1 AND s.status =1 AND stores >0 WHERE u.`uid` = (SELECT parent_uid
         }
 
         $this->payforAgent($parent['uid'], $order_no, $total, $level);
+    }
+
+    public function investCommission($uid, $order_no, $total, $level = 0)
+    {
+        $level++;
+        $money = $total * $this->RedPackRatio['redpack_' . $level] / 100.00;
+        if (!$uid || !$total || !$money)
+            return;
+
+        $parent = $this->db->where("`status` = 1 AND `stores` > 0 AND `uid` = (SELECT `parent_uid` FROM `tp_user` where `uid` = {$uid})")->field('uid, openid')->find();
+        if (empty($parent))
+            return;
+
+        $this->income($parent['uid'], $money, 0);
+        D('User_income')->data(array('uid' => $parent['uid'], 'order_no' => $order_no, 'income' => $money, 'point' => 0, 'type' => 7, 'add_time' => time(), 'status' => 1, 'remarks' => '推荐用户投资奖励'))->add();
+
+        // 充值订单分佣状态
+        D('app_z_order')->where(array('order_no' => $order_no))->data(array('profit_status' => $level))->save();
+
+        import('source.class.Notify');
+        if ($money > 0) {
+            Notify::getInstance()->cashBack($parent['openid'],
+                option('config.wap_site_url') . '/balance.php?a=index',
+                //'分店充值佣金结算',
+                '推荐用户投资奖励',
+                $order_no,
+                $money,
+                '推荐用户投资奖励，点击查看详情');
+        }
+
+        $this->investCommission($parent['uid'], $order_no, $total, $level);
+    }
+
+    public function investAgent($uid, $order_no, $total, $level = 1)
+    {
+        $money = $total * $this->RedPackRatio['agent_' . $level] / 100.00;
+        if (!$uid || !$total || !$money)
+            return;
+
+        $parent =
+            D('')->query('SELECT u.uid, u.parent_uid, u.openid, s.store_id, s.agent_id FROM `tp_user` u INNER JOIN `tp_store` s ON u.uid = s.uid
+AND u.status =1 AND s.status =1 AND stores > 0 inner join `tp_agent` a on s.`agent_id` = a.`agent_id` and a.`is_agent` = 1 WHERE u.`uid` = (SELECT parent_uid FROM `tp_user` WHERE `uid` =' .
+                $uid . ')');
+        if (empty($parent))
+            return;
+
+        $parent = $parent[0];
+        if ($parent['agent_id']) {
+            if ($parent['parent_uid'] == 0) {
+                if ($level == 1) {
+                    $money = $total * $this->RedPackRatio['agent_1'] / 100.00 +
+                        $total * $this->RedPackRatio['agent_2'] / 100.00 +
+                        $total * $this->RedPackRatio['agent_3'] / 100.00;
+                } else if ($level == 2) {
+                    $money = $total * $this->RedPackRatio['agent_2'] / 100.00 +
+                        $total * $this->RedPackRatio['agent_3'] / 100.00;
+                } else {
+                    $money = $total * $this->RedPackRatio['agent_3'] / 100.00;
+                }
+            } else {
+                if ($level == 3) {
+                    $money = 0.00;
+                }
+            }
+
+            if ($money > 0) {
+                $this->income($parent['uid'], $money, 0);
+                D('User_income')->data(array(
+                    'uid' => $parent['uid'],
+                    'order_no' => $order_no,
+                    'income' => $money,
+                    'point' => 0,
+                    'type' => 7,
+                    'add_time' => time(),
+                    'status' => 1,
+                    'remarks' => '推荐用户投资奖励'))
+                    ->add();
+
+                // 充值订单状态
+                D('app_z_order')->where(array('order_no' => $order_no))
+                    ->data(array('agent_status' => $level))
+                    ->save();
+
+                import('source.class.Notify');
+                if ($money > 0) {
+                    Notify::getInstance()->cashBack($parent['openid'],
+                        option('config.wap_site_url') . '/balance.php?a=index',
+                        //'分店充值佣金结算',
+                        '推荐用户投资奖励',
+                        $order_no,
+                        $money,
+                        '推荐用户投资奖励，点击查看详情');
+                }
+
+                $level++;
+            }
+        }
+
+        $this->investAgent($parent['uid'], $order_no, $total, $level);
     }
 }

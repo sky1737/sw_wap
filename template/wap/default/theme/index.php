@@ -138,9 +138,20 @@ if ($categories) {
 <div class="content">
 	<div class="content-body">
 		<div class="index-category Fix">
-			<div class="swiper-container s2 swiper-container-horizontal">
+			<?php
+			$i = 0;
+			foreach ($categories as $key => $value) {
+				$i++;
+				echo '<a href="./category.php?keyword='.$value['cat_name'].'&id='.$value['cat_id'].'" class="item"><div class="icon yanchi'.$i.'" style="background:url('.$value['cat_pic'].'); background-size:40px 40px; background-repeat:no-repeat;"></div> '.$value['cat_name'].'</a>';
+				if($i==9) break;
+			}
+			echo '<a href="./category.php" class="item"><div class="icon yanchi'.$i.'" style="background:url(/template/wap/default/images/category_more.png); background-size:40px 40px; background-repeat:no-repeat;"></div> 更多分类</a>';
+			/*
+			<!--<div class="swiper-container s2 swiper-container-horizontal">
 				<div class="swiper-wrapper">
-					<?php
+
+				</div>
+			</div>-->
 			$is_div_end = true;
 			$i = 0;
 			foreach ($categories as $key => $value) {
@@ -157,7 +168,7 @@ if ($categories) {
 				}
 				$i++;
 				echo '<a href="./category.php?keyword='.$value['cat_name'].'&id='.$value['cat_id'].'" class="item"><div class="icon yanchi'.$i.'" style="background:url('.$value['cat_pic'].'); background-size:40px 40px; background-repeat:no-repeat;"></div> '.$value['cat_name'].'</a>'; // icon fadeInLeft yanchi
-				
+
 				if ($key % 10 == 9) {
 					echo '</div></div>';
 					$is_div_end = true;
@@ -166,19 +177,18 @@ if ($categories) {
 			if (!$is_div_end) {
 				echo '</div></div>';
 			}
-			
+
 			echo '</div><div class="swiper-pagination p2 swiper-pagination-clickable">';
-			
+
 			for ($i = 0; $i < ceil(count($slider_nav) / 10); $i++) {
 				$class = '';
 				if ($i == 0) {
 					$class = 'swiper-pagination-bullet-active';
 				}
 				echo '<span class="swiper-pagination-bullet '.$class.'"></span>';
-			}
+			}*/
 			?>
-				</div>
-			</div>
+
 		</div>
 	</div>
 	<!--<script type="text/javascript">

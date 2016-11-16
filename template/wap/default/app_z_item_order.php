@@ -141,12 +141,12 @@ if (!defined('TWIKER_PATH')) exit('deny access!');
             <dd>￥<span id="t"><?php printf('%.2f', $z_item['maximum']); ?></span></dd>
         </dl>
         <dl>
-            <dt>微信支付</dt>
-            <dd>￥<span id="w"><?php printf('%.2f', $z_item['maximum']); ?></span></dd>
-        </dl>
-        <dl>
             <dt>余额支付</dt>
             <dd>￥<span id="b">0.00</span></dd>
+        </dl>
+        <dl>
+            <dt>微信支付</dt>
+            <dd>￥<span id="w"><?php printf('%.2f', $z_item['maximum']); ?></span></dd>
         </dl>
     </div>
     <!--<div class="z_box">-->
