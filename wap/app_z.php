@@ -149,9 +149,11 @@ if ($_GET['a'] == 'join') { // IS_GET
     //print_r($list);
     if (count($list) > 1) {
         include display('app_z');
-    } else {
+    } else if(count($list)==1) {
         $item = $list[0];
         include display('app_z_item');
+    } else {
+        redirect('./drp_ucenter.php');
     }
 }
 ////分享配置 start  
