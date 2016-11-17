@@ -260,8 +260,9 @@ $now_store = $_SESSION['store'];
 //是否是 供应商
 if (!isset($_SESSION['store']['is_supplier'])) {
     $isSupplier = D('Agent')->where(array('agent_id' => $_SESSION['store']['agent_id']))->find();
-    $_SESSION['store']['is_supplier'] = isset($isSupplier['open_self']) && 1 == $isSupplier['open_self'];
-    //redirect('/wap/supplier_ucenter.php');
+    $isSupplier = isset($isSupplier['open_self']) && 1 == $isSupplier['open_self'];
+    $_SESSION['store']['is_supplier'] = $isSupplier;
+    $isSupplier && redirect('/wap/supplier_ucenter.php');
 }
 $isSupplier = $_SESSION['store']['is_supplier'];
 
