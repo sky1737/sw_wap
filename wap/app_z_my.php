@@ -5,66 +5,106 @@
 require_once dirname(__FILE__) . '/global.php';
 define('POINT', 1000);
 
-if ($_GET['a'] == 'join') { // IS_GET
-//    if (IS_POST) {
-//        $point = intval($_POST['point']);
-//        if ($point < POINT) {
-//            exit(json_encode(array('status' => 'fail', 'msg' => '投资积分数量不能少于 1000！')));
-//        }
-//        if ($point % POINT > 0) {
-//            exit(json_encode(array('status' => 'fail', 'msg' => '积分数量只能是100的倍数！')));
-//        }
-//        // 实时的帐户信息
-//        $wap_user = D('User')->where(array('uid' => $wap_user['uid'], 'status' => 1))->find();
-//        if (empty($wap_user)) {
-//            exit(json_encode(array('status' => 'fail', 'msg' => '获取账户积分查询失败！')));
-//        }
-//        if ($wap_user['point'] < $point) {
-//            exit(json_encode(array('status' => 'fail', 'msg' => '账户积分余额不足！')));
-//        }
-//        // 按10000等分进行投资
-//        $app_db = M('App_million');
-//        for ($i = 0; $i < round($point / POINT); $i++) {
-//            $issue = $app_db->getIssue($wap_user['uid']);
-//
-//            // SELECT `id`, `uid`, `issue`, `point`, `time` FROM `tp_app_million` WHERE 1
-//            if (D('App_million')->data(array('uid' => $wap_user['uid'], 'issue' => $issue, 'point' => POINT, 'income' => 0, 'time' => time()))->add()) {
-//                // 增加积分消费记录 && 用户积分数量减少
-//                $app_db->investOff($wap_user['uid'], POINT);
-//
-//                // 递归计算上级用户投资收益
-//                $app_db->investReturn($wap_user['uid'], $issue, POINT, 0);
-//            }
-//        }
-//        exit(json_encode(array('status' => 'success', 'msg' => '')));
-//
-//        //exit(json_encode(array('status' => 'fail', 'msg' => '投资失败，请重试！')));
-//    }
-//    include display('app_million_join');
-//} else if ($_GET['a'] == 'issue') {
-//    $issues = D('App_million')->where(array('uid' => $wap_user['uid']))->select();
-//
-//    include display('app_million_issue');
-//} else if ($_GET['a'] == 'income') {
-//    $issue = intval($_GET['issue']);
-//    if (!$issue) redirect('./app_million.php?a=issue');
-//
-//    $uid = intval($_GET['uid']);
-//    if (!$uid) $uid = $wap_user['uid'];
-//
-//    $incomes = D('App_million_income')->where(array('parent_uid' => $uid, 'issue' => $issue))->select();
-//    $user_db = D('User');
-//    foreach ($incomes as &$v) {
-//        $v['nickname'] = $user_db->where(array('uid' => $v['uid']))->getField('nickname');
-//    }
-//    include display('app_million_income');
-//} else if ($_GET['a'] == 'withdraw') {
-//    include display('app_million_withdraw');
-//} else if ($_GET['a'] == 'withdraw_detail') {
-//    include display('app_million_withdraw_detail');
+if ($_GET['a'] == 'tx') { // IS_GET
+    $id = intval($_GET['id']);
+    if (!$id) redirect('./app_z_my.php');
+
+    $db_app_z_order = D('App_z_order');
+    $order = $db_app_z_order->where(array('status' => 2, 'expire_time' => array('<', time())))->find();
+    if (empty($order)) redirect('./app_z_my.php');
+
+    $db_user_income = D('User_income');
+    // 发放收益
+    $db_user->where(array('uid' => $wap_user['uid']))->setInc('balance', $order['profit']);
+    // 增加收益记录
+    $db_user_income->data(array('uid' => $wap_user['uid'], 'order_no' => $order['order_no'], 'income' => $order['profit'], 'point' => 0, 'type' => 8, 'add_time' => time(), 'status' => 1, 'remarks' => '理财收益结算'))->add();
+
+    // 提现到余额
+    $db_user->where(array('uid' => $wap_user['uid']))->setInc('balance', $order['total']);
+    // 增加记录
+    $db_user_income->data(array('uid' => $wap_user['uid'], 'order_no' => $order['order_no'], 'income' => $order['total'], 'point' => 0, 'type' => 11, 'add_time' => time(), 'status' => 1, 'remarks' => '理财本金结算'))->add();
+
+    // 更改订单状态
+    $db_app_z_order->where(array('order_id' => $id))->data(array('status' => 3))->save();
+
+    pigcms_tips('提现成功！', './app_z_order.php');
+} else if ($_GET['a' == 'xt']) {
+    $id = intval($_GET['id']);
+    if (!$id) redirect('./app_z_my.php');
+
+    $db_app_z_order = D('App_z_order');
+    $order = $db_app_z_order->where(array('status' => 2, 'expire_time' => array('<', time())))->find();
+    if (empty($order)) redirect('./app_z_my.php');
+
+    // 结算上期
+    $db_user_income = D('User_income');
+    // 发放收益
+    $db_user->where(array('uid' => $wap_user['uid']))->setInc('balance', $order['profit']);
+    // 增加收益记录
+    $db_user_income->data(array('uid' => $wap_user['uid'], 'order_no' => $order['order_no'], 'income' => $order['profit'], 'point' => 0, 'type' => 8, 'add_time' => time(), 'status' => 1, 'remarks' => '理财收益结算'))->add();
+
+    // 提现到余额
+    $db_user->where(array('uid' => $wap_user['uid']))->setInc('balance', $order['total']);
+    // 增加记录
+    $db_user_income->data(array('uid' => $wap_user['uid'], 'order_no' => $order['order_no'], 'income' => $order['total'], 'point' => 0, 'type' => 11, 'add_time' => time(), 'status' => 1, 'remarks' => '理财本金结算'))->add();
+
+    // 更改订单状态
+    $db_app_z_order->where(array('order_id' => $id))->data(array('status' => 3))->save();
+
+    // 开始续投下期
+    $nowOrder = array(
+        // `uid`, `zid`, `agent_id`, `total`, `profit_status`, `agent_status`, `pay_type`, `status`, `add_time`, `paid_time`, `complate_time`,
+        'order_no' => date('YmdHis', $_SERVER['REQUEST_TIME']) . mt_rand(100000, 999999),
+        'trade_no' => date('YmdHis', $_SERVER['REQUEST_TIME']) . mt_rand(100000, 999999),
+        'uid' => $wap_user['uid'],
+        'zid' => $order['zid'],
+        'item_id' => $order['item_id'],
+        'agent_id' => $order['agent_id'],
+
+        'total' => $order['total'], // 投资金额
+        'expire_time' => strtotime("tomorrow +" . $z['days'] . " days"),
+        'point' => 0,
+        'pay_money' => 0, // 需支付金额
+        'balance' => $order['total'], // 使用余额金额
+
+        'profit' => $order['total'] * intval($z['profit_rate']) / 10000, // 投资收益
+        'gift' => $order['total'] * intval($z['gift_rate']) / 10000,    // 赠送消费金额
+        'commission' => $order['total'] * intval($z['commission_rate']) / 10000,    // 分佣金额
+
+        'pay_type' => '', // 支付方式
+        'status' => 1, // 订单状态
+        'add_time' => time(), // 下单时间
+        'remarks' => $order['remarks'],
+    );
+
+    if (!$nowOrder['order_id'] = $db_app_z_order->data($nowOrder)->add()) {
+        json_return(1, '生成理财订单失败，请重试！');
+    }
+
+    // 开始支付
+    $db_user->where(array('uid' => $wap_user['uid']))->setDec('balance', $nowOrder['balance']);
+    // 增加消费记录
+    $db_user_income->data(array('uid' => $wap_user['uid'], 'order_no' => $nowOrder['order_no'], 'income' => $nowOrder['balance'] * -1, 'point' => 0, 'type' => -1, 'add_time' => time(), 'status' => 1, 'remarks' => '购买理财'))->add();
+
+    // 发放收益 ************* 修改为结束时发放收益
+    //$db_user->where(array('uid' => $wap_user['uid']))->setInc('balance', $nowOrder['profit']);
+
+    // 赠送消费金额
+    $db_user->where(array('uid' => $wap_user['uid']))->setInc('balance', $nowOrder['gift']);
+    $db_user->where(array('uid' => $wap_user['uid']))->setInc('consumer', $nowOrder['gift']);
+    $db_user_income->data(array('uid' => $wap_user['uid'], 'order_no' => $nowOrder['order_no'], 'income' => $nowOrder['gift'], 'point' => 0, 'type' => 1, 'add_time' => time(), 'status' => 1, 'remarks' => '购买理财赠送消费金额'))->add();
+
+    // 更改订单状态
+    $db_app_z_order->where(array('order_id' => $nowOrder['order_id']))->data(array('pay_type' => 'account', 'paid_time' => $time, 'status' => 2))->save();
+
+    $model_user = M('User');
+    $model_user->investCommission($wap_user['uid'], $nowOrder['order_no'], $nowOrder['commission']);
+    $model_user->investAgent($wap_user['uid'], $nowOrder['order_no'], $nowOrder['commission']);
+
+    pigcms_tips('续投成功！', './app_z_order.php');
 } else {
     $db_z_order = D('App_z_order');
-    $list = $db_z_order->where(array('uid' => $wap_user['uid'], 'status' => 2))->select();
+    $list = $db_z_order->where(array('uid' => $wap_user['uid'], 'status' => array('>=', 2)))->order('`order_id` DESC')->select();
     //$point = M('App_million')->getPoint($wap_user['uid']);
     //if(!$point) redirect('./app_million.php?a=join');
     //

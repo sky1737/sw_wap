@@ -63,6 +63,7 @@ if ($_GET['a'] == 'join') { // IS_GET
             'add_time' => time(), // 下单时间
             'remarks' => $z['title'] . ' 投资 ￥' . $invest . '。',
         );
+
         if (!$nowOrder['order_id'] = $db_app_z_order->data($nowOrder)->add()) {
             json_return(1, '生成理财订单失败，请重试！');
         }
@@ -89,56 +90,31 @@ if ($_GET['a'] == 'join') { // IS_GET
             }
         } else {
             // 余额付款
-            $model_user = M('User');
+            $db_user_income = D('User_income');
             $db_user->where(array('uid' => $wap_user['uid']))->setDec('balance', $nowOrder['balance']);
+            // 增加消费记录
+            $db_user_income->data(array('uid' => $wap_user['uid'], 'order_no' => $nowOrder['order_no'], 'income' => $nowOrder['balance'] * -1, 'point' => 0, 'type' => -1, 'add_time' => time(), 'status' => 1, 'remarks' => '购买理财'))->add();
 
             // 发放收益
-            $db_user->where(array('uid' => $wap_user['uid']))->setInc('balance', $nowOrder['profit']);
+            //$db_user->where(array('uid' => $wap_user['uid']))->setInc('balance', $nowOrder['profit']);
             // 赠送消费金额
             $db_user->where(array('uid' => $wap_user['uid']))->setInc('balance', $nowOrder['gift']);
             $db_user->where(array('uid' => $wap_user['uid']))->setInc('consumer', $nowOrder['gift']);
+            $db_user_income->data(array('uid' => $wap_user['uid'], 'order_no' => $nowOrder['order_no'], 'income' => $nowOrder['gift'], 'point' => 0, 'type' => 1, 'add_time' => time(), 'status' => 1, 'remarks' => '购买理财赠送消费金额'))->add();
 
             // 更改订单状态
             $db_app_z_order->where(array('order_id' => $nowOrder['order_id']))->data(array('pay_type' => 'account', 'paid_time' => $time, 'status' => 2))->save();
 
+            $model_user = M('User');
             $model_user->investCommission($wap_user['uid'], $nowOrder['order_no'], $nowOrder['commission']);
             $model_user->investAgent($wap_user['uid'], $nowOrder['order_no'], $nowOrder['commission']);
 
             json_return(10, '投资成功！');
         }
     }
-    //$point = !empty($wap_user['point']) ? $wap_user['point'] : 0;
-
-    //$time = time();
-    //$list = D('Recharge')->where(array(
-    //    'start_time' => array('<', $time),
-    //    'end_time' => array('>', $time),
-    //    'status' => 1
-    //))->select();
 
     include display('app_z_item_order');
     echo ob_get_clean();
-//} else if ($_GET['a'] == 'issue') {
-//    $issues = D('App_million')->where(array('uid' => $wap_user['uid']))->select();
-//
-//    include display('app_million_issue');
-//} else if ($_GET['a'] == 'income') {
-//    $issue = intval($_GET['issue']);
-//    if (!$issue) redirect('./app_million.php?a=issue');
-//
-//    $uid = intval($_GET['uid']);
-//    if (!$uid) $uid = $wap_user['uid'];
-//
-//    $incomes = D('App_million_income')->where(array('parent_uid' => $uid, 'issue' => $issue))->select();
-//    $user_db = D('User');
-//    foreach ($incomes as &$v) {
-//        $v['nickname'] = $user_db->where(array('uid' => $v['uid']))->getField('nickname');
-//    }
-//    include display('app_million_income');
-//} else if ($_GET['a'] == 'withdraw') {
-//    include display('app_million_withdraw');
-//} else if ($_GET['a'] == 'withdraw_detail') {
-//    include display('app_million_withdraw_detail');
 } else {
     $list = D('App_z')->where(array('status' => 1))->limit(0, 10)->select();
     $db_z_item = D('App_z_item');
@@ -149,7 +125,7 @@ if ($_GET['a'] == 'join') { // IS_GET
     //print_r($list);
     if (count($list) > 1) {
         include display('app_z');
-    } else if(count($list)==1) {
+    } else if (count($list) == 1) {
         $item = $list[0];
         include display('app_z_item');
     } else {

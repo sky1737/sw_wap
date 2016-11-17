@@ -23,7 +23,7 @@
 <body class="body-gray">
 <div class="fixed" style="background: #eee;">
     <nav class="tab-bar">
-        <section class="left-small"><a class="menu-icon" href="./"><span></span></a></section>
+        <section class="left-small"><a class="menu-icon" href="./drp_ucenter.php"><span></span></a></section>
         <section class="middle tab-bar-section">
             <h1>云温商众筹</h1>
         </section>
