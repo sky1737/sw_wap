@@ -1,8 +1,7 @@
 <div style="height: 50px;"></div>
 <div class="wx_nav">
-	<a href="./index.php" class="nav_index <?php if ($php_self == 'index.php') {
-		echo 'on';
-	} ?>">首页</a>
+	<a href="./index.php" class="nav_index <?php if ($php_self == 'index.php') { echo 'on'; } ?>">首页</a>
+
 	<a href="./category.php<?php //./category.php ?>" class="nav_search <?php if ($php_self == 'category.php') {
 		echo 'on';
 	} ?>">分类</a>
