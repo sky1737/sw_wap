@@ -46,7 +46,8 @@ switch ($action) {
 
         $postage = $nowProduct['postage'];
         $profit = $nowProduct['price'] * 1.00 - $nowProduct['cost_price'] * 1.00;
-
+	 $factory = $nowProduct['factory_price'] * 1.00
+	
         if (empty($nowProduct['has_property'])) {
             $skuId = 0;
             $propertiesStr = '';
@@ -95,6 +96,7 @@ switch ($action) {
 
             $product_price = $nowSku['price'];
             $profit = $nowSku['price'] * 1.00 - $nowSku['cost_price'] * 1.00;
+            $factory = $nowSku['factory_price'] * 1.00;
         }
 
 //		if($_POST['activityId']) {
@@ -124,6 +126,7 @@ switch ($action) {
 
             $data_order['pro_num'] = $quantity;
             $data_order['profit'] = $profit * $quantity;
+            $data_order['factory'] = $factory * $quantity;
             $data_order['pro_count'] = '1';
             $data_order['postage'] = $postage;
             $data_order['type'] = $_POST['type'] ? (int)$_POST['type'] : 0;
