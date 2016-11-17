@@ -46,8 +46,8 @@ switch ($action) {
 
         $postage = $nowProduct['postage'];
         $profit = $nowProduct['price'] * 1.00 - $nowProduct['cost_price'] * 1.00;
-	 $factory = $nowProduct['factory_price'] * 1.00
-	
+        $factory = $nowProduct['factory_price'] * 1.00;
+
         if (empty($nowProduct['has_property'])) {
             $skuId = 0;
             $propertiesStr = '';
@@ -220,14 +220,11 @@ switch ($action) {
             json_return(1007, '该订单已支付或关闭，不再允许付款！');
 
         //TODO  验证
-        if($_POST['isImport'])
-        {
-            if($_POST['real_name'] == '')
-            {
+        if ($_POST['isImport']) {
+            if ($_POST['real_name'] == '') {
                 json_return(1007, '全球购商品必须提交真实姓名！');
             }
-            if($_POST['id_card'] == '')
-            {
+            if ($_POST['id_card'] == '') {
                 json_return(1007, '全球购商品必须提交真实身份证号！');
             }
         }
