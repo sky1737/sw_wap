@@ -18,7 +18,8 @@ if ($_GET['a'] == 'join') { // IS_GET
     $z_item = $db_z_item->where(array('zid' => $zid, 'item_id' => $item_id, 'status' => 1))->find();
     if (empty($z_item)) redirect('app_z.php');
 
-    $wap_user = D('User')->where(array('uid' => $wap_user['uid'], 'status' => 1))->find();
+    $db_user = D('User');
+    $wap_user = $db_user->where(array('uid' => $wap_user['uid'], 'status' => 1))->find();
     if ($_SESSION['user'] != $wap_user)
         $_SESSION['user'] = $wap_user;
 
@@ -37,7 +38,6 @@ if ($_GET['a'] == 'join') { // IS_GET
         $pay_money = $invest - $amount;
         $time = time();
 
-        //$payType = 'weixin';
         $db_app_z_order = D('App_z_order');
         $nowOrder = array(
             // `uid`, `zid`, `agent_id`, `total`, `profit_status`, `agent_status`, `pay_type`, `status`, `add_time`, `paid_time`, `complate_time`,
@@ -48,18 +48,19 @@ if ($_GET['a'] == 'join') { // IS_GET
             'item_id' => $item_id,
             'agent_id' => $z['agent_id'],
 
-            'total' => $invest,
+            'total' => $invest, // 投资金额
+            'expire_time' => strtotime("tomorrow +" . $z['days'] . " days"),
             'point' => 0,
-            'balance' => $balance,
-            'pay_money' => $pay_money,
+            'pay_money' => $pay_money, // 需支付金额
+            'balance' => $balance, // 使用余额金额
 
-            'profit' => $invest * intval($z['profit_rate']) / 10000,
-            'gift' => $invest * intval($z['gift_rate']) / 10000,
-            'commission' => $invest * intval($z['commission_rate']) / 10000,
+            'profit' => $invest * intval($z['profit_rate']) / 10000, // 投资收益
+            'gift' => $invest * intval($z['gift_rate']) / 10000,    // 赠送消费金额
+            'commission' => $invest * intval($z['commission_rate']) / 10000,    // 分佣金额
 
-            'pay_type' => '',
-            'status' => 1,
-            'add_time' => time(),
+            'pay_type' => '', // 支付方式
+            'status' => 1, // 订单状态
+            'add_time' => time(), // 下单时间
             'remarks' => $z['title'] . ' 投资 ￥' . $invest . '。',
         );
         if (!$nowOrder['order_id'] = $db_app_z_order->data($nowOrder)->add()) {
@@ -67,6 +68,7 @@ if ($_GET['a'] == 'join') { // IS_GET
         }
 
         if ($pay_money > 0) {
+            // 需要支付
             $payType = 'weixin';
 
             $payMethodList = M('Config')->get_pay_method();
@@ -77,7 +79,7 @@ if ($_GET['a'] == 'join') { // IS_GET
             $nowOrder['order_no_txt'] = option('config.orderid_prefix') . $nowOrder['order_no'];
 
             import('source.class.pay.Weixin');
-            $payClass = new Weixin($nowOrder, $payMethodList[$payType]['config'], $wap_user['openid'], 'recharge');
+            $payClass = new Weixin($nowOrder, $payMethodList[$payType]['config'], $wap_user['openid'], 'app_z');
             $result = $payClass->pay();
             logs('payInfo:' . json_encode($result), 'INFO');
             if ($result['err_code']) {
@@ -86,7 +88,9 @@ if ($_GET['a'] == 'join') { // IS_GET
                 json_return(0, json_decode($result['pay_data']));
             }
         } else {
+            // 余额付款
             $model_user = M('User');
+            $db_user->where(array('uid' => $wap_user['uid']))->setDec('balance', $nowOrder['balance']);
 
             // 发放收益
             $db_user->where(array('uid' => $wap_user['uid']))->setInc('balance', $nowOrder['profit']);
@@ -96,6 +100,11 @@ if ($_GET['a'] == 'join') { // IS_GET
 
             // 更改订单状态
             $db_app_z_order->where(array('order_id' => $nowOrder['order_id']))->data(array('pay_type' => 'account', 'paid_time' => $time, 'status' => 2))->save();
+
+            $model_user->investCommission($wap_user['uid'], $nowOrder['order_no'], $nowOrder['commission']);
+            $model_user->investAgent($wap_user['uid'], $nowOrder['order_no'], $nowOrder['commission']);
+
+            json_return(10, '投资成功！');
         }
     }
     //$point = !empty($wap_user['point']) ? $wap_user['point'] : 0;
@@ -140,9 +149,11 @@ if ($_GET['a'] == 'join') { // IS_GET
     //print_r($list);
     if (count($list) > 1) {
         include display('app_z');
-    } else {
+    } else if(count($list)==1) {
         $item = $list[0];
         include display('app_z_item');
+    } else {
+        redirect('./drp_ucenter.php');
     }
 }
 ////分享配置 start  

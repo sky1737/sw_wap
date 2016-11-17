@@ -190,6 +190,7 @@ if(!empty($pc_index_top)) {
 			<div class="nav_nav_mian"><span></span>所有商品分类</div>
 			<ul class="nav_nav_mian_list nav_nav_mian_list_1" style="top:37px; height: 328px;">
 				<?php
+				$count = 0;
 				foreach ($categoryList as $k => $v) {
 					echo '<li><a href="' . url_rewrite('category:index', array('id' => $v['cat_id'])) .
 						'">' . $v['cat_name'] . //<span class="woman" style="background:url(' . $v[cat_pc_pic] . ')"></span>
@@ -202,8 +203,9 @@ if(!empty($pc_index_top)) {
 								$v1['cat_name'] . '&nbsp;&nbsp;|&nbsp;&nbsp;</a></em>';
 						}
 					}
-					echo '
-					</div></div></li>';
+					echo '</div></div></li>';
+					$count++;
+					if($count==10) break;
 				}
 				?>
 			</ul>

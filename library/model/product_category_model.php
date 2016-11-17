@@ -13,7 +13,7 @@ class product_category_model extends base_model {
 		if($limit) {$limits = $limit;} else {$limits='';}
 
 		$where = array('cat_status' => 1, 'cat_fid' => 0, 'cat_level' => 1);
-		$category_list = $this->db->where($where)->order('`cat_sort` asc,`cat_id` ASC')->limit($limits)->select();
+		$category_list = $this->db->where($where)->order('`cat_sort` asc, `cat_id` ASC')->limit($limits)->select();
 		foreach ($category_list as $value) {
 			if ($value['cat_pic']) {
 				$value['cat_pic'] = getAttachmentUrl($value['cat_pic']);

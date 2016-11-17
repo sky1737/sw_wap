@@ -57,6 +57,7 @@
 					<th>上线</th>
 					<th>店铺数量</th>
 					<th>余额</th>
+					<th>钱包</th>
 					<th>积分</th>
 					<th>最后登录时间</th>
 					<th>最后登录IP</th>
@@ -74,6 +75,7 @@
 							<td>{pigcms{$vo.parent_uid}</td>
 							<td>{pigcms{$vo.stores}</td>
 							<td>{pigcms{$vo.balance} 元</td>
+							<td>{pigcms{$vo.consumer} 元</td>
 							<td>{pigcms{$vo.point} 分</td>
 							<td>{pigcms{$vo.last_time|date='Y-m-d H:i:s',###}</td>
 							<td>{pigcms{$vo.last_ip_txt}</td>
