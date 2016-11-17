@@ -409,28 +409,56 @@ class order_model extends base_model
         foreach ($orderProductList as $value) {
             // 计算返利
             $product = $product_model->where(array('product_id' => $value['product_id']))->find();
-            $profit += ($product['price'] * 1.00 - $product['cost_price'] * 1.00) * $value['pro_num'] * 1;
-//			if(option('config.default_point')) {
-//				$rebate = 0.00;
-//				$point += intval($profit * intval(option('config.point_exchange')));
-//			}
+            $p = ($product['price'] * 1.00 - $product['cost_price'] * 1.00) * $value['pro_num'] * 1;
 
             if ($value['sku_id']) {
                 $condition_product_sku['sku_id'] = $value['sku_id'];
+                $sku = $product_sku_model->where($condition_product_sku)->find();
+                // sku 利潤
+                $p = ($sku['price'] * 1.00 - $sku['cost_price'] * 1.00) * $value['pro_num'] * 1;
+                
                 $product_sku_model->where($condition_product_sku)->setInc('sales', $value['pro_num']);
                 $product_sku_model->where($condition_product_sku)->setDec('quantity', $value['pro_num']);
             }
+            $profit += $p;
             $condition_product['product_id'] = $value['product_id'];
             $product_model->where($condition_product)->setInc('sales', $value['pro_num']);
             $product_model->where($condition_product)->setDec('quantity', $value['pro_num']);
         }
 
         return $profit;
-//		$this->db->where(array('order_id' => $order_id))
-//			->data(array('profit' => round($profit, 2)))
-//			->save();
     }
 
+    public function getFactory($order_id)
+    {
+        // 减少库存 因为支付的特殊性，不处理是否有过修改
+        $orderProductList = D('Order_product')->where(array('order_id' => $order_id))->select();
+        $product_model = D('Product');
+        $product_sku_model = D('Product_sku');
+
+        $factory = 0.00;
+        foreach ($orderProductList as $value) {
+            // 计算返利
+            $product = $product_model->where(array('product_id' => $value['product_id']))->find();
+            $p = $product['factory_price'] * 1.00 * $value['pro_num'];
+
+            if ($value['sku_id']) {
+                $condition_product_sku['sku_id'] = $value['sku_id'];
+                $sku = $product_sku_model->where($condition_product_sku)->find();
+                // sku 利潤
+                $p = $sku['factory_price'] * 1.00 * $value['pro_num'];
+                
+                $product_sku_model->where($condition_product_sku)->setInc('sales', $value['pro_num']);
+                $product_sku_model->where($condition_product_sku)->setDec('quantity', $value['pro_num']);
+            }
+            $factory += $p;
+            $condition_product['product_id'] = $value['product_id'];
+            $product_model->where($condition_product)->setInc('sales', $value['pro_num']);
+            $product_model->where($condition_product)->setDec('quantity', $value['pro_num']);
+        }
+
+        return $factory;
+    }
 	public function confirmOrder($order)
 	{
 		$profit = $order['profit'] * 1.00;

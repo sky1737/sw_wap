@@ -52,8 +52,8 @@ else if($action == 'pay') {
 
 	$sql =
 		"SELECT uc.*," .
-		"p.name, p.image, p.quantity, p.weight, p.price, p.cost_price, p.postage, p.status, " .
-		"ps.quantity sku_quantity, ps.weight sku_weight, ps.price sku_price, ps.cost_price sku_cost_price, " . //
+		"p.name, p.image, p.quantity, p.weight, p.price, p.cost_price,p.factory_price, p.postage, p.status, " .
+		"ps.quantity sku_quantity, ps.weight sku_weight, ps.price sku_price, ps.cost_price sku_cost_price, ps.factory_price sku_factory_factory, " . //
 		"a.name agent_name " .
 		"FROM tp_user_cart uc " .
 		"INNER JOIN tp_product p ON uc.product_id = p.product_id " .
@@ -119,12 +119,17 @@ else if($action == 'pay') {
 			$data_order['pro_num'] = $item['pro_num'];
 			$data_order['pro_count'] += 1;
 			if($item['sku_price'] && $item['sku_cost_price']) {
-				$data_order['profit'] += round(($item['sku_price'] * 1.00 - $item['sku_cost_price'] * 1.00) *
-					($item['pro_num'] * 1), 2);
+				$data_order['profit'] += round(($item['sku_price'] * 1.00 - $item['sku_cost_price'] * 1.00) * ($item['pro_num'] * 1), 2);
 			}
 			else {
-				$data_order['profit'] += round(($item['price'] * 1.00 - $item['cost_price'] * 1.00) *
-					($item['pro_num'] * 1), 2);
+				$data_order['profit'] += round(($item['price'] * 1.00 - $item['cost_price'] * 1.00) * ($item['pro_num'] * 1), 2);
+			}
+			
+			if($item['sku_price'] && $item['sku_factory_price']) {
+				$data_order['factory'] += round($item['sku_factory_price'] * 1.00 * $item['pro_num'], 2);
+			}
+			else {
+				$data_order['factory'] += round($item['factory_price'] * 1.00 * $item['pro_num'], 2);
 			}
 
 			if($data_order['postage'] * 1 == 0 && $item['postage'] * 1 > 0)

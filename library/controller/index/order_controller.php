@@ -630,6 +630,7 @@ class order_controller extends base_controller
 						//$data['pro_count'] = $pro_count;
 						//$data['pro_num'] = $pro_num;
 						$data['profit'] = M('Order')->getProfit($order['order_id']);
+						$data['factory'] = M('Order')->getFactory($order['order_id']);
 						if($_POST['payment_method'] == 'off') {
 							$data['payment_method'] = 'codpay';
 							$data['status'] = 2;

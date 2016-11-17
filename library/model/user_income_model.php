@@ -126,17 +126,17 @@ class user_income_model extends base_model
 			return;
 
         //返 订单商品 成本价 给供应商
-		$cost_price   = $order['sub_total'] - $order['profit']; //该订单 的 所有商品成本之和
+		$factory_price   = $order['factory']; //$order['sub_total'] - $order['profit']; // 该订单 的 所有商品成本之和
 		$store_info   = D('Store')->where(array('store_id' => $order['agent_id']))->find();
 		$supplier_uid = $store_info['uid'];
 
-		D('User')->where(array('uid' => $supplier_uid))->setInc('balance', $cost_price);
+		D('User')->where(array('uid' => $supplier_uid))->setInc('balance', $factory_price);
 		import('source.class.Notify');
 		$this->db
 			->data(array(
 				'uid'      => $supplier_uid,
 				'order_no' => $order['order_no'],
-				'income'   => $cost_price,
+				'income'   => $factory_price,
 				'point'    => 0,
 				'type'     => 10,
 				'add_time' => time(),
@@ -150,9 +150,9 @@ class user_income_model extends base_model
 			option('config.wap_site_url') . '/balance.php?a=index',
 			'供应商您好，订单成本现金已到账',
 			date('Y-m-d H:i:s', $order['add_time']),
-			$cost_price,
+			$factory_price,
 			'现金',
-			$supplier_user['balance'] + $cost_price,
+			$supplier_user['balance'] + $factory_price,
 			"返还成本的订单号：{$order['order_no']}");
 
 		$db_user = D('User');
