@@ -597,9 +597,17 @@ class goods_controller extends base_controller
     {
         $product_id = isset($_POST['product_id']) ? $_POST['product_id'] : array();
         $supplierUid = isset($_POST['supplierUid']) ? intval(trim($_POST['supplierUid'])) : 0;
-        $product = D('Product');
+
         if ($product_id && $supplierUid) {
-            $product->where(array('product_id' => array('in', $product_id)))->data(array('uid' => $supplierUid))->save();
+            $store = D('Store');
+            $supplierStoreInfo = $store->where(array('uid' => $supplierUid))->find();
+
+            $product = D('Product');
+            $product->where(array('product_id' => array('in', $product_id)))
+                ->data(array(
+                    'uid' => $supplierUid,
+                    'store_id'=>$supplierStoreInfo['store_id']
+                ))->save();
         }
         json_return(0, '移动成功');
     }
