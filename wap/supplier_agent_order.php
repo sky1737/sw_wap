@@ -10,9 +10,10 @@ $limit = 5;
 
 //店铺资料
 $action = isset($_GET['action']) ? $_GET['action'] : 'all';
-$where_sql = "`agent_id` = '{$now_store['store_id']}'";
+$where_sql = "`agent_id` = '{$now_store['store_id']}' And `status` > 1 AND `status` <5";
 
 $page_url = 'my_order.php?action=' . $action;
+/*
 switch ($action) {
 	case 'unpay':
 		$pageTitle = '待付款的订单';
@@ -33,8 +34,7 @@ switch ($action) {
 	default:
 		$where_sql .= " AND `status` = 2";
 		$pageTitle = '全部订单';
-}
-
+}*/
 
 $order_model = M('Order');
 // 查询订单总数
@@ -54,7 +54,7 @@ $physical_list = array();
 $store_contact_list = array();
 if($count > 0) {
 	$order_list = $order_model->getOrders($where_sql, 'order_id desc', $offset, $limit); //status asc,
-
+    //var_dump($order_model);exit;
 	$order_product_model = M('Order_product');
 	// 将相应的产品放到订单数组里
 	foreach ($order_list as &$order_tmp) {

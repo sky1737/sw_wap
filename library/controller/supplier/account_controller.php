@@ -978,7 +978,8 @@ class account_controller extends base_controller
         import('source.class.user_page');
         $page = new Page($order_total, 15);
         $tmp_orders = $order->getOrders($where, $orderby, $page->firstRow, $page->listRows);
-
+        //$sql = $order;
+        //var_dump($sql);exit;
         $orders = array();
         foreach ($tmp_orders as $tmp_order) {
             $products = $order_product->getProducts($tmp_order['order_id']);
