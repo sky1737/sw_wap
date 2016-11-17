@@ -26,7 +26,7 @@ if (!defined('TWIKER_PATH')) exit('deny access!');
 <body class="body-gray">
 <div class="fixed" style="background: #eee;">
     <nav class="tab-bar">
-        <section class="left-small"><a class="menu-icon" href="./"><span></span></a></section>
+        <section class="left-small"><a class="menu-icon" href="./app_z.php"><span></span></a></section>
         <section class="middle tab-bar-section">
             <h1><?php echo $z['title']; ?></h1>
         </section>

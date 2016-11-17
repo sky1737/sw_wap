@@ -23,7 +23,7 @@
 <body class="body-gray">
 <div class="fixed" style="background: #eee;">
     <nav class="tab-bar">
-        <section class="left-small"><a class="menu-icon" href="./"><span></span></a></section>
+        <section class="left-small"><a class="menu-icon" href="./app_z.php"><span></span></a></section>
         <section class="middle tab-bar-section">
             <h1>云温商众筹</h1>
         </section>
@@ -36,6 +36,7 @@
     }
 
     .wx_wrap dl {
+        border-top: 5px solid #eee;
     }
 
     .wx_wrap dl dt {
@@ -43,7 +44,7 @@
         position: relative;
         padding: 10px 10px 0 10px;
         margin: 0;
-        font-size:1rem;
+        font-size: 1rem;
     }
 
     .wx_wrap dt b {
@@ -59,16 +60,50 @@
     .wx_wrap dl dd {
         border-bottom: 5px solid #eee;
         padding: 0 10px 10px 10px;
-        margin: 0;    font-size: .8rem;
+        margin: 0;
+        font-size: .8rem;
         color: #999;
+        position: relative;
+    }
+
+    .wx_wrap dl dd .btn {
+        right: 0;
+        top: 8px;
+        position: absolute;
+    }
+    .wx_wrap dl dd .over{
+        right: 10px;
+        top: 12px;
+        position: absolute;
+    }
+
+    .wx_wrap dl dd .btn a {
+        float: left;
+        color: #fff;
+        cursor: pointer;
+        display: block;
+        font-size: .8rem;
+        padding: 5px 15px;
+        text-align: center;
+        margin-right: 10px;
+        background: #4dbdf5;
+        border-radius: 3px;
     }
 </style>
 <div class="wx_wrap" style="">
     <dl>
         <?php
         foreach ($list as $item) {
-            echo '<dt>投资金额：<b>' . number_format($item['total'], 2) . '</b><span>' . number_format(($item['expire_time'] - time()) / 60 / 60 / 24, 2) . ' 天</span></dt>';
-            echo '<dd>固定收益：' . number_format($item['profit'], 2) . '&nbsp; 赠送消费金：' . number_format($item['gift'], 2) . '</dd>';
+            $b = ($item['expire_time'] - time()) <= 0;
+
+            echo '<dt>投资金额：<b>' . number_format($item['total'], 2) . '</b><span>' . ($b?'':floor(($item['expire_time'] - time()) / 60 / 60 / 24).' 天') . '</span></dt>';
+            echo '<dd>固定收益：' . number_format($item['profit'], 2) . '<br/>赠送消费金：' . number_format($item['gift'], 2);
+            if($item['status']==2){
+                echo '<div class="btn"><a '.($b?'href="./app_z_my.php?a=tx&id='.$item['order_id'].'"':'style="background: #ccc;"').'>提现</a> <a '.($b?'href="./app_z_my.php?a=xt&id='.$item['order_id'].'"':'style="background: #ccc;"').'>续投</a></div>';
+            } else {
+                echo '<div class="over">已完成</div>';
+            }
+            echo '</dd>';
         } ?>
     </dl>
 
