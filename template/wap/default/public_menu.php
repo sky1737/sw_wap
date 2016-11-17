@@ -7,18 +7,20 @@
 		echo 'on';
 	} ?>">分类</a>
 
-<!--	--><?php
-//	$url = $isSupplier ? 'supplier' : 'drp';
-//	$urlName = $isSupplier ? '供应' : '分销';
-//	?>
-
-<!--	<a href="./--><?php //echo $url ?><!--_ucenter.php" class="nav_shopcart --><?php //if ($php_self == 'weidian.php') {
-//		echo 'on';
-//	} ?><!--">--><?php //echo $urlName ?><!--</a>-->
 	<a href="./cart.php" class="nav_shopcart <?php if ($php_self == 'cart.php') {
 		echo 'on';
 	} ?>">购物车</a>
-	<a href="./my.php" class="nav_me <?php if ($php_self == 'my.php') {
-		echo 'on';
-	} ?>">个人中心</a>
+
+	<?php
+	if($isSupplier){
+		?>
+		<a href="./supplier_ucenter.php" class="nav_shopcart<?php if ($php_self == 'weidian.php') { echo 'on'; } ?>">供应商</a>
+		<?php
+	}else{
+		?>
+		<a href="./my.php" class="nav_me <?php if ($php_self == 'my.php') { echo 'on'; } ?>">个人中心</a>
+		<?php
+	}
+	?>
+
 </div>
