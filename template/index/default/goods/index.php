@@ -244,7 +244,7 @@ if($is_preview) {
 			<div class="shopping_dec"><a name="product_dec"></a>
 				<div class="shopping_dec_title"><span></span> 商品介绍</div>
 				<div class="shopping_dec_content">
-					<?php if($product['is_import'] || in_array($nowProduct['uid'],array(222,257))){ ?>
+					<?php if($product['is_import'] || in_array($product['uid'],array(222,257))){ ?>
 						<img src="/template/wap/default/images/import_product_notice.jpg"/>
 					<?php } ?>
 					<?php echo $product['info'] ?>
