@@ -243,7 +243,12 @@ if($is_preview) {
 			</div>
 			<div class="shopping_dec"><a name="product_dec"></a>
 				<div class="shopping_dec_title"><span></span> 商品介绍</div>
-				<div class="shopping_dec_content"> <?php echo $product['info'] ?> </div>
+				<div class="shopping_dec_content">
+					<?php if($product['is_import']){ ?>
+						<img src="/template/wap/default/images/import_product_notice.jpg"/>
+					<?php } ?>
+					<?php echo $product['info'] ?>
+				</div>
 			</div>
 			<div class="shopping_comment"><a name="product_comment"></a><a name="product_comment_image"></a>
 				<div class="shopping_dec_title"><span></span> 商品评价</div>

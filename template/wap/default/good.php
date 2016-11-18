@@ -350,7 +350,12 @@
                                 <section id="info_detail_2_section">
                                     <div>
                                         <?php if ($nowProduct['info']) { ?>
-                                            <div class="custom-richtext"><?php echo $nowProduct['info']; ?></div>
+                                            <div class="custom-richtext">
+                                                <?php if($nowProduct['is_import']){ ?>
+                                                <img src="/template/wap/default/images/import_product_notice.jpg"/>
+                                                <?php } ?>
+                                                <?php echo $nowProduct['info']; ?>
+                                            </div>
                                         <?php } ?>
                                     </div>
                                 </section>
