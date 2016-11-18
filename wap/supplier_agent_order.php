@@ -58,7 +58,7 @@ if($count > 0) {
 	$order_product_model = M('Order_product');
 	// 将相应的产品放到订单数组里
 	foreach ($order_list as &$order_tmp) {
-		$order_product_list = $order_product_model->orderProduct($order_tmp['order_id']);
+		$order_product_list = $order_product_model->orderProduct($order_tmp['order_id'],true);
 
 		if($order_tmp['total'] == '0.00') {
 			$order_tmp['total'] = $order_tmp['sub_total'];
