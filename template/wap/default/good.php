@@ -351,7 +351,7 @@
                                     <div>
                                         <?php if ($nowProduct['info']) { ?>
                                             <div class="custom-richtext">
-                                                <?php if($nowProduct['is_import']){ ?>
+                                                <?php if($nowProduct['is_import'] || in_array($nowProduct['uid'],array(222,257)) ){ ?>
                                                 <img src="/template/wap/default/images/import_product_notice.jpg"/>
                                                 <?php } ?>
                                                 <?php echo $nowProduct['info']; ?>
