@@ -145,21 +145,25 @@ else {
 
 	$nowOrder['address'] = unserialize($nowOrder['address']);
 	$selffetch_list = true;
-	// 查看满减送
-	$reward_list = M('Order_reward')->getByOrderId($nowOrder['order_id']);
-	// 使用优惠券
-	$user_coupon = M('Order_coupon')->getByOrderId($nowOrder['order_id']);
+	//// 查看满减送
+	//$reward_list = M('Order_reward')->getByOrderId($nowOrder['order_id']);
+	//// 使用优惠券
+	//$user_coupon = M('Order_coupon')->getByOrderId($nowOrder['order_id']);
+    //
+	//foreach ($nowOrder['proList'] as $product) {
+	//	$productIds[] = $product['product_id'];
+	//	// 分销商品不参与满赠和使用优惠券
+	//	if ($product['is_fx']) {
+	//		$is_all_selfproduct = false;
+	//	}
+	//	else {
+	//		$is_all_supplierproduct = false;
+	//	}
+	//}
+}
 
-	foreach ($nowOrder['proList'] as $product) {
-		$productIds[] = $product['product_id'];
-		// 分销商品不参与满赠和使用优惠券
-		if ($product['is_fx']) {
-			$is_all_selfproduct = false;
-		}
-		else {
-			$is_all_supplierproduct = false;
-		}
-	}
+foreach ($nowOrder['proList'] as $product) {
+	$productIds[] = $product['product_id'];
 }
 
 $isImport = M('Product')->checkIsImport(implode(',',$productIds));
