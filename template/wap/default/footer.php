@@ -41,4 +41,5 @@ if (empty($noFooterLinks) && empty($noFooterCopy)) { ?>
         <a href="./my.php" class="item_uc">个人中心</a>
     </div>
 </div>
-<?php include display('lottery'); ?>
+<?php
+//include display('lottery'); ?>

@@ -20,16 +20,17 @@
             margin: 0;
             padding: 0;
         }
-
         body {
             max-width: 960px;
             margin: 0 auto;
         }
-
         img {
             border: none;
             width: 100%;
             display: block;
+        }
+        input, textarea, button, a {
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
         }
     </style>
 </head>

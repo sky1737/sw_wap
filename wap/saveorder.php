@@ -135,7 +135,7 @@ switch ($action) {
 
             $order_id = $db_order->data($data_order)->add();
             if (empty($order_id)) {
-                json_return(1004, '订单产生失败，请重试');
+                json_return(1004, '订单产生失败，请重试'); // .$db_order->last_sql
             }
 
             $data_order_product['order_id'] = $order_id;
@@ -228,15 +228,13 @@ switch ($action) {
                 json_return(1007, '全球购商品必须提交真实身份证号！');
             }
         }
+
         $offline_payment = false;
         if (empty($nowOrder['status'])) {
             if (empty($nowOrder['order_id']))
                 json_return(1008, '该订单不存在');
 
             $order_store = M('Store')->wap_getStore($nowOrder['store_id']);
-//			if($order_store['offline_payment']) {
-//				$offline_payment = true;
-//			}
 
             $condition_order['order_id'] = $nowOrder['order_id'];
             $condition_order['uid'] = $wap_user['uid'];
@@ -247,27 +245,9 @@ switch ($action) {
             $data_order['shipping_method'] = 'express'; //快递发货
             $data_order['address_user'] = $address['name'];
             $data_order['address_tel'] = $address['tel'];
-            $data_order['address'] = serialize(array(
-                'address' => $address['address'],
-                'province' => $address['province_txt'],
-                'province_code' => $address['province'],
-                'city' => $address['city_txt'],
-                'city_code' => $address['city'],
-                'area' => $address['area_txt'],
-                'area_code' => $address['area'],
-            ));
-
-            // 分配给代理商
-            // 目前只给平台商城
-            // SELECT store_id FROM `tp_store` where
-            //$data_order['agent_id'] = M('Store')->getAgentId($nowOrder, $address);
+            $data_order['address'] = serialize(array('address' => $address['address'], 'province' => $address['province_txt'], 'province_code' => $address['province'], 'city' => $address['city_txt'], 'city_code' => $address['city'], 'area' => $address['area_txt'], 'area_code' => $address['area'],));
 
             $data_order['status'] = '1';
-
-//			// 保存订单利润
-//			$data_order['profit'] = M('Order')->getProfit($nowOrder['order_id']);
-            // 当前订单利润
-//			$nowOrder['profit'] = $data_order['profit'];
 
             if (!empty($_POST['msg'])) {
                 $data_order['comment'] = $_POST['msg'];
@@ -278,16 +258,11 @@ switch ($action) {
             }
 
             // 减少库存 因为支付的特殊性，不处理是否有过修改
-            $orderProductList = D('Order_product')->where(array('order_id' => $order_id))->select();
+            $orderProductList = D('Order_product')->where(array('order_id' => $nowOrder['order_id']))->select();
             $product_model = D('Product');
             $product_sku_model = D('Product_sku');
 
-            // $profit = 0.00;
             foreach ($orderProductList as $value) {
-                // 计算返利
-                // $product = $product_model->where(array('product_id' => $value['product_id']))->find();
-                // $profit += ($product['price'] * 1.00 - $product['cost_price'] * 1.00) * $value['pro_num'] * 1;
-
                 if ($value['sku_id']) {
                     $condition_product_sku['sku_id'] = $value['sku_id'];
                     $product_sku_model->where($condition_product_sku)->setInc('sales', $value['pro_num']);
@@ -523,10 +498,7 @@ switch ($action) {
                     // 通过帐户余额支付成功
                     $model_income->buyReturn($nowOrder);
 
-                    D('Activity_lottery_log')->data(array(
-                        'uid' => $wap_user['uid'],
-                        'order_id' => $nowOrder['order_id'],
-                    ))->add();
+                    // D('Activity_lottery_log')->data(array('uid' => $wap_user['uid'], 'order_id' => $nowOrder['order_id'],))->add();
 
                     json_return(0, '/wap/order.php?orderid=' . $nowOrder['order_id']);
                     exit;

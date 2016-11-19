@@ -24,9 +24,9 @@ $_SESSION['user'] = $wap_user = D('User')->where(array('uid' => $wap_user['uid']
 
 // 货到付款
 $offline_payment = false;
-if ($now_store['offline_payment']) {
-	$offline_payment = true;
-}
+//if ($now_store['offline_payment']) {
+//	$offline_payment = true;
+//}
 $is_all_selfproduct = true;
 $is_all_supplierproduct = true;
 
@@ -39,100 +39,100 @@ if ($nowOrder['status'] < 1) {
     $userAddresses = $uAddrM->select(session_id(), $wap_user['uid']);
 
 	//上门自提
-	if ($now_store['buyer_selffetch']) {
-		$selffetch_list = array();// M('Trade_selffetch')->getListNoPage($now_store['store_id']);
+	//if ($now_store['buyer_selffetch']) {
+	//	$selffetch_list = array();// M('Trade_selffetch')->getListNoPage($now_store['store_id']);
+    //
+	//	$store_contact = M('Store_contact')->get($now_store['store_id']);
+	//	$store_physical = M('Store_physical')->getList($now_store['store_id']);
+	//	if ($store_contact) {
+	//		$data = array();
+	//		$data['id'] = '99999999_store';
+	//		$data['name'] = $now_store['name'] . '';
+	//		$data['tel'] = ($store_contact['phone1'] ? $store_contact['phone1'] . '-' : '') . $store_contact['phone2'];
+	//		$data['province_txt'] = $store_contact['province_txt'] . '';
+	//		$data['city_txt'] = $store_contact['city_txt'] . '';
+	//		$data['county_txt'] = $store_contact['area_txt'] . '';
+	//		$data['address'] = $store_contact['address'] . '';
+	//		$data['business_hours'] = '';
+	//		$data['logo'] = $now_store['logo'];
+	//		$data['description'] = '';
+	//		$data['store_id'] = $now_store['store_id'];
+	//		$data['long'] = $store_contact['long'];
+	//		$data['lat'] = $store_contact['lat'];
+    //
+	//		$selffetch_list[] = $data;
+	//	}
+    //
+	//	if ($store_physical) {
+	//		foreach ($store_physical as $physical) {
+	//			$data = array();
+	//			$data['id'] = $physical['id'];
+	//			$data['name'] = $physical['name'] . '';
+	//			$data['tel'] = ($physical['phone1'] ? $physical['phone1'] . '-' : '') . $physical['phone2'];
+	//			$data['province_txt'] = $physical['province_txt'] . '';
+	//			$data['city_txt'] = $physical['city_txt'] . '';
+	//			$data['county_txt'] = $physical['county_txt'] . '';
+	//			$data['address'] = $physical['address'] . '';
+	//			$data['business_hours'] = $physical['business_hours'] . '';
+	//			$data['logo'] = $physical['images_arr'][0];
+	//			$data['description'] = $physical['description'];
+	//			$data['long'] = $physical['long'];
+	//			$data['lat'] = $physical['lat'];
+    //
+	//			$selffetch_list[] = $data;
+	//		}
+	//	}
+	//}
 
-		$store_contact = M('Store_contact')->get($now_store['store_id']);
-		$store_physical = M('Store_physical')->getList($now_store['store_id']);
-		if ($store_contact) {
-			$data = array();
-			$data['id'] = '99999999_store';
-			$data['name'] = $now_store['name'] . '';
-			$data['tel'] = ($store_contact['phone1'] ? $store_contact['phone1'] . '-' : '') . $store_contact['phone2'];
-			$data['province_txt'] = $store_contact['province_txt'] . '';
-			$data['city_txt'] = $store_contact['city_txt'] . '';
-			$data['county_txt'] = $store_contact['area_txt'] . '';
-			$data['address'] = $store_contact['address'] . '';
-			$data['business_hours'] = '';
-			$data['logo'] = $now_store['logo'];
-			$data['description'] = '';
-			$data['store_id'] = $now_store['store_id'];
-			$data['long'] = $store_contact['long'];
-			$data['lat'] = $store_contact['lat'];
-
-			$selffetch_list[] = $data;
-		}
-
-		if ($store_physical) {
-			foreach ($store_physical as $physical) {
-				$data = array();
-				$data['id'] = $physical['id'];
-				$data['name'] = $physical['name'] . '';
-				$data['tel'] = ($physical['phone1'] ? $physical['phone1'] . '-' : '') . $physical['phone2'];
-				$data['province_txt'] = $physical['province_txt'] . '';
-				$data['city_txt'] = $physical['city_txt'] . '';
-				$data['county_txt'] = $physical['county_txt'] . '';
-				$data['address'] = $physical['address'] . '';
-				$data['business_hours'] = $physical['business_hours'] . '';
-				$data['logo'] = $physical['images_arr'][0];
-				$data['description'] = $physical['description'];
-				$data['long'] = $physical['long'];
-				$data['lat'] = $physical['lat'];
-
-				$selffetch_list[] = $data;
-			}
-		}
-	}
-
-	// 抽出可以享受的优惠信息与优惠券
-	// 优惠活动
-	$product_id_arr = array();
-	$store_id = 0;
-	$uid = 0;
-	$total_price = 0;
-	$product_price_arr = array();
-	$productIds = array();
-	foreach ($nowOrder['proList'] as $product) {
-		$productIds[] = $product['product_id'];
-		// 分销商品不参与满赠和使用优惠券
-		if ($product['if_fx'] != '0') {
-			$offline_payment = false;
-			$is_all_selfproduct = false;
-			continue;
-		}
-		else {
-			$is_all_supplierproduct = false;
-		}
-
-		$product_id_arr[] = $product['product_id'];
-		$store_id = $product['store_id'];
-		$uid = $product['uid'];
-		// 单个商品总价
-		$product_price_arr[$product['product_id']]['price'] = $product['pro_price'];
-		// 每个商品购买数量
-		$product_price_arr[$product['product_id']]['pro_num'] = $product['pro_num'];
-		// 所有商品价格
-		$total_price += $product['pro_price'] * $product['pro_num'];
-	}
-
-	//var_dump($product_id_arr);die;
-	$reward_arr = array();
-	$reward_arr['product_id_arr'] = $product_id_arr;
-	$reward_arr['store_id'] = $store_id;
-	$reward_arr['uid'] = $uid;
-
-	$product_arr = array();
-	$product_arr['product_price_arr'] = $product_price_arr;
-	$product_arr['total_price'] = $total_price;
-
-	import('source.class.Appmarket');
-	$reward_list = Appmarket::getAeward($reward_arr, $product_arr);
-
-	// 第一步抽出用户购买的产品有哪些优惠券
-	$user_coupon_list = M('User_coupon')->getListByProductId($reward_list['product_price_list'], $store_id, $uid);
-
-	// 第二步计算出用户购买原产品可以使用哪些优惠券
-	$user_coupon_list = Appmarket::getCoupon($reward_list, $user_coupon_list);
+	//// 抽出可以享受的优惠信息与优惠券
+	//// 优惠活动
+	//$product_id_arr = array();
+	//$store_id = 0;
+	//$uid = 0;
+	//$total_price = 0;
+	//$product_price_arr = array();
+	//$productIds = array();
+	//foreach ($nowOrder['proList'] as $product) {
+	//	$productIds[] = $product['product_id'];
+	//	// 分销商品不参与满赠和使用优惠券
+	//	if ($product['if_fx'] != '0') {
+	//		$offline_payment = false;
+	//		$is_all_selfproduct = false;
+	//		continue;
+	//	}
+	//	else {
+	//		$is_all_supplierproduct = false;
+	//	}
+    //
+	//	$product_id_arr[] = $product['product_id'];
+	//	$store_id = $product['store_id'];
+	//	$uid = $product['uid'];
+	//	// 单个商品总价
+	//	$product_price_arr[$product['product_id']]['price'] = $product['pro_price'];
+	//	// 每个商品购买数量
+	//	$product_price_arr[$product['product_id']]['pro_num'] = $product['pro_num'];
+	//	// 所有商品价格
+	//	$total_price += $product['pro_price'] * $product['pro_num'];
+	//}
+    //
+	////var_dump($product_id_arr);die;
+	//$reward_arr = array();
+	//$reward_arr['product_id_arr'] = $product_id_arr;
+	//$reward_arr['store_id'] = $store_id;
+	//$reward_arr['uid'] = $uid;
+    //
+	//$product_arr = array();
+	//$product_arr['product_price_arr'] = $product_price_arr;
+	//$product_arr['total_price'] = $total_price;
+    //
+	//import('source.class.Appmarket');
+	//$reward_list = Appmarket::getAeward($reward_arr, $product_arr);
+    //
+	//// 第一步抽出用户购买的产品有哪些优惠券
+	//$user_coupon_list = M('User_coupon')->getListByProductId($reward_list['product_price_list'], $store_id, $uid);
+    //
+	//// 第二步计算出用户购买原产品可以使用哪些优惠券
+	//$user_coupon_list = Appmarket::getCoupon($reward_list, $user_coupon_list);
 }
 else {
 	//用户地址
@@ -167,7 +167,6 @@ if (!empty($nowOrder['float_amount'])) {
 	$nowOrder['sub_total'] += $nowOrder['float_amount'];
 	$nowOrder['sub_total'] = number_format($nowOrder['sub_total'], 2, '.', '');
 }
-
 
 // dump($nowOrder);
 // 付款方式

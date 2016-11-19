@@ -24,8 +24,8 @@ require_once dirname(__FILE__) . '/global.php';
 // file_put_contents('postget.txt',$GLOBALS['HTTP_RAW_POST_DATA'].PHP_EOL.$_SERVER['REQUEST_URI'].PHP_EOL.$html);
 
 $payType = isset($_REQUEST['pay_type'])
-	? $_REQUEST['pay_type']
-	: (isset($_REQUEST['attach']) ? $_REQUEST['attach'] : 'weixin');
+    ? $_REQUEST['pay_type']
+    : (isset($_REQUEST['attach']) ? $_REQUEST['attach'] : 'weixin');
 /**
  * @var $config_m config_model
  */
@@ -33,66 +33,62 @@ $config_m = M('Config');
 $payMethodList = $config_m->get_pay_method();
 logs($_SERVER['REQUEST_URI'], 'INFO');
 logs(json_encode($_POST), 'INFO');
-if(empty($payMethodList[$payType])) {
-	json_return(1009, '您选择的支付方式不存在<br/>请更新支付方式');
+if (empty($payMethodList[$payType])) {
+    json_return(1009, '您选择的支付方式不存在<br/>请更新支付方式');
 }
-if($payType == 'yeepay') {
-	import('source.class.pay.Yeepay');
-	$payClass = new Yeepay(array(), $payMethodList[$payType]['config'], '');
-	$payInfo = $payClass->notice();
-	pay_notice_call($payInfo);
-}
-else if($payType == 'tenpay') {
-	import('source.class.pay.Tenpay');
-	$payClass = new Tenpay(array(), $payMethodList[$payType]['config'], '');
-	$payInfo = $payClass->notice();
-	pay_notice_call($payInfo);
-}
-else if(!empty($GLOBALS['HTTP_RAW_POST_DATA'])) {
-	import('source.class.pay.Weixin');
-	$payClass = new Weixin(array(), $payMethodList[$payType]['config'], '', 'pay');
-	$payInfo = $payClass->notice();
-	if($payInfo['err_code'] === 0) {
-		pay_notice_call($payInfo, $payInfo['echo_content']);
-	}
-	else {
-		pay_notice_call($payInfo);
-	}
+if ($payType == 'yeepay') {
+    import('source.class.pay.Yeepay');
+    $payClass = new Yeepay(array(), $payMethodList[$payType]['config'], '');
+    $payInfo = $payClass->notice();
+    pay_notice_call($payInfo);
+} else if ($payType == 'tenpay') {
+    import('source.class.pay.Tenpay');
+    $payClass = new Tenpay(array(), $payMethodList[$payType]['config'], '');
+    $payInfo = $payClass->notice();
+    pay_notice_call($payInfo);
+} else if (!empty($GLOBALS['HTTP_RAW_POST_DATA'])) {
+    import('source.class.pay.Weixin');
+    $payClass = new Weixin(array(), $payMethodList[$payType]['config'], '', 'pay');
+    $payInfo = $payClass->notice();
+    if ($payInfo['err_code'] === 0) {
+        pay_notice_call($payInfo, $payInfo['echo_content']);
+    } else {
+        pay_notice_call($payInfo);
+    }
 }
 
 function getSign($data, $salt)
 {
-	foreach ($data as $key => $value) {
-		if(is_array($value)) {
-			$validate[$key] = getSign($value, $salt);
-		}
-		else {
-			$validate[$key] = $value;
-		}
+    foreach ($data as $key => $value) {
+        if (is_array($value)) {
+            $validate[$key] = getSign($value, $salt);
+        } else {
+            $validate[$key] = $value;
+        }
 
-	}
-	$validate['salt'] = $salt;
-	sort($validate, SORT_STRING);
+    }
+    $validate['salt'] = $salt;
+    sort($validate, SORT_STRING);
 
-	return sha1(implode($validate));
+    return sha1(implode($validate));
 }
 
 function pay_notice_call($payInfo, $ok_msg = 'success', $err_msg = 'fail')
 {
-	if($payInfo['err_code'] === 0) {
-		$database_order = D('Order');
+    if ($payInfo['err_code'] === 0) {
+        $database_order = D('Order');
 
-		$condition_order['trade_no'] = $payInfo['order_param']['trade_no'];
-		$nowOrder = $database_order->where($condition_order)->find();
+        $condition_order['trade_no'] = $payInfo['order_param']['trade_no'];
+        $nowOrder = $database_order->where($condition_order)->find();
 
-		if($nowOrder && $nowOrder['status'] == 1) {
-			$data_order['third_id'] = $payInfo['order_param']['third_id'];
-			$data_order['payment_method'] = $payInfo['order_param']['pay_type'];
-			$data_order['pay_money'] = $payInfo['order_param']['pay_money'];
-			$data_order['paid_time'] = $_SERVER['REQUEST_TIME'];
-			$data_order['status'] = 2;
+        if ($nowOrder && $nowOrder['status'] == 1) {
+            $data_order['third_id'] = $payInfo['order_param']['third_id'];
+            $data_order['payment_method'] = $payInfo['order_param']['pay_type'];
+            $data_order['pay_money'] = $payInfo['order_param']['pay_money'];
+            $data_order['paid_time'] = $_SERVER['REQUEST_TIME'];
+            $data_order['status'] = 2;
 
-			if(D('Order')->where($condition_order)->data($data_order)->save()) {
+            if (D('Order')->where($condition_order)->data($data_order)->save()) {
 //				if(is_array($payInfo['order_param']['third_data'])){
 //					$data_order_trade['order_id'] = $nowOrder['order_id'];
 //					$data_order_trade['third_data'] = serialize($payInfo['order_param']['third_data']);
@@ -255,7 +251,7 @@ function pay_notice_call($payInfo, $ok_msg = 'success', $err_msg = 'fail')
 //				}
 
                 // 购买立返
-				$nowOrder['status'] = 2;
+                $nowOrder['status'] = 2;
                 /**
                  * @var $user_inconme user_income_model
                  */
@@ -285,11 +281,11 @@ function pay_notice_call($payInfo, $ok_msg = 'success', $err_msg = 'fail')
 //					}
 //				}
 
-				// 找出最近的卖家，暂时停止
-				// 拼接收货地址，到百度地图找出坐标
-				$address = json_decode($nowOrder['address']);
+                // 找出最近的卖家，暂时停止
+                // 拼接收货地址，到百度地图找出坐标
+                $address = json_decode($nowOrder['address']);
 
-				//$nearby_agent = D('Store')->
+                //$nearby_agent = D('Store')->
 
 //                if (!empty($fx_product)) { //订单中有分销商品
 //                    $fx_order = M('Fx_order');
@@ -424,26 +420,21 @@ function pay_notice_call($payInfo, $ok_msg = 'success', $err_msg = 'fail')
 //                        }
 //                    }
 //                }
-				// 更改赠送的优惠券为可用
+                // 更改赠送的优惠券为可用
 //				M('User_coupon')->save(array('is_valid' => 1), array('give_order_id' => $nowOrder['order_id']));
-                D('Activity_lottery_log')->data(array(
-                    'uid'       => $nowOrder['uid'],
-                    'order_id'  => $nowOrder['order_id'],
-                ))->add();
 
-				exit($ok_msg);
-			}
-			else {
-				exit($err_msg);
-			}
-		}
-		else {
-			exit($err_msg);
-		}
-	}
-	else {
-		exit($ok_msg);
-	}
+                //D('Activity_lottery_log')->data(array('uid' => $nowOrder['uid'], 'order_id' => $nowOrder['order_id']))->add();
+
+                exit($ok_msg);
+            } else {
+                exit($err_msg);
+            }
+        } else {
+            exit($err_msg);
+        }
+    } else {
+        exit($ok_msg);
+    }
 }
 
 //function pay($data)
