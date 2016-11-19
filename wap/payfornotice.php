@@ -51,10 +51,9 @@ function pay_notice_call($payInfo, $ok_msg = 'success', $err_msg = 'fail')
 
             if ($database_order->where($condition_order)->data($data_order)->save()) {
                 // 充值+充值记录
-                //M('User')->payfor($nowOrder['uid'], $nowOrder['total'], $nowOrder['point']);
+                // M('User')->payfor($nowOrder['uid'], $nowOrder['total'], $nowOrder['point']);
                 $db_user = D('User');
-                $user = $db_user->where(array('uid' => $nowOrder['uid'], 'status' => 1))
-                    ->find();
+                $user = $db_user->where(array('uid' => $nowOrder['uid'], 'status' => 1))->find();
                 if ($user) {
                     //$agent_id = D('Agent')->where(array('open_self' => 0, 'is_agent' => 0, 'is_editor' => 0))->getField('agent_id');
                     $agent_id = $nowOrder['agent_id'];

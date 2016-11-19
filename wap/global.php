@@ -256,13 +256,16 @@ if (empty($_SESSION['store'])) {
 $wap_user = $_SESSION['user'];
 $now_store = $_SESSION['store'];
 
-$agentInfo = D('Agent')->where(array('agent_id' => $_SESSION['store']['agent_id']))->find();
-$isSupplier = isset($agentInfo['open_self']) && 1 == $agentInfo['open_self'];
+$isSupplier = false;
+if ($wap_user['stores']) {
+    $agentInfo = D('Agent')->where(array('agent_id' => $_SESSION['store']['agent_id']))->find();
+    $isSupplier = isset($agentInfo['open_self']) && 1 == $agentInfo['open_self'];
 //var_dump($agentInfo);exit;
 //是否是 供应商
-if (!isset($_SESSION['store']['is_supplier'])) {
-    $_SESSION['store']['is_supplier'] = $isSupplier;
-    $isSupplier && redirect('/wap/supplier_ucenter.php');
+    if (!isset($_SESSION['store']['is_supplier'])) {
+        $_SESSION['store']['is_supplier'] = $isSupplier;
+        //$isSupplier && redirect('/wap/supplier_ucenter.php');
+    }
 }
 
 //// 检测分销商是否存在
