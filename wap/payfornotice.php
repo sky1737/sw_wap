@@ -102,7 +102,7 @@ function pay_notice_call($payInfo, $ok_msg = 'success', $err_msg = 'fail')
                     } else {
                         // consumer 为 0 时
                         // 添加红包记录
-                        $model_user->payforRedpack($nowOrder['uid'], $nowOrder['order_no'], $nowOrder['pay_money'], 0);
+                        $model_user->payforRedpack($nowOrder['uid'], $nowOrder['order_no'], $agent['commission'], 0);
 
                         // 发红包
                         $db_payfor_redpack = D('Payfor_redpack');

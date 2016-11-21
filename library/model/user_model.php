@@ -796,8 +796,8 @@ class user_model extends base_model
             return;
 
         $parent =
-            D('')->query('SELECT u.uid, u.parent_uid, u.openid, s.store_id, s.agent_id FROM `tp_user` u INNER JOIN `tp_store` s ON u.uid = s.uid
-AND u.status =1 AND s.status =1 AND stores > 0 inner join `tp_agent` a on s.`agent_id` = a.`agent_id` and a.`is_agent` = 1 WHERE u.`uid` = (SELECT parent_uid FROM `tp_user` WHERE `uid` =' . $uid . ')');
+            D('')->query('SELECT u.uid, u.parent_uid, u.openid, s.store_id, a.agent_id FROM `tp_user` u INNER JOIN `tp_store` s ON u.uid = s.uid
+AND u.status =1 AND s.status =1 AND stores > 0 LEFT JOIN `tp_agent` a on s.`agent_id` = a.`agent_id` and a.`is_agent` = 1 WHERE u.`uid` = (SELECT parent_uid FROM `tp_user` WHERE `uid` =' . $uid . ')');
         if (empty($parent))
             return;
 
@@ -894,9 +894,8 @@ AND u.status =1 AND s.status =1 AND stores > 0 inner join `tp_agent` a on s.`age
             return;
 
         $parent =
-            D('')->query('SELECT u.uid, u.parent_uid, u.openid, s.store_id, s.agent_id FROM `tp_user` u INNER JOIN `tp_store` s ON u.uid = s.uid
-AND u.status =1 AND s.status =1 AND stores > 0 inner join `tp_agent` a on s.`agent_id` = a.`agent_id` and a.`is_agent` = 1 WHERE u.`uid` = (SELECT parent_uid FROM `tp_user` WHERE `uid` =' .
-                $uid . ')');
+            D('')->query('SELECT u.uid, u.parent_uid, u.openid, s.store_id, a.agent_id FROM `tp_user` u INNER JOIN `tp_store` s ON u.uid = s.uid
+AND u.status =1 AND s.status =1 AND stores > 0 LEFT JOIN `tp_agent` a on s.`agent_id` = a.`agent_id` and a.`is_agent` = 1 WHERE u.`uid` = (SELECT parent_uid FROM `tp_user` WHERE `uid` =' . $uid . ')');
         if (empty($parent))
             return;
 
