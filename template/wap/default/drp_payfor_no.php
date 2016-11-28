@@ -14,8 +14,9 @@
 </head>
 
 <body style="max-width:640px;">
-<div style="padding: 100px 30px;line-height:2em;font-size:1.5em;">
-	请先获取推广码！<br/>扫码成为<?php echo option('config.site_name'); ?>的代理！
-</div>
+<div><img src="<?php echo TPL_URL; ?>images/no_parent.jpg" alt="" /></div>
+<!--<div style="padding: 100px 30px;line-height:2em;font-size:1.5em;">-->
+<!--	请先获取推广码！<br/>扫码成为--><?php //echo option('config.site_name'); ?><!--的代理！-->
+<!--</div>-->
 </body>
 </html>
