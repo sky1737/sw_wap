@@ -301,7 +301,7 @@ else {
 			//$value = $activity[0];
 			//echo '<div><a href="'.$value['url'].'"><img src="'.$value['pic'].'" alt="'.$value['name'].'" width="100%" /></a></div>';
 			foreach ($activity as $key => $value) {
-				echo '<li><a href="'.$value['url'].'"> <img src="'.$value['pic'].'" alt="'.$value['name'].'"/></a></li>';
+				echo '<div><a href="'.$value['url'].'"> <img src="'.$value['pic'].'" alt="'.$value['name'].'"/></a></div>';
 			}
 		} ?>
 
