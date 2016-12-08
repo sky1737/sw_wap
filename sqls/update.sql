@@ -107,3 +107,23 @@ update `yunws`.`tp_config` set `name`='promoter_ratio_1' where `id`=103;
 update `yunws`.`tp_config` set `info`='三级推客返佣' where `id`=105;
 update `yunws`.`tp_config` set `info`='二级推客返佣' where `id`=104;
 update `yunws`.`tp_config` set `info`='一级推客返佣' where `id`=103;
+
+DROP TABLE IF EXISTS `tp_store_withdrawal`;
+CREATE TABLE `tp_store_withdrawal` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `trade_no` varchar(100) NOT NULL DEFAULT '' COMMENT '交易号',
+  `uid` int(11) NOT NULL DEFAULT '0' COMMENT '用户id',
+  `store_id` int(11) NOT NULL DEFAULT '0' COMMENT '店铺id',
+  `bank_id` int(11) NOT NULL DEFAULT '0' COMMENT '银行id',
+  `opening_bank` varchar(30) NOT NULL DEFAULT '' COMMENT '开户行',
+  `bank_card` varchar(30) NOT NULL DEFAULT '' COMMENT '银行卡号',
+  `bank_card_user` varchar(30) NOT NULL DEFAULT '' COMMENT '开卡人姓名',
+  `withdrawal_type` tinyint(1) NOT NULL DEFAULT '0' COMMENT '提现方式 0对私 1对公',
+  `add_time` varchar(20) NOT NULL DEFAULT '' COMMENT '申请时间',
+  `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '状态 1申请中 2银行处理中 3提现成功 4提现失败',
+  `amount` decimal(10,2) unsigned NOT NULL DEFAULT '0.00' COMMENT '提现金额',
+  `complate_time` varchar(20) NOT NULL DEFAULT '' COMMENT '完成时间',
+  PRIMARY KEY (`id`),
+  KEY `store_id` (`store_id`) USING BTREE,
+  KEY `bank_id` (`bank_id`) USING BTREE
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;

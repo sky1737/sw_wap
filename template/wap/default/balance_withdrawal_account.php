@@ -106,7 +106,7 @@ $(function () {
 			'bank_id': bank_id
 		}, function (data) {
 			if (data.err_code == 0) {
-				window.location.href = './balance.php?a=withdrawal';
+				window.location.href = './balance.php?a=applywithdrawal';
 			} else {
 				ShowMsg("保存失败,请稍候再试");
 				return;

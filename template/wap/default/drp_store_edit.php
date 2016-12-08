@@ -35,25 +35,25 @@
 		<div class="row">
 			<div class="large-12 columns">
 				<label>店铺名称 <span style="color:red;font-size:12px;">只能修改一次，请您谨慎操作</span></label>
-				<input type="text" id="name" name="name" placeholder="微店名称" value="<?php echo $now_store['name']; ?>" <?php if (!empty($now_store['edit_name_count'])) { ?>readonly="true"<?php } ?> />
+				<input type="text" id="name" name="name" placeholder="微店名称" value="<?php echo $now_store['name']; ?>" <?php if (!empty($now_store['edit_name_count'])) { echo ' readonly="true"'; } ?> />
 			</div>
 		</div>
 		<div class="row">
 			<div class="large-12 columns">
-				<label>店主姓名<br><span style="color:red;font-size:12px;">请与当前微信账号认证姓名保持一致，一经填写无法修改！</span></label>
-				<input type="text" id="linkman" name="linkman" placeholder="微店店主姓名" value="<?php echo $now_store['linkman']; ?>"<?php if(!empty($now_store['linkman'])) echo ' readonly="true"'; ?> />
+				<label>店主姓名<br><span style="color:red;font-size:12px;">请与当前微信账号认证姓名保持一致！</span></label>
+				<input type="text" id="linkman" name="linkman" placeholder="请填写真实姓名" value="<?php echo $now_store['linkman']; ?>"<?php /*if(!empty($now_store['linkman'])) echo ' readonly="true"';*/ ?> />
 			</div>
 		</div>
 		<div class="row">
 			<div class="large-12 columns">
-				<label>手机号码 <span style="color:red;">紧急联系方式</span></label>
-				<input type="text" id="tel" name="tel" placeholder="联系电话" value="<?php echo $now_store['tel']; ?>" />
+				<label>店主手机 <span style="color:red;">紧急联系方式</span></label>
+				<input type="text" id="tel" name="tel" placeholder="店主手机号码" value="<?php echo $now_store['tel']; ?>" />
 			</div>
 		</div>
 		<div class="row">
 			<div class="large-12 columns">
 				<label>微店描述 </label>
-				<textarea style="resize: none;margin: 0 0 1rem 0;" name="intro" id="intro" placeholder="微店描述"><?php echo $now_store['intro']; ?></textarea>
+				<textarea style="resize: none;margin: 0 0 1rem 0;" name="intro" id="intro" placeholder="微店描述"><?php echo $now_store['intro']?$now_store['intro']:$now_store['name'].'。'; ?></textarea>
 			</div>
 		</div>
 		<?php if(!$now_store['status']) {?>

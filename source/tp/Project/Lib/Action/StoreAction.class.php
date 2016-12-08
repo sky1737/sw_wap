@@ -59,7 +59,6 @@ class StoreAction extends BaseAction
 	}
 
     public function create($uid){
-
         $database_user = D('User');
         $user = $database_user->where(array('uid' => $uid))->find();
 

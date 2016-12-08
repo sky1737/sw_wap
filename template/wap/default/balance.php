@@ -47,10 +47,13 @@
 </div>
 <ul class="maneylist" style="display: ;">
 </ul>
-<div class="bro-extract-an"><a href="javascript:;" onclick="window.location.href='./balance.php?a=withdrawal'"
+<div class="bro-extract-an" style="width: 100%;"><a href="javascript:;"
+                                                    onclick="window.location.href='./balance.php?a=recharge'"
+                                                    class="button [radius round] red" style="margin: 0;">账户充值</a></div>
+<div class="bro-extract-an"><a href="javascript:;" onclick="window.location.href='./balance.php?a=applywithdrawal'"
                                class="button [radius round] red">申请提现</a></div>
-<div class="bro-extract-an"><a href="javascript:;" onclick="window.location.href='./balance.php?a=recharge'"
-                               class="button [radius round] red">账户充值</a></div>
+<div class="bro-extract-an"><a href="javascript:;" onclick="window.location.href='./balance.php?a=withdrawal'"
+                               class="button [radius round] red">微信提现</a></div>
 
 <!-- <div class="bro-help">
 <h3>没有收入，试试分享店铺</h3>

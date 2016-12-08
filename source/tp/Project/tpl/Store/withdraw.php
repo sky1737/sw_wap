@@ -201,8 +201,8 @@
             if ((!_con.is(e.target) && _con.has(e.target).length === 0) && (!_con2.is(e.target) && _con2.has(e.target).length === 0)) { // Mark 1
                 $('.popover').remove();
             }
-        })
-    })
+        });
+    });
 </script>
 <div class="ui-box">
     <table class="ui-table ui-table-list" style="padding: 0px;">
