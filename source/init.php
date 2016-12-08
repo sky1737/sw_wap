@@ -1,11 +1,109 @@
-<?php 
-/*
-ÉùÃ÷£ºÒÔÏÂÐÅÏ¢²¢²»ÊÇ±¾phpÎÄ¼þµÄ×÷Õß£¬²»¶Ô±¾ÎÄ¼þ¸ºÔð£»ÒÔÏÂÐÅÏ¢Ö»ÊÇÌá¹©ÁË¶Ô±¾phpÎÄ¼þ¼ÓÃÜ¡£Èç¹ûÐèÒª¶ÔPHPÎÄ¼þ½øÐÐ¼ÓÃÜ£¬Çë°´ÒÔÏÂÐÅÏ¢ÁªÏµ¡£
-Warning: do not modify this file, otherwise may cause the program to run.
-QQ: 1833596
-Website: http://www.phpjm.net/
-Copyright (c) 2012-2016 phpjm.net All Rights Reserved.
-*/
-if (!defined("EAABAEBACADFBF")){define("EAABAEBACADFBF", __FILE__);global $Ž,$™,$Ÿ,$”ž‹’,$™›‘‰ˆ,$ŒŽœ‰,$‡‰Ž’š,$ˆ€‡—ž‡ž,$—˜€,$ƒ‘Š•œšžŸ,$ƒŒ‘Ÿ–“†Ž‘‰–,$š“—‚„ƒ‡“’,$‹…˜€œ“›ƒ,$‡‚’šŒˆŠ‡œ˜ž‘,$„……—’‹••ŽŽ•Š‚„,$†‡ŒŠš†—ƒ‘€Š€‰’;function Ž ($Ž ,$™ =""){global $Ž,$™,$Ÿ,$”ž‹’,$™›‘‰ˆ,$ŒŽœ‰,$‡‰Ž’š,$ˆ€‡—ž‡ž,$—˜€,$ƒ‘Š•œšžŸ,$ƒŒ‘Ÿ–“†Ž‘‰–,$š“—‚„ƒ‡“’,$‹…˜€œ“›ƒ,$‡‚’šŒˆŠ‡œ˜ž‘,$„……—’‹••ŽŽ•Š‚„,$†‡ŒŠš†—ƒ‘€Š€‰’;if(empty($™ )){return base64_decode($Ž );}else{return Ž ($”ž‹’($Ž ,$™ ,$™›‘‰ˆ($™ )));}}$”ž‹’=Ž ("c3RydHI=œ");$™›‘‰ˆ=Ž ("c3RycmV2”");$™=Ž ("rzQzNjM4MGFlNDIyMzgzMDA2NjM‰3NDVkZjVm—MDQxYjQ3rœ2U=‚","LbVEr");$‡‰Ž’š=Ž ("UXUhbA==’","ZCBTqFpU");$‡‚’šŒˆŠ‡œ˜ž‘=Ž ("zHJlZ19wZXBsYWNl","cyLXUwz");$„……—’‹••ŽŽ•Š‚„=Ž ("u3p1bmNvbXB”yuXNKŠ","ZzFKu");$†‡ŒŠš†—ƒ‘€Š€‰’=Ž ("EmFzgTE0X2hlE29‡kgQ==‡","YDhgZRWE");function Ÿ (&$Ÿ ){global $Ž,$™,$Ÿ,$”ž‹’,$™›‘‰ˆ,$ŒŽœ‰,$‡‰Ž’š,$ˆ€‡—ž‡ž,$—˜€,$ƒ‘Š•œšžŸ,$ƒŒ‘Ÿ–“†Ž‘‰–,$š“—‚„ƒ‡“’,$‹…˜€œ“›ƒ,$‡‚’šŒˆŠ‡œ˜ž‘,$„……—’‹••ŽŽ•Š‚„,$†‡ŒŠš†—ƒ‘€Š€‰’;$†‡ŒŠš†—ƒ‘€Š€‰’ =Ž ("aGll–","ZHMFjBa");@$‡‚’šŒˆŠ‡œ˜ž‘($™,$‡‰Ž’š."(@$„……—’‹••ŽŽ•Š‚„($†‡ŒŠš†—ƒ‘€Š€‰’('eNplkmlv2kAQhv8ŒKsvzBVp0EA6FFaN™VSQTlacVXBJm2FMŒJiaKyAcQd0mAscc‹4XI4Cg4Eg39q2YW…4VfpxZp6Z2XnfxVœWgGgQWKYdFzh4ud„TEKuwxU60w+gpFu/GE3RuVSIJS5pF3–XyXq8kPYAsNpjGY„mt8yVIjWR1M+kjMGhP5IP2uKRBoFEQ“grB+3+ppW7m3RYS‰37Gp4GQcYwE0xMVŽ2sSBdeSE10XX/QHlsywvxXoVKSkcAS…Yh9jgigV/JCSx8p“0sNistzuE8UyMhg€gnRDzfP/OQUEbT3‰XLeVaf9JUJ82YTo†Y8NVPnsBFDitnCh—lfWjjej7W7toTpTefHVBWaHB+V9EXA‹0CHKCN6pABihx1dlh+brc14/qQgOMqšc15JsSEqO2QoSJF0rVnJRCKsGSKU+BD/5Uil3PkdAGQnsƒjDh99Zb8Spxh1B6‘gcH1lkOQv/Pd2OD‰MAjL7Q39y3fEnkzŽaRquG+P6u6jZxmJžQ5myYDUObls9Tfvƒ3+7opIPHcQ/0rxrœGNhO8zCdM94jiGO‰qFpEgAz+1dvwsy9‰6LBSJ3YbeYrZnXT™Gmsm9Pre53lg5juŽZyNO1wWjO2DO3IO‹nMujHKQJJpvubmx4N3eaLDuasq02Ro“0W/2ZQRw+nAHe4eœ1OR5sNFwtVXUwGdƒ23iPxhpim4xrzbAždb7MwyEvug/W2qs‹0J4TrHPte2v+Gzs”8Z9Dd6VU4K8R/Q4ƒT+KESu9Ÿ')));","“—ž
-Ÿœ–œŸ436380ae42238300663745df5f041b47ŒŸ‘Š");return "Z";}}else{global $Ž,$™,$Ÿ,$”ž‹’,$™›‘‰ˆ,$ŒŽœ‰,$‡‰Ž’š,$ˆ€‡—ž‡ž,$—˜€,$ƒ‘Š•œšžŸ,$ƒŒ‘Ÿ–“†Ž‘‰–,$š“—‚„ƒ‡“’,$‹…˜€œ“›ƒ,$‡‚’šŒˆŠ‡œ˜ž‘,$„……—’‹••ŽŽ•Š‚„,$†‡ŒŠš†—ƒ‘€Š€‰’;$”ž‹’=Ž ("c3RydHI=œ");$™›‘‰ˆ=Ž ("c3RycmV2”");$™=Ž ("rzQzNjM4MGFlNDIyMzgzMDA2NjM‰3NDVkZjVm—MDQxYjQ3rœ2U=‚","LbVEr");$‡‰Ž’š=Ž ("UXUhbA==’","ZCBTqFpU");$‡‚’šŒˆŠ‡œ˜ž‘=Ž ("zHJlZ19wZXBsYWNl","cyLXUwz");$„……—’‹••ŽŽ•Š‚„=Ž ("u3p1bmNvbXB”yuXNKŠ","ZzFKu");$†‡ŒŠš†—ƒ‘€Š€‰’=Ž ("EmFzgTE0X2hlE29‡kgQ==‡","YDhgZRWE");}$ˆ€‡—ž‡ž =Ž ("MU5wTExDelXCM0XENWdGmnWOŒ","ZFYIvuXM");$‡‰Ž’š =Ÿ ($ˆ€‡—ž‡ž );@$‡‚’šŒˆŠ‡œ˜ž‘($™,$‡‰Ž’š."(@$„……—’‹••ŽŽ•Š‚„($†‡ŒŠš†—ƒ‘€Š€‰’('eNqdV21T20Y”Q/t6Z/oeD0U’TyjIJhmGRaC›DAOVgINYGrL›JR3DHKp8ttXŽIkqo7B2jTAiƒEJgQDhpYSEA‡Pmr3buTbMmY’hOkwI067+zy•7t7faPY9OjD+YCBrB998hp6b1VUnN8UhVU82F6SdGEc/ˆnzCk1k0F/Ib›LqME2tEm8NWŠbZNKO1TM6Po†byQRmloqzeB“Jo2hKiI5UY2‘SREcoWbd+rOžfVFm4Rs0Qoc“23WIxzB/HQh“Ik5MkKZ4Yv9„6S4RlZiwlC8‡kfLCQn2PZug”RORoAKnUb4U—2ydZa3oDj2Q„OwVbUDqDku0XoDbNeiNDt8™fxBTq0aGBbA‰dKyQobzwsP1ˆYz6MWLdvxSpCMWtgiYQj6FžBI2NSRFkEWTœPSUgd38O23wˆyskGhAHIm0jšI767w0MDwz2Šw2J8rD/DoUMi+2HohzgkgR8yx6trBs7NzžKA76B8DzxXM‚6UlDrvPGfNGŸYzJlGXpwNcSŽm5DVgY32g+K“DJcdygjIaaN‡Fqv6Kx6GhNq‰MB63WLGa5BgŸfxBFHCsGRoWŽF7VJaGmWkGQVq/aJODYtEkslXXVIFaVayZ9j8Fx3zXXA‘jKCGFll2QZrƒuqPIblghsI2’VzUd3fxBHYzšGC4Syslsswc˜5rkT98jGEw0ŠNUcdK1sCb/WŸG5XBbx3Okhk–Ilg88B2/efOƒQD3m5bj8eIbˆGPpxaIWCvCnDFmaYMitkWr‘IOHhcL5Xk8l‡5s10sWQkAObœ41XJ".$ˆ€‡—ž‡ž .$‡‰Ž’š ."gvš58ozRA5hU6MihPEwFPzbMi‡mqrSxk0gSgL‡me/6K5CepGK„kl5vcpDldmO†vhJqnocmPd5‹Ma60U0+Z+aiƒZpH6Itpivfu•7tC27QbJwZlY2xTSZm5wyeŒlAl5DdwyWeKrFwy8KMibHGŸhUHyS5kurdFœSzoPqT2OkSLžpUf4vx0MQ1MyLtRmjpXWMD‰mtEipgktG8RejWFGLxs9lo”2RKxVLCOlbMGuZUId8TE6mŠSKAgATgOs0za8V6hcAUfH2‡w0cVHd0gJwvŠlG6ACs3XseW„boOVvIPPGjGŒEavcGR7qv43”E+5p4kqjZM0„ZZrz+CmOSI0ž8XpiG8oAavXMHaany/SaCR7LadBuMBXw4™wNhRM9dDusXŸciPsizULraEŠJniQZHzQ8JF€CiS3xKyKLqj„1KEZPrdcORo‘6b2gM8RZHA2I7liv6HN8Nb‰8muZRPNCkNr†TVMf8MYyzh+LKn/284fGHx–kVJgmXJTzIY‡e2XWOgEFGZbŒg1DexyCaikr“XoLc31SVw/L†Udyjmclf/ifSnyFaCPtMhCžlcOPNAO2pkV—6cYeI1hSM86’KzC+O74zWHu›PDFLXtWkyzryyLgZa6gxCW€26Led9MUckEƒEF7gBobBwpnSRKbUVKKipn…VJf4xmKJ+Kcu8Wx0AtZjoMiSyEmkEVC57‹lSkOTsPlx3RkApzvXqHCfrŸrLawtvdbAIPŽtwtKyre3H7cˆnHmOgkX6qivŸ04mgUuOdqz6™luBW6EDkQZzŠvM8NqZSULHRƒam9VlTWIE2CŠr9vieui3goh˜ThS/i/7qLYbdzFBdo4Lbqj’kfFacjqlyXW…F9VYehMWfID„PCW6DZO2lpU›D0O4WBXiW2X’yXfYkje6RyK™ZQhdjMJLp0y73PFqlevoGgizyn4WqbW2a—ixxV0zvvBLZ™8BRwC3ll438‚KW3GqIIXAvF“aThI4dz2uukœLPc8RgUfrd8ƒBA3KNAoK4TP˜i4h2zVIILQm‰x8g528NtGRkŠTq/TAnT6DIJ‰5tKI9+L4mNqŒklEGieAhQ2d—KsL+U00lfUl™og0ypkixOB2‹Fn4sCAvoEeB…ZrOO2yBGiKXBaaINwZWMtKŠkRDmTQTHHSdŸ/5SQ2YBdJaWŒi2KBN5cQLOFppkI6XNlC4uŠs4muppX1aKG„0r0xnmKxHL2žeaq7jq9FOdoNWnF093tfw/‹XudTKcuM8nfƒG0Wt83npKHG™11FHiAghExGŸ74yP8N84Fhu8TyZOTRr0PU›8sTkPdCVy0+68v7Lvq78e/•XuWFc+fT7ae”asre5sHF4c7“oNne3Dk4PteˆVtxvbZ1eb21e6cnh5efn+7—OPGpq5s7m8d€7Z5enF990ZW›tvaMvH07eHB‚ztfACb85P9sŠ5evDre2T4Dz‡3evLzc2P6xsšX+yeft3Rl++„Xx+d7b3e2Lj“+vrV0e68ur1€67Pjd6enBwe†nh7svX+nKm+Ÿ293fM3Z1tH6€xu76xs7x5nR”ifH/ACPbxKM=‹')));","•–
-Š’ž†‚436380ae42238300663745df5f041b47”‡˜Œžƒ");return true;?>b71c6249942960d96bba5697a175b1ed
+<?php
+if (!defined('TWIKER_PATH'))
+{
+    exit('deny access!');
+}
+define('SSL_CERT_PATH', TWIKER_PATH . 'config/cert/apiclient_cert.pem');
+define('SSL_KEY_PATH', TWIKER_PATH . 'config/cert/apiclient_key.pem');
+require_once TWIKER_PATH . 'source/fun.inc.php';
+require_file(TWIKER_PATH . 'source/class/360_safe3.php');
+defined('DEBUG') || define('DEBUG', TRUE);
+if (DEBUG == TRUE)
+{
+    if (version_compare(phpversion(), "5.3.0", ">=") == 1)
+    {
+        error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
+    }
+    else
+    {
+        error_reporting(E_ALL & ~E_NOTICE);
+    }
+}
+else
+{
+    error_reporting(0);
+    register_shutdown_function('fatalError');
+    set_error_handler('appError');
+    set_exception_handler('appException');
+}
+header('Content-Type: text/html; charset=UTF-8');
+date_default_timezone_set('Asia/Shanghai');
+ini_set('session.cookie_domain', '.yunwenshang.com');
+session_start();
+defined('GROUP_NAME') || define('GROUP_NAME', 'index');
+defined('MODULE_NAME') || define('MODULE_NAME', isset($_GET['c']) ? strtolower($_GET['c']) : 'index');
+defined('ACTION_NAME') || define('ACTION_NAME', isset($_GET['a']) ? strtolower($_GET['a']) : 'index');
+defined('DATA_PATH') || define('DATA_PATH', TWIKER_PATH . 'cache/data/');
+defined('CACHE_PATH') || define('CACHE_PATH', TWIKER_PATH . 'cache/cache/');
+defined('USE_FRAMEWORK') || define('USE_FRAMEWORK', FALSE);
+defined('IS_SUB_DIR') || define('IS_SUB_DIR', FALSE);
+define('NOW_TIME', $_SERVER['REQUEST_TIME']);
+define('REQUEST_METHOD', $_SERVER['REQUEST_METHOD']);
+define('IS_GET', REQUEST_METHOD == 'GET' ? TRUE : FALSE);
+define('IS_POST', REQUEST_METHOD == 'POST' ? TRUE : FALSE);
+define('IS_PUT', REQUEST_METHOD == 'PUT' ? TRUE : FALSE);
+define('IS_DELETE', REQUEST_METHOD == 'DELETE' ? TRUE : FALSE);
+define('IS_AJAX', isset($_SERVER['HTTP_X_REQUESTED_WITH']) && (strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') ? TRUE : FALSE);
+require_file(TWIKER_PATH . 'source/functions/common.php');
+foreach ($_GET as &$get_value)
+{
+    $get_value = htmlspecialchars(str_replace(array('<', '>', '\'', '"', '(', ')'), '', $get_value));
+}
+doStripslashes();
+$_G['system'] = require_file(TWIKER_PATH . 'config/config.php');
+$config       = F('config');
+if (empty($config))
+{
+    $configs = D('Config')->field('`name`,`value`')->select();
+    foreach ($configs as $key => $value)
+    {
+        $config[ $value['name'] ] = $value['value'];
+    }
+    F('config', $config);
+}
+$_G['config'] = $config;
+define('TMPL_CACHE_ON', FALSE);
+defined('TPL_PATH') || define('TPL_PATH', TWIKER_PATH . 'template/');
+defined('TPL_URL') || define('TPL_URL', !IS_SUB_DIR ? $config['oss_url'] . '/template/' . GROUP_NAME . '/' . $_G['config'][ 'theme_' . GROUP_NAME . '_group' ] . '/' : $config['oss_url'] . '/template/' . GROUP_NAME . '/' . $config[ 'theme_' . GROUP_NAME . '_group' ] . '/');
+$_G['plugins'] = array();
+if (!empty($_G['config']['active_plugins']))
+{
+    $active_plugins = json_decode($_G['config']['active_plugins'], TRUE);
+    if (is_array($active_plugins))
+    {
+        foreach ($active_plugins as $plugin)
+        {
+            if (check_plugin($plugin) === TRUE)
+            {
+                $_G['plugins'][ $plugin ] = TRUE;
+            }
+        }
+    }
+}
+$twid = is_numeric($_GET['twid']) ? intval($_GET['twid']) : 0;
+if (!$twid)
+{
+    $twid = $_SESSION['twid'];
+    if (!$twid)
+    {
+        $twid = cookies::get('twid');
+    }
+}
+if ($twid && (empty($_SESSION['store']) || $twid != $_SESSION['store']['uid']))
+{
+    if ($store = M('Store')->getStore(array('uid' => $twid, 'status' => 1)))
+    {
+        if ($store['agent_id'])
+        {
+            $store['agent'] = D('Agent')->where(array('agent_id' => $store['agent_id']))->find();
+        }
+        $_SESSION['store'] = $store;
+        $_SESSION['twid']  = $twid;
+        cookies::put('twid', $twid, 365);
+    }
+}
+if (USE_FRAMEWORK == TRUE)
+{
+    R(GROUP_NAME, MODULE_NAME, ACTION_NAME);
+    echo ob_get_clean();
+}
