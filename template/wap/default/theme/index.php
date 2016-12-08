@@ -298,8 +298,11 @@ else {
 	<div class="content-body" style="padding:10px;background:#fff;">
 		<?php
 		if(!empty($activity)){
-			$value = $activity[0];
-			echo '<div><a href="'.$value['url'].'"><img src="'.$value['pic'].'" alt="'.$value['name'].'" width="100%" /></a></div>';
+			//$value = $activity[0];
+			//echo '<div><a href="'.$value['url'].'"><img src="'.$value['pic'].'" alt="'.$value['name'].'" width="100%" /></a></div>';
+			foreach ($activity as $key => $value) {
+				echo '<div><a href="'.$value['url'].'"> <img src="'.$value['pic'].'" alt="'.$value['name'].'" width="100%" /></a></div>';
+			}
 		} ?>
 
 		<ul class="banner4">
