@@ -52,6 +52,12 @@ if($_GET['a'] == 'edit') {
 		if(empty($intro)) {
 			json_return(1, '请填写店铺介绍！');
 		}
+
+        $data['opening_bank'] = I('post.opening_bank');
+        $data['bank_card_user'] = I('post.bank_card_user');
+        $data['bank_card'] = I('post.bank_card');
+
+        //var_dump($data);exit;
 		$data['intro'] = $intro;
 		$data['last_edit_time'] = time();
 		if(D('Store')->where(array('store_id' => $now_store['store_id']))->data($data)->save()) {
