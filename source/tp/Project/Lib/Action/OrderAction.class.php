@@ -105,7 +105,7 @@ class OrderAction extends BaseAction
 			$order->where($condition)->order("StoreOrder.order_id DESC")
 				->limit($page->firstRow . ',' . $page->listRows)
 				->select();
-
+        //var_dump($orders);exit;
 		//订单状态
 		$status = $order->status();
 		//unset($status[0]);
