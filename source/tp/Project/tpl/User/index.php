@@ -69,7 +69,7 @@
 				<if condition="is_array($user_list)">
 					<volist name="user_list" id="vo">
 						<tr>
-							<td>{pigcms{$vo.uid}</td>
+							<td>{pigcms{$vo.uid}<?php echo $vo['import_uid'] ? '.' : ''; ?></td>
 							<td>{pigcms{$vo.nickname}</td>
 							<td>{pigcms{$vo.phone}</td>
 							<td>{pigcms{$vo.parent_uid}</td>

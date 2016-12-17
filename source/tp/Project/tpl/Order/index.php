@@ -61,8 +61,9 @@
 				<thead>
 					<tr>
 						<th width="150">订单号 / 交易号 / 付款流水号</th>
-						<th>商家名称</th>
+						<th>商家联系人</th>
 						<th>店铺名称</th>
+						<th>店铺所有者昵称</th>
 						<th>收货人</th>
 						<th>电话</th>
 						<th>对账情况</th>
@@ -80,6 +81,7 @@
 								<td>{pigcms{$order.order_no}<br/>{pigcms{$order.trade_no}<br/>{pigcms{$order.third_id}</td>
 								<td>{pigcms{$order.linkman}</td>
 								<td>{pigcms{$order.store}</td>
+								<td>{pigcms{$order.nickname}</td>
 								<td>{pigcms{$order.address_user}</td>
 								<td>{pigcms{$order.address_tel}</td>
 								<td><?php echo $order['is_check'] == 2 ? '已对账' : '未对账';?></td>
