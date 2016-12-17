@@ -10,8 +10,8 @@ class OrderViewModel extends ViewModel
 {
     public $viewFields = array(
         'Order' => array('*', '_as' => 'StoreOrder', '_type' => 'LEFT'),
-        'Store' => array('name' => 'store', 'linkman', '_on' => 'StoreOrder.store_id = Store.store_id', '_type' => 'LEFT'),
-        'User'  => array('nickname' => 'agent_user_name', 'avatar', '_on' => 'User.uid=StoreOrder.agent_id'),
+        'Store' => array('name' => 'store', 'linkman', '_on' => 'StoreOrder.store_id = Store.store_id'),
+        'User'  => array('nickname', 'avatar', '_on' => 'User.uid=StoreOrder.uid'),
     );
 
     //订单状态
