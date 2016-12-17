@@ -52,23 +52,40 @@ if ($isLoged && empty($_SESSION['user'])) {
                 $json = preg_replace("#(\\\ue[0-9a-f]{3})#ie", "addslashes('\\1')", $json);
                 logs($json, 'INFO');
                 $info = json_decode($json, 1);
+                //var_dump($info);exit;
                 if ($info['openid']) {
-                    // 检查 OPENID
+                    
                     $db_user = D('User');
-                    if ($user = $db_user->where(array('openid' => $info['openid']))->find()) {
+                    // 检查 wechat_unionid
+                    $unionidUser = isset($info['unionid']) ? $db_user->where(array('wechat_unionid' => $info['unionid']))->find() : null;
+                    
+                    // 检查 OPENID
+                    $openidUser = $db_user->where(array('openid' => $info['openid']))->find();
+                    //var_dump($info);exit;
+                    if ($unionidUser || $openidUser) {
+                    	$user = $unionidUser ? $unionidUser : $openidUser;
+                    	
+                    	// 更新 用户信息
                         $user['nickname'] = $info['nickname'];
+                        $user['wechat_unionid'] = $info['unionid'];
                         $user['avatar'] = $info['headimgurl'];
                         $user['sex'] = $info['sex'];
                         $user['country'] = $info['country'];
                         $user['province'] = $info['province'];
                         $user['city'] = $info['city'];
-                        $db_user->where(array('openid' => $info['openid']))->data($user)->save();
+                        //var_dump($user);exit;
+                        if($unionidUser){
+                        	$db_user->where(array('wechat_unionid' => $info['unionid']))->data($user)->save();
+                        } else{
+                        	$db_user->where(array('openid' => $info['openid']))->data($user)->save();
+                        }
                         // logs('update:' . $info['openid'], 'INFO');
                     } else {
                         // 注册
                         $user = array(
                             'nickname' => $info['nickname'],
                             'openid' => $info['openid'],
+                        	'wechat_unionid' => $info['unionid'],
                             'avatar' => $info['headimgurl'],
                             'sex' => $info['sex'],
                             'country' => $info['country'],
