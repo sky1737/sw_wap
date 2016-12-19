@@ -255,7 +255,7 @@ else {
 ?>
 <style type="text/css">
 .toutiao {background:#fff;}
-.toutiao dt {width:90px;height:56px;float:left; background:url(/template/wap/default/theme/images/toutiao.png) no-repeat 10px center;}
+.toutiao dt {width:90px;height:56px;float:left; background:url(/template/wap/default/theme/images/toutiao.png) no-repeat 10px center;background-size: 90%;}
 .toutiao dd {padding:6px 0 6px 100px;height:44px;line-height:22px;}
 .toutiao dd a {display:block;font-size:12px;background:url(/template/wap/default/theme/images/toutiao_dot.jpg) no-repeat 5px 10px;height:22px; padding: 0 5px 0 15px;float:left;overflow:hidden;}
 </style>
@@ -295,7 +295,7 @@ else {
 .banner4 li img {width:100%;height:100%;}
 </style>
 <div class="content">
-	<div class="content-body" style="padding:10px;background:#fff;">
+	<div class="content-body" style="padding:10px;background-color:#F8F8F8;">
 		<?php
 		if(!empty($activity)){
 			//$value = $activity[0];
@@ -334,7 +334,7 @@ else {
 .banner8 li img {width:100%;height:100%;
 </style>
 <div class="content">
-	<div class="content-body" style="padding:10px;background:#fff;">
+	<div class="content-body" style="padding:10px;background:#F8F8F8;">
 		<div style="text-align:center;">
 			<?php
 			if(empty($titles[0])) {
@@ -373,7 +373,7 @@ else {
 .remai li img {width:100%;height:100%;
 </style>
 <div class="content">
-	<div class="content-body" style="padding:10px;background:#fff;">
+	<div class="content-body" style="padding:10px;background:#F8F8F8;">
 		<div style="text-align:center;">
 			<?php
 			if(empty($titles[1])) {
@@ -410,7 +410,7 @@ else {
 .xinpin li img {width:100%;height:100%;
 </style>
 <div class="content">
-	<div class="content-body" style="padding:10px;background:#fff;">
+	<div class="content-body" style="padding:10px;background:#F8F8F8;">
 		<div style="text-align:center;">
 			<?php
 			if(empty($titles[2])) {
@@ -453,7 +453,7 @@ else {
 	</div>
 </div>
 <div class="content">
-	<div class="content-body" style="padding:10px;background:#fff;">
+	<div class="content-body" style="padding:10px;background:#F8F8F8;">
 		<div style="text-align:center;">
 			<?php
 			if(empty($titles[3])) {
@@ -501,7 +501,7 @@ foreach($categories as $key=>$val) {
 	</div>
 </div>
 <div class="content">
-	<div class="content-body" style="padding:10px;background:#fff;">
+	<div class="content-body" style="padding:10px;background:#F8F8F8;">
 		<?php
 		if(empty($category_banners[$val['cat_id']])) {
 			echo '请在广告分类 wap_category_banner 下添加名称为 '.$val['cat_id'] .' 的广告！';
