@@ -169,7 +169,7 @@ function skuBuy(product_id, buyType, showCallback) {
 		skuHtml += '</div><div class="confirm-action content-foot">';
 		switch (buyType) {
 			case 0:
-				skuHtml += '<a href="javascript:;" class="js-mutiBtn-confirm confirm btn btn-block btn-orange-dark half-button">立即购买</a> <a href="javascript:;" class="js-mutiBtn-confirm cart btn btn-block btn-orange-dark half-button">加入购物车</a>';
+				skuHtml += '<a href="javascript:void(0);" class="js-mutiBtn-confirm confirm btn btn-block btn-orange-dark half-button">立即购买</a> <a href="javascript:;" class="js-mutiBtn-confirm cart btn btn-block btn-orange-dark half-button">加入购物车</a>';
 				break;
 			case 1:
 				skuHtml += '<a href="javascript:;" class="js-mutiBtn-confirm confirm btn btn-block btn-orange-dark">下一步</a>';
@@ -440,6 +440,7 @@ function skuBuy(product_id, buyType, showCallback) {
 		var isPostNow = false;
 		popCon.find('.js-mutiBtn-confirm').click(function () {
 			var nowDom = $(this);
+			console.log(nowDom);
 			if (isPostNow) {
 				motify.log('正在提交中，请勿重复提交！');
 				return false;

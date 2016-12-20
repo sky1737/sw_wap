@@ -41,8 +41,10 @@
         <script src="<?php echo $config['oss_url']; ?>/static/js/jquery.waterfall.js"></script>
         <script src="<?php echo $config['oss_url']; ?>/static/js/idangerous.swiper.min.js"></script>
         <script src="<?php echo TPL_URL; ?>js/base.js?time=<?php echo time(); ?>"></script>
-        <script src="<?php echo TPL_URL; ?>js/sku.js"></script>
-        <script src="<?php echo TPL_URL; ?>js/good.js"></script>
+        <!--<script src="<?php /*echo TPL_URL; */?>js/sku.js"></script>-->
+        <!--<script src="<?php /*echo TPL_URL; */?>js/good.js"></script>-->
+        <script src=" http://yws.dev/template/wap/default/js/sku.js "></script>
+        <script src=" http://yws.dev/template/wap/default/js/good.js "></script>
         <script src="<?php echo TPL_URL; ?>js/drp_notice.js"></script>
         <style type="text/css">
             .custom-richtext p {
