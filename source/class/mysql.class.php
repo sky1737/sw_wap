@@ -59,6 +59,7 @@ class mysql
             }
         }
         if ($this->getMysqlVersion() > '4.1') {
+            mysql_query("SET sql_mode=''"); //清空 sql model
             mysql_query("SET NAMES 'utf8'");
         }
         @mysql_select_db($_G['system']['DB_NAME'], $this->conn) OR
