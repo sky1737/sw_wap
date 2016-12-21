@@ -100,7 +100,7 @@ class ProductAction extends BaseAction
         $tmp_products =
             $product->where($where)->order('Product.product_id DESC')->limit($page->firstRow, $page->listRows)
                 ->select();
-        //print_r($product->getLastSql());
+        //print_r($product->getLastSql());exit;
 
         $products = array();
         foreach ($tmp_products as $tmp_product) {
