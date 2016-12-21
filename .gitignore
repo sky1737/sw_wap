@@ -4,3 +4,4 @@
 ueditor/
 /Storage/
 /config/config.php
+/config/cert/*
