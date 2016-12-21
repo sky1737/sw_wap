@@ -329,7 +329,7 @@ margin:0;
 em.required,
 sup.required { color: #f00 !important; }
 .content-body { position: relative; z-index: 10; background-color: #F8F8F8;}
-.content-body > div > img {width: 100%;}
+/*.content-body > div > img {width: 100%;}*/
 .more-wrap { padding: 0 10px; }
 .more-wrap .more { display: inline-block; background-color: #f2f2f2; height: 30px; width: 100%; margin: 10px 0; line-height: 30px; font-size: 14px; color: #09F; text-align: center; border: 0; -webkit-border-radius: 5px; -webkit-background-clip: padding-box; -moz-border-radius: 5px; -moz-background-clip: padding; border-radius: 5px; background-clip: padding-box; cursor: pointer; }
 .custom-goods-price { font-size: 12px; background: rgba(0, 0, 0, 0) url(img/X8v2LQ1gZQL4LI6l8zQai9W9ctWcTyYSqtFVyc3mfQqtP773M39DbTKJDSDZ7yAeoBSsWz70CLSL91usybWuCX6I0k7RaFCb618vKzrAF9so0JlOyoLFM1vcmMioWjrutyG17DPswT2qs3GTXS7nc7wT7TwmFyrrODwQYAIUrp1L5UjSnAAAAAElFTkSuQmCC) no-repeat scroll 5px 50%; background-size: 18px; padding: 0 5px 0 25px; display: inline-block; line-height: 22px; height: 22px; float: right; max-width: 70px; overflow: hidden; font-style: normal; }
