@@ -259,6 +259,7 @@ else {
 .toutiao dd {padding:6px 0 6px 100px;height:44px;line-height:22px;}
 .toutiao dd a {display:block;font-size:12px;background:url(/template/wap/default/theme/images/toutiao_dot.jpg) no-repeat 5px 10px;height:22px; padding: 0 5px 0 15px;float:left;overflow:hidden;}
 </style>
+<?php if(false){  //头条 ?>
 <div class="content" style="padding:1px 0;height:56px;overflow:hidden;">
 	<div class="content-body">
 		<dl class="toutiao">
@@ -286,6 +287,9 @@ else {
 		</script>
 	</div>
 </div>
+<?php }
+    $openAll = true;
+ if($openAll || true){  //广告位 ?>
 <style type="text/css">
 .banner4 { display:block; border-bottom:1px solid #eee;}
 .banner4 li:nth-child(1) {float:left;}
@@ -328,6 +332,8 @@ else {
 		</script>
 	</div>
 </div>
+ <?php }
+    if($openAll || false){  //为你优选 ?>
 <style type="text/css">
 .banner8 {}
 .banner8 li {float:left;}
@@ -367,6 +373,8 @@ else {
 		</script>
 	</div>
 </div>
+    <?php }
+    if($openAll || true){  //热卖商品 ?>
 <style type="text/css">
 .remai {}
 .remai li {float:left;}
@@ -403,7 +411,8 @@ else {
 		</script>
 	</div>
 </div>
-
+    <?php }
+    if($openAll || FALSE){  //新品上市 ?>
 <style type="text/css">
 .xinpin {}
 .xinpin li {float:left;}
@@ -440,6 +449,8 @@ else {
 		</script>
 	</div>
 </div>
+    <?php }
+    if($openAll || false){  //额外 广告条 ?>
 <div class="content">
 	<div class="content-body">
 		<div class="index-event">
@@ -452,6 +463,7 @@ else {
 		</div>
 	</div>
 </div>
+    <?php } ?>
 <div class="content">
 	<div class="content-body" style="padding:10px;background:#F8F8F8;">
 		<div style="text-align:center;">
