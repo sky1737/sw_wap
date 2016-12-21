@@ -123,6 +123,7 @@ $pay3 = array('order_param' => array('trade_no' => '201611180946362184', 'third_
 //var_dump($pay1);
 
 $pay = $_GET['a'];
-if ($_GET['pay']) {
-    payfor($pay);
+if ($pay) {
+	//var_dump($$pay);
+    payfor($$pay);
 }
