@@ -192,8 +192,8 @@ class index_controller extends base_controller
                 // and p.is_recommend = 1
                 $where1 = "p.status = 1 and p.is_fx = 1 and (p.category_id ='" . $v1 .
                     "' or p.category_fid ='" . $v1 . "') ";
-                $order_by_field1 = "";
-                $order_by_method1 = "";
+                $order_by_field1 = "p.is_hot desc, p.product_id DESC";
+                $order_by_method1 = " ";
 
                 $pro['product'] =
                     M('Product')->getSellingAndDistance($where1, $order_by_field1, $order_by_method1, 0, 10);
