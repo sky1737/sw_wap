@@ -50,7 +50,7 @@
 		<script src="<?php echo TPL_URL;?>index_style/js/weidian.js"></script>
 	</head>
 	<body style="padding-bottom:50px;">
-		<header class="index-head" style="position:absolute;">
+		<header class="index-head" style="position:fixed;">
 			<a class="logo" href="./index.php"><img src="<?php echo TPL_URL;?>images/danye_03.png" /></a>
 			<div class="search J_search">
 				<span class="js_product_search"></span><input placeholder="输入商品名" class="search_input s-combobox-input" />

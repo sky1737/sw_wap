@@ -64,7 +64,7 @@ else { ?>
 	  <?php } ?>
 	</div>
 </div> -->
-<header class="index-head" style="position:absolute;">
+<header class="index-head" style="position:fixed;">
 	<?php
 	echo '<a class="logo" href="./index.php">';
 	echo empty($now_store) ? '<img src="' . $config['site_logo'] . '" alt="' . $config['site_name'] . '" />'

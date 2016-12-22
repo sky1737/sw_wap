@@ -556,17 +556,17 @@ if(!defined('TWIKER_PATH'))
 						$user_coupon_money + $nowOrder['balance'] +
 						$nowOrder['point'] * 1.00 / $config['point_exchange']); ?>');
 			var rate = parseFloat('<?php echo $config['point_exchange']; ?>');
-			$('.txt-ye').blur(function () {
+			$('.txt-ye').change(function () {
 				// 使用余额
 				var t = total;
 				$('#js-total').text(t);
 
 				var b = $('#balance').val();
+				console.log(b);
 				if (b == '' || isNaN(b)) {
 					$('#balance').val('0');
 					$('#js-balance-txt').text('');
-				}
-				else {
+				} else {
 					b = parseFloat(b).toFixed(2);
 					if (b <= 0) {
 						$('#balance').val('0');
@@ -587,7 +587,9 @@ if(!defined('TWIKER_PATH'))
 						if (t == 0) {
 							$('.btn-pay').data('data-pay-type', 'account');
 							$('.btn-pay').text('账户余额支付');
-							return false;
+						}else{
+							$('.btn-pay').data('data-pay-type', 'weixin');
+							$('.btn-pay').text('微信安全支付');
 						}
 					}
 				}

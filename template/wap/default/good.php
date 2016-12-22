@@ -43,8 +43,8 @@
         <script src="<?php echo TPL_URL; ?>js/base.js?time=<?php echo time(); ?>"></script>
         <!--<script src="<?php /*echo TPL_URL; */?>js/sku.js"></script>-->
         <!--<script src="<?php /*echo TPL_URL; */?>js/good.js"></script>-->
-        <script src=" http://yws.dev/template/wap/default/js/sku.js "></script>
-        <script src=" http://yws.dev/template/wap/default/js/good.js "></script>
+        <script src=" http://yws.dev:8000/template/wap/default/js/sku.js "></script>
+        <script src=" http://yws.dev:8000/template/wap/default/js/good.js "></script>
         <script src="<?php echo TPL_URL; ?>js/drp_notice.js"></script>
         <style type="text/css">
             .custom-richtext p {
@@ -122,7 +122,7 @@
                      data-max-width="<?php echo $nowProduct['image_size']['width']; ?>">
                     <div class="swiper-container" style="height: 350px;">
                         <div class="swiper-wrapper">
-                            <?php foreach ($nowProduct['images'] as $value) { ?>
+                            <?php foreach ($nowProduct['images'] as $value) { ?>f
                                 <div class="swiper-slide" style="height: 350px;">
                                     <a class="js-no-follow" href="javascript:;" style="height: 350px;"><img
                                             src="<?php echo $value['image']; ?>"/></a></div>

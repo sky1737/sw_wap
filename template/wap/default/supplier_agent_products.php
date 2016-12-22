@@ -70,13 +70,13 @@
 						complete: null
 					}
 				});
-				$('#device').show();
 				//下架
-				$('.js-off-shelves').click(function () {
+				$('.js-off-shelves').on('touchstart', function () {
 					var pid = $(this).data('pid');
 					$.post('/supplier.php?c=account&a=offshelves', {'pid': pid}, function(data){
 						if (!data.err_code) {
 							alert(data.err_msg);
+							window.location.reload();
 							//console.log($elem);
 						} else {
 							alert(data.err_msg);

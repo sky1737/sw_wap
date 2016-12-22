@@ -50,7 +50,7 @@
 </head>
 
 <body style="max-width:640px;margin:0 auto;">
-<header class="index-head" style="position:absolute;">
+<header class="index-head" style="position:fixed;">
 	<?php
 	echo '<a class="logo" href="./index.php">';
 	echo empty($now_store) ? '<img src="' . $config['site_logo'] . '" alt="' . $config['site_name'] . '" />'
@@ -465,7 +465,7 @@ else {
 </div>
     <?php } ?>
 <div class="content">
-	<div class="content-body" style="padding:10px;background:#F8F8F8;">
+	<div class="content-body" style="padding:10px 0 0;margin-bottom:-18px;background:#F8F8F8;">
 		<div style="text-align:center;">
 			<?php
 			if(empty($titles[3])) {
