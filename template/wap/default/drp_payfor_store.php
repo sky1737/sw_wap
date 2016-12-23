@@ -61,7 +61,7 @@
             bottom:0;
             left: 0;
             right: 0;
-            z-index: 5000;
+            z-index: 9999;
             overflow-y: scroll;
         }
 
@@ -118,8 +118,9 @@
             color: #FFF;
         }
 
-        #protocolIsAgree {
-            margin: 0 0 0 7px;
+        .protocolIsAgree {
+            position: absolute;
+            margin: 3px 0 5px 7px;
         }
 
     </style>
@@ -141,19 +142,18 @@
             ?>
         </select>
         <span id="protocol"><a href="javascript:void(0);">开店协议</a></span>
-        <span><input type="checkbox" id="protocolIsAgree"></span>
+        <span class="protocolIsAgree"><input type="checkbox" id="protocolIsAgree"></span>
         <!--<span>友情价：</span>
-		<span class="price">￥<?php printf("%.2f", $config['payfor_store'] * 1); ?></span>
+		<span class="price">￥<?php /*printf("%.2f", $config['payfor_store'] * 1); */?></span>
 		<span>(数量有限)</span>-->
     </div>
     <div class="right">
-        <a href="javascript:;" class="payfor">立即开店</a>
+        <a href="javascript:void(0);" class="payfor">立即开店</a>
     </div>
 </div>
 
 <div class="protocol-container">
     <div class="title">
-        <img src="./public/user/image/img-yws-sm.png" alt=""/>
         <div>
             <p>微店代理销售服务和结算协议</p>
         </div>
@@ -244,14 +244,14 @@
         });
 
     $('#protocol').click(function () {
-        $$('.protocol-container').css('display','block');
-        $$('.protocol-container .agree').click(function () {
-            $$('#protocolIsAgree').prop('checked',true);
-            $$('.protocol-container').css('display', 'none');
+        $('.protocol-container').css('display','block');
+        $('.protocol-container .agree').click(function () {
+            $('#protocolIsAgree').prop('checked',true);
+            $('.protocol-container').css('display', 'none');
         });
-        $$('.protocol-container .cancel').click(function () {
-            $$('#protocolIsAgree').prop('checked',false);
-            $$('.protocol-container').css('display', 'none');
+        $('.protocol-container .cancel').click(function () {
+            $('#protocolIsAgree').prop('checked',false);
+            $('.protocol-container').css('display', 'none');
         });
     });
 
