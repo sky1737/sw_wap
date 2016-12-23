@@ -171,9 +171,11 @@
             'opening_bank': opening_bank, 'bank_card_user': bank_card_user, 'bank_card': bank_card
         }, function (data) {
             if (data.err_code == 0) {
+                alert('修改成功');
                 window.location.href = data.err_msg;
             } else {
-                ShowMsg(data.err_msg);
+                /*ShowMsg(data.err_msg);*/
+                alert('修改失败');
                 return;
             }
         }, 'JSON');
