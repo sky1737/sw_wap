@@ -890,3 +890,20 @@ body {
 	width: auto
 }
 
+.index-search-btn {
+	color: #666;
+	border: 1px solid #FFF;
+	padding: 3px 7px;
+	border-radius: 2px;
+}
+
+.index-ad-container {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: #00a0e9;
+	z-index: 10000;
+}
+

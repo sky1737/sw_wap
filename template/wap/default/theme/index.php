@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="<?php echo TPL_URL; ?>theme/css/style.css" type="text/css">
 <link rel="stylesheet" href="<?php echo TPL_URL; ?>theme/css/swiper.min.css" type="text/css">
 <link rel="stylesheet" href="<?php echo TPL_URL; ?>theme/css/index.css" type="text/css">
+<!--	<link rel="stylesheet" href="../template/wap/default/theme/css/index.css" type="text/css">-->
 <link rel="stylesheet" href="<?php echo TPL_URL; ?>theme/css/gonggong.css" type="text/css">
 <?php if ($is_mobile) { ?>
 <link rel="stylesheet" href="<?php echo TPL_URL; ?>css/showcase.css"/>
@@ -60,7 +61,8 @@
 	<form onsubmit="return false;" class="search J_search"> <span class="js_product_search"></span>
 		<input type="search" placeholder="输入商品名" class="search_input s-combobox-input" />
 	</form>
-	<a href="./my.php" class="me"></a> 
+	<!--<a href="./my.php" class="me"></a> -->
+	<a class="index-search-btn" href="javascript:void(0);">搜索</a>
 	<!--<div id="J_toast" class="toast ">你可以在这输入商品名称</div>--> 
 </header>
 <script type="text/javascript">
@@ -83,6 +85,15 @@ $(function () {
 	});
 
 	$(".js_product_search").click(function () {
+		var val = $.trim($(".s-combobox-input").val());
+		if (val.length == 0) {
+			return;
+		} else {
+			window.location.href = './category.php?keyword=' + encodeURIComponent(val);
+		}
+	});
+
+	$(".index-search-btn").click(function () {
 		var val = $.trim($(".s-combobox-input").val());
 		if (val.length == 0) {
 			return;
@@ -664,6 +675,16 @@ foreach($categories as $key=>$val) {
 		</div>
 	</div>
 </div>
+
+	<!--<div class="swiper-container index-ad-container">
+		<div class="swiper-wrapper">
+			<div class="swiper-slide"><img src="../template/wap/default/images/index/index-ad-1.jpg" alt=""></div>
+			<div class="swiper-slide"><img src="../template/wap/default/images/index/index-ad-2.jpg" alt=""></div>
+			<div class="swiper-slide"><img src="../template/wap/default/images/index/index-ad-3.jpg" alt=""></div>
+			<div class="swiper-slide"><img src="../template/wap/default/images/index/index-ad-4.jpg" alt=""></div>
+		</div>
+	</div>-->
+
 <script>
 $(function () {
 	$(".nar_shop").click(function () {
@@ -683,6 +704,10 @@ $(function () {
 		$('.' + sClass1).hide();
 		$('.' + sClass2).show();
 	}
+
+	var mySwiper = new Swiper('.swiper-container', {
+		autoplay: 5000,//可选选项，自动滑动
+	})
 });
 </script>
 <?php include display('public_search'); ?>
