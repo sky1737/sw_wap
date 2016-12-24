@@ -133,7 +133,7 @@
 <!--							--><?php //}?>
 							<?php if($uid == $order['uid'] && $order['status'] == 3){?>
 								<a href="javascript:;" data-id="<?php echo $order['order_id']; ?>" class="btn btn-xxsmall btn-pink js-order_confirm">确认收货</a>
-							<?php}?>
+							<?php?>
 						</div>
 					</div>
 				</li>
