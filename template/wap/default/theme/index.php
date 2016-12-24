@@ -57,9 +57,9 @@
 		: '<img src="' . $now_store['logo'] . '" alt="' . $now_store['name'] . '" />';
 	echo '</a>';
 	?>
-	<div class="search J_search"> <span class="js_product_search"></span>
+	<form onsubmit="return false;" class="search J_search"> <span class="js_product_search"></span>
 		<input type="search" placeholder="输入商品名" class="search_input s-combobox-input" />
-	</div>
+	</form>
 	<a href="./my.php" class="me"></a> 
 	<!--<div id="J_toast" class="toast ">你可以在这输入商品名称</div>--> 
 </header>
