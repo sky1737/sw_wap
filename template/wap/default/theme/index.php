@@ -17,7 +17,7 @@
 <link rel="stylesheet" href="<?php echo TPL_URL; ?>theme/css/style.css" type="text/css">
 <link rel="stylesheet" href="<?php echo TPL_URL; ?>theme/css/swiper.min.css" type="text/css">
 <link rel="stylesheet" href="<?php echo TPL_URL; ?>theme/css/index.css" type="text/css">
-<!--	<link rel="stylesheet" href="../template/wap/default/theme/css/index.css" type="text/css">-->
+<!--<link rel="stylesheet" href="../template/wap/default/theme/css/index.css" type="text/css">-->
 <link rel="stylesheet" href="<?php echo TPL_URL; ?>theme/css/gonggong.css" type="text/css">
 <?php if ($is_mobile) { ?>
 <link rel="stylesheet" href="<?php echo TPL_URL; ?>css/showcase.css"/>
@@ -62,7 +62,7 @@
 		<input type="search" placeholder="输入商品名" class="search_input s-combobox-input" />
 	</form>
 	<!--<a href="./my.php" class="me"></a> -->
-	<a class="index-search-btn" href="javascript:void(0);">搜索</a>
+	<a class="index-search-btn" href="javascript:void(0);"> 搜索 </a>
 	<!--<div id="J_toast" class="toast ">你可以在这输入商品名称</div>--> 
 </header>
 <script type="text/javascript">
