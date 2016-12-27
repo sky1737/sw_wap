@@ -168,9 +168,13 @@ function getProducts() {
 							'<a href="./good.php?id=' + product.product_id + '&platform=1">' +
 							'<p class="cover"><img src="' + product.image + '"></p>' +
 							'<p class="fn">' + product.name + '</p>' +
-							'<p class="prices"><del><em>¥&nbsp;' + (product.discount <10 ? (product.price/product.discount*10).toFixed(2) :  product.market_price) + '</em></del><strong><em>¥&nbsp;' + product.price + '</em></strong>'+discountStr+'</p>' +
-							'<p class="back">购买立返 <strong><em>' + (product.point == undefined || product.point == 0 ? '￥' + product.rebate : (product.point<0?0:product.point)+'积分') + '</em></strong></p>' +
-							'<p class="sku"><span class="comment_num ' + (product.sales == '0' ? 'hide' : '') + '">销量 <span>' + product.sales + '</span></span>&nbsp;<span class="stock hide">无货</span></p>' +
+							'<p class="prices">' +
+							(product.market_price == product.price
+							? ''
+							: '<del><em>¥&nbsp;' + (product.discount <10 ? (product.price/product.discount*10).toFixed(2) : product.market_price) + '</em></del>') +
+							'<strong><em>¥&nbsp;' + product.price + '</em></strong>'+discountStr+'</p>' +
+							'<p class="back" style="margin:0px 0 0 56px">购买立返 <strong><em>' + (product.point == undefined || product.point == 0 ? '￥' + product.rebate : (product.point<0?0:product.point)+'积分') + '</em></strong></p>' +
+							'<p class="sku"><span style="margin:-2px 0 0 6px" class="comment_num ' + (product.sales == '0' ? 'hide' : '') + '">销量 <span>' + product.sales + '</span></span>&nbsp;<span class="stock hide">无货</span></p>' +
 							'</a></div>';
 					}
 					$('#itemList').append(productHtml).removeClass('hide');

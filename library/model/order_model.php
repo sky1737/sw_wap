@@ -333,7 +333,7 @@ class order_model extends base_model
                 $product_sku_model->where($condition_product_sku)->setInc('quantity', $value['pro_num']);
             }
             $condition_product['product_id'] = $value['product_id'];
-            $product_model->where($condition_product)->setDec('sales', $value['pro_num']);
+            $product_model->where(array_merge($condition_product,array('sales' =>array('gt',0))))->setDec('sales', $value['pro_num']);
             $product_model->where($condition_product)->setInc('quantity', $value['pro_num']);
         }
 
