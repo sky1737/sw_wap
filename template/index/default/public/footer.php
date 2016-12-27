@@ -17,8 +17,8 @@
 		<div class="Cfooter-info">
 			<dl class="w1000"style="auto;text-align:">
 				<dt> <strong><img style="width:180px;" src="<?php echo $config['site_footer_logo'] ?>"></strong> </dt>
-				<dd> <strong>齐惠微盟</strong>
-					<a target="_blank" href="/help/111/119.html">关于齐惠微盟</a>
+				<dd> <strong>温商工厂</strong> 
+					<a target="_blank" href="/help/111/119.html">关于云温商</a>
 					<a target="_blank" href="/help/111/120.html">合作及洽谈</a>
 					<a target="_blank" href="/help/111/121.html">免责声明</a>
 				</dd>
