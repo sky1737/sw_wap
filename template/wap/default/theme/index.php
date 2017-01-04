@@ -46,8 +46,6 @@
 <script async="" src="<?php echo TPL_URL; ?>theme/js/index.js?time=<?php echo time(); ?>"></script>
 <!--<script type="text/javascript" src="--><?php //echo TPL_URL; ?><!--theme/js/example.js"></script>-->
 <script src="http://api.map.baidu.com/api?v=1.2" type="text/javascript"></script>
-<script>
-</script>
 </head>
 
 <body style="max-width:640px;margin:0 auto;">
@@ -391,7 +389,7 @@ else {
 .remai li {float:left;}
 .remai li img {width:100%;height:100%;
 </style>
-<div class="content">
+<div class="content" style="margin:-23px auto 0;">
 	<div class="content-body" style="padding:10px;background:#F8F8F8;">
 		<div style="text-align:center;">
 			<?php
@@ -429,7 +427,7 @@ else {
 .xinpin li {float:left;}
 .xinpin li img {width:100%;height:100%;
 </style>
-<div class="content">
+<div class="content" style="margin:-23px auto 0;">
 	<div class="content-body" style="padding:10px;background:#F8F8F8;">
 		<div style="text-align:center;">
 			<?php
@@ -475,8 +473,8 @@ else {
 	</div>
 </div>-->
     <?php } ?>
-<div class="content">
-	<div class="content-body" style="padding:10px 0 0;margin-bottom:-18px;background:#F8F8F8;">
+<div class="content" style="margin:-23px auto 0;">
+	<div class="content-body" style="padding:10px 0 0;margin-bottom:3px;background:#F8F8F8;">
 		<div style="text-align:center;">
 			<?php
 			if(empty($titles[3])) {
