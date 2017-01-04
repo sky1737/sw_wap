@@ -364,15 +364,14 @@ else {
 				</div>
 			</div>
 		</div>
-
  <?php }
     if($openAll || false){  //为你优选 ?>
 <style type="text/css">
 .banner8 {}
 .banner8 li {float:left;}
-.banner8 li img {width:100%;height:100%;
+.banner8 li img {width:100%;height:100%;display:block;}
 </style>
-<div class="content" style="margin-top:-15px;">
+<div class="content">
 	<div class="content-body" style="padding:10px;background:#F8F8F8;">
 		<div style="text-align:center;">
 			<?php
