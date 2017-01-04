@@ -341,13 +341,20 @@ else {
 		</script>
 	</div>
 </div>
-
+	 <style type="text/css">
+		 .index-event {
+			 background-color: transparent;
+		 }
+		 .index-event .cnt .item img {
+			 width: 100%;
+		 }
+	 </style>
  <?php }
 	if($openAll || false){  //额外 广告条 */?>
-		<div class="content">
+		<div class="content" style="margin:-11px auto 0;">
 			<div class="content-body">
 				<div class="index-event">
-					<div class="cnt">
+					<div class="cnt" style="padding:0 10px;">
 						<?php
 						foreach ($banners as $key => $value) {
 							echo '<a class="item" href="'.$value['url'].'"> <img src="'.$value['pic'].'" alt="'.$value['name'].'"/> </a>';
