@@ -146,6 +146,7 @@ switch ($action) {
             $data_order_product['pro_price'] = $product_price;
             $data_order_product['comment'] = !empty($_POST['custom']) ? serialize($_POST['custom']) : '';
             $data_order_product['pro_weight'] = $nowProduct['weight'];
+            $data_order_product['name'] = $nowProduct['name'];
 
             if (D('Order_product')->data($data_order_product)->add()) {
                 /**

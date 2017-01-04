@@ -78,7 +78,11 @@ if(!empty($_GET['del_id'])) {
 		json_return(1001, '该订单不存在或已关闭');
 
 	// 更改订单状态
-	M('Order')->cancelOrder($nowOrder);
+    /**
+     * @var $orderM order_model
+     */
+    $orderM = M('Order');
+    $orderM->cancelOrder($nowOrder);
 
 	json_return(0, '关闭订单成功');
 }

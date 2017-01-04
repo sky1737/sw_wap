@@ -168,6 +168,8 @@ if($count > 0) {
 //$shareData = $share->getSgin($share_conf);
 ////分享配置 end
 
+//var_dump($order_list[0]['product_list']);exit;
+
 include display('my_order');
 
 echo ob_get_clean();
