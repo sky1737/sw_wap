@@ -498,7 +498,7 @@ else {
 </div>-->
     <?php } ?>
 <div class="content" style="margin:-23px auto 0;">
-	<div class="content-body" style="padding:10px 0 0;margin-bottom:-20px;background:#F8F8F8;">
+	<div class="content-body" style="padding:10px 0 0;margin-bottom:-10px;background:#F8F8F8;">
 		<div style="text-align:center;">
 			<?php
 			if(empty($titles[3])) {
