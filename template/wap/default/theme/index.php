@@ -307,7 +307,7 @@ else {
 .banner4 li:nth-child(2) {float:left;}
 .banner4 li:nth-child(3) {float:left;}
 .banner4 li:nth-child(4) {clear:both;}
-.banner4 li img {width:100%;height:100%;}
+.banner4 li img {width:100%;height:100%;display:block;}
 </style>
 <div class="content">
 	<div class="content-body" style="padding:10px;background-color:#F8F8F8;">
@@ -350,7 +350,7 @@ else {
 .banner8 li {float:left;}
 .banner8 li img {width:100%;height:100%;
 </style>
-<div class="content">
+<div class="content" style="margin-top:-15px;">
 	<div class="content-body" style="padding:10px;background:#F8F8F8;">
 		<div style="text-align:center;">
 			<?php
@@ -462,18 +462,18 @@ else {
 </div>
     <?php }
     if($openAll || false){  //额外 广告条 ?>
-<div class="content">
+<!--<div class="content">
 	<div class="content-body">
 		<div class="index-event">
 			<div class="cnt">
 				<?php
-				foreach ($banners as $key => $value) {
+/*				foreach ($banners as $key => $value) {
 					echo '<a class="item" href="'.$value['url'].'"> <img src="'.$value['pic'].'" alt="'.$value['name'].'"/> </a>';
-				} ?>
+				} */?>
 			</div>
 		</div>
 	</div>
-</div>
+</div>-->
     <?php } ?>
 <div class="content">
 	<div class="content-body" style="padding:10px 0 0;margin-bottom:-18px;background:#F8F8F8;">
