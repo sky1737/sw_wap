@@ -341,6 +341,23 @@ else {
 		</script>
 	</div>
 </div>
+
+ <?php }
+	if($openAll || false){  //额外 广告条 */?>
+		<div class="content">
+			<div class="content-body">
+				<div class="index-event">
+					<div class="cnt">
+						<?php
+						foreach ($banners as $key => $value) {
+							echo '<a class="item" href="'.$value['url'].'"> <img src="'.$value['pic'].'" alt="'.$value['name'].'"/> </a>';
+						}
+						?>
+					</div>
+				</div>
+			</div>
+		</div>
+
  <?php }
     if($openAll || false){  //为你优选 ?>
 <style type="text/css">
@@ -458,23 +475,24 @@ else {
 		</script>
 	</div>
 </div>
-    <?php }
-    if($openAll || false){  //额外 广告条 ?>
-<!--<div class="content">
+<!--    <?php /*}
+    if($openAll || false){  //额外 广告条 */?>
+<div class="content">
 	<div class="content-body">
 		<div class="index-event">
 			<div class="cnt">
 				<?php
 /*				foreach ($banners as $key => $value) {
 					echo '<a class="item" href="'.$value['url'].'"> <img src="'.$value['pic'].'" alt="'.$value['name'].'"/> </a>';
-				} */?>
+				}
+				*/?>
 			</div>
 		</div>
 	</div>
 </div>-->
     <?php } ?>
 <div class="content" style="margin:-23px auto 0;">
-	<div class="content-body" style="padding:10px 0 0;margin-bottom:3px;background:#F8F8F8;">
+	<div class="content-body" style="padding:10px 0 0;margin-bottom:-20px;background:#F8F8F8;">
 		<div style="text-align:center;">
 			<?php
 			if(empty($titles[3])) {
