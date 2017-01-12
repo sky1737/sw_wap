@@ -120,7 +120,7 @@
 
         .protocolIsAgree {
             position: absolute;
-            margin: 3px 0 7px 7px;
+            margin: 7px 0 7px 7px;
         }
     </style>
 </head>
