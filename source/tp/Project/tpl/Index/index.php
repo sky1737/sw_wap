@@ -72,7 +72,7 @@ var selected_module = "{pigcms{:strval($_GET['module'])}", selected_action = "{p
         </div>
     </div>
 </div>
-<div id="footer" class="footer">Powered by <a href="/" target="_blank">{pigcms{$config.site_name}</a> Copyright 2017 (c){pigcms{$config.site_name} 版权所有<span id="run"></span></div>
+<div id="footer" class="footer">Powered by <a href="http://" target="_blank">{pigcms{$config.site_name}</a> Copyright 2017 (c){pigcms{$config.site_name} 版权所有<span id="run"></span></div>
 <script type="text/javascript" src="{pigcms{$static_path}js/index.js"></script>
 </body>
 </html>

@@ -337,7 +337,7 @@ else {
 			$('.banner4 li:eq(1)').css({'width':(width * 0.5)+'px', 'height':(width * 0.5 * 4 / 3 / 2)+'px'});
 			$('.banner4 li:eq(2)').css({'width':(width * 0.5)+'px', 'height':(width * 0.5 * 4 / 3 / 2)+'px'});
 			$('.banner4 li:eq(3)').css({'width':width+'px', 'height':(width * 0.5 * 4 / 3 / 2)+'px'});
-			$('.banner4 li:eq(3) a').prop('href', './wenzhou_native.html');
+			//$('.banner4 li:eq(3) a').prop('href', './wenzhou_native.html');
 		});
 		</script>
 	</div>

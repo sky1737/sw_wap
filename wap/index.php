@@ -45,6 +45,9 @@ if ($now_store['has_ad'] && !empty($now_store['use_ad_pages'])) {
 // 分类列表
 $categories = M('Product_category')->getIndexCategories();
 $category_products = array();
+/**
+ * @var $db_product product_model
+ */
 $db_product = M('Product');
 foreach ($categories as $val) {
     $category_products[] = $db_product

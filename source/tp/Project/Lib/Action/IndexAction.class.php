@@ -63,17 +63,17 @@ class IndexAction extends BaseAction
 		$end_time = $date . ' 23:59:59';
 
 		//昨日新增用户
-//		$where = array();
-//		$where['_string'] =
-//			"reg_time >= '" . strtotime($start_time) . "' AND reg_time <= '" . strtotime($end_time) . "'";
-//		$yesterday_add_user_count = $user->where($where)->count('uid');
-		$yesterday_add_user_count = 342;
+		$where = array();
+		$where['_string'] =
+			"reg_time >= '" . strtotime($start_time) . "' AND reg_time <= '" . strtotime($end_time) . "'";
+		$yesterday_add_user_count = $user->where($where)->count('uid');
+		//$yesterday_add_user_count = 342;
 		//昨日新增店铺
-//		$where = array();
-//		$where['_string'] =
-//			"date_added >= '" . strtotime($start_time) . "' AND date_added <= '" . strtotime($end_time) . "'";
-//		$yesterday_add_store_count = $user->where($where)->count('uid');
-		$yesterday_add_store_count = 11;
+		$where = array();
+		$where['_string'] =
+			"date_added >= '" . strtotime($start_time) . "' AND date_added <= '" . strtotime($end_time) . "'";
+		$yesterday_add_store_count = $user->where($where)->count('uid');
+		//$yesterday_add_store_count = 11;
 		//未付款订单
 		$not_paid_order_count = $order->where(array('status' => 1))->count('order_id');
 		//未发货订单
