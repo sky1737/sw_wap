@@ -38,7 +38,7 @@
         </section>
     </nav>
 </div>
-<div style="margin-top:45px;padding: 10px;">
+<div style="margin-top:40px;padding: 9px;">
     <input type="text" style="width: 80%;float: left;margin: 0;height: 1.8rem;font-size: 1rem;" id="keyword"
            name="keyword" value=""
            placeholder="请输入搜索关键字"/>
