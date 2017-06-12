@@ -1,0 +1,40 @@
+@charset "utf-8";
+/* CSS Document */
+
+*{margin:0px;}
+html{overflow-y:hidden}
+#cont{width:100%;position:relative;}
+
+.stage{width:100%;height:580px;display:block;position: relative;overflow: hidden;}
+.stage_box{width:900px;height:580px;margin:auto;position:relative;text-align:center;overflow:hidden;}
+
+#stage1{background-color:#f9f9f9; background:url(../images/banner1.png) no-repeat; background-size:100% 100%;}
+#stage2{background-color:#35b5d2; background:url(../images/banner2.png) no-repeat; background-size:100% 100%;}
+#stage3{background-color:#f3bf2e;  background:url(../images/banner3.png) no-repeat; background-size:100% 100%;}
+#stage4{background-color:#5c86c2;background:url(../images/banner4.png) no-repeat; background-size:100% 100%;}
+
+#stage5{background-color:#a2c371;background:url(../images/banner5.png) no-repeat; background-size:100% 100%;}
+
+.fe_flag{position:absolute;width: 140px;height:86px;right: 80px;bottom: 50px; background:url(../images/fe_flag.png) no-repeat;}
+
+#guider .bg{z-index:0;width:100%;height:100%;background:url(../images/guider_bg5.png) no-repeat center center;filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=scale, src="images/guider_bg5.png");_background-image: none;position:absolute;top:0px;left:0px;}
+#guider{width:30px;height:205px;position:absolute;top:380px;right:150px;}
+
+#guider_link1{z-index:1;height:31px;}
+.guider_link{position:relative;z-index:1;width:100%;height:20px;display:block;cursor:pointer;}
+#guider_link2.select{background:url(../images/guider1_select.jpg) no-repeat center center;}
+#guider_link3.select{background:url(../images/guider2_select.jpg) no-repeat center center;}
+#guider_link4.select{background:url(../images/guider_select_plus.jpg) no-repeat center center;}
+#guider_link6.select{background:url(../images/guider4_select.jpg) no-repeat center center;}
+#logo {position: absolute;top:2px;left:2.5px;}
+.swf_object{height:768px;margin-top:-94px;}
+.btn_down{width:80px;height:80px;position:absolute;bottom:0px;margin-left: -10px;left: 50%;cursor:pointer;}
+.sign {position:absolute; width: 32px;height:12px;left:24px;}
+#sign1_1{background: url(../images/sign1.png) no-repeat  ;bottom: 30px;}
+#sign2_1{background: url(../images/sign2.png) no-repeat  ;bottom: 38px;}
+#sign3_1{background: url(../images/sign3.png) no-repeat  ;bottom: 46px;}
+.signImg1{background: url(../images/sign_1.png) no-repeat  ;bottom: 30px;}
+.signImg2{background: url(../images/sign_2.png) no-repeat  ;bottom: 38px;}
+.signImg3{background: url(../images/sign_3.png) no-repeat  ;bottom: 46px;}
+
+

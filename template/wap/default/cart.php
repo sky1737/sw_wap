@@ -16,9 +16,11 @@
 	<link rel="stylesheet" href="<?php echo TPL_URL; ?>css/trade.css"/>
 	<link rel="stylesheet" href="<?php echo TPL_URL; ?>css/cart.css"/>
 	<script type="text/javascript">
+		
 		var noCart = true, 
 			storeId =<?php echo $now_store['store_id']?>, 
-			storeUrl = "<?php echo $now_store['url'];?>",
+			//storeUrl = "<?php echo $now_store['url'];?>",//2017/4/21修改为下行
+			storeUrl = '<?php echo $config["wap_site_url"]?>',
 			orderPrefix = "<?php echo $config['orderid_prefix']; ?>",
 			mergePrefix = "<?php echo $config['mergeid_prefix']; ?>";
 	</script>
@@ -27,6 +29,7 @@
 	<script src="<?php echo TPL_URL; ?>js/cart.js"></script>
 </head>
 <body class="body-fixed-bottom">
+
 <div class="container">
 	<div class="content">
 		<div class="tabber tabber-n2 tabber-double-11 clearfix">

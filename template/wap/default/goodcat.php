@@ -69,7 +69,7 @@
 		<?php } ?>
 		<!-- ▼顶部通栏 -->
 		<div class="js-mp-info share-mp-info">
-			<a class="page-mp-info" href="<?php echo $now_store['url']; ?>">
+			<a class="page-mp-info" href="<?php echo $now_store['url'].'?ywsydy=true'; ?>">
 				<img class="mp-image" width="24" height="24" src="<?php echo $now_store['logo']; ?>"
 				     alt="<?php echo $now_store['name']; ?>"/>
 				<i class="mp-nickname"><?php echo $now_store['name']; ?></i>
@@ -393,7 +393,7 @@
 	</div>
 	<?php if (!$is_mobile) { ?>
 		<div class="content-sidebar">
-			<a href="<?php echo $now_store['url']; ?>" class="link">
+			<a href="<?php echo $now_store['url'].'?ywsydy=true'; ?>" class="link">
 				<div class="sidebar-section shop-card">
 					<div class="table-cell">
 						<img src="<?php echo $now_store['logo']; ?>" width="60" height="60" class="shop-img"

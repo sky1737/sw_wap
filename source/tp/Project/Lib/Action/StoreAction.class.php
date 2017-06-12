@@ -12,7 +12,6 @@ class StoreAction extends BaseAction
 	{
 		$store = D('StoreView');
 		$agent = M('Agent');
-
 		$condition = array();
 		if (!empty($_GET['type']) && !empty($_GET['keyword'])) {
 			if ($_GET['type'] == 'store_id') {
@@ -52,6 +51,7 @@ class StoreAction extends BaseAction
 		$withdrawal_count = $withdrawal->where(array('status' => 1))->count('id');
 
 		$this->assign('stores', $stores);
+		//dump($stores);
 		$this->assign('page', $page->show());
 		$this->assign('agent_list', $agents);
 		$this->assign('withdrawal_count', $withdrawal_count);

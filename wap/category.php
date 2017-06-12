@@ -23,6 +23,7 @@ $supplier_uid = intval($_GET['suid']); //供应商UID
 
 if (isset($_GET['discount'])) {
     $db_banner = M('Adver');
+    
     $banner = $db_banner->get_adver_by_key('wap_lottery_top', 0);
     //print_r($banner);
     $footer = $db_banner->get_adver_by_key('wap_lottery_footer', 0);
@@ -37,8 +38,10 @@ if (isset($_GET['discount'])) {
     include display('index_category_discount');
 }
 elseif(empty($keyword) && !$supplier_uid){
+
     include display('index_category');
 }else{
+
 	$key_id = intval($_GET['id']);
 
 	// 顶级分类和子分类
@@ -50,6 +53,7 @@ elseif(empty($keyword) && !$supplier_uid){
 
 	$property_list = array();
 	if (!empty($category_detail)) {
+
 		$property_list = M('System_product_property')->getPropertyAndValue($category_detail['filter_attr']);
 	}
 

@@ -6,7 +6,7 @@ if (empty($noFooterLinks) && empty($noFooterCopy)) { ?>
                 <?php
                 if (empty($noFooterLinks)) { ?>
                     <div class="ft-links">
-                        <a href="<?php echo './'; //$now_store['url']; ?>">店铺主页</a>
+                        <a href="<?php echo './?ywsydy=true'; //$now_store['url']; ?>">店铺主页</a>
                         <a href="<?php echo './my.php'; //$now_store['ucenter_url']; ?>">会员中心</a>
                         <?php echo $now_store['physical_count'] ? '<a href="' . $now_store['physical_url'] . '">线下门店</a>' : ''; ?>
                     </div>
@@ -29,7 +29,7 @@ if (empty($noFooterLinks) && empty($noFooterCopy)) { ?>
 <div class="wx_aside" id="quckArea">
     <a href="javascript:void(0);" id="quckIco2" class="btn_more">更多</a>
     <div class="wx_aside_item" id="quckMenu">
-        <a href="./index.php" class="item_index">首页</a>
+        <a href="./index.php?ywsydy=true" class="item_index">首页</a>
         <a href="./category.php" class="item_fav">商品分类</a>
         <a href="./cart.php" class="item_cart" id>购物车</a>
 <!--        <div id="BizQQWPA"  class="item_uc" >QQ客服</div>-->
@@ -39,6 +39,8 @@ if (empty($noFooterLinks) && empty($noFooterCopy)) { ?>
         <!-- WPA Button End -->
         <?php // <a href="./weidian.php" class="item_cart">微店列表</a> ?>
         <a href="./my.php" class="item_uc">个人中心</a>
+        <a href="./yws_newzerosell.php" class="item_uc">新零售申请</a>
+<!--        <a href="./yws_ydy.php?page=1" class="item_uc">引导页</a>-->
     </div>
 </div>
 <?php

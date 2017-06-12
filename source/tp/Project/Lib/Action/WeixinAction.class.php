@@ -15,7 +15,7 @@ class WeixinAction extends Action
     {
         $wechat = new Wechat($this->config);
         $data = $wechat->request();
-
+        //dump($data);
         Log::write('wechat:request:data:' . $data['FromUserName'] . ':' . json_encode($data), 'INFO');
         list($content, $type) = $this->reply($data);
 

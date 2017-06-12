@@ -1,18 +1,22 @@
 <include file="Public:header"/>
 <div class="mainbox">
     <link rel="stylesheet" type="text/css" href="{pigcms{$static_path}css/main.css"/>
-    <div id="Profile" class="list">
-        <h1><b>个人信息</b><span>Profile&nbsp; Info</span></h1>
-        <ul>
-            <li><span>会员名:</span>{pigcms{$system_session.account}</li>
-            <li><span>会员组:</span>超级管理员</li>
-            <li><span>最后登陆时间:</span>{pigcms{$system_session.last_time|date='Y-m-d H:i:s',###}</li>
-            <li><span>最后登陆IP/地址:</span>{pigcms{$system_session.last_ip|long2ip=###} /
-                {pigcms{$system_session.last.country} {pigcms{$system_session.last.area}
-            </li>
-            <li><span>登陆次数:</span>{pigcms{$system_session.login_count}</li>
-        </ul>
-    </div>
+    <?php if(session('system.account')=='ywswatch'):?>
+    <?php else:?>
+        <div id="Profile" class="list">
+            <h1><b>个人信息</b><span>Profile&nbsp; Info</span></h1>
+            <ul>
+                <li><span>会员名:</span>{pigcms{$system_session.account}</li>
+                <li><span>会员组:</span>超级管理员</li>
+                <li><span>最后登陆时间:</span>{pigcms{$system_session.last_time|date='Y-m-d H:i:s',###}</li>
+                <li><span>最后登陆IP/地址:</span>{pigcms{$system_session.last_ip|long2ip=###} /
+                    {pigcms{$system_session.last.country} {pigcms{$system_session.last.area}
+                </li>
+                <li><span>登陆次数:</span>{pigcms{$system_session.login_count}</li>
+            </ul>
+        </div>
+    <?php endif;?>
+
     <div id="sitestats">
         <h1><b>网站统计</b><span>Site &nbsp; Stats</span></h1>
 
@@ -39,14 +43,19 @@
             </ul>
         </div>
     </div>
-    <div id="system" class="list">
-        <h1><b>系统信息</b><span>System&nbsp; Info</span></h1>
-        <ul>
-            <volist name="server_info" id="vo">
-                <li><span>{pigcms{$key}:</span>{pigcms{$vo}</li>
-            </volist>
-        </ul>
-    </div>
+    <?php if(session('system.account')=='ywswatch'):?>
+    <?php else:?>
+    <<div id="system" class="list">
+
+            <h1><b>系统信息</b><span>System&nbsp; Info</span></h1>
+            <ul>
+                <volist name="server_info" id="vo">
+                    <li><span>{pigcms{$key}:</span>{pigcms{$vo}</li>
+                </volist>
+            </ul>
+        </div>
+        <?php endif;?>
+
     <!--<div id="system" class="list">
         <h1><b>官方更新动态</b><span>Soft &nbsp; Update</span></h1>
         <ul id="official_news">

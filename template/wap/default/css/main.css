@@ -64,7 +64,7 @@ textarea {
  *font-size: 100%; font: 100% Tahoma, Helvetica, Arial, sans-serif }
 table { font: 100% }
 a { color: #6d6d6d; text-decoration: none }
-a:hover { color: #ff4200; text-decoration: underline }
+/*a:hover { color: #ff4200; text-decoration: underline }*/
 .blank { clear: both; height: 10px; }
 /*公用搜索 底部按钮*/
 .WX_search { background-color: #000; height: 44px; position: relative; z-index: 300; border-bottom: 1px solid #ddd; }

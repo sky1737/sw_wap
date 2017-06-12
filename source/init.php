@@ -28,7 +28,7 @@ else
 }
 header('Content-Type: text/html; charset=UTF-8');
 date_default_timezone_set('Asia/Shanghai');
-ini_set('session.cookie_domain', '.191ws.com');
+ini_set('session.cookie_domain', '.yunwenshang.com');
 session_start();
 defined('GROUP_NAME') || define('GROUP_NAME', 'index');
 defined('MODULE_NAME') || define('MODULE_NAME', isset($_GET['c']) ? strtolower($_GET['c']) : 'index');

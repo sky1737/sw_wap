@@ -1,0 +1,285 @@
+/*banner start */
+.banner {
+  //width: 32rem;
+  position: relative;
+  height: 120px;
+  .logo {
+    width: 40%;
+    height: 90px;
+    background: url("../images/yws_lz/ydym/logo.png") no-repeat center/contain;
+    position: absolute;
+    top: 36px;
+    left: 50%;
+    margin-left: -20%;
+  }
+
+}
+
+/*banner end*/
+/*rotate start */
+p {
+  position: relative;
+  left: 0;
+  width: 100%;
+  height: 288px;
+  background: url("../images/yws_lz/ydym/p-bg1.png") no-repeat top center/contain;
+  -webkit-transform: translate(0rem, 0);
+  -ms-transform: translate(0rem, 0);
+  -o-transform: translate(0rem, 0);
+  transform: translate(0rem, 0);
+  -webkit-transition: all 1s;
+  -ms-transition: all 1s;
+  -o-transition: all 1s;
+  transition: all 1s;
+}
+/*rotate end*/
+/*link start*/
+.link {
+  a {
+    width: 40%;
+    text-align: center;
+    display: block;
+    border-radius: 6px;
+    -ms-border-radius: 6px;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    margin: 0 auto ;
+    color: white;
+    font-size: 14px;
+  }
+  a:first-child {
+    background:url("../images/yws_lz/ydym/b-1.png") no-repeat center /contain;
+    width: 60%;
+    height: 72px;
+    line-height: 72px;
+  }
+  a:last-child {
+    margin-bottom: 0;
+    opacity: .6;
+    height: 30px;
+    width: 150px;
+    line-height: 30px;
+    background-color: #4790cd;
+    border-radius: 15px;
+  }
+}
+
+/*link end*/
+//左边飞进 弹一下
+@-webkit-keyframes lightSpeedIn {
+  0% {
+    -webkit-transform: translateX(100%) skewX(-30deg);
+    transform: translateX(100%) skewX(-30deg);
+    opacity: 0
+  }
+  60% {
+    -webkit-transform: translateX(-20%) skewX(30deg);
+    transform: translateX(-20%) skewX(30deg);
+    opacity: .6
+  }
+  80% {
+    -webkit-transform: translateX(0%) skewX(-15deg);
+    transform: translateX(0%) skewX(-15deg);
+    opacity: .6
+  }
+  100% {
+    -webkit-transform: translateX(0%) skewX(0deg);
+    transform: translateX(0%) skewX(0deg);
+    opacity: .6
+  }
+}
+@keyframes lightSpeedIn {
+  0% {
+    -webkit-transform: translateX(100%) skewX(-30deg);
+    -ms-transform: translateX(100%) skewX(-30deg);
+    transform: translateX(100%) skewX(-30deg);
+    opacity: 0
+  }
+  60% {
+    -webkit-transform: translateX(-20%) skewX(30deg);
+    -ms-transform: translateX(-20%) skewX(30deg);
+    transform: translateX(-20%) skewX(30deg);
+    opacity: .6
+  }
+  80% {
+    -webkit-transform: translateX(0%) skewX(-15deg);
+    -ms-transform: translateX(0%) skewX(-15deg);
+    transform: translateX(0%) skewX(-15deg);
+    opacity: .6
+  }
+  100% {
+    -webkit-transform: translateX(0%) skewX(0deg);
+    -ms-transform: translateX(0%) skewX(0deg);
+    transform: translateX(0%) skewX(0deg);
+    opacity: .6
+  }
+}
+.lightSpeedIn {
+  -webkit-animation: lightSpeedIn 1s 1;
+  animation: lightSpeedIn 1s 1;
+}
+//渐进上下晃动
+@-webkit-keyframes flipInX {
+  0% {
+    -webkit-transform: perspective(400px) rotateX(90deg);
+    transform: perspective(400px) rotateX(90deg);
+    opacity: 0
+  }
+  40% {
+    -webkit-transform: perspective(400px) rotateX(-10deg);
+    transform: perspective(400px) rotateX(-10deg)
+  }
+  70% {
+    -webkit-transform: perspective(400px) rotateX(10deg);
+    transform: perspective(400px) rotateX(10deg)
+  }
+  100% {
+    -webkit-transform: perspective(400px) rotateX(0deg);
+    transform: perspective(400px) rotateX(0deg);
+    opacity: 1
+  }
+}
+@keyframes flipInX {
+  0% {
+    -webkit-transform: perspective(400px) rotateX(90deg);
+    -ms-transform: perspective(400px) rotateX(90deg);
+    transform: perspective(400px) rotateX(90deg);
+    opacity: 0
+  }
+  40% {
+    -webkit-transform: perspective(400px) rotateX(-10deg);
+    -ms-transform: perspective(400px) rotateX(-10deg);
+    transform: perspective(400px) rotateX(-10deg)
+  }
+  70% {
+    -webkit-transform: perspective(400px) rotateX(10deg);
+    -ms-transform: perspective(400px) rotateX(10deg);
+    transform: perspective(400px) rotateX(10deg)
+  }
+  100% {
+    -webkit-transform: perspective(400px) rotateX(0deg);
+    -ms-transform: perspective(400px) rotateX(0deg);
+    transform: perspective(400px) rotateX(0deg);
+    opacity: 1
+  }
+}
+.flipInX {
+  -webkit-backface-visibility: visible !important;
+  -ms-backface-visibility: visible !important;
+  backface-visibility: visible !important;
+  -webkit-animation: flipInX 1s 1;
+  animation: flipInX 1s 1;
+}
+//从上而下，弹跳
+@-webkit-keyframes bounceInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(-2000px);
+    transform: translateY(-2000px)
+  }
+  60% {
+    opacity: 1;
+    -webkit-transform: translateY(30px);
+    transform: translateY(30px)
+  }
+  80% {
+
+    -webkit-transform: translateY(-10px);
+    transform: translateY(-10px)
+  }
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0)
+  }
+}
+@keyframes bounceInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(-2000px);
+    -ms-transform: translateY(-2000px);
+    transform: translateY(-2000px)
+  }
+  60% {
+    opacity: 1;
+    -webkit-transform: translateY(30px);
+    -ms-transform: translateY(30px);
+    transform: translateY(30px)
+  }
+  80% {
+    -webkit-transform: translateY(-10px);
+    -ms-transform: translateY(-10px);
+    transform: translateY(-10px)
+  }
+  100% {
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+.bounceInDown {
+  -webkit-animation: bounceInDown 1s  1;
+  animation: bounceInDown 1s  1;
+}
+
+@-webkit-keyframes bounceInDown1 {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(-2000px);
+    transform: translateY(-2000px)
+  }
+  60% {
+    opacity: .6;
+    -webkit-transform: translateY(30px);
+    transform: translateY(30px)
+  }
+  80% {
+
+    -webkit-transform: translateY(-10px);
+    transform: translateY(-10px)
+  }
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0)
+  }
+}
+@keyframes bounceInDown1 {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(-2000px);
+    -ms-transform: translateY(-2000px);
+    transform: translateY(-2000px)
+  }
+  60% {
+    opacity: .6;
+    -webkit-transform: translateY(30px);
+    -ms-transform: translateY(30px);
+    transform: translateY(30px)
+  }
+  80% {
+    -webkit-transform: translateY(-10px);
+    -ms-transform: translateY(-10px);
+    transform: translateY(-10px)
+  }
+  100% {
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+.bounceInDown1 {
+  -webkit-animation: bounceInDown 1s  1;
+  animation: bounceInDown 1s  1;
+}
+/*修改最终样式*/
+body {
+  background: url("../images/yws_lz/ydym/bg .png") no-repeat center/cover;
+}
+
+
+
+
+
+
+
+
+

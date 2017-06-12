@@ -23,7 +23,13 @@ var selected_module = "{pigcms{:strval($_GET['module'])}", selected_action = "{p
             href="{pigcms{:U('Login/logout')}" target="_top" style="color:red;">[安全退出]</a><!--<i>|</i> <a
             href="http://www.252ws.com" target="_blank">官方网站</a>-->&nbsp;&nbsp;
         &nbsp;&nbsp;</div>
-    <div class="nav">&nbsp;&nbsp;&nbsp;&nbsp;欢迎您！{pigcms{$system_session.account} <i>|</i> [超级管理员] <i>|</i> <a
+    <div class="nav">&nbsp;&nbsp;&nbsp;&nbsp;欢迎您！{pigcms{$system_session.account} <i>
+            <?php if(session('system.account')=='ywswatch'):?>
+            <?php else:?>
+            |</i> [超级管理员] <i>
+            <?php endif;?>
+
+            |</i> <a
             href="{pigcms{$config.site_url}" target="_blank">浏览网站</a> <i>|</i>
         <!--<a href="/user.php?c=store&a=select" target="_blank"><?php if (!$_SESSION['user']['stores']) { ?>创建官方店铺<?php } else { ?>设置官方店铺<?php } ?></a>-->
         <a href="/admin.php?c=Index&a=offical_tore"

@@ -1,76 +1,80 @@
 <?php
-/**
- *  店铺主页
- */
 require_once dirname(__FILE__) . '/global.php';
+$ydy = I('get.ywsydy');
+if($ydy){
+    /**
+     *  店铺主页
+     */
+    require_once dirname(__FILE__) . '/global.php';
 
 //var_dump($store);
 // 模板类型
 //var_dump($config['is_diy_template']);
 //if ($config['is_diy_template']) {
 // 微杂志的自定义字段
-$homePage = D('Wei_page')->where(array('is_home' => 1, 'store_id' => $now_store['store_id']))->find();
-if ($homePage['has_custom']) {
-    $pageContent = '';
-    $homeCustomField = M('Custom_field')->getParseFields(0, 'page', $homePage['page_id']);
-    if ($homeCustomField) {
-        foreach ($homeCustomField as $value) {
-            $pageContent .= $value['html'];
+    $homePage = D('Wei_page')->where(array('is_home' => 1, 'store_id' => $now_store['store_id']))->find();
+    if ($homePage['has_custom']) {
+        $pageContent = '';
+        $homeCustomField = M('Custom_field')->getParseFields(0, 'page', $homePage['page_id']);
+        if ($homeCustomField) {
+            foreach ($homeCustomField as $value) {
+                $pageContent .= $value['html'];
+            }
         }
+    } else {
+        $banners = M('Adver')->get_adver_by_key('wap_index_banner', 10);
     }
-} else {
-    $banners = M('Adver')->get_adver_by_key('wap_index_banner', 10);
-}
 //var_dump($homeCustomField);
 
-if ($now_store['has_ad'] && !empty($now_store['use_ad_pages'])) {
+    if ($now_store['has_ad'] && !empty($now_store['use_ad_pages'])) {
 // 公共广告判断
-    $pageAd = $_SESSION['page_add'];
-    if (!$pageAd) {
-        if (strpos($now_store['use_ad_pages'], '5') !== false) {
-            $pageAdFieldArr =
-                M('Custom_field')->getParseFields($now_store['store_id'], 'common_ad', $now_store['store_id']);
-            if ($pageAdFieldArr) {
-                foreach ($pageAdFieldArr as $value) {
-                    $pageAd .= $value['html'];
+        $pageAd = $_SESSION['page_add'];
+        if (!$pageAd) {
+            if (strpos($now_store['use_ad_pages'], '5') !== false) {
+                $pageAdFieldArr =
+                    M('Custom_field')->getParseFields($now_store['store_id'], 'common_ad', $now_store['store_id']);
+                if ($pageAdFieldArr) {
+                    foreach ($pageAdFieldArr as $value) {
+                        $pageAd .= $value['html'];
+                    }
                 }
             }
         }
-    }
-} else {
+    } else {
 // 首页幻灯片
-    $slide = M('Adver')->get_adver_by_key('wap_index_slide_top', 5);
-}
+        $slide = M('Adver')->get_adver_by_key('wap_index_slide_top', 5);
+    }
 
 // 分类列表
-$categories = M('Product_category')->getIndexCategories();
-$category_products = array();
-/**
- * @var $db_product product_model
- */
-$db_product = M('Product');
-foreach ($categories as $val) {
-    $category_products[] = $db_product
-        //  AND `is_hot` = 1
-        ->getSelling('status = 1 and is_fx = 1 AND (category_fid = ' . $val['cat_id'] . ' OR category_id = ' .
-            $val['cat_id'] . ')', '', '', 0, 4);
-}
+    $categories = M('Product_category')->getIndexCategories();
+//dump($categories);
+    $category_products = array();
+    /**
+     * @var $db_product product_model
+     */
+    $db_product = M('Product');
+    foreach ($categories as $val) {
+        $category_products[] = $db_product
+            //  AND `is_hot` = 1
+            ->getSelling('status = 1 and is_fx = 1 AND (category_fid = ' . $val['cat_id'] . ' OR category_id = ' .
+                $val['cat_id'] . ')', '', '', 0, 4);
+    }
 
-$db_banner = M('Adver');
-$category_banners = $db_banner->get_adver_by_key('wap_category_banner', 0);
-$category_banners2 = array();
-foreach ($category_banners as $b) {
-    $category_banners2[$b['name']] = $b;
-}
-$category_banners = $category_banners2;
+    $db_banner = M('Adver');
+    $category_banners = $db_banner->get_adver_by_key('wap_category_banner', 0);
+    $category_banners2 = array();
+    foreach ($category_banners as $b) {
+        $category_banners2[$b['name']] = $b;
+    }
+    $category_banners = $category_banners2;
 
-$toutiao = $db_banner->get_adver_by_key('wap_toutiao',0);
-$banner4 = $db_banner->get_adver_by_key('wap_banner',0);
-$activity = $db_banner->get_adver_by_key('wap_activity',0);
-$youxuan = $db_banner->get_adver_by_key('wap_youxuan',0);
-$remai = $db_banner->get_adver_by_key('wap_remai',0);
-$xinpin = $db_banner->get_adver_by_key('wap_xinpin',0);
-$titles = $db_banner->get_adver_by_key('wap_title',0);
+    $toutiao = $db_banner->get_adver_by_key('wap_toutiao',0);
+    $banner4 = $db_banner->get_adver_by_key('wap_banner',0);
+    $activity = $db_banner->get_adver_by_key('wap_activity',0);
+    $youxuan = $db_banner->get_adver_by_key('wap_youxuan',0);
+    $remai = $db_banner->get_adver_by_key('wap_remai',0);
+    $xinpin = $db_banner->get_adver_by_key('wap_xinpin',0);
+    $titles = $db_banner->get_adver_by_key('wap_title',0);
 //	// 首页自定义导航
 //	$slider_nav = M('Slider')->get_slider_by_key('wap_index_nav', 16);
 
@@ -127,19 +131,29 @@ $titles = $db_banner->get_adver_by_key('wap_title',0);
 //$is_have_activity = option('config.is_have_activity');
 
 //分享配置 start
-$share_conf = array(
-    'title' => empty($now_store) ? $config['site_name'] : $now_store['name'], // 分享标题
-    'desc' => str_replace(array("\r", "\n"), array('', ''), option('config.seo_description')), // 分享描述
-    'link' => getTwikerUrl($now_store['uid']), // 分享链接
-    'imgUrl' => option('config.site_logo'), // 分享图片链接
-    'type' => '', // 分享类型,music、video或link，不填默认为link
-    'dataUrl' => '', // 如果type是music或video，则要提供数据链接，默认为空
-);
-import('WechatShare');
-$share = new WechatShare();
-$shareData = $share->getSgin($share_conf);
+    $share_conf = array(
+        'title' => empty($now_store) ? $config['site_name'] : $now_store['name'], // 分享标题
+        'desc' => str_replace(array("\r", "\n"), array('', ''), option('config.seo_description')), // 分享描述
+        'link' => getTwikerUrl($now_store['uid']), // 分享链接
+        'imgUrl' => option('config.site_logo'), // 分享图片链接
+        'type' => '', // 分享类型,music、video或link，不填默认为link
+        'dataUrl' => '', // 如果type是music或video，则要提供数据链接，默认为空
+    );
+    import('WechatShare');
+    $share = new WechatShare();
+    $shareData = $share->getSgin($share_conf);
 //分享配置 end
+//echo 'welcome';
+    include display('index');
+//echo '欢迎';
+    echo ob_get_clean();
+}else{
+    $page =     I('get.page');
+    if($page==1){
+        include display('yws_ydy');
+    }else{
+        include display('yws_ydy1');
+    }
 
-include display('index');
-
-echo ob_get_clean();
+    echo ob_get_clean();
+}

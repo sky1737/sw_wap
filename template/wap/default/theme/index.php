@@ -51,7 +51,7 @@
 <body style="max-width:640px;margin:0 auto;">
 <header class="index-head" style="position:fixed;">
 	<?php
-	echo '<a class="logo" href="./index.php">';
+	echo '<a class="logo" href="./index.php?ywsydy=true">';
 	echo empty($now_store) ? '<img src="' . $config['site_logo'] . '" alt="' . $config['site_name'] . '" />'
 		: '<img src="' . $now_store['logo'] . '" alt="' . $now_store['name'] . '" />';
 	echo '</a>';

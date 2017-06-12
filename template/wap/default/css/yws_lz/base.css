@@ -1,0 +1,228 @@
+*,::before,::after{
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: "MicroSoft YaHei";
+}
+body{
+    color: #333333;
+    font-family: "MicroSoft YaHei";
+}
+ol,ul{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+    color: #333333;
+}
+a:hover{
+    color: #333333;
+}
+input ,textarea{
+    border: none;
+    resize: none;
+    outline: none;
+    -webkit-appearance: none;
+}
+.fl{
+    float: left;
+}
+.fr{
+    float: right;
+}
+.clearfix::after,
+.clearfix::before{
+    content: ".";
+    line-height: 0;
+    height: 0;
+    display: block;
+    visibility: hidden;
+    clear: both;
+}
+.m_r10{
+    margin-right: 10px;
+}
+.m_l10{
+    margin-left: 10px;
+}
+.m_t10{
+    margin-top: 10px;
+}
+.m_b10{
+    margin-bottom: 10px;
+}
+.mianColor{
+    color: #d8505c;
+}
+/*所有使用精灵图的 class 以icon_开始的所有的class都有这些属性*/
+/*[class^="icon-"]{
+    background: url("../img/sprites.png") no-repeat;
+    !*压缩背景图片*!
+    background-size: 200px 200px;
+}*/
+html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address,cite,code,del,dfn,em,img,ins,kbd,q,samp,small,strong,sub,sup,var,b,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,section,summary,time,mark,audio,video {
+    margin:0;
+    padding:0;
+    font-family: "MicroSoft YaHei";
+    box-sizing: border-box;
+    /*border:0;
+    */
+    /*outline:0;
+	*/
+    /*font-size:100%;
+	vertical-align:baseline;
+	background:transparent;
+	*/
+}
+h1,h2,h3,h4,h5,h6,em,i {
+    font-weight:100;
+    font-style:normal;
+}
+ul,ol,li {
+    list-style-type:none;
+}
+a {
+    color:#666;
+    text-decoration:none;
+    outline:0;
+}
+a:hover {
+    text-decoration:none;
+}
+html,body{
+    height: 100%;
+}
+
+/*header start*/
+header.header {
+    height: 48px;
+    background-color: #f52648;
+    border-bottom: 1px solid #ccc;
+}
+header.header .logo {
+    width: 10%;
+    height: 36px;
+    background: url("../images/yws_lz/cjzg/logo.png") no-repeat center / contain;
+    margin: 6px 12px;
+}
+header.header .logo a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+header.header .search {
+    width: 65%;
+    margin-top: 10px;
+    height: 28px;
+    padding-left: 12px;
+    background-color: #f52648;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+header.header .search input {
+    line-height: 26px;
+    background-color: #f52648;
+    color: white;
+    width: 130px;
+}
+header.header .search i {
+    float: left;
+    height: 18px;
+    width: 18px;
+    background-image: url("../images/yws_lz/cjzg/sprite.png");
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    margin-top: 4px;
+    margin-right: 6px;
+}
+header.header > a {
+    width: 31px;
+    height: 31px;
+    margin: 8px 12px 8px 0;
+    background-image: url("../images/yws_lz/cjzg/sprite.png");
+    background-repeat: no-repeat;
+    background-position: -18px 0;
+    float: right;
+}
+/*header end*/
+/*底部*/
+footer.footer{
+    width: 100%;
+    background-color: #f9f5f5;
+    position: fixed;
+    bottom: 0;
+    border-top:1px solid #ccc;
+    height: 48px;
+}
+footer.footer ul{
+    height: 100%;
+}
+footer.footer ul li{
+    float: left;
+    width: 25%;
+    height: 100%;
+    text-align: center;
+}
+footer.footer ul li a{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+footer.footer ul li i{
+    display: block;
+    width: 18px;
+    height: 18px;
+    margin: 3.5px auto;
+    background: url("../images/yws_lz/cjzg/sprite.png") no-repeat;
+}
+footer.footer ul li span{
+    font-size: 14px;
+}
+footer.footer ul li:first-of-type i{
+    background-position: -74px 0;
+}
+footer.footer ul li:nth-of-type(2) i{
+    background-position: -94px 0;
+}
+footer.footer ul li:nth-of-type(3) i{
+    background-position: -117px 0;
+}
+footer.footer ul li:nth-of-type(4) i{
+    background-position: -140px 0;
+}
+/*底部end*/
+
+/*icon定义*/
+@font-face {
+    font-family: 'iconfont';
+    src: url('../font/iconfont.eot');
+    src: url('../font/iconfont.eot?#iefix') format('embedded-opentype'),
+    url('../font/iconfont.woff') format('woff'),
+    url('../font/iconfont.ttf') format('truetype'),
+    url('../font/iconfont.svg#iconfont') format('svg');
+}
+.iconfont{
+    font-family:"iconfont" !important;
+    font-size:16px;font-style:normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+
+/*去除placeholder默认样式*/
+::-webkit-input-placeholder { /* WebKit browsers */
+    color: #fff;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #fff;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #fff;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color: #fff;
+}

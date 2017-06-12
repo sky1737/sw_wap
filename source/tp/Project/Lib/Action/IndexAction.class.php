@@ -19,14 +19,38 @@ class IndexAction extends BaseAction
 		$menu_list =
 			$database_system_menu->field(true)->where($condition_system_menu)->order('`sort` desc,`fid` ASC,`id` ASC')
 				->select();
-		foreach ($menu_list as $key => $value) {
-			if ($value['fid'] == 0) {
-				$system_menu[$value['id']] = $value;
-			}
-			else {
-				$system_menu[$value['fid']]['menu_list'][] = $value;
-			}
-		}
+		///////////////////////////////////////////////////////////////////
+		//dump($menu_list);
+        $lz_newmenue = array('后台首页','商品管理','订单管理','用户管理','店铺管理');
+        $lz_childmenue = array('后台首页','商品列表','所有订单','用户列表','店铺列表');
+        $admin = session('system.account');
+        //dump(session('system.account'));
+        //dump($admin=='ywswatch');
+        if($admin=='ywswatch'){
+            foreach ($menu_list as $key => $value) {
+                if ($value['fid'] == 0 && in_array($value['name'],$lz_newmenue)) {
+                    $system_menu[$value['id']] = $value;
+                }
+                else {
+                    if(in_array($value['name'],$lz_childmenue)){
+                        $system_menu[$value['fid']]['menu_list'][] = $value;
+                    }
+                }
+            }
+        }else{
+            /////////////////////////////////////////////
+            //老代码
+            foreach ($menu_list as $key => $value) {
+                if ($value['fid'] == 0) {
+                    $system_menu[$value['id']] = $value;
+                }
+                else {
+                    $system_menu[$value['fid']]['menu_list'][] = $value;
+                }
+            }
+            /////////////////////////////////////////
+        }
+
 		$this->assign('system_menu', $system_menu);
 		$this->display();
 	}

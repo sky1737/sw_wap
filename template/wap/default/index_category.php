@@ -42,7 +42,7 @@
 <body>
 <header class="index-head">
 	<?php
-	echo '<a class="logo" href="./index.php">';
+	echo '<a class="logo" href="./index.php?ywsydy=true">';
 	echo empty($now_store) ? '<img src="' . $config['site_logo'] . '" alt="' . $config['site_name'] . '" />'
 		: '<img src="' . $now_store['logo'] . '" alt="' . $now_store['name'] . '" />';
 	echo '</a>';
@@ -53,6 +53,7 @@
 	<a href="./my.php" class="me"></a>
 	<!--<div id="J_toast" class="toast ">你可以在这输入商品名称</div>-->
 </header>
+<?php //dump(123);?>
 <div class="footerheight" style="clear:both; width:100%; height:60px;"></div>
 <div class="wx_loading2"><i class="wx_loading_icon"></i></div>
 <div class="wx_wrap" style="display:none">

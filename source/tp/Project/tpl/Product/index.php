@@ -269,7 +269,11 @@
 							});
 						}
                         </script>
-                        全选：<input type="checkbox" id="all1" onclick="chk(this)" />&nbsp; <input type="button" id="dochk" value="设置审核" onclick="set('status',1)" /> <input type="button" id="undochk" value="取消审核" onclick="set('status',0)" />&nbsp; / &nbsp;<input type="button" id="dored" value="设置推荐" onclick="set('is_recommend',1)" /> <input type="button" id="undored" value="取消推荐" onclick="set('is_recommend',0)" />&nbsp; / &nbsp;<input type="button" id="dohot" value="设置热门" onclick="set('is_hot',1)" /> <input type="button" id="undohot" value="取消热门" onclick="set('is_hot',0)" />&nbsp; / &nbsp;<input type="button" id="dofx" value="设置分销" onclick="set('is_fx',1)" /> <input type="button" id="undofx" value="取消分销" onclick="set('is_fx',0)" />&nbsp; / &nbsp;<input type="button" value="批量删除" onclick="del()" /></td>
+                        <?php if(session('system.account')=='ywswatch'):?>
+                        <?php else:?>
+                            全选：<input type="checkbox" id="all1" onclick="chk(this)" />&nbsp; <input type="button" id="dochk" value="设置审核" onclick="set('status',1)" /> <input type="button" id="undochk" value="取消审核" onclick="set('status',0)" />&nbsp; / &nbsp;<input type="button" id="dored" value="设置推荐" onclick="set('is_recommend',1)" /> <input type="button" id="undored" value="取消推荐" onclick="set('is_recommend',0)" />&nbsp; / &nbsp;<input type="button" id="dohot" value="设置热门" onclick="set('is_hot',1)" /> <input type="button" id="undohot" value="取消热门" onclick="set('is_hot',0)" />&nbsp; / &nbsp;<input type="button" id="dofx" value="设置分销" onclick="set('is_fx',1)" /> <input type="button" id="undofx" value="取消分销" onclick="set('is_fx',0)" />&nbsp; / &nbsp;<input type="button" value="批量删除" onclick="del()" /></td>
+
+                        <?php endif;?>
                     </tr>
 					<else />
 					<tr>

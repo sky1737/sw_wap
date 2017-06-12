@@ -14,7 +14,6 @@ $isLoged = true;
 foreach ($exclude as $v) {
     if (stripos($currentUrl, $v) === false)
         continue;
-
     $isLoged = false;
     break;
 }
@@ -22,7 +21,6 @@ foreach ($exclude as $v) {
 if ($isLoged && empty($_SESSION['user'])) {
     $appid = $config['wechat_appid'];
     $appsecret = $config['wechat_appsecret'];
-
     $openid = $_SESSION['openid'];
     $code = I('get.code');
     if (!$openid || !$_SESSION['oauthed']) {

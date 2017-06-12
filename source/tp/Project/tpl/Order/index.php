@@ -70,7 +70,11 @@
 						<th>总价</th>
 						<th>状态</th>
 						<th>备注</th>
-						<th class="textcenter">操作</th>
+                        <?php if(session('system.account')=='ywswatch'):?>
+                        <?php else:?>
+                            <th class="textcenter">操作</th>
+                        <?php endif;?>
+
 					</tr>
 				</thead>
 				<tbody>
@@ -87,7 +91,11 @@
 								<td>￥{pigcms{$order.total}</td>
 								<td>{pigcms{$status[$order['status']]}</td>
 								<td>{pigcms{$order.bak}</td>
-								<td class="textcenter"><a href="javascript:void(0);" onclick="window.top.artiframe('{pigcms{:U('Order/detail',array('id' => $order['order_id'], 'frame_show' => true))}','订单详情 #{pigcms{$order.order_no}',800,600,true,false,false,false,'detail',true);">操作</a></td>
+                                <?php if(session('system.account')=='ywswatch'):?>
+                                <?php else:?>
+                                    <td class="textcenter"><a href="javascript:void(0);" onclick="window.top.artiframe('{pigcms{:U('Order/detail',array('id' => $order['order_id'], 'frame_show' => true))}','订单详情 #{pigcms{$order.order_no}',800,600,true,false,false,false,'detail',true);">操作</a></td>
+                                <?php endif;?>
+
 							</tr>
 						</volist>
 						<tr>

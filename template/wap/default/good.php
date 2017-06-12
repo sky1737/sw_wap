@@ -71,16 +71,16 @@
                     <div class="headerbar-wrap clearfix">
                         <div class="headerbar-preview"><span>预览：</span>
                             <ul>
-                                <li><a href="<?php echo $now_url; ?>&ps=320"
+                                <li><a href="<?php echo $now_url,'?ywsydy=true'; ?>&ps=320"
                                        class="js-no-follow<?php if (empty($_GET['ps']) || $_GET['ps'] == '320'
                                        ) echo ' active'; ?>">iPhone版</a></li>
-                                <li><a href="<?php echo $now_url; ?>&ps=540"
+                                <li><a href="<?php echo $now_url.'?ywsydy=true'; ?>&ps=540"
                                        class="js-no-follow<?php if ($_GET['ps'] == '540') echo ' active'; ?>">三星Note3版</a>
                                 </li>
                                 <?php
                                 if (option('config.synthesize_store')) {
                                     ?>
-                                    <li><a href="<?php echo $now_url; ?>&ps=800"
+                                    <li><a href="<?php echo $now_url,'?ywsydy=true'; ?>&ps=800"
                                            class="js-no-follow<?php if ($_GET['ps'] == '800') echo ' active'; ?>">PC版</a>
                                     </li>
                                     <?php
@@ -96,7 +96,7 @@
                 <?php
             } ?>
             <!-- ▼顶部通栏 -->
-            <div class="js-mp-info share-mp-info"><a class="page-mp-info" href="./">
+            <div class="js-mp-info share-mp-info"><a class="page-mp-info" href="./?ywsydy=true">
                     <!--<?php echo $now_store['url']; ?>-->
                     <img
                         class="mp-image" width="24" height="24"
@@ -291,7 +291,7 @@
                     </div>
                 <?php } ?>
                 <div class="js-components-container components-container">
-                    <div class="custom-store"><a class="custom-store-link clearfix" href="./">
+                    <div class="custom-store"><a class="custom-store-link clearfix" href="./?ywsydy=true">
                             <!--home.php?id=<?php echo $now_store['store_id']; ?>-->
                             <div class="custom-store-img"></div>
                             <div class="custom-store-name"><?php echo $now_store['name']; ?></div>
