@@ -6,7 +6,6 @@ class goods_controller extends base_controller
 	{
 		parent::__construct();
 		if(empty($this->store_session)) redirect(url('index:index'));
-
 		if(!$this->store_session['agent_id']) redirect(url('index:index'));
 	}
 
@@ -570,14 +569,18 @@ class goods_controller extends base_controller
 
 	public function goods_load()
 	{
+
 		if(empty($_POST['page']))
+            //dump(1);
 			pigcms_tips('非法访问！', 'none');
 
 		if($_POST['page'] == 'create_content') {
 			$cat_list = M('Product_category')->getAllCategory(0,true);
+			//dump(2);
 			$this->assign('cat_list', $cat_list);
 		}
 		if($_POST['page'] == 'edit_content') {
+            //dump(3);
 			$this->_edit_content($_GET['id']);
 		}
 //		//商品分组列表
@@ -601,12 +604,15 @@ class goods_controller extends base_controller
 //			}
 //		}
 		if($_POST['page'] == 'selling_content') {
+            //dump(4);
 			$this->_selling_goods_list();
 		}
 		if($_POST['page'] == 'stockout_content') {
+            //dump(5);
 			$this->_stockout_goods_list();
 		}
 		if($_POST['page'] == 'soldout_content') {
+            //dump(6);
 			$this->_soldout_goods_list();
 		}
 
@@ -965,7 +971,7 @@ class goods_controller extends base_controller
 	{
 		$product = M('Product');
 //		$product_group = M('Product_group');
-//		$product_to_group = M('Product_to_group');
+		$product_to_group = M('Product_to_group');
 
 		$order_by_field = isset($_POST['orderbyfield']) ? $_POST['orderbyfield'] : '';
 		$order_by_method = isset($_POST['orderbymethod']) ? $_POST['orderbymethod'] : '';
@@ -976,6 +982,7 @@ class goods_controller extends base_controller
 		$where['store_id'] = $this->store_session['store_id'];
 		$where['quantity'] = array('>', 0);
 		$where['soldout'] = 0;
+		//dump($where);
 		if($keyword) {
 			$where['name'] = array('like', '%' . $keyword . '%');
 		}
@@ -995,11 +1002,11 @@ class goods_controller extends base_controller
 		$products = $product->getSelling($where, $order_by_field, $order_by_method, $page->firstRow, $page->listRows);
 
 		//$product_groups = $product_group->get_all_list($this->store_session['store_id']);
-
 		//$this->assign('product_groups', $product_groups);
 		//$this->assign('product_groups_json', json_encode($product_groups));
 		$this->assign('page', $page->show());
 		$this->assign('products', $products);
+		//dump($products);
 	}
 
 	/**

@@ -1,0 +1,97 @@
+{
+  "list":[
+    {
+      "title":"企业营业执照副本（需完成有效年检且营业执照经营范围需包含所售商品）",
+      "nameId":"license_pic"
+    }, {
+      "title":"企业税务登记证（国税、地税均可）",
+      "nameId":"tax_pic"
+    }, {
+      "title":"品牌所有者出具的国家商标总局颁发的商标注册证",
+      "nameId":"idlogo_pic"
+    }, {
+      "title":"品牌所有者出具的授权书（授权书须无地域限制；品牌所有者若为个人，则需同时提供品牌持有人亲笔签名的授权书）",
+      "nameId":"empower_pic"
+    }
+  ],
+  "list2":[
+    {
+      "title":"商户自身持有的《食品流通许可证》",
+
+      "nameId":"foodpass_pic"
+    }, {
+      "title":"商户出具的质量保证书",
+
+      "nameId":"qualiy_pic"
+    }
+  ],
+  "list3":[
+    {
+      "title":"保健食品生产厂商持有的《食品生产许可证》",
+      "nameId":"bjproduce_pic"
+    }, {
+      "title":"保健食品生产厂商持有的《食品卫生许可证》",
+      "nameId":"bjhealth_pic"
+    }, {
+      "title":"保健食品生产厂商持有的《保健食品批准证书》（即批准文号）",
+
+      "nameId":"bjpass_pic"
+    },{
+      "title":"近一年内商品的检验检疫合格的报告或证明",
+
+      "nameId":"bjcheck_pic"
+    },{
+      "title":"若代理贴牌的保健食品，还需提供质监局出具的委托加工备案登记表",
+
+      "nameId":"bjwork_pic"
+    }
+  ],
+  "list4":[
+     {
+      "title":"商户自身持有的《酒类流通备案登记表》（或《酒类零售许可证》、《酒类批发许可证》、《酒类产销许可证》）",
+      "nameId":"alcoholpass_pic"
+    }
+  ],
+  "list5":[
+    {
+      "title":"化妆品生产厂商持有的《化妆品卫生许可证》",
+      "nameId":"cosmetichealth_pic"
+    }, {
+      "title":"化妆品生产厂商持有的《化妆品生产许可证》（即《全国工业产品生产许可证》）",
+      "nameId":"cosmeticmake_pic"
+    }, {
+      "title":"化妆品生产厂商持有的企业营业执照副本",
+      "nameId":"cosmeticlicense_pic"
+    }, {
+      "title":"近一年内商品的检验检疫合格的报告或证明",
+      "nameId":"cosmeticpass_pic"
+    }, {
+      "title":"如系特殊用途化妆品须提交针对该特殊用途化妆品的批准文件",
+      "nameId":"cosmeticspecial_pic"
+    }
+  ],
+  "list6":[
+    {
+      "title":"中华人民共和国进口货物报关单；",
+      "nameId":"foodmovemenu_pic"
+    }, {
+      "title":"商品出入境检验检疫合格证明或卫生证书",
+      "nameId":"foodmovepass_pic"
+    }
+  ],
+  "list7":[
+    {
+      "title":"《进口保健食品批准证书》（即批准文号）",
+      "nameId":"bjmovepass2_pic"
+    }
+  ],
+  "list8":[
+    {
+      "title":"中华人民共和国卫生部（或食品药品监督管理局）进口非特殊用途化妆品备案凭证",
+      "nameId":"cosmeticmovenospecial_pic"
+    }, {
+      "title":"如系进口特殊用途化妆品须提交针对该特殊用途化妆品的批准文件",
+      "nameId":"cosmeticmovespecial_pic"
+    }
+  ]
+}

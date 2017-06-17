@@ -32,8 +32,9 @@ if ($isLoged && empty($_SESSION['user'])) {
                 $appid . '&redirect_uri=' . urlencode($custom_url) .
                 '&response_type=code&scope=snsapi_userinfo&state=oauth#wechat_redirect';
 
-            echo '<h1>正在自动为您登录，请稍候...</h1>' .
-                '<script type="text/javascript">location.href="' . $oauthUrl . '";</script>';
+            /*echo '<h1>正在自动为您登录，请稍候...</h1>' .
+                '<script type="text/javascript">location.href="' . $oauthUrl . '";</script>';*/
+            echo '<script type="text/javascript">location.href="' . $oauthUrl . '";</script>';
             exit();
         }
 

@@ -65,6 +65,7 @@ $_G['config'] = $config;
 define('TMPL_CACHE_ON', FALSE);
 defined('TPL_PATH') || define('TPL_PATH', TWIKER_PATH . 'template/');
 defined('TPL_URL') || define('TPL_URL', !IS_SUB_DIR ? $config['oss_url'] . '/template/' . GROUP_NAME . '/' . $_G['config'][ 'theme_' . GROUP_NAME . '_group' ] . '/' : $config['oss_url'] . '/template/' . GROUP_NAME . '/' . $config[ 'theme_' . GROUP_NAME . '_group' ] . '/');
+//dump(TPL_URL);
 $_G['plugins'] = array();
 if (!empty($_G['config']['active_plugins']))
 {

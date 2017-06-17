@@ -102,7 +102,7 @@
                             <h4>居然还没有订单</h4>
                             <p class="font-size-12">好东西，手慢无</p>
                         </div>
-                        <div><a href="./index.php" class="tag tag-big tag-orange" style="padding:8px 30px;">去逛逛</a></div>
+                        <div><a href="./index.php?ywsydy=true" class="tag tag-big tag-orange" style="padding:8px 30px;">去逛逛</a></div>
                     </div>
                 <?php endif;?>
             </div>

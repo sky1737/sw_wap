@@ -211,11 +211,14 @@ class UserAction extends BaseAction
 	public function tab_store()
 	{
 		$uid = $this->_get('uid', 'trim,intval');
+		//dump($uid);die;
 		if(!$uid) {
 			$this->error('传递参数有误！');
 		}
 		$where['uid'] = $uid;
 		$user_info = M('User')->where($where)->find();
+
+		//dump($user_info);die;
 		if(!$user_info) {
 			$this->error('该用户不存在!');
 		}

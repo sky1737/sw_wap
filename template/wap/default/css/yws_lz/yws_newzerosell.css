@@ -9,13 +9,9 @@ section {
     overflow: hidden;
 }
 .section1 .showbox {
-    background: url("../images/yws_lz/fgssq/1.png") no-repeat center / contain;
-    width: 320px;
-    height: 345px;
-    /*width: 84%;
-      height: 59.2%;*/
-    margin: 7.4% auto 0;
-    padding: 50px 40px;
+    width: 100%;
+    height: 100%;
+    padding: 0 25px;
     z-index: 2;
 }
 .section1 .showbox .con {
@@ -23,22 +19,84 @@ section {
     width: 100%;
 }
 .section1 .showbox .con h3 {
-    text-align: center;
-    font: normal 400 18px/40px "MicroSoft YaHei";
-}
-.section1 .showbox .con p {
-    font: normal 400 14px/24px "MicroSoft YaHei";
-    padding-bottom: 6px;
-}
-.section1 .next {
-    width: 45%;
-    margin: 30px auto;
-    height: 70px;
-    text-align: center;
-    line-height: 70px;
     color: white;
-    font-size: 14px;
-    background: url("../images/yws_lz/fgssq/button.png") no-repeat center / contain;
+    background: url("../images/yws_lz/fgssq/sqtj.png") no-repeat center / contain;
+    height: .7rem;
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: .3rem;
+    margin-top: .3rem;
+}
+.section1 .showbox .con h3 span {
+    padding-left: 10000rem;
+}
+.section1 .showbox .con ul {
+    margin-top: 1rem;
+}
+.section1 .showbox .con ul li {
+    width: 100%;
+    margin-bottom: .65rem;
+    padding: .05rem .15rem;
+    height: 1.3rem;
+    color: white;
+    position: relative;
+    transform: translate(-20rem, 0);
+}
+.section1 .showbox .con ul li.animation {
+    transform: translate(0rem, 0);
+}
+.section1 .showbox .con ul li p {
+    float: right;
+    width: 5.5rem;
+    font: normal 400 0.26rem/0.35rem "MicroSoft YaHei";
+}
+.section1 .showbox .con ul li span {
+    position: absolute;
+    bottom: 0;
+    left: .2rem;
+    font: normal 700 0.8rem/0.8rem "MicroSoft YaHei";
+}
+.section1 .showbox .con ul li:nth-of-type(2n) {
+    border-radius: 0 .2rem 0 .2rem;
+}
+.section1 .showbox .con ul li:nth-of-type(2n+1) {
+    border-radius: .2rem 0 .2rem 0;
+}
+.section1 .showbox .con ul li:first-child > p {
+    padding-top: .4rem;
+}
+.section1 .showbox .con ul li:nth-of-type(2) > p,
+.section1 .showbox .con ul li:nth-of-type(3) > p {
+    margin-top: .25rem;
+}
+.section1 .showbox .con ul li:nth-of-type(3) > p {
+    width: 5.5rem;
+    padding-right: .5rem;
+}
+.section1 .showbox .con ul li:nth-of-type(1) {
+    transition: all 1s;
+}
+.section1 .showbox .con ul li:nth-of-type(2) {
+    transition: all 1s .3s;
+}
+.section1 .showbox .con ul li:nth-of-type(3) {
+    transition: all 1s .6s;
+}
+.section1 .showbox .con .next {
+    position: absolute;
+    bottom: .8rem;
+    left: 50%;
+    margin-left: -0.25rem;
+    height: .5rem;
+    width: .5rem;
+    text-align: center;
+    color: white;
+    transform-origin: bottom center;
+    font-size: .4rem;
+}
+.section1 .showbox .con .next i {
+    display: inline-block;
+    font-size: .8rem;
 }
 /*第一屏 end*/
 /*第二屏 start*/
@@ -47,13 +105,9 @@ section {
     overflow: hidden;
 }
 .section2 .showbox {
-    background: url("../images/yws_lz/fgssq/2.png") no-repeat center / contain;
-    width: 320px;
-    height: 422px;
-    /*width: 84%;
-      height: 59.2%;*/
-    margin: 5.4% auto 0;
-    padding: 40px 40px;
+    width: 100%;
+    height: 100%;
+    padding: 0px 20px;
     z-index: 2;
 }
 .section2 .showbox .con {
@@ -61,21 +115,81 @@ section {
     width: 100%;
 }
 .section2 .showbox .con h3 {
-    text-align: center;
-    font: normal 400 18px/40px "MicroSoft YaHei";
-}
-.section2 .showbox .con p {
-    font: normal 400 14px/24px "MicroSoft YaHei";
-}
-.section2 .next {
-    width: 45%;
-    margin: 0 auto;
-    height: 70px;
-    text-align: center;
-    line-height: 70px;
     color: white;
-    font-size: 14px;
-    background: url("../images/yws_lz/fgssq/button.png") no-repeat center / contain;
+    background: url("../images/yws_lz/fgssq/sqbz.png") no-repeat center / contain;
+    height: .7rem;
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: .3rem;
+    margin-top: .3rem;
+}
+.section2 .showbox .con h3 span {
+    padding-left: 10000rem;
+}
+.section2 .showbox .con ul {
+    margin-top: 1rem;
+}
+.section2 .showbox .con ul li {
+    width: 100%;
+    margin-bottom: .65rem;
+    padding: .05rem .15rem;
+    height: 1.3rem;
+    color: white;
+    position: relative;
+    transform: translate(20rem, 0);
+}
+.section2 .showbox .con ul li p {
+    float: left;
+    width: 5.5rem;
+    font: normal 400 0.26rem/0.35rem "MicroSoft YaHei";
+}
+.section2 .showbox .con ul li span {
+    position: absolute;
+    bottom: 0;
+    right: .2rem;
+    font: normal 700 0.8rem/0.8rem "MicroSoft YaHei";
+}
+.section2 .showbox .con ul li:nth-of-type(1) {
+    transition: all 1s;
+}
+.section2 .showbox .con ul li:nth-of-type(2) {
+    transition: all 1s .3s;
+}
+.section2 .showbox .con ul li:nth-of-type(3) {
+    transition: all 1s .6s;
+}
+.section2 .showbox .con ul li:nth-of-type(2n) {
+    border-radius: 0 .2rem 0 .2rem;
+}
+.section2 .showbox .con ul li:nth-of-type(2n+1) {
+    border-radius: .2rem 0 .2rem 0;
+}
+.section2 .showbox .con ul li:first-child > p,
+.section2 .showbox .con ul li:nth-of-type(2) > p {
+    padding-top: .3rem;
+}
+.section2 .showbox .con ul li:nth-of-type(3) {
+    height: 1.5rem;
+}
+.section2 .showbox .con ul li:nth-of-type(3) > p {
+    padding-top: .2rem;
+}
+.section2 .showbox .con .next {
+    position: absolute;
+    bottom: .8rem;
+    left: 50%;
+    margin-left: -0.25rem;
+    height: .5rem;
+    width: .5rem;
+    text-align: center;
+    color: white;
+    transform-origin: bottom center;
+    font-size: .4rem;
+}
+.section2 .showbox .con .next i {
+    display: inline-block;
+    transform-origin: bottom center;
+    font-size: .8rem;
 }
 /*第二屏 end*/
 /*第三屏 start*/
@@ -84,12 +198,11 @@ section {
     overflow: hidden;
 }
 .section3 .showbox {
-    background: url("../images/yws_lz/fgssq/3.png") no-repeat center / contain;
-    width: 320px;
-    height: 452px;
+    width: 100%;
+    height: 100%;
     position: relative;
     margin: 0 auto 0;
-    padding: 50px 40px;
+    padding: 0px 40px;
     z-index: 2;
 }
 .section3 .showbox form {
@@ -104,50 +217,57 @@ section {
 .section3 .showbox .con h3 {
     text-align: center;
     font: normal 400 18px/24px "MicroSoft YaHei";
+    height: .7rem;
+    width: 100%;
+    margin: .5rem 0;
+    overflow: hidden;
+    background: url("../images/yws_lz/fgssq/tjzl.png") no-repeat center / contain;
+}
+.section3 .showbox .con ul {
+    background-color: rgba(141, 205, 255, 0.7);
+    position: relative;
+    padding: .5rem;
+    border-radius: .2rem;
+}
+.section3 .showbox .con ul .annotation {
+    position: absolute;
+    bottom: .1rem;
+    left: 0.3rem;
+    color: #fff;
+    font-size: .24rem;
+}
+.section3 .showbox .con ul li {
+    margin-bottom: .15rem;
 }
 .section3 .showbox .con ul li p {
+    text-align: center;
     position: relative;
     font-size: 14px;
-}
-.section3 .showbox .con ul li p i {
-    vertical-align: middle;
-    color: red;
+    color: white;
 }
 .section3 .showbox .con ul li .con-box {
-    margin-top: 8px ;
-    margin-bottom: 8px ;
-    display: flex;
-    justify-content: space-between;
-}
-.section3 .showbox .con ul li .con-box span {
-    float: left;
-    flex: 1;
-    font-size: 12px;
+    position: relative;
+    width: 4rem;
+    height: 2rem;
+    margin: .1rem auto;
 }
 .section3 .showbox .con ul li .con-box .img-box {
-    flex: 2;
-}
-.section3 .showbox .con ul li .con-box .img-box img {
-    display: block;
-    width: 60px;
-    height: 60px;
-    overflow: hidden;
-    background-color: red;
-    margin: 0 auto;
+    position: absolute;
+    width: 100%;
+    height: 100%;
 }
 .section3 .showbox .con ul li .con-box a {
-    flex: 2;
-    width: 44px;
-    height: 22px;
+    width: 100%;
+    height: .5rem;
     overflow: hidden;
     float: left;
-    top: 21px;
+    top: 0.75rem;
     position: relative;
     text-align: center;
     line-height: 21px;
-    color: white;
-    font-size: 10px;
-    background: url("../images/yws_lz/fgssq/file.png") no-repeat center / contain;
+    color: #fff;
+    font-size: .8rem;
+    z-index: 22;
 }
 .section3 .showbox .con ul li .con-box a input {
     position: absolute;
@@ -158,75 +278,161 @@ section {
     filter: alpha(opacity=1);
 }
 .section3 .showbox .con ul li .con-box .filebox {
-    flex: 2;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
 .section3 .showbox .con ul li .con-box .filebox .filebox-box {
-    width: 60px;
-    height: 60px;
+    width: 100%;
+    height: 100%;
     border: 1px solid #ccc;
     margin: 0 auto;
 }
 .section3 .showbox .con .next-page {
+    margin-left: -15%;
     position: absolute;
-    bottom: 15px;
-    right: -12px;
-    padding: 12px;
-    color: #0a6eab;
-    font: normal 700 14px "MicroSoft YaHei";
+    bottom: -1.2rem;
+    width: 30%;
+    text-align: center;
+    border: 1px solid #fff;
+    color: #fff;
+    height: 36px;
+    border-radius: .15rem ;
+    left: 50%;
+    font: normal 400 14px/36px "MicroSoft YaHei";
 }
-.section3 .showbox .con .next-page i {
-    -webkit-transform: scaleY(1.8);
-    -moz-transform: scaleY(1.8);
-    -o-transform: scaleY(1.8);
-    -ms-transform: scaleY(1.8);
-    transform: scaleY(1.8);
+.section3 .showbox .con-first ul {
+    margin-top: .5rem;
+    padding: .5rem;
+    border-radius: .2rem;
 }
-.section3 .showbox .con-next,
-.section3 .showbox .con-end {
+.section3 .showbox .con-first ul li {
+    margin-bottom: .15rem;
+}
+.section3 .showbox .con-next #prevPage {
+    position: absolute;
+    bottom: -1.2rem;
+    width: 30%;
+    border: 1px solid #fff;
+    left: 10%;
+    border-radius: .15rem;
+    color: #fff;
+    text-align: center;
+    height: 36px;
+    font: normal 400 14px/12px "MicroSoft YaHei";
+}
+
+.section3 .showbox .con-next #nextPage1 {
+    position: absolute;
+    bottom: -1.2rem;
+    right: 0%;
+    margin-left: 10%;
+    text-align: center;
+    height: 36px;
+    width: 30%;
+    color: #fff;
+    border:1px solid #fff;
+    font: normal 400 14px/36px "MicroSoft YaHei";
+}
+.section3 .showbox .con-next #nextPage1 i {
+    display: inline-block;
+    -webkit-transform: scale(1, 1.8);
+    transform: scale(1, 1.8);
+}
+.section3 .con-next,
+.section3 .con-end {
     display: none;
 }
-.section3 .showbox .con-next ul li,
-.section3 .showbox .con-end ul li {
-    margin-top: 20px;
+.section3 .con-next ul,
+.section3 .con-end ul {
+    margin-top: .5rem;
 }
-.section3 .showbox .con-next .prev-page,
-.section3 .showbox .con-end .prev-page {
+.section3 .con-next ul li,
+.section3 .con-end ul li {
+    margin-bottom: 0;
+}
+.section3 .con-next .prev-page,
+.section3 .con-end .prev-page {
     position: absolute;
     bottom: 15px;
     left: -12px;
     padding: 12px;
-    color: #0a6eab;
+    color: #fff;
     font: normal 700 14px "MicroSoft YaHei";
 }
-.section3 .showbox .con-next .prev-page i,
-.section3 .showbox .con-end .prev-page i {
+.section3 .con-next .prev-page i,
+.section3 .con-end .prev-page i {
     -webkit-transform: scaleY(1.8);
-    -moz-transform: scaleY(1.8);
-    -o-transform: scaleY(1.8);
-    -ms-transform: scaleY(1.8);
+    display: inline-block;
     transform: scaleY(1.8);
 }
-.section3 .showbox .con-end {
+.section3 .con-end.con {
     display: none;
 }
-.section3 .showbox .con-end ul li p input {
+.section3 .con-end.con ul {
+    margin-top: 1.5rem;
+    padding: .1rem .3rem .5rem;
+}
+.section3 .con-end.con ul h6 {
+    text-align: center;
+    font: normal 400 0.45rem/1rem "MicroSoft YaHei";
+    color: white;
+}
+.section3 .con-end.con ul li {
+    border: 1px solid #fff;
+    margin-bottom: .5rem;
+    position: relative;
+    padding: .3rem .2rem;
+}
+.section3 .con-end.con ul li:before {
+    content: '';
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 1.5rem;
+    width: 1px;
+    background-color: #fff;
+}
+.section3 .con-end.con ul li p {
+    height: 100%;
+}
+.section3 .con-end.con ul li p span {
+    float: left;
+    height: 100%;
+}
+.section3 .con-end.con ul li p input {
     width: 140px;
     background-color: transparent;
-    border: 1px solid #000;
-}
-.section3 .showbox .finish {
-    width: 46%;
-    height: 48px;
-    background: url("../images/yws_lz/fgssq/finish.png") no-repeat center / contain;
     position: absolute;
-    bottom: -48px;
-    left: 50%;
-    margin-left: -23%;
+    left: 1.7rem;
     color: white;
-    line-height: 48px;
+}
+.section3 .con-end.con ul .prev-page {
+    position: absolute;
+    bottom: -1.2rem;
+    width: 30%;
+    border: 1px solid #fff;
+    left: 10%;
+    border-radius: .15rem;
+    color: #fff;
     text-align: center;
-    display: none;
-    font-size: 14px;
+    height: 36px;
+    font: normal 400 14px/12px "MicroSoft YaHei";
+}
+
+.section3 .finish {
+    position: absolute;
+    bottom: -1.2rem;
+    right: 10%;
+    background-color: skyblue;
+    text-align: center;
+    height: 37px;
+    width: 31%;
+    color: #fff;
+    border-radius: .15rem;
+    font: normal 400 14px/36px "MicroSoft YaHei";
 }
 @media screen and (max-width: 320px) {
     .section3 .showbox .finish {
@@ -234,7 +440,62 @@ section {
         left: 70%;
     }
 }
-.section3 .showbox .con.con-first .next-page {
-    bottom: -5px;
-}
 /*第三屏 end*/
+/*添加动画*/
+
+.section1.animation .con ul li {
+    transform: translate(0, 0);
+}
+.section2.animation .con ul li {
+    transform: translate(0, 0);
+}
+.section3.animation .con ul li {
+    transform: translate(0, 0);
+}
+/*定义动画*/
+/*@keyframes scaleBig {
+    0% {
+        -webikit-transform: scale(1, 1);
+        transform: scale(1, 1);
+        opacity: .5;
+    }
+    50% {
+        -webikit-transform: scale(2, 2);
+        transform: scale(2, 2);
+        opacity: 1;
+    }
+    100% {
+        -webikit-transform: scale(1, 1);
+        transform: scale(1, 1);
+        opacity: .5;
+    }
+}
+@-webkit-keyframes scaleBig {
+    0% {
+        -webikit-transform: scale(1, 1);
+        transform: scale(1, 1);
+        opacity: .5;
+    }
+    50% {
+        transform: scale(2, 2);
+        -webikit-transform: scale(2, 2);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1, 1);
+        -webikit-transform: scale(1, 1);
+        opacity: .5;
+    }
+}
+.scaleBig {
+    animation: scaleBig 2s linear infinite;
+    -webikit-animation: scaleBig 2s linear infinite;
+}*/
+
+#newzeroselltips{
+    z-index: 10000;
+    position: absolute;
+    width:400px;
+    height:200px;
+    margin: 50px auto;
+}

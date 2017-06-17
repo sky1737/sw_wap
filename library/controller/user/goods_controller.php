@@ -24,10 +24,13 @@ class goods_controller extends base_controller
             exit;
         } else {
             $weixin_bind = M('Weixin_bind')->get_account_type($this->store_session['store_id']);
+
+            //dump($weixin_bind);
             if ($weixin_bind['errcode'] == 0 && $weixin_bind['code'] == 3) {
 
             }
         }
+        //dump(11);
         $this->display();
     }
 

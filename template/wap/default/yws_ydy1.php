@@ -24,7 +24,6 @@
 <!--link start-->
 <div class="link clearfix">
     <a href="./yws_ydy.php">开启新零售</a>
-    <a href="./index.php?ywsydy=true">随便逛逛</a>
 </div>
 <!--link end-->
 </body>

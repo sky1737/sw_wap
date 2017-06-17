@@ -1,0 +1,367 @@
+section {
+    text-align: center;
+    font: 50px "Microsoft Yahei";
+    color: #fff;
+}
+/*第一屏 start*/
+.section1 {
+    background: url("../images/yws_lz/fgssq/bg.png") no-repeat center / cover;
+    overflow: hidden;
+}
+.section1 .showbox {
+    width: 100%;
+    height: 100%;
+    padding: 0 25px;
+    z-index: 2;
+}
+.section1 .showbox .con {
+    height: 100%;
+    width: 100%;
+}
+.section1 .showbox .con h3 {
+    color: white;
+    background: url("../images/yws_lz/fgssq/sqtj.png") no-repeat center / contain;
+    height: .7rem;
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: .3rem;
+    margin-top: .3rem;
+}
+.section1 .showbox .con h3 span {
+    padding-left: 10000rem;
+}
+.section1 .showbox .con ul {
+    margin-top: .1rem;
+}
+.section1 .showbox .con ul li {
+    width: 100%;
+    margin-bottom: .25rem;
+    padding: .05rem .15rem;
+    height: 1.3rem;
+    color: white;
+    position: relative;
+    transform: translate(-20rem, 0);
+}
+.section1 .showbox .con ul li.animation {
+    transform: translate(0rem, 0);
+}
+.section1 .showbox .con ul li p {
+    float: right;
+    width: 5.3rem;
+    font: normal 400 0.26rem/0.35rem "MicroSoft YaHei";
+}
+.section1 .showbox .con ul li span {
+    position: absolute;
+    bottom: 0;
+    left: .2rem;
+    font: normal 700 0.8rem/0.8rem "MicroSoft YaHei";
+}
+.section1 .showbox .con ul li:nth-of-type(2n) {
+    border-radius: 0 .2rem 0 .2rem;
+}
+.section1 .showbox .con ul li:nth-of-type(2n+1) {
+    border-radius: .2rem 0 .2rem 0;
+}
+.section1 .showbox .con ul li:first-child > p,
+.section1 .showbox .con ul li:nth-of-type(4) > p {
+    padding-top: .4rem;
+}
+.section1 .showbox .con ul li:nth-of-type(2) > p,
+.section1 .showbox .con ul li:nth-of-type(3) > p,
+.section1 .showbox .con ul li:nth-of-type(5) > p {
+    margin-top: .25rem;
+}
+.section1 .showbox .con ul li:nth-of-type(3) > p {
+    width: 5.5rem;
+    padding-right: .5rem;
+}
+.section1 .showbox .con ul li:nth-of-type(1) {
+    transition: all 1s;
+}
+.section1 .showbox .con ul li:nth-of-type(2) {
+    transition: all 1s .3s;
+}
+.section1 .showbox .con ul li:nth-of-type(3) {
+    transition: all 1s .6s;
+}
+.section1 .showbox .con ul li:nth-of-type(4) {
+    transition: all 1s .9s;
+}
+.section1 .showbox .con ul li:nth-of-type(5) {
+    transition: all 1s 1.2s;
+}
+.section1 .showbox .con .next {
+    position: absolute;
+    bottom: .7rem;
+    left: 50%;
+    margin-left: -0.25rem;
+    height: .5rem;
+    width: .5rem;
+    text-align: center;
+    color: white;
+    transform-origin: bottom center;
+    font-size: .4rem;
+}
+.section1 .showbox .con .next i {
+    display: inline-block;
+    font-size: .8rem;
+}
+/*第一屏 end*/
+/*第二屏 start*/
+.section2 {
+    background: url("../images/yws_lz/fgssq/bg.png") no-repeat center / cover;
+    overflow: hidden;
+}
+.section2 .showbox {
+    width: 100%;
+    height: 100%;
+    padding: 0px 20px;
+    z-index: 2;
+}
+.section2 .showbox .con {
+    height: 100%;
+    width: 100%;
+}
+.section2 .showbox .con h3 {
+    color: white;
+    background: url("../images/yws_lz/fgssq/sqbz.png") no-repeat center / contain;
+    height: .7rem;
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: .3rem;
+    margin-top: .3rem;
+}
+.section2 .showbox .con h3 span {
+    padding-left: 10000rem;
+}
+.section2 .showbox .con ul {
+    margin-top: .1rem;
+}
+.section2 .showbox .con ul li {
+    width: 100%;
+    margin-bottom: .15rem;
+    padding: .05rem .15rem;
+    height: 1.3rem;
+    color: white;
+    position: relative;
+    transform: translate(20rem, 0);
+}
+.section2 .showbox .con ul li p {
+    float: left;
+    width: 5.5rem;
+    font: normal 400 0.26rem/0.35rem "MicroSoft YaHei";
+}
+.section2 .showbox .con ul li span {
+    position: absolute;
+    bottom: 0;
+    right: .2rem;
+    font: normal 700 0.8rem/0.8rem "MicroSoft YaHei";
+}
+.section2 .showbox .con ul li:nth-of-type(1) {
+    transition: all 1s;
+}
+.section2 .showbox .con ul li:nth-of-type(2) {
+    transition: all 1s .3s;
+}
+.section2 .showbox .con ul li:nth-of-type(3) {
+    transition: all 1s .6s;
+}
+.section2 .showbox .con ul li:nth-of-type(4) {
+    transition: all 1s .9s;
+}
+.section2 .showbox .con ul li:nth-of-type(5) {
+    transition: all 1s 1.2s;
+}
+.section2 .showbox .con ul li:nth-of-type(6) {
+    transition: all 1s 1.5s;
+}
+.section2 .showbox .con ul li:nth-of-type(2n) {
+    border-radius: 0 .2rem 0 .2rem;
+}
+.section2 .showbox .con ul li:nth-of-type(2n+1) {
+    border-radius: .2rem 0 .2rem 0;
+}
+.section2 .showbox .con ul li:first-child > p,
+.section2 .showbox .con ul li:nth-of-type(2) > p,
+.section2 .showbox .con ul li:nth-of-type(4) > p,
+.section2 .showbox .con ul li:nth-of-type(6) > p {
+    padding-top: .3rem;
+}
+.section2 .showbox .con ul li:nth-of-type(3) {
+    height: 1.5rem;
+}
+.section2 .showbox .con ul li:nth-of-type(5) > p {
+    padding-top: .45rem;
+}
+.section2 .showbox .con ul li:nth-of-type(3) > p {
+    padding-top: .2rem;
+}
+.section2 .showbox .con .next {
+    position: absolute;
+    bottom: .7rem;
+    left: 50%;
+    margin-left: -0.25rem;
+    height: .5rem;
+    width: .5rem;
+    text-align: center;
+    color: white;
+    transform-origin: bottom center;
+    font-size: .4rem;
+}
+.section2 .showbox .con .next i {
+    display: inline-block;
+    transform-origin: bottom center;
+    font-size: .8rem;
+}
+/*第二屏 end*/
+/*第三屏 start*/
+.section3 {
+    background: url("../images/yws_lz/fgssq/bg.png") no-repeat center / cover;
+    overflow: hidden;
+}
+.section3 .showbox {
+    width: 320px;
+    height: 400px;
+    border-radius: .2rem;
+    background: rgba(141, 205, 255, 0.7);
+    position: relative;
+    margin: 0 auto 0;
+    padding: 40px 40px;
+    z-index: 2;
+}
+
+.section3 h3 {
+    color: white;
+    background: url("../images/yws_lz/fgssq/tjzl.png") no-repeat center / contain;
+    height: .7rem;
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: .3rem;
+    margin-top: .3rem;
+}
+.section3 h3 span {
+    padding-left: 10000rem;
+}
+
+.section3 .showbox form {
+    width: 100%;
+    height: 100%;
+}
+.section3 .showbox form ul {
+    padding-top: 30px;
+}
+.section3 .showbox form ul li {
+    line-height: 20px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #fff;
+}
+.section3 .showbox form ul li input {
+    width: 15px;
+    height: 15px;
+    vertical-align: middle;
+}
+.section3 .showbox .finish {
+    width: 40%;
+    height: 40px;
+    border: 1px solid #fff;
+    border-radius: .2rem;
+    position: absolute;
+    bottom: 60px;
+    left: 50%;
+    margin-left: -20%;
+    line-height: 40px;
+    text-align: center;
+    font-size: 14px;
+}
+.section3 .showbox .finish a {
+    width: 100%;
+    height: 100%;
+    display: block;
+    color: white;
+}
+@media screen and (max-width: 320px) {
+    .section3 .showbox .finish {
+        bottom: 30px;
+        left: 70%;
+    }
+}
+.section3 .showbox .con.con-first .next-page {
+    bottom: -5px;
+}
+.section3 #cjrzfrom2{
+    display: none;
+}
+
+.section3 #cjrzfrom1{
+    display: block;
+}
+/*第三屏 end*/
+/*添加动画*/
+/*.section1 ul li {
+    transform: translate(-100rem, 0);
+}*/
+.section1.animation .con ul li {
+    transform: translate(0, 0);
+}
+.section2.animation .con ul li {
+    transform: translate(0, 0);
+}
+.section3.animation .con ul li {
+    transform: translate(0, 0);
+}
+/*定义动画*/
+/*@keyframes scaleBig {
+    0% {
+        -webikit-transform: scale(1, 1);
+        transform: scale(1, 1);
+        opacity: .5;
+    }
+    50% {
+        -webikit-transform: scale(2, 2);
+        transform: scale(2, 2);
+        opacity: 1;
+    }
+    100% {
+        -webikit-transform: scale(1, 1);
+        transform: scale(1, 1);
+        opacity: .5;
+    }
+}
+@-webkit-keyframes scaleBig {
+    0% {
+        -webikit-transform: scale(1, 1);
+        transform: scale(1, 1);
+        opacity: .5;
+    }
+    50% {
+        transform: scale(2, 2);
+        -webikit-transform: scale(2, 2);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1, 1);
+        -webikit-transform: scale(1, 1);
+        opacity: .5;
+    }
+}
+.scaleBig {
+    animation: scaleBig 2s linear infinite;
+    -webikit-animation: scaleBig 2s linear infinite;
+}*/
+#forgin{
+    display: none;
+}
+.section3 .showbox>ul>li{
+    color: white;
+    width: 50%;
+    font:normal 400 .28rem/.3rem "MicroSoft YaHei";
+    text-align: center;
+    float: right;
+}
+.section3 .showbox>ul>li>input{
+    vertical-align: middle;
+}
+.section3 .showbox>ul>li:last-child{
+    float: left;
+}

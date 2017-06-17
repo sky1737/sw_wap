@@ -1,0 +1,108 @@
+.con {
+    width: 100%;
+    min-height: 100%;
+    background: url("../images/yws_lz/fgssq/bg.png") no-repeat center / cover;
+    padding: 20px;
+}
+.con form {
+    width: 100%;
+    height: 100%;
+}
+.con form .con-box {
+    border-radius: 8px;
+    width: 100%;
+    min-height: 100%;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.7);
+}
+.con form .con-box h3 {
+    text-align: center;
+    font: normal 400 18px/30px "MicroSoft YaHei";
+}
+.con form .con-box > p {
+    font: normal 400 14px/20px "MicroSoft YaHei";
+}
+.con form .con-box ul li {
+    margin: 20px 0;
+}
+.con form .con-box ul li p {
+    position: relative;
+    font-size: 14px;
+}
+.con form .con-box ul li p i {
+    vertical-align: middle;
+    color: red;
+}
+.con form .con-box ul li span {
+    text-align: center;
+    font-size: 12px;
+    display: block;
+    line-height: 20px;
+}
+.con form .con-box ul li span i {
+    color: red;
+    vertical-align: middle;
+}
+.con form .con-box ul li .con-box-son {
+    margin: 8px auto;
+    width: 200px;
+    height: 150px;
+    position: relative;
+}
+.con form .con-box ul li .con-box-son .img-box {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #eee;
+    margin: 0 auto;
+}
+.con form .con-box ul li .con-box-son a {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 4;
+    position: absolute;
+    text-align: center;
+    line-height: 150px;
+    color: white;
+    font-size: 40px;
+    color: #666;
+    /* background: url("../images/yws_lz/fgssq/file.png") no-repeat center/contain;*/
+}
+.con form .con-box ul li .con-box-son a input {
+    position: absolute;
+    right: -1px;
+    top: -1px;
+    font-size: 100px;
+    opacity: 1;
+    filter: alpha(opacity=1);
+}
+.con form .con-box ul li .con-box-son .filebox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #ccc;
+}
+.con form .con-box ul li .con-box-son .filebox .filebox-box {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+}
+.con form .con-box ul h6 {
+    margin-top: 10px;
+    font: normal 400 12px "MicroSoft YaHei";
+    color: #666;
+}
+ #finish {
+    width: 46%;
+    height: 48px;
+    background: url("../images/yws_lz/fgssq/finish.png") no-repeat center / contain;
+    color: white;
+    line-height: 48px;
+    text-align: center;
+    margin: 20px 28%;
+    font-size: 14px;
+}

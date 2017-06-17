@@ -40,6 +40,8 @@ if (empty($noFooterLinks) && empty($noFooterCopy)) { ?>
         <?php // <a href="./weidian.php" class="item_cart">微店列表</a> ?>
         <a href="./my.php" class="item_uc">个人中心</a>
         <a href="./yws_newzerosell.php" class="item_uc">新零售申请</a>
+        <a href="./yws_branchcompany.php?page=1" class="item_uc">分公司申请</a>
+        <a href="./yws_factoryenter.php" class="item_uc">厂家入驻</a>
 <!--        <a href="./yws_ydy.php?page=1" class="item_uc">引导页</a>-->
     </div>
 </div>

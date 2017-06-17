@@ -36,8 +36,9 @@
                 <div class="circle-2"></div>
                 <div class="circle-3"></div>
             </div>
-            <h3 class="bounceInUp">倾力打造新零售移动电商第一品牌</h3>
-            <a href="./index.php?ywsydy=true"  class="flipInX">跳过</a>
+            <h3 class="bounceInUp">中国“<span>新零售</span> ”领导品牌</h3>
+            <h3 class="bounceInUp">中国“<span>互联网+实体</span> ”领军企业</h3>
+            <h3 class="bounceInUp">中国首个将“<span>爆款+定制</span> ”上线的互联网平台</h3>
         </div>
     </div>
 </div>

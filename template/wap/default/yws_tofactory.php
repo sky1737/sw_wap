@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="<?php echo TPL_URL; ?>css/yws_lz/base.css">
     <link rel="stylesheet" href="<?php echo TPL_URL; ?>css/yws_lz/yws-cjzg.css">
     <script src="<?php echo TPL_URL; ?>js/yws_lz/lib/js/jquery-3.0.0.min.js"></script>
-    <script src="<?php echo TPL_URL; ?>js/yws_lz/base.js"></script>
     <script src="<?php echo TPL_URL; ?>js/yws_lz/yws-cjzg.js"></script>
 </head>
 <body>

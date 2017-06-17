@@ -24,7 +24,6 @@ input ,textarea{
     border: none;
     resize: none;
     outline: none;
-    -webkit-appearance: none;
 }
 .fl{
     float: left;
@@ -131,7 +130,7 @@ header.header .search i {
     float: left;
     height: 18px;
     width: 18px;
-    background-image: url("../images/yws_lz/cjzg/sprite.png");
+    background-image: url("../images/cjzg/sprite.png");
     background-repeat: no-repeat;
     background-position: 0 0;
     margin-top: 4px;
@@ -141,7 +140,7 @@ header.header > a {
     width: 31px;
     height: 31px;
     margin: 8px 12px 8px 0;
-    background-image: url("../images/yws_lz/cjzg/sprite.png");
+    background-image: url("../images/cjzg/sprite.png");
     background-repeat: no-repeat;
     background-position: -18px 0;
     float: right;
@@ -175,7 +174,7 @@ footer.footer ul li i{
     width: 18px;
     height: 18px;
     margin: 3.5px auto;
-    background: url("../images/yws_lz/cjzg/sprite.png") no-repeat;
+    background: url("../images/cjzg/sprite.png") no-repeat;
 }
 footer.footer ul li span{
     font-size: 14px;
@@ -226,3 +225,5 @@ footer.footer ul li:nth-of-type(4) i{
 :-ms-input-placeholder { /* Internet Explorer 10+ */
     color: #fff;
 }
+
+

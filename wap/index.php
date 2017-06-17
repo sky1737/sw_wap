@@ -1,6 +1,6 @@
 <?php
 require_once dirname(__FILE__) . '/global.php';
-$ydy = I('get.ywsydy');
+$ydy = $_GET['ywsydy'];
 if($ydy){
     /**
      *  店铺主页
@@ -148,7 +148,13 @@ if($ydy){
 //echo '欢迎';
     echo ob_get_clean();
 }else{
-    $page =     I('get.page');
+    //$page =     I('get.page');
+/*    $page = $_GET['page'];
+    define('TWIKER_PATH', dirname(__FILE__) . '/../');
+    define('GROUP_NAME', 'wap');
+    define('IS_SUB_DIR', true);
+//    require_once dirname(__FILE__) . '/global.php';
+    require_once TWIKER_PATH . 'source/init.php';*/
     if($page==1){
         include display('yws_ydy');
     }else{
