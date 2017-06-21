@@ -49,7 +49,7 @@
   border-bottom: 1px solid #ccc;
 }
 .con .con-box ul li p {
-  margin-top: 12px ;
+  padding-top: 12px ;
   margin-left: 84px;
   margin-bottom: 6px;
   color: #000;
@@ -60,10 +60,16 @@
   font-size: 14px;
   color: #000;
 }
+.con .con-box ul li a{
+  display: block;
+  width: 100%;
+  height: 100%;
+}
 .con .con-box ul li img {
   display: inline-block;
   height: 72px;
   float: left;
   width: 72px;
   background-color: antiquewhite;
+  border: 1px solid #ccc;
 }

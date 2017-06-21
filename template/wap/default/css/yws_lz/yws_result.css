@@ -3,6 +3,7 @@ section {
     font: 50px "Microsoft Yahei";
     color: #fff;
 }
+
 /*第一屏 start*/
 body {
     background: url("../images/yws_lz/fgssq/bg.png") no-repeat center / cover;
@@ -10,11 +11,16 @@ body {
 }
 
 .con {
-
-    height: 200px;
+    line-height: 150px;
+    text-align: center;
+    height: 150px;
     width: 80%;
-    margin:50px auto;
-    margin-top:30%;
+    margin: 50px auto;
+    margin-top: 55%;
+    color: #fff;
     border-radius: 10px;
-    background-color: rgba(255,255,255,0.9);
+    font-size: 20px;
+    background-color: rgba(141, 205, 255, 0.7);
 }
+
+

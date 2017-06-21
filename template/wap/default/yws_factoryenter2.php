@@ -15,9 +15,27 @@
 
 </head>
 <body>
-<div id="newzeroselltips" style="display: none; height: 120px; width: 60%; border-radius: 10px; background: rgba(255, 255, 255, 0.95); position: absolute; bottom: 10%; left: 20%; z-index: 1000;">
-    <div id="msg" style="margin:0 auto;width:100%;height: 50px;text-align: center;padding-top: 25px;font-size: 14px;color: red;"></div>
-    <div style="width: 90px;height: 36px;margin: 0 auto;margin-top: 20px;font-size: 12px;border-radius:7px;background:#99bbf5;color: white;text-align: center;line-height: 36px" id="iknow">知道了</div>
+<!--style="display: none;
+height: 120px; width: 60%;
+ border-radius: 10px;
+  background: rgba(255, 255, 255, 0.95);
+  position: absolute; bottom: 10%; left: 20%;
+   z-index: 1000;"
+   style="margin:0 auto;width:100%;
+   height: 50px;text-align: center;
+   padding-top: 25px;font-size: 14px;
+   color: red;"
+   style="width: 90px;height: 36px;margin: 0 auto;
+   margin-top: 20px;font-size: 12px;
+   border-radius:7px;background:#99bbf5;
+   color: white;text-align: center;
+   line-height: 36px"
+   -->
+<div id="alertBox">
+    <div id="newzeroselltips" >
+        <div id="msg">您上传的图片过大，请重新上传</div>
+        <div  id="iknow">知道了</div>
+    </div>
 </div>
 <div class="con">
     <input type="hidden" value="<?php echo $arr?>" id="factoryjson" name="ahha">
@@ -68,7 +86,7 @@
                 console.log(size);
                 if(size>=3145728){
                     //console.log('图片过大');
-                    $('#newzeroselltips').css('display','block');
+                    $('#alertBox').css('display','block');
                     //$('.showbox').css('background-color','#E8E8E8');
                     $('.showbox').css('z-index','999');
                     $('#msg').html('您上传的图片过大，请重新上传');
@@ -87,7 +105,7 @@
             //$('.showbox').css('background-color','rgba(255,255,255,0)');
             nextpageflag=true;
             $('.showbox').css('z-index','999');
-            $('#newzeroselltips').css('display','none');
+            $('#alertBox').css('display','none');
         })
         $('#finish').click(function(){
             //console.log(typeof picArray);
@@ -100,7 +118,7 @@
             if(str.length*1 <= countlength*1-1){
                 nextpageflag=false;
                 $('.showbox').css('z-index','999');
-                $('#newzeroselltips').css('display','block');
+                $('#alertBox').css('display','block');
                 $('#msg').html('请填写完整');
                 return;
             }else{

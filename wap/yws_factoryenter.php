@@ -13,7 +13,7 @@ function ajax_upload_pic(&$pic,$key,$file)
             mkdir($upload_dir, 0777, true);
         }
         $upload = new UploadFile();
-        $upload->maxSize = 1 * 1024 * 1024;
+        $upload->maxSize = 3 * 1024 * 1024;
         $upload->allowExts = array('jpg', 'jpeg', 'png', 'gif');
         $upload->allowTypes = array('image/png', 'image/jpg', 'image/jpeg', 'image/gif');
         $upload->savePath = $upload_dir;

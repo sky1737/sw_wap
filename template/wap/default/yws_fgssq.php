@@ -15,9 +15,11 @@
     <script src="<?php echo TPL_URL; ?>js/yws_lz/yws_fgssq.js"></script>
 </head>
 <body>
-<div id="newzeroselltips" style="display: none; height: 120px; width: 60%; border-radius: 10px; background: rgba(255, 255, 255, 0.95); position: absolute; top: 190px; left: 20%; z-index: 1000;">
-    <div id="msg" style="margin:0 auto;width:100%;height: 50px;text-align: center;padding-top: 25px;font-size: 14px;color: red;">您上传的图片过大，请重新上传</div>
-    <div style="width: 90px;height: 36px;margin: 0 auto;margin-top: 20px;font-size: 12px;border-radius:7px;background:#99bbf5;color: white;text-align: center;line-height: 36px" id="iknow">知道了</div>
+<div id="alertBox">
+    <div id="newzeroselltips" >
+        <div id="msg">您上传的图片过大，请重新上传</div>
+        <div  id="iknow">知道了</div>
+    </div>
 </div>
 <div id="dowebok">
     <div class="section section1">
@@ -41,7 +43,11 @@
                         <span>5</span><p>企业申请需提交营业执照复印件、税务登记证复印件和公司简介</p>
                     </li>
                 </ul>
-                <div class="next scaleBig"><i class="iconfont">&#xe609</i></div>
+                <div class="next scaleBig">
+                    <i></i>
+                    <i></i>
+                    <i></i>
+                </div>
             </div>
         </div>
     </div>
@@ -75,7 +81,11 @@
                         <span>6</span>
                     </li>
                 </ul>
-                <div class="next scaleBig"><i class="iconfont">&#xe609</i></div>
+                <div class="next scaleBig">
+                    <i></i>
+                    <i></i>
+                    <i></i>
+                </div>
             </div>
         </div>
     </div>
@@ -176,7 +186,7 @@
                         </li>
                         <li>
                             <p><span>联系电话</span>
-                                <input type="text" name="phone" id="tel" >&nbsp;&nbsp;&nbsp; </p>
+                                <input type="text" name="phone" id="tel" maxlength="11">&nbsp;&nbsp;&nbsp; </p>
                         </li>
                         <div id="notnull" style="font-size: 13px;color:red;"></div>
                         <input type="hidden" value="分公司申请" name="yws_title">

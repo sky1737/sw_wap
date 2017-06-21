@@ -36,7 +36,7 @@ function ajax_upload_pic(&$pic,$key,$file)
 //dump($sellmsg);
 $post = $_POST;
 if($post){
-
+    $title = $_POST['yws_title'];
     //dump($config['site_url']);
     $url = $config['site_url'];
     //dump($wap_user);

@@ -82,21 +82,39 @@ section {
 .section1 .showbox .con ul li:nth-of-type(3) {
     transition: all 1s .6s;
 }
-.section1 .showbox .con .next {
+.section1 .showbox .con .next,.section2 .showbox .con .next {
     position: absolute;
-    bottom: .8rem;
+    bottom: .3rem;
     left: 50%;
-    margin-left: -0.25rem;
-    height: .5rem;
-    width: .5rem;
+    margin-left: -0.5rem;
+    height: 1rem;
+    width: 1rem;
     text-align: center;
     color: white;
     transform-origin: bottom center;
     font-size: .4rem;
 }
-.section1 .showbox .con .next i {
-    display: inline-block;
-    font-size: .8rem;
+.section1 .showbox .con .next i,.section2 .showbox .con .next i {
+    position: absolute;
+    width: 100%;
+    height: 33.33%;
+    background: rgba(155,155,155,.4);
+    left: 0;
+    margin-left: 0rem;
+}
+.section1 .showbox .con .next i:first-child,.section2 .showbox .con .next i:first-child{
+    background: url("../images/yws_lz/fgssq/row1.png") no-repeat center /contain;
+    top: 0;
+}
+.section1 .showbox .con .next i:nth-of-type(2),.section2 .showbox .con .next i:nth-of-type(2){
+    background: url("../images/yws_lz/fgssq/row2.png") no-repeat center /contain;
+    top: 8px;
+    opacity: .6;
+}
+.section1 .showbox .con .next i:last-child,.section2 .showbox .con .next i:last-child{
+    background: url("../images/yws_lz/fgssq/row3.png") no-repeat center /contain;
+    top: 16px;
+    opacity:.3;
 }
 /*第一屏 end*/
 /*第二屏 start*/
@@ -174,23 +192,7 @@ section {
 .section2 .showbox .con ul li:nth-of-type(3) > p {
     padding-top: .2rem;
 }
-.section2 .showbox .con .next {
-    position: absolute;
-    bottom: .8rem;
-    left: 50%;
-    margin-left: -0.25rem;
-    height: .5rem;
-    width: .5rem;
-    text-align: center;
-    color: white;
-    transform-origin: bottom center;
-    font-size: .4rem;
-}
-.section2 .showbox .con .next i {
-    display: inline-block;
-    transform-origin: bottom center;
-    font-size: .8rem;
-}
+
 /*第二屏 end*/
 /*第三屏 start*/
 .section3 {
@@ -258,13 +260,13 @@ section {
 }
 .section3 .showbox .con ul li .con-box a {
     width: 100%;
-    height: .5rem;
+    height: 100%;
     overflow: hidden;
     float: left;
-    top: 0.75rem;
+    top: 0;
     position: relative;
     text-align: center;
-    line-height: 21px;
+    line-height: 100px;
     color: #fff;
     font-size: .8rem;
     z-index: 22;
@@ -273,8 +275,10 @@ section {
     position: absolute;
     right: -1px;
     top: -1px;
+    height: 151px;
     font-size: 100px;
     opacity: 1;
+    color: transparent;
     filter: alpha(opacity=1);
 }
 .section3 .showbox .con ul li .con-box .filebox {
@@ -491,11 +495,45 @@ section {
     animation: scaleBig 2s linear infinite;
     -webikit-animation: scaleBig 2s linear infinite;
 }*/
-
-#newzeroselltips{
+#alertBox{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.3);
+    position: fixed;
     z-index: 10000;
+    display: none;
+}
+#newzeroselltips {
+
+    height: 120px;
+    width: 60%;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.95);
     position: absolute;
-    width:400px;
-    height:200px;
-    margin: 50px auto;
+    top: 190px;
+    left: 20%;
+    z-index: 1000;
+}
+
+#msg {
+    margin: 0 auto;
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    padding-top: 25px;
+    font-size: 14px;
+    color: red;
+}
+
+#iknow {
+    width: 90px;
+    height: 36px;
+    margin: 0 auto;
+    margin-top: 20px;
+    font-size: 12px;
+    border-radius: 7px;
+    background: #99bbf5;
+    color: white;
+    text-align: center;
+    line-height: 36px
 }

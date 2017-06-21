@@ -37,7 +37,11 @@
                         <span>5</span><p>企业申请需提交营业执照复印件、税务登记证复印件和公司简介</p>
                     </li>
                 </ul>
-                <div class="next scaleBig"><i class="iconfont">&#xe609</i></div>
+                <div class="next scaleBig">
+                    <i></i>
+                    <i></i>
+                    <i></i>
+                </div>
             </div>
         </div>
     </div>
@@ -71,93 +75,99 @@
                         <span>6</span>
                     </li>
                 </ul>
-                <div class="next scaleBig"><i class="iconfont">&#xe609</i></div>
+                <div class="next scaleBig">
+                    <i></i>
+                    <i></i>
+                    <i></i>
+                </div>
             </div>
         </div>
     </div>
     <div class="section section3">
-        <h3></h3>
-        <div class="showbox" style="font-size: 12px;">
-            <ul>
-                <li>
-                    <label>
-                        <input type="radio" name="type" value="1" id="type1" checked>
-                        国内商家
-                    </label>
-                </li>
-            </ul>
-            <ul>
-                <li>
-                    <label><input type="radio" name="type" value="2" id="type2">
-                        国外商家</label>
-                </li>
-            </ul>
-            <form action="./yws_factoryenter.php" name="type1" method="get" id="cjrzfrom1">
-                <input type="hidden" value="type" name="contry">
-                <ul id="select1">
-                    <li>
-                        <label> <input type="checkbox" name="mold1" value="list" id="common" checked>
-                            &nbsp;&nbsp;&nbsp;经营服饰、珠宝首饰、饰品、运动户外、数码、家用电器、家装/家具/家纺、居家日用、汽车用品及配件、母婴类目的商品;</label>
-                    </li>
-                    <li>
-                        <label>
-                            <input type="checkbox" name="mold2" value="list2" id="foot">
-                            &nbsp;&nbsp;&nbsp;经营食品；
-                        </label>
-                    </li>
-                    <li>
-                        <label>
-                            <input type="checkbox" name="mold3" value="list2,list3" id="bjfoot">
-                            &nbsp;&nbsp;&nbsp;经营保健食品;
-                        </label>
-                    </li>
-                    <li>
-                        <label>
-                            <input type="checkbox" name="mold4" value=" list2,list4" id="liquor">
-                            &nbsp;&nbsp;&nbsp;经营酒类;
-                        </label>
-                    </li>
-                    <li>
-                        <label>
-                            <input type="checkbox" name="mold5" value="list5" id="cosmetic">
-                            &nbsp;&nbsp;&nbsp;经营化妆品;
-                        </label>
-                    </li>
-                </ul>
-                <input class="finish" id="finish1" type="submit" value="下一步">
-            </form>
+      <div class="con-con-box">
+          <h3></h3>
+          <div class="showbox" style="font-size: 12px;">
+              <ul>
+                  <li>
+                      <label>
+                          <input type="radio" name="type" value="1" id="type1" checked>
+                          国内商家
+                      </label>
+                  </li>
+              </ul>
+              <ul>
+                  <li>
+                      <label><input type="radio" name="type" value="2" id="type2">
+                          国外商家</label>
+                  </li>
+              </ul>
+              <form action="./yws_factoryenter.php" name="type1" method="get" id="cjrzfrom1">
+                  <input type="hidden" value="type" name="contry">
+                  <ul id="select1">
+                      <li>
+                          <label> <input type="checkbox" name="mold1" value="list" id="common" checked>
+                              &nbsp;&nbsp;&nbsp;经营服饰、珠宝首饰、饰品、运动户外、数码、家用电器、家装/家具/家纺、居家日用、汽车用品及配件、母婴类目的商品;</label>
+                      </li>
+                      <li>
+                          <label>
+                              <input type="checkbox" name="mold2" value="list2" id="foot">
+                              &nbsp;&nbsp;&nbsp;经营食品；
+                          </label>
+                      </li>
+                      <li>
+                          <label>
+                              <input type="checkbox" name="mold3" value="list2,list3" id="bjfoot">
+                              &nbsp;&nbsp;&nbsp;经营保健食品;
+                          </label>
+                      </li>
+                      <li>
+                          <label>
+                              <input type="checkbox" name="mold4" value=" list2,list4" id="liquor">
+                              &nbsp;&nbsp;&nbsp;经营酒类;
+                          </label>
+                      </li>
+                      <li>
+                          <label>
+                              <input type="checkbox" name="mold5" value="list5" id="cosmetic">
+                              &nbsp;&nbsp;&nbsp;经营化妆品;
+                          </label>
+                      </li>
+                  </ul>
+                  <input class="finish" id="finish1" type="submit" value="下一步">
+              </form>
 
-            <form action="./yws_factoryenter.php" name="type2" method="get" id="cjrzfrom2">
-                <input type="hidden" value="type" name="contry">
-                <ul id="select2">
-                    <li>
-                        <label>
-                            <input type="checkbox" name="mold2" value="list2,list6" id="foot2">
-                            &nbsp;&nbsp;&nbsp;经营进口食品；
-                        </label>
-                    </li>
-                    <li>
-                        <label>
-                            <input type="checkbox" name="mold3" value="list6,list2,list3,list7" id="bjfoot2">
-                            &nbsp;&nbsp;&nbsp;经营进口保健食品;
-                        </label>
-                    </li>
-                    <li>
-                        <label>
-                            <input type="checkbox" name="mold4" value="list6,list2,list4,list6" id="liquor2">
-                            &nbsp;&nbsp;&nbsp;经营进口酒类;
-                        </label>
-                    </li>
-                    <li>
-                        <label>
-                            <input type="checkbox" name="mold5" value="list6,list5,list8" id="cosmetic2">
-                            &nbsp;&nbsp;&nbsp;经营进口化妆品;
-                        </label>
-                    </li>
-                </ul>
-                <input class="finish" id="finish2" type="submit" value="下一步">
-            </form>
-        </div>
+              <form action="./yws_factoryenter.php" name="type2" method="get" id="cjrzfrom2">
+                  <input type="hidden" value="type" name="contry">
+                  <ul id="select2">
+                      <li>
+                          <label>
+                              <input type="checkbox" name="mold2" value="list2,list6" id="foot2">
+                              &nbsp;&nbsp;&nbsp;经营进口食品；
+                          </label>
+                      </li>
+                      <li>
+                          <label>
+                              <input type="checkbox" name="mold3" value="list6,list2,list3,list7" id="bjfoot2">
+                              &nbsp;&nbsp;&nbsp;经营进口保健食品;
+                          </label>
+                      </li>
+                      <li>
+                          <label>
+                              <input type="checkbox" name="mold4" value="list6,list2,list4,list6" id="liquor2">
+                              &nbsp;&nbsp;&nbsp;经营进口酒类;
+                          </label>
+                      </li>
+                      <li>
+                          <label>
+                              <input type="checkbox" name="mold5" value="list6,list5,list8" id="cosmetic2">
+                              &nbsp;&nbsp;&nbsp;经营进口化妆品;
+                          </label>
+                      </li>
+                  </ul>
+                  <input class="finish" id="finish2" type="submit" value="下一步">
+              </form>
+          </div>
+      </div>
     </div>
 </div>
 </body>

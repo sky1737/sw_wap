@@ -221,12 +221,12 @@
   animation: lightSpeedIn .5s ease-out 1;
 }
 .lightSpeedIn2 {
-  -webkit-animation: lightSpeedIn .5s 1s ease-out 1;
-  animation: lightSpeedIn .5s 1s ease-out 1;
+  -webkit-animation: lightSpeedIn .5s .5s ease-out 1;
+  animation: lightSpeedIn .5s .5s ease-out 1;
 }
 .lightSpeedIn3 {
-  -webkit-animation: lightSpeedIn .5s 2s ease-out 1;
-  animation: lightSpeedIn .5s 2s ease-out 1;
+  -webkit-animation: lightSpeedIn .5s 1s ease-out 1;
+  animation: lightSpeedIn .5s 1s ease-out 1;
 }
 @keyframes rotate {
   0% {

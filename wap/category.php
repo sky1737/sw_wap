@@ -4,7 +4,7 @@
  */
 require_once dirname(__FILE__) . '/global.php';
 $keyword = $_GET['keyword'];
-
+$storeid = $_GET['storeid'];
 //分享配置 start
 $share_conf = array(
 	'title'   => option('config.site_name'), // 分享标题
@@ -20,8 +20,10 @@ $shareData = $share->getSgin($share_conf);
 //分享配置 end
 
 $supplier_uid = intval($_GET['suid']); //供应商UID
-
+//dump('lzuig-'.$supplier_uid);
+//dump();
 if (isset($_GET['discount'])) {
+    dump(0);
     $db_banner = M('Adver');
     
     $banner = $db_banner->get_adver_by_key('wap_lottery_top', 0);
@@ -38,25 +40,26 @@ if (isset($_GET['discount'])) {
     include display('index_category_discount');
 }
 elseif(empty($keyword) && !$supplier_uid){
-
+    //dump('lz_1');
     include display('index_category');
-}else{
+}
+else{
 
 	$key_id = intval($_GET['id']);
-
+    //dump($key_id);
 	// 顶级分类和子分类
     /**
      * @var $product_category_model product_category_model
      */
 	$product_category_model = M('Product_category');
 	$category_detail = $product_category_model->getCategory($key_id);
-
+    //dump($category_detail);
 	$property_list = array();
 	if (!empty($category_detail)) {
 
 		$property_list = M('System_product_property')->getPropertyAndValue($category_detail['filter_attr']);
 	}
-
+    //dump($property_list);
 	include display('index_category_detail');
 }
 echo ob_get_clean();

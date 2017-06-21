@@ -1,0 +1,276 @@
+.con {
+    width: 100%;
+    height: 100%;
+    background: url("../images/yws_lz/gxdz/bg.png") no-repeat center / cover;
+}
+
+.con .logo ul {
+    width: 45%;
+    height: 72px;
+    position: absolute;
+    top: 228px;
+    left: 50%;
+
+}
+
+.con .logo ul li {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0px;
+    transform-origin: left center;
+}
+
+/*span:first-child {
+    transform: rotate(0) scale(.1, .1);
+    -webkit-transform: rotate(0) scale(.1, .1);
+    transition:all .4s .5s ;
+    -webkit-transition:all .4s .5s ;
+}
+
+span:nth-of-type(2) {
+    transform: rotate(-36deg) scale(.1, .1);
+    -webkit-transform:(-36deg) scale(.1, .1);
+    transition:all .4s .9s ;
+    -webkit-transition:all .4s .9s ;
+}
+
+span:nth-of-type(3) {
+    transform: rotate(-72deg) scale(.1, .1);
+    -webkit-transform:(-72deg) scale(.1, .1);
+    transition:all .4s 1.3s ;
+    -webkit-transition:all .4s 1.3s ;
+}
+
+span:nth-of-type(4) {
+    transform: rotate(-108deg) scale(.1, .1);
+    -webkit-transform:(-108deg) scale(.1, .1);
+    transition:all .4s 1.7s ;
+    -webkit-transition:all .4s 1.7s ;
+}
+
+span:nth-of-type(5) {
+    transform: rotate(-144deg) scale(.1, .1);
+    -webkit-transform:(-144deg) scale(.1, .1);
+    transition:all .4s 2.1s ;
+    -webkit-transition:all .4s 2.1s ;
+}
+
+span:nth-of-type(6) {
+    transform: rotate(-180deg) scale(.1, .1);
+    -webkit-transform:(-180deg) scale(.1, .1);
+    transition:all .4s 2.5s ;
+    -webkit-transition:all .4s 2.5s ;
+}
+
+span:nth-of-type(7) {
+    transform: rotate(-216deg) scale(.1, .1);
+    -webkit-transform:(-216deg) scale(.1, .1);
+    transition:all .4s 2.9s ;
+    -webkit-transition:all .4s 2.9s ;
+}
+
+span:nth-of-type(8) {
+    transform: rotate(-252deg) scale(.1, .1);
+    -webkit-transform:(-252deg) scale(.1, .1);
+    transition:all .4s 3.3s ;
+    -webkit-transition:all .4s 3.3s ;
+}
+
+span:nth-of-type(9) {
+    transform: rotate(-288deg) scale(.1, .1);
+    -webkit-transform:(-288deg) scale(.1, .1);
+    transition:all .4s 3.7s ;
+    -webkit-transition:all .4s 3.7s ;
+}
+
+span:nth-of-type(10) {
+    transform: rotate(-324deg) scale(.1, .1);
+    -webkit-transform:(-324deg) scale(.1, .1);
+    transition:all .4s 4.1s ;
+    -webkit-transition:all .4s 4.1s ;
+}*/
+
+
+.con .logo ul li:first-child {
+    transform: rotateZ(-144deg);
+    -webkit-transform: rotateZ(-144deg);
+}
+
+.con .logo ul li:nth-of-type(2) {
+    transform: rotateZ(-108deg);
+    -webkit-transform: rotateZ(-108deg);
+}
+
+.con .logo ul li:nth-of-type(3) {
+    transform: rotateZ(-72deg);
+    -webkit-transform: rotateZ(-72deg);
+}
+
+.con .logo ul li:nth-of-type(4) {
+    transform: rotateZ(-36deg);
+    -webkit-transform: rotateZ(-36deg);
+}
+
+.con .logo ul li:nth-of-type(5) {
+    transform: rotateZ(0deg);
+    -webkit-transform: rotateZ(0deg);
+}
+
+.con .logo ul li:nth-of-type(6) {
+    transform: rotateZ(36deg);
+    -webkit-transform: rotateZ(36deg);
+}
+
+.con .logo ul li:nth-of-type(7) {
+    transform: rotateZ(72deg);
+    -webkit-transform: rotateZ(72deg);
+}
+
+.con .logo ul li:nth-of-type(8) {
+    transform: rotateZ(108deg);
+    -webkit-transform: rotateZ(108deg);
+}
+
+.con .logo ul li:nth-of-type(9) {
+    transform: rotateZ(144deg);
+    -webkit-transform: rotateZ(144deg);
+}
+
+.con .logo ul li:last-child {
+    transform: rotateZ(180deg);
+    -webkit-transform: rotateZ(180deg);
+}
+
+.con .logo ul li span {
+    width: 50px;
+    height: 72px;
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 82%;
+    opacity: 0;
+    transform: scale(0.1, 0.1);
+    -webkit-transform: scale(0.1, 0.1);
+}
+
+/*旋转结构*/
+.con .con-box .logo .logo-box {
+    background: url("../images/yws_lz/gxdz/logo.png") no-repeat 40px 60px / contain;
+    -webkit-background-size: 60%;
+    background-size: 60%;
+    width: 184px;
+    height: 184px;
+    top: 183px;
+    left: 50%;
+    position: absolute;
+    margin-left: -95px;
+}
+
+.con .con-box .logo .logo-box > div {
+    position: absolute;
+    transform-origin: center;
+}
+
+.con .con-box .logo .logo-box .circle-1 {
+    background: url("../images/yws_lz/2/c-2.png") no-repeat center;
+    width: 144px;
+    height: 144px;
+    top: 11px;
+    left: 23px;
+    -webkit-background-size: 99%;
+    background-size: 99%;
+}
+
+.con .con-box .logo .logo-box .circle-2 {
+    background: url("../images/yws_lz/2/c-3.png") no-repeat center;
+    width: 152px;
+    height: 152px;
+    top: 7px;
+    left: 19px;
+    -webkit-background-size: 96%;
+    background-size: 96%;
+}
+
+.con .con-box .logo .logo-box .circle-3 {
+    background: url("../images/yws_lz/2/c-1.png") no-repeat center;
+    width: 158px;
+    height: 158px;
+    top: 4px;
+    left: 16px;
+    -webkit-background-size: 99%;
+    background-size: 99%;
+}
+
+/*向左转*/
+@keyframes runleft {
+    from {
+        -webit-transform: rotateZ(0deg);
+        -ms-transform: rotateZ(0deg);
+        transform: rotateZ(0deg);
+    }
+    to {
+        -webit-transform: rotateZ(360deg);
+        -ms-transform: rotateZ(360deg);
+        transform: rotateZ(360deg);
+    }
+}
+
+@-webkit-keyframes runleft {
+    from {
+        -webit-transform: rotateZ(0deg);
+        -ms-transform: rotateZ(0deg);
+        transform: rotateZ(0deg);
+    }
+    to {
+        -webit-transform: rotateZ(360deg);
+        -ms-transform: rotateZ(360deg);
+        transform: rotateZ(360deg);
+    }
+}
+
+.runleft {
+    -webit-animation: runleft 15s linear infinite;
+    -ms-animation: runleft 15s linear infinite;
+    animation: runleft 15s linear infinite;
+}
+
+.runleft1 {
+    -webit-animation: runleft 10s linear infinite;
+    -ms-animation: runleft 10s linear infinite;
+    animation: runleft 10s linear infinite;
+}
+
+/*向右转*/
+@keyframes runright {
+    from {
+        -webit-transform: rotateZ(0deg);
+        -ms-transform: rotateZ(0deg);
+        transform: rotateZ(0deg);
+    }
+    to {
+        -webit-transform: rotateZ(-360deg);
+        -ms-transform: rotateZ(-360deg);
+        transform: rotateZ(-360deg);
+    }
+}
+
+@-webkit-keyframes runright {
+    from {
+        -webit-transform: rotateZ(0deg);
+        -ms-transform: rotateZ(0deg);
+        transform: rotateZ(0deg);
+    }
+    to {
+        -webit-transform: rotateZ(-360deg);
+        -ms-transform: rotateZ(-360deg);
+        transform: rotateZ(-360deg);
+    }
+}
+
+.runright {
+    -webit-animation: runright 15s linear infinite;
+    -ms-animation: runright 15s linear infinite;
+    animation: runright 15s linear infinite;
+}

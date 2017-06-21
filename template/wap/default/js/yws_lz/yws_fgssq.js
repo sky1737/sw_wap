@@ -80,7 +80,7 @@ $(function () {
         //$('.showbox').css('background-color','rgba(255,255,255,0)');
         nextpageflag=true;
         $('.showbox').css('z-index','999');
-        $('#newzeroselltips').css('display','none');
+        $('#alertBox').css('display','none');
     })
 //切换下一页
     $("#nextPage").on("click", function () {
@@ -167,7 +167,7 @@ $(function () {
         if(str.length*1<=4 || !area || !linkman || !phone){
             nextpageflag=false;
             $('.showbox').css('z-index','999');
-            $('#newzeroselltips').css('display','block');
+            $('#alertBox').css('display','block');
             $('#msg').html('请填写完整');
             return;
         }else{
@@ -177,7 +177,7 @@ $(function () {
         if(!flag_phone){
             nextpageflag=false;
             $('.showbox').css('z-index','999');
-            $('#newzeroselltips').css('display','block');
+            $('#alertBox').css('display','block');
             $('#msg').html('请检查手机号是否正确');
             return;
         }else {

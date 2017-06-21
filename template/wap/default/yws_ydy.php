@@ -21,12 +21,12 @@
             <p>厂家直供</p></a>
         </div>
         <div class="yws-bktj">
-            <a href="./category.php">
+            <a href="./category2.php?boom=1">
             <i class="lightSpeedIn2 iconfont">&#xe641;</i>
             <p>爆款特价</p></a>
         </div>
         <div class="yws-gxdz">
-            <a href="./category.php">
+            <a href="./yws_individualityCustomization.php">
             <i class="lightSpeedIn3 iconfont">&#xe605;</i>
             <p>个性定制</p></a>
         </div>

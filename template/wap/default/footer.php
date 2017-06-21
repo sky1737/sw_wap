@@ -1,27 +1,27 @@
 <?php
-if (empty($noFooterLinks) && empty($noFooterCopy)) { ?>
+/*if (empty($noFooterLinks) && empty($noFooterCopy)) { */?><!--
     <div class="js-footer">
         <div class="footer">
             <div class="copyright">
                 <?php
-                if (empty($noFooterLinks)) { ?>
+/*                if (empty($noFooterLinks)) { */?>
                     <div class="ft-links">
-                        <a href="<?php echo './?ywsydy=true'; //$now_store['url']; ?>">店铺主页</a>
-                        <a href="<?php echo './my.php'; //$now_store['ucenter_url']; ?>">会员中心</a>
-                        <?php echo $now_store['physical_count'] ? '<a href="' . $now_store['physical_url'] . '">线下门店</a>' : ''; ?>
+                        <a href="<?php /*echo './?ywsydy=true'; //$now_store['url']; */?>">店铺主页</a>
+                        <a href="<?php /*echo './my.php'; //$now_store['ucenter_url']; */?>">会员中心</a>
+                        <?php /*echo $now_store['physical_count'] ? '<a href="' . $now_store['physical_url'] . '">线下门店</a>' : ''; */?>
                     </div>
                     <?php
-                }
-                if (0 && empty($noFooterCopy)) { ?>
+/*                }
+                if (0 && empty($noFooterCopy)) { */?>
                     <div class="ft-copyright">
-                        <a href="<?php echo $config['wap_site_url']; ?>" target="_blank">由&nbsp;<span
-                                class="company"><?php echo $config['site_name']; ?></span>&nbsp;提供技术支持</a>
+                        <a href="<?php /*echo $config['wap_site_url']; */?>" target="_blank">由&nbsp;<span
+                                class="company"><?php /*echo $config['site_name']; */?></span>&nbsp;提供技术支持</a>
                     </div>
-                <?php } ?>
+                <?php /*} */?>
             </div>
         </div>
     </div>
-    <?php } ?>
+    <?php /*} */?>
 <script charset="utf-8" src="http://wpa.b.qq.com/cgi/wpa.php"></script>
 <script type="text/javascript">
     BizQQWPA.addCustom({aty: '0', a: '0', nameAccount: 800191661, selector: 'BizQQWPA'});
@@ -33,17 +33,18 @@ if (empty($noFooterLinks) && empty($noFooterCopy)) { ?>
         <a href="./category.php" class="item_fav">商品分类</a>
         <a href="./cart.php" class="item_cart" id>购物车</a>
 <!--        <div id="BizQQWPA"  class="item_uc" >QQ客服</div>-->
-        <a href="#" class="item_uc" id="BizQQWPA">QQ客服</a>
+<!--        <a href="#" class="item_uc" id="BizQQWPA">QQ客服</a>-->
         <!-- WPA Button Begin -->
      <!--   <script charset="utf-8" type="text/javascript" src="http://wpa.b.qq.com/cgi/wpa.php?key=XzgwMDE5MTY2MV80MjY1OTZfODAwMTkxNjYxXw"></script>-->
         <!-- WPA Button End -->
-        <?php // <a href="./weidian.php" class="item_cart">微店列表</a> ?>
-        <a href="./my.php" class="item_uc">个人中心</a>
+        <?php /*// <a href="./weidian.php" class="item_cart">微店列表</a> */?>
+        <!--<a href="./my.php" class="item_uc">个人中心</a>
         <a href="./yws_newzerosell.php" class="item_uc">新零售申请</a>
         <a href="./yws_branchcompany.php?page=1" class="item_uc">分公司申请</a>
         <a href="./yws_factoryenter.php" class="item_uc">厂家入驻</a>
+        <a href="./yws_individualityCustomization.php" class="item_uc">个性定制</a>-->
 <!--        <a href="./yws_ydy.php?page=1" class="item_uc">引导页</a>-->
-    </div>
-</div>
+   <!-- </div>
+</div>-->
 <?php
 //include display('lottery'); ?>

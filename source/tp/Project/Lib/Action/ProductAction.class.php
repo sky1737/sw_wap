@@ -146,6 +146,7 @@ class ProductAction extends BaseAction
                 'is_hot' => $tmp_product['is_hot'],
                 'is_recommend' => $tmp_product['is_recommend'],
                 'is_fx' => $tmp_product['is_fx'],
+                'is_boom'=>$tmp_product['is_boom'],
                 'status' => $tmp_product['status'],
                 //'source_product_id' => $tmp_product['source_product_id']
             );
@@ -185,11 +186,14 @@ class ProductAction extends BaseAction
     {
         $key = $this->_post('key', 'trim');
         $val = $this->_post('val', 'trim,intval');
+        //dump($key);
+        //dump($val);
         if (!$key || !$val) {
             $this->error('参数错误！');
         }
         $db = M('Product');
         $status = $db->where(array('product_id' => $val))->getField($key);
+        //dump($status);
         if ($status) {
             $db->where(array('product_id' => $val))->save(array($key => 0));
             $this->success('0');

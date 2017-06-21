@@ -139,6 +139,11 @@ class product_category_model extends base_model {
 		return $category;
 	}
 
+    public function getCategoryStore($store_id) {
+        $category = $this->db->where(array('store_id' => $store_id))->find();
+        return $category;
+    }
+
 	public function getCategories($wheres =array()) {
 		$categories = $this->db->where($wheres)->order('cat_path ASC')->select();
 		return $categories;

@@ -219,10 +219,13 @@
 									echo '<br/>推荐：<a class="red" href="javascript:;" data-type="is_recommend" data-id="' .
 										$product['product_id'] . '">' . ($product['is_recommend'] == 1 ? '是' : '否') . '</a>';
 								//}
+
 								if($product['is_fx'] != 0) {
 									echo '<br/>分销：<a class="red" href="javascript:;" data-type="is_fx" data-id="' .
 										$product['product_id'] . '">' . ($product['is_fx'] == 1 ? '是' : '否') . '</a>';
 								}
+                                echo '<br/>爆款：<a class="red" href="javascript:;" data-type="is_boom" data-id="' .
+                                    $product['product_id'] . '">' . ($product['is_boom'] ? '是' : '否') . '</a>';
 								/*<span class="cb-enable status-enable"><label class="cb-enable<if condition=" $product['status'] eq 1"> selected</if>" data-id="<?php echo $product['product_id']; ?>"><span>启用</span><input type="radio" name="status" value="1" <if condition="$product['product_id'] eq 1">checked="checked"</if> /></label></span><span class="cb-disable status-disable"><label class="cb-disable<if condition="$product['status'] eq 0"> selected</if> " data-id="<?php echo $product['product_id']; ?>"><span>禁用</span><input type="radio" name="status" value="0" <if condition="$product['product_id'] eq 0">checked="checked"</if>/></label></span>*/
 								?>
 							</td>

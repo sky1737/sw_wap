@@ -8,13 +8,13 @@ $(function () {
     setTimeout(function () {
         //console.log(1);
         $(".lightSpeedIn1").addClass("opacity");
-    },500);
+    },10);
     setTimeout(function () {
         //console.log(1);
         $(".lightSpeedIn2").addClass("opacity");
-    },1500);
+    },520);
     setTimeout(function () {
         //console.log(1);
         $(".lightSpeedIn3").addClass("opacity");
-    },2500);
+    },1020);
 })

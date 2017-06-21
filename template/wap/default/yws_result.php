@@ -5,13 +5,15 @@
     <meta charset="UTF-8">
     <meta CONTENT="zxjBigPower">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <?php if(!isset($error)):?>
+        <meta http-equiv="refresh" content="3;url=./yws_ydy.php?page=1">
+    <?php endif;?>
     <title><?php echo isset($title) ? $title.'-'.'中国“新零售”领导品牌' : '新零售申请-中国“新零售”领导品牌'?></title>
     <link rel="stylesheet" href="<?php echo TPL_URL; ?>css/yws_lz/base.css">
     <link rel="stylesheet" href="<?php echo TPL_URL; ?>css/yws_lz/yws_result.css">
     <link rel="stylesheet" href="<?php echo TPL_URL; ?>js/yws_lz/lib/css/jquery.fullPage.css">
 </head>
 <body>
-<?php var_dump($title)?>
 <div id="dowebok">
     <div class="section section1">
         <div class="showbox">

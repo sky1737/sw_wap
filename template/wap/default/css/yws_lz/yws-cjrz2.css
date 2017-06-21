@@ -72,8 +72,8 @@ section {
     margin-top: .25rem;
 }
 .section1 .showbox .con ul li:nth-of-type(3) > p {
-    width: 5.5rem;
-    padding-right: .5rem;
+    margin-left:.1rem;
+
 }
 .section1 .showbox .con ul li:nth-of-type(1) {
     transition: all 1s;
@@ -219,14 +219,18 @@ section {
     background: url("../images/yws_lz/fgssq/bg.png") no-repeat center / cover;
     overflow: hidden;
 }
+.section3 .con-con-box{
+    height: 100%;
+    width: 100%;
+}
 .section3 .showbox {
     width: 320px;
-    height: 400px;
+    height: 430px;
     border-radius: .2rem;
     background: rgba(141, 205, 255, 0.7);
     position: relative;
-    margin: 0 auto 0;
-    padding: 40px 40px;
+    margin: 0 auto ;
+    padding: 20px 40px;
     z-index: 2;
 }
 
@@ -248,11 +252,11 @@ section {
     height: 100%;
 }
 .section3 .showbox form ul {
-    padding-top: 30px;
+    padding-top: 0px;
 }
 .section3 .showbox form ul li {
     line-height: 20px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     font-size: 14px;
     color: #fff;
 }
@@ -267,7 +271,7 @@ section {
     border: 1px solid #fff;
     border-radius: .2rem;
     position: absolute;
-    bottom: 60px;
+    bottom: 20px;
     left: 50%;
     margin-left: -20%;
     line-height: 40px;
@@ -355,7 +359,8 @@ section {
 .section3 .showbox>ul>li{
     color: white;
     width: 50%;
-    font:normal 400 .28rem/.3rem "MicroSoft YaHei";
+    margin-bottom: .5rem;
+    font:normal 400 .28rem/.7rem "MicroSoft YaHei";
     text-align: center;
     float: right;
 }
@@ -364,4 +369,39 @@ section {
 }
 .section3 .showbox>ul>li:last-child{
     float: left;
+}
+
+.section1 .showbox .con .next,.section2 .showbox .con .next {
+    position: absolute;
+    bottom: .3rem;
+    left: 50%;
+    margin-left: -0.5rem;
+    height: 1rem;
+    width: 1rem;
+    text-align: center;
+    color: white;
+    transform-origin: bottom center;
+    font-size: .4rem;
+}
+.section1 .showbox .con .next i,.section2 .showbox .con .next i {
+    position: absolute;
+    width: 100%;
+    height: 33.33%;
+    background: rgba(155,155,155,.4);
+    left: 0;
+    margin-left: 0rem;
+}
+.section1 .showbox .con .next i:first-child,.section2 .showbox .con .next i:first-child{
+    background: url("../images/yws_lz/fgssq/row1.png") no-repeat center /contain;
+    top: 0;
+}
+.section1 .showbox .con .next i:nth-of-type(2),.section2 .showbox .con .next i:nth-of-type(2){
+    background: url("../images/yws_lz/fgssq/row2.png") no-repeat center /contain;
+    top: 8px;
+    opacity: .6;
+}
+.section1 .showbox .con .next i:last-child,.section2 .showbox .con .next i:last-child{
+    background: url("../images/yws_lz/fgssq/row3.png") no-repeat center /contain;
+    top: 16px;
+    opacity:.3;
 }
